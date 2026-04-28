@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)file:///Users/richardnashawaty/Downloads/index_14.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCA Calculator — Dollar-Cost Averaging for Stocks &amp; Crypto</title>
+<meta name="description" content="Free DCA calculator for stocks and crypto. Project your portfolio growth or backtest dollar-cost averaging strategies against S&amp;P 500, Bitcoin, and Nasdaq historical returns.">
+<meta name="keywords" content="DCA calculator, dollar cost averaging calculator, crypto DCA, stock DCA, investment calculator, Bitcoin DCA, S&amp;P 500 DCA">
+<meta property="og:title" content="DCA Calculator — Dollar-Cost Averaging for Stocks &amp; Crypto">
+<meta property="og:description" content="Project your portfolio growth or backtest DCA strategies. Free, no sign-up required.">
+<meta property="og:url" content="https://mydcacalc.com/">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="cQDhksvp2NlRIuOvx2Rkic1yFAw1kUnewIkiu4ZW-fg">
+<link rel="canonical" href="https://mydcacalc.com/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 32 32&#39;%3E%3Crect width=&#39;32&#39; height=&#39;32&#39; rx=&#39;6&#39; fill=&#39;%230c0c0e&#39;/%3E%3Ctext x=&#39;5&#39; y=&#39;22&#39; font-family=&#39;monospace&#39; font-size=&#39;13&#39; font-weight=&#39;700&#39; fill=&#39;%23c8f060&#39;%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./index_files/css2" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "DCA Calculator",
+  "description": "Free dollar-cost averaging calculator for stocks and crypto investments",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0c0c0e;
+  --bg-card: #141416;
+  --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8;
+  --text-muted: #888884;
+  --text-dim: #555552;
+  --accent: #c8f060;
+  --accent-dim: rgba(200,240,96,0.12);
+  --accent-border: rgba(200,240,96,0.3);
+  --blue: #5b9cf6;
+  --blue-dim: rgba(91,156,246,0.15);
+  --green: #3ecf8e;
+  --red: #f06060;
+  --font-body: 'Sora', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  position: sticky;
+  top: 0;
+  background: rgba(12,12,14,0.92);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.logo span { color: var(--text-muted); }
+
+nav { display: flex; gap: 24px; }
+nav a {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+nav a:hover { color: var(--text); }
+
+/* ── HERO ── */
+.hero {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 32px;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  margin-bottom: 20px;
+  letter-spacing: 0.03em;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero p {
+  font-size: 16px;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── MAIN CALC ── */
+.calc-wrap {
+  max-width: 800px;
+  margin: 0 auto 24px;
+  padding: 0 24px;
+}
+
+.calc-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+/* Mode tabs */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+  background: var(--bg-input);
+  border-radius: var(--radius);
+  padding: 4px;
+}
+
+.tab {
+  flex: 1;
+  padding: 8px 16px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+
+.tab.active {
+  background: var(--bg-card);
+  color: var(--text);
+  font-weight: 500;
+  border: 1px solid var(--border-hover);
+}
+
+/* Asset pills */
+.asset-pills {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 5px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.pill:hover { border-color: var(--border-hover); color: var(--text); }
+
+.pill.active {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Controls grid */
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 520px) { .controls { grid-template-columns: 1fr; } }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+
+.field label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-prefix {
+  position: absolute;
+  left: 12px;
+  font-size: 14px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  pointer-events: none;
+}
+
+input[type="number"], select {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.15s;
+  appearance: none;
+}
+
+.has-prefix input[type="number"] { padding-left: 26px; }
+
+input[type="number"]:focus, select:focus {
+  border-color: var(--accent-border);
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+/* Range sliders */
+.range-wrap { display: flex; flex-direction: column; gap: 6px; }
+
+.range-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.range-val {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  background: var(--bg-input);
+  border-radius: 2px;
+  outline: none;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 0 0 1px var(--accent-border);
+  transition: transform 0.1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+/* Metrics */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 520px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+
+.metric {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: border-color 0.15s;
+}
+
+.metric:hover { border-color: var(--border-hover); }
+
+.metric-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.metric-value {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.metric-value.pos { color: var(--green); }
+.metric-value.neg { color: var(--red); }
+
+/* Chart */
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  margin-bottom: 14px;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* Backtest note */
+.bt-note {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  margin-bottom: 20px;
+  padding: 10px 14px;
+  background: var(--bg-input);
+  border-radius: var(--radius);
+  border-left: 2px solid var(--accent-border);
+}
+
+/* ── AFFILIATE BAR ── */
+.affiliate-bar {
+  max-width: 800px;
+  margin: 0 auto 24px;
+  padding: 0 24px;
+}
+
+.affiliate-inner {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.affiliate-text p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.affiliate-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.aff-links { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.aff-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.18s;
+  font-family: var(--font-mono);
+}
+
+.aff-link:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+  background: rgba(255,255,255,0.04);
+}
+
+.aff-link.featured {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.aff-link.featured:hover { background: rgba(200,240,96,0.18); }
+
+/* ── EXPLAINER ── */
+.explainer {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 0 24px;
+}
+
+.explainer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 580px) { .explainer-grid { grid-template-columns: 1fr; } }
+
+.exp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+}
+
+.exp-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exp-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.exp-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.faq { display: flex; flex-direction: column; gap: 0; }
+
+.faq-item {
+  border-top: 1px solid var(--border);
+  padding: 18px 0;
+}
+
+.faq-item:last-child { border-bottom: 1px solid var(--border); }
+
+.faq-q {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.faq-a {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 24px;
+  text-align: center;
+}
+
+footer p {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  line-height: 1.8;
+}
+
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* Divider */
+.divider {
+  width: 40px; height: 1px;
+  background: var(--border);
+  margin: 40px auto;
+}
+
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: '▾'; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; line-height: 1.4; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="file:///Users/richardnashawaty/Downloads/index.html" class="logo">mydca<span>calc</span>.com</a>
+      <nav>
+    <a href="file:///Users/richardnashawaty/Downloads/index.html">DCA</a>
+    <a href="file:///Users/richardnashawaty/Downloads/position-size.html">Position size</a>
+    <a href="file:///Users/richardnashawaty/Downloads/compound-interest.html">Compound interest</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="guides/" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-badge">Free · No sign-up required</div>
+    <h1>Dollar-cost averaging<br>for <em>stocks &amp; crypto</em></h1>
+    <p>Project your portfolio growth or backtest DCA strategies against real historical returns. Know your numbers before you invest.</p>
+  </section>
+
+  <div style="max-width:800px;margin:0 auto 0;padding:16px 24px 0;display:flex;gap:8px;flex-wrap:wrap;">
+    <a href="file:///Users/richardnashawaty/Downloads/index.html" style="font-size:12px;font-family:&#39;DM Mono&#39;,monospace;color:var(--accent);text-decoration:none;padding:4px 12px;border:1px solid var(--accent-border);border-radius:20px;background:var(--accent-dim);">DCA calculator</a>
+    <a href="file:///Users/richardnashawaty/Downloads/position-size.html" style="font-size:12px;font-family:&#39;DM Mono&#39;,monospace;color:var(--text-dim);text-decoration:none;padding:4px 12px;border:1px solid var(--border);border-radius:20px;">Position size calculator</a>
+    <a href="file:///Users/richardnashawaty/Downloads/compound-interest.html" style="font-size:12px;font-family:&#39;DM Mono&#39;,monospace;color:var(--text-dim);text-decoration:none;padding:4px 12px;border:1px solid var(--border);border-radius:20px;">Compound interest calculator</a>
+  </div>
+
+  <div class="calc-wrap" style="padding-top:16px;">
+    <div class="calc-card">
+
+      <div class="tabs">
+        <button class="tab active" id="tab-fwd" onclick="setMode(&#39;forward&#39;)">Forward projection</button>
+        <button class="tab" id="tab-bt" onclick="setMode(&#39;backtest&#39;)">Historical backtest</button>
+      </div>
+
+      <!-- FORWARD PANEL -->
+      <div id="panel-fwd">
+        <div class="asset-pills">
+          <button class="pill active" id="pill-stocks" onclick="setAsset(&#39;stocks&#39;)">Stocks / ETFs</button>
+          <button class="pill" id="pill-crypto" onclick="setAsset(&#39;crypto&#39;)">Crypto</button>
+        </div>
+
+        <div class="controls">
+          <div class="field">
+            <label>Initial investment</label>
+            <div class="input-wrap has-prefix">
+              <span class="input-prefix">$</span>
+              <input type="number" id="f-initial" value="1000" min="0" step="100" oninput="calc()">
+            </div>
+          </div>
+          <div class="field">
+            <label>Recurring amount</label>
+            <div class="input-wrap has-prefix">
+              <span class="input-prefix">$</span>
+              <input type="number" id="f-recurring" value="200" min="0" step="50" oninput="calc()">
+            </div>
+          </div>
+          <div class="field">
+            <label>Frequency</label>
+            <select id="f-freq" onchange="calc()">
+              <option value="12">Monthly</option>
+              <option value="52">Weekly</option>
+              <option value="4">Quarterly</option>
+              <option value="1">Annually</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Duration</label>
+            <div class="range-wrap">
+              <div class="range-header">
+                <span style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);">Years</span>
+                <span class="range-val" id="f-years-val">10 yrs</span>
+              </div>
+              <input type="range" id="f-years" min="1" max="30" value="10" step="1" oninput="document.getElementById(&#39;f-years-val&#39;).textContent=this.value+&#39; yrs&#39;;calc()">
+            </div>
+          </div>
+          <div class="field">
+            <label>Expected annual return</label>
+            <div class="range-wrap">
+              <div class="range-header">
+                <span style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);">% per year</span>
+                <span class="range-val" id="f-rate-val">10%</span>
+              </div>
+              <input type="range" id="f-rate" min="1" max="60" value="10" step="1" oninput="document.getElementById(&#39;f-rate-val&#39;).textContent=this.value+&#39;%&#39;;calc()">
+            </div>
+          </div>
+          <div class="field">
+            <label>Contribution growth</label>
+            <div class="range-wrap">
+              <div class="range-header">
+                <span style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);">% per year</span>
+                <span class="range-val" id="f-cg-val">0%</span>
+              </div>
+              <input type="range" id="f-cg" min="0" max="20" value="0" step="1" oninput="document.getElementById(&#39;f-cg-val&#39;).textContent=this.value+&#39;%&#39;;calc()">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BACKTEST PANEL -->
+      <div id="panel-bt" style="display:none;">
+        <div class="asset-pills">
+          <button class="pill active" id="bt-sp500" onclick="setBt(&#39;sp500&#39;)">S&amp;P 500 (~10%/yr)</button>
+          <button class="pill" id="bt-nasdaq" onclick="setBt(&#39;nasdaq&#39;)">Nasdaq (~13%/yr)</button>
+          <button class="pill" id="bt-btc" onclick="setBt(&#39;btc&#39;)">Bitcoin (~60%/yr)</button>
+        </div>
+        <div class="bt-note" id="bt-note">Using S&amp;P 500 historical average annual return of ~10%. Past performance does not guarantee future results.</div>
+        <div class="controls">
+          <div class="field">
+            <label>Initial investment</label>
+            <div class="input-wrap has-prefix">
+              <span class="input-prefix">$</span>
+              <input type="number" id="bt-initial" value="1000" min="0" step="100" oninput="calc()">
+            </div>
+          </div>
+          <div class="field">
+            <label>Recurring amount</label>
+            <div class="input-wrap has-prefix">
+              <span class="input-prefix">$</span>
+              <input type="number" id="bt-recurring" value="200" min="0" step="50" oninput="calc()">
+            </div>
+          </div>
+          <div class="field">
+            <label>Frequency</label>
+            <select id="bt-freq" onchange="calc()">
+              <option value="12">Monthly</option>
+              <option value="52">Weekly</option>
+              <option value="4">Quarterly</option>
+              <option value="1">Annually</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Duration</label>
+            <div class="range-wrap">
+              <div class="range-header">
+                <span style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);">Years</span>
+                <span class="range-val" id="bt-years-val">10 yrs</span>
+              </div>
+              <input type="range" id="bt-years" min="1" max="20" value="10" step="1" oninput="document.getElementById(&#39;bt-years-val&#39;).textContent=this.value+&#39; yrs&#39;;calc()">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- METRICS -->
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-label">Total invested</div>
+          <div class="metric-value" id="m-invested">$25,000</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Final value</div>
+          <div class="metric-value pos" id="m-final">$42,567</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Total gain</div>
+          <div class="metric-value pos" id="m-gain">+$17,567</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Return</div>
+          <div class="metric-value pos" id="m-return">+70.3%</div>
+        </div>
+      </div>
+
+      <!-- CHART -->
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>Portfolio value</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#2a3a1a;border:1px solid #4a6a2a;"></div>Total contributed</div>
+      </div>
+      <div class="chart-container">
+        <canvas id="dcaChart" role="img" aria-label="DCA portfolio growth chart showing value vs contributions over time" width="1388" height="520" style="display: block; box-sizing: border-box; height: 260px; width: 694px;">Chart showing DCA portfolio growth over time.</canvas>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- AFFILIATE BAR -->
+  <div class="affiliate-bar">
+    <div class="affiliate-inner">
+      <div class="affiliate-text">
+        <strong>Ready to start DCA investing?</strong>
+        <p>Open an account on one of these platforms and start today.</p>
+      </div>
+      <div class="aff-links">
+        <a class="aff-link featured" href="https://alpaca.markets/" target="_blank" rel="noopener">Alpaca</a>
+        <a class="aff-link" href="https://robinhood.com/" target="_blank" rel="noopener">Robinhood</a>
+        <a class="aff-link" href="https://www.coinbase.com/" target="_blank" rel="noopener">Coinbase</a>
+        <a class="aff-link" href="https://www.fidelity.com/" target="_blank" rel="noopener">Fidelity</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPLAINER -->
+  <section class="explainer" id="how-it-works">
+    <div class="divider"></div>
+    <h2 class="section-title">How DCA works</h2>
+    <div class="explainer-grid">
+      <div class="exp-card">
+        <h3><div class="exp-icon">↓</div>Buy more when prices drop</h3>
+        <p>When prices fall, your fixed contribution buys more shares or coins. This naturally lowers your average cost per unit over time.</p>
+      </div>
+      <div class="exp-card">
+        <h3><div class="exp-icon">↑</div>Buy less when prices rise</h3>
+        <p>When prices are high, you automatically buy fewer units. You never over-invest at the top of a market cycle.</p>
+      </div>
+      <div class="exp-card">
+        <h3><div class="exp-icon">~</div>Remove emotional decisions</h3>
+        <p>A fixed schedule removes the urge to time the market. Consistent investing through volatility has historically outperformed sporadic lump-sum attempts.</p>
+      </div>
+      <div class="exp-card">
+        <h3><div class="exp-icon">+</div>Harness compound growth</h3>
+        <p>Returns generate their own returns over time. The longer your time horizon, the more dramatically compounding accelerates your portfolio.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h2 class="section-title" id="faq">Frequently asked questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">What is dollar-cost averaging (DCA)?</div>
+        <div class="faq-a">DCA is an investment strategy where you invest a fixed dollar amount at regular intervals — weekly, monthly, or quarterly — regardless of the asset's price. Over time, this results in buying more units when prices are low and fewer when prices are high, lowering your average cost per unit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is DCA better than lump-sum investing?</div>
+        <div class="faq-a">Academic research shows lump-sum investing outperforms DCA about two-thirds of the time in rising markets, since more capital is exposed to growth earlier. However, DCA significantly reduces the risk of investing everything right before a downturn. For most people who receive regular income (salary, freelance income), DCA is the natural and practical approach.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What return rate should I use for stocks?</div>
+        <div class="faq-a">The S&amp;P 500 has returned approximately 10% annually on average over the past century (7% after inflation). The Nasdaq has averaged around 13% annually. Individual stocks vary widely. For crypto like Bitcoin, long-term historical averages are much higher but come with far more volatility and risk.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How accurate are these projections?</div>
+        <div class="faq-a">This calculator uses simplified compound growth models. Real market returns vary year to year, and actual results will differ based on market conditions, taxes, fees, and timing. These projections are for planning and illustration only — not financial advice.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What does "contribution growth" mean?</div>
+        <div class="faq-a">This models the effect of increasing your recurring investment over time — for example, investing 5% more each year as your income grows. Even a small annual increase has a dramatic effect on your final portfolio value over long periods.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>
+    © 2025 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="file:///Users/richardnashawaty/Downloads/about.html">About</a> &nbsp;·&nbsp;
+    <a href="file:///Users/richardnashawaty/Downloads/privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="file:///Users/richardnashawaty/Downloads/terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For informational purposes only. Not financial advice. Projections use simplified compound growth models<br>and do not account for taxes, fees, or actual market volatility.
+  </p>
+</footer>
+
+<script src="./index_files/chart.umd.js"></script>
+<script>
+let mode = 'forward';
+let asset = 'stocks';
+let btAsset = 'sp500';
+let chart = null;
+
+const BT_RATES = { sp500: 10, nasdaq: 13, btc: 60 };
+const BT_NOTES = {
+  sp500: 'Using S&P 500 historical average annual return of ~10%. Past performance does not guarantee future results.',
+  nasdaq: 'Using Nasdaq historical average annual return of ~13%. Past performance does not guarantee future results.',
+  btc: 'Using Bitcoin historical average annual return of ~60%. Crypto is highly volatile — past performance does not guarantee future results.'
+};
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('panel-fwd').style.display = m === 'forward' ? '' : 'none';
+  document.getElementById('panel-bt').style.display = m === 'backtest' ? '' : 'none';
+  document.getElementById('tab-fwd').classList.toggle('active', m === 'forward');
+  document.getElementById('tab-bt').classList.toggle('active', m === 'backtest');
+  calc();
+}
+
+function setAsset(a) {
+  asset = a;
+  document.getElementById('pill-stocks').classList.toggle('active', a === 'stocks');
+  document.getElementById('pill-crypto').classList.toggle('active', a === 'crypto');
+  const rateEl = document.getElementById('f-rate');
+  const rateVal = document.getElementById('f-rate-val');
+  if (a === 'crypto') { rateEl.value = 30; rateVal.textContent = '30%'; }
+  else { rateEl.value = 10; rateVal.textContent = '10%'; }
+  calc();
+}
+
+function setBt(b) {
+  btAsset = b;
+  ['sp500','nasdaq','btc'].forEach(k => document.getElementById('bt-'+k).classList.toggle('active', k === b));
+  document.getElementById('bt-note').textContent = BT_NOTES[b];
+  calc();
+}
+
+function fmt(n) {
+  const abs = Math.abs(Math.round(n));
+  if (abs >= 1000000) return (n < 0 ? '-' : '') + '$' + (abs/1000000).toFixed(2) + 'M';
+  if (abs >= 1000) return (n < 0 ? '-' : '') + '$' + abs.toLocaleString();
+  return (n < 0 ? '-' : '') + '$' + abs;
+}
+
+function calcData() {
+  let initial, recurring, freq, years, rate, cgRate;
+  if (mode === 'forward') {
+    initial = parseFloat(document.getElementById('f-initial').value) || 0;
+    recurring = parseFloat(document.getElementById('f-recurring').value) || 0;
+    freq = parseInt(document.getElementById('f-freq').value);
+    years = parseInt(document.getElementById('f-years').value);
+    rate = parseFloat(document.getElementById('f-rate').value) / 100;
+    cgRate = parseFloat(document.getElementById('f-cg').value) / 100;
+  } else {
+    initial = parseFloat(document.getElementById('bt-initial').value) || 0;
+    recurring = parseFloat(document.getElementById('bt-recurring').value) || 0;
+    freq = parseInt(document.getElementById('bt-freq').value);
+    years = parseInt(document.getElementById('bt-years').value);
+    rate = BT_RATES[btAsset] / 100;
+    cgRate = 0;
+  }
+
+  const rPerPeriod = Math.pow(1 + rate, 1 / freq) - 1;
+  const totalPeriods = years * freq;
+  const maxPoints = 24;
+  const step = Math.max(1, Math.floor(totalPeriods / maxPoints));
+  const labels = [], values = [], contribs = [];
+
+  let portfolio = initial;
+  let totalContrib = initial;
+  let currentRecurring = recurring;
+
+  for (let i = 0; i <= totalPeriods; i++) {
+    if (i > 0 && i % freq === 0) currentRecurring *= (1 + cgRate);
+    if (i % step === 0 || i === totalPeriods) {
+      const yr = i / freq;
+      labels.push(i === 0 ? 'Now' : (yr % 1 === 0 ? 'Yr ' + yr : ''));
+      values.push(Math.round(portfolio));
+      contribs.push(Math.round(totalContrib));
+    }
+    if (i < totalPeriods) {
+      portfolio = portfolio * (1 + rPerPeriod) + currentRecurring;
+      totalContrib += currentRecurring;
+    }
+  }
+
+  return { labels, values, contribs, totalContrib, finalValue: portfolio };
+}
+
+function calc() {
+  const { labels, values, contribs, totalContrib, finalValue } = calcData();
+  const gain = finalValue - totalContrib;
+  const ret = totalContrib > 0 ? (gain / totalContrib * 100) : 0;
+
+  document.getElementById('m-invested').textContent = fmt(totalContrib);
+
+  const fEl = document.getElementById('m-final');
+  fEl.textContent = fmt(finalValue);
+  fEl.className = 'metric-value pos';
+
+  const gEl = document.getElementById('m-gain');
+  gEl.textContent = (gain >= 0 ? '+' : '') + fmt(gain);
+  gEl.className = 'metric-value ' + (gain >= 0 ? 'pos' : 'neg');
+
+  const rEl = document.getElementById('m-return');
+  rEl.textContent = (ret >= 0 ? '+' : '') + ret.toFixed(1) + '%';
+  rEl.className = 'metric-value ' + (ret >= 0 ? 'pos' : 'neg');
+
+  const ctx = document.getElementById('dcaChart').getContext('2d');
+  if (chart) chart.destroy();
+
+  chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Portfolio value',
+          data: values,
+          backgroundColor: '#c8f060',
+          borderRadius: 4,
+          order: 2
+        },
+        {
+          label: 'Total contributed',
+          data: contribs,
+          backgroundColor: '#2a3a1a',
+          borderRadius: 4,
+          order: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1a1a1e',
+          borderColor: 'rgba(255,255,255,0.1)',
+          borderWidth: 1,
+          titleColor: '#888884',
+          bodyColor: '#f0efe8',
+          padding: 12,
+          callbacks: {
+            label: c => ' ' + c.dataset.label + ': $' + Math.round(c.parsed.y).toLocaleString()
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          border: { color: 'rgba(255,255,255,0.06)' },
+          ticks: {
+            font: { size: 11, family: "'DM Mono', monospace" },
+            color: '#555552',
+            maxRotation: 0,
+            autoSkip: true
+          }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          border: { color: 'transparent' },
+          ticks: {
+            font: { size: 11, family: "'DM Mono', monospace" },
+            color: '#555552',
+            callback: v => {
+              if (v >= 1000000) return '$' + (v/1000000).toFixed(1) + 'M';
+              if (v >= 1000) return '$' + (v/1000).toFixed(0) + 'k';
+              return '$' + v;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+calc();
+</script>
+
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      menu.style.display = 'block';
+    });
+    dd.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+    menu.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+    });
+    menu.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+  });
+})();
+</script>
+
+
+
+</body></html>

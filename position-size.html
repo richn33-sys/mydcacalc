@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Position Size Calculator — Risk Management for Stocks & Crypto</title>
+<meta name="description" content="Free position size calculator for stocks and crypto. Enter your account size, risk percentage, and stop loss to know exactly how many shares or coins to buy.">
+<meta name="keywords" content="position size calculator, stock position size, crypto position size, risk management calculator, trading calculator, stop loss calculator">
+<meta property="og:title" content="Position Size Calculator — MyDCACalc.com">
+<meta property="og:description" content="Know exactly how much to buy before every trade. Free position sizing calculator for stocks and crypto.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/position-size.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/position-size.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Position Size Calculator",
+  "description": "Free position size calculator for stocks and crypto trading",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+
+.hero { max-width: 720px; margin: 0 auto; padding: 48px 24px 28px; text-align: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 20px; }
+.hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 14px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 15px; color: var(--text-muted); font-weight: 300; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+.calc-wrap { max-width: 800px; margin: 0 auto 24px; padding: 0 24px; }
+.calc-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+
+.asset-pills { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+.pill { padding: 5px 16px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-family: var(--font-body); font-size: 13px; cursor: pointer; transition: all 0.18s; }
+.pill:hover { border-color: var(--border-hover); color: var(--text); }
+.pill.active { background: var(--accent-dim); border-color: var(--accent-border); color: var(--accent); font-weight: 500; }
+
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+@media (max-width: 520px) { .controls { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label { font-size: 11px; font-weight: 500; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; font-family: var(--font-mono); }
+.field .hint { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 2px; }
+.input-wrap { position: relative; display: flex; align-items: center; }
+.input-prefix, .input-suffix { position: absolute; font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); pointer-events: none; }
+.input-prefix { left: 12px; }
+.input-suffix { right: 12px; }
+input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-family: var(--font-mono); font-size: 15px; padding: 10px 12px; outline: none; transition: border-color 0.15s; appearance: none; }
+.has-prefix input[type="number"] { padding-left: 26px; }
+.has-suffix input[type="number"] { padding-right: 30px; }
+input[type="number"]:focus { border-color: var(--accent-border); }
+
+.range-wrap { display: flex; flex-direction: column; gap: 6px; }
+.range-header { display: flex; justify-content: space-between; align-items: center; }
+.range-val { font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--accent); }
+input[type="range"] { width: 100%; height: 4px; appearance: none; background: var(--bg-input); border-radius: 2px; outline: none; border: 1px solid var(--border); cursor: pointer; }
+input[type="range"]::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid var(--bg-card); box-shadow: 0 0 0 1px var(--accent-border); transition: transform 0.1s; }
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 28px; }
+@media (max-width: 520px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+.metric { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; transition: border-color 0.15s; }
+.metric:hover { border-color: var(--border-hover); }
+.metric-label { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.metric-value { font-family: var(--font-mono); font-size: 18px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
+.metric-value.pos { color: var(--green); }
+.metric-value.neg { color: var(--red); }
+.metric-value.accent { color: var(--accent); }
+
+/* Risk meter */
+.risk-meter-wrap { margin-bottom: 28px; }
+.risk-meter-label { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.risk-bar-track { height: 8px; background: var(--bg-input); border-radius: 4px; border: 1px solid var(--border); overflow: hidden; }
+.risk-bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s ease, background 0.3s ease; }
+.risk-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); }
+
+/* Breakdown table */
+.breakdown { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 28px; }
+.breakdown-row { display: grid; grid-template-columns: 1fr 1fr; padding: 12px 18px; border-bottom: 1px solid var(--border); }
+.breakdown-row:last-child { border-bottom: none; }
+.breakdown-row.header { background: rgba(255,255,255,0.02); }
+.breakdown-row span:first-child { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+.breakdown-row span:last-child { font-size: 13px; color: var(--text); font-family: var(--font-mono); font-weight: 500; text-align: right; }
+
+.affiliate-bar { max-width: 800px; margin: 0 auto 24px; padding: 0 24px; }
+.affiliate-inner { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.affiliate-text p { font-size: 13px; color: var(--text-muted); margin: 0; }
+.affiliate-text strong { display: block; font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.aff-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.aff-link { display: inline-flex; align-items: center; padding: 7px 16px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-input); color: var(--text-muted); font-size: 13px; font-weight: 500; text-decoration: none; transition: all 0.18s; font-family: var(--font-mono); }
+.aff-link:hover { border-color: var(--border-hover); color: var(--text); }
+.aff-link.featured { border-color: var(--accent-border); color: var(--accent); background: var(--accent-dim); }
+
+.explainer { max-width: 800px; margin: 0 auto 40px; padding: 0 24px; }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 40px auto; }
+.section-title { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 16px; }
+.explainer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+@media (max-width: 580px) { .explainer-grid { grid-template-columns: 1fr; } }
+.exp-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
+.exp-card h3 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.exp-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--accent-dim); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.exp-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+.faq { display: flex; flex-direction: column; }
+.faq-item { border-top: 1px solid var(--border); padding: 18px 0; }
+.faq-item:last-child { border-bottom: 1px solid var(--border); }
+.faq-q { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+.faq-a { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+/* Calculator nav */
+.calc-nav { max-width: 800px; margin: 0 auto 0; padding: 16px 24px 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.calc-nav a { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); text-decoration: none; padding: 4px 12px; border: 1px solid var(--border); border-radius: 20px; transition: all 0.15s; }
+.calc-nav a:hover { color: var(--text-muted); border-color: var(--border-hover); }
+.calc-nav a.active { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
+
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: '▾'; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; line-height: 1.4; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">mydca<span>calc</span>.com</a>
+      <nav>
+    <a href="index.html">DCA</a>
+    <a href="position-size.html">Position size</a>
+    <a href="compound-interest.html">Compound interest</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="guides/" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-badge">Risk management tool</div>
+    <h1>Position size<br>calculator for <em>stocks & crypto</em></h1>
+    <p>Know exactly how many shares or coins to buy on every trade. Protect your account by never risking more than you can afford to lose.</p>
+  </section>
+
+  <div class="calc-nav">
+    <a href="index.html">DCA calculator</a>
+    <a href="position-size.html" class="active">Position size calculator</a>
+    <a href="compound-interest.html">Compound interest calculator</a>
+  </div>
+
+  <div class="calc-wrap" style="padding-top:16px;">
+    <div class="calc-card">
+
+      <div class="asset-pills">
+        <button class="pill active" id="pill-stocks" onclick="setAsset('stocks')">Stocks / ETFs</button>
+        <button class="pill" id="pill-crypto" onclick="setAsset('crypto')">Crypto</button>
+        <button class="pill" id="pill-forex" onclick="setAsset('forex')">Forex</button>
+      </div>
+
+      <div class="controls">
+        <div class="field">
+          <label>Account size</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="account" value="10000" min="1" step="100" oninput="calc()">
+          </div>
+          <span class="hint">Total trading capital</span>
+        </div>
+        <div class="field">
+          <label>Risk per trade</label>
+          <div class="range-wrap">
+            <div class="range-header">
+              <span style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);">% of account</span>
+              <span class="range-val" id="risk-val">1%</span>
+            </div>
+            <input type="range" id="risk" min="0.25" max="10" value="1" step="0.25" oninput="document.getElementById('risk-val').textContent=parseFloat(this.value).toFixed(2).replace(/\.00$/,'')+'%';calc()">
+          </div>
+          <span class="hint">Professional traders risk 1–2% max</span>
+        </div>
+        <div class="field">
+          <label>Entry price</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="entry" value="150" min="0.000001" step="0.01" oninput="calc()">
+          </div>
+          <span class="hint">Price you plan to buy at</span>
+        </div>
+        <div class="field">
+          <label>Stop loss price</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="stoploss" value="142.50" min="0.000001" step="0.01" oninput="calc()">
+          </div>
+          <span class="hint">Price where you exit if wrong</span>
+        </div>
+        <div class="field">
+          <label>Take profit price <span style="color:var(--text-dim);font-size:10px;">(optional)</span></label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="takeprofit" value="165" min="0" step="0.01" oninput="calc()">
+          </div>
+          <span class="hint">Target exit price</span>
+        </div>
+        <div class="field">
+          <label>Commission / fee</label>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="commission" value="0" min="0" step="0.01" oninput="calc()">
+          </div>
+          <span class="hint">Per trade (0 for commission-free)</span>
+        </div>
+      </div>
+
+      <!-- METRICS -->
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-label">Position size</div>
+          <div class="metric-value accent" id="m-size">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Amount to invest</div>
+          <div class="metric-value" id="m-invest">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Max loss</div>
+          <div class="metric-value neg" id="m-loss">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Potential gain</div>
+          <div class="metric-value pos" id="m-gain">—</div>
+        </div>
+      </div>
+
+      <!-- RISK METER -->
+      <div class="risk-meter-wrap">
+        <div class="risk-meter-label">Risk level</div>
+        <div class="risk-bar-track">
+          <div class="risk-bar-fill" id="risk-bar" style="width:10%;background:var(--green);"></div>
+        </div>
+        <div class="risk-labels">
+          <span>Conservative (&lt;1%)</span>
+          <span>Moderate (1–2%)</span>
+          <span>Aggressive (&gt;2%)</span>
+        </div>
+      </div>
+
+      <!-- BREAKDOWN -->
+      <div class="breakdown">
+        <div class="breakdown-row header">
+          <span>Calculation breakdown</span>
+          <span>Value</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Risk amount ($)</span>
+          <span id="b-riskamt">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Risk per share ($)</span>
+          <span id="b-riskper">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Stop loss distance</span>
+          <span id="b-sldist">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Risk/reward ratio</span>
+          <span id="b-rr">—</span>
+        </div>
+        <div class="breakdown-row">
+          <span>% of account used</span>
+          <span id="b-pct">—</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- AFFILIATE -->
+  <div class="affiliate-bar">
+    <div class="affiliate-inner">
+      <div class="affiliate-text">
+        <strong>Ready to put this into practice?</strong>
+        <p>Open a commission-free trading account and start applying proper position sizing.</p>
+      </div>
+      <div class="aff-links">
+        <a class="aff-link featured" href="https://alpaca.markets" target="_blank" rel="noopener">Alpaca</a>
+        <a class="aff-link" href="https://robinhood.com" target="_blank" rel="noopener">Robinhood</a>
+        <a class="aff-link" href="https://www.coinbase.com" target="_blank" rel="noopener">Coinbase</a>
+        <a class="aff-link" href="https://www.fidelity.com" target="_blank" rel="noopener">Fidelity</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPLAINER -->
+  <section class="explainer" id="how-it-works">
+    <div class="divider"></div>
+    <h2 class="section-title">Why position sizing matters</h2>
+    <div class="explainer-grid">
+      <div class="exp-card">
+        <h3><div class="exp-icon">%</div>Risk a fixed % every trade</h3>
+        <p>Professional traders never risk more than 1–2% of their account on a single trade. This means even a 10-loss streak only costs 10–20% of your capital — recoverable.</p>
+      </div>
+      <div class="exp-card">
+        <h3><div class="exp-icon">✕</div>Stop losses define your risk</h3>
+        <p>Your stop loss isn't optional — it's what makes position sizing possible. Without a defined stop, you have no way to calculate how much to buy.</p>
+      </div>
+      <div class="exp-card">
+        <h3><div class="exp-icon">→</div>Consistency beats big bets</h3>
+        <p>Sizing every trade the same way removes emotion from the equation. You're not "feeling" whether to go big or small — the math decides every time.</p>
+      </div>
+      <div class="exp-card">
+        <h3><div class="exp-icon">↑</div>Risk/reward is everything</h3>
+        <p>A good trade risks $1 to make $2 or more (2:1 R/R). If your take profit gives you less than 1.5:1, the trade may not be worth taking regardless of how confident you feel.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h2 class="section-title" id="faq">Frequently asked questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">How is position size calculated?</div>
+        <div class="faq-a">Position size = (Account size × Risk %) ÷ (Entry price − Stop loss price). For example: $10,000 account, 1% risk, entry at $150, stop at $142.50 → ($100) ÷ ($7.50) = 13 shares.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What percentage should I risk per trade?</div>
+        <div class="faq-a">Most professional traders risk between 0.5% and 2% per trade. At 1% risk, you can lose 20 trades in a row and still have 82% of your capital. At 5% risk, 20 consecutive losses wipes out 64% of your account.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does this work for crypto?</div>
+        <div class="faq-a">Yes — the same formula applies to any asset. The key difference with crypto is that stop losses need to be wider due to higher volatility. A tight stop on Bitcoin will almost always get hit. Factor in typical daily volatility when placing your stop.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is a good risk/reward ratio?</div>
+        <div class="faq-a">A minimum of 1.5:1 is generally considered acceptable — meaning you stand to gain $1.50 for every $1 risked. Many traders only take trades with 2:1 or better. A high win rate with poor R/R can still be a losing strategy over time.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Should I always use the full calculated position size?</div>
+        <div class="faq-a">Not necessarily. The calculator gives you the maximum position size based on your risk parameters. You can always take a smaller position — for example, half size on a less-certain setup. Never exceed the calculated size.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>
+    &copy; 2025 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For informational purposes only. Not financial advice. Always use a stop loss and never risk more than you can afford to lose.
+  </p>
+</footer>
+
+<script>
+let asset = 'stocks';
+
+function setAsset(a) {
+  asset = a;
+  ['stocks','crypto','forex'].forEach(k => document.getElementById('pill-'+k).classList.toggle('active', k === a));
+  const entry = document.getElementById('entry');
+  const stop = document.getElementById('stoploss');
+  const tp = document.getElementById('takeprofit');
+  if (a === 'crypto') {
+    entry.value = 42000; entry.step = 1;
+    stop.value = 39000; stop.step = 1;
+    tp.value = 48000; tp.step = 1;
+  } else if (a === 'forex') {
+    entry.value = 1.0850; entry.step = 0.0001;
+    stop.value = 1.0800; stop.step = 0.0001;
+    tp.value = 1.0950; tp.step = 0.0001;
+  } else {
+    entry.value = 150; entry.step = 0.01;
+    stop.value = 142.50; stop.step = 0.01;
+    tp.value = 165; tp.step = 0.01;
+  }
+  calc();
+}
+
+function fmt(n, decimals) {
+  if (n === null || isNaN(n)) return '—';
+  const d = decimals !== undefined ? decimals : (Math.abs(n) < 10 ? 4 : Math.abs(n) < 100 ? 2 : 0);
+  return '$' + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+}
+
+function calc() {
+  const account = parseFloat(document.getElementById('account').value) || 0;
+  const riskPct = parseFloat(document.getElementById('risk').value) || 1;
+  const entry = parseFloat(document.getElementById('entry').value) || 0;
+  const stoploss = parseFloat(document.getElementById('stoploss').value) || 0;
+  const takeprofit = parseFloat(document.getElementById('takeprofit').value) || 0;
+  const commission = parseFloat(document.getElementById('commission').value) || 0;
+
+  if (!account || !entry || !stoploss || stoploss >= entry) {
+    ['m-size','m-invest','m-loss','m-gain','b-riskamt','b-riskper','b-sldist','b-rr','b-pct'].forEach(id => {
+      document.getElementById(id).textContent = '—';
+    });
+    return;
+  }
+
+  const riskAmount = account * (riskPct / 100);
+  const riskPerShare = entry - stoploss;
+  const rawShares = (riskAmount - commission) / riskPerShare;
+  const shares = Math.floor(rawShares);
+  const investAmount = shares * entry + commission;
+  const maxLoss = shares * riskPerShare + commission;
+  const slDistPct = ((riskPerShare / entry) * 100).toFixed(2);
+  const pctOfAccount = ((investAmount / account) * 100).toFixed(1);
+
+  let potentialGain = null;
+  let rrRatio = '—';
+  if (takeprofit > entry) {
+    potentialGain = shares * (takeprofit - entry) - commission;
+    const rr = potentialGain / maxLoss;
+    rrRatio = rr.toFixed(2) + ':1';
+  }
+
+  // Update metrics
+  document.getElementById('m-size').textContent = shares.toLocaleString() + (asset === 'crypto' ? ' units' : ' shares');
+  document.getElementById('m-invest').textContent = '$' + Math.round(investAmount).toLocaleString();
+  document.getElementById('m-loss').textContent = '-$' + Math.round(maxLoss).toLocaleString();
+  document.getElementById('m-gain').textContent = potentialGain !== null ? '+$' + Math.round(potentialGain).toLocaleString() : '—';
+
+  // Breakdown
+  document.getElementById('b-riskamt').textContent = '$' + Math.round(riskAmount).toLocaleString();
+  document.getElementById('b-riskper').textContent = '$' + riskPerShare.toFixed(asset === 'forex' ? 4 : 2);
+  document.getElementById('b-sldist').textContent = slDistPct + '%';
+  document.getElementById('b-rr').textContent = rrRatio;
+  document.getElementById('b-pct').textContent = pctOfAccount + '%';
+
+  // Risk bar
+  const barPct = Math.min((riskPct / 5) * 100, 100);
+  const barColor = riskPct <= 1 ? '#3ecf8e' : riskPct <= 2 ? '#c8f060' : riskPct <= 4 ? '#ef9f27' : '#f06060';
+  document.getElementById('risk-bar').style.width = barPct + '%';
+  document.getElementById('risk-bar').style.background = barColor;
+}
+
+calc();
+</script>
+
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      menu.style.display = 'block';
+    });
+    dd.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+    menu.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+    });
+    menu.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

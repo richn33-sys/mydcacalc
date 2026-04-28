@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investing Guides — Plain-English Finance for Real People</title>
+<meta name="description" content="Free investing guides covering dollar cost averaging, compound interest, position sizing, and more. Written clearly, fact-checked carefully, no fluff.">
+<meta name="keywords" content="investing guides, dollar cost averaging guide, compound interest guide, personal finance, beginner investing">
+<meta property="og:title" content="Investing Guides — MyDCACalc.com">
+<meta property="og:description" content="Plain-English investing guides. No jargon, no fluff, just the information you need to make smarter decisions with your money.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/guides/">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Investing Guides",
+  "description": "Plain-English investing guides covering DCA, compound interest, position sizing and more",
+  "url": "https://mydcacalc.com/guides/",
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+
+/* ── HEADER ── */
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; position: relative; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: '▾'; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; line-height: 1.4; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+.dropdown-menu a .guide-tag { font-size: 10px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border-radius: 4px; padding: 1px 6px; margin-left: 6px; }
+
+/* ── HERO ── */
+.hero { max-width: 720px; margin: 0 auto; padding: 56px 24px 48px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 24px; }
+.hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+
+.hero-body { max-width: 580px; }
+.hero-body p { font-size: 16px; color: var(--text-muted); font-weight: 300; margin-bottom: 18px; line-height: 1.75; }
+.hero-body p strong { color: var(--text); font-weight: 500; }
+
+.hero-stats { display: flex; gap: 32px; margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; gap: 4px; }
+.stat-num { font-family: var(--font-mono); font-size: 24px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; }
+.stat-label { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+
+/* ── GUIDES GRID ── */
+.guides-section { max-width: 800px; margin: 0 auto 60px; padding: 0 24px; }
+.section-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+.guides-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 560px) { .guides-grid { grid-template-columns: 1fr; } }
+
+.guide-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; text-decoration: none; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.18s, transform 0.18s; }
+.guide-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+.guide-card.featured { border-color: var(--accent-border); }
+
+.guide-card-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border-radius: 4px; padding: 2px 8px; display: inline-block; width: fit-content; }
+.guide-card h3 { font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.35; letter-spacing: -0.01em; }
+.guide-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; flex: 1; }
+.guide-card-meta { display: flex; gap: 12px; align-items: center; }
+.guide-card-read { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
+.guide-card-arrow { font-size: 14px; color: var(--accent); margin-left: auto; }
+
+/* Coming soon cards */
+.guide-card.coming-soon { opacity: 0.45; pointer-events: none; }
+.guide-card.coming-soon .guide-card-tag { background: rgba(255,255,255,0.05); color: var(--text-dim); border: 1px solid var(--border); }
+
+/* ── PHILOSOPHY SECTION ── */
+.philosophy { max-width: 800px; margin: 0 auto 60px; padding: 0 24px; }
+.philosophy-inner { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px 40px; }
+@media (max-width: 560px) { .philosophy-inner { padding: 24px 20px; } }
+.philosophy-inner h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 16px; }
+.philosophy-inner h2 em { font-style: normal; color: var(--accent); }
+.philosophy-inner p { font-size: 14px; color: var(--text-muted); font-weight: 300; margin-bottom: 14px; line-height: 1.75; }
+.philosophy-inner p:last-child { margin-bottom: 0; }
+.philosophy-inner p strong { color: var(--text); font-weight: 500; }
+
+/* ── CALCULATOR CTA ── */
+.calc-cta { max-width: 800px; margin: 0 auto 60px; padding: 0 24px; }
+.calc-cta-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 560px) { .calc-cta-inner { grid-template-columns: 1fr; } }
+.calc-cta-card { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; text-decoration: none; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.15s; }
+.calc-cta-card:hover { border-color: var(--border-hover); }
+.calc-cta-card .calc-name { font-size: 13px; font-weight: 500; color: var(--text); font-family: var(--font-mono); }
+.calc-cta-card .calc-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+.calc-cta-card .calc-link { font-size: 11px; color: var(--accent); font-family: var(--font-mono); margin-top: 4px; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="../index.html">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="how-compound-interest-works.html">How compound interest works</a>
+        <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="how-to-calculate-position-size.html">How to calculate position size</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-badge">Free guides — no sign-up required</div>
+    <h1>Investing explained<br>in <em>plain English</em></h1>
+    <div class="hero-body">
+      <p>Most personal finance content falls into one of two categories. Either it talks down to you, over-explaining things you already understand. Or it buries the useful part under so much jargon and hedging that you finish the article knowing less than when you started.</p>
+      <p>These guides try to do something different. <strong>Every piece is written to answer one specific question clearly</strong> — with real numbers, honest caveats, and enough depth to actually be useful. No filler. No recycled advice wrapped in new packaging.</p>
+      <p>Each guide goes through fact-checking before it's published. If a number is in here, it's been verified. If something is uncertain or debated, we say so rather than pretending otherwise. Finance is a YMYL topic — your money is real, and accuracy matters.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Guides published</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Free calculators</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">0</span>
+        <span class="stat-label">Sign-ups required</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="guides-section">
+    <div class="section-label">Published guides</div>
+    <div class="guides-grid">
+
+      <a href="what-is-dollar-cost-averaging.html" class="guide-card featured">
+        <span class="guide-card-tag">DCA</span>
+        <h3>What is dollar cost averaging — and does it actually work?</h3>
+        <p>The complete guide to DCA. How it works, a real worked example, why it beats trying to time the market, and how to get started today.</p>
+        <div class="guide-card-meta">
+          <span class="guide-card-read">8 min read</span>
+          <span class="guide-card-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="how-compound-interest-works.html" class="guide-card featured">
+        <span class="guide-card-tag">Compound interest</span>
+        <h3>How compound interest works — and why starting early beats a higher rate</h3>
+        <p>Why time in the market matters more than the rate you earn, what the Rule of 72 actually tells you, and the real cost of a 1% fee over 30 years.</p>
+        <div class="guide-card-meta">
+          <span class="guide-card-read">9 min read</span>
+          <span class="guide-card-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="how-to-calculate-position-size.html" class="guide-card featured">
+        <span class="guide-card-tag">Risk management</span>
+        <h3>How to calculate position size — the complete guide</h3>
+        <p>The formula every trader needs. How to use the 1% rule, set stop losses correctly, and calculate exactly how many shares or coins to buy on every trade.</p>
+        <div class="guide-card-meta">
+          <span class="guide-card-read">10 min read</span>
+          <span class="guide-card-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="dca-vs-lump-sum.html" class="guide-card featured">
+        <span class="guide-card-tag">Strategy</span>
+        <h3>DCA vs lump sum investing — which strategy wins?</h3>
+        <p>An honest, data-driven look at the research. When lump sum tends to win, when DCA wins, and a simple framework for deciding which approach fits your situation.</p>
+        <div class="guide-card-meta">
+          <span class="guide-card-read">9 min read</span>
+          <span class="guide-card-arrow">→</span>
+        </div>
+      </a>
+
+      <div class="guide-card coming-soon">
+        <span class="guide-card-tag">Coming soon</span>
+        <h3>How to DCA Bitcoin — a step by step guide</h3>
+        <p>Why Bitcoin's volatility makes it one of the most suitable assets for DCA, and how to set up a consistent strategy that removes emotion from the equation.</p>
+        <div class="guide-card-meta">
+          <span class="guide-card-read">Coming soon</span>
+        </div>
+      </div>
+
+      <div class="guide-card coming-soon">
+        <span class="guide-card-tag">Coming soon</span>
+        <h3>What is a good risk/reward ratio in trading?</h3>
+        <p>Why R/R ratio matters more than win rate, what 2:1 actually means in practice, and how to use it alongside position sizing to protect your capital.</p>
+        <div class="guide-card-meta">
+          <span class="guide-card-read">Coming soon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="philosophy">
+    <div class="philosophy-inner">
+      <h2>How we <em>approach</em> these guides</h2>
+      <p>There's no shortage of investing content online. What's harder to find is content that's both genuinely useful and genuinely accurate — especially on finance topics, where the stakes are real and a wrong number isn't just embarrassing, it's potentially harmful.</p>
+      <p>Every guide on this site is written to answer one specific question as completely and honestly as possible. That means <strong>including the caveats that make the answer more complicated</strong>, not just the clean version that sounds good in a headline. It means verifying numbers rather than copying them from another article that copied them from another article.</p>
+      <p>It also means being honest about uncertainty. Markets don't behave consistently. Historical returns don't guarantee future ones. Some things that work most of the time don't work all of the time. Where that's true, we say so.</p>
+      <p>These guides are built to complement the free calculators on this site — so you can understand the concept, then immediately put real numbers to it. <strong>Understanding and doing are both necessary.</strong> Neither is enough on its own.</p>
+    </div>
+  </div>
+
+  <div class="calc-cta">
+    <div class="section-label" style="padding-bottom:0;margin-bottom:16px;">Free calculators</div>
+    <div class="calc-cta-inner">
+      <a href="../index.html" class="calc-cta-card">
+        <span class="calc-name">DCA Calculator</span>
+        <span class="calc-desc">Project portfolio growth or backtest against S&P 500, Nasdaq, and Bitcoin.</span>
+        <span class="calc-link">Try it →</span>
+      </a>
+      <a href="../position-size.html" class="calc-cta-card">
+        <span class="calc-name">Position Size Calculator</span>
+        <span class="calc-desc">Know exactly how many shares or coins to buy on every trade.</span>
+        <span class="calc-link">Try it →</span>
+      </a>
+      <a href="../compound-interest.html" class="calc-cta-card">
+        <span class="calc-name">Compound Interest Calculator</span>
+        <span class="calc-desc">See how your money grows year by year, with milestones built in.</span>
+        <span class="calc-link">Try it →</span>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>
+    &copy; 2025 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For informational purposes only. Not financial advice.
+  </p>
+</footer>
+
+
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      menu.style.display = 'block';
+    });
+    dd.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+    menu.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+    });
+    menu.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

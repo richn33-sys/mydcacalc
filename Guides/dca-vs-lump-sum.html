@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCA vs Lump Sum Investing — Which Strategy Actually Wins?</title>
+<meta name="description" content="An honest, data-driven comparison of dollar cost averaging vs lump sum investing. When each strategy wins, the research behind the numbers, and how to decide which is right for you.">
+<meta name="keywords" content="dca vs lump sum, dollar cost averaging vs lump sum, lump sum investing, which is better dca or lump sum, investing strategy comparison">
+<meta property="og:title" content="DCA vs Lump Sum Investing — Which Strategy Actually Wins?">
+<meta property="og:description" content="The honest answer to one of investing's most debated questions. Data, scenarios, and a clear framework for deciding which approach fits your situation.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/dca-vs-lump-sum.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/dca-vs-lump-sum.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DCA vs Lump Sum Investing — Which Strategy Actually Wins?",
+  "description": "An honest data-driven comparison of dollar cost averaging vs lump sum investing.",
+  "author": { "@type": "Organization", "name": "MyDCACalc.com" },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2025-04-28",
+  "dateModified": "2025-04-28"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; position: relative; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: '▾'; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+
+.example-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.example-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.example-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.example-table tr:last-child td { border-bottom: none; }
+.example-table td.highlight { color: var(--accent); font-weight: 500; }
+.example-table td.pos { color: var(--green); }
+.example-table td.neg { color: var(--red); }
+
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+@media (max-width: 500px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
+.compare-card h4 { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+.compare-card .big-number { font-size: 26px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.03em; margin-bottom: 6px; color: var(--text); }
+.compare-card p { font-size: 13px; margin: 0; }
+.compare-card.winner { border-color: var(--accent-border); }
+.compare-card.winner .big-number { color: var(--accent); }
+.compare-card.loser .big-number { color: var(--text-muted); }
+
+.verdict-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 36px 0; }
+.verdict-box h3 { font-size: 16px; font-weight: 600; color: var(--accent); margin-bottom: 16px; font-family: var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; }
+.verdict-box p { font-size: 14px; margin-bottom: 12px; }
+.verdict-box p:last-child { margin-bottom: 0; }
+
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="../index.html">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="how-compound-interest-works.html">How compound interest works</a>
+        <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="index.html" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Guide</span>
+    <span class="meta-date">April 28, 2025</span>
+    <span class="meta-read">9 min read</span>
+  </div>
+
+  <h1>DCA vs lump sum investing —<br><em>which strategy actually wins?</em></h1>
+
+  <p class="intro">If you've ever had a large sum of money to invest — an inheritance, a bonus, proceeds from selling something — you've probably faced this question. Do you put it all in at once, or spread it out over time? The answer is more nuanced than most finance sites admit, and it depends heavily on factors that are specific to you.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#definitions">What we're actually comparing</a></li>
+      <li><a href="#what-research-says">What the research actually says</a></li>
+      <li><a href="#the-math">The math in both scenarios</a></li>
+      <li><a href="#when-lump-sum-wins">When lump sum tends to win</a></li>
+      <li><a href="#when-dca-wins">When DCA tends to win</a></li>
+      <li><a href="#the-real-question">The real question most people ignore</a></li>
+      <li><a href="#decision-framework">A simple decision framework</a></li>
+    </ol>
+  </div>
+
+  <h2 id="definitions">What we're actually comparing</h2>
+
+  <p>Let's be precise about what we mean, because these terms get used loosely.</p>
+
+  <p><strong>Lump sum investing</strong> means investing all available capital at once. You have $50,000 — you invest the full $50,000 today.</p>
+
+  <p><strong>Dollar cost averaging (DCA)</strong>, in this context, means taking that same $50,000 and spreading it across regular investments over a defined period — say, $5,000 per month for ten months, or $4,167 per month for a year.</p>
+
+  <p>This is different from the DCA most people practice day to day, which is simply investing a fixed portion of regular income on a recurring schedule. That version isn't really a choice — it's just how investing from a salary works. The comparison we're making here is specifically about what to do when you have a lump sum available right now.</p>
+
+  <div class="callout">
+    <div class="callout-label">Important distinction</div>
+    <p>If you're investing from regular income — paycheck to paycheck, month to month — you're already DCA investing by default. This guide is specifically about what to do when you have a larger sum available to invest all at once.</p>
+  </div>
+
+  <h2 id="what-research-says">What the research actually says</h2>
+
+  <p>There have been several serious studies on this question, and the findings are fairly consistent. Historically, lump sum investing has outperformed staged investing more often than not. Studies vary in their findings depending on the market and averaging period used — Vanguard's research found outperformance rates ranging from around 62% to 74% depending on the specific market and how long the averaging window was. That's a meaningful range, and it means the "two-thirds" figure you often see is an approximation, not a universal constant.</p>
+
+  <p>The reasoning is straightforward. Markets tend to rise over time. Money invested earlier has more time exposed to that growth. If you spread a $50,000 investment over twelve months, the portions invested in months two through twelve are sitting in cash during that waiting period — missing out on any gains the market makes in the meantime.</p>
+
+  <p>But that two-thirds figure has important caveats. It's a long-run historical average across many different time periods and market conditions. In any given stretch — especially volatile ones — the outcome can look very different.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">Key nuance</div>
+    <p>Lump sum's advantage is largest in steadily rising markets. The gap narrows in flat markets and reverses in declining ones. Since we can't know in advance which type of market we're entering, the "right" answer depends partly on how much uncertainty you're willing to absorb.</p>
+  </div>
+
+  <h2 id="the-math">The math in both scenarios</h2>
+
+  <p>Let's look at what the numbers actually show across three realistic scenarios, using $12,000 as our starting amount — invested either all at once or as $1,000 per month for twelve months, then left to grow.</p>
+
+  <h3>Scenario 1: Normal rising market (10% annual return)</h3>
+
+  <table class="example-table">
+    <thead>
+      <tr><th>Strategy</th><th>Amount invested</th><th>Value after 10 years</th><th>Gain</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Lump sum</td><td>$12,000</td><td class="highlight">$31,125</td><td class="pos">+$19,125</td></tr>
+      <tr><td>DCA over 12 months</td><td>$12,000</td><td>$31,048</td><td class="pos">+$19,048</td></tr>
+    </tbody>
+  </table>
+
+  <p>In a steadily rising market the lump sum wins — but only by $77. That's less than 0.3%. Over a decade, the practical difference is negligible. What matters far more is that both strategies produced strong growth from the same starting capital.</p>
+
+  <h3>Scenario 2: Market drops 20% immediately after investing</h3>
+
+  <p style="font-size:13px;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:16px;">Note: This is a simplified illustration. In practice, a DCA investor's monthly installments would also be affected by market movements over the 12-month period — the actual outcome depends on the full return path, not just the initial drop. Real-world results would vary based on when each installment is invested relative to market movements.</p>
+
+  <table class="example-table">
+    <thead>
+      <tr><th>Strategy</th><th>Amount invested</th><th>Value after 10 years</th><th>Gain</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Lump sum</td><td>$12,000</td><td class="neg">$24,900</td><td class="pos">+$12,900</td></tr>
+      <tr><td>DCA over 12 months</td><td>$12,000</td><td class="highlight">$31,048</td><td class="pos">+$19,048</td></tr>
+    </tbody>
+  </table>
+
+  <p>This illustrates why a large immediate drop hurts lump sum investors more in the early stages — the full capital absorbs the hit on day one, while a DCA investor's later installments benefit from lower prices. The actual advantage of DCA in any real downturn depends on the full sequence of returns over the investing period, not just a single drop. But the general principle holds: DCA reduces early concentration risk.</p>
+
+  <p>This is the scenario people fear most — and it's not irrational to worry about it. The question is how likely it is, and how much it would affect you emotionally if it happened.</p>
+
+  <h3>Scenario 3: Regular income investor</h3>
+
+  <p>For context — if you're investing $500 per month from regular income at 8% over 20 years, the DCA approach produces:</p>
+
+  <table class="example-table">
+    <thead>
+      <tr><th>Total contributed</th><th>Final value</th><th>Interest earned</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>$120,000</td><td class="highlight">$294,510</td><td class="pos">$174,510</td></tr>
+    </tbody>
+  </table>
+
+  <p>This isn't a competition with lump sum — it's a different situation entirely. Vanguard explicitly distinguishes between choosing what to do with a pre-existing lump sum versus investing from regular income over time. If you're investing from a paycheck, the lump sum vs DCA debate largely doesn't apply — you're investing as money becomes available, which is simply the reality of income-based investing.</p>
+
+  <h2 id="when-lump-sum-wins">When lump sum tends to win</h2>
+
+  <p>Lump sum investing tends to produce better outcomes in these conditions:</p>
+
+  <ul>
+    <li><strong>Markets are in a sustained uptrend.</strong> When prices are rising steadily, earlier investment means more time capturing those gains. Every month spent in cash is a month of potential growth foregone.</li>
+    <li><strong>You're investing in broadly diversified assets.</strong> A total market index fund or S&P 500 fund has a long history of recovering from downturns. The risk of permanent loss is lower than with individual stocks or speculative assets.</li>
+    <li><strong>Your time horizon is long.</strong> The longer you're invested, the more time a lump sum has to recover from any early losses. A 30-year investor can absorb a rough first year far more easily than a 5-year investor.</li>
+    <li><strong>You can handle the emotional weight.</strong> This is underrated. If you invest a large lump sum and immediately watch it drop 15%, can you leave it alone? If yes, lump sum is likely the mathematically better choice over time.</li>
+  </ul>
+
+  <h2 id="when-dca-wins">When DCA tends to win</h2>
+
+  <p>DCA can produce better outcomes in certain conditions — and tends to reduce downside exposure early on, even when it doesn't produce the highest average return:</p>
+
+  <ul>
+    <li><strong>Markets are volatile or declining.</strong> In choppy or falling markets, spreading purchases means buying more units at lower prices. This naturally reduces your average cost basis.</li>
+    <li><strong>You're investing in higher-risk assets.</strong> Crypto, individual stocks, or sector-specific funds carry more concentrated risk. Spreading entry points reduces the chance of buying at the worst possible moment.</li>
+    <li><strong>The emotional risk is real.</strong> If a sudden large paper loss would cause you to sell — which locks in the loss and misses the recovery — then DCA isn't just emotionally easier, it's financially smarter for you specifically. Behavioral risk is real risk.</li>
+    <li><strong>You genuinely don't know when to invest.</strong> Nobody does, consistently. If you're paralyzed by the timing question, DCA is a reliable way to remove the decision entirely and just start.</li>
+  </ul>
+
+  <h2 id="the-real-question">The real question most people ignore</h2>
+
+  <p>Most of the lump sum vs DCA debate focuses on expected returns. That's the wrong frame for most people.</p>
+
+  <p>The more important practical question is: <strong>would a large early loss cause you to sell?</strong></p>
+
+  <p>Research on investor behavior consistently shows that people sell during downturns far more often than they should. The theoretical return advantage of lump sum investing evaporates entirely if a bad first month causes you to sell at a loss and sit in cash for six months waiting for things to stabilize.</p>
+
+  <p>DCA doesn't just reduce the financial risk of bad timing — it reduces the emotional risk of making a panic decision. For many people, that behavioral protection is worth more than the marginal expected return advantage of lump sum.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">The behavioral trap</div>
+    <p>A lump sum investor who panics and sells during the first correction will almost always underperform a DCA investor who stays consistent — even if lump sum would have been the mathematically superior choice under perfect conditions. Know yourself.</p>
+  </div>
+
+  <h2 id="decision-framework">A simple decision framework</h2>
+
+  <p>Rather than trying to predict market direction — which nobody can do reliably — here's a practical framework for deciding which approach fits your situation:</p>
+
+  <div class="verdict-box">
+    <h3>Choose lump sum if:</h3>
+    <p>✓ You're investing in broadly diversified, low-cost index funds</p>
+    <p>✓ Your time horizon is 10+ years</p>
+    <p>✓ You could watch the investment drop 20-30% without selling</p>
+    <p>✓ The money has been sitting in cash for a while already</p>
+    <p>✓ You understand the historical odds favor earlier investment</p>
+  </div>
+
+  <div class="verdict-box">
+    <h3>Choose DCA if:</h3>
+    <p>✓ You're investing in volatile assets (crypto, individual stocks)</p>
+    <p>✓ A large early loss would cause you to sell or panic</p>
+    <p>✓ The psychological comfort of spreading risk matters to you</p>
+    <p>✓ Your time horizon is shorter (under 5 years)</p>
+    <p>✓ You want to remove timing decisions entirely and just start</p>
+  </div>
+
+  <p>There's also a middle ground worth considering. Some investors split the difference — invest 50-60% immediately as a lump sum, then spread the remaining 40-50% over three to six months. This captures most of the expected return advantage of lump sum investing while reducing the emotional and financial risk of an immediate large drawdown.</p>
+
+  <div class="cta-box">
+    <h3>Model both strategies with real numbers</h3>
+    <p>Use our free DCA calculator to project what either approach looks like over your timeline — no sign-up required.</p>
+    <a href="../index.html" class="cta-btn">Try the DCA calculator</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>Historically, lump sum investing has outperformed staged investing more often than not — but DCA can reduce regret and may be the better real-world choice for investors who are highly loss-averse or who are likely to panic after a sharp early drop. Neither strategy is universally better.</p>
+
+  <p>What matters more than the strategy itself is choosing one you can stick with. An investor who DCA's consistently through market volatility will almost always outperform an investor who lump-sums and then panic-sells at the first correction.</p>
+
+  <p>If you have strong conviction in your investments, a long time horizon, and the temperament to ride out volatility — lump sum is probably the right call. If you're uncertain about timing, investing in riskier assets, or simply want to remove the decision entirely — DCA is a sound, time-tested approach that has built genuine wealth for millions of people.</p>
+
+  <p>The best strategy, ultimately, is the one that gets you invested and keeps you invested.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute financial advice. All figures are illustrative estimates based on simplified models. Past market performance does not guarantee future results. Consult a qualified financial advisor before making investment decisions.</p>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2025 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For informational purposes only. Not financial advice.
+  </p>
+</footer>
+
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() { clearTimeout(timer); menu.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+    menu.addEventListener('mouseenter', function() { clearTimeout(timer); });
+    menu.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+  });
+})();
+</script>
+
+</body>
+</html>

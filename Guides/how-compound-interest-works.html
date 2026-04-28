@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Compound Interest Works — And Why Starting Early Matters More Than Rate</title>
+<meta name="description" content="A clear explanation of how compound interest works, why time in the market beats timing the market, and what the Rule of 72 actually tells you about your money.">
+<meta name="keywords" content="how compound interest works, compound interest explained, compound interest investing, rule of 72, compound interest time, why start investing early">
+<meta property="og:title" content="How Compound Interest Works — And Why Time Beats Rate Every Time">
+<meta property="og:description" content="Compound interest explained clearly. Why starting early is more powerful than chasing higher returns, and what the numbers actually look like.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/how-compound-interest-works.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/how-compound-interest-works.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Compound Interest Works — And Why Starting Early Matters More Than Rate",
+  "description": "A clear explanation of compound interest, the Rule of 72, and why time in the market is the most powerful variable of all.",
+  "author": { "@type": "Organization", "name": "MyDCACalc.com" },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2025-04-23",
+  "dateModified": "2025-04-23"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+
+.example-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.example-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.example-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.example-table tr:last-child td { border-bottom: none; }
+.example-table td.highlight { color: var(--accent); font-weight: 500; }
+.example-table td.pos { color: var(--green); }
+
+/* Comparison cards */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+@media (max-width: 500px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
+.compare-card h4 { font-size: 13px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+.compare-card .big-number { font-size: 28px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.03em; margin-bottom: 6px; }
+.compare-card p { font-size: 13px; margin: 0; }
+.compare-card.winner { border-color: var(--accent-border); }
+.compare-card.winner .big-number { color: var(--accent); }
+
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+
+.rule72 { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin: 28px 0; text-align: center; }
+.rule72 .formula { font-family: var(--font-mono); font-size: 22px; font-weight: 500; color: var(--accent); margin-bottom: 12px; }
+.rule72 p { font-size: 13px; margin: 0; }
+
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+    <nav>
+    <a href="../index.html">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <a href="what-is-dollar-cost-averaging.html" style="color:var(--text-dim);">DCA guide</a>
+    <a href="how-compound-interest-works.html" style="color:var(--text-dim);">CI guide</a>
+  </nav>
+</header>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Guide</span>
+    <span class="meta-date">April 23, 2025</span>
+    <span class="meta-read">9 min read</span>
+  </div>
+
+  <h1>How <em>compound interest</em> works — and why starting early beats a higher rate</h1>
+
+  <p class="intro">Albert Einstein reportedly called compound interest the eighth wonder of the world. Whether he actually said that is debatable — but the math behind it is genuinely remarkable. Small amounts of money, invested consistently over long periods, grow into numbers that seem almost impossible until you run them yourself.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#simple-vs-compound">Simple interest vs compound interest</a></li>
+      <li><a href="#how-it-works">How compounding actually works</a></li>
+      <li><a href="#time-vs-rate">Why time beats rate</a></li>
+      <li><a href="#rule-of-72">The Rule of 72</a></li>
+      <li><a href="#frequency">Does compounding frequency matter?</a></li>
+      <li><a href="#contributions">The impact of regular contributions</a></li>
+      <li><a href="#real-world">What this means in practice</a></li>
+    </ol>
+  </div>
+
+  <h2 id="simple-vs-compound">Simple interest vs compound interest</h2>
+
+  <p>To understand why compounding is such a big deal, it helps to see what investing without it looks like.</p>
+
+  <p>With <strong>simple interest</strong>, you earn returns only on your original deposit — your principal. If you put $10,000 into an account paying 8% simple interest, you earn $800 every year. After 30 years you'd have $34,000. Not bad, but not exactly thrilling either.</p>
+
+  <p>With <strong>compound interest</strong>, you earn returns on your principal and on all the interest you've already accumulated. That $800 you earned in year one gets added to your balance. In year two, you're earning 8% on $10,800 instead of $10,000. The interest earns interest. And on it goes.</p>
+
+  <p>After 30 years at 8% compound interest, that same $10,000 becomes just over $100,000. Same starting amount, same rate, same timeframe — but more than three times the outcome. That gap widens dramatically the longer the time horizon extends.</p>
+
+  <h2 id="how-it-works">How compounding actually works</h2>
+
+  <p>The formula for compound interest is:</p>
+
+  <div class="rule72" style="text-align:left;padding:20px 24px;">
+    <div class="formula">A = P(1 + r/n)<sup>nt</sup></div>
+    <p style="font-size:13px;color:var(--text-muted);">Where A = final amount, P = principal, r = annual rate, n = compounding periods per year, t = years</p>
+  </div>
+
+  <p>The part that matters most is the exponent — the <em>nt</em> at the top. Because you're raising the growth factor to a power, returns don't grow linearly. They accelerate. Each year adds a larger absolute amount than the year before, even though the percentage rate stays the same.</p>
+
+  <p>Here's what $10,000 at 8% annually actually looks like decade by decade:</p>
+
+  <table class="example-table">
+    <thead>
+      <tr><th>Year</th><th>Balance</th><th>Interest that year</th><th>Total gain</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Year 1</td><td>$10,800</td><td>$800</td><td class="pos">+8%</td></tr>
+      <tr><td>Year 10</td><td>$21,589</td><td>$1,599</td><td class="pos">+116%</td></tr>
+      <tr><td>Year 20</td><td>$46,610</td><td>$3,453</td><td class="pos">+366%</td></tr>
+      <tr><td>Year 30</td><td>$100,627</td><td>$7,454</td><td class="highlight">+906%</td></tr>
+      <tr><td>Year 40</td><td>$217,245</td><td>$16,092</td><td class="highlight">+2,072%</td></tr>
+    </tbody>
+  </table>
+
+  <p>Look at the interest column. In year one you earn $800. By year 30 you're earning $7,454 in that single year — on the same original $10,000 deposit. By year 40, a single year of interest is larger than your entire starting balance. That's compounding.</p>
+
+  <h2 id="time-vs-rate">Why time beats rate</h2>
+
+  <p>Here's the counterintuitive part that most people miss. When it comes to compound interest, <strong>how long you invest matters more than what rate you earn.</strong></p>
+
+  <p>Compare two investors. Alex invests $10,000 at age 25 and earns 8% annually. Jordan waits until age 35 to invest the same $10,000, but manages to find a slightly better return — 10% annually. Both invest until age 65.</p>
+
+  <div class="compare-grid">
+    <div class="compare-card winner">
+      <h4>Alex — starts at 25, 8%</h4>
+      <div class="big-number">$217,245</div>
+      <p>40 years of compounding at 8%</p>
+    </div>
+    <div class="compare-card">
+      <h4>Jordan — starts at 35, 10%</h4>
+      <div class="big-number">$174,494</div>
+      <p>30 years of compounding at 10%</p>
+    </div>
+  </div>
+
+  <p>Alex ends up with more money despite earning a lower rate — purely because of the extra 10 years of compounding. Jordan chased a higher return and still came out behind. Those 10 years are worth more than 2 percentage points of annual return over the entire period.</p>
+
+  <p>This is one of the most important things you can understand about long-term investing. The pressure to find the best-performing fund, the highest-yield account, or the most promising stock is understandable — but it's less important than simply starting. A decent return, started early, beats a great return started late almost every time.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">The practical takeaway</div>
+    <p>If you're in your 20s or 30s, the single most valuable financial decision you can make isn't finding the perfect investment — it's starting now. Even with a modest return, time does the heavy lifting.</p>
+  </div>
+
+  <h2 id="rule-of-72">The Rule of 72</h2>
+
+  <p>The Rule of 72 is a quick mental shortcut for estimating how long it takes to double your money. Divide 72 by your annual return rate and you get the approximate number of years to double.</p>
+
+  <div class="rule72">
+    <div class="formula">Years to double = 72 ÷ annual return %</div>
+    <p>At 8%: 72 ÷ 8 = 9 years to double</p>
+  </div>
+
+  <p>A few examples to make it concrete:</p>
+
+  <table class="example-table">
+    <thead>
+      <tr><th>Annual return</th><th>Years to double</th><th>$10k becomes in 30 years</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>4%</td><td>18 years</td><td class="pos">$32,434</td></tr>
+      <tr><td>6%</td><td>12 years</td><td class="pos">$57,435</td></tr>
+      <tr><td>8%</td><td>9 years</td><td class="pos">$100,627</td></tr>
+      <tr><td>10%</td><td>7.2 years</td><td class="highlight">$174,494</td></tr>
+      <tr><td>12%</td><td>6 years</td><td class="highlight">$299,599</td></tr>
+    </tbody>
+  </table>
+
+  <p>The Rule of 72 isn't perfectly precise, but it's close enough to be genuinely useful. It's a fast way to sanity-check projections, compare accounts, or just feel the weight of a percentage point difference over time.</p>
+
+  <h2 id="frequency">Does compounding frequency matter?</h2>
+
+  <p>When a bank or investment account compounds "daily" versus "monthly" versus "annually," it means how often earned interest gets added back to your balance to start earning its own interest.</p>
+
+  <p>Daily compounding does produce slightly more than monthly, which produces slightly more than annual. But the difference is smaller than most people expect, especially at moderate rates. At 8%, compounding daily versus annually over 30 years produces a difference of around 9–10% in the final balance — $110,000 versus $100,600 on a $10,000 investment. That's real money, but it's still a secondary factor compared to your rate of return and, above all, how long you stay invested.</p>
+
+  <p>Most investment accounts and index funds accrue returns very frequently — dividends are reinvested, prices update daily, and gains are added to your balance regularly. This isn't continuous compounding in the strict mathematical sense, but in practice it behaves similarly for long-term investors. For most long-term investors, the difference is modest relative to the impact of rate and time. It's worth knowing, but it shouldn't drive your choice of account or platform.</p>
+
+  <h2 id="contributions">The impact of regular contributions</h2>
+
+  <p>Everything above assumes a single lump sum left to grow. Most people invest more like a DCA approach — adding a fixed amount regularly over time. The effect of regular contributions on compound growth is enormous, and it's where the two strategies really complement each other.</p>
+
+  <p>Adding just $200 per month to that $10,000 initial investment at 8% over 30 years takes the final balance from roughly $100,600 to around $399,000 — about four times the lump sum result. The monthly contributions alone ($200/month for 30 years) grow to approximately $298,000. Each monthly contribution immediately starts compounding from the day it's added. The contributions made in year one have nearly as long to grow as the original deposit.</p>
+
+  <p>This is why consistent monthly investing — even small amounts — tends to produce dramatically better results than occasional large investments. The total amount you contribute and the time you stay invested are the dominant factors in long-term outcomes. Contribution frequency helps too — each deposit starts compounding sooner — but it's the consistency and duration that do the heavy lifting.</p>
+
+  <div class="cta-box">
+    <h3>Run the numbers for your situation</h3>
+    <p>Our compound interest calculator shows your balance year by year, including the exact point when your interest earned exceeds what you contributed.</p>
+    <a href="../compound-interest.html" class="cta-btn">Try the calculator</a>
+  </div>
+
+  <h2 id="real-world">What this means in practice</h2>
+
+  <p>Understanding compound interest changes how you think about a few everyday decisions.</p>
+
+  <p><strong>Debt works the same way — against you.</strong> A credit card at 20% APR compounds just as relentlessly as an investment account at 8%, except the growth is working against your net worth. Paying off high-interest debt often produces a better guaranteed "return" than investing the same money.</p>
+
+  <p><strong>Fees compound too.</strong> A 1% annual management fee on an investment fund sounds trivial. Over 30 years on a $100,000 portfolio growing at 8%, that 1% fee drag reduces your final balance from roughly $1,006,000 to $761,000 — a difference of over $245,000. The fee itself is small. The compounding effect of that fee is enormous. This is why low-cost index funds have such an enormous long-term advantage over actively managed funds with higher fees.</p>
+
+  <p><strong>Taxes reduce the compounding base.</strong> In a tax-advantaged account like a 401(k) or IRA, your gains compound without being reduced by taxes each year. In a regular taxable account, you pay capital gains taxes on earnings, which reduces the amount that continues to compound. Maxing out tax-advantaged accounts before investing in taxable ones is one of the highest-impact decisions a long-term investor can make.</p>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>Compound interest is patient. In the early years it looks almost unimpressive — a few hundred dollars here, a few hundred there. It doesn't announce itself. But somewhere around year 15 or 20, the curve starts bending sharply upward, and by year 30 or 40 the numbers look almost unreal.</p>
+
+  <p>The people who benefit most from compounding aren't those who found the best fund or timed the market perfectly. They're the ones who started early, invested consistently, kept fees low, and left the money alone long enough for the math to do its thing.</p>
+
+  <p>Time is the one input in the compound interest formula you can never get back. Every year you wait to start is a year of compounding permanently lost. That's the real urgency — not finding the perfect investment, but starting a decent one now.</p>
+
+  <p>Use our <a href="../compound-interest.html" style="color:var(--accent);text-decoration:none;">compound interest calculator</a> to see exactly what your own timeline looks like — including milestones for when your balance hits $100k, $500k, or $1 million.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute financial advice. All figures shown are illustrative estimates. Actual investment returns vary and are not guaranteed. Consult a qualified financial advisor before making investment decisions.</p>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2025 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      menu.style.display = 'block';
+    });
+    dd.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+    menu.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+    });
+    menu.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

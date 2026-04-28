@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is Dollar Cost Averaging (DCA)? A Plain-English Guide</title>
+<meta name="description" content="Dollar cost averaging explained simply. Learn how DCA works, when to use it, and why it's one of the most effective long-term investment strategies for stocks and crypto.">
+<meta name="keywords" content="what is dollar cost averaging, DCA investing, dollar cost averaging explained, how does DCA work, dollar cost averaging strategy">
+<meta property="og:title" content="What Is Dollar Cost Averaging? A Plain-English Guide">
+<meta property="og:description" content="Learn how dollar cost averaging works, why it beats trying to time the market, and how to put it into practice today.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/what-is-dollar-cost-averaging.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/what-is-dollar-cost-averaging.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is Dollar Cost Averaging (DCA)? A Plain-English Guide",
+  "description": "Dollar cost averaging explained simply. Learn how DCA works, when to use it, and why it works for long-term investors.",
+  "author": { "@type": "Organization", "name": "MyDCACalc.com" },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2025-04-23",
+  "dateModified": "2025-04-23"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; color: var(--text); }
+h1 em { font-style: normal; color: var(--accent); }
+
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+
+/* Callout boxes */
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+
+/* Example table */
+.example-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.example-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.example-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.example-table tr:last-child td { border-bottom: none; color: var(--text); font-weight: 500; }
+.example-table td:last-child { color: var(--green); }
+.example-table tr:last-child td:last-child { color: var(--accent); }
+
+/* CTA box */
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+
+/* TOC */
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+    <nav>
+    <a href="../index.html">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <a href="what-is-dollar-cost-averaging.html" style="color:var(--text-dim);">DCA guide</a>
+    <a href="how-compound-interest-works.html" style="color:var(--text-dim);">CI guide</a>
+  </nav>
+</header>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Guide</span>
+    <span class="meta-date">April 23, 2025</span>
+    <span class="meta-read">8 min read</span>
+  </div>
+
+  <h1>What is <em>dollar cost averaging</em> — and does it actually work?</h1>
+
+  <p class="intro">Dollar cost averaging is one of those investing concepts that sounds complicated but is actually very simple. Invest a fixed amount on a fixed schedule, regardless of what the market is doing. That's essentially it. But the simplicity hides something powerful — and understanding why it works changes how you think about investing.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#what-is-dca">What is dollar cost averaging?</a></li>
+      <li><a href="#how-it-works">How it works — a real example</a></li>
+      <li><a href="#why-it-works">Why DCA works psychologically</a></li>
+      <li><a href="#dca-vs-lump-sum">DCA vs lump sum investing</a></li>
+      <li><a href="#dca-crypto">DCA for crypto</a></li>
+      <li><a href="#how-to-start">How to start DCA investing</a></li>
+      <li><a href="#common-mistakes">Common mistakes to avoid</a></li>
+    </ol>
+  </div>
+
+  <h2 id="what-is-dca">What is dollar cost averaging?</h2>
+
+  <p>Dollar cost averaging (DCA) is an investment strategy where you invest a fixed dollar amount at regular intervals — say, $200 every month — regardless of what the asset currently costs. Some months you'll buy when prices are high. Other months you'll buy when prices are low. Over time, your average purchase price ends up somewhere in the middle.</p>
+
+  <p>The key word there is <strong>regardless</strong>. You're not waiting for the "right time" to invest. You're not watching charts every morning trying to pick the perfect entry point. You just invest on schedule, every time, no matter what the market is doing.</p>
+
+  <p>Most people are already doing a version of this without realizing it. If you contribute to a 401(k) every paycheck, that's DCA. Your employer takes a fixed amount out of your salary and invests it on your behalf, month after month. Even when markets drop and account values fall, contributions keep going in at lower prices. If the underlying investments recover and grow over time, those contributions made during downturns can compound meaningfully — which is one reason consistent 401(k) investing has worked well for long-term savers.</p>
+
+  <div class="callout">
+    <div class="callout-label">Key concept</div>
+    <p>DCA removes the pressure of timing the market. Trying to buy at exactly the right moment is notoriously difficult — even professional fund managers rarely do it consistently. Instead, you invest on a fixed schedule and let the math work in your favor over time.</p>
+  </div>
+
+  <h2 id="how-it-works">How it works — a real example</h2>
+
+  <p>Let's say you decide to invest $300 every month into an S&P 500 index fund. Here's what that might look like over five months:</p>
+
+  <table class="example-table">
+    <thead>
+      <tr>
+        <th>Month</th>
+        <th>Share price</th>
+        <th>Amount invested</th>
+        <th>Shares bought</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>January</td><td>$100</td><td>$300</td><td>3.00</td></tr>
+      <tr><td>February</td><td>$80</td><td>$300</td><td>3.75</td></tr>
+      <tr><td>March</td><td>$60</td><td>$300</td><td>5.00</td></tr>
+      <tr><td>April</td><td>$90</td><td>$300</td><td>3.33</td></tr>
+      <tr><td>May</td><td>$110</td><td>$300</td><td>2.73</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>Avg: $88</strong></td><td><strong>$1,500</strong></td><td><strong>17.81 shares @ avg $84.22</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p>Notice what happened. The average share price over those five months was $88. But your average cost per share was only $84.22 — lower than the simple average. That's not magic. It's just math. When prices dropped in February and March, your fixed $300 automatically bought more shares. When prices rose in April and May, you bought fewer. The result, in this example, is a lower average cost per share than the simple average of prices over the period — an outcome that tends to occur in volatile, declining, or recovering markets.</p>
+
+  <p>This is sometimes called the <strong>cost-averaging effect</strong>. In volatile markets, DCA can reduce the risk of investing a large amount right before a significant drop. That said, lump sum investing has historically produced higher returns more often — the advantage of DCA is primarily in managing risk and reducing the emotional difficulty of investing, not in maximizing expected returns.</p>
+
+  <h2 id="why-it-works">Why DCA works psychologically</h2>
+
+  <p>The math is only part of the story. DCA also works because it removes two of the biggest enemies of long-term investing: fear and greed.</p>
+
+  <p>Most people know they should "buy low and sell high." In practice, they do the opposite. When markets are crashing and everyone is panicking, the emotional pull is to sell — to stop the bleeding. When markets are booming and headlines are euphoric, the pull is to pile in. Both instincts tend to destroy returns.</p>
+
+  <p>DCA sidesteps this entirely. You don't make a decision each month about whether it's a good time to invest. The decision was already made. You invest on the first of the month, or every Friday, or whatever schedule you chose, and that's it. The market going up or down doesn't change anything.</p>
+
+  <p>This consistency is underrated. Many studies and decades of market history suggest that investors who stay invested through downturns — who keep buying even when things look bleak — tend to fare better than those who try to time their entries and exits. DCA makes staying the course the path of least resistance.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">Real talk</div>
+    <p>The hardest part of DCA isn't the strategy — it's sticking to it when markets drop 30% and every headline is predicting the end of the world. That's exactly when DCA is working hardest for you, buying more shares at lower prices. Stopping is the one thing that actually locks in the loss.</p>
+  </div>
+
+  <h2 id="dca-vs-lump-sum">DCA vs lump sum investing</h2>
+
+  <p>This is the question that comes up most often, and the honest answer is nuanced. If you have a large sum of money available to invest right now — an inheritance, a bonus, proceeds from a sale — historically, lump sum investing has outperformed DCA more often than not — in some analyses, roughly two-thirds of the time. The logic is simple: markets tend to go up over time, so getting your money invested sooner means more time exposed to that growth.</p>
+
+  <p>But that assumes you can handle watching your lump sum drop 25% in the first month without panicking and selling. Most people can't, at least not emotionally. A DCA approach with that same lump sum — spreading it over 6 or 12 months — trades some potential upside for significantly reduced risk and a much smoother emotional ride.</p>
+
+  <p>For most people in most situations though, DCA isn't really a choice — it's simply the reality of investing from regular income. Your paycheck arrives every two weeks and you invest a portion of it. That's DCA by default, and it's a perfectly sound approach.</p>
+
+  <h2 id="dca-crypto">DCA for crypto</h2>
+
+  <p>DCA has become especially popular in crypto, and for good reason. Bitcoin and Ethereum can drop 50% in a matter of weeks, then double again over the following months. Trying to time those moves consistently is essentially impossible — even for people who watch the market full time.</p>
+
+  <p>A regular DCA approach into Bitcoin has, over certain long periods, produced significant returns for investors who stayed consistent through the volatility. The key phrase there is <em>stuck with it</em>. The people who got burned in crypto were usually those who bought in a frenzy near the top, panicked when prices dropped, and sold at the bottom. The DCA investors who kept buying through those drops ended up with a much lower average cost basis when prices eventually recovered.</p>
+
+  <p>That said, DCA doesn't eliminate the risk of investing in crypto. If an asset goes to zero, no averaging strategy saves you. DCA works best with assets you genuinely believe have long-term value — it's a risk management tool, not a guarantee.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">Important</div>
+    <p>DCA reduces the risk of buying at exactly the wrong time. It does not reduce the risk of investing in an asset that declines permanently. Always invest only what you can afford to lose, particularly in volatile assets like cryptocurrency.</p>
+  </div>
+
+  <h2 id="how-to-start">How to start DCA investing</h2>
+
+  <p>Getting started is simpler than most people expect. Here's a straightforward approach:</p>
+
+  <ol>
+    <li><strong>Choose your asset.</strong> An S&P 500 index fund is the classic starting point — low fees, broad diversification, and a long track record. If you want crypto exposure, Bitcoin and Ethereum are common choices for DCA strategies, given their relative liquidity and longer track records compared to most other cryptocurrencies.</li>
+    <li><strong>Decide on an amount.</strong> It doesn't need to be large. Consistently investing small amounts over time is often more effective than investing larger amounts irregularly — especially when the discipline of a schedule keeps you in the market through downturns. What matters is consistency, not size.</li>
+    <li><strong>Pick a schedule.</strong> Monthly works well for most people because it aligns with income cycles. Weekly works if you prefer smaller, more frequent purchases. What matters is that it's automatic.</li>
+    <li><strong>Automate it.</strong> This is the most important step. Set up an automatic investment so it happens without you having to make a decision each time. Most brokerages offer automatic investment features. Remove the friction and remove the temptation to skip a month.</li>
+    <li><strong>Leave it alone.</strong> Check in quarterly to make sure everything is running. Otherwise, let it do its job. The less you interfere, the better DCA tends to work.</li>
+  </ol>
+
+  <div class="cta-box">
+    <h3>See what your DCA strategy could grow to</h3>
+    <p>Plug your numbers into our free calculator — no sign-up, no data collected.</p>
+    <a href="../index.html" class="cta-btn">Try the DCA calculator</a>
+  </div>
+
+  <h2 id="common-mistakes">Common mistakes to avoid</h2>
+
+  <p>DCA is a simple strategy, but there are a few ways people undermine it:</p>
+
+  <ul>
+    <li><strong>Stopping during downturns.</strong> This is the most common mistake and the most damaging. Market drops are when DCA is at its most powerful — you're buying more shares at lower prices. Selling during a downturn can crystallize losses and means missing the recovery if and when it comes — and for long-term investors, that can be a costly mistake.</li>
+    <li><strong>Investing too much in a single asset.</strong> DCA is a buying strategy, not a diversification strategy. Consistently buying a single stock or a single cryptocurrency concentrates your risk. Spread your DCA across multiple assets where possible.</li>
+    <li><strong>Not accounting for fees.</strong> If you're buying small amounts frequently, transaction fees can eat into your returns. Use a commission-free platform or adjust your frequency to minimize costs.</li>
+    <li><strong>Setting it and actually forgetting it.</strong> Automating is smart. Never reviewing at all isn't. Check in every few months to make sure your investment still makes sense, your allocation reflects your goals, and the platform is performing as expected.</li>
+    <li><strong>Expecting short-term results.</strong> DCA is a long game. The compounding effects that make it powerful take years to show up meaningfully. If you're measuring results after three months, you're measuring the wrong thing.</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>Dollar cost averaging isn't a sophisticated trading strategy. It doesn't require charts, technical analysis, or market timing. What it requires is consistency and patience — two things that are genuinely hard when markets are volatile but genuinely rewarding over time.</p>
+
+  <p>The investors who build wealth steadily over decades aren't usually the ones making brilliant calls at the right moment. They're the ones who showed up every month, invested their fixed amount, ignored the noise, and let time do the heavy lifting. DCA is the framework that makes that kind of consistency possible.</p>
+
+  <p>If you want to see what that consistency could mean for your own finances, our <a href="../index.html" style="color:var(--accent);text-decoration:none;">DCA calculator</a> lets you model both forward projections and historical backtests — completely free, no account required.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute financial advice. Past performance of any investment strategy does not guarantee future results. Always consider your personal financial situation and consult a qualified financial advisor before making investment decisions.</p>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2025 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      menu.style.display = 'block';
+    });
+    dd.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+    menu.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+    });
+    menu.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

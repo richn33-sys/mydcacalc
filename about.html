@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — MyDCACalc.com</title>
+<meta name="description" content="MyDCACalc is a free dollar-cost averaging calculator for stocks and crypto. No sign-up, no ads, just the math.">
+<link rel="canonical" href="https://mydcacalc.com/about.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --text: #f0efe8;
+  --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12);
+  --accent-border: rgba(200,240,96,0.3);
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.7; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; margin-left: 24px; }
+nav a:hover { color: var(--text); }
+.page { max-width: 640px; margin: 0 auto; padding: 56px 24px 80px; }
+h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 24px; }
+h1 em { font-style: normal; color: var(--accent); }
+h2 { font-size: 18px; font-weight: 500; color: var(--text); margin: 36px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 16px; font-weight: 300; }
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 28px; margin: 32px 0; }
+.card p { margin: 0; }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: '▾'; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; line-height: 1.4; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html" class="logo">mydca<span>calc</span>.com</a>
+      <nav>
+    <a href="index.html">DCA</a>
+    <a href="position-size.html">Position size</a>
+    <a href="compound-interest.html">Compound interest</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="guides/" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="page">
+  <h1>About <em>MyDCACalc</em></h1>
+
+  <p>MyDCACalc is a free, no-nonsense dollar-cost averaging calculator built for everyday investors in stocks and crypto. No sign-up required. No data collected. Just the math.</p>
+
+  <p>Dollar-cost averaging is one of the most reliable long-term investment strategies available to individual investors — yet most DCA calculators out there are either ugly, limited to one asset class, or buried inside platforms trying to sell you something. We built MyDCACalc to be the tool we wished existed.</p>
+
+  <h2>What you can do here</h2>
+  <p>Use the <strong>forward projection</strong> mode to model what your portfolio could look like over time given a consistent investment schedule. Use the <strong>historical backtest</strong> mode to see how a DCA strategy would have performed against real historical averages for the S&P 500, Nasdaq, and Bitcoin.</p>
+
+  <p>Both stocks and crypto are supported in a single tool — because most real investors hold both.</p>
+
+  <div class="card">
+    <p style="color: var(--text); font-size: 14px; font-family: var(--font-mono);">MyDCACalc is for informational purposes only and does not constitute financial advice. All projections are illustrative estimates based on simplified compound growth models. Past performance does not guarantee future results.</p>
+  </div>
+
+  <h2>Contact</h2>
+  <p>Questions, feedback, or suggestions? Reach us at <a href="mailto:hello@mydcacalc.com" style="color: var(--accent); text-decoration: none;">hello@mydcacalc.com</a></p>
+</div>
+
+<footer>
+  <p>
+    &copy; 2025 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      menu.style.display = 'block';
+    });
+    dd.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+    menu.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+    });
+    menu.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        menu.style.display = 'none';
+      }, 300);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

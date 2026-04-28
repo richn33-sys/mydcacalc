@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Calculate Position Size — The Complete Guide for Stocks & Crypto</title>
+<meta name="description" content="Learn how to calculate position size for stocks and crypto. The 1% rule, stop loss placement, risk/reward ratios, and why position sizing is the most important skill in trading.">
+<meta name="keywords" content="how to calculate position size, position sizing, position size calculator, 1% rule trading, risk management trading, stop loss position size">
+<meta property="og:title" content="How to Calculate Position Size — The Complete Guide">
+<meta property="og:description" content="The most important trading skill most people never learn. How to calculate exactly how much to buy on every trade.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/how-to-calculate-position-size.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/how-to-calculate-position-size.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Calculate Position Size — The Complete Guide for Stocks & Crypto",
+  "description": "Learn how to calculate position size using the 1% rule, stop losses, and risk/reward ratios.",
+  "author": { "@type": "Organization", "name": "MyDCACalc.com" },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2025-04-28",
+  "dateModified": "2025-04-28"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; position: relative; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: '▾'; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+
+.formula-box { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin: 28px 0; text-align: center; }
+.formula { font-family: var(--font-mono); font-size: 18px; font-weight: 500; color: var(--accent); margin-bottom: 10px; }
+.formula-sub { font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.example-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.example-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.example-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.example-table tr:last-child td { border-bottom: none; }
+.example-table td.highlight { color: var(--accent); font-weight: 500; }
+.example-table td.pos { color: var(--green); }
+.example-table td.neg { color: var(--red); }
+.example-table td.warn { color: #ef9f27; }
+
+.step-list { counter-reset: steps; list-style: none; padding: 0; margin-bottom: 28px; }
+.step-list li { counter-increment: steps; display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-list li::before { content: counter(steps); width: 28px; height: 28px; border-radius: 50%; background: var(--accent-dim); border: 1px solid var(--accent-border); color: var(--accent); font-family: var(--font-mono); font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.step-content strong { display: block; color: var(--text); font-weight: 500; margin-bottom: 4px; }
+.step-content p { margin: 0; font-size: 14px; }
+
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="../index.html">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="how-compound-interest-works.html">How compound interest works</a>
+        <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="index.html" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Guide</span>
+    <span class="meta-date">April 28, 2025</span>
+    <span class="meta-read">10 min read</span>
+  </div>
+
+  <h1>How to calculate <em>position size</em> — the complete guide</h1>
+
+  <p class="intro">Most traders spend the majority of their time on stock picking, chart reading, and market analysis. Very few spend adequate time on the question that actually determines whether they survive long enough to improve: how much should I buy? Position sizing is the unglamorous skill that separates traders who last from those who blow up their accounts in the first year.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#what-is-position-sizing">What is position sizing?</a></li>
+      <li><a href="#the-formula">The position size formula</a></li>
+      <li><a href="#step-by-step">Step-by-step worked example</a></li>
+      <li><a href="#the-1-percent-rule">The 1% rule explained</a></li>
+      <li><a href="#stop-loss">How stop loss placement affects position size</a></li>
+      <li><a href="#risk-reward">Risk/reward ratios</a></li>
+      <li><a href="#crypto">Position sizing for crypto</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+    </ol>
+  </div>
+
+  <h2 id="what-is-position-sizing">What is position sizing?</h2>
+
+  <p>Position sizing is the process of determining exactly how many shares, units, or contracts to buy on a trade. Done correctly, it ensures that no single losing trade can damage your account beyond a predetermined, acceptable amount.</p>
+
+  <p>Without a position sizing system, most people either buy a round number of shares ("I'll take 100 shares") or invest a round dollar amount ("I'll put in $1,000"). Both approaches ignore the most important variable: where your stop loss is. Two trades with identical dollar amounts but different stop loss levels carry very different amounts of actual risk.</p>
+
+  <p>Position sizing fixes this. Instead of starting with "how much money do I want to put in," you start with "how much money am I willing to lose if this trade goes wrong" — and work backwards to find the right number of shares.</p>
+
+  <h2 id="the-formula">The position size formula</h2>
+
+  <div class="formula-box">
+    <div class="formula">Position size = Risk amount ÷ Risk per share</div>
+    <div class="formula-sub">Where: Risk amount = Account size × Risk %</div>
+    <div class="formula-sub">And: Risk per share = Entry price − Stop loss price</div>
+  </div>
+
+  <p>That's the complete formula. Everything else in position sizing is an application of this core calculation. Let's break down each component:</p>
+
+  <ul>
+    <li><strong>Account size</strong> — the total capital in your trading account</li>
+    <li><strong>Risk %</strong> — the percentage of your account you're willing to lose on this single trade</li>
+    <li><strong>Risk amount</strong> — the actual dollar amount at risk (account size × risk %)</li>
+    <li><strong>Entry price</strong> — the price at which you plan to buy</li>
+    <li><strong>Stop loss price</strong> — the price at which you'll exit if the trade goes against you</li>
+    <li><strong>Risk per share</strong> — the dollar loss per share if your stop is hit (entry minus stop)</li>
+  </ul>
+
+  <h2 id="step-by-step">Step-by-step worked example</h2>
+
+  <p>Let's walk through a real calculation so the formula becomes concrete.</p>
+
+  <p><strong>The setup:</strong> You have a $10,000 trading account. You want to buy a stock currently trading at $150 per share. You've identified a logical stop loss level at $142.50 — below a recent support level. You've decided to risk no more than 1% of your account on this trade.</p>
+
+  <ol class="step-list">
+    <li>
+      <div class="step-content">
+        <strong>Calculate your risk amount</strong>
+        <p>$10,000 × 1% = $100. This is the maximum dollar loss you'll accept if the trade goes against you.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-content">
+        <strong>Calculate risk per share</strong>
+        <p>$150 (entry) − $142.50 (stop loss) = $7.50 per share. If your stop is hit, you lose $7.50 on every share you hold.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-content">
+        <strong>Calculate position size</strong>
+        <p>$100 ÷ $7.50 = 13 shares. Buying 13 shares means if your stop is hit, you lose $97.50 — just under your $100 maximum.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-content">
+        <strong>Calculate total position value</strong>
+        <p>13 shares × $150 = $1,950. Your total position is $1,950 — 19.5% of your account. The position size formula naturally limits concentration.</p>
+      </div>
+    </li>
+  </ol>
+
+  <table class="example-table">
+    <thead>
+      <tr><th>Variable</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Account size</td><td>$10,000</td></tr>
+      <tr><td>Risk %</td><td>1%</td></tr>
+      <tr><td>Risk amount</td><td>$100</td></tr>
+      <tr><td>Entry price</td><td>$150.00</td></tr>
+      <tr><td>Stop loss</td><td>$142.50</td></tr>
+      <tr><td>Risk per share</td><td>$7.50</td></tr>
+      <tr><td>Shares to buy</td><td class="highlight">13 shares</td></tr>
+      <tr><td>Position value</td><td>$1,950</td></tr>
+      <tr><td>Max loss if stopped out</td><td class="neg">−$97.50</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cta-box">
+    <h3>Calculate position size instantly</h3>
+    <p>Enter your account size, risk %, entry and stop loss — our free calculator does the math instantly.</p>
+    <a href="../position-size.html" class="cta-btn">Try the position size calculator</a>
+  </div>
+
+  <h2 id="the-1-percent-rule">The 1% rule explained</h2>
+
+  <p>The 1% rule is a common position sizing guideline used by many active traders. It suggests risking no more than 1% of your total account on any single trade. Some traders use 0.5% for more conservative approaches, and some go up to 2% — but 1% or less is a frequently cited starting point in trading literature. It's a rule of thumb, not a universal industry standard, and the right figure depends on your account size, trading style, and risk tolerance.</p>
+
+  <p>The reason this rule is so powerful becomes clear when you model what happens during a losing streak:</p>
+
+  <table class="example-table">
+    <thead>
+      <tr><th>Risk per trade</th><th>After 10 losses</th><th>Account remaining</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1%</td><td class="pos">$9,044</td><td class="pos">90.4%</td></tr>
+      <tr><td>2%</td><td class="pos">$8,171</td><td class="warn">81.7%</td></tr>
+      <tr><td>5%</td><td class="warn">$5,987</td><td class="warn">59.9%</td></tr>
+      <tr><td>10%</td><td class="neg">$3,487</td><td class="neg">34.9%</td></tr>
+    </tbody>
+  </table>
+
+  <p>Losing streaks happen — risk control matters precisely because they can happen to any trader at any time. At 1% risk per trade, ten consecutive losses costs you less than 10% of your capital. You're still in the game with a working account. At 10% risk per trade, ten losses leaves you with barely a third of what you started with. Recovering from that is psychologically and mathematically brutal. To illustrate: starting with $10,000 and losing 10% ten times leaves you at approximately $3,487. Getting back to $10,000 from $3,487 requires a gain of roughly 187% — from a much smaller base.</p>
+
+  <p>There's a mathematical reason the damage compounds worse than you might expect. Each loss reduces your account balance, which means each subsequent loss is calculated from a smaller base. Losing 10% ten times doesn't take you to zero — but it takes you to 35 cents on the dollar, and climbing back from there requires a 186% gain just to break even.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">The asymmetry of losses</div>
+    <p>A 50% loss requires a 100% gain to recover. A 25% loss requires a 33% gain to recover. This asymmetry is why limiting losses is more important than maximizing gains — staying in the game is the first job of risk management.</p>
+  </div>
+
+  <h2 id="stop-loss">How stop loss placement affects position size</h2>
+
+  <p>Here's a relationship that surprises many new traders: the further your stop loss is from your entry, the smaller your position size must be to maintain the same dollar risk.</p>
+
+  <p>Using a $10,000 account with a fixed 1% risk ($100) and an entry at $100:</p>
+
+  <table class="example-table">
+    <thead>
+      <tr><th>Stop distance</th><th>Risk per share</th><th>Shares to buy</th><th>Position value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2% ($98)</td><td>$2.00</td><td>50</td><td class="warn">$5,000</td></tr>
+      <tr><td>5% ($95)</td><td>$5.00</td><td>20</td><td>$2,000</td></tr>
+      <tr><td>10% ($90)</td><td>$10.00</td><td>10</td><td>$1,000</td></tr>
+      <tr><td>15% ($85)</td><td>$15.00</td><td>7</td><td class="highlight">$667</td></tr>
+    </tbody>
+  </table>
+
+  <p>A tight stop means you can buy more shares for the same risk. A wide stop means fewer shares. This has a practical implication: <strong>don't set artificially tight stops just to increase your position size</strong>. A stop that's too close to your entry will get hit by normal market noise, even when the trade idea is correct.</p>
+
+  <p>The stop loss should be placed at a level that invalidates your trade thesis — typically below a support level, above a resistance level, or at a technically significant price. The position size follows from that placement. Not the other way around.</p>
+
+  <h2 id="risk-reward">Risk/reward ratios</h2>
+
+  <p>Position sizing handles the risk side of the equation. Risk/reward ratio handles the reward side. The two work together.</p>
+
+  <p>A risk/reward ratio of 2:1 means you're targeting a gain of $2 for every $1 you're risking. If your stop loss is $7.50 below your entry, your target should be at least $15 above your entry to achieve a 2:1 ratio.</p>
+
+  <p>Why does this matter? Because it determines the minimum win rate you need to be profitable:</p>
+
+  <table class="example-table">
+    <thead>
+      <tr><th>R/R ratio</th><th>Breakeven win rate</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1:1</td><td>50.0%</td></tr>
+      <tr><td>1.5:1</td><td>40.0%</td></tr>
+      <tr><td>2:1</td><td class="highlight">33.3%</td></tr>
+      <tr><td>3:1</td><td class="pos">25.0%</td></tr>
+    </tbody>
+  </table>
+
+  <p>At a 2:1 risk/reward ratio, you only need to be right on one in three trades to break even — and profitable above that. This is why experienced traders are often relaxed about individual losses. A trade that pays $200 on a win and loses $100 on a loss is profitable at any win rate above 33%, before accounting for fees, slippage, and other trading costs.</p>
+
+  <p>Before entering a trade, it's worth asking: where is my target? If the honest answer is "I'm not sure" or "I'll know when I get there" — that's a sign the trade may not have a favorable setup regardless of position size.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">Watch out for this</div>
+    <p>A high win rate does not guarantee profitability. If your average loss is significantly larger than your average gain, even winning most trades can produce a net loss over time. Always calculate both sides of the equation before entering a trade.</p>
+  </div>
+
+  <h2 id="crypto">Position sizing for crypto</h2>
+
+  <p>The same formula applies to crypto, but with some important adjustments.</p>
+
+  <p><strong>Stops need to be wider.</strong> Crypto assets are significantly more volatile than most stocks. A 2-3% stop loss that works fine on a large-cap stock will get hit constantly on Bitcoin or Ethereum by ordinary intraday price movement. Effective stop placement on crypto often requires 5-15% distance from entry — sometimes more during high-volatility periods.</p>
+
+  <p>The consequence: position sizes will be smaller. That's not a problem — it's the math working correctly. A wider stop on a more volatile asset naturally results in fewer units purchased for the same dollar risk.</p>
+
+  <p>Using a $5,000 account with 1% risk ($50) buying Bitcoin at $42,000 with a stop at $39,000:</p>
+
+  <table class="example-table">
+    <thead>
+      <tr><th>Variable</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Risk amount</td><td>$50</td></tr>
+      <tr><td>Risk per BTC</td><td>$3,000</td></tr>
+      <tr><td>BTC to buy</td><td class="highlight">0.0167 BTC</td></tr>
+      <tr><td>Position value</td><td>$700</td></tr>
+      <tr><td>Max loss if stopped</td><td class="neg">−$50</td></tr>
+    </tbody>
+  </table>
+
+  <p>0.0167 BTC sounds like a small position, and it is. But the math is working exactly as intended — you're risking $50 on a trade where the stop is $3,000 away per coin. The small fractional position is the correct response to wide stop placement, not a sign that the trade isn't worthwhile.</p>
+
+  <p>One additional consideration for crypto: exchange fees and slippage can be meaningful, especially on smaller accounts. Factor these into your risk calculation where possible, particularly if you're using leverage.</p>
+
+  <h2 id="common-mistakes">Common mistakes in position sizing</h2>
+
+  <ul>
+    <li><strong>Ignoring the stop loss entirely.</strong> Some traders set a position size without placing a stop, intending to "watch it" and exit manually. In practice this leads to hoping, holding through larger losses, and far more damage than a predetermined stop would have caused.</li>
+    <li><strong>Setting stops based on desired position size.</strong> Working backwards from "I want 100 shares" to place a stop is backwards. The stop should be set on technical grounds first. The position size follows.</li>
+    <li><strong>Risking more after a winning streak.</strong> A run of successful trades can create overconfidence. The 1% rule applies equally in good runs and bad ones — risk management isn't something you suspend when things are going well.</li>
+    <li><strong>Using leverage without adjusting position size.</strong> Leverage amplifies both gains and losses. If you're trading with 2x leverage, your effective position is double — which means your risk per share is also double. Adjust position size down accordingly to maintain the same dollar risk.</li>
+    <li><strong>Calculating from total net worth rather than trading account.</strong> Your trading account should be a defined, separate pool of capital. Risking 1% of your trading account is very different from risking 1% of your total net worth — and the trading account figure is what the formula uses.</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>Position sizing won't tell you which trades to take. It won't predict market direction or identify winning setups. What it does is ensure that when you're wrong — and every trader is wrong regularly — the damage is contained, manageable, and recoverable.</p>
+
+  <p>The formula itself takes about 30 seconds to apply. The discipline to apply it consistently on every single trade, including the ones that feel like certainties, is the part that separates long-term traders from short-term gamblers.</p>
+
+  <p>Use our <a href="../position-size.html" style="color:var(--accent);text-decoration:none;">free position size calculator</a> to run the numbers before any trade — it handles stocks, crypto, and forex, and shows you the risk/reward ratio alongside the position size.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute financial advice. Trading involves significant risk of loss. All examples are illustrative and do not represent actual trading recommendations. Always consider your personal financial situation and risk tolerance before trading.</p>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2025 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For informational purposes only. Not financial advice.
+  </p>
+</footer>
+
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() { clearTimeout(timer); menu.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+    menu.addEventListener('mouseenter', function() { clearTimeout(timer); });
+    menu.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+  });
+})();
+</script>
+
+</body>
+</html>
