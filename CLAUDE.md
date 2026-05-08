@@ -284,3 +284,29 @@ All calculator pages, guides landing, 4 guide articles, about, privacy, terms
 - [ ] First video assembled and posted
 - [ ] Write next 2 guides
 - [ ] Apply to Ezoic at 10k visits
+
+---
+
+## Reddit Strategy
+
+### Posts written and ready to publish:
+
+**r/Daytrading — Post first**
+Title: Free position size calculator — stocks, crypto, and forex. No sign-up.
+Body: "Built this for myself. Enter account size, risk %, entry and stop loss — get shares/units, max loss, potential gain, R/R ratio, and a color-coded risk meter. Works for stocks, crypto, and forex. Also wrote a full guide on position sizing and the 1% rule if that's useful. mydcacalc.com/position-size.html — happy to get feedback."
+
+**r/CryptoCurrency — Post second (3-4 days later)**
+Title: Free DCA calculator for crypto + stocks — backtest against BTC, Nasdaq, S&P 500
+Body: "Wanted a tool to model DCA across both crypto and stock holdings in one place. Built it myself — forward projections and historical backtests. Also added a position size calculator since I use that on every trade, and a guide specifically on how DCA has historically performed with Bitcoin. No login, no tracking. mydcacalc.com — feedback welcome."
+
+**r/personalfinance — Post last (week 2)**
+Title: Built a free DCA calculator for stocks and crypto — plus guides and position sizing
+Body: "Got frustrated that most DCA calculators only handle one asset class, so I built one that does both. Forward projection or historical backtest against S&P 500, Nasdaq, and Bitcoin. Also added a position size calculator and compound interest calculator. Recently added plain-English guides covering DCA, compound interest, lump sum vs DCA, and position sizing — all fact-checked. Everything runs in your browser, nothing stored, no sign-up. Would love feedback — mydcacalc.com"
+
+### Posting rules:
+- Post between 9am-12pm EST on weekdays
+- Don't post multiple subreddits same day
+- Reply to every comment within first hour
+- Don't edit post after submitting
+- Never mention affiliate links or monetization
+- If asked how it was built — be honest
