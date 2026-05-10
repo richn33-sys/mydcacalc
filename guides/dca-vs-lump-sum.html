@@ -123,6 +123,16 @@ footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono
 footer a { color: var(--text-muted); text-decoration: none; }
 footer a:hover { color: var(--text); }
 
+
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
 /* Author bio box */
 .author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
 .author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
@@ -139,7 +149,7 @@ footer a:hover { color: var(--text); }
 
 <header>
   <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
-  <nav>
+    <nav>
     <a href="../index.html">DCA</a>
     <a href="../position-size.html">Position size</a>
     <a href="../compound-interest.html">Compound interest</a>
@@ -149,6 +159,7 @@ footer a:hover { color: var(--text); }
         <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
         <a href="how-compound-interest-works.html">How compound interest works</a>
         <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="how-to-calculate-position-size.html">How to calculate position size</a>
         <a href="index.html" style="color:var(--accent);">All guides →</a>
       </div>
     </div>
@@ -368,6 +379,8 @@ footer a:hover { color: var(--text); }
   </p>
 </footer>
 
+
+
 <script>
 (function() {
   var dropdowns = document.querySelectorAll('.dropdown');
@@ -381,6 +394,5 @@ footer a:hover { color: var(--text); }
   });
 })();
 </script>
-
 </body>
 </html>
