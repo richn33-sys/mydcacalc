@@ -310,3 +310,19 @@ Body: "Got frustrated that most DCA calculators only handle one asset class, so 
 - Don't edit post after submitting
 - Never mention affiliate links or monetization
 - If asked how it was built — be honest
+
+---
+
+## Deployment Notes
+
+### Hostinger auto-deploy issue:
+Hostinger does not always auto-pull from GitHub after a git push. If changes don't appear on the live site after deploying:
+1. Go to hpanel.hostinger.com
+2. Websites → Manage → Advanced → Git
+3. Click **Deploy** manually
+4. Wait for deployment log to complete
+
+### Common file issues to watch for:
+- Footer/nav links sometimes get `file:///Users/richardnashawaty/Downloads/` paths if files are opened locally and re-saved — always check with `grep -r "file:///" ~/Desktop/ClaudeWork/mydcacalc/ --include="*.html"` before deploying
+- Brave browser caches aggressively — test changes in Safari if they don't appear
+- Always test from live URL (https://mydcacalc.com) never from local downloaded files
