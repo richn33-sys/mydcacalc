@@ -25,7 +25,8 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-body);
 header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); }
 .logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
 .logo span { color: var(--text-muted); }
-nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; margin-left: 24px; }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; margin-left: 4px; }
 nav a:hover { color: var(--text); }
 .page { max-width: 640px; margin: 0 auto; padding: 56px 24px 80px; }
 h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 24px; }
@@ -48,12 +49,24 @@ footer a:hover { color: var(--text); }
 .dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; line-height: 1.4; }
 .dropdown-menu a:last-child { border-bottom: none; }
 .dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
+/* Author cards */
+.authors-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 4px; }
+.author-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 24px; display: flex; gap: 20px; align-items: flex-start; text-decoration: none; transition: border-color 0.15s; }
+.author-card:hover { border-color: rgba(255,255,255,0.15); }
+.author-card-avatar { width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--accent-border); flex-shrink: 0; overflow: hidden; }
+.author-card-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.author-card-info { flex: 1; }
+.author-card-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.author-card-title { font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 8px; }
+.author-card-bio { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.6; margin: 0; }
+.author-card-arrow { font-size: 16px; color: var(--accent); align-self: center; flex-shrink: 0; }
 </style>
 </head>
 <body>
 <header>
   <a href="index.html" class="logo">mydca<span>calc</span>.com</a>
-      <nav>
+  <nav>
     <a href="index.html">DCA</a>
     <a href="position-size.html">Position size</a>
     <a href="compound-interest.html">Compound interest</a>
@@ -86,9 +99,38 @@ footer a:hover { color: var(--text); }
     <p style="color: var(--text); font-size: 14px; font-family: var(--font-mono);">MyDCACalc is for informational purposes only and does not constitute financial advice. All projections are illustrative estimates based on simplified compound growth models. Past performance does not guarantee future results.</p>
   </div>
 
-
   <h2>Who built this</h2>
   <p>MyDCACalc was built by <a href="https://richnashawaty.com" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">Rich Nashawaty</a>, an SEO consultant and AI automation specialist based in Boston, MA with 20 years of experience across freelance, agency, and enterprise organizations. He builds tools and automation systems as part of his broader work helping businesses grow through search and AI.</p>
+
+  <h2>Meet the authors</h2>
+  <p>The guides on MyDCACalc are written by two contributors with distinct areas of focus.</p>
+
+  <div class="authors-grid">
+    <a href="authors/james-colter.html" class="author-card">
+      <div class="author-card-avatar">
+        <img src="authors/james-colter.jpg" alt="James Colter">
+      </div>
+      <div class="author-card-info">
+        <div class="author-card-name">James Colter</div>
+        <div class="author-card-title">Long-term Investor & Personal Finance Writer</div>
+        <p class="author-card-bio">Covers DCA, compound interest, index fund investing, and the behavioral side of long-term wealth building.</p>
+      </div>
+      <span class="author-card-arrow">→</span>
+    </a>
+
+    <a href="authors/sara-kline.html" class="author-card">
+      <div class="author-card-avatar">
+        <img src="authors/sara-kline.jpg" alt="Sara Kline">
+      </div>
+      <div class="author-card-info">
+        <div class="author-card-name">Sara Kline</div>
+        <div class="author-card-title">Active Trader & Risk Management Specialist</div>
+        <p class="author-card-bio">Covers position sizing, stop loss strategy, risk/reward ratios, and the mechanics of trading stocks and crypto.</p>
+      </div>
+      <span class="author-card-arrow">→</span>
+    </a>
+  </div>
+
   <h2>Contact</h2>
   <p>Questions, feedback, or suggestions? Reach us at <a href="mailto:hello@mydcacalc.com" style="color: var(--accent); text-decoration: none;">hello@mydcacalc.com</a></p>
 </div>
