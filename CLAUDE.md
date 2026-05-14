@@ -28,6 +28,7 @@ A free dollar-cost averaging (DCA) calculator for stocks and crypto. Pure static
 - Hostinger doesn't always auto-pull — always click Deploy manually after git push
 - Check for bad paths before deploying: `grep -r "file:///" ~/Desktop/ClaudeWork/mydcacalc/ --include="*.html"`
 - If Hostinger is out of sync: delete Git connection, empty public_html, reconnect and redeploy
+- **Image rename gotcha:** Git won't track a rename unless you use `git rm old-name && git add new-name` — a local rename alone won't update the repo
 
 ---
 
@@ -37,7 +38,7 @@ A free dollar-cost averaging (DCA) calculator for stocks and crypto. Pure static
 ├── index.html                                    ← DCA Calculator (homepage)
 ├── position-size.html                            ← Position Size Calculator
 ├── compound-interest.html                        ← Compound Interest Calculator
-├── about.html                                    ← About page
+├── about.html                                    ← About page (includes Meet the Authors section)
 ├── privacy.html                                  ← Privacy policy
 ├── terms.html                                    ← Terms of use
 ├── sitemap.xml                                   ← Sitemap (submitted to GSC)
@@ -46,7 +47,9 @@ A free dollar-cost averaging (DCA) calculator for stocks and crypto. Pure static
 ├── personas.md                                   ← Author persona definitions
 ├── authors/
 │   ├── james-colter.html                         ← James Colter author page
-│   └── sara-kline.html                           ← Sara Kline author page
+│   ├── james-colter.jpg                          ← James Colter profile photo (AI-generated)
+│   ├── sara-kline.html                           ← Sara Kline author page
+│   └── sara-kline.jpg                            ← Sara Kline profile photo (AI-generated)
 ├── guides/
 │   ├── index.html                                ← Guides landing page
 │   ├── what-is-dollar-cost-averaging.html        ← Article: What is DCA?
@@ -119,6 +122,7 @@ EOF
 - **Age:** 38 | **Location:** Denver, CO
 - **X/Twitter:** @jamescolter_ | **Email:** jamescolter@proton.me
 - **Author page:** mydcacalc.com/authors/james-colter.html
+- **Photo:** `authors/james-colter.jpg` (AI-generated, square crop, 400x400px approx)
 - **Tagline:** "Wealth isn't built in a day. It's built in decades."
 - **Covers:** DCA, compound interest, lump sum vs DCA, long-term investing, behavioral finance
 - **Voice:** Patient, evidence-based, uses real numbers, never condescending
@@ -129,6 +133,7 @@ EOF
 - **Age:** 31 | **Location:** Chicago, IL
 - **X/Twitter:** @sarakline_trades | **Email:** sarakline@proton.me
 - **Author page:** mydcacalc.com/authors/sara-kline.html
+- **Photo:** `authors/sara-kline.jpg` (AI-generated, square crop, 400x400px approx)
 - **Tagline:** "Every trade has a price. Know yours before you enter."
 - **Covers:** Position sizing, stop loss, risk/reward, trading psychology, crypto trading
 - **Voice:** Direct, no-nonsense, practical, blunt about mistakes
@@ -143,6 +148,19 @@ EOF
 - Added to bottom of each guide above the disclaimer
 - Links to author page
 - CSS class: `.author-bio-box`
+
+### Author page structure:
+- Hero: circular photo (100x100px, accent border, `object-fit: cover`) + name, title, location, social links
+- Bio: 3 paragraphs
+- Topics covered: pill tags
+- Articles by [author]: linked cards
+- Photo src is just the filename (e.g. `james-colter.jpg`) — same folder as the HTML
+
+### About page — Meet the Authors section:
+- Added between "Who built this" and "Contact"
+- Two clickable author cards with 64x64px circular photo, name, title, one-line bio, arrow
+- Photo src: `authors/james-colter.jpg` and `authors/sara-kline.jpg` (relative from root)
+- CSS class: `.authors-grid`, `.author-card`, `.author-card-avatar`
 
 ---
 
@@ -255,12 +273,17 @@ Schedule Trigger → Get Next Topic (Google Sheets, first Pending row)
 
 ## Marketing
 
-### Product Hunt Launch (ready to execute)
+### Product Hunt Launch
 - **File:** producthunt-launch.md (on Desktop)
-- **Tagline:** "Calculate your DCA strategy for stocks and crypto"
-- **Status:** Assets written, account needs 1 week seasoning before launch
-- **Best days:** Tuesday-Thursday, 12:01am PST
-- **Key rule:** Ask for feedback not upvotes
+- **Account created:** ✅ (created May 2026 — needs 1 week seasoning before launch)
+- **Tagline:** "Calculate your DCA strategy for stocks and crypto" (49 chars)
+- **Backup taglines:** "Project your investing future — free, no sign-up" / "Free DCA + position size calculators for investors"
+- **Description:** See producthunt-launch.md — use the full description in the file, not a shorter version
+- **First comment:** Pre-written in producthunt-launch.md — paste immediately when live
+- **Best days:** Tuesday–Thursday, 12:01am PST
+- **Key rule:** Ask for feedback not upvotes — never ask for upvotes
+- **Gallery images needed:** 4 × 1270x760px screenshots + 1 × 240x240px thumbnail (not yet created)
+- **Seasoning tasks:** Upvote and comment on 5–10 other products before launching
 
 ### Reddit (self-promotion not allowed — use instead):
 - Answer questions where calculator solves the problem
@@ -332,9 +355,14 @@ All calculators, guides landing, 4 guides, about, privacy, terms
 - [x] YouTube channel
 - [x] 10 TikTok scripts + CapCut guide
 - [x] Product Hunt launch assets written
+- [x] Product Hunt account created (May 2026)
+- [x] AI-generated profile photos for James Colter and Sara Kline
+- [x] Author pages updated with real photos (circular crop, accent border)
+- [x] About page updated with Meet the Authors section
 
 ### Next session priorities:
-- [ ] Product Hunt account setup + launch
+- [ ] Product Hunt seasoning (upvote/comment on 5-10 products) then launch
+- [ ] Create Product Hunt gallery images (4 × 1270x760) and thumbnail (240x240)
 - [ ] Sign up for affiliate programs when traffic established
 - [ ] Set up hello@mydcacalc.com in Hostinger
 - [ ] Write next 2 guides (How to DCA Bitcoin + Risk/reward ratio)
