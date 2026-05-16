@@ -35,6 +35,54 @@
   "mainEntityOfPage": "https://mydcacalc.com/guides/how-to-invest-in-a-volatile-market.html"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How should I invest during a volatile market?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keep your regular contributions going and avoid pausing your investment schedule. Volatile markets mean lower prices, which means your fixed contributions buy more shares. Dollar-cost averaging is designed for exactly this scenario."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to invest when the stock market is dropping?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For long-term investors with stable finances, continuing to invest during a market drop is generally the right move. Every major downturn in diversified broad-market indices like the S&P 500 has historically been followed by a recovery. Pausing contributions means missing the lowest-priced buying opportunities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does dollar-cost averaging work in a bear market?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — DCA performs particularly well when prices are falling because your fixed contribution buys more units at lower prices. When prices recover, your lower average cost basis produces stronger returns than if you had stopped investing during the downturn."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I stop investing if the market drops 20%?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most long-term investors, no. A 20% drop means your regular contributions are buying at a significant discount. The investors who kept buying through the 2008 financial crisis and 2020 COVID crash captured some of the strongest returns in modern market history in the years that followed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does volatility affect dollar-cost averaging returns?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Volatility can actually benefit DCA investors. When prices fluctuate, your fixed contributions buy more shares during dips and fewer during peaks, which lowers your average cost per share over time compared to buying at a single fixed price."
+      }
+    }
+  ]
+}
+</script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -132,6 +180,18 @@ footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: ce
 footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
 footer a { color: var(--text-muted); text-decoration: none; }
 footer a:hover { color: var(--text); }
+/* Volatility chart section */
+.chart-section { margin: 40px 0; }
+.chart-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+.chart-metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; text-align: center; }
+.chart-metric-value { font-family: var(--font-mono); font-size: 28px; font-weight: 500; line-height: 1.1; }
+.chart-metric-label { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+.chart-metric.positive .chart-metric-value { color: var(--green); }
+.chart-metric.neutral .chart-metric-value { color: var(--text-muted); }
+.chart-metric.negative .chart-metric-value { color: var(--red); }
+.chart-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 20px 16px; }
+.chart-note { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 10px; }
+@media (max-width: 520px) { .chart-metrics { grid-template-columns: 1fr; } .chart-metric-value { font-size: 22px; } }
 </style>
 </head>
 <body>
@@ -244,6 +304,28 @@ footer a:hover { color: var(--text); }
       </table>
     </div>
     <p style="font-size: 13px; color: var(--text-dim); font-family: var(--font-mono); margin-top: -16px; margin-bottom: 28px;">* Approximate S&P 500 total returns (including dividends) from each cycle low. Recovery times are nominal and based on price return. Inflation-adjusted recovery periods were longer for some events. 2022 five-year figure reflects partial data.</p>
+
+    <!-- Volatility chart: DCA vs paused investor vs market -->
+    <div class="chart-section">
+      <div class="chart-metrics">
+        <div class="chart-metric positive">
+          <div class="chart-metric-value">+41%</div>
+          <div class="chart-metric-label">DCA investor return</div>
+        </div>
+        <div class="chart-metric neutral">
+          <div class="chart-metric-value">+0%</div>
+          <div class="chart-metric-label">Paused investor return</div>
+        </div>
+        <div class="chart-metric negative">
+          <div class="chart-metric-value">−40%</div>
+          <div class="chart-metric-label">Market peak drop</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="volatility-chart"></canvas>
+      </div>
+      <p class="chart-note">Illustrative only. Based on $500/month contributions, a 40% market drawdown from months 6–12, and full recovery by month 24. Not based on a specific asset or real historical event.</p>
+    </div>
 
     <p>The investors who kept buying during the 2008–2009 financial crisis — when the headlines were genuinely terrifying — captured some of the best returns in modern market history in the years that followed. It's worth noting that stronger rebounds don't follow deeper crashes as a reliable rule — markets don't owe anyone a recovery — but the consistent pattern across U.S. history is that patient investors in diversified indices have been rewarded.</p>
 
@@ -382,6 +464,157 @@ footer a:hover { color: var(--text); }
   </p>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-CQBWl4fJHWbryGE+Pc3UJWW1h3NDFjxB4xWMhkZt1pEKmIbITGlYMnYB2xgZGXL16aP2+sMPIANYy7dcEuqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(function() {
+  // Volatility chart: DCA vs paused investor vs market index (24 months)
+  // Price path: flat months 1-6, -40% crash months 7-12, recovery by month 24
+  var prices = [100,100,100,100,100,100,93,87,80,73,67,60,63,67,70,73,77,80,83,87,90,93,97,100];
+  var labels = prices.map(function(_, i) { return 'Mo ' + (i + 1); });
+
+  // DCA investor: $500/month every month
+  var dcaShares = 0;
+  var dcaValues = prices.map(function(p) {
+    dcaShares += 500 / p;
+    return Math.round(dcaShares * p);
+  });
+
+  // Paused investor: invests months 1-6 and 13-24, skips months 7-12 (the crash)
+  var pausedShares = 0;
+  var pausedValues = prices.map(function(p, i) {
+    if (i < 6 || i >= 12) pausedShares += 500 / p;
+    return Math.round(pausedShares * p);
+  });
+
+  var ctx = document.getElementById('volatility-chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'DCA investor',
+          data: dcaValues,
+          borderColor: '#c8f060',
+          backgroundColor: 'rgba(200,240,96,0.06)',
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          pointHoverBackgroundColor: '#c8f060',
+          fill: false,
+          tension: 0.35,
+          yAxisID: 'y'
+        },
+        {
+          label: 'Paused investor',
+          data: pausedValues,
+          borderColor: '#f06060',
+          backgroundColor: 'rgba(240,96,96,0.06)',
+          borderWidth: 2,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          pointHoverBackgroundColor: '#f06060',
+          fill: false,
+          tension: 0.35,
+          yAxisID: 'y'
+        },
+        {
+          label: 'Market index',
+          data: prices,
+          borderColor: '#888884',
+          borderWidth: 1.5,
+          borderDash: [5, 4],
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          pointHoverBackgroundColor: '#888884',
+          fill: false,
+          tension: 0.35,
+          yAxisID: 'y1'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          labels: {
+            color: '#888884',
+            font: { family: "'DM Mono', monospace", size: 11 },
+            boxWidth: 24,
+            padding: 18,
+            usePointStyle: true,
+            pointStyleWidth: 18
+          }
+        },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          padding: 12,
+          callbacks: {
+            label: function(ctx) {
+              if (ctx.datasetIndex === 2) return '  Market index: ' + ctx.raw;
+              return '  ' + ctx.dataset.label + ': $' + ctx.raw.toLocaleString();
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          border: { color: 'rgba(255,255,255,0.08)' },
+          ticks: {
+            color: '#555552',
+            font: { family: "'DM Mono', monospace", size: 10 },
+            maxTicksLimit: 12,
+            maxRotation: 0
+          }
+        },
+        y: {
+          position: 'left',
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          border: { color: 'rgba(255,255,255,0.08)' },
+          ticks: {
+            color: '#555552',
+            font: { family: "'DM Mono', monospace", size: 10 },
+            callback: function(v) { return '$' + v.toLocaleString(); }
+          },
+          title: {
+            display: true,
+            text: 'Portfolio value',
+            color: '#555552',
+            font: { family: "'DM Mono', monospace", size: 10 }
+          }
+        },
+        y1: {
+          position: 'right',
+          grid: { drawOnChartArea: false },
+          border: { color: 'rgba(255,255,255,0.08)' },
+          min: 40,
+          max: 130,
+          ticks: {
+            color: '#555552',
+            font: { family: "'DM Mono', monospace", size: 10 },
+            stepSize: 20
+          },
+          title: {
+            display: true,
+            text: 'Market index',
+            color: '#555552',
+            font: { family: "'DM Mono', monospace", size: 10 }
+          }
+        }
+      }
+    }
+  });
+})();
+</script>
 <script>
 (function() {
   var dropdowns = document.querySelectorAll('.dropdown');

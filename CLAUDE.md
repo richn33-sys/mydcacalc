@@ -55,7 +55,8 @@ A free dollar-cost averaging (DCA) calculator for stocks and crypto. Pure static
 │   ├── what-is-dollar-cost-averaging.html        ← Article: What is DCA?
 │   ├── how-compound-interest-works.html          ← Article: How compound interest works
 │   ├── dca-vs-lump-sum.html                      ← Article: DCA vs lump sum
-│   └── how-to-calculate-position-size.html       ← Article: How to calculate position size
+│   ├── how-to-calculate-position-size.html       ← Article: How to calculate position size
+│   └── how-to-invest-in-a-volatile-market.html   ← Article: How to invest in a volatile market
 └── CLAUDE.md                                     ← This file (not pushed to GitHub)
 ```
 
@@ -78,7 +79,7 @@ A free dollar-cost averaging (DCA) calculator for stocks and crypto. Pure static
 
 ### Nav structure:
 - Header: DCA · Position size · Compound interest · Guides ▾
-- Guides dropdown: 4 guides + "All guides →"
+- Guides dropdown: 5 guides + "All guides →"
 - Root pages: `href="guides/page.html"` for guide links
 - Guide pages: `href="../page.html"` for root, `href="page.html"` for guides
 - Authors pages: `href="../page.html"` for root, `href="../guides/page.html"` for guides
@@ -167,7 +168,7 @@ EOF
 ## Guides Section
 
 ### guides/index.html — Guides Landing Page
-- Stats: 4 guides published, 3 calculators, 0 sign-ups
+- Stats: 5 guides published, 3 calculators, 0 sign-ups
 - Active cards (linked, featured class) + coming soon cards (greyed out)
 - **Update on every new guide:** activate card, update counter, add new coming soon card, update nav on ALL pages, update sitemap
 
@@ -178,6 +179,7 @@ EOF
 | how-compound-interest-works.html | James Colter | how compound interest works | ✅ Live |
 | dca-vs-lump-sum.html | James Colter | dca vs lump sum | ✅ Live |
 | how-to-calculate-position-size.html | Sara Kline | how to calculate position size | ✅ Live |
+| how-to-invest-in-a-volatile-market.html | James Colter | how to invest in a volatile market | ✅ Live |
 
 ---
 
@@ -218,6 +220,7 @@ EOF
 - [x] How compound interest works (James)
 - [x] DCA vs lump sum investing (James)
 - [x] How to calculate position size (Sara)
+- [x] How to invest in a volatile market (James)
 
 ### Next to write:
 - [ ] How to DCA Bitcoin (James)
@@ -325,6 +328,7 @@ Schedule Trigger → Get Next Topic (Google Sheets, first Pending row)
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
 | guides/how-to-calculate-position-size.html | how to calculate position size |
+| guides/how-to-invest-in-a-volatile-market.html | how to invest in a volatile market |
 
 ### Google Ranking Strategy:
 - Helpful Content baked into core ranking (March 2024) — pipeline aligned
@@ -333,8 +337,34 @@ Schedule Trigger → Get Next Topic (Google Sheets, first Pending row)
 - Consistent publishing = freshness signal
 - Product Hunt launch = quality backlink
 
-### Sitemap (11 pages, last updated 2025-04-28):
-All calculators, guides landing, 4 guides, about, privacy, terms
+### Google AI Optimization (from official Google guide, May 2026):
+Key takeaways from https://developers.google.com/search/docs/fundamentals/ai-optimization-guide:
+- **Standard SEO still applies** — AI Overviews and AI Mode are powered by core Search ranking systems
+- **Non-commodity content is critical** — unique point of view, expert-led, goes beyond common knowledge. Generic "7 tips" style content won't cut it
+- **Images per guide** — Google AI features surface images; current guides have none. Add 1–2 relevant visuals per guide going forward (charts, diagrams)
+- **Videos embedded on guide pages** — YouTube Shorts from the video pipeline should eventually be embedded on relevant guides
+- **Pure static HTML is an advantage** — fully crawlable, no JS rendering issues
+- **Structured data** — Article schema already in place. Consider adding FAQPage schema to guides with clear Q&A sections
+- **Things to ignore:** llms.txt files, "chunking" content, rewriting for AI, inauthentic mentions
+- **Agentic experiences** — clean semantic HTML (already done) is the right foundation for AI agents browsing the web
+
+---
+
+## Research Agent ✅ LIVE
+
+- **Location:** `~/Desktop/ClaudeWork/mydcacalc_research/`
+- **Schedule:** Every Monday at 8am via launchd
+- **Delivers to:** richn33@gmail.com
+- **What it covers:** New guide ideas, new calculator ideas, trending topics, competitor activity, community sentiment
+- **Model:** claude-opus-4-5 with web search
+- **Max tokens:** 4000
+- **Log:** `/tmp/mydcacalc.research.log`
+- **Check if running:** `launchctl list | grep mydcacalc.research`
+- **Run manually:** `python3 ~/Desktop/ClaudeWork/mydcacalc_research/research_agent.py`
+- **Update CURRENT_GUIDES in research_agent.py** whenever a new guide is published
+
+### Sitemap (12 pages, last updated 2026-05-14):
+All calculators, guides landing, 5 guides, about, privacy, terms
 
 ---
 
@@ -344,7 +374,7 @@ All calculators, guides landing, 4 guides, about, privacy, terms
 - [x] 3 calculators live
 - [x] About, Privacy, Terms, Favicon, SSL
 - [x] Google Search Console + sitemap
-- [x] Guides section with 4 published articles
+- [x] Guides section with 5 published articles
 - [x] Author personas (James Colter, Sara Kline)
 - [x] Author pages live
 - [x] Author bio boxes on all guides
@@ -359,12 +389,18 @@ All calculators, guides landing, 4 guides, about, privacy, terms
 - [x] AI-generated profile photos for James Colter and Sara Kline
 - [x] Author pages updated with real photos (circular crop, accent border)
 - [x] About page updated with Meet the Authors section
+- [x] Weekly research agent live (Monday 8am emails)
+- [x] How to invest in a volatile market guide (James Colter)
+- [x] X/Twitter posts written for both personas (10 posts, 4-week rollout plan)
 
 ### Next session priorities:
+- [ ] Update CURRENT_GUIDES in research_agent.py to include volatile market guide
 - [ ] Product Hunt seasoning (upvote/comment on 5-10 products) then launch
 - [ ] Create Product Hunt gallery images (4 × 1270x760) and thumbnail (240x240)
+- [ ] Add images to guides (Google AI optimization — 1-2 visuals per guide)
+- [ ] Write next guide: Best Day to DCA Bitcoin (James) — high priority per research brief
+- [ ] Write next guide: Risk/reward ratio (Sara)
 - [ ] Sign up for affiliate programs when traffic established
 - [ ] Set up hello@mydcacalc.com in Hostinger
-- [ ] Write next 2 guides (How to DCA Bitcoin + Risk/reward ratio)
 - [ ] Lump Sum vs DCA calculator (4th calculator)
 - [ ] Apply to Ezoic at 10k visits
