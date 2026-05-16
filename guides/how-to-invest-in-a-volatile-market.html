@@ -321,7 +321,7 @@ footer a:hover { color: var(--text); }
           <div class="chart-metric-label">Market peak drop</div>
         </div>
       </div>
-      <div class="chart-wrap">
+      <div class="chart-wrap" style="position: relative; height: 300px;">
         <canvas id="volatility-chart"></canvas>
       </div>
       <p class="chart-note">Illustrative only. Based on $500/month contributions, a 40% market drawdown from months 6–12, and full recovery by month 24. Not based on a specific asset or real historical event.</p>
@@ -464,7 +464,7 @@ footer a:hover { color: var(--text); }
   </p>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-CQBWl4fJHWbryGE+Pc3UJWW1h3NDFjxB4xWMhkZt1pEKmIbITGlYMnYB2xgZGXL16aP2+sMPIANYy7dcEuqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 (function() {
   // Volatility chart: DCA vs paused investor vs market index (24 months)
@@ -535,7 +535,7 @@ footer a:hover { color: var(--text); }
     },
     options: {
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: {
