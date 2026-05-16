@@ -74,6 +74,8 @@ ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
 ul li strong, ol li strong { color: var(--text); font-weight: 500; }
 
 .callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+/* R/R chart */
+.rr-chart-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 20px 16px; margin: 28px 0; position: relative; height: 240px; }
 .callout p { margin: 0; font-size: 14px; }
 .callout.tip { border-left-color: var(--green); }
 .callout.warning { border-left-color: var(--red); }
@@ -343,6 +345,11 @@ footer a:hover { color: var(--text); }
 
   <p>At a 2:1 risk/reward ratio, you only need to be right on one in three trades to break even — and profitable above that. This is why experienced traders are often relaxed about individual losses. A trade that pays $200 on a win and loses $100 on a loss is profitable at any win rate above 33%, before accounting for fees, slippage, and other trading costs.</p>
 
+  <div class="rr-chart-wrap">
+    <canvas id="rr-chart" role="img" aria-label="Horizontal bar chart showing breakeven win rate by risk/reward ratio. At 1:1 you need to win 50% of trades. At 3:1 you only need to win 25%.">Higher risk/reward ratios require lower win rates to be profitable. At 3:1, you only need to win 1 in 4 trades to break even.</canvas>
+  </div>
+  <p style="font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-top: -16px;">Breakeven win rate = 1 ÷ (R/R ratio + 1). Does not account for fees, slippage, or other trading costs.</p>
+
   <p>Before entering a trade, it's worth asking: where is my target? If the honest answer is "I'm not sure" or "I'll know when I get there" — that's a sign the trade may not have a favorable setup regardless of position size.</p>
 
   <div class="callout warning">
@@ -427,6 +434,84 @@ footer a:hover { color: var(--text); }
 </footer>
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script>
+(function() {
+  var ctx = document.getElementById('rr-chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['1:1 ratio', '1.5:1 ratio', '2:1 ratio', '3:1 ratio', '4:1 ratio'],
+      datasets: [{
+        label: 'Breakeven win rate',
+        data: [50, 40, 33.3, 25, 20],
+        backgroundColor: [
+          'rgba(240,96,96,0.75)',
+          'rgba(239,159,39,0.75)',
+          'rgba(200,240,96,0.75)',
+          'rgba(62,207,142,0.75)',
+          'rgba(62,207,142,0.9)'
+        ],
+        borderColor: [
+          '#f06060',
+          '#ef9f27',
+          '#c8f060',
+          '#3ecf8e',
+          '#3ecf8e'
+        ],
+        borderWidth: 1,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          padding: 12,
+          callbacks: {
+            label: function(ctx) {
+              return '  Breakeven win rate: ' + ctx.raw + '%';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          min: 0,
+          max: 60,
+          ticks: {
+            color: '#555552',
+            font: { family: "'DM Mono', monospace", size: 10 },
+            callback: function(v) { return v + '%'; }
+          },
+          title: {
+            display: true,
+            text: 'Breakeven win rate required',
+            color: '#555552',
+            font: { family: "'DM Mono', monospace", size: 10 }
+          }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#888884', font: { family: "'DM Mono', monospace", size: 11 } }
+        }
+      }
+    }
+  });
+})();
+</script>
 
 <script>
 (function() {

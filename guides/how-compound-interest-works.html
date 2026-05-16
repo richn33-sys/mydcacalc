@@ -66,6 +66,11 @@ ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
 ul li strong, ol li strong { color: var(--text); font-weight: 500; }
 
 .callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+/* Compound chart */
+.compound-chart-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 20px 16px; margin: 28px 0; position: relative; height: 280px; }
+.compound-chart-legend { display: flex; gap: 20px; margin-bottom: 14px; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+.compound-chart-legend span { display: flex; align-items: center; gap: 6px; }
+.compound-chart-legend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; flex-shrink: 0; }
 .callout p { margin: 0; font-size: 14px; }
 .callout.tip { border-left-color: var(--green); }
 .callout.warning { border-left-color: var(--red); }
@@ -221,6 +226,15 @@ footer a:hover { color: var(--text); }
 
   <p>Look at the interest column. In year one you earn $800. By year 30 you're earning $7,454 in that single year — on the same original $10,000 deposit. By year 40, a single year of interest is larger than your entire starting balance. That's compounding.</p>
 
+  <div class="compound-chart-legend">
+    <span><i style="background:#c8f060;"></i>Interest earned</span>
+    <span><i style="background:#1a1a1e; border: 1px solid rgba(200,240,96,0.3);"></i>Original deposit</span>
+  </div>
+  <div class="compound-chart-wrap">
+    <canvas id="compound-growth-chart" role="img" aria-label="Stacked area chart showing $10,000 growing to $217,245 over 40 years at 8% annually. Interest earned dwarfs the original deposit by year 40.">$10,000 at 8% annually grows to $217,245 over 40 years. The interest portion grows exponentially while the deposit stays flat.</canvas>
+  </div>
+  <p style="font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-top: -16px;">$10,000 one-time deposit at 8% annual return, compounded yearly. No additional contributions.</p>
+
   <h2 id="time-vs-rate">Why time beats rate</h2>
 
   <p>Here's the counterintuitive part that most people miss. When it comes to compound interest, <strong>how long you invest matters more than what rate you earn.</strong></p>
@@ -349,6 +363,94 @@ footer a:hover { color: var(--text); }
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script>
+(function() {
+  var labels = [], deposits = [], interest = [];
+  var principal = 10000, rate = 0.08;
+  for (var yr = 0; yr <= 40; yr++) {
+    var balance = Math.round(principal * Math.pow(1 + rate, yr));
+    labels.push('Year ' + yr);
+    deposits.push(principal);
+    interest.push(balance - principal);
+  }
+  var ctx = document.getElementById('compound-growth-chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Interest earned',
+          data: interest,
+          backgroundColor: 'rgba(200,240,96,0.25)',
+          borderColor: '#c8f060',
+          borderWidth: 2,
+          fill: 'origin',
+          tension: 0.4,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          pointHoverBackgroundColor: '#c8f060',
+          yAxisID: 'y'
+        },
+        {
+          label: 'Original deposit',
+          data: deposits,
+          backgroundColor: 'rgba(26,26,30,0.8)',
+          borderColor: 'rgba(200,240,96,0.3)',
+          borderWidth: 1.5,
+          fill: 'origin',
+          tension: 0,
+          pointRadius: 0,
+          yAxisID: 'y'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          padding: 12,
+          callbacks: {
+            label: function(ctx) {
+              return '  ' + ctx.dataset.label + ': $' + ctx.raw.toLocaleString();
+            },
+            afterBody: function(items) {
+              var total = items.reduce(function(s, i) { return s + i.raw; }, 0);
+              return ['  ─────────────', '  Total balance: $' + total.toLocaleString()];
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 9 }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: {
+            color: '#555552',
+            font: { family: "'DM Mono', monospace", size: 10 },
+            callback: function(v) { return '$' + (v >= 1000 ? (v/1000).toFixed(0) + 'k' : v); }
+          }
+        }
+      }
+    }
+  });
+})();
+</script>
 
 <script>
 (function() {
