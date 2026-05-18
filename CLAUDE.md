@@ -1,7 +1,7 @@
 # MyDCACalc.com — Project Reference
 
 ## Overview
-A free dollar-cost averaging (DCA) calculator for stocks and crypto. Pure static HTML/CSS/JS — no framework, no backend. Monetized via affiliate links and display ads (future). Part of a broader passive income site portfolio alongside aitoolgrade.com and trading bots.
+A free dollar-cost averaging (DCA) calculator for stocks and crypto. Pure static HTML/CSS/JS — no framework, no backend. Monetized via DCA Pro subscription ($9/month) and future affiliate/display ads. Part of a broader passive income site portfolio alongside aitoolgrade.com and trading bots.
 
 ---
 
@@ -14,7 +14,112 @@ A free dollar-cost averaging (DCA) calculator for stocks and crypto. Pure static
 
 ---
 
-## Hosting & Deployment
+## DCA Pro — Paid Product (NEW May 2026)
+
+### Overview
+DCA Pro is a paid SaaS layer built on top of mydcacalc.com. Live at https://pro.mydcacalc.com.
+
+### Pricing
+- $9/month or $79/year
+- 7-day free trial (no credit card required)
+- Stripe live mode — real payments active ✅
+
+### Features
+- Portfolio tracker — log DCA purchases, auto-calculates avg cost
+- Live P&L per asset via CoinGecko API
+- Weekly AI signal via Claude API (cached weekly per user)
+- DCA schedule manager with reminders
+- Scenario comparison — what-if analysis
+- CSV/PDF export (designed, not yet built)
+
+### Tech stack
+| Layer | Tool |
+|-------|------|
+| Hosting | Hostinger subdomain: pro.mydcacalc.com |
+| Server path | /home/u877849432/domains/mydcacalc.com/public_html/dca-pro/ |
+| Auth + DB | Supabase (project: durfesxqhlfxpjwxdmde) |
+| Payments | Stripe live mode |
+| AI signal | Claude API (claude-sonnet-4-20250514) |
+| Live prices | CoinGecko free API |
+| Email | Resend (domain verification pending as of May 17 2026) |
+| Version control | GitHub: richn33-sys/dca-pro (private) |
+
+### File structure
+```
+dca-pro/
+├── CLAUDE.md
+├── config.js               ← API keys (gitignored)
+├── login.html
+├── upgrade.html
+├── dashboard.html
+├── portfolio.html
+├── schedule.html
+├── scenarios.html
+├── src/
+│   ├── auth.js
+│   ├── stripe.js
+│   └── styles.css
+├── api/
+│   ├── create-checkout.php
+│   ├── stripe-webhook.php
+│   ├── generate-signal.php
+│   ├── send-welcome.php
+│   └── vendor/             ← Stripe PHP SDK (composer)
+└── database/
+    ├── schema.sql
+    └── update-001.sql
+```
+
+### Deploy workflow
+```bash
+# From Mac:
+cd ~/Desktop/ClaudeWork/dca-pro
+git add .
+git commit -m "message"
+git push origin main
+
+# Then SSH pull:
+ssh -p 65002 u877849432@145.79.4.163
+cd /home/u877849432/domains/mydcacalc.com/public_html/dca-pro
+git pull origin main
+
+# Emergency single file deploy (bypass git):
+scp -P 65002 ~/Desktop/ClaudeWork/dca-pro/filename.html u877849432@145.79.4.163:/home/u877849432/domains/mydcacalc.com/public_html/dca-pro/filename.html
+```
+
+### Critical conventions
+- All pages use `(async () => { ... })();` IIFE wrapper — bare top-level await causes "Illegal return statement" in some browsers
+- Buttons must use `addEventListener` not inline `onclick` — module scope doesn't expose functions to global onclick
+- config.js is gitignored — never commit, always SCP manually
+- PHP files are gitignored — always SCP manually
+- Stripe PHP SDK lives at `api/vendor/autoload.php`
+- Server path is `/home/u877849432/domains/mydcacalc.com/public_html/dca-pro/` NOT `/home/u877849432/public_html/dca-pro/`
+
+### Supabase tables
+profiles, assets, purchases, schedules, signals — all with RLS enabled
+
+### To manually set user as Pro (testing):
+Supabase → Table Editor → profiles → find row → set subscription_status = 'pro'
+
+### Welcome email (Resend)
+- From: noreply@mydcacalc.com
+- Triggered by Stripe webhook on checkout.session.completed
+- DNS verification pending on Hostinger (may take a few hours)
+- Once verified, all new signups get welcome email automatically
+
+### CTA on mydcacalc.com
+- Green banner added to top of index.html, position-size.html, compound-interest.html
+- Links to https://pro.mydcacalc.com/upgrade.html
+- Added May 17 2026
+
+### Exit strategy
+- Target: 200 users = $1,800 MRR
+- Sellable on Flippa at 20-30x MRR = $36K-$54K
+- Sell as package with mydcacalc.com for higher combined valuation
+
+---
+
+## Hosting & Deployment (mydcacalc.com)
 - **Domain registrar:** Namecheap
 - **Hosting:** Hostinger
 - **GitHub repo:** https://github.com/richn33-sys/mydcacalc (public)
@@ -45,18 +150,19 @@ A free dollar-cost averaging (DCA) calculator for stocks and crypto. Pure static
 ├── deploy.py                                     ← Deploy script
 ├── .gitignore                                    ← Ignores .DS_Store
 ├── personas.md                                   ← Author persona definitions
+├── producthunt-launch.md                         ← PH launch assets (updated for DCA Pro)
 ├── authors/
-│   ├── james-colter.html                         ← James Colter author page
-│   ├── james-colter.jpg                          ← James Colter profile photo (AI-generated)
-│   ├── sara-kline.html                           ← Sara Kline author page
-│   └── sara-kline.jpg                            ← Sara Kline profile photo (AI-generated)
+│   ├── james-colter.html
+│   ├── james-colter.jpg
+│   ├── sara-kline.html
+│   └── sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← Guides landing page
-│   ├── what-is-dollar-cost-averaging.html        ← Article: What is DCA?
-│   ├── how-compound-interest-works.html          ← Article: How compound interest works
-│   ├── dca-vs-lump-sum.html                      ← Article: DCA vs lump sum
-│   ├── how-to-calculate-position-size.html       ← Article: How to calculate position size
-│   └── how-to-invest-in-a-volatile-market.html   ← Article: How to invest in a volatile market
+│   ├── index.html
+│   ├── what-is-dollar-cost-averaging.html
+│   ├── how-compound-interest-works.html
+│   ├── dca-vs-lump-sum.html
+│   ├── how-to-calculate-position-size.html
+│   └── how-to-invest-in-a-volatile-market.html
 └── CLAUDE.md                                     ← This file (not pushed to GitHub)
 ```
 
@@ -85,16 +191,6 @@ A free dollar-cost averaging (DCA) calculator for stocks and crypto. Pure static
 - Authors pages: `href="../page.html"` for root, `href="../guides/page.html"` for guides
 - Dropdown: JS hover with 300ms delay
 
-### Nav update script (run when new guides added):
-```bash
-python3 << 'EOF'
-import os, re
-base = os.path.expanduser('~/Desktop/ClaudeWork/mydcacalc')
-# Update old_menu/new_menu strings and run on root files
-# Guide pages need separate script with different relative paths
-EOF
-```
-
 ---
 
 ## Pages & Calculators
@@ -103,16 +199,19 @@ EOF
 - Forward projection + Historical backtest (S&P 500 ~10%, Nasdaq ~13%, Bitcoin ~60%)
 - Asset toggles: Stocks/ETFs, Crypto
 - Chart.js 4.4.1 bar chart
+- **Pro CTA banner:** Added at top ✅
 - **Keywords:** dca calculator, dollar cost averaging calculator
 
 ### position-size.html — Position Size Calculator
 - Formula: (Account × Risk%) ÷ (Entry − Stop loss)
 - Stocks/Crypto/Forex tabs, risk meter, breakdown table, R/R ratio
+- **Pro CTA banner:** Added at top ✅
 - **Keywords:** position size calculator, risk management calculator
 
 ### compound-interest.html — Compound Interest Calculator
 - Principal, monthly contributions, rate, years, frequency, inflation, milestones
 - Stacked bar chart — deposits vs interest
+- **Pro CTA banner:** Added at top ✅
 - **Keywords:** compound interest calculator, savings calculator
 
 ---
@@ -123,7 +222,6 @@ EOF
 - **Age:** 38 | **Location:** Denver, CO
 - **X/Twitter:** @jamescolter_ | **Email:** jamescolter@proton.me
 - **Author page:** mydcacalc.com/authors/james-colter.html
-- **Photo:** `authors/james-colter.jpg` (AI-generated, square crop, 400x400px approx)
 - **Tagline:** "Wealth isn't built in a day. It's built in decades."
 - **Covers:** DCA, compound interest, lump sum vs DCA, long-term investing, behavioral finance
 - **Voice:** Patient, evidence-based, uses real numbers, never condescending
@@ -134,7 +232,6 @@ EOF
 - **Age:** 31 | **Location:** Chicago, IL
 - **X/Twitter:** @sarakline_trades | **Email:** sarakline@proton.me
 - **Author page:** mydcacalc.com/authors/sara-kline.html
-- **Photo:** `authors/sara-kline.jpg` (AI-generated, square crop, 400x400px approx)
 - **Tagline:** "Every trade has a price. Know yours before you enter."
 - **Covers:** Position sizing, stop loss, risk/reward, trading psychology, crypto trading
 - **Voice:** Direct, no-nonsense, practical, blunt about mistakes
@@ -145,226 +242,94 @@ EOF
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 
-### Author bio box:
-- Added to bottom of each guide above the disclaimer
-- Links to author page
-- CSS class: `.author-bio-box`
-
-### Author page structure:
-- Hero: circular photo (100x100px, accent border, `object-fit: cover`) + name, title, location, social links
-- Bio: 3 paragraphs
-- Topics covered: pill tags
-- Articles by [author]: linked cards
-- Photo src is just the filename (e.g. `james-colter.jpg`) — same folder as the HTML
-
-### About page — Meet the Authors section:
-- Added between "Who built this" and "Contact"
-- Two clickable author cards with 64x64px circular photo, name, title, one-line bio, arrow
-- Photo src: `authors/james-colter.jpg` and `authors/sara-kline.jpg` (relative from root)
-- CSS class: `.authors-grid`, `.author-card`, `.author-card-avatar`
-
 ---
 
 ## Guides Section
 
-### guides/index.html — Guides Landing Page
-- Stats: 5 guides published, 3 calculators, 0 sign-ups
-- Active cards (linked, featured class) + coming soon cards (greyed out)
-- **Update on every new guide:** activate card, update counter, add new coming soon card, update nav on ALL pages, update sitemap
-
 ### Published guides:
-| File | Author | Keyword | Status |
-|------|--------|---------|--------|
-| what-is-dollar-cost-averaging.html | James Colter | what is dollar cost averaging | ✅ Live |
-| how-compound-interest-works.html | James Colter | how compound interest works | ✅ Live |
-| dca-vs-lump-sum.html | James Colter | dca vs lump sum | ✅ Live |
-| how-to-calculate-position-size.html | Sara Kline | how to calculate position size | ✅ Live |
-| how-to-invest-in-a-volatile-market.html | James Colter | how to invest in a volatile market | ✅ Live |
+| File | Author | Status |
+|------|--------|--------|
+| what-is-dollar-cost-averaging.html | James Colter | ✅ Live |
+| how-compound-interest-works.html | James Colter | ✅ Live |
+| dca-vs-lump-sum.html | James Colter | ✅ Live |
+| how-to-calculate-position-size.html | Sara Kline | ✅ Live |
+| how-to-invest-in-a-volatile-market.html | James Colter | ✅ Live |
 
 ---
 
 ## Content Pipeline (every article)
-
-### Writing brief:
-1. People-first — answer the reader's question genuinely
-2. E-E-A-T — expertise, authority, trust
-3. Original insights — not a rehash
-4. Complete answers — reader doesn't need to go elsewhere
-5. YMYL aware — accurate, disclaim where needed
-6. No fluff — no padding or keyword stuffing
-7. Humanized — varied sentence length, natural phrasing
-
-### Review process:
-1. Claude writes + self-reviews (Python fact-check all figures)
+1. Claude writes + self-reviews
 2. Rich runs through Perplexity — fact-check
-3. Claude applies Perplexity corrections
+3. Claude applies corrections
 4. Rich runs through Grammarly
 5. Claude applies final corrections
-6. Rich final read
-7. Save to `~/Desktop/ClaudeWork/mydcacalc/guides/`
-8. Add author bio box (use correct persona)
-9. Update Article schema with author
-10. Update guides/index.html (activate card, update counter)
-11. Update nav dropdown on ALL pages + guide pages
-12. Update sitemap.xml
-13. `python3 ~/Desktop/ClaudeWork/mydcacalc/deploy.py "add new guide"`
-14. Hostinger → Advanced → Git → Deploy
-15. Request indexing in Google Search Console
-
----
-
-## Content Roadmap
-
-### Published ✅
-- [x] What is dollar cost averaging? (James)
-- [x] How compound interest works (James)
-- [x] DCA vs lump sum investing (James)
-- [x] How to calculate position size (Sara)
-- [x] How to invest in a volatile market (James)
-
-### Next to write:
-- [ ] How to DCA Bitcoin (James)
-- [ ] How to DCA the S&P 500 (James)
-- [ ] What is a good risk/reward ratio? (Sara)
-- [ ] The Rule of 72 explained (James)
-- [ ] 7 investing mistakes beginners make (James)
-- [ ] How much do I need to invest to reach $1 million? (James)
+6. Rich final read → deploy
+7. Update guides/index.html, nav, sitemap
+8. Request indexing in Google Search Console
 
 ---
 
 ## Video Automation Pipeline ✅ LIVE
-
-### Accounts & Tools
 - **n8n cloud:** app.n8n.cloud — instance: richnash33
 - **ElevenLabs:** Creator plan — Voice: Dan — Voice ID: `fvVBPXuE7f1iX3dZLKFy`
-- **YouTube:** MyDCACalc channel
-- **Google Drive folder:** MyDCACalc Videos
-- **Google Sheet:** MyDCACalc Topics (Topic, Status, YouTubeTitle, Hashtags, DateProcessed, DriveLink)
-
-### Workflow: "MyDCACalc Video Automation"
-**Schedule:** Monday, Wednesday, Friday at 9am — **Active ✅**
-
-**Flow:**
-```
-Schedule Trigger → Get Next Topic (Google Sheets, first Pending row)
-→ Topic Found? (IF)
-  → true: Code in JavaScript (Claude API generates script)
-    → HTTP Request 1 (ElevenLabs MP3)
-      → Save Voiceover to Drive
-        → Send Email (richn33@gmail.com with script + Drive link)
-  → false: No Topics Alert email
-```
-
-### Key node configs:
-- **Code node:** `this.helpers.httpRequest` → Anthropic API, model `claude-sonnet-4-6`
-- **Prompt:** write ONLY spoken words, no labels/brackets/markdown
-- **ElevenLabs:** HTTP Request, `xi-api-key` header, Response Format: File
-- **Text field:** `={{ $('Code in JavaScript').item.json.script }}`
-- **Mark topic Done:** manual — update Google Sheet Status to "Done" after each run
-
-### Video assembly (~10 mins your part):
-1. Check email Mon/Wed/Fri 9am
-2. Review script, download MP3
-3. QuickTime screen record of calculator
-4. CapCut: combine recording + MP3, mute video audio, add auto-captions
-5. Export 9:16 vertical 1080p
-6. Upload YouTube Shorts + TikTok
-7. Mark topic Done in Google Sheet
-8. See capcut-assembly-guide.md for full instructions
+- **Schedule:** Monday, Wednesday, Friday at 9am
+- **Delivers to:** richn33@gmail.com
+- **Model:** claude-sonnet-4-6
 
 ---
 
 ## Marketing
 
-### Product Hunt Launch
-- **File:** producthunt-launch.md (on Desktop)
-- **Account created:** ✅ (created May 2026 — needs 1 week seasoning before launch)
-- **Tagline:** "Calculate your DCA strategy for stocks and crypto" (49 chars)
-- **Backup taglines:** "Project your investing future — free, no sign-up" / "Free DCA + position size calculators for investors"
-- **Description:** See producthunt-launch.md — use the full description in the file, not a shorter version
-- **First comment:** Pre-written in producthunt-launch.md — paste immediately when live
+### Product Hunt
+- **Updated launch file:** producthunt-launch.md (now targets DCA Pro, not just free calculators)
+- **Account created:** ✅ May 2026 — needs seasoning (upvote/comment 5-10 products)
 - **Best days:** Tuesday–Thursday, 12:01am PST
-- **Key rule:** Ask for feedback not upvotes — never ask for upvotes
-- **Gallery images needed:** 4 × 1270x760px screenshots + 1 × 240x240px thumbnail (not yet created)
-- **Seasoning tasks:** Upvote and comment on 5–10 other products before launching
+- **Key rule:** Ask for feedback not upvotes
+- **Gallery images needed:** 4 × 1270x760px Pro dashboard screenshots + thumbnail
 
-### Reddit (self-promotion not allowed — use instead):
+### Reddit strategy (self-promotion not allowed):
 - Answer questions where calculator solves the problem
-- Post guide articles as educational content
-- Engage in comments and drop link naturally
-- Consider Hacker News "Show HN" post
-
-### Social accounts:
-- **Email:** hello@mydcacalc.com, youtube@mydcacalc.com, social@mydcacalc.com
-- **TikTok scripts:** 10 pre-written in tiktok-scripts.md
-- **CapCut guide:** capcut-assembly-guide.md
+- Drop link naturally in context
+- Good subs: r/SideProject, r/IndieHackers, r/passive_income — self-promotion allowed there
+- r/personalfinance, r/CryptoCurrency, r/Daytrading — answer questions only
 
 ---
 
 ## Monetization
 
-### Affiliate links (all placeholder — sign up when traffic established):
-| Platform | Notes |
-|----------|-------|
-| Alpaca | Featured on all pages |
-| Robinhood | Standard |
-| Coinbase | Standard |
-| Fidelity | Standard |
+### DCA Pro (primary — NEW)
+- $9/month or $79/year
+- Live at pro.mydcacalc.com ✅
+- Target: 200 users = $1,800 MRR → sell on Flippa
+
+### Affiliate links (placeholder — sign up when traffic established):
+- Alpaca, Robinhood, Coinbase, Fidelity
 
 ### Display ads: Ezoic at ~10k visits, Mediavine at ~50k visits
 
 ---
 
 ## SEO
-
-### Keyword targets:
 | Page | Keyword |
 |------|---------|
 | index.html | dca calculator |
 | position-size.html | position size calculator |
 | compound-interest.html | compound interest calculator |
-| guides/ | investing guides |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
 | guides/how-to-calculate-position-size.html | how to calculate position size |
 | guides/how-to-invest-in-a-volatile-market.html | how to invest in a volatile market |
 
-### Google Ranking Strategy:
-- Helpful Content baked into core ranking (March 2024) — pipeline aligned
-- Original calculators = structural SEO advantage
-- YMYL site — accuracy critical, all articles Perplexity fact-checked
-- Consistent publishing = freshness signal
-- Product Hunt launch = quality backlink
-
-### Google AI Optimization (from official Google guide, May 2026):
-Key takeaways from https://developers.google.com/search/docs/fundamentals/ai-optimization-guide:
-- **Standard SEO still applies** — AI Overviews and AI Mode are powered by core Search ranking systems
-- **Non-commodity content is critical** — unique point of view, expert-led, goes beyond common knowledge. Generic "7 tips" style content won't cut it
-- **Images per guide** — Google AI features surface images; current guides have none. Add 1–2 relevant visuals per guide going forward (charts, diagrams)
-- **Videos embedded on guide pages** — YouTube Shorts from the video pipeline should eventually be embedded on relevant guides
-- **Pure static HTML is an advantage** — fully crawlable, no JS rendering issues
-- **Structured data** — Article schema already in place. Consider adding FAQPage schema to guides with clear Q&A sections
-- **Things to ignore:** llms.txt files, "chunking" content, rewriting for AI, inauthentic mentions
-- **Agentic experiences** — clean semantic HTML (already done) is the right foundation for AI agents browsing the web
-
 ---
 
 ## Research Agent ✅ LIVE
-
 - **Location:** `~/Desktop/ClaudeWork/mydcacalc_research/`
 - **Schedule:** Every Monday at 8am via launchd
 - **Delivers to:** richn33@gmail.com
-- **What it covers:** New guide ideas, new calculator ideas, trending topics, competitor activity, community sentiment
 - **Model:** claude-opus-4-5 with web search
-- **Max tokens:** 4000
-- **Log:** `/tmp/mydcacalc.research.log`
-- **Check if running:** `launchctl list | grep mydcacalc.research`
 - **Run manually:** `python3 ~/Desktop/ClaudeWork/mydcacalc_research/research_agent.py`
-- **Update CURRENT_GUIDES in research_agent.py** whenever a new guide is published
-
-### Sitemap (12 pages, last updated 2026-05-14):
-All calculators, guides landing, 5 guides, about, privacy, terms
+- **Update CURRENT_GUIDES** whenever a new guide is published
 
 ---
 
@@ -376,31 +341,47 @@ All calculators, guides landing, 5 guides, about, privacy, terms
 - [x] Google Search Console + sitemap
 - [x] Guides section with 5 published articles
 - [x] Author personas (James Colter, Sara Kline)
-- [x] Author pages live
-- [x] Author bio boxes on all guides
+- [x] Author pages + bio boxes on all guides
 - [x] Dropdown nav across all pages
 - [x] GitHub + Hostinger Git auto-deploy
-- [x] deploy.py script
 - [x] Video automation (n8n + Claude + ElevenLabs)
-- [x] YouTube channel
-- [x] 10 TikTok scripts + CapCut guide
-- [x] Product Hunt launch assets written
+- [x] YouTube channel + 10 TikTok scripts
 - [x] Product Hunt account created (May 2026)
-- [x] AI-generated profile photos for James Colter and Sara Kline
-- [x] Author pages updated with real photos (circular crop, accent border)
-- [x] About page updated with Meet the Authors section
-- [x] Weekly research agent live (Monday 8am emails)
-- [x] How to invest in a volatile market guide (James Colter)
-- [x] X/Twitter posts written for both personas (10 posts, 4-week rollout plan)
+- [x] Weekly research agent live
+- [x] **DCA Pro built and launched (May 17 2026)** ✅
+- [x] **Stripe live payments active** ✅
+- [x] **Pro CTA banner on all 3 calculator pages** ✅
+- [x] **Welcome email via Resend (pending DNS verification)** ✅
 
 ### Next session priorities:
-- [ ] Update CURRENT_GUIDES in research_agent.py to include volatile market guide
-- [ ] Product Hunt seasoning (upvote/comment on 5-10 products) then launch
-- [ ] Create Product Hunt gallery images (4 × 1270x760) and thumbnail (240x240)
-- [ ] Add images to guides (Google AI optimization — 1-2 visuals per guide)
-- [ ] Write next guide: Best Day to DCA Bitcoin (James) — high priority per research brief
-- [ ] Write next guide: Risk/reward ratio (Sara)
+- [ ] Confirm Resend domain verified → test welcome email
+- [ ] Update CURRENT_GUIDES in research_agent.py (volatile market guide)
+- [ ] Product Hunt seasoning → launch (target DCA Pro, not free calculators)
+- [ ] Create PH gallery images (4 × 1270x760 Pro dashboard screenshots)
+- [ ] Add bottom upgrade card CTA to calculator pages (banner added, card not yet)
+- [ ] Write next guide: Best Day to DCA Bitcoin (James)
+- [ ] Add images to guides (Google AI optimization)
 - [ ] Sign up for affiliate programs when traffic established
 - [ ] Set up hello@mydcacalc.com in Hostinger
 - [ ] Lump Sum vs DCA calculator (4th calculator)
 - [ ] Apply to Ezoic at 10k visits
+
+---
+
+## Session History
+
+### May 17 2026 — DCA Pro Launch Session
+Built and launched DCA Pro from scratch in one session:
+- Market research → ranked 5 opportunities → chose DCA Pro
+- Built full UI mockup
+- Supabase schema (5 tables, RLS)
+- Stripe live payments + webhook
+- Auth system (login, signup, forgot password)
+- Dashboard, portfolio tracker, schedule manager, scenarios page
+- Claude API weekly AI signal (cached)
+- CoinGecko live price integration
+- Pro CTA banner deployed to all 3 calculator pages
+- Welcome email via Resend (DNS pending)
+- Product Hunt launch kit updated for DCA Pro
+- CLAUDE.md created for dca-pro project
+- First real payment processed ✅

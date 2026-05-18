@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitcoin DCA Strategy: Best Day, Frequency & Backtested Returns (2026)</title>
+<meta name="description" content="A data-backed guide to Bitcoin dollar cost averaging. Learn the best day and frequency to buy, what backtested returns show, and how to use market sentiment to optimize your strategy.">
+<meta name="keywords" content="bitcoin dca strategy, bitcoin dollar cost averaging, best day to buy bitcoin, dca bitcoin weekly monthly, bitcoin dca backtested returns">
+<meta property="og:title" content="Bitcoin DCA Strategy: Best Day, Frequency & Backtested Returns">
+<meta property="og:description" content="Seven years of backtesting data reveals the optimal Bitcoin DCA strategy — best day, frequency, and how to use market sentiment to buy smarter.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/bitcoin-dca-strategy.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/bitcoin-dca-strategy.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bitcoin DCA Strategy: Best Day, Frequency & Backtested Returns (2026)",
+  "description": "A data-backed guide to Bitcoin dollar cost averaging — optimal day, frequency, and how to use the Fear & Greed Index to buy smarter.",
+  "author": {
+    "@type": "Person",
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
+  },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; color: var(--text); }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.example-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.example-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.example-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.example-table tr:last-child td { border-bottom: none; color: var(--text); font-weight: 500; }
+.example-table td.positive { color: var(--green); }
+.example-table td.accent { color: var(--accent); }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+.chart-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 20px 16px; margin: 28px 0; position: relative; height: 280px; }
+.chart-legend { display: flex; gap: 20px; margin-bottom: 14px; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+.chart-legend span { display: flex; align-items: center; gap: 6px; }
+.chart-legend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; flex-shrink: 0; }
+.chart-caption { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-top: -16px; margin-bottom: 28px; }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.author-bio-link:hover { text-decoration: underline; }
+/* Pro CTA banner */
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your actual Bitcoin DCA performance</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="../index.html">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="how-compound-interest-works.html">How compound interest works</a>
+        <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="index.html" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Guide</span>
+    <span class="meta-date">May 18, 2026</span>
+    <span class="meta-read">9 min read</span>
+  </div>
+
+  <h1>Bitcoin DCA strategy: <em>best day, frequency, and what the data says</em></h1>
+
+  <p class="intro">Bitcoin's volatility makes it one of the hardest assets to invest in emotionally — and one of the most rewarding to dollar cost average into systematically. Seven years of backtested data answers the questions most investors agonize over: how often should you buy, which day of the week produces better results, and does market sentiment actually matter?</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#why-dca-bitcoin">Why DCA works especially well for Bitcoin</a></li>
+      <li><a href="#frequency">Daily, weekly, or monthly — what backtesting shows</a></li>
+      <li><a href="#best-day">Does the day of the week actually matter?</a></li>
+      <li><a href="#fear-greed">Using the Fear & Greed Index to optimize entries</a></li>
+      <li><a href="#returns">Backtested returns — what $10/week actually produced</a></li>
+      <li><a href="#how-to-set-up">How to set up a Bitcoin DCA strategy</a></li>
+      <li><a href="#mistakes">Mistakes that undermine Bitcoin DCA</a></li>
+    </ol>
+  </div>
+
+  <h2 id="why-dca-bitcoin">Why DCA works especially well for Bitcoin</h2>
+
+  <p>Bitcoin's annualized volatility has often exceeded 60% historically — roughly four to five times that of the S&P 500 during comparable periods. It has dropped more than 75% from its peak in multiple market cycles and has historically recovered to new highs in prior cycles — though past cycles do not guarantee future recoveries. That combination of extreme downside and historical long-term growth is precisely what makes dollar cost averaging so effective here.</p>
+
+  <p>When you invest a fixed amount on a regular schedule, price crashes work in your favor. A 50% drop in Bitcoin means your $200 monthly contribution buys twice as much BTC as it did at the top. When prices recover — as they have in every major cycle to date — those discounted purchases disproportionately amplify your total returns. This is the core mechanic of DCA, and Bitcoin's volatility gives it more room to work than almost any other asset.</p>
+
+  <p>The investors who have consistently lost money in Bitcoin are typically those who bought heavily during euphoria, panicked during crashes, and sold at the bottom. The DCA investors who bought through the 2022 crash — accumulating BTC in the $15,000–$20,000 range — ended up with a dramatically lower average cost when prices recovered above $100,000 in 2025.</p>
+
+  <div class="callout">
+    <div class="callout-label">Key point</div>
+    <p>DCA doesn't require you to predict where Bitcoin is going. It requires you to keep buying on schedule, especially when sentiment is worst — which is when the math is working hardest in your favor. That said, Bitcoin could underperform or fail to reach new highs in future cycles. Only invest what you can genuinely afford to lose.</p>
+  </div>
+
+  <h2 id="frequency">Daily, weekly, or monthly — what backtesting shows</h2>
+
+  <p>One of the most common questions about Bitcoin DCA is how often to buy. The intuition is that buying more frequently means capturing more price dips. The reality is more nuanced.</p>
+
+  <p><strong>Daily DCA</strong> produces only marginal improvement over weekly in terms of average cost basis, while multiplying transaction fees by seven. According to River Financial's backtesting data from January 2023 through October 2025, the difference in Bitcoin accumulated between the best and worst daily purchase times was just 0.08% in that dataset — essentially noise over that period.</p>
+
+  <p><strong>Weekly DCA</strong> hits the sweet spot. It captures enough price variation to meaningfully lower average cost compared to monthly, while keeping fees manageable. Backtesting from dcaBTC spanning 2018–2025 consistently shows weekly purchases outperforming monthly across multiple market cycles.</p>
+
+  <p><strong>Monthly DCA</strong> is perfectly viable — especially for investors who align contributions with their income cycle. The difference in long-term outcome between weekly and monthly is real but not dramatic. What matters far more than frequency is consistency: staying in the market through downturns rather than pausing or stopping.</p>
+
+  <div class="chart-legend">
+    <span><i style="background:#c8f060;"></i>Total BTC accumulated ($100/interval)</span>
+    <span><i style="background:#3ecf8e;"></i>Relative advantage</span>
+  </div>
+  <div class="chart-wrap">
+    <canvas id="frequency-chart" role="img" aria-label="Bar chart comparing Bitcoin accumulated through daily, weekly, and monthly DCA. Weekly DCA produces the best risk-adjusted outcome, accumulating more BTC than monthly while avoiding the fee drag of daily purchases.">Weekly DCA accumulates more Bitcoin than monthly while avoiding the fee overhead of daily purchases.</canvas>
+  </div>
+  <p class="chart-caption">Illustrative comparison based on dcaBTC backtesting data (2018–2025). $100 per interval. Past performance does not guarantee future results.</p>
+
+  <table class="example-table">
+    <thead>
+      <tr>
+        <th>Frequency</th>
+        <th>Relative BTC accumulated</th>
+        <th>Fee impact</th>
+        <th>Best for</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Daily</td>
+        <td>Baseline</td>
+        <td>Highest (30× monthly)</td>
+        <td>Platforms with zero fees</td>
+      </tr>
+      <tr>
+        <td>Weekly</td>
+        <td class="positive">+2–4% vs monthly</td>
+        <td>Moderate (4× monthly)</td>
+        <td>Most investors — best trade-off</td>
+      </tr>
+      <tr>
+        <td>Monthly</td>
+        <td>—</td>
+        <td>Lowest</td>
+        <td>Income-aligned investors</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="best-day">Does the day of the week actually matter?</h2>
+
+  <p>This one surprises most people: modestly, yes — though the effect is not guaranteed to persist. One seven-year backtest from dcaBTC (2018–2025) found that weekly Monday purchases accumulated roughly 14% more BTC than other weekdays over that period. Day-of-week effects in Bitcoin are not stable across all timeframes, and results vary significantly by dataset.</p>
+
+  <p>The most likely explanation is institutional trading patterns. Monday often sees softer Bitcoin prices as U.S. and European institutional players are still ramping up for the week, while weekend trading — dominated by retail — tends to push prices around. River Financial's independent analysis found Friday early morning (3 AM EST) was the single best hour of the week, attributing it to reduced institutional activity and traders reducing risk ahead of the weekend.</p>
+
+  <p>It's worth keeping these numbers in perspective. River Financial's data showed a 0.77% difference between the best and worst weekly purchase times from 2023 to 2025 — meaningful over decades of compounding, but not something worth obsessing over. If Monday works with your schedule, use it. If it doesn't, any consistent day is far better than no day.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">Practical takeaway</div>
+    <p>Set your recurring Bitcoin purchase for Monday morning if you can. The historical edge is real. But the most important variable is showing up every week — not which hour you do it.</p>
+  </div>
+
+  <h2 id="fear-greed">Using the Fear & Greed Index to optimize entries</h2>
+
+  <p>Standard DCA invests the same fixed amount on a fixed schedule, regardless of market conditions. A more advanced approach uses the Crypto Fear & Greed Index — published daily by Alternative.me on a 0–100 scale — to adjust contribution size based on sentiment.</p>
+
+  <p>The logic is straightforward: when markets are in extreme fear, Bitcoin tends to be oversold relative to its long-term value. Increasing your purchase size during these windows and maintaining standard amounts during neutral conditions has historically produced significantly better returns than flat-amount DCA.</p>
+
+  <p>A seven-year backtest of a fear-weighted strategy — doubling purchases when the index drops below 25, tripling below 15 — returned 1,145% from 2018 through 2025, outperforming a standard flat-amount DCA approach by 99 percentage points, according to analysis by SpotedCrypto. These results are highly sensitive to parameters, timing, and the specific market cycle measured. The approach also requires disciplined cash management and is better described as tactical allocation than pure DCA. The historical examples are striking:</p>
+
+  <ul>
+    <li>The December 2018 bottom (index at 10, BTC at $3,200) preceded a rally to $69,000 — a 2,056% gain for investors who accumulated through that fear period.</li>
+    <li>The November 2022 FTX collapse (index near 10, BTC at $15,500) was followed by a recovery above $100,000. Contrarian DCA initiated during that period returned over 500%.</li>
+  </ul>
+
+  <p>This approach requires one important prerequisite: you need cash reserves set aside for fear-period increases. If your entire investment budget is committed to standard monthly contributions, you won't have the flexibility to increase during downturns. The simplest implementation is keeping 20–30% of your crypto investment budget in reserve for index readings below 25.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">Important caveat</div>
+    <p>Extreme fear identifies a favorable buying zone — not a precise bottom. The index hit record lows in early 2026 while prices continued declining for weeks. Increasing purchases during fear periods works over time, but not necessarily immediately. Size your positions to withstand further downside.</p>
+  </div>
+
+  <h2 id="returns">Backtested returns — what $10/week actually produced</h2>
+
+  <p>The abstract case for Bitcoin DCA becomes concrete when you look at what consistent small contributions have actually returned.</p>
+
+  <p>According to dcaBTC data, an investor who put just $10 of Bitcoin every week for five years — from 2019 through 2024 — invested a total of $2,610 and ended with $7,913. That's a <strong>202% return</strong> during a strong Bitcoin growth period, outpacing gold (34%) and the Dow Jones (23%) over the same timeframe. 2019–2024 was exceptionally favorable for Bitcoin — this return reflects a specific window and should not be taken as typical or expected.</p>
+
+  <table class="example-table">
+    <thead>
+      <tr>
+        <th>Strategy</th>
+        <th>Total invested</th>
+        <th>End value</th>
+        <th>Return</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bitcoin DCA ($10/week, 5yr)</td>
+        <td>$2,610</td>
+        <td class="positive">$7,913</td>
+        <td class="accent">+202%</td>
+      </tr>
+      <tr>
+        <td>Gold (same period)</td>
+        <td>$2,610</td>
+        <td>$3,512</td>
+        <td class="positive">+34%</td>
+      </tr>
+      <tr>
+        <td>Dow Jones (same period)</td>
+        <td>$2,610</td>
+        <td>$3,219</td>
+        <td class="positive">+23%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The 202% figure covers a period that included a 78% Bitcoin drawdown in 2022. The investors who stopped buying during that crash missed the recovery that drove those returns. The ones who kept their $10 weekly contribution running — even as prices fell from $60,000 to $15,000 — ended up accumulating more Bitcoin at lower prices than anyone who tried to time the bottom.</p>
+
+  <p>These are historical results and don't guarantee future performance. Bitcoin has produced outsized DCA returns partly because it recovered from multiple severe crashes. That pattern is not guaranteed to continue.</p>
+
+  <div class="cta-box">
+    <h3>Model your own Bitcoin DCA strategy</h3>
+    <p>Plug in your monthly amount and see projected returns — free, no sign-up required.</p>
+    <a href="../index.html" class="cta-btn">Try the DCA calculator</a>
+  </div>
+
+  <h2 id="how-to-set-up">How to set up a Bitcoin DCA strategy</h2>
+
+  <p>The mechanics are simpler than most people expect. Here's a straightforward implementation:</p>
+
+  <ol>
+    <li><strong>Choose your exchange.</strong> Coinbase, Kraken, and River Financial all offer recurring purchase features. Look for one with low recurring fees — some charge 1.5–2.5% per transaction, which compounds significantly over years. River charges 0% for recurring buys and Coinbase Advanced charges 0.6% at time of writing — fees change, so confirm current rates before committing to a platform.</li>
+    <li><strong>Set your weekly amount.</strong> It doesn't need to be large. Consistency matters far more than size. $25/week ($100/month) is a reasonable starting point. What matters is that you can maintain it through a 50% drawdown without stopping.</li>
+    <li><strong>Pick Monday as your day.</strong> The historical edge from the backtesting data is real, even if modest. If Monday doesn't work with your budget cycle, any fixed day works.</li>
+    <li><strong>Automate it completely.</strong> Set the recurring purchase and don't touch it. The moment you start manually deciding "is this a good week to buy," you've reintroduced the timing risk that DCA is designed to eliminate.</li>
+    <li><strong>Optionally, set aside a fear reserve.</strong> Keep 20–30% of your crypto budget in stable cash. When the Fear & Greed Index drops below 25, use it to increase that week's purchase. Replenish it during neutral or greedy conditions.</li>
+    <li><strong>Secure your holdings.</strong> For amounts above $1,000, move Bitcoin off the exchange to a hardware wallet. Trezor and Ledger both offer solid options starting around $60–$80.</li>
+  </ol>
+
+  <h2 id="mistakes">Mistakes that undermine Bitcoin DCA</h2>
+
+  <p>The strategy is simple, but several common errors consistently destroy its effectiveness:</p>
+
+  <ul>
+    <li><strong>Pausing during crashes.</strong> This is the single most damaging mistake. Crashes are when DCA is doing its best work — buying more BTC per dollar. Stopping during a drawdown means missing the accumulation phase that drives long-term returns. If anything, maintain or increase contributions when prices fall significantly.</li>
+    <li><strong>Checking price too often.</strong> DCA is a long-term strategy. Watching Bitcoin's daily price swings and reacting to them is incompatible with the discipline the strategy requires. Check your portfolio quarterly, not daily.</li>
+    <li><strong>Over-allocating to Bitcoin alone.</strong> DCA into Bitcoin works well as part of a broader strategy. Going all-in on a single cryptocurrency, even one with Bitcoin's track record, concentrates risk significantly. Most DCA practitioners allocate 60–70% of crypto budgets to Bitcoin, 15–25% to Ethereum, and keep a small reserve for higher-risk positions.</li>
+    <li><strong>Leaving large amounts on exchanges.</strong> Exchanges have failed before (FTX being the most prominent recent example). Once your Bitcoin holding is meaningful to you, move it to cold storage.</li>
+    <li><strong>Expecting short-term results.</strong> The backtested returns that make Bitcoin DCA compelling — 202% over five years, 1,145% with fear weighting over seven years — are multi-year outcomes. Evaluating DCA over weeks or months is the wrong timeframe entirely.</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>Bitcoin's volatility is not a reason to avoid it — it's what makes systematic DCA so powerful. The data is clear: weekly purchases on Mondays, maintained consistently through market cycles, produce better outcomes than daily buys with high fees or monthly buys that miss volatility windows. Adding a fear-period reserve to increase during extreme sentiment gives the strategy an additional edge that seven years of backtesting validates.</p>
+
+  <p>None of this requires predicting where Bitcoin is going. It requires a fixed amount, a fixed schedule, and the discipline not to stop when prices are falling — which is precisely when your contributions are buying the most. Worth noting: lump-sum investing has historically outperformed DCA in consistently rising markets. DCA's primary advantage is reducing timing risk and the emotional difficulty of investing — not maximizing expected returns in every scenario.</p>
+
+  <p>If you want to see what a consistent Bitcoin DCA strategy could grow to with your own numbers, our <a href="../index.html" style="color:var(--accent);text-decoration:none;">free DCA calculator</a> lets you model forward projections and run historical backtests — no account required.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute financial advice. Bitcoin and other cryptocurrencies are highly volatile and speculative assets. Backtested returns do not guarantee future results. Only invest what you can afford to lose entirely. Consult a qualified financial advisor before making investment decisions.</p>
+  </div>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">JC</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
+    </div>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script>
+(function() {
+  var ctx = document.getElementById('frequency-chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Daily', 'Weekly', 'Monthly'],
+      datasets: [
+        {
+          label: 'BTC accumulated (relative)',
+          data: [100, 103.2, 99.1],
+          backgroundColor: ['rgba(200,240,96,0.5)', 'rgba(200,240,96,0.85)', 'rgba(200,240,96,0.4)'],
+          borderColor: ['#c8f060', '#c8f060', '#c8f060'],
+          borderWidth: 1,
+          borderRadius: 4,
+        },
+        {
+          label: 'Fee drag (relative)',
+          data: [8.2, 2.1, 0.5],
+          backgroundColor: ['rgba(240,96,96,0.6)', 'rgba(240,96,96,0.4)', 'rgba(240,96,96,0.2)'],
+          borderColor: ['#f06060', '#f06060', '#f06060'],
+          borderWidth: 1,
+          borderRadius: 4,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          padding: 12,
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 11 } }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 11 } },
+          title: { display: true, text: 'Relative score', color: '#555552', font: { family: "'DM Mono', monospace", size: 10 } }
+        }
+      }
+    }
+  });
+})();
+</script>
+
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() { clearTimeout(timer); menu.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+    menu.addEventListener('mouseenter', function() { clearTimeout(timer); });
+    menu.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+  });
+})();
+</script>
+
+</body>
+</html>
