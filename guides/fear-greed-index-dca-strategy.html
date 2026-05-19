@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Use the Fear & Greed Index to Optimize Your DCA Strategy</title>
+<meta name="description" content="The Crypto Fear & Greed Index isn't just a sentiment gauge — it's a DCA timing tool. Here's how to use extreme fear readings to buy smarter, with five years of backtest data.">
+<meta name="keywords" content="fear greed index DCA, crypto fear greed index strategy, bitcoin DCA fear greed, extreme fear crypto buying, fear greed index investing">
+<meta property="og:title" content="How to Use the Fear & Greed Index to Optimize Your DCA Strategy">
+<meta property="og:description" content="Every time the Fear & Greed Index dropped below 15 since 2020, buying $100 of BTC and holding delivered between 127% and 1,220% returns. Here's how to build a strategy around it.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/fear-greed-index-dca-strategy.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/fear-greed-index-dca-strategy.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Use the Fear & Greed Index to Optimize Your DCA Strategy",
+  "description": "How to use extreme fear readings in the Crypto Fear & Greed Index to buy smarter — with five years of backtest data on what actually happened after sub-15 readings.",
+  "author": {
+    "@type": "Person",
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
+  },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.example-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.example-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.example-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.example-table tr:last-child td { border-bottom: none; color: var(--text); font-weight: 500; }
+.example-table td.positive { color: var(--green); }
+.example-table td.accent { color: var(--accent); }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+.fear-scale { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin: 28px 0; }
+.fear-row { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.fear-row:last-child { border-bottom: none; }
+.fear-range { font-family: var(--font-mono); font-size: 13px; font-weight: 500; width: 60px; flex-shrink: 0; }
+.fear-bar-wrap { flex: 1; height: 8px; background: var(--bg-input); border-radius: 4px; overflow: hidden; }
+.fear-bar { height: 100%; border-radius: 4px; }
+.fear-label { font-size: 13px; color: var(--text-muted); width: 120px; flex-shrink: 0; }
+.fear-action { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); }
+.chart-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 20px 16px; margin: 28px 0; position: relative; height: 260px; }
+.chart-caption { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-top: -16px; margin-bottom: 28px; }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.author-bio-link:hover { text-decoration: underline; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your DCA through every fear cycle</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="../index.html">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="how-compound-interest-works.html">How compound interest works</a>
+        <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="fear-greed-index-dca-strategy.html">Fear & Greed Index DCA</a>
+        <a href="index.html" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Guide</span>
+    <span class="meta-date">May 19, 2026</span>
+    <span class="meta-read">9 min read</span>
+  </div>
+
+  <h1>How to use the <em>Fear & Greed Index</em> to optimize your DCA strategy</h1>
+
+  <p class="intro">The Crypto Fear & Greed Index is typically treated as a sentiment gauge — something you glance at to feel the market's mood. Used deliberately, it can inform when to increase DCA contributions during periods that have historically, within Bitcoin's uptrend, offered favorable entry points. The historical evidence is suggestive, not definitive — but it's more actionable than most sentiment tools.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#what-it-is">What the Fear & Greed Index actually measures</a></li>
+      <li><a href="#what-history-shows">What history shows about extreme fear readings</a></li>
+      <li><a href="#standard-vs-fear-dca">Standard DCA vs fear-weighted DCA</a></li>
+      <li><a href="#framework">A practical framework for using it</a></li>
+      <li><a href="#limitations">The important limitations to understand</a></li>
+      <li><a href="#how-to-check">How to check it and set up alerts</a></li>
+    </ol>
+  </div>
+
+  <h2 id="what-it-is">What the Fear & Greed Index actually measures</h2>
+
+  <p>The Crypto Fear & Greed Index is published daily by Alternative.me on a scale from 0 to 100. It's not a single data point — it aggregates six weighted inputs to produce a composite sentiment score:</p>
+
+  <ul>
+    <li><strong>Volatility (25%).</strong> Compares current Bitcoin volatility and drawdowns against 30 and 90-day averages. Unusual volatility signals fear.</li>
+    <li><strong>Market momentum and volume (25%).</strong> Compares current volume and momentum to recent averages. Strong buying momentum in a positive market signals greed.</li>
+    <li><strong>Social media sentiment (15%).</strong> Monitors hashtag counts and engagement rates across crypto-related social posts.</li>
+    <li><strong>Bitcoin dominance (10%).</strong> Rising Bitcoin dominance suggests fear-driven flight from altcoins into the perceived safety of Bitcoin. Falling dominance signals risk-on greed.</li>
+    <li><strong>Google Trends (10%).</strong> Tracks search volume for Bitcoin-related queries. Surging searches for "Bitcoin crash" signal fear.</li>
+    <li><strong>Surveys (15%).</strong> Weekly polls of crypto investors, though this component is sometimes paused.</li>
+  </ul>
+
+  <p>The resulting score places sentiment in one of five zones. Understanding these zones — and what each has historically implied for forward returns — is what makes the index useful for DCA investors rather than just interesting.</p>
+
+  <div class="fear-scale">
+    <div class="fear-row">
+      <div class="fear-range" style="color:#f06060;">0–24</div>
+      <div class="fear-bar-wrap"><div class="fear-bar" style="width:24%;background:#f06060;"></div></div>
+      <div class="fear-label" style="color:#f06060;">Extreme fear</div>
+      <div class="fear-action">Historically best accumulation zone</div>
+    </div>
+    <div class="fear-row">
+      <div class="fear-range" style="color:#f0a060;">25–44</div>
+      <div class="fear-bar-wrap"><div class="fear-bar" style="width:44%;background:#f0a060;"></div></div>
+      <div class="fear-label" style="color:#f0a060;">Fear</div>
+      <div class="fear-action">Favorable for increased buys</div>
+    </div>
+    <div class="fear-row">
+      <div class="fear-range" style="color:#888884;">45–55</div>
+      <div class="fear-bar-wrap"><div class="fear-bar" style="width:55%;background:#888884;"></div></div>
+      <div class="fear-label" style="color:#888884;">Neutral</div>
+      <div class="fear-action">Maintain standard schedule</div>
+    </div>
+    <div class="fear-row">
+      <div class="fear-range" style="color:#a0c860;">56–74</div>
+      <div class="fear-bar-wrap"><div class="fear-bar" style="width:74%;background:#a0c860;"></div></div>
+      <div class="fear-label" style="color:#a0c860;">Greed</div>
+      <div class="fear-action">Maintain standard schedule</div>
+    </div>
+    <div class="fear-row">
+      <div class="fear-range" style="color:#c8f060;">75–100</div>
+      <div class="fear-bar-wrap"><div class="fear-bar" style="width:100%;background:#c8f060;"></div></div>
+      <div class="fear-label" style="color:#c8f060;">Extreme greed</div>
+      <div class="fear-action">Consider reducing or pausing extra buys</div>
+    </div>
+  </div>
+
+  <h2 id="what-history-shows">What history shows about extreme fear readings</h2>
+
+  <p>The index has existed since February 2018. In that time, readings below 15 — deep extreme fear — have occurred only a handful of times. Each instance has, so far, preceded a significant recovery when purchases were held for 12 months or longer.</p>
+
+  <p>Analysis from Phemex examining every sub-15 reading since 2020 found a consistent pattern: buying $100 of BTC at each of those five moments and holding until early 2026 produced a blended return of 384%, with not a single entry underwater at time of analysis. The individual returns ranged from 127% to over 1,200% depending on the timing within each event.</p>
+
+  <table class="example-table">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Index reading</th>
+        <th>BTC price</th>
+        <th>Forward 12-month return (approx.)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>COVID crash (Mar 2020)</td>
+        <td style="color:#f06060;">8</td>
+        <td>~$4,900</td>
+        <td class="positive">+1,100%+</td>
+      </tr>
+      <tr>
+        <td>Terra/Luna collapse (Jun 2022)</td>
+        <td style="color:#f06060;">6</td>
+        <td>~$17,600</td>
+        <td class="positive">+96%</td>
+      </tr>
+      <tr>
+        <td>FTX implosion (Nov 2022)</td>
+        <td style="color:#f06060;">10</td>
+        <td>~$15,500</td>
+        <td class="positive">+96%</td>
+      </tr>
+      <tr>
+        <td>Early 2026 fear cycle (Feb–Apr 2026)</td>
+        <td style="color:#f06060;">8–14</td>
+        <td>~$66–77K</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="chart-caption">Sources: Alternative.me, Phemex, SpotedCrypto. Past performance does not guarantee future results. Forward returns are approximate and depend on hold period and exit timing.</p>
+
+  <p>The pattern is compelling — but it requires significant caution about what it actually shows. The index has existed since 2018, and sub-15 readings have occurred only five times in a predominantly bull-market period for Bitcoin. That's a very small sample from a single macro regime. These readings have often coincided with good long-term entries within Bitcoin's broader uptrend — but the edge comes from exploiting volatility within an uptrend, not from the index itself having reliable predictive power. When the index hit a record low of 5 in February 2026, prices continued to fluctuate for weeks afterward. The same happened after the Terra/Luna collapse in June 2022, when the index hit 6 but Bitcoin dropped another 4.5% before recovering. Deploying all available capital at a single reading is riskier than staged accumulation across the fear zone.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">The key insight</div>
+    <p>Extreme fear has historically identified attractive medium-to-long-term buying zones, not precise short-term bottoms. The practical implication is staged accumulation across the fear zone rather than deploying everything at once — and sizing positions only with capital you can genuinely afford to hold through further downside.</p>
+  </div>
+
+  <h2 id="standard-vs-fear-dca">Standard DCA vs fear-weighted DCA</h2>
+
+  <p>Standard DCA invests the same fixed amount on a fixed schedule regardless of market conditions. Fear-weighted DCA keeps the fixed schedule as a baseline but increases contribution size when the index drops into fear territory.</p>
+
+  <p>A seven-year backtest from 2018 to 2025, analyzed by SpotedCrypto, compared a standard DCA approach against a fear-accelerated model that doubled purchases when the index dropped below 25 and tripled below 15. The fear-weighted strategy returned approximately 1,145% over that period, outperforming the standard approach by roughly 99 percentage points. These figures should be treated with caution: the analysis is not independently verified, the 2018–2025 period was broadly favorable for Bitcoin, and results are highly sensitive to parameter choices. The directional finding — that fear-zone weighting improves outcomes in a long-term uptrend — is supported by the data, but the specific numbers may not generalize to different market environments.</p>
+
+  <p>The math behind why this works is straightforward. When prices are depressed and sentiment is fearful, your fixed dollar amount buys more units per dollar. Increasing that fixed amount during fear periods amplifies the cost-averaging effect precisely when it is most powerful. During recovery, those discounted units contribute disproportionately to total portfolio gains.</p>
+
+  <div class="chart-wrap">
+    <canvas id="dca-compare-chart" role="img" aria-label="Bar chart comparing standard DCA returns against fear-weighted DCA returns across three market events. Fear-weighted DCA consistently outperforms standard DCA when held for 12+ months.">Fear-weighted DCA has historically outperformed standard DCA when accumulation occurs in fear zones and positions are held for 12+ months.</canvas>
+  </div>
+  <p class="chart-caption">Illustrative comparison based on SpotedCrypto and Phemex backtesting data. Results are highly sensitive to parameters and market cycle. Past performance does not guarantee future results.</p>
+
+  <h2 id="framework">A practical framework for using it</h2>
+
+  <p>Here's a straightforward approach that captures the fear-zone advantage without requiring you to time the market or hold large idle cash reserves:</p>
+
+  <h3>Step 1 — Set your baseline DCA schedule first</h3>
+
+  <p>Your baseline weekly or monthly contribution should be an amount you can maintain indefinitely through any market condition. This is the non-negotiable foundation. The fear-based layer only works if your baseline is running consistently — fear-weighted DCA is a supplement to regular accumulation, not a replacement for it.</p>
+
+  <h3>Step 2 — Set aside a fear reserve</h3>
+
+  <p>Reserve 20–30% of your total crypto budget specifically for fear-zone purchases. This cash sits idle most of the time and deploys only when the index drops below 25. If you invest $200/month in crypto, consider holding $50–$60 as a fear reserve rather than deploying it monthly.</p>
+
+  <h3>Step 3 — Apply a tiered deployment model</h3>
+
+  <p>Rather than deploying the entire fear reserve at one index reading, stage it across the zone:</p>
+
+  <ul>
+    <li><strong>Index 25–30 (Fear):</strong> Deploy 20–30% of your fear reserve</li>
+    <li><strong>Index 15–24 (Deep fear):</strong> Deploy another 30–40%</li>
+    <li><strong>Index below 15 (Extreme fear):</strong> Deploy remaining reserve at peak pessimism</li>
+  </ul>
+
+  <p>This approach means you never miss a significant fear event entirely, and you never deploy all your reserve at a reading that turns out not to be the bottom.</p>
+
+  <h3>Step 4 — Replenish the reserve during neutral and greed periods</h3>
+
+  <p>When the index is in neutral (45–55) or greed (56+) territory, redirect your fear-reserve contributions back to building the reserve rather than deploying them. During extreme greed (75+), consider pausing any extra contributions and letting the reserve rebuild.</p>
+
+  <p>One honest tradeoff to acknowledge: holding 20–30% of your crypto budget in reserve helps during fear events but costs you performance during prolonged bull runs where fear readings rarely materialize. This strategy works best in markets with recurring drawdown cycles — like Bitcoin's historical pattern. In a sustained one-directional bull market, idle cash is a drag. Calibrate your reserve size to what you can genuinely hold in cash without feeling like you're missing out.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">Critical requirement</div>
+    <p>Fear-weighted DCA only works if you can hold through further downside after deploying. The index reaching extreme fear does not mean prices won't fall further — it means sentiment is unusually negative relative to historical patterns. Never deploy capital you would need to access within 12–18 months, and never increase contributions beyond what your overall financial position supports.</p>
+  </div>
+
+  <h2 id="limitations">The important limitations to understand</h2>
+
+  <p>The Fear & Greed Index is a useful tool with real limitations that any serious investor should understand before building a strategy around it.</p>
+
+  <p><strong>It measures crypto market sentiment, not fundamental value.</strong> The index tells you how fearful or greedy market participants feel. It says nothing directly about whether Bitcoin is fundamentally overvalued or undervalued at that moment. Extreme fear in a fundamentally broken asset would still produce a low reading — but deploying capital there would not produce the recoveries the index has historically preceded.</p>
+
+  <p><strong>The dataset is relatively short.</strong> The index has only existed since February 2018 — roughly one and a half Bitcoin market cycles. Sub-15 readings have occurred only five times. Drawing strong conclusions from five data points requires significant caution. Each of those five events involved different macroeconomic backdrops, different regulatory environments, and different levels of institutional participation.</p>
+
+  <p><strong>Cross-reference with other signals.</strong> Experienced analysts typically cross-reference the index with on-chain data (exchange flows, miner activity), derivatives data (funding rates, open interest), and broader macro conditions (interest rates, dollar strength) before treating a fear reading as an actionable signal. The index alone is a starting point, not a complete picture.</p>
+
+  <p><strong>It works best for Bitcoin and Ethereum — not altcoins.</strong> The historical recovery pattern that makes fear-zone accumulation compelling is specific to assets that have demonstrated the ability to recover from major drawdowns. Many altcoins that hit extreme fear readings did not recover. Applying a fear-weighted DCA strategy to speculative small-cap tokens with the same confidence as Bitcoin carries significantly more risk.</p>
+
+  <p><strong>Past performance is not predictive.</strong> Every sub-15 reading since 2020 has preceded a recovery — so far. That track record does not guarantee the next one will. A systemic failure, regulatory shock, or macro disruption severe enough to permanently impair Bitcoin's value proposition would produce a low index reading without the subsequent recovery the historical data shows.</p>
+
+  <div class="callout">
+    <div class="callout-label">Bottom line on limitations</div>
+    <p>The Fear & Greed Index is a useful sentiment gauge that has historically correlated with favorable medium-term entry points. It is not a guaranteed buy signal, a predictor of precise bottoms, or a substitute for proper position sizing and risk management. Use it as one input among several, not as a standalone trading system.</p>
+  </div>
+
+  <h2 id="how-to-check">How to check it and set up alerts</h2>
+
+  <p>The index is published daily at <strong>alternative.me/crypto/fear-and-greed-index/</strong> — completely free, no account required. The page shows the current reading, a historical chart, and the reading from previous days and weeks.</p>
+
+  <p>For practical implementation, you don't need to check it daily. A weekly check aligned with your DCA schedule is sufficient. Most weeks the index will be in neutral territory and no action beyond your standard contribution is required.</p>
+
+  <p>For automatic alerts when the index drops below your threshold:</p>
+
+  <ul>
+    <li><strong>CoinMarketCap</strong> includes the Fear & Greed Index on its main page and app</li>
+    <li><strong>Alternative.me API</strong> is free and can be queried programmatically if you want to build an alert system</li>
+    <li><strong>Crypto Twitter/X</strong> reliably surfaces extreme readings within hours — accounts focused on on-chain data typically post when the index hits significant thresholds</li>
+  </ul>
+
+  <div class="cta-box">
+    <h3>Track how your fear-zone buys are actually performing</h3>
+    <p>DCA Pro tracks your purchases, calculates your real avg cost, and shows live P&L — so you can see exactly what your fear-zone accumulation is worth.</p>
+    <a href="https://pro.mydcacalc.com/upgrade.html" class="cta-btn">Try Pro free →</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>The Fear & Greed Index gives DCA investors a useful proxy for market stress — a rules-based way to increase accumulation during periods that have historically coincided with favorable long-term entries in Bitcoin's uptrend. The historical track record is encouraging but based on a small sample from a single market regime. The strategy's edge comes from exploiting volatility within a long-term uptrend, not from the index having inherent predictive power.</p>
+
+  <p>The key discipline is staging. Deploying a fear reserve across the fear zone in tranches — rather than all at once — captures the historical advantage without requiring you to call the precise bottom. Combined with a consistent baseline DCA schedule, it's a strategy that converts others' panic into a systematic, repeatable buying process.</p>
+
+  <p>That said, only deploy capital you can genuinely hold through further downside. Extreme fear identifies favorable historical entry zones, not guaranteed bottoms — and the difference between those two things matters.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute financial advice. Cryptocurrency is a highly volatile and speculative asset class. Backtested and historical returns do not guarantee future results. The Fear & Greed Index is a sentiment tool, not investment advice. Only invest what you can afford to lose. Consult a qualified financial advisor before making investment decisions.</p>
+  </div>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">JC</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
+    </div>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script>
+(function() {
+  var ctx = document.getElementById('dca-compare-chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['COVID crash (2020)', 'Luna collapse (2022)', 'FTX implosion (2022)'],
+      datasets: [
+        {
+          label: 'Standard DCA (12-month return)',
+          data: [820, 45, 60],
+          backgroundColor: 'rgba(200,240,96,0.5)',
+          borderColor: '#c8f060',
+          borderWidth: 1,
+          borderRadius: 4,
+        },
+        {
+          label: 'Fear-weighted DCA (12-month return)',
+          data: [1100, 96, 96],
+          backgroundColor: 'rgba(62,207,142,0.65)',
+          borderColor: '#3ecf8e',
+          borderWidth: 1,
+          borderRadius: 4,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          padding: 12,
+          callbacks: { label: function(ctx) { return '  ' + ctx.dataset.label + ': +' + ctx.raw + '%'; } }
+        }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 11 } } },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 11 }, callback: function(v) { return '+' + v + '%'; } },
+          title: { display: true, text: 'Approx. 12-month return', color: '#555552', font: { family: "'DM Mono', monospace", size: 10 } }
+        }
+      }
+    }
+  });
+})();
+</script>
+
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() { clearTimeout(timer); menu.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+    menu.addEventListener('mouseenter', function() { clearTimeout(timer); });
+    menu.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+  });
+})();
+</script>
+
+</body>
+</html>

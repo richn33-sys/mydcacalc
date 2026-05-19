@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is a Good Risk/Reward Ratio in Trading? The Complete Guide</title>
+<meta name="description" content="Risk/reward ratio explained clearly — what 2:1 and 3:1 actually mean, how to calculate it, and why it matters more than win rate for long-term profitability.">
+<meta name="keywords" content="risk reward ratio, risk reward ratio trading, good risk reward ratio, 2:1 risk reward, how to calculate risk reward ratio, risk reward ratio explained">
+<meta property="og:title" content="What Is a Good Risk/Reward Ratio in Trading? The Complete Guide">
+<meta property="og:description" content="Risk/reward ratio explained clearly — what 2:1 means, how win rate and R/R interact, and a step-by-step calculation guide.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/what-is-a-good-risk-reward-ratio.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/what-is-a-good-risk-reward-ratio.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is a Good Risk/Reward Ratio in Trading? The Complete Guide",
+  "description": "Risk/reward ratio explained — what 2:1 and 3:1 mean, how they interact with win rate, and a step-by-step guide to calculating and applying them.",
+  "author": {
+    "@type": "Person",
+    "name": "Sara Kline",
+    "url": "https://mydcacalc.com/authors/sara-kline.html"
+  },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.example-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.example-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.example-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.example-table tr:last-child td { border-bottom: none; color: var(--text); font-weight: 500; }
+.example-table td.positive { color: var(--green); }
+.example-table td.negative { color: var(--red); }
+.example-table td.accent { color: var(--accent); }
+.math-box { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; font-family: var(--font-mono); font-size: 14px; }
+.math-box .formula { font-size: 16px; color: var(--accent); margin-bottom: 10px; }
+.math-box .example { color: var(--text-muted); font-size: 13px; line-height: 1.8; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+.chart-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 20px 16px; margin: 28px 0; position: relative; height: 260px; }
+.chart-caption { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-top: -16px; margin-bottom: 28px; }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.author-bio-link:hover { text-decoration: underline; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📊 <strong>Calculate your position size instantly</strong> — entry, stop loss, risk %, exact units to buy</span>
+  <a href="../position-size.html" class="pro-cta-btn">Try the calculator →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="../index.html">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="how-compound-interest-works.html">How compound interest works</a>
+        <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="fear-greed-index-dca-strategy.html">Fear & Greed Index DCA</a>
+        <a href="what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+        <a href="index.html" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Risk management</span>
+    <span class="meta-date">May 19, 2026</span>
+    <span class="meta-read">10 min read</span>
+  </div>
+
+  <h1>What is a good <em>risk/reward ratio</em> in trading?</h1>
+
+  <p class="intro">Most traders focus on win rate. That's the wrong metric. A trader who wins 40% of their trades can be consistently profitable — if their risk/reward ratio is right. Understanding the relationship between these two numbers, and knowing how to calculate your ratio before entering any trade, is one of the most practical skills in active trading.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#what-it-is">What the risk/reward ratio actually is</a></li>
+      <li><a href="#how-to-calculate">How to calculate it — step by step</a></li>
+      <li><a href="#win-rate">How win rate and R/R interact</a></li>
+      <li><a href="#what-is-good">What counts as a good ratio</a></li>
+      <li><a href="#by-style">Ratios by trading style</a></li>
+      <li><a href="#common-mistakes">Common mistakes that destroy your ratio</a></li>
+      <li><a href="#position-sizing">Combining R/R with position sizing</a></li>
+    </ol>
+  </div>
+
+  <h2 id="what-it-is">What the risk/reward ratio actually is</h2>
+
+  <p>The risk/reward ratio compares how much you stand to lose if a trade goes wrong against how much you stand to gain if it goes right. It's expressed as two numbers separated by a colon — 1:2, 1:3, and so on — where the first number represents the risk and the second represents the reward.</p>
+
+  <p>A 1:2 ratio means you're risking $1 to potentially make $2. A 1:3 ratio means you're risking $1 to potentially make $3. The higher the second number, the more favorably the trade is structured — though as we'll cover, there's a real tradeoff between target size and how often you actually hit it.</p>
+
+  <p>What the ratio doesn't tell you is whether the trade will work. It tells you whether the trade is structured sensibly — whether, if your analysis is correct often enough, you can be profitable over time. That's actually the more important question. Many traders spend all their energy trying to predict which trades will work and almost none on whether their reward justifies their risk when they're wrong.</p>
+
+  <div class="callout">
+    <div class="callout-label">The core concept</div>
+    <p>Risk/reward ratio is not about winning more trades. It's about making sure your wins are large enough relative to your losses that you can be profitable even when you're wrong a significant portion of the time. You can't control how often the market goes your way. You can control how much you lose when it doesn't.</p>
+  </div>
+
+  <h2 id="how-to-calculate">How to calculate it — step by step</h2>
+
+  <p>Calculating your risk/reward ratio requires three numbers: your entry price, your stop loss, and your profit target.</p>
+
+  <div class="math-box">
+    <div class="formula">Risk = Entry price − Stop loss price</div>
+    <div class="formula">Reward = Profit target − Entry price</div>
+    <div class="formula">R/R ratio = Risk ÷ Reward</div>
+    <div class="example" style="margin-top:12px;">
+      Example (long trade):<br>
+      Entry: $100 · Stop loss: $95 · Target: $115<br>
+      Risk = $100 − $95 = $5<br>
+      Reward = $115 − $100 = $15<br>
+      R/R ratio = $5 ÷ $15 = 1:3
+    </div>
+  </div>
+
+  <p>For a short trade, the math reverses — your risk is above your entry (where you'd buy back at a loss) and your reward is below (where you'd close at a profit).</p>
+
+  <div class="math-box">
+    <div class="formula">Short trade example:</div>
+    <div class="example">
+      Entry: $150 · Stop loss: $158 · Target: $126<br>
+      Risk = $158 − $150 = $8<br>
+      Reward = $150 − $126 = $24<br>
+      R/R ratio = $8 ÷ $24 = 1:3
+    </div>
+  </div>
+
+  <p>For most traders, especially developing ones, setting both your stop loss and your profit target before you enter the trade is the right discipline. More advanced traders often trail stops rather than use fixed targets, or scale out of positions dynamically — but the underlying principle is the same: know your risk before you're in the trade, when you can evaluate it objectively. Setting them in advance forces you to assess whether the trade is worth taking before you have any emotional stake in it. Once you're in a position, the bias to hold winners and cut losers — or worse, to move stops to avoid being stopped out — kicks in immediately.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">Practical tip</div>
+    <p>Place your stop loss first, based on where the market would prove your trade thesis wrong — a break below support for a long, a break above resistance for a short. Then determine your realistic target. Calculate the ratio. If it doesn't meet your minimum, either find a better entry or skip the trade entirely. Don't reverse-engineer a stop to fit a desired ratio.</p>
+  </div>
+
+  <h2 id="win-rate">How win rate and R/R interact</h2>
+
+  <p>This is where most traders' understanding breaks down. Win rate and risk/reward ratio are not independent — they're often inversely related in practice (bigger targets tend to get hit less often), though a better entry can improve both simultaneously. What matters is understanding how they interact to determine whether a strategy has positive expectancy.</p>
+
+  <p>The key number is the <strong>break-even win rate</strong> — the minimum percentage of winning trades you need to break even at a given risk/reward ratio. The formula is:</p>
+
+  <p>The underlying concept here is <strong>expectancy</strong> — the real metric of a trading strategy. Expectancy combines both win rate and R/R into a single number that tells you how much you expect to make per dollar risked on average:</p>
+  <div class="math-box">
+    <div class="formula">Expectancy = (Win rate × Avg win) − (Loss rate × Avg loss)</div>
+    <div class="example" style="margin-top:8px;">A 1:3 ratio with 20% win rate is a losing system. A 1:1.5 ratio with 55% win rate is profitable. R/R alone is meaningless without win rate — expectancy is what actually matters.</div>
+  </div>
+  <div class="math-box">
+    <div class="formula">Break-even win rate = 1 ÷ (1 + R/R reward multiple)</div>
+    <div class="example" style="margin-top:12px;">
+      At 1:1 ratio: 1 ÷ (1+1) = 50% win rate needed to break even<br>
+      At 1:2 ratio: 1 ÷ (1+2) = 33.3% win rate needed<br>
+      At 1:3 ratio: 1 ÷ (1+3) = 25% win rate needed<br>
+      At 1:5 ratio: 1 ÷ (1+5) = 16.7% win rate needed
+    </div>
+  </div>
+
+  <table class="example-table">
+    <thead>
+      <tr>
+        <th>R/R ratio</th>
+        <th>Break-even win rate</th>
+        <th>Profitable if you win...</th>
+        <th>10 trades: need at least</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1:1</td>
+        <td>50%</td>
+        <td>More than half</td>
+        <td>6 winners</td>
+      </tr>
+      <tr>
+        <td>1:2</td>
+        <td>33.3%</td>
+        <td class="positive">More than 1 in 3</td>
+        <td>4 winners</td>
+      </tr>
+      <tr>
+        <td>1:3</td>
+        <td>25%</td>
+        <td class="positive">More than 1 in 4</td>
+        <td>3 winners</td>
+      </tr>
+      <tr>
+        <td>1:5</td>
+        <td>16.7%</td>
+        <td class="positive">More than 1 in 6</td>
+        <td>2 winners</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The practical implication is significant. A trader with a 40% win rate and a 1:2 ratio is profitable. That same trader with a 40% win rate and a 1:1 ratio is not. The win rate didn't change — the ratio did.</p>
+
+  <p>One nuance worth noting: real trading rarely involves perfectly fixed win and loss sizes. Individual wins and losses vary — and in swing and position trading, occasional large winners (sometimes called "fat tail" trades) often account for a disproportionate share of total profits. A few trades that run to 1:5 or better can carry an entire month of breakeven 1:2 results. This is another reason letting winners run, rather than cutting them early, compounds over time.</p>
+
+  <p>But there's a real tradeoff. Higher reward targets are harder to hit. A 1:3 ratio requires your price to move three times further than your stop loss. In choppy or slow-moving markets, that target may simply not be realistic. A 1:2 ratio with a genuine 45% win rate will typically outperform a 1:3 ratio with a 25% win rate — the math works out similarly but the higher ratio requires your analysis to be correct less often, which sounds appealing but demands targets that the market actually reaches.</p>
+
+  <h2 id="what-is-good">What counts as a good ratio</h2>
+
+  <p>The honest answer is that it depends on your win rate and trading style — there's no universal good ratio that applies across all strategies and markets.</p>
+
+  <p>That said, most professional traders and educators recommend a minimum of <strong>1:2</strong> as a baseline — keeping in mind that market conditions matter significantly. In a trending market with clear directional momentum, 1:3 or better is realistic. In a choppy, range-bound environment, even 1:2 may be difficult to achieve consistently as prices reverse before reaching targets. At 1:2, you need to win only one in three trades to break even, which gives you a meaningful buffer against losing streaks and imperfect execution. Many experienced traders target 1:3 or better for high-conviction setups, which drops the break-even win rate to 25%.</p>
+
+  <p>Trading at 1:1 leaves very little margin for error. You need to win more than half your trades just to break even after fees, slippage, and bad fills — a bar that most discretionary traders cannot clear consistently. Some high-frequency or mean-reversion systems do operate profitably at 1:1, but they require exceptionally high win rates and low execution costs to do so. For most traders, it's a difficult and unforgiving ratio.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">The number one mistake</div>
+    <p>Widening your stop loss to fit a desired ratio doesn't improve your risk/reward — it just increases the dollar amount you lose when you're wrong. Your stop loss should be placed where the trade is definitively invalidated, not engineered around a ratio target. A 1:3 ratio with an oversized stop is worse than a 1:2 with a tight, technically sound one.</p>
+  </div>
+
+  <h2 id="by-style">Ratios by trading style</h2>
+
+  <p>Different trading styles have different practical ratio targets, driven by the nature of their setups and the typical price movements they're trading.</p>
+
+  <p><strong>Scalping (seconds to minutes).</strong> Scalpers trade very fast, very small moves. A 1:1 or 1:1.5 ratio is common because the target has to be realistically achievable within seconds or minutes of price movement. Scalpers compensate by maintaining higher win rates — often 60%+ — and by trading high volume with tight spreads. It's the one style where 1:1 can work, but it requires exceptional execution and discipline.</p>
+
+  <p><strong>Day trading (minutes to hours).</strong> Most experienced day traders target 1:1.5 to 1:2 as a baseline, with better setups warranting 1:3 or more. The position size calculator on this site is built around this style — enter your stop distance and account risk, and it tells you how many units to buy for a given dollar risk.</p>
+
+  <p><strong>Swing trading (days to weeks).</strong> Swing traders have more time for price to reach targets, so 1:2 to 1:4 is typically achievable. With larger price moves come larger stop distances, so position sizing discipline is critical — the same dollar risk percentage requires fewer shares or units when stops are wide.</p>
+
+  <p><strong>Position trading (weeks to months).</strong> Long-term directional traders often target 1:3 or higher. The thesis has more time to play out, but the holding period introduces macro and news risk that shorter-term traders don't face.</p>
+
+  <table class="example-table">
+    <thead>
+      <tr>
+        <th>Style</th>
+        <th>Typical ratio target</th>
+        <th>Typical win rate needed</th>
+        <th>Primary challenge</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Scalping</td>
+        <td>1:1 – 1:1.5</td>
+        <td>60%+</td>
+        <td>Execution speed, fees</td>
+      </tr>
+      <tr>
+        <td>Day trading</td>
+        <td>1:1.5 – 1:2</td>
+        <td>40–50%</td>
+        <td>Intraday noise, discipline</td>
+      </tr>
+      <tr>
+        <td>Swing trading</td>
+        <td>1:2 – 1:4</td>
+        <td>30–45%</td>
+        <td>Holding through pullbacks</td>
+      </tr>
+      <tr>
+        <td>Position trading</td>
+        <td>1:3 – 1:5</td>
+        <td>25–35%</td>
+        <td>Macro risk, patience</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="common-mistakes">Common mistakes that destroy your ratio</h2>
+
+  <p>Understanding the theory is one thing. The mistakes traders consistently make are practical, not conceptual.</p>
+
+  <ul>
+    <li><strong>Widening the stop loss after entry.</strong> Moving a stop further from entry because "it just needs a bit more room" increases your risk without changing your reward. A planned 1:2 ratio becomes 1:1.5 or worse. There's an important distinction here: <em>widening</em> a stop to avoid being stopped out is destructive. <em>Trailing</em> a stop toward profit as the trade moves in your favor — locking in gains — is sound risk management. The rule is: never move stops away from your entry. Moving them toward it is fine.</li>
+    <li><strong>Taking profit early.</strong> Taking profit at 1:1.5 on a trade set up for 1:3 feels good in the moment but systematically degrades your expected value. If the setup genuinely justifies 1:3, trust the analysis and let the trade run. Partial exits are a valid compromise — take half at 1:2 and let the rest run to the full target.</li>
+    <li><strong>Setting unrealistic targets.</strong> Targeting 1:5 in a range-bound, low-volatility market means most trades will reverse before hitting the target. Realistic targets are based on the actual structure of the market — resistance levels, measured moves, volatility ranges — not on what ratio you want.</li>
+    <li><strong>Ignoring fees and slippage.</strong> On a 1:2 trade risking $100, a $5 entry slippage and $5 exit commission reduces your effective reward from $200 to $190 and leaves your risk at $100. That degrades your effective ratio to approximately 1:1.9. At smaller sizes or higher frequencies, fees can materially change whether a strategy is profitable.</li>
+    <li><strong>Trading bad setups to hit a quota.</strong> If the market isn't offering setups that meet your minimum ratio, the right answer is to not trade. Forcing trades in choppy or unclear conditions to satisfy a need to be active is how traders systematically lose money on days when disciplined inaction would have been free.</li>
+  </ul>
+
+  <h2 id="position-sizing">Combining R/R with position sizing</h2>
+
+  <p>Risk/reward ratio tells you whether a trade is worth taking. Position sizing tells you how much to risk on it. Used together, they form the complete risk management framework that separates traders who last from those who don't.</p>
+
+  <p>The standard approach is the <strong>percentage risk method</strong>: never risk more than 1–2% of your total trading account on any single trade. Combined with a specific stop loss, this determines your position size.</p>
+
+  <div class="math-box">
+    <div class="formula">Position size = (Account × Risk %) ÷ Stop distance per unit</div>
+    <div class="example" style="margin-top:12px;">
+      Account: $10,000 · Risk per trade: 1% ($100)<br>
+      Stop distance: $5 per share<br>
+      Position size = $100 ÷ $5 = 20 shares<br><br>
+      At a 1:2 ratio with a $10 target: profit = 20 × $10 = $200
+    </div>
+  </div>
+
+  <p>This approach has a critical benefit: it keeps your losses roughly equal across all trades regardless of which asset you're trading or how volatile the market is. A wider stop on a volatile asset means a smaller position — you automatically size down when risk per unit is higher. A tight stop on a stable asset means a larger position. The dollar amount at risk stays consistent.</p>
+
+  <p>Our <a href="../position-size.html" style="color:var(--accent);text-decoration:none;">position size calculator</a> does this math for you — enter your account size, risk percentage, entry price, and stop loss, and it calculates your exact position size and dollar risk instantly.</p>
+
+  <div class="cta-box">
+    <h3>Calculate your exact position size</h3>
+    <p>Enter your account size, risk %, entry, and stop loss. Get the exact number of shares or units to buy — for stocks, crypto, or forex.</p>
+    <a href="../position-size.html" class="cta-btn">Try the position size calculator</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>A "good" risk/reward ratio isn't a fixed number — it's whatever combination of win rate and payoff size produces positive expectancy after costs. That framing matters because it shifts focus from finding the right ratio to building a strategy with genuine edge — where your winners, on average, more than offset your losers.</p>
+
+  <p>Risk/reward ratio is not a complicated concept, but consistently applying it is harder than it sounds. The temptation to move stops, take profit early, and force trades that don't meet your minimum threshold is constant — and each of those habits quietly degrades your expected value over hundreds of trades.</p>
+
+  <p>The minimum worth targeting for most trading styles is 1:2. That ratio lets you be profitable while winning fewer than half your trades, which is where most honest traders actually land when they track their results carefully. For high-conviction setups or swing trades with clear structural targets, 1:3 or better is worth holding out for.</p>
+
+  <p>But the ratio only matters if you actually honor your stops and targets. Calculate the ratio before you enter. Set the orders. Then let the trade resolve. That discipline — more than finding the perfect ratio — is what determines long-term profitability.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational and educational purposes only and does not constitute financial or trading advice. All trading involves risk of loss. Past performance does not guarantee future results. Use position sizing and risk management to suit your own financial situation and risk tolerance.</p>
+  </div>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">SK</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">Sara Kline</div>
+      <div class="author-bio-title">Active Trader & Risk Management Specialist</div>
+      <div class="author-bio-text">Active trader and risk management specialist covering position sizing, stop loss strategy, and trading psychology. Based in Chicago, IL.</div>
+      <a href="../authors/sara-kline.html" class="author-bio-link">View all articles by Sara →</a>
+    </div>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script>
+(function() {
+  var dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() { clearTimeout(timer); menu.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+    menu.addEventListener('mouseenter', function() { clearTimeout(timer); });
+    menu.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+  });
+})();
+</script>
+
+</body>
+</html>
