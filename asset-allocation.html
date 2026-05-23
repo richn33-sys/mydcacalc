@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asset Allocation Calculator — Find Your Ideal Portfolio Mix</title>
+<meta name="description" content="Free asset allocation calculator and risk tolerance quiz. Answer 8 questions to find your ideal mix of stocks, bonds, and cash based on your goals, timeline, and risk appetite.">
+<meta name="keywords" content="asset allocation calculator, risk tolerance quiz, portfolio allocation calculator, how much stocks vs bonds, investment allocation by age, risk tolerance assessment">
+<meta property="og:title" content="Asset Allocation Calculator — Find Your Ideal Portfolio Mix">
+<meta property="og:description" content="Answer 8 questions to find your ideal mix of stocks, bonds, and cash. Free, no sign-up required.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/asset-allocation.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/asset-allocation.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Asset Allocation Calculator",
+  "description": "Free risk tolerance quiz and asset allocation calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
+/* Hero */
+.hero { max-width: 720px; margin: 0 auto; padding: 40px 24px 28px; }
+.hero-eyebrow { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.hero-eyebrow a { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); text-decoration: none; padding: 4px 12px; border: 1px solid var(--border); border-radius: 20px; transition: all 0.15s; }
+.hero-eyebrow a:hover { color: var(--text-muted); border-color: var(--border-hover); }
+.hero-eyebrow a.active { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
+.hero h1 { font-size: clamp(22px, 3.5vw, 32px); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 540px; }
+
+/* Quiz container */
+.quiz-wrap { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* Progress bar */
+.progress-wrap { margin-bottom: 32px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); margin-bottom: 8px; }
+.progress-bar { height: 3px; background: var(--bg-input); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease; }
+
+/* Question card */
+.question-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 16px; display: none; }
+.question-card.active { display: block; }
+.question-number { font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.question-text { font-size: 18px; font-weight: 500; color: var(--text); line-height: 1.4; margin-bottom: 24px; letter-spacing: -0.01em; }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.option-btn { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; cursor: pointer; text-align: left; transition: all 0.15s; font-family: var(--font-body); color: var(--text-muted); font-size: 14px; line-height: 1.5; }
+.option-btn:hover { border-color: var(--border-hover); color: var(--text); }
+.option-btn.selected { border-color: var(--accent-border); background: var(--accent-dim); color: var(--text); }
+.option-letter { font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin-right: 10px; font-weight: 500; }
+
+/* Nav buttons */
+.quiz-nav { display: flex; gap: 12px; justify-content: space-between; margin-top: 8px; }
+.btn-back { background: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 20px; font-size: 13px; font-family: var(--font-mono); color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+.btn-back:hover { border-color: var(--border-hover); color: var(--text); }
+.btn-next { background: var(--accent); border: none; border-radius: var(--radius); padding: 10px 24px; font-size: 13px; font-family: var(--font-mono); color: #0c0c0e; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
+.btn-next:hover { opacity: 0.85; }
+.btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* Results */
+.results-card { display: none; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+.results-card.active { display: block; }
+.result-profile { font-size: 13px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.result-title { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+.result-desc { font-size: 14px; color: var(--text-muted); font-weight: 300; line-height: 1.7; margin-bottom: 28px; max-width: 560px; }
+
+/* Allocation display */
+.allocation-bars { margin-bottom: 28px; }
+.alloc-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.alloc-label { font-size: 13px; font-family: var(--font-mono); color: var(--text-muted); width: 80px; flex-shrink: 0; }
+.alloc-bar-wrap { flex: 1; height: 10px; background: var(--bg-input); border-radius: 5px; overflow: hidden; }
+.alloc-bar { height: 100%; border-radius: 5px; transition: width 0.6s ease; }
+.alloc-pct { font-size: 14px; font-family: var(--font-mono); font-weight: 500; width: 40px; text-align: right; flex-shrink: 0; }
+
+/* Donut chart */
+.chart-row { display: grid; grid-template-columns: 200px 1fr; gap: 28px; align-items: center; margin-bottom: 28px; }
+@media (max-width: 500px) { .chart-row { grid-template-columns: 1fr; } }
+.chart-wrap-sm { position: relative; height: 200px; width: 200px; }
+.allocation-detail { display: flex; flex-direction: column; gap: 12px; }
+.alloc-detail-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--bg-input); border-radius: var(--radius); }
+.alloc-detail-label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
+.alloc-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.alloc-detail-pct { font-size: 15px; font-family: var(--font-mono); font-weight: 500; color: var(--text); }
+.alloc-detail-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
+
+/* Expected returns */
+.returns-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 28px; }
+.return-card { background: var(--bg-input); border-radius: var(--radius); padding: 14px; text-align: center; }
+.return-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.return-value { font-size: 20px; font-weight: 600; font-family: var(--font-mono); }
+.return-sub { font-size: 11px; color: var(--text-dim); margin-top: 3px; font-family: var(--font-mono); }
+
+/* Retake button */
+.btn-retake { background: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 20px; font-size: 13px; font-family: var(--font-mono); color: var(--text-muted); cursor: pointer; transition: all 0.15s; margin-right: 12px; }
+.btn-retake:hover { border-color: var(--border-hover); color: var(--text); }
+
+/* CTA */
+.result-cta { background: var(--bg-input); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 20px; text-align: center; margin-top: 24px; }
+.result-cta p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; font-weight: 300; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 9px 22px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); margin-top: 16px; }
+
+/* Pro banner */
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your actual allocation</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="/">DCA</a>
+    <a href="position-size.html">Position size</a>
+    <a href="compound-interest.html">Compound interest</a>
+    <a href="dca-backtest.html">DCA backtest</a>
+    <a href="inflation-calculator.html">Real returns</a>
+    <a href="asset-allocation.html" class="active">Asset allocation</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+        <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+        <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        <a href="guides/index.html" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">
+    <a href="/">DCA</a>
+    <a href="position-size.html">Position size</a>
+    <a href="compound-interest.html">Compound interest</a>
+    <a href="dca-backtest.html">DCA backtest</a>
+    <a href="inflation-calculator.html">Real returns</a>
+    <a href="asset-allocation.html" class="active">Asset allocation</a>
+  </div>
+  <h1>Asset Allocation <em>Quiz</em></h1>
+  <p>Answer 8 questions about your goals, timeline, and risk tolerance. Get a personalized portfolio mix — stocks, bonds, cash, and crypto — with expected return ranges.</p>
+</div>
+
+<div class="quiz-wrap">
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="progress-text">Question 1 of 8</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="question-card active" id="q1">
+    <div class="question-number">Question 1 of 8</div>
+    <div class="question-text">When do you plan to start using this money?</div>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(1, 1, this)"><span class="option-letter">A</span>Within the next 2 years</button>
+      <button class="option-btn" onclick="selectOption(1, 2, this)"><span class="option-letter">B</span>3–5 years from now</button>
+      <button class="option-btn" onclick="selectOption(1, 3, this)"><span class="option-letter">C</span>6–10 years from now</button>
+      <button class="option-btn" onclick="selectOption(1, 4, this)"><span class="option-letter">D</span>More than 10 years away</button>
+    </div>
+    <div class="quiz-nav">
+      <span></span>
+      <button class="btn-next" id="next-1" onclick="nextQ(1)" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-card" id="q2">
+    <div class="question-number">Question 2 of 8</div>
+    <div class="question-text">What is the primary goal for this money?</div>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(2, 1, this)"><span class="option-letter">A</span>Preserve what I have — I can't afford to lose it</button>
+      <button class="option-btn" onclick="selectOption(2, 2, this)"><span class="option-letter">B</span>Steady growth with some protection</button>
+      <button class="option-btn" onclick="selectOption(2, 3, this)"><span class="option-letter">C</span>Grow aggressively — I'm focused on long-term wealth</button>
+      <button class="option-btn" onclick="selectOption(2, 4, this)"><span class="option-letter">D</span>Maximum growth — I understand the risks</button>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn-back" onclick="prevQ(2)">← Back</button>
+      <button class="btn-next" id="next-2" onclick="nextQ(2)" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-card" id="q3">
+    <div class="question-number">Question 3 of 8</div>
+    <div class="question-text">Your portfolio drops 20% in a market crash. What do you do?</div>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(3, 1, this)"><span class="option-letter">A</span>Sell everything — I can't stomach this loss</button>
+      <button class="option-btn" onclick="selectOption(3, 2, this)"><span class="option-letter">B</span>Sell some — reduce the pain a bit</button>
+      <button class="option-btn" onclick="selectOption(3, 3, this)"><span class="option-letter">C</span>Hold and wait for recovery</button>
+      <button class="option-btn" onclick="selectOption(3, 4, this)"><span class="option-letter">D</span>Buy more — this is an opportunity</button>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn-back" onclick="prevQ(3)">← Back</button>
+      <button class="btn-next" id="next-3" onclick="nextQ(3)" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-card" id="q4">
+    <div class="question-number">Question 4 of 8</div>
+    <div class="question-text">How would you describe your investing experience?</div>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(4, 1, this)"><span class="option-letter">A</span>Beginner — I'm just getting started</button>
+      <button class="option-btn" onclick="selectOption(4, 2, this)"><span class="option-letter">B</span>Some experience — I understand the basics</button>
+      <button class="option-btn" onclick="selectOption(4, 3, this)"><span class="option-letter">C</span>Experienced — I've been investing for years</button>
+      <button class="option-btn" onclick="selectOption(4, 4, this)"><span class="option-letter">D</span>Advanced — I actively manage complex portfolios</button>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn-back" onclick="prevQ(4)">← Back</button>
+      <button class="btn-next" id="next-4" onclick="nextQ(4)" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-card" id="q5">
+    <div class="question-number">Question 5 of 8</div>
+    <div class="question-text">How stable is your income right now?</div>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(5, 1, this)"><span class="option-letter">A</span>Unstable — I'm worried about my income</button>
+      <button class="option-btn" onclick="selectOption(5, 2, this)"><span class="option-letter">B</span>Somewhat stable — some uncertainty</button>
+      <button class="option-btn" onclick="selectOption(5, 3, this)"><span class="option-letter">C</span>Stable — I have steady income</button>
+      <button class="option-btn" onclick="selectOption(5, 4, this)"><span class="option-letter">D</span>Very stable — multiple income streams</button>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn-back" onclick="prevQ(5)">← Back</button>
+      <button class="btn-next" id="next-5" onclick="nextQ(5)" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-card" id="q6">
+    <div class="question-number">Question 6 of 8</div>
+    <div class="question-text">Do you have an emergency fund covering 3–6 months of expenses?</div>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(6, 1, this)"><span class="option-letter">A</span>No — this money might be all I have</button>
+      <button class="option-btn" onclick="selectOption(6, 2, this)"><span class="option-letter">B</span>Partially — I have 1–2 months covered</button>
+      <button class="option-btn" onclick="selectOption(6, 3, this)"><span class="option-letter">C</span>Yes — I have 3–6 months covered</button>
+      <button class="option-btn" onclick="selectOption(6, 4, this)"><span class="option-letter">D</span>Yes — and more than 6 months</button>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn-back" onclick="prevQ(6)">← Back</button>
+      <button class="btn-next" id="next-6" onclick="nextQ(6)" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-card" id="q7">
+    <div class="question-number">Question 7 of 8</div>
+    <div class="question-text">Which statement best describes your attitude toward investment risk?</div>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(7, 1, this)"><span class="option-letter">A</span>I prioritize protecting what I have over growing it</button>
+      <button class="option-btn" onclick="selectOption(7, 2, this)"><span class="option-letter">B</span>I want growth but not at the cost of big swings</button>
+      <button class="option-btn" onclick="selectOption(7, 3, this)"><span class="option-letter">C</span>I can handle volatility if the long-term returns are higher</button>
+      <button class="option-btn" onclick="selectOption(7, 4, this)"><span class="option-letter">D</span>High risk, high reward — I'm fully comfortable with volatility</button>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn-back" onclick="prevQ(7)">← Back</button>
+      <button class="btn-next" id="next-7" onclick="nextQ(7)" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-card" id="q8">
+    <div class="question-number">Question 8 of 8</div>
+    <div class="question-text">Are you interested in including crypto in your portfolio?</div>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(8, 1, this)"><span class="option-letter">A</span>No — I prefer traditional assets only</button>
+      <button class="option-btn" onclick="selectOption(8, 2, this)"><span class="option-letter">B</span>Maybe — a small allocation if it makes sense</button>
+      <button class="option-btn" onclick="selectOption(8, 3, this)"><span class="option-letter">C</span>Yes — crypto is part of my strategy</button>
+      <button class="option-btn" onclick="selectOption(8, 4, this)"><span class="option-letter">D</span>Definitely — crypto is a core holding for me</button>
+    </div>
+    <div class="quiz-nav">
+      <button class="btn-back" onclick="prevQ(8)">← Back</button>
+      <button class="btn-next" id="next-8" onclick="showResults()" disabled>See my allocation →</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results-card" id="results">
+    <div class="result-profile" id="result-profile">—</div>
+    <div class="result-title" id="result-title">—</div>
+    <div class="result-desc" id="result-desc">—</div>
+
+    <div class="chart-row">
+      <div class="chart-wrap-sm">
+        <canvas id="alloc-chart"></canvas>
+      </div>
+      <div class="allocation-detail" id="alloc-detail"></div>
+    </div>
+
+    <div class="returns-row">
+      <div class="return-card">
+        <div class="return-label">Expected annual return</div>
+        <div class="return-value accent" id="expected-return" style="color:var(--accent);">—</div>
+        <div class="return-sub">Historical avg range</div>
+      </div>
+      <div class="return-card">
+        <div class="return-label">Worst year (est.)</div>
+        <div class="return-value" id="worst-year" style="color:var(--red);">—</div>
+        <div class="return-sub">Typical bad year</div>
+      </div>
+      <div class="return-card">
+        <div class="return-label">Best year (est.)</div>
+        <div class="return-value" id="best-year" style="color:var(--green);">—</div>
+        <div class="return-sub">Typical good year</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;">
+      <button class="btn-retake" onclick="retake()">← Retake quiz</button>
+      <a href="/dca-backtest.html" class="cta-btn" style="text-decoration:none;">Backtest this allocation →</a>
+    </div>
+
+    <div class="result-cta">
+      <p>Ready to track your actual portfolio against this allocation? DCA Pro shows your real avg cost, live P&L, and weekly AI signals.</p>
+      <a href="https://pro.mydcacalc.com/upgrade.html" class="cta-btn">Try Pro free →</a>
+    </div>
+
+    <div class="disclaimer">
+      Asset allocation suggestions are based on general financial planning principles and your quiz responses. They are educational estimates, not personalized financial advice. Historical return ranges are approximations based on long-term averages and vary significantly by time period. Past performance does not guarantee future results. Consult a qualified financial advisor before making investment decisions.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For informational purposes only. Not financial advice.
+  </p>
+</footer>
+
+<script>
+// ── STATE ──
+const answers = {};
+let currentQ = 1;
+let allocChart = null;
+
+// ── SCORING ──
+function selectOption(q, score, btn) {
+  answers[q] = score;
+  document.querySelectorAll(`#q${q} .option-btn`).forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById(`next-${q}`).disabled = false;
+}
+
+function nextQ(q) {
+  if (!answers[q]) return;
+  document.getElementById(`q${q}`).classList.remove('active');
+  currentQ = q + 1;
+  document.getElementById(`q${currentQ}`).classList.add('active');
+  updateProgress(currentQ);
+}
+
+function prevQ(q) {
+  document.getElementById(`q${q}`).classList.remove('active');
+  currentQ = q - 1;
+  document.getElementById(`q${currentQ}`).classList.add('active');
+  updateProgress(currentQ);
+}
+
+function updateProgress(q) {
+  const pct = Math.round(((q - 1) / 8) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `Question ${q} of 8`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+}
+
+// ── PROFILES ──
+const PROFILES = [
+  {
+    name: 'Capital Preservation',
+    label: 'Conservative',
+    desc: 'Your priority is protecting what you have. A defensive portfolio with heavy bond and cash allocation minimizes volatility while providing modest growth. This suits short time horizons and low risk tolerance.',
+    stocks: 20, bonds: 60, cash: 15, crypto: 5,
+    expectedReturn: '3–5%', worstYear: '−5%', bestYear: '+12%',
+    colors: ['#5b9cf6', '#3ecf8e', '#888884', '#f7931a']
+  },
+  {
+    name: 'Income & Stability',
+    label: 'Moderately Conservative',
+    desc: 'You want some growth but prioritize stability. A balanced tilt toward bonds with meaningful equity exposure provides steady returns with limited downside in bad years.',
+    stocks: 35, bonds: 50, cash: 10, crypto: 5,
+    expectedReturn: '4–6%', worstYear: '−10%', bestYear: '+18%',
+    colors: ['#5b9cf6', '#3ecf8e', '#888884', '#f7931a']
+  },
+  {
+    name: 'Balanced Growth',
+    label: 'Moderate',
+    desc: 'The classic balanced portfolio. Equal weight to growth and stability gives you meaningful long-term returns while cushioning against severe downturns. Suitable for medium time horizons.',
+    stocks: 50, bonds: 35, cash: 5, crypto: 10,
+    expectedReturn: '5–7%', worstYear: '−15%', bestYear: '+25%',
+    colors: ['#5b9cf6', '#3ecf8e', '#888884', '#f7931a']
+  },
+  {
+    name: 'Growth',
+    label: 'Moderately Aggressive',
+    desc: 'Growth is your priority. A stock-heavy portfolio with a meaningful crypto allocation targets higher long-term returns. You can tolerate significant short-term swings in exchange for better outcomes over time.',
+    stocks: 65, bonds: 20, cash: 5, crypto: 10,
+    expectedReturn: '7–10%', worstYear: '−25%', bestYear: '+35%',
+    colors: ['#5b9cf6', '#3ecf8e', '#888884', '#f7931a']
+  },
+  {
+    name: 'Aggressive Growth',
+    label: 'Aggressive',
+    desc: 'Maximum long-term growth is your goal. A heavily equity and crypto-weighted portfolio accepts significant volatility and potential for large short-term losses in exchange for the highest expected long-term returns.',
+    stocks: 70, bonds: 10, cash: 5, crypto: 15,
+    expectedReturn: '8–12%', worstYear: '−35%', bestYear: '+50%',
+    colors: ['#5b9cf6', '#3ecf8e', '#888884', '#f7931a']
+  },
+  {
+    name: 'High-Growth Crypto',
+    label: 'Very Aggressive',
+    desc: 'You\'re comfortable with extreme volatility and have a long time horizon. A significant crypto allocation alongside equities targets the highest potential returns, with the understanding that severe drawdowns are possible.',
+    stocks: 55, bonds: 5, cash: 5, crypto: 35,
+    expectedReturn: '10–20%+', worstYear: '−50%+', bestYear: '+80%+',
+    colors: ['#5b9cf6', '#3ecf8e', '#888884', '#f7931a']
+  }
+];
+
+function calcScore() {
+  // Score 8–32, map to 6 profiles
+  let total = 0;
+  for (let i = 1; i <= 8; i++) total += (answers[i] || 1);
+  // Normalize to profile index 0–5
+  const idx = Math.min(5, Math.floor((total - 8) / 4.2));
+  return Math.max(0, idx);
+}
+
+function showResults() {
+  if (!answers[8]) return;
+  document.getElementById('q8').classList.remove('active');
+  document.getElementById('progress-fill').style.width = '100%';
+  document.getElementById('progress-text').textContent = 'Complete';
+  document.getElementById('progress-pct').textContent = '100%';
+
+  const profile = PROFILES[calcScore()];
+  renderResults(profile);
+  document.getElementById('results').classList.add('active');
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderResults(p) {
+  document.getElementById('result-profile').textContent = p.label + ' Investor';
+  document.getElementById('result-title').textContent = p.name;
+  document.getElementById('result-desc').textContent = p.desc;
+  document.getElementById('expected-return').textContent = p.expectedReturn;
+  document.getElementById('worst-year').textContent = p.worstYear;
+  document.getElementById('best-year').textContent = p.bestYear;
+
+  // Allocation detail
+  const detail = document.getElementById('alloc-detail');
+  const items = [
+    { label: 'Stocks', pct: p.stocks, color: '#5b9cf6', sub: 'Equities / ETFs' },
+    { label: 'Bonds', pct: p.bonds, color: '#3ecf8e', sub: 'Fixed income' },
+    { label: 'Cash', pct: p.cash, color: '#888884', sub: 'Money market / savings' },
+    { label: 'Crypto', pct: p.crypto, color: '#f7931a', sub: 'Bitcoin / Ethereum' },
+  ].filter(i => i.pct > 0);
+
+  detail.innerHTML = items.map(i => `
+    <div class="alloc-detail-row">
+      <div class="alloc-detail-label">
+        <div class="alloc-dot" style="background:${i.color};"></div>
+        <div>
+          <div style="color:var(--text);font-size:13px;">${i.label}</div>
+          <div class="alloc-detail-sub">${i.sub}</div>
+        </div>
+      </div>
+      <div class="alloc-detail-pct">${i.pct}%</div>
+    </div>`).join('');
+
+  // Donut chart
+  if (allocChart) allocChart.destroy();
+  const ctx = document.getElementById('alloc-chart').getContext('2d');
+  allocChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: items.map(i => i.label),
+      datasets: [{
+        data: items.map(i => i.pct),
+        backgroundColor: items.map(i => i.color),
+        borderColor: '#0c0c0e',
+        borderWidth: 3,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          padding: 10,
+          callbacks: { label: ctx => '  ' + ctx.label + ': ' + ctx.raw + '%' }
+        }
+      }
+    }
+  });
+}
+
+function retake() {
+  // Reset state
+  Object.keys(answers).forEach(k => delete answers[k]);
+  currentQ = 1;
+  document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.btn-next').forEach(b => b.disabled = true);
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('q1').classList.add('active');
+  updateProgress(1);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Dropdown
+document.querySelectorAll('.dropdown').forEach(dd => {
+  const menu = dd.querySelector('.dropdown-menu');
+  let timer;
+  dd.addEventListener('mouseenter', () => { clearTimeout(timer); menu.style.display = 'block'; });
+  dd.addEventListener('mouseleave', () => { timer = setTimeout(() => menu.style.display = 'none', 300); });
+  menu.addEventListener('mouseenter', () => clearTimeout(timer));
+  menu.addEventListener('mouseleave', () => { timer = setTimeout(() => menu.style.display = 'none', 300); });
+});
+</script>
+
+</body>
+</html>

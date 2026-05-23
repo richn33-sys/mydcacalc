@@ -89,7 +89,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - Triggered by Stripe webhook on checkout.session.completed
 - Domain verified ✅ — welcome emails firing automatically on new signups
 ### CTA on mydcacalc.com
-- Green banner added to top of index.html, position-size.html, compound-interest.html, dca-backtest.html
+- Green banner added to top of index.html, position-size.html, compound-interest.html, dca-backtest.html, inflation-calculator.html
 - Links to https://pro.mydcacalc.com/upgrade.html
 - Added May 17 2026
 ### Exit strategy
@@ -119,6 +119,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── position-size.html                            ← Position Size Calculator
 ├── compound-interest.html                        ← Compound Interest Calculator
 ├── dca-backtest.html                             ← DCA Backtest Simulator (NEW May 19)
+├── inflation-calculator.html                     ← Inflation-Adjusted Returns Calculator (NEW May 21)
 ├── about.html
 ├── privacy.html
 ├── terms.html
@@ -131,7 +132,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 9 guides published, counter = 9
+│   ├── index.html                                ← 10 guides published, counter = 10
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -140,7 +141,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── bitcoin-dca-strategy.html                 ← NEW May 18
 │   ├── how-to-invest-during-geopolitical-uncertainty.html  ← NEW May 19
 │   ├── fear-greed-index-dca-strategy.html        ← NEW May 19
-│   └── what-is-a-good-risk-reward-ratio.html     ← NEW May 19
+│   ├── what-is-a-good-risk-reward-ratio.html     ← NEW May 19
+│   └── strategic-bitcoin-reserve-dca.html        ← NEW May 20
 └── CLAUDE.md
 ```
 ---
@@ -159,7 +161,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - **Border radius:** 10px (components), 16px (cards)
 - **Favicon:** SVG data URI — dark bg, "DCA" in accent green
 ### Nav structure (as of May 19 2026):
-- Header: DCA · Position size · Compound interest · DCA backtest · Guides ▾
+- Header: DCA · Position size · Compound interest · DCA backtest · Real returns · Guides ▾
 - Guides dropdown: 9 guides + "All guides →"
 - Root pages: `href="guides/page.html"` for guide links
 - Guide pages: `href="../page.html"` for root, `href="page.html"` for guides
@@ -346,6 +348,8 @@ When adding a new guide or calculator, use Python regex to update all pages at o
 | guides/how-to-invest-during-geopolitical-uncertainty.html | investing during geopolitical uncertainty |
 | guides/fear-greed-index-dca-strategy.html | fear greed index dca |
 | guides/what-is-a-good-risk-reward-ratio.html | risk reward ratio trading |
+| guides/strategic-bitcoin-reserve-dca.html | strategic bitcoin reserve DCA |
+| inflation-calculator.html | inflation adjusted returns calculator |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -419,7 +423,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_GUIDES** whenever a new guide is published
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 
-### Current CURRENT_GUIDES (as of May 19 2026):
+### Current CURRENT_GUIDES (as of May 21 2026):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging",
@@ -431,16 +435,18 @@ CURRENT_GUIDES = [
     "How to invest during geopolitical uncertainty",
     "How to use the Fear and Greed Index to optimize your DCA strategy",
     "What is a good risk reward ratio in trading",
+    "What the Strategic Bitcoin Reserve means for DCA investors",
 ]
 ```
 
-### Current CURRENT_CALCULATORS (as of May 19 2026):
+### Current CURRENT_CALCULATORS (as of May 21 2026):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator",
     "Position size calculator",
     "Compound interest calculator",
     "DCA backtest simulator (multi-asset: BTC, ETH, S&P 500, Nasdaq)",
+    "Inflation-adjusted returns calculator (real return calculator)",
 ]
 ```
 ---
@@ -448,11 +454,14 @@ CURRENT_CALCULATORS = [
 ### Done ✅
 - [x] 3 original calculators live
 - [x] DCA Backtest Simulator (4th calculator) — May 19 2026
+- [x] Inflation-Adjusted Returns Calculator (5th calculator) — May 21 2026
+- [x] Strategic Bitcoin Reserve guide (10th guide) — May 20 2026
+- [x] Canonical duplicate fixed — all href="index.html" replaced with href="/"
 - [x] About, Privacy, Terms, Favicon, SSL
 - [x] Google Search Console + sitemap
 - [x] 9 guides published (see guides table above)
 - [x] Author personas (James Colter, Sara Kline) + author pages
-- [x] Dropdown nav across all pages — updated to 9 guides + backtest
+- [x] Dropdown nav across all pages — updated to 10 guides + backtest + real returns
 - [x] GitHub + Hostinger Git auto-deploy
 - [x] Video automation (n8n + Claude + ElevenLabs)
 - [x] YouTube channel + 10 TikTok scripts
@@ -466,18 +475,30 @@ CURRENT_CALCULATORS = [
 - [x] Content Research Agent packaged for Gumroad ($39) ✅
 
 ### Next session priorities:
-- [ ] **May 20 — 2–3 more PH comments + reply to new maker replies**
-- [ ] **May 20 — Upload profile photo to PH (headshot)**
-- [ ] **May 22 — PRODUCT HUNT LAUNCH DAY**
+- [ ] **May 22 — PRODUCT HUNT LAUNCH DAY** (3:01am EST)
 - [ ] List Content Research Agent on Gumroad ($39)
-- [ ] Strategic Bitcoin Reserve guide — timely, write before announcement drops
 - [ ] Add bottom upgrade card CTA to calculator pages (only banner exists)
 - [ ] Add images to guides (Google AI optimization — 1-2 per guide)
 - [ ] Sign up for affiliate programs when traffic established
 - [ ] Set up hello@mydcacalc.com in Hostinger
 - [ ] Apply to Ezoic at 10k visits
+- [ ] Post-launch: r/SideProject + r/IndieHackers posts
+- [ ] International vs Domestic Investing guide (medium priority)
+- [ ] AI Stocks vs Traditional Value guide (medium priority)
+- [ ] Asset Allocation / Risk Tolerance Quiz (high demand calculator)
+- [ ] Update Strategic Bitcoin Reserve guide when announcement drops
 ---
 ## Session History
+
+### May 21 2026 — Pre-Launch Blitz
+- Strategic Bitcoin Reserve guide published (James Colter) — May 20
+- Inflation-Adjusted Returns Calculator (5th calculator) — May 21
+- Canonical duplicate fixed: all `href="index.html"` replaced with `href="/"` site-wide
+- GSC canonical issue resolved — "Alternate page with proper canonical tag" error cleared
+- Nav updated to include Real Returns calculator across all pages
+- Sitemap updated — 15 total URLs
+- Research agent updated: 10 guides + 5 calculators registered
+- CLAUDE.md fully updated with both Google guideline documents
 
 ### May 19 2026 — Content & Calculator Blitz
 - Bitcoin DCA Strategy guide published (James Colter) — May 18
