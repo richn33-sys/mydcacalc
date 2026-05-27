@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRIP Calculator — Dividend Reinvestment Calculator</title>
+<meta name="description" content="Free DRIP calculator. See how reinvesting dividends compounds your wealth over time. Compare dividend reinvestment vs taking cash dividends with year-by-year breakdown.">
+<meta name="keywords" content="DRIP calculator, dividend reinvestment calculator, dividend reinvestment plan calculator, DRIP investing, compound dividends calculator, dividend growth calculator">
+<meta property="og:title" content="DRIP Calculator — Dividend Reinvestment Calculator">
+<meta property="og:description" content="See how reinvesting dividends compounds your wealth. Compare DRIP vs cash dividends with a year-by-year breakdown.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/drip-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/drip-calculator.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "DRIP Calculator",
+  "description": "Free dividend reinvestment calculator showing how reinvesting dividends compounds wealth over time",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
+/* Hero */
+.hero { max-width: 720px; margin: 0 auto; padding: 48px 24px 28px; text-align: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 20px; }
+.hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 14px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 15px; color: var(--text-muted); font-weight: 300; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+/* Calc nav pills */
+.calc-nav { max-width: 860px; margin: 0 auto; padding: 16px 24px 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.calc-nav a { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); text-decoration: none; padding: 4px 12px; border: 1px solid var(--border); border-radius: 20px; transition: all 0.15s; }
+.calc-nav a:hover { color: var(--text-muted); border-color: var(--border-hover); }
+.calc-nav a.active { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
+
+/* Main layout */
+.main { max-width: 860px; margin: 0 auto; padding: 24px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
+@media (max-width: 700px) { .main { grid-template-columns: 1fr; } }
+
+/* Controls */
+.controls { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
+.section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.input-group { margin-bottom: 18px; }
+.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 7px; display: flex; justify-content: space-between; }
+.input-label span { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+.input-wrap { position: relative; }
+.input-prefix { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+.input-suffix { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px 10px 26px; font-size: 14px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+input[type="number"].no-prefix { padding-left: 12px; }
+input[type="number"].has-suffix { padding-right: 28px; }
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type="number"]:focus { border-color: var(--accent-border); }
+input[type="range"] { width: 100%; height: 4px; background: var(--bg-input); border-radius: 2px; outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; border: none; padding: 0; margin-top: 6px; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; }
+.divider-line { height: 1px; background: var(--border); margin: 18px 0; }
+
+/* Results */
+.results { display: flex; flex-direction: column; gap: 14px; }
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.stat-card.highlight { border-color: var(--accent-border); background: var(--accent-dim); }
+.stat-card.compare { border-color: rgba(91,156,246,0.3); background: rgba(91,156,246,0.05); }
+.stat-label-sm { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.stat-value { font-size: 19px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.02em; }
+.stat-value.green { color: var(--green); }
+.stat-value.accent { color: var(--accent); }
+.stat-value.blue { color: var(--blue); }
+.stat-sub { font-size: 11px; color: var(--text-dim); margin-top: 3px; font-family: var(--font-mono); }
+
+/* Chart */
+.chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+.chart-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.chart-legend { display: flex; gap: 14px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.chart-wrap { position: relative; height: 220px; }
+
+/* Breakdown table */
+.breakdown-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.breakdown-table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: var(--font-mono); }
+.breakdown-table th { background: var(--bg-input); padding: 10px 14px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.breakdown-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.breakdown-table tr:last-child td { border-bottom: none; color: var(--text); font-weight: 500; }
+.breakdown-table td.positive { color: var(--green); }
+.breakdown-table td.accent { color: var(--accent); }
+.breakdown-table td.blue { color: var(--blue); }
+
+/* Info box */
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 16px 18px; }
+.info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.info-box strong { color: var(--text); font-weight: 500; }
+
+/* Pro CTA */
+.pro-cta { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 20px; text-align: center; }
+.pro-cta p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; font-weight: 300; }
+.pro-cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 9px 22px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.pro-cta-btn:hover { opacity: 0.85; }
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+
+/* Pro banner */
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your dividend portfolio in real time</strong> — live P&L, avg cost, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="/">DCA</a>
+    <a href="position-size.html">Position size</a>
+    <a href="compound-interest.html">Compound interest</a>
+    <a href="dca-backtest.html">DCA backtest</a>
+    <a href="drip-calculator.html" class="active">DRIP</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+        <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+        <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+        <a href="guides/index.html" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-badge">Free · No sign-up required</div>
+  <h1>DRIP <em>Calculator</em></h1>
+  <p>See how reinvesting dividends compounds your wealth over time. Compare DRIP vs taking cash dividends with a year-by-year breakdown.</p>
+</div>
+
+<div class="calc-nav">
+  <a href="/">DCA calculator</a>
+  <a href="compound-interest.html">Compound interest</a>
+  <a href="dca-backtest.html">DCA backtest</a>
+  <a href="inflation-calculator.html">Real returns</a>
+  <a href="drip-calculator.html" class="active">DRIP calculator</a>
+</div>
+
+<div class="main">
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="section-label">Investment</div>
+
+    <div class="input-group">
+      <div class="input-label">Initial investment <span id="initial-display">$10,000</span></div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="initial" value="10000" min="100" step="1000" oninput="document.getElementById('initial-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Monthly contribution <span id="monthly-display">$200</span></div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="monthly" value="200" min="0" step="50" oninput="document.getElementById('monthly-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Dividend settings</div>
+
+    <div class="input-group">
+      <div class="input-label">Annual dividend yield <span id="yield-display">4%</span></div>
+      <input type="range" id="div-yield" min="0.5" max="12" value="4" step="0.5" oninput="document.getElementById('yield-display').textContent=this.value+'%';calc()">
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Annual dividend growth <span id="growth-display">5%</span></div>
+      <input type="range" id="div-growth" min="0" max="15" value="5" step="0.5" oninput="document.getElementById('growth-display').textContent=this.value+'%';calc()">
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Annual stock price growth <span id="price-display">7%</span></div>
+      <input type="range" id="price-growth" min="0" max="20" value="7" step="0.5" oninput="document.getElementById('price-display').textContent=this.value+'%';calc()">
+    </div>
+
+    <div class="divider-line"></div>
+
+    <div class="input-group">
+      <div class="input-label">Time period <span id="years-display">20 years</span></div>
+      <input type="range" id="years" min="1" max="40" value="20" step="1" oninput="document.getElementById('years-display').textContent=this.value+' year'+(this.value>1?'s':'');calc()">
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Presets</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <button onclick="setPreset(4,5,7)" style="font-size:11px;font-family:var(--font-mono);background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--text-muted);cursor:pointer;">S&P 500 avg</button>
+      <button onclick="setPreset(6,3,4)" style="font-size:11px;font-family:var(--font-mono);background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--text-muted);cursor:pointer;">Dividend stock</button>
+      <button onclick="setPreset(10,2,2)" style="font-size:11px;font-family:var(--font-mono);background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--text-muted);cursor:pointer;">High yield</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results">
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-label-sm">Total invested</div>
+        <div class="stat-value" id="total-invested">$0</div>
+        <div class="stat-sub" id="invested-sub">—</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-label-sm">DRIP final value</div>
+        <div class="stat-value accent" id="drip-value">$0</div>
+        <div class="stat-sub" id="drip-return">—</div>
+      </div>
+      <div class="stat-card compare">
+        <div class="stat-label-sm">Without DRIP</div>
+        <div class="stat-value blue" id="no-drip-value">$0</div>
+        <div class="stat-sub" id="no-drip-return">—</div>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card highlight">
+        <div class="stat-label-sm">DRIP advantage</div>
+        <div class="stat-value accent" id="drip-advantage">$0</div>
+        <div class="stat-sub">Extra from reinvesting</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label-sm">Total dividends earned</div>
+        <div class="stat-value green" id="total-divs">$0</div>
+        <div class="stat-sub">Gross before reinvestment</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label-sm">Annual income (yr <span id="final-year">20</span>)</div>
+        <div class="stat-value green" id="final-income">$0</div>
+        <div class="stat-sub">Dividend income in final year</div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">DRIP vs no DRIP over time</div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>With DRIP</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6;"></div>Without DRIP</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#333;border:1px dashed #555;"></div>Amount invested</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="drip-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="breakdown-card">
+      <table class="breakdown-table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Shares owned</th>
+            <th>Annual dividend</th>
+            <th>DRIP value</th>
+            <th>No DRIP value</th>
+          </tr>
+        </thead>
+        <tbody id="breakdown-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <p><strong>What is DRIP?</strong> A Dividend Reinvestment Plan automatically uses your dividend payments to purchase additional shares instead of paying them out as cash. Over time this creates a compounding effect — more shares generate more dividends, which buy more shares. In a 30-year period, reinvested dividends can account for a significant portion of total S&P 500 portfolio growth, historically contributing well over half of total returns when combined with price appreciation.</p>
+    </div>
+
+    <div class="pro-cta">
+      <p>Track your actual dividend portfolio — real share count, avg cost, live P&L, and weekly AI signals.</p>
+      <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+    </div>
+
+    <div class="disclaimer">
+      Returns assume constant annual rates applied monthly. Dividend yield and growth rates are user inputs — actual dividends vary by stock and are not guaranteed. Stock price growth is separate from dividend yield. Tax impact on dividends is not modeled. This calculator is for educational purposes only. Past performance does not guarantee future results. Not financial advice.
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For informational purposes only. Not financial advice.
+  </p>
+</footer>
+
+<script>
+let chart = null;
+
+function fmt(n) {
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  return '$' + Math.round(n).toLocaleString();
+}
+function fmtPct(n) { return (n >= 0 ? '+' : '') + (n * 100).toFixed(1) + '%'; }
+function fmtShares(n) { return n.toFixed(2) + ' shares'; }
+
+function setPreset(y, g, p) {
+  document.getElementById('div-yield').value = y;
+  document.getElementById('yield-display').textContent = y + '%';
+  document.getElementById('div-growth').value = g;
+  document.getElementById('growth-display').textContent = g + '%';
+  document.getElementById('price-growth').value = p;
+  document.getElementById('price-display').textContent = p + '%';
+  calc();
+}
+
+function calc() {
+  const initial    = parseFloat(document.getElementById('initial').value) || 0;
+  const monthly    = parseFloat(document.getElementById('monthly').value) || 0;
+  const divYield   = parseFloat(document.getElementById('div-yield').value) / 100;
+  const divGrowth  = parseFloat(document.getElementById('div-growth').value) / 100;
+  const priceGrowth = parseFloat(document.getElementById('price-growth').value) / 100;
+  const years      = parseInt(document.getElementById('years').value);
+
+  // Assume initial share price of $100 for share count calc
+  const sharePrice0 = 100;
+
+  let dripShares   = initial / sharePrice0;
+  let noDripValue  = initial;
+  let invested     = initial;
+  let totalDivs    = 0;
+  let currentYield = divYield;
+  let currentPrice = sharePrice0;
+
+  const dripHistory    = [initial];
+  const noDripHistory  = [initial];
+  const investedHistory = [initial];
+  const breakdownRows  = [];
+
+  for (let y = 1; y <= years; y++) {
+    // Monthly processing
+    for (let m = 0; m < 12; m++) {
+      // Add monthly contribution (buys shares at current price)
+      const newShares = monthly / currentPrice;
+      dripShares += newShares;
+      noDripValue += monthly;
+      invested += monthly;
+
+      // Monthly dividend
+      const monthlyDiv = dripShares * currentPrice * (currentYield / 12);
+      totalDivs += monthlyDiv;
+
+      // DRIP: reinvest dividend into new shares
+      dripShares += monthlyDiv / currentPrice;
+
+      // Price grows monthly
+      currentPrice *= (1 + priceGrowth / 12);
+      currentYield *= (1 + divGrowth / 12) / (1 + priceGrowth / 12); // yield adjusts
+    }
+
+    // End of year values
+    const dripValue = dripShares * currentPrice;
+    noDripValue *= (1 + priceGrowth); // simplified for no-drip
+    const annualDiv = dripShares * currentPrice * divYield;
+
+    dripHistory.push(dripValue);
+    noDripHistory.push(noDripValue);
+    investedHistory.push(invested);
+
+    if (y % 5 === 0 || y === years) {
+      breakdownRows.push({ y, shares: dripShares, annualDiv, dripValue, noDripValue });
+    }
+  }
+
+  const dripFinal   = dripHistory[years];
+  const noDripFinal = noDripHistory[years];
+  const dripReturn  = invested > 0 ? (dripFinal - invested) / invested : 0;
+  const noDripReturn = invested > 0 ? (noDripFinal - invested) / invested : 0;
+  const advantage   = dripFinal - noDripFinal;
+  const finalIncome = breakdownRows[breakdownRows.length - 1]?.annualDiv || 0;
+
+  // Update stats
+  document.getElementById('total-invested').textContent  = fmt(invested);
+  document.getElementById('invested-sub').textContent    = (years * 12).toLocaleString() + ' contributions';
+  document.getElementById('drip-value').textContent      = fmt(dripFinal);
+  document.getElementById('drip-return').textContent     = fmtPct(dripReturn) + ' total return';
+  document.getElementById('no-drip-value').textContent   = fmt(noDripFinal);
+  document.getElementById('no-drip-return').textContent  = fmtPct(noDripReturn) + ' total return';
+  document.getElementById('drip-advantage').textContent  = fmt(advantage);
+  document.getElementById('total-divs').textContent      = fmt(totalDivs);
+  document.getElementById('final-income').textContent    = fmt(finalIncome);
+  document.getElementById('final-year').textContent      = years;
+
+  // Chart labels
+  const labels = [];
+  for (let y = 0; y <= years; y++) labels.push(y === 0 ? 'Now' : 'Yr ' + y);
+
+  updateChart(labels, dripHistory, noDripHistory, investedHistory);
+  updateBreakdown(breakdownRows);
+}
+
+function updateChart(labels, drip, noDrip, invested) {
+  const ctx = document.getElementById('drip-chart').getContext('2d');
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'With DRIP',
+          data: drip,
+          borderColor: '#c8f060',
+          backgroundColor: 'rgba(200,240,96,0.07)',
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: true,
+          tension: 0.3,
+        },
+        {
+          label: 'Without DRIP',
+          data: noDrip,
+          borderColor: '#5b9cf6',
+          backgroundColor: 'rgba(91,156,246,0.05)',
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: true,
+          tension: 0.3,
+        },
+        {
+          label: 'Amount invested',
+          data: invested,
+          borderColor: 'rgba(255,255,255,0.15)',
+          backgroundColor: 'transparent',
+          borderWidth: 1.5,
+          borderDash: [4, 3],
+          pointRadius: 0,
+          fill: false,
+          tension: 0.3,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          padding: 12,
+          callbacks: {
+            label: ctx => '  ' + ctx.dataset.label + ': ' + (ctx.raw >= 1e6 ? '$'+(ctx.raw/1e6).toFixed(2)+'M' : '$'+Math.round(ctx.raw).toLocaleString())
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 10 } },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1e6 ? '$'+(v/1e6).toFixed(1)+'M' : v >= 1e3 ? '$'+(v/1e3).toFixed(0)+'K' : '$'+v }
+        }
+      }
+    }
+  });
+}
+
+function updateBreakdown(rows) {
+  document.getElementById('breakdown-tbody').innerHTML = rows.map(r => `
+    <tr>
+      <td>Year ${r.y}</td>
+      <td>${r.shares.toFixed(1)} shares</td>
+      <td class="positive">${fmt(r.annualDiv)}/yr</td>
+      <td class="accent">${fmt(r.dripValue)}</td>
+      <td class="blue">${fmt(r.noDripValue)}</td>
+    </tr>`).join('');
+}
+
+// Dropdown
+document.querySelectorAll('.dropdown').forEach(dd => {
+  const menu = dd.querySelector('.dropdown-menu');
+  let timer;
+  dd.addEventListener('mouseenter', () => { clearTimeout(timer); menu.style.display = 'block'; });
+  dd.addEventListener('mouseleave', () => { timer = setTimeout(() => menu.style.display = 'none', 300); });
+  menu.addEventListener('mouseenter', () => clearTimeout(timer));
+  menu.addEventListener('mouseleave', () => { timer = setTimeout(() => menu.style.display = 'none', 300); });
+});
+
+calc();
+</script>
+
+</body>
+</html>
