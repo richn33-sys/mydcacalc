@@ -89,7 +89,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - Triggered by Stripe webhook on checkout.session.completed
 - Domain verified ✅ — welcome emails firing automatically on new signups
 ### CTA on mydcacalc.com
-- Green banner added to top of index.html, position-size.html, compound-interest.html, dca-backtest.html, inflation-calculator.html, asset-allocation.html
+- Green banner added to top of index.html, position-size.html, compound-interest.html, dca-backtest.html, inflation-calculator.html, asset-allocation.html, drip-calculator.html
 - Links to https://pro.mydcacalc.com/upgrade.html
 - Added May 17 2026
 ### Exit strategy
@@ -121,6 +121,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── dca-backtest.html                             ← DCA Backtest Simulator (NEW May 19)
 ├── inflation-calculator.html                     ← Inflation-Adjusted Returns Calculator (NEW May 21)
 ├── asset-allocation.html                         ← Asset Allocation & Risk Tolerance Quiz (NEW May 22)
+├── drip-calculator.html                          ← DRIP Dividend Reinvestment Calculator (NEW May 27)
 ├── about.html
 ├── privacy.html
 ├── terms.html
@@ -162,7 +163,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - **Border radius:** 10px (components), 16px (cards)
 - **Favicon:** SVG data URI — dark bg, "DCA" in accent green
 ### Nav structure (as of May 25 2026):
-- Header: DCA · Position size · Compound interest · DCA backtest · Real returns · Asset allocation · Guides ▾
+- Header: DCA · Position size · Compound interest · DCA backtest · DRIP · Real returns · Asset allocation · Guides ▾
+- ✅ Nav confirmed consistent across all pages including drip-calculator.html and asset-allocation.html
 - Guides dropdown: 9 guides + "All guides →"
 - Root pages: `href="guides/page.html"` for guide links
 - Guide pages: `href="../page.html"` for root, `href="page.html"` for guides
@@ -350,6 +352,8 @@ When adding a new guide or calculator, use Python regex to update all pages at o
 | guides/fear-greed-index-dca-strategy.html | fear greed index dca |
 | guides/what-is-a-good-risk-reward-ratio.html | risk reward ratio trading |
 | guides/strategic-bitcoin-reserve-dca.html | strategic bitcoin reserve DCA |
+| guides/investing-during-high-interest-rates.html | investing during high interest rates |
+| drip-calculator.html | DRIP calculator dividend reinvestment |
 | inflation-calculator.html | inflation adjusted returns calculator |
 | asset-allocation.html | asset allocation calculator risk tolerance quiz |
 
@@ -425,7 +429,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_GUIDES** whenever a new guide is published
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 
-### Current CURRENT_GUIDES (as of May 25 2026):
+### Current CURRENT_GUIDES (as of May 27 2026):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging",
@@ -438,10 +442,11 @@ CURRENT_GUIDES = [
     "How to use the Fear and Greed Index to optimize your DCA strategy",
     "What is a good risk reward ratio in trading",
     "What the Strategic Bitcoin Reserve means for DCA investors",
+    "How to invest when interest rates are high and cuts keep getting delayed",
 ]
 ```
 
-### Current CURRENT_CALCULATORS (as of May 25 2026):
+### Current CURRENT_CALCULATORS (as of May 27 2026):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator",
@@ -450,6 +455,7 @@ CURRENT_CALCULATORS = [
     "DCA backtest simulator (multi-asset: BTC, ETH, S&P 500, Nasdaq)",
     "Inflation-adjusted returns calculator (real return calculator)",
     "Asset allocation and risk tolerance quiz",
+    "DRIP calculator (dividend reinvestment calculator)",
 ]
 ```
 ---
@@ -459,6 +465,12 @@ CURRENT_CALCULATORS = [
 - [x] DCA Backtest Simulator (4th calculator) — May 19 2026
 - [x] Inflation-Adjusted Returns Calculator (5th calculator) — May 21 2026
 - [x] Asset Allocation & Risk Tolerance Quiz (6th calculator) — May 22 2026
+- [x] DRIP Dividend Reinvestment Calculator (7th calculator) — May 27 2026
+- [x] How to invest during high interest rates guide (11th guide) — May 26 2026
+- [x] Product Hunt launched — May 27 2026 (3 upvotes, 4 followers, permanent backlink)
+- [x] Reddit account created — needs karma before posting
+- [x] Guides index grid fixed — all 11 guides showing
+- [x] Nav duplicate fix — High interest rates was showing twice on some pages
 - [x] Product Hunt draft complete — launching Tuesday May 27 2026
 - [x] Research agent fixed — Python path updated to /usr/local/bin/python3, confirmed working
 - [x] Research agent email truncation fixed — max_tokens reduced to 1500, conciseness prompt added
@@ -482,11 +494,13 @@ CURRENT_CALCULATORS = [
 - [x] Content Research Agent packaged for Gumroad ($39) ✅
 
 ### Next session priorities:
-- [ ] **Tuesday May 27 — PRODUCT HUNT LAUNCH** (3:01am EST) — draft ready, just hit publish
-- [ ] **How to Invest During Rising Interest Rates guide** — HIGH PRIORITY, Fed hike expected (May 25 brief)
-- [ ] **Ethereum Glamsterdam upgrade guide** — June 2026 upgrade, positioning window is now (May 25 brief)
-- [ ] **DRIP Calculator** (dividend reinvestment) — HIGH demand, complements compound interest calculator
+- [x] **Product Hunt launched May 27** ✅
+- [x] High interest rates guide published ✅
+- [x] DRIP Calculator built and deployed ✅
+- [ ] **Fix nav inconsistency** — drip-calculator.html and asset-allocation.html missing some nav items
+- [ ] **Ethereum Glamsterdam upgrade guide** — June 2026, timing window is now
 - [ ] **Break-Even Recovery Calculator** — viral potential ("need 100% gain to recover 50% loss")
+- [ ] **Build Reddit karma** — new account needs comments before posting
 - [ ] Update Strategic Bitcoin Reserve guide when announcement drops
 - [ ] List Content Research Agent on Gumroad ($39)
 - [ ] Add bottom upgrade card CTA to calculator pages (only banner exists)
@@ -497,6 +511,16 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### May 27 2026 — Launch Day Session
+- Product Hunt launched — 3 upvotes, 4 followers, permanent backlink secured
+- Reddit account created — posts auto-removed due to new account, needs karma building
+- r/SideProject and r/IndieHackers posts written and ready for when karma is established
+- How to invest during high interest rates guide published (11th guide) — May 26
+- DRIP Dividend Reinvestment Calculator built and deployed (7th calculator) — May 27
+- Guides index grid fixed — all 11 guide cards showing
+- Nav inconsistency identified — drip-calculator.html and asset-allocation.html need fix next session
+- Research agent confirmed current — 7 calculators, 11 guides registered
 
 ### May 25 2026 — Memorial Day Weekend Session
 - Asset Allocation & Risk Tolerance Quiz built and deployed (6th calculator) — May 22
