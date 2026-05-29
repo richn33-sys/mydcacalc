@@ -30,6 +30,9 @@
 </script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { overflow-x: hidden; max-width: 100%; }
+* { box-sizing: border-box; }
 :root {
   --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
   --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
@@ -198,13 +201,13 @@ footer a:hover { color: var(--text); }
 <!-- Mobile nav menu -->
 <div class="nav-mobile-menu" id="mobile-menu">
   <a href="../index.html">DCA calculator</a>
-  <a href="../position-size.html">Position size calculator</a>
-  <a href="../compound-interest.html">Compound interest calculator</a>
-  <a href="../dca-backtest.html">DCA backtest simulator</a>
-  <a href="../loss-recovery-calculator.html">Loss recovery calculator</a>
-  <a href="../drip-calculator.html">DRIP calculator</a>
-  <a href="../inflation-calculator.html">Real returns calculator</a>
-  <a href="../asset-allocation.html">Asset allocation quiz</a>
+  <a href="../position-size.html">Position size</a>
+  <a href="../compound-interest.html">Compound interest</a>
+  <a href="../dca-backtest.html">DCA backtest</a>
+  <a href="../loss-recovery-calculator.html">Loss recovery</a>
+  <a href="../drip-calculator.html">DRIP</a>
+  <a href="../inflation-calculator.html">Real returns</a>
+  <a href="../asset-allocation.html">Asset allocation</a>
   <span class="mobile-guides-label">Guides</span>
   <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
   <a href="how-compound-interest-works.html">How compound interest works</a>
@@ -218,7 +221,7 @@ footer a:hover { color: var(--text); }
   <a href="strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
   <a href="investing-during-high-interest-rates.html">High interest rates</a>
   <a href="ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
-  <a href="index.html">All guides &#x2192;</a>
+  <a href="index.html" style="color:var(--accent);">All guides &#x2192;</a>
 </div>
 
 
