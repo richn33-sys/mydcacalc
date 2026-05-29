@@ -132,7 +132,7 @@ footer a:hover { color: var(--text); }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 12px 0; z-index: 99; flex-direction: column; }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
 .nav-mobile-menu.open { display: flex; }
 .nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
 .nav-mobile-menu a:last-child { border-bottom: none; }
