@@ -690,5 +690,21 @@ footer a:hover { color: var(--text); }
 })();
 </script>
 
+<script>
+function toggleMenu() {
+  var menu = document.getElementById('mobile-menu');
+  var btn = document.getElementById('nav-hamburger');
+  if (menu) { menu.classList.toggle('open'); btn.classList.toggle('open'); }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.nav-mobile-menu a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      var m = document.getElementById('mobile-menu');
+      var b = document.getElementById('nav-hamburger');
+      if (m) { m.classList.remove('open'); b.classList.remove('open'); }
+    });
+  });
+});
+</script>
 </body>
 </html>
