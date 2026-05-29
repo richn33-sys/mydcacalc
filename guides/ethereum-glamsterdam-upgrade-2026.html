@@ -128,6 +128,23 @@ footer a:hover { color: var(--text); }
 .pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
 .pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
 .pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+
+/* ── MOBILE NAV ── */
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 12px 0; z-index: 99; flex-direction: column; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover, .nav-mobile-menu a.active { color: var(--accent); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) {
+  nav { display: none; }
+  .nav-hamburger { display: flex; }
+}
 </style>
 </head>
 <body>
@@ -163,7 +180,37 @@ footer a:hover { color: var(--text); }
       </div>
     </div>
   </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- Mobile nav menu -->
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a href="../index.html">DCA calculator</a>
+  <a href="../position-size.html">Position size calculator</a>
+  <a href="../compound-interest.html">Compound interest calculator</a>
+  <a href="../dca-backtest.html">DCA backtest simulator</a>
+  <a href="../loss-recovery-calculator.html">Loss recovery calculator</a>
+  <a href="../drip-calculator.html">DRIP calculator</a>
+  <a href="../inflation-calculator.html">Real returns calculator</a>
+  <a href="../asset-allocation.html">Asset allocation quiz</a>
+  <span class="mobile-guides-label">Guides</span>
+  <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="how-compound-interest-works.html">How compound interest works</a>
+  <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+  <a href="how-to-calculate-position-size.html">How to calculate position size</a>
+  <a href="how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+  <a href="bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+  <a href="fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="index.html">All guides →</a>
+</div>
+
 
 <main>
 <article class="article-wrap">
