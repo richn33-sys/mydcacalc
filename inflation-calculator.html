@@ -160,31 +160,16 @@ footer a:hover { color: var(--text); }
 
 <header>
   <a href="/" class="logo">mydca<span>calc</span>.com</a>
-  <nav>
+    <nav>
     <a href="/">DCA</a>
     <a href="position-size.html">Position size</a>
     <a href="compound-interest.html">Compound interest</a>
     <a href="dca-backtest.html">DCA backtest</a>
-    <a href="inflation-calculator.html" class="active">Real returns</a>
+    <a href="loss-recovery-calculator.html">Loss recovery</a>
+    <a href="drip-calculator.html">DRIP</a>
+    <a href="inflation-calculator.html">Real returns</a>
+    <a href="asset-allocation.html">Asset allocation</a>
     <div class="dropdown">
-      <button class="dropdown-toggle">Guides</button>
-      <div class="dropdown-menu">
-        <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
-        <a href="guides/how-compound-interest-works.html">How compound interest works</a>
-        <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
-        <a href="guides/how-to-calculate-position-size.html">How to calculate position size</a>
-        <a href="guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
-        <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
-        <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
-        <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
-        <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
-        <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
-        <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
-        <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
-        <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
-      </div>
-    </div>
-  </nav>
 </header>
 
 <div class="hero">
@@ -337,6 +322,20 @@ footer a:hover { color: var(--text); }
 
   </div>
 </div>
+
+  <div class="content-section" style="max-width:860px;margin:0 auto;padding:0 24px 60px;">
+    <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the inflation-adjusted returns calculator works</h2>
+    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Your nominal return is what your portfolio shows on paper. Your real return is what that growth is actually worth in purchasing power after inflation. If your portfolio returns 7% when inflation runs at 3%, your real return is approximately 4%. This calculator uses the Fisher equation to show both figures side by side: nominal value, real value in today's dollars, and the purchasing power eroded over time.</p>
+    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The U.S. historical average inflation rate is approximately 3.5% from 1926 through 2024. The Fed's current target is 2%. Using 3-3.5% as a long-term planning assumption is reasonable. Using 0% ignores inflation entirely and will significantly overstate your real wealth accumulation.</p>
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:28px 0 12px;">How to use this calculator</h3>
+    <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;">
+      <li style="margin-bottom:10px;">Enter your initial investment, monthly contribution, and expected annual return rate.</li>
+      <li style="margin-bottom:10px;">Set your inflation assumption using the presets: 2% (Fed target), 3.5% (historical average), or 7% (high inflation).</li>
+      <li style="margin-bottom:10px;">The chart shows both nominal value and real value in today's dollars — the gap is purchasing power lost to inflation.</li>
+      <li style="margin-bottom:10px;">The breakdown table shows the divergence at 5-year intervals across your full time horizon.</li>
+    </ul>
+    <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For more context on investing in inflationary environments, read our guide on <a href="guides/investing-during-high-interest-rates.html" style="color:#c8f060;text-decoration:none;">how to invest when interest rates are high</a>.</p>
+  </div>
 
 <footer>
   <p>
