@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Loss Recovery Calculator — Break-Even Calculator</title>
+<meta name="description" content="See exactly how much gain you need to recover from an investment loss. A 50% loss requires a 100% gain to break even. Calculate your recovery time and see how DCA accelerates it.">
+<meta name="keywords" content="investment loss recovery calculator, break even calculator investing, how much gain to recover loss, investment recovery calculator, portfolio loss calculator">
+<meta property="og:title" content="Investment Loss Recovery Calculator — Break-Even Calculator">
+<meta property="og:description" content="A 50% loss requires a 100% gain to break even. See exactly how long recovery takes — and how DCA dramatically accelerates it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/loss-recovery-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/loss-recovery-calculator.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Investment Loss Recovery Calculator",
+  "description": "Calculate how much gain is needed to recover from an investment loss and how long recovery takes with and without DCA",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
+/* Hero */
+.hero { max-width: 860px; margin: 0 auto; padding: 40px 24px 28px; }
+.hero-eyebrow { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.hero-eyebrow a { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); text-decoration: none; padding: 4px 12px; border: 1px solid var(--border); border-radius: 20px; transition: all 0.15s; }
+.hero-eyebrow a:hover { color: var(--text-muted); border-color: var(--border-hover); }
+.hero-eyebrow a.active { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
+.hero h1 { font-size: clamp(22px, 3.5vw, 32px); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; }
+
+/* Main layout */
+.main { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
+@media (max-width: 700px) { .main { grid-template-columns: 1fr; } }
+
+/* Controls */
+.controls { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
+.section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.input-group { margin-bottom: 18px; }
+.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 7px; display: flex; justify-content: space-between; }
+.input-label span { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+.input-wrap { position: relative; }
+.input-prefix { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px 10px 26px; font-size: 14px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type="number"]:focus { border-color: var(--accent-border); }
+input[type="range"] { width: 100%; height: 4px; background: var(--bg-input); border-radius: 2px; outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; border: none; padding: 0; margin-top: 6px; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; }
+.divider-line { height: 1px; background: var(--border); margin: 18px 0; }
+
+/* Loss presets */
+.preset-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 18px; }
+.preset-btn { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 4px; cursor: pointer; text-align: center; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); transition: all 0.15s; }
+.preset-btn:hover { border-color: var(--red); color: var(--red); }
+.preset-btn.active { border-color: rgba(240,96,96,0.4); background: rgba(240,96,96,0.08); color: var(--red); }
+
+/* Results */
+.results { display: flex; flex-direction: column; gap: 14px; }
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.stat-card.highlight { border-color: var(--accent-border); background: var(--accent-dim); }
+.stat-card.danger { border-color: rgba(240,96,96,0.3); background: rgba(240,96,96,0.05); }
+.stat-label-sm { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.stat-value { font-size: 19px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.02em; }
+.stat-value.green { color: var(--green); }
+.stat-value.accent { color: var(--accent); }
+.stat-value.red { color: var(--red); }
+.stat-sub { font-size: 11px; color: var(--text-dim); margin-top: 3px; font-family: var(--font-mono); }
+
+/* Chart */
+.chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+.chart-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.chart-legend { display: flex; gap: 14px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.chart-wrap { position: relative; height: 220px; }
+
+/* Loss table */
+.loss-table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.loss-table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: var(--font-mono); }
+.loss-table th { background: var(--bg-input); padding: 10px 14px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.loss-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.loss-table tr:last-child td { border-bottom: none; }
+.loss-table tr.current-row td { background: rgba(200,240,96,0.04); color: var(--text); font-weight: 500; }
+.loss-table td.red { color: var(--red); }
+.loss-table td.accent { color: var(--accent); }
+.loss-table td.green { color: var(--green); }
+
+/* Info box */
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 16px 18px; }
+.info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.info-box strong { color: var(--text); font-weight: 500; }
+
+/* Pro CTA */
+.pro-cta { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 20px; text-align: center; }
+.pro-cta p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; font-weight: 300; }
+.pro-cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 9px 22px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.pro-cta-btn:hover { opacity: 0.85; }
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+
+/* Pro banner */
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your real recovery progress</strong> — live P&L, avg cost, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="/">DCA</a>
+    <a href="position-size.html">Position size</a>
+    <a href="compound-interest.html">Compound interest</a>
+    <a href="dca-backtest.html">DCA backtest</a>
+    <a href="loss-recovery-calculator.html" class="active">Loss recovery</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+        <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+        <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+        <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+        <a href="guides/index.html" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">
+    <a href="/">DCA calculator</a>
+    <a href="dca-backtest.html">DCA backtest</a>
+    <a href="inflation-calculator.html">Real returns</a>
+    <a href="loss-recovery-calculator.html" class="active">Loss recovery</a>
+  </div>
+  <h1>Investment Loss <em>Recovery Calculator</em></h1>
+  <p>See exactly how much gain you need to break even — and how long recovery takes with different return rates. Includes the DCA effect: how continuing to invest after a loss dramatically speeds up recovery.</p>
+</div>
+
+<div class="main">
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="section-label">Your loss</div>
+
+    <div class="section-label" style="margin-bottom:8px;margin-top:0;">Quick select</div>
+    <div class="preset-grid" id="preset-grid">
+      <button class="preset-btn" onclick="setLoss(10)">−10%</button>
+      <button class="preset-btn" onclick="setLoss(20)">−20%</button>
+      <button class="preset-btn active" onclick="setLoss(30)">−30%</button>
+      <button class="preset-btn" onclick="setLoss(50)">−50%</button>
+      <button class="preset-btn" onclick="setLoss(70)">−70%</button>
+      <button class="preset-btn" onclick="setLoss(90)">−90%</button>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Portfolio loss <span id="loss-display">30%</span></div>
+      <input type="range" id="loss-pct" min="1" max="95" value="30" step="1" oninput="document.getElementById('loss-display').textContent=this.value+'%'; updatePresets(this.value); calc()">
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Starting value <span id="start-display">$10,000</span></div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="start-val" value="10000" min="100" step="1000" oninput="document.getElementById('start-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Recovery assumptions</div>
+
+    <div class="input-group">
+      <div class="input-label">Annual return rate <span id="return-display">10%</span></div>
+      <input type="range" id="return-rate" min="1" max="50" value="10" step="1" oninput="document.getElementById('return-display').textContent=this.value+'%';calc()">
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Monthly DCA contribution <span id="dca-display">$200</span></div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="dca-amount" value="200" min="0" step="50" oninput="document.getElementById('dca-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Common scenarios</div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <button onclick="setScenario(50,10,200)" style="font-size:11px;font-family:var(--font-mono);background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text-muted);cursor:pointer;text-align:left;">2022 bear market (−50%, S&P avg)</button>
+      <button onclick="setScenario(77,60,500)" style="font-size:11px;font-family:var(--font-mono);background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text-muted);cursor:pointer;text-align:left;">Bitcoin cycle crash (−77%, BTC avg)</button>
+      <button onclick="setScenario(20,7,200)" style="font-size:11px;font-family:var(--font-mono);background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text-muted);cursor:pointer;text-align:left;">Typical correction (−20%, S&P)</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results">
+
+    <div class="stat-row">
+      <div class="stat-card danger">
+        <div class="stat-label-sm">Value after loss</div>
+        <div class="stat-value red" id="after-loss">$0</div>
+        <div class="stat-sub" id="loss-dollars">Lost $0</div>
+      </div>
+      <div class="stat-card danger">
+        <div class="stat-label-sm">Gain needed to break even</div>
+        <div class="stat-value red" id="gain-needed">0%</div>
+        <div class="stat-sub">To return to starting value</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label-sm">Recovery time (no DCA)</div>
+        <div class="stat-value" id="recovery-no-dca" style="color:var(--text-muted);">0 yrs</div>
+        <div class="stat-sub">Hold only, no new contributions</div>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card highlight">
+        <div class="stat-label-sm">Recovery time (with DCA)</div>
+        <div class="stat-value accent" id="recovery-with-dca">0 yrs</div>
+        <div class="stat-sub" id="dca-advantage">DCA saves — years</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label-sm">Extra invested during recovery</div>
+        <div class="stat-value green" id="extra-invested">$0</div>
+        <div class="stat-sub">Total DCA contributions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label-sm">Portfolio value at recovery</div>
+        <div class="stat-value green" id="value-at-recovery">$0</div>
+        <div class="stat-sub">With DCA contributions</div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Recovery path over time</div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>With DCA</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6;"></div>No DCA (hold only)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#333;border:1px dashed #555;"></div>Break-even target</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="recovery-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="loss-table-card">
+      <table class="loss-table">
+        <thead>
+          <tr>
+            <th>Loss</th>
+            <th>Value after loss</th>
+            <th>Gain needed to break even</th>
+            <th>Recovery (no DCA)</th>
+            <th>Recovery (with DCA)</th>
+          </tr>
+        </thead>
+        <tbody id="loss-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <p><strong>Why losses require a disproportionately large gain to recover:</strong> If you lose 50% of $10,000, you're left with $5,000. To get back to $10,000, you need to double your money — a 100% gain on $5,000. The math is asymmetric: the larger the loss, the steeper the required recovery. A 90% loss requires a 900% gain just to break even. <strong>DCA dramatically changes this equation</strong> — by buying more shares at lower prices during the drawdown, your average cost drops, which means you need a smaller price recovery to reach break-even.</p>
+    </div>
+
+    <div class="pro-cta">
+      <p>Track your actual recovery in real time — live P&L, real avg cost per asset, and weekly AI signals on your portfolio.</p>
+      <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+    </div>
+
+    <div class="disclaimer">
+      Recovery calculations assume constant annual return rates applied monthly. Actual market returns are variable and unpredictable. DCA contributions assume purchases at current depressed prices throughout recovery. This calculator is for educational purposes only. Past performance does not guarantee future results. Not financial advice.
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For informational purposes only. Not financial advice.
+  </p>
+</footer>
+
+<script>
+let chart = null;
+
+function fmt(n) {
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function setLoss(pct) {
+  document.getElementById('loss-pct').value = pct;
+  document.getElementById('loss-display').textContent = pct + '%';
+  updatePresets(pct);
+  calc();
+}
+
+function setScenario(loss, ret, dca) {
+  document.getElementById('loss-pct').value = loss;
+  document.getElementById('loss-display').textContent = loss + '%';
+  document.getElementById('return-rate').value = ret;
+  document.getElementById('return-display').textContent = ret + '%';
+  document.getElementById('dca-amount').value = dca;
+  document.getElementById('dca-display').textContent = '$' + dca.toLocaleString();
+  updatePresets(loss);
+  calc();
+}
+
+function updatePresets(val) {
+  const presets = [10, 20, 30, 50, 70, 90];
+  document.querySelectorAll('.preset-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', presets[i] === parseInt(val));
+  });
+}
+
+function calc() {
+  const lossPct  = parseFloat(document.getElementById('loss-pct').value) / 100;
+  const startVal = parseFloat(document.getElementById('start-val').value) || 10000;
+  const retRate  = parseFloat(document.getElementById('return-rate').value) / 100;
+  const dcaAmt   = parseFloat(document.getElementById('dca-amount').value) || 0;
+
+  const afterLoss   = startVal * (1 - lossPct);
+  const lossDollars = startVal - afterLoss;
+  const gainNeeded  = (startVal / afterLoss - 1) * 100;
+
+  // Recovery without DCA
+  let noDcaVal = afterLoss;
+  let noDcaMonths = 0;
+  for (let m = 0; m < 600; m++) {
+    noDcaVal *= (1 + retRate / 12);
+    noDcaMonths++;
+    if (noDcaVal >= startVal) break;
+  }
+  const noDcaYears = noDcaMonths / 12;
+
+  // Recovery with DCA
+  let dcaVal = afterLoss;
+  let dcaMonths = 0;
+  let totalDcaInvested = 0;
+  for (let m = 0; m < 600; m++) {
+    dcaVal = (dcaVal + dcaAmt) * (1 + retRate / 12);
+    totalDcaInvested += dcaAmt;
+    dcaMonths++;
+    if (dcaVal >= startVal) break;
+  }
+  const dcaYears = dcaMonths / 12;
+  const yearsSaved = noDcaYears - dcaYears;
+
+  // Update stats
+  document.getElementById('after-loss').textContent = fmt(afterLoss);
+  document.getElementById('loss-dollars').textContent = 'Lost ' + fmt(lossDollars);
+  document.getElementById('gain-needed').textContent = gainNeeded.toFixed(1) + '%';
+  document.getElementById('recovery-no-dca').textContent = noDcaMonths >= 600 ? '50+ yrs' : noDcaYears.toFixed(1) + ' yrs';
+  document.getElementById('recovery-with-dca').textContent = dcaMonths >= 600 ? '50+ yrs' : dcaYears.toFixed(1) + ' yrs';
+  document.getElementById('dca-advantage').textContent = dcaAmt > 0 && yearsSaved > 0
+    ? 'DCA saves ' + yearsSaved.toFixed(1) + ' years'
+    : dcaAmt === 0 ? 'Add DCA amount to see savings' : 'Already faster with DCA';
+  document.getElementById('extra-invested').textContent = fmt(totalDcaInvested);
+  document.getElementById('value-at-recovery').textContent = fmt(dcaVal);
+
+  // Build chart data (monthly, up to 10 years or recovery)
+  const maxMonths = Math.min(Math.max(noDcaMonths, dcaMonths) + 24, 120);
+  const labels = [];
+  const noDcaData = [];
+  const dcaData = [];
+  const targetLine = [];
+
+  let nv = afterLoss, dv = afterLoss;
+  for (let m = 0; m <= maxMonths; m++) {
+    if (m % 12 === 0) {
+      labels.push(m === 0 ? 'Now' : 'Yr ' + (m/12));
+      noDcaData.push(nv);
+      dcaData.push(dv);
+      targetLine.push(startVal);
+    }
+    nv = nv * (1 + retRate / 12);
+    dv = (dv + dcaAmt) * (1 + retRate / 12);
+  }
+
+  updateChart(labels, noDcaData, dcaData, targetLine, startVal);
+  updateTable(startVal, retRate, dcaAmt);
+}
+
+function updateChart(labels, noDca, dca, target, startVal) {
+  const ctx = document.getElementById('recovery-chart').getContext('2d');
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'With DCA',
+          data: dca,
+          borderColor: '#c8f060',
+          backgroundColor: 'rgba(200,240,96,0.07)',
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: false,
+          tension: 0.3,
+        },
+        {
+          label: 'No DCA (hold)',
+          data: noDca,
+          borderColor: '#5b9cf6',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: false,
+          tension: 0.3,
+        },
+        {
+          label: 'Break-even target',
+          data: target,
+          borderColor: 'rgba(240,96,96,0.4)',
+          backgroundColor: 'transparent',
+          borderWidth: 1,
+          borderDash: [5, 4],
+          pointRadius: 0,
+          fill: false,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          padding: 12,
+          callbacks: {
+            label: ctx => '  ' + ctx.dataset.label + ': ' + (ctx.raw >= 1e6 ? '$'+(ctx.raw/1e6).toFixed(2)+'M' : '$'+Math.round(ctx.raw).toLocaleString())
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 } } },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1e6 ? '$'+(v/1e6).toFixed(1)+'M' : v >= 1e3 ? '$'+(v/1e3).toFixed(0)+'K' : '$'+v }
+        }
+      }
+    }
+  });
+}
+
+function updateTable(startVal, retRate, dcaAmt) {
+  const losses = [10, 20, 30, 40, 50, 60, 70, 80, 90];
+  const currentLoss = parseFloat(document.getElementById('loss-pct').value);
+  const tbody = document.getElementById('loss-tbody');
+
+  tbody.innerHTML = losses.map(lp => {
+    const afterL = startVal * (1 - lp/100);
+    const gainN = ((startVal / afterL) - 1) * 100;
+
+    let noDcaM = 0, nv = afterL;
+    for (let m = 0; m < 600; m++) { nv *= (1 + retRate/12); noDcaM++; if (nv >= startVal) break; }
+
+    let dcaM = 0, dv = afterL;
+    for (let m = 0; m < 600; m++) { dv = (dv + dcaAmt) * (1 + retRate/12); dcaM++; if (dv >= startVal) break; }
+
+    const isCurrent = Math.round(currentLoss) === lp;
+    return `<tr class="${isCurrent ? 'current-row' : ''}">
+      <td class="red">−${lp}%</td>
+      <td>${fmt(afterL)}</td>
+      <td class="accent">+${gainN.toFixed(0)}%</td>
+      <td>${noDcaM >= 600 ? '50+ yrs' : (noDcaM/12).toFixed(1) + ' yrs'}</td>
+      <td class="green">${dcaM >= 600 ? '50+ yrs' : (dcaM/12).toFixed(1) + ' yrs'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// Dropdown
+document.querySelectorAll('.dropdown').forEach(dd => {
+  const menu = dd.querySelector('.dropdown-menu');
+  let timer;
+  dd.addEventListener('mouseenter', () => { clearTimeout(timer); menu.style.display = 'block'; });
+  dd.addEventListener('mouseleave', () => { timer = setTimeout(() => menu.style.display = 'none', 300); });
+  menu.addEventListener('mouseenter', () => clearTimeout(timer));
+  menu.addEventListener('mouseleave', () => { timer = setTimeout(() => menu.style.display = 'none', 300); });
+});
+
+calc();
+</script>
+
+</body>
+</html>
