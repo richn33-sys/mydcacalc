@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Stocks vs Traditional Value: How to Balance Your Portfolio in 2026</title>
+<meta name="description" content="Value stocks are outperforming AI growth stocks in 2026 for the first time in years. Here's how to think about your allocation between AI exposure and traditional value — and what DCA investors should do.">
+<meta name="keywords" content="AI stocks vs value stocks 2026, AI stocks portfolio allocation, how much AI stocks to own, value stocks vs growth stocks 2026, portfolio balance AI investing">
+<meta property="og:title" content="AI Stocks vs Traditional Value: How to Balance Your Portfolio in 2026">
+<meta property="og:description" content="Value stocks are beating AI growth for the first time in years. Here's how to think about your allocation and what DCA investors should do.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/ai-stocks-vs-traditional-value.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/ai-stocks-vs-traditional-value.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Stocks vs Traditional Value: How to Balance Your Portfolio in 2026",
+  "description": "Value stocks are outperforming AI growth stocks in 2026 for the first time in years. How to think about allocation between AI exposure and traditional value.",
+  "author": {
+    "@type": "Person",
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
+  },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2026-05-29",
+  "dateModified": "2026-05-29"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; text-align: center; }
+.stat-number { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); margin-bottom: 6px; letter-spacing: -0.02em; }
+.stat-label { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+.example-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.example-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.example-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.example-table tr:last-child td { border-bottom: none; }
+.example-table td.positive { color: var(--green); }
+.example-table td.negative { color: var(--red); }
+.example-table td.accent { color: var(--accent); }
+.alloc-visual { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin: 28px 0; }
+.alloc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+.alloc-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.alloc-bar-label { font-size: 12px; font-family: var(--font-mono); color: var(--text-muted); width: 130px; flex-shrink: 0; }
+.alloc-bar-wrap { flex: 1; height: 8px; background: var(--bg-input); border-radius: 4px; overflow: hidden; }
+.alloc-bar-fill { height: 100%; border-radius: 4px; }
+.alloc-bar-pct { font-size: 12px; font-family: var(--font-mono); color: var(--text); width: 35px; text-align: right; flex-shrink: 0; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover, .nav-mobile-menu a.active { color: var(--accent); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your AI and value stock performance</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="../index.html">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="how-compound-interest-works.html">How compound interest works</a>
+        <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+        <a href="what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+        <a href="strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        <a href="investing-during-high-interest-rates.html">High interest rates</a>
+        <a href="ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+        <a href="ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+        <a href="index.html" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a href="../index.html">DCA calculator</a>
+  <a href="../position-size.html">Position size</a>
+  <a href="../compound-interest.html">Compound interest</a>
+  <a href="../dca-backtest.html">DCA backtest</a>
+  <a href="../loss-recovery-calculator.html">Loss recovery</a>
+  <a href="../drip-calculator.html">DRIP</a>
+  <a href="../inflation-calculator.html">Real returns</a>
+  <a href="../asset-allocation.html">Asset allocation</a>
+  <span class="mobile-guides-label">Guides</span>
+  <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="how-compound-interest-works.html">How compound interest works</a>
+  <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+  <a href="how-to-calculate-position-size.html">How to calculate position size</a>
+  <a href="how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+  <a href="bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+  <a href="fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Strategy</span>
+    <span class="meta-date">May 29, 2026</span>
+    <span class="meta-read">9 min read</span>
+  </div>
+
+  <h1>AI stocks vs traditional value: <em>how to balance</em> your portfolio in 2026</h1>
+
+  <p class="intro">After years of AI-driven growth dominance, 2026 has seen a clear rotation: value stocks are outperforming growth across all major U.S. market-cap categories, with the Russell 2000 Value index up 9.7% vs 2.6% for growth as of April 2026, according to Oppenheimer Asset Management. That shift doesn't invalidate the AI thesis — but it does force a more deliberate approach to how much exposure you hold, and why. Here's a framework for balancing both.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#whats-happening">What's actually happening in markets right now</a></li>
+      <li><a href="#the-case-for-ai">The case for maintaining AI exposure</a></li>
+      <li><a href="#the-case-for-value">The case for traditional value stocks</a></li>
+      <li><a href="#how-to-allocate">How to think about your allocation</a></li>
+      <li><a href="#dca-approach">The DCA investor's approach</a></li>
+      <li><a href="#what-not-to-do">What not to do</a></li>
+    </ol>
+  </div>
+
+  <h2 id="whats-happening">What's actually happening in markets right now</h2>
+
+  <p>As of April 2026, the AI stock narrative that dominated 2023, 2024, and most of 2025 is showing its first sustained pause. Growth massively outperformed value during that period — the Vanguard Growth ETF (VUG) returned 20.3% in 2025 vs 12.7% for the Vanguard Value ETF (VTV), according to Motley Fool reporting on Vanguard data. Growth outperformed value in 13 of the last 16 years going back to 2010.</p>
+
+  <p>In 2026, something shifted. <strong>Value stocks are beating growth across all major U.S. market-cap categories</strong>, according to Oppenheimer Asset Management's April 2026 analysis. The Russell 2000 Value index is up 9.7% year-to-date vs 2.6% for its growth counterpart as of April 10. Morningstar analysis cited energy stocks as a primary driver — a sector heavily represented in value indices — combined with a pullback in high-multiple AI names from their 2025 peaks.</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-number">+9.7%</div>
+      <div class="stat-label">Russell 2000 Value YTD (April 2026)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">+2.6%</div>
+      <div class="stat-label">Russell 2000 Growth YTD (April 2026)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">13/16</div>
+      <div class="stat-label">Years growth outperformed value (2010–2025)</div>
+    </div>
+  </div>
+
+  <p>This doesn't mean the AI story is over. Fidelity's Asset Allocation Research Team has estimated that AI has contributed significantly to recent U.S. economic growth — accounting for an estimated 60% of growth over a recent period, according to their methodology, and earnings for AI-exposed tech companies have been growing in the mid-20% range compared to flat or mid-single-digit growth for the rest of the S&P 500, according to Fidelity reporting. The long-term AI thesis remains intact. But the short-term performance leadership has rotated.</p>
+
+  <div class="callout">
+    <div class="callout-label">The key distinction</div>
+    <p>Value outperforming AI growth in 2026 is a cyclical rotation, not a structural reversal. Cycles where value leads have historically occurred during energy-driven inflation, post-bubble corrections, and periods of high discount rates — all of which are present in 2026. That's different from saying AI stocks are a bad long-term investment.</p>
+  </div>
+
+  <h2 id="the-case-for-ai">The case for maintaining AI exposure</h2>
+
+  <p>If the rotation is cyclical rather than structural — which the evidence suggests — the question becomes: how much AI exposure still makes sense given current valuations and the environment?</p>
+
+  <p>The long-term investment thesis for AI stocks doesn't change based on a few months of underperformance. For clarity, "AI stocks" here includes semiconductor firms, cloud platforms, and software companies whose growth is directly tied to AI adoption — not just Nvidia-type names. Several data points remain structurally compelling:</p>
+
+  <ul>
+    <li><strong>Earnings growth divergence is real.</strong> AI-exposed tech companies are growing earnings in the mid-20% range vs flat to mid-single digits for the rest of the S&P 500, per Fidelity. That gap doesn't disappear in a cyclical rotation.</li>
+    <li><strong>Valuations have compressed.</strong> BlackRock noted that 2025's tech performance came primarily from earnings growth, not multiple expansion — and that multiples have slightly contracted since then. The most stretched AI valuations of 2024 are less stretched today.</li>
+    <li><strong>The market is underallocated.</strong> BlackRock's review of 901 moderate advisor portfolios found the average technology allocation is 9% below the S&P 500 weighting, even though 60% of advisors say they are bullish on AI stocks. Underallocation by professional advisors suggests most retail investors are also underexposed relative to the benchmark.</li>
+    <li><strong>The AI market is early.</strong> The artificial intelligence market is currently valued at approximately $371 billion with projections toward $2.4 trillion by 2032, according to IndexBox citing industry data. Whether these projections materialize is uncertain, but the directional opportunity is orders of magnitude larger than the current allocation in most portfolios.</li>
+  </ul>
+
+  <h2 id="the-case-for-value">The case for traditional value stocks</h2>
+
+  <p>Value stocks aren't simply "not AI" — they represent a distinct investment philosophy with its own compelling logic in the current environment:</p>
+
+  <ul>
+    <li><strong>Valuation support is real.</strong> After years of compression, value stocks are trading at historically wide discounts relative to growth. Invesco's analysis found value outperformed growth in both the U.S. and Europe in 2025 despite intense AI focus, and expects the trend to continue as economies accelerate.</li>
+    <li><strong>Higher-rate environment favors value.</strong> High-multiple growth stocks are mathematically more sensitive to discount rates — their future earnings are worth less when discounted at higher rates. Value stocks derive more of their value from near-term earnings and dividends, making them less sensitive to the "higher for longer" rate environment.</li>
+    <li><strong>Dividends provide real yield.</strong> In an environment where inflation is running above 3%, dividend-paying value stocks provide an income stream that offsets some of the purchasing power erosion. AI growth stocks typically pay no dividends.</li>
+    <li><strong>Cyclical leadership tends to persist.</strong> Hartford Funds data shows value and growth leadership tend to run in multi-year cycles. When value takes the lead after extended growth dominance, the rotation has historically been sustained — not a single quarter.</li>
+    <li><strong>International value is outperforming.</strong> MSCI data shows international developed market value significantly outperformed U.S. growth in 2025, with European banks in particular driving returns. Geographic diversification through value-oriented international exposure has added return in the past 18 months.</li>
+  </ul>
+
+  <h2 id="how-to-allocate">How to think about your allocation</h2>
+
+  <p>The right AI vs value allocation depends heavily on your time horizon, risk tolerance, and what you already own. There's no universal answer. Note that these categories overlap — your S&P 500 allocation already includes AI exposure, so the "AI / tech" portion represents an intentional overweight beyond what the index already provides. Here's a framework:</p>
+
+  <div class="alloc-visual">
+    <div class="alloc-title">Illustrative allocation frameworks by investor type</div>
+
+    <p style="font-size:13px;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:20px;">These are illustrative starting points, not financial advice. Adjust based on your full portfolio context.</p>
+
+    <p style="font-size:12px;color:var(--accent);font-family:var(--font-mono);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;">Conservative / near-term horizon</p>
+    <div class="alloc-bar-row"><div class="alloc-bar-label">Broad market (S&P)</div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:60%;background:#5b9cf6;"></div></div><div class="alloc-bar-pct">60%</div></div>
+    <div class="alloc-bar-row"><div class="alloc-bar-label">Value / dividend</div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:30%;background:#3ecf8e;"></div></div><div class="alloc-bar-pct">30%</div></div>
+    <div class="alloc-bar-row" style="margin-bottom:28px;"><div class="alloc-bar-label">AI / tech focused</div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:10%;background:#c8f060;"></div></div><div class="alloc-bar-pct">10%</div></div>
+
+    <p style="font-size:12px;color:var(--accent);font-family:var(--font-mono);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;">Moderate / 10+ year horizon</p>
+    <div class="alloc-bar-row"><div class="alloc-bar-label">Broad market (S&P)</div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:50%;background:#5b9cf6;"></div></div><div class="alloc-bar-pct">50%</div></div>
+    <div class="alloc-bar-row"><div class="alloc-bar-label">Value / dividend</div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:20%;background:#3ecf8e;"></div></div><div class="alloc-bar-pct">20%</div></div>
+    <div class="alloc-bar-row" style="margin-bottom:28px;"><div class="alloc-bar-label">AI / tech focused</div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:30%;background:#c8f060;"></div></div><div class="alloc-bar-pct">30%</div></div>
+
+    <p style="font-size:12px;color:var(--accent);font-family:var(--font-mono);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;">Aggressive / 15+ year horizon</p>
+    <div class="alloc-bar-row"><div class="alloc-bar-label">Broad market (S&P)</div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:30%;background:#5b9cf6;"></div></div><div class="alloc-bar-pct">30%</div></div>
+    <div class="alloc-bar-row"><div class="alloc-bar-label">Value / dividend</div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:15%;background:#3ecf8e;"></div></div><div class="alloc-bar-pct">15%</div></div>
+    <div class="alloc-bar-row"><div class="alloc-bar-label">AI / tech focused</div><div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:55%;background:#c8f060;"></div></div><div class="alloc-bar-pct">55%</div></div>
+  </div>
+
+  <p>NerdWallet suggests a practical guideline: devote no more than 10% of your overall portfolio to individual stocks in any single theme. For investors using ETFs for AI exposure — such as the iShares A.I. Innovation and Tech Active ETF (BAI) or the Roundhill Generative AI & Technology ETF (CHAT) — a higher allocation is more defensible than concentrated single-stock bets, since ETF exposure spreads risk across multiple AI layers (infrastructure, applications, semiconductors).</p>
+
+  <p>One useful framework from TECHi's April 2026 analysis suggests thinking about AI exposure across multiple layers: infrastructure (data centers, chips), platforms (cloud providers), and applications (software using AI). A balanced AI allocation across all three layers has historically shown better risk-adjusted returns than concentration in any single layer.</p>
+
+  <h2 id="dca-approach">The DCA investor's approach</h2>
+
+  <p>For investors using dollar-cost averaging — which is most long-term investors — the AI vs value question doesn't need to be an either/or decision made at a single point in time.</p>
+
+  <p><strong>The practical DCA approach:</strong> If you DCA into a broad index fund (S&P 500 or total market), you already own both AI stocks and value stocks in their market-weighted proportions. The S&P 500 naturally includes the big AI names (Nvidia, Microsoft, Alphabet, Meta) as well as value-leaning sectors (energy, financials, consumer staples). Market-cap weighting means you automatically hold more of what's working and less of what isn't, without any active decisions.</p>
+
+  <p><strong>If you want targeted exposure:</strong> Consider running a separate, smaller DCA schedule into a specific AI ETF or value ETF alongside your core index allocation. TECHi's suggested framework for a $10,000 AI allocation covers multiple layers of the ecosystem rather than concentrated single-stock bets — the same logic applies to a monthly DCA amount.</p>
+
+  <p><strong>The rotation timing problem:</strong> The 2026 value rotation is real, but the timing of how long it lasts is unknowable. Invesco's analysis expects value to outperform as economies accelerate — but if the Federal Reserve cuts rates later this year, growth/AI stocks historically re-accelerate quickly. Trying to time the rotation by shifting allocation based on a few months of performance data is more likely to hurt returns than help them.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">DCA investor takeaway</div>
+    <p>If you DCA into a broad index, you don't need to do anything — you own both AI and value in proportion to their market weights, and that proportion adjusts automatically. If you want additional AI exposure, a separate small DCA schedule into an AI ETF makes more sense than timing a lump sum around rotation signals. If you want additional value exposure, a dividend ETF or value-tilt ETF DCA achieves the same goal without calling the top on AI.</p>
+  </div>
+
+  <h2 id="what-not-to-do">What not to do</h2>
+
+  <ul>
+    <li><strong>Don't abandon AI exposure based on a few months of underperformance.</strong> Value led in 2016 and 2022 before growth resumed dominance. The AI earnings growth story hasn't changed — the multiple expansion story has cooled, which is different.</li>
+    <li><strong>Don't concentrate in single AI stocks at stretched valuations.</strong> Companies like Palantir have at times traded near 100x forward earnings. Even strong AI execution may not justify premiums at that level if growth expectations moderate.</li>
+    <li><strong>Don't treat value stocks as "safe."</strong> Value stocks can and do decline significantly in recessions. Energy and financial stocks — the largest value sector drivers in 2026 — are highly cyclical. Value is not synonymous with low risk.</li>
+    <li><strong>Don't chase whichever style has just outperformed.</strong> By the time a rotation is obvious enough to act on, much of the move is usually over. Most investors who rotated into value after its 2022 outperformance missed the growth re-acceleration of 2023–2025.</li>
+    <li><strong>Don't ignore international value.</strong> MSCI data shows international developed market value significantly outperformed U.S. growth in 2025. Geographic diversification through international value-oriented exposure is an underutilized tool for most U.S.-focused retail investors.</li>
+  </ul>
+
+  <div class="cta-box">
+    <h3>See how your allocation has historically performed</h3>
+    <p>Use the DCA backtest simulator to compare returns across different asset classes side by side.</p>
+    <a href="../dca-backtest.html" class="cta-btn">Try the DCA backtest calculator</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>The 2026 value rotation is real and, based on historical patterns, may have further to run. That doesn't mean abandoning AI exposure — the long-term earnings growth story remains intact, and many portfolios, including advisor-managed ones, remain underweight AI relative to its share of index weighting.</p>
+
+  <p>The sensible approach for most long-term investors is to hold both through a diversified index, with targeted tilts toward AI ETFs or value/dividend ETFs depending on time horizon and risk tolerance. The allocation table above provides a starting framework, but your specific situation — age, income stability, existing portfolio composition — matters more than any general guideline.</p>
+
+  <p>For DCA investors specifically: keep your schedule running, let the index rebalance itself naturally, and resist the urge to make tactical allocation shifts based on which style is winning in any given quarter. The goal isn't to pick the winning style for 2026. It's to build a portfolio that can handle whichever one wins next.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute financial advice. Past style performance does not predict future results. ETF and stock references are illustrative examples, not recommendations. Consult a qualified financial advisor before making allocation decisions.</p>
+  </div>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">JC</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
+    </div>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+function toggleMenu() {
+  var menu = document.getElementById('mobile-menu');
+  var btn = document.getElementById('nav-hamburger');
+  if (!menu) return;
+  var isOpen = menu.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.nav-mobile-menu a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      var m = document.getElementById('mobile-menu');
+      var b = document.getElementById('nav-hamburger');
+      if (m) { m.classList.remove('open'); b.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+  });
+  document.querySelectorAll('.dropdown').forEach(function(dd) {
+    var menu = dd.querySelector('.dropdown-menu');
+    var timer;
+    dd.addEventListener('mouseenter', function() { clearTimeout(timer); menu.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+    menu.addEventListener('mouseenter', function() { clearTimeout(timer); });
+    menu.addEventListener('mouseleave', function() { timer = setTimeout(function() { menu.style.display = 'none'; }, 300); });
+  });
+});
+</script>
+
+</body>
+</html>
