@@ -89,7 +89,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - Triggered by Stripe webhook on checkout.session.completed
 - Domain verified ✅ — welcome emails firing automatically on new signups
 ### CTA on mydcacalc.com
-- Green banner added to top of index.html, position-size.html, compound-interest.html, dca-backtest.html, inflation-calculator.html, asset-allocation.html, drip-calculator.html
+- Green banner added to top of all 8 calculator pages: index.html, position-size.html, compound-interest.html, dca-backtest.html, inflation-calculator.html, asset-allocation.html, drip-calculator.html, loss-recovery-calculator.html
 - Links to https://pro.mydcacalc.com/upgrade.html
 - Added May 17 2026
 ### Exit strategy
@@ -122,6 +122,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── inflation-calculator.html                     ← Inflation-Adjusted Returns Calculator (NEW May 21)
 ├── asset-allocation.html                         ← Asset Allocation & Risk Tolerance Quiz (NEW May 22)
 ├── drip-calculator.html                          ← DRIP Dividend Reinvestment Calculator (NEW May 27)
+├── loss-recovery-calculator.html                 ← Investment Loss Recovery / Break-Even Calculator (NEW May 28)
+├── nav.js                                         ← Centralized nav (calculators + guides arrays)
 ├── about.html
 ├── privacy.html
 ├── terms.html
@@ -134,7 +136,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 10 guides published, counter = 10
+│   ├── index.html                                ← 13 guides published, counter = 13
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -144,7 +146,10 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── how-to-invest-during-geopolitical-uncertainty.html  ← NEW May 19
 │   ├── fear-greed-index-dca-strategy.html        ← NEW May 19
 │   ├── what-is-a-good-risk-reward-ratio.html     ← NEW May 19
-│   └── strategic-bitcoin-reserve-dca.html        ← NEW May 20
+│   ├── strategic-bitcoin-reserve-dca.html        ← NEW May 20
+│   ├── investing-during-high-interest-rates.html ← NEW May 26
+│   ├── ethereum-glamsterdam-upgrade-2026.html    ← NEW May 28
+│   └── ai-stocks-vs-traditional-value.html       ← NEW May 29
 └── CLAUDE.md
 ```
 ---
@@ -162,16 +167,17 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - **Borders:** `rgba(255,255,255,0.08)`
 - **Border radius:** 10px (components), 16px (cards)
 - **Favicon:** SVG data URI — dark bg, "DCA" in accent green
-### Nav structure (as of May 25 2026):
-- Header: DCA · Position size · Compound interest · DCA backtest · DRIP · Real returns · Asset allocation · Guides ▾
-- ✅ Nav confirmed consistent across all pages including drip-calculator.html and asset-allocation.html
-- Guides dropdown: 9 guides + "All guides →"
+### Nav structure (as of May 29 2026):
+- Centralized in `nav.js` — all 23 content pages include it (privacy.html and terms.html do not). Edit nav.js once; do NOT hand-edit each page.
+- Header (calculators array order): DCA · Position size · Compound interest · DCA backtest · Loss recovery · DRIP · Real returns · Asset allocation · Guides ▾
+- ✅ Nav consistent across all pages by construction (single shared nav.js)
+- Guides dropdown: 13 guides + "All guides →"
 - Root pages: `href="guides/page.html"` for guide links
 - Guide pages: `href="../page.html"` for root, `href="page.html"` for guides
 - Authors pages: `href="../page.html"` for root, `href="../guides/page.html"` for guides
 - Dropdown: JS hover with 300ms delay
 ### Updating nav across all pages:
-When adding a new guide or calculator, use Python regex to update all pages at once — see session history for the exact script pattern. Do NOT manually edit each file.
+Nav is now centralized in `nav.js`. When adding a new guide or calculator, add one entry to the `calculators` or `guides` array in nav.js — every page picks it up automatically. Do NOT manually edit each file or run per-page regex scripts.
 ---
 ## Pages & Calculators
 ### index.html — DCA Calculator
@@ -221,7 +227,7 @@ When adding a new guide or calculator, use Python regex to update all pages at o
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 ---
-## Guides Section (9 published as of May 19 2026)
+## Guides Section (13 published as of May 29 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -233,6 +239,10 @@ When adding a new guide or calculator, use Python regex to update all pages at o
 | how-to-invest-during-geopolitical-uncertainty.html | James Colter | ✅ Live | May 19 2026 |
 | fear-greed-index-dca-strategy.html | James Colter | ✅ Live | May 19 2026 |
 | what-is-a-good-risk-reward-ratio.html | Sara Kline | ✅ Live | May 19 2026 |
+| strategic-bitcoin-reserve-dca.html | James Colter | ✅ Live | May 20 2026 |
+| investing-during-high-interest-rates.html | James Colter | ✅ Live | May 26 2026 |
+| ethereum-glamsterdam-upgrade-2026.html | James Colter | ✅ Live | May 28 2026 |
+| ai-stocks-vs-traditional-value.html | James Colter | ✅ Live | May 29 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -342,6 +352,10 @@ When adding a new guide or calculator, use Python regex to update all pages at o
 | position-size.html | position size calculator |
 | compound-interest.html | compound interest calculator |
 | dca-backtest.html | dca backtest calculator |
+| drip-calculator.html | DRIP calculator dividend reinvestment |
+| inflation-calculator.html | inflation adjusted returns calculator |
+| asset-allocation.html | asset allocation calculator risk tolerance quiz |
+| loss-recovery-calculator.html | investment loss recovery calculator / break even calculator |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -353,9 +367,8 @@ When adding a new guide or calculator, use Python regex to update all pages at o
 | guides/what-is-a-good-risk-reward-ratio.html | risk reward ratio trading |
 | guides/strategic-bitcoin-reserve-dca.html | strategic bitcoin reserve DCA |
 | guides/investing-during-high-interest-rates.html | investing during high interest rates |
-| drip-calculator.html | DRIP calculator dividend reinvestment |
-| inflation-calculator.html | inflation adjusted returns calculator |
-| asset-allocation.html | asset allocation calculator risk tolerance quiz |
+| guides/ethereum-glamsterdam-upgrade-2026.html | ethereum glamsterdam upgrade 2026 |
+| guides/ai-stocks-vs-traditional-value.html | ai stocks vs value stocks |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -429,7 +442,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_GUIDES** whenever a new guide is published
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 
-### Current CURRENT_GUIDES (as of May 27 2026):
+### Current CURRENT_GUIDES (as of May 29 2026):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging",
@@ -443,10 +456,12 @@ CURRENT_GUIDES = [
     "What is a good risk reward ratio in trading",
     "What the Strategic Bitcoin Reserve means for DCA investors",
     "How to invest when interest rates are high and cuts keep getting delayed",
+    "Ethereum Glamsterdam upgrade 2026: what it means for ETH investors",
+    "AI stocks vs traditional value: how to balance your portfolio in 2026",
 ]
 ```
 
-### Current CURRENT_CALCULATORS (as of May 27 2026):
+### Current CURRENT_CALCULATORS (as of May 29 2026):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator",
@@ -456,6 +471,7 @@ CURRENT_CALCULATORS = [
     "Inflation-adjusted returns calculator (real return calculator)",
     "Asset allocation and risk tolerance quiz",
     "DRIP calculator (dividend reinvestment calculator)",
+    "Investment loss recovery / break-even calculator",
 ]
 ```
 ---
@@ -466,7 +482,11 @@ CURRENT_CALCULATORS = [
 - [x] Inflation-Adjusted Returns Calculator (5th calculator) — May 21 2026
 - [x] Asset Allocation & Risk Tolerance Quiz (6th calculator) — May 22 2026
 - [x] DRIP Dividend Reinvestment Calculator (7th calculator) — May 27 2026
+- [x] Investment Loss Recovery / Break-Even Calculator (8th calculator) — May 28 2026
 - [x] How to invest during high interest rates guide (11th guide) — May 26 2026
+- [x] Ethereum Glamsterdam upgrade guide (12th guide) — May 28 2026
+- [x] AI stocks vs traditional value guide (13th guide) — May 29 2026
+- [x] Nav centralized in nav.js (single source across all pages) — fixes prior nav inconsistencies
 - [x] Product Hunt launched — May 27 2026 (3 upvotes, 4 followers, permanent backlink)
 - [x] Reddit account created — needs karma before posting
 - [x] Guides index grid fixed — all 11 guides showing
@@ -497,9 +517,10 @@ CURRENT_CALCULATORS = [
 - [x] **Product Hunt launched May 27** ✅
 - [x] High interest rates guide published ✅
 - [x] DRIP Calculator built and deployed ✅
-- [ ] **Fix nav inconsistency** — drip-calculator.html and asset-allocation.html missing some nav items
-- [ ] **Ethereum Glamsterdam upgrade guide** — June 2026, timing window is now
-- [ ] **Break-Even Recovery Calculator** — viral potential ("need 100% gain to recover 50% loss")
+- [x] **Fix nav inconsistency** — resolved by centralizing nav in nav.js (all pages now share one source) ✅
+- [x] **Ethereum Glamsterdam upgrade guide** — published May 28 2026 (12th guide) ✅
+- [x] **Break-Even Recovery Calculator** — built and deployed as loss-recovery-calculator.html (8th calculator), May 28 2026 ✅
+- [x] **AI stocks vs traditional value guide** — published May 29 2026 (13th guide) ✅
 - [ ] **Build Reddit karma** — new account needs comments before posting
 - [ ] Update Strategic Bitcoin Reserve guide when announcement drops
 - [ ] List Content Research Agent on Gumroad ($39)
@@ -511,6 +532,17 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### May 30 2026 — Post-Launch Build Session
+- Loss Recovery / Break-Even Calculator built and deployed (8th calculator) — May 28
+- Ethereum Glamsterdam upgrade guide published (James Colter, 12th guide) — May 28
+- AI stocks vs traditional value guide published (James Colter, 13th guide) — May 29
+- Nav centralized into nav.js — all pages now share one calculators/guides source; old per-page nav inconsistency resolved
+- nav.js calculators order: DCA · Position size · Compound interest · DCA backtest · Loss recovery · DRIP · Real returns · Asset allocation
+- Sitemap updated — 25 total URLs (8 calculators + guides index + 13 guides + about/privacy/terms)
+- Guides index counter now reads 13
+- Research agent updated: 8 calculators + 13 guides registered (CURRENT_GUIDES / CURRENT_CALCULATORS)
+- CLAUDE.md audited and corrected against disk (file structure, counts, nav, SEO table, priorities)
 
 ### May 27 2026 — Launch Day Session
 - Product Hunt launched — 3 upvotes, 4 followers, permanent backlink secured

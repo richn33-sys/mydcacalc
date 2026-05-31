@@ -150,66 +150,11 @@ footer a:hover { color: var(--text); }
 
 <header>
   <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
-  <nav>
-    <a href="../index.html">DCA</a>
-    <a href="../position-size.html">Position size</a>
-    <a href="../compound-interest.html">Compound interest</a>
-    <a href="../dca-backtest.html">DCA backtest</a>
-    <a href="../loss-recovery-calculator.html">Loss recovery</a>
-    <a href="../drip-calculator.html">DRIP</a>
-    <a href="../inflation-calculator.html">Real returns</a>
-    <a href="../asset-allocation.html">Asset allocation</a>
-    <div class="dropdown">
-      <button class="dropdown-toggle active">Guides</button>
-      <div class="dropdown-menu">
-        <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
-        <a href="how-compound-interest-works.html">How compound interest works</a>
-        <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
-        <a href="how-to-calculate-position-size.html">How to calculate position size</a>
-        <a href="how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
-        <a href="bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
-        <a href="how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
-        <a href="fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
-        <a href="what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
-        <a href="strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
-        <a href="investing-during-high-interest-rates.html">High interest rates</a>
-        <a href="ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
-        <a href="ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
-        <a href="index.html" style="color:var(--accent);">All guides &#x2192;</a>
-      </div>
-    </div>
-  </nav>
-  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</header>
+  <div id="nav-root"></div><script src="../nav.js"></script>
+  </header>
 
 <!-- Mobile nav menu -->
-<div class="nav-mobile-menu" id="mobile-menu">
-  <a href="../index.html">DCA calculator</a>
-  <a href="../position-size.html">Position size</a>
-  <a href="../compound-interest.html">Compound interest</a>
-  <a href="../dca-backtest.html">DCA backtest</a>
-  <a href="../loss-recovery-calculator.html">Loss recovery</a>
-  <a href="../drip-calculator.html">DRIP</a>
-  <a href="../inflation-calculator.html">Real returns</a>
-  <a href="../asset-allocation.html">Asset allocation</a>
-  <span class="mobile-guides-label">Guides</span>
-  <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
-  <a href="how-compound-interest-works.html">How compound interest works</a>
-  <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
-  <a href="how-to-calculate-position-size.html">How to calculate position size</a>
-  <a href="how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
-  <a href="bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
-  <a href="how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
-  <a href="fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
-  <a href="what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
-  <a href="strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
-  <a href="investing-during-high-interest-rates.html">High interest rates</a>
-  <a href="ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
-  <a href="ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
-  <a href="index.html" style="color:var(--accent);">All guides &#x2192;</a>
-</div>
+
 
 
 
@@ -385,21 +330,33 @@ footer a:hover { color: var(--text); }
 </script>
 
 <script>
-function toggleMenu() {
-  var menu = document.getElementById('mobile-menu');
+window.addEventListener('load', function() {
   var btn = document.getElementById('nav-hamburger');
-  if (!menu) return;
-  var isOpen = menu.classList.toggle('open');
-  btn.classList.toggle('open', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.nav-mobile-menu a').forEach(function(a) {
+  var menu = document.getElementById('nav-mobile-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
     a.addEventListener('click', function() {
-      var m = document.getElementById('mobile-menu');
-      var b = document.getElementById('nav-hamburger');
-      if (m) { m.classList.remove('open'); b.classList.remove('open'); document.body.style.overflow = ''; }
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     });
+  });
+  // Dropdown hover
+  document.querySelectorAll('.dropdown').forEach(function(dd) {
+    var m = dd.querySelector('.dropdown-menu');
+    if (!m) return;
+    var t;
+    dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+    m.addEventListener('mouseenter', function() { clearTimeout(t); });
+    m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
   });
 });
 </script>
