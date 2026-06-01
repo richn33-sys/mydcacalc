@@ -85,7 +85,7 @@
   }
 
   // Wire up events after DOM is ready
-  document.addEventListener('DOMContentLoaded', function() {
+  window.addEventListener('load', function() {
     var btn = document.getElementById('nav-hamburger');
     var menu = document.getElementById('nav-mobile-menu');
     if (btn && menu) {
