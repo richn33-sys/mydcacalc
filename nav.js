@@ -58,13 +58,16 @@
   }).join('\n  ');
   mobileGuideLinks += '\n  <a href="' + guideRoot + 'index.html" style="color:var(--accent);">All guides &#x2192;</a>';
 
-  var html = '<nav>\n    ' + calcLinks + '\n    <div class="dropdown">'
+  // Desktop nav + hamburger button (goes inside header via nav-root)
+  var navHtml = '<nav>\n    ' + calcLinks + '\n    <div class="dropdown">'
     + '\n      <button class="dropdown-toggle' + (inGuides ? ' active' : '') + '">Guides</button>'
     + '\n      <div class="dropdown-menu">\n        ' + dropdownItems
     + '\n      </div>\n    </div>\n  </nav>'
     + '\n  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">'
-    + '\n    <span></span><span></span><span></span>\n  </button>'
-    + '\n  <div class="nav-mobile-menu" id="nav-mobile-menu">\n  '
+    + '\n    <span></span><span></span><span></span>\n  </button>';
+
+  // Mobile menu (goes after header, outside it)
+  var mobileHtml = '<div class="nav-mobile-menu" id="nav-mobile-menu">\n  '
     + mobileCalcLinks
     + '\n  <span class="mobile-guides-label">Guides</span>\n  '
     + mobileGuideLinks
@@ -72,8 +75,13 @@
 
   var el = document.getElementById('nav-root');
   if (el) {
-    el.outerHTML = html;
+    el.outerHTML = navHtml;
+    // Insert mobile menu after the header
+    var header = document.querySelector('header');
+    if (header && !document.getElementById('nav-mobile-menu')) {
+      header.insertAdjacentHTML('afterend', mobileHtml);
+    }
   } else {
-    document.write(html);
+    document.write(navHtml + mobileHtml);
   }
 })();
