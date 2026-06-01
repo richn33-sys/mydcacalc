@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Best Day to DCA Bitcoin: Why Monday Has Historically Outperformed Other Weekdays</title>
+<meta name="description" content="Seven years of backtesting shows Monday DCA accumulates 14.36% more Bitcoin than other days. Here's why the Monday effect exists, what the data actually shows, and whether it matters for your strategy.">
+<meta name="keywords" content="best day to DCA Bitcoin, best day to buy Bitcoin, Monday DCA strategy, DCA day of week Bitcoin, optimal DCA timing Bitcoin">
+<meta property="og:title" content="The Best Day to DCA Bitcoin: Why Monday Has Historically Outperformed">
+<meta property="og:description" content="7 years of backtesting shows Monday DCA accumulates 14.36% more BTC. Here's why — and whether it actually matters for your strategy.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/best-day-to-dca-bitcoin.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/best-day-to-dca-bitcoin.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Best Day to DCA Bitcoin: Why Monday Has Historically Outperformed Other Weekdays",
+  "description": "Seven years of backtesting shows Monday DCA accumulates 14.36% more Bitcoin than other days. Why the Monday effect exists and whether it matters for your strategy.",
+  "author": {
+    "@type": "Person",
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
+  },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2026-06-01",
+  "dateModified": "2026-06-01"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --btc: #f7931a;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-tag.btc { color: var(--btc); background: rgba(247,147,26,0.1); border-color: rgba(247,147,26,0.3); }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout.data { border-left-color: var(--btc); background: rgba(247,147,26,0.05); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.callout.data .callout-label { color: var(--btc); }
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
+@media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; text-align: center; }
+.stat-card.highlight { border-color: rgba(247,147,26,0.3); background: rgba(247,147,26,0.05); }
+.stat-number { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--btc); margin-bottom: 6px; letter-spacing: -0.02em; }
+.stat-number.green { color: var(--green); }
+.stat-number.accent { color: var(--accent); }
+.stat-label { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+.day-chart { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; margin: 28px 0; }
+.day-chart-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+.day-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.day-label { font-size: 13px; font-family: var(--font-mono); color: var(--text-muted); width: 90px; flex-shrink: 0; }
+.day-bar-wrap { flex: 1; height: 10px; background: var(--bg-input); border-radius: 5px; overflow: hidden; }
+.day-bar { height: 100%; border-radius: 5px; }
+.day-val { font-size: 13px; font-family: var(--font-mono); color: var(--text); width: 50px; text-align: right; flex-shrink: 0; }
+.day-row.best .day-label { color: var(--btc); font-weight: 500; }
+.day-row.best .day-val { color: var(--btc); font-weight: 500; }
+.example-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.example-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.example-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.example-table tr:last-child td { border-bottom: none; }
+.example-table td.positive { color: var(--green); }
+.example-table td.btc { color: var(--btc); font-weight: 500; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover { color: var(--accent); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your Bitcoin DCA performance</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <div id="nav-root"></div><script src="../nav.js"></script>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="../index.html">DCA calculator</a>
+  <a href="../position-size.html">Position size</a>
+  <a href="../compound-interest.html">Compound interest</a>
+  <a href="../dca-backtest.html">DCA backtest</a>
+  <a href="../loss-recovery-calculator.html">Loss recovery</a>
+  <a href="../drip-calculator.html">DRIP</a>
+  <a href="../inflation-calculator.html">Real returns</a>
+  <a href="../asset-allocation.html">Asset allocation</a>
+  <span class="mobile-guides-label">Guides</span>
+  <a href="what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="how-compound-interest-works.html">How compound interest works</a>
+  <a href="dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+  <a href="how-to-calculate-position-size.html">How to calculate position size</a>
+  <a href="how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+  <a href="bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+  <a href="fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="best-day-to-dca-bitcoin.html">Best day to DCA</a>
+  <a href="index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag btc">Bitcoin</span>
+    <span class="meta-tag">Data</span>
+    <span class="meta-date">June 1, 2026</span>
+    <span class="meta-read">8 min read</span>
+  </div>
+
+  <h1>The best day to <em>DCA Bitcoin</em> — why Monday has historically outperformed other weekdays</h1>
+
+  <p class="intro">Seven years of backtesting data from dcabtc.com covering 2018–2025 found that weekly Bitcoin purchases on Mondays accumulated 14.36% more BTC than purchases on other days. That's a meaningful historical result — though the edge appears smaller once fees and execution assumptions are included, and the effect may not persist as Bitcoin's market structure matures. Here's what the data shows and how much it should actually influence your DCA schedule.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#the-data">What the backtesting data actually shows</a></li>
+      <li><a href="#why-monday">Why Monday tends to be cheaper</a></li>
+      <li><a href="#day-by-day">Day-by-day breakdown</a></li>
+      <li><a href="#caveats">The important caveats</a></li>
+      <li><a href="#frequency">Day of week vs frequency — which matters more</a></li>
+      <li><a href="#bottom-line">The practical bottom line</a></li>
+    </ol>
+  </div>
+
+  <h2 id="the-data">What the backtesting data actually shows</h2>
+
+  <p>The core finding comes from dcabtc.com's seven-year backtest covering 2018 through 2025. Across the full period — which included two major bull markets, two significant bear markets, and some of the most volatile price swings in Bitcoin's history — investors who executed their weekly DCA purchase on Mondays consistently accumulated more BTC per dollar spent than investors who bought on other days.</p>
+
+  <div class="callout data">
+    <div class="callout-label">The headline number</div>
+    <p>In the dcabtc.com backtest covering 2018–2025, weekly Monday DCA purchases accumulated <strong>14.36% more Bitcoin</strong> than purchases on other days. This figure reflects a specific sample period and methodology — results will vary by exchange, fee structure, and market regime. This is the same dataset cited by River Financial's 2023 DCA analysis and multiple institutional research notes on Bitcoin accumulation strategy.</p>
+  </div>
+
+  <p>An independent backtesting analysis by QuantifiedStrategies.com, published February 2026 and covering data from 2014 to 2026, found a similar pattern: Monday showed the highest average daily return of 0.51% across the backtest period — the highest of any weekday. The analysis found that buying late Sunday and holding through Monday has historically delivered the strongest average return of any day-of-week combination.</p>
+
+  <div class="stat-row">
+    <div class="stat-card highlight">
+      <div class="stat-number">+14.36%</div>
+      <div class="stat-label">More BTC accumulated via Monday DCA vs other days (2018–2025)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">0.51%</div>
+      <div class="stat-label">Monday average daily return — highest of any weekday (2014–2026)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~1.2%</div>
+      <div class="stat-label">Real-world edge after accounting for market conditions (River Financial)</div>
+    </div>
+  </div>
+
+  <h2 id="why-monday">Why Monday tends to be cheaper</h2>
+
+  <p>Several plausible mechanisms may explain why Monday has historically shown softer prices — though these are hypotheses based on observed patterns, not proven causal relationships:</p>
+
+  <ul>
+    <li><strong>Reduced weekend institutional activity (hypothesized).</strong> Bitcoin trades 24/7, but institutional participants operate primarily on weekdays. Lower weekend participation may allow prices to soften — though this is difficult to isolate empirically as Bitcoin's institutional presence has grown significantly since 2018.</li>
+    <li><strong>Retail-dominated weekends (hypothesized).</strong> Retail activity may be higher on weekends, potentially driving sentiment-based selling. This is plausible but hard to verify directly from price data alone.</li>
+    <li><strong>Institutional re-engagement (hypothesized).</strong> If institutional participants systematically re-enter positions on Monday, this could create a price tailwind mid-week. Whether this is a consistent, exploitable pattern is unclear.</li>
+    <li><strong>Settlement and OTC timing (speculative).</strong> Some analysts suggest OTC settlement timing may contribute to weekend supply pressure. This is the least well-supported mechanism and should be treated as speculative.</li>
+  </ul>
+
+  <p>None of these mechanisms has been proven in peer-reviewed research. They are reasonable hypotheses consistent with the observed pattern — but the honest answer is that we observe the day-of-week effect in the data and can propose explanations for it without being able to confirm causation.</p>
+
+  <h2 id="day-by-day">Day-by-day breakdown</h2>
+
+  <div class="day-chart">
+    <div class="day-chart-title">Relative historical DCA performance by day of week — illustrative ranking only</div>
+    <div class="day-row best">
+      <div class="day-label">Monday</div>
+      <div class="day-bar-wrap"><div class="day-bar" style="width:100%;background:#f7931a;"></div></div>
+      <div class="day-val">Best</div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Sunday</div>
+      <div class="day-bar-wrap"><div class="day-bar" style="width:88%;background:#5b9cf6;"></div></div>
+      <div class="day-val">2nd</div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Tuesday</div>
+      <div class="day-bar-wrap"><div class="day-bar" style="width:72%;background:#888884;"></div></div>
+      <div class="day-val">3rd</div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Wednesday</div>
+      <div class="day-bar-wrap"><div class="day-bar" style="width:64%;background:#888884;"></div></div>
+      <div class="day-val">4th</div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Thursday</div>
+      <div class="day-bar-wrap"><div class="day-bar" style="width:58%;background:#888884;"></div></div>
+      <div class="day-val">5th</div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Friday</div>
+      <div class="day-bar-wrap"><div class="day-bar" style="width:52%;background:#888884;"></div></div>
+      <div class="day-val">6th</div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Saturday</div>
+      <div class="day-bar-wrap"><div class="day-bar" style="width:48%;background:#555552;"></div></div>
+      <div class="day-val">7th</div>
+    </div>
+    <p style="font-size:11px;color:var(--text-dim);font-family:var(--font-mono);margin-top:16px;margin-bottom:0;">Illustrative relative ranking based on historical average daily return patterns from QuantifiedStrategies.com backtesting (2014-2026). Bar widths represent relative ranking only — not absolute return percentages. This is not a precise chart; it visualizes the directional pattern in the data.</p>
+  </div>
+
+  <p>The pattern is consistent: the start of the week (Monday, Sunday) tends to outperform mid-to-late week (Thursday, Friday, Saturday). The structural explanation is the same across all of these — institutional re-engagement at the start of the week creates a price tailwind that buyers late in the week don't capture.</p>
+
+  <h2 id="caveats">The important caveats</h2>
+
+  <p>The Monday advantage is real in the data — but several important caveats keep it in perspective:</p>
+
+  <p><strong>The headline figure overstates the practical edge.</strong> River Financial's analysis of the same dataset found the edge appears smaller — roughly 1.2% — once fees and execution assumptions are included. The 14.36% figure reflects idealized backtest conditions; actual results depend heavily on the exchange, fee structure, and which part of the market cycle you're in.</p>
+
+  <p><strong>Bear markets and bull markets behave differently.</strong> The Monday effect is most pronounced in sideways and early bull market conditions. In full bull market runs — when Bitcoin is in a sustained uptrend — the day-of-week effect diminishes significantly because every day's prices are higher than the week before. The effect matters most when you're accumulating during flat or declining markets.</p>
+
+  <p><strong>Transaction fees can erase the edge.</strong> For smaller DCA amounts (under $50-$100 per purchase), transaction and exchange fees can erode or eliminate the theoretical Monday advantage. If you're paying a 1-2% fee on each purchase, that fee cost matters more than a 1.2% day-of-week edge.</p>
+
+  <p><strong>The pattern could diminish over time.</strong> As Bitcoin matures — with spot ETFs now live, increasing institutional adoption, and more sophisticated market makers providing weekend liquidity — the weekend liquidity gap that creates the Monday effect is gradually narrowing. A pattern that held from 2018-2025 may be less pronounced through 2026-2030.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">Keep this in perspective</div>
+    <p>The difference between the best and worst day to DCA Bitcoin is meaningful over seven years of backtesting — but it's a second-order optimization. The most important variables are whether you DCA at all, how much you contribute, and how long you stay consistent. Spending significant energy optimizing the day of week while neglecting contribution size or consistency is misplaced effort.</p>
+  </div>
+
+  <h2 id="frequency">Day of week vs frequency — which matters more</h2>
+
+  <p>A related and arguably more important question is whether to DCA daily, weekly, biweekly, or monthly. The data here is also clear:</p>
+
+  <table class="example-table">
+    <thead>
+      <tr>
+        <th>Frequency</th>
+        <th>Advantage</th>
+        <th>Disadvantage</th>
+        <th>Best for</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="btc">Weekly (Monday)</td>
+        <td>Best BTC accumulation per dollar historically; captures most volatility events</td>
+        <td>More transactions = higher total fees on some exchanges</td>
+        <td>Most investors; exchanges with low/zero fees</td>
+      </tr>
+      <tr>
+        <td>Biweekly</td>
+        <td>Good balance of accumulation and fee efficiency</td>
+        <td>Misses some optimal entry points vs weekly</td>
+        <td>Mid-range contribution amounts ($100-$300/period)</td>
+      </tr>
+      <tr>
+        <td>Monthly</td>
+        <td>Lowest fee impact; easiest to maintain</td>
+        <td>Less averaging benefit; misses intra-month volatility</td>
+        <td>Small amounts where fees are proportionally large</td>
+      </tr>
+      <tr>
+        <td>Daily</td>
+        <td>Maximum averaging; smoothest cost basis</td>
+        <td>High transaction costs; marginal benefit over weekly</td>
+        <td>Large amounts on zero-fee platforms only</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The dcabtc.com backtests found that weekly DCA outperformed both daily and monthly intervals over the 2018-2025 period — not just day-of-week, but frequency as well. Weekly Monday purchases represent the optimal combination: the best day within the best frequency. For most investors on modern exchanges with low fees, <strong>weekly Monday DCA is the data-backed recommendation</strong>.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">Practical setup</div>
+    <p>Most major exchanges support recurring automatic purchases. On Coinbase, use "Recurring Buy" and set to weekly on Monday. On Binance, use "Auto-Invest" and configure Monday weekly. River Financial offers a "Supercharged DCA" feature that automatically increases purchase amounts during extreme fear periods — useful if you want to implement a sentiment-weighted strategy on top of the Monday timing.</p>
+  </div>
+
+  <h2 id="bottom-line">The practical bottom line</h2>
+
+  <p>If you're already running a weekly Bitcoin DCA and it's set to a day other than Monday — switching to Monday is a free, low-friction optimization that historical data supports. It won't transform your returns, but over years of consistent accumulation, a 1-2% systematic edge in BTC accumulation compounds meaningfully.</p>
+
+  <p>If you're choosing between weekly and monthly DCA — choose weekly. The frequency advantage is larger than the day-of-week advantage. Weekly DCA captures more volatility events, provides more averaging opportunities, and has consistently outperformed monthly over the historical backtesting period.</p>
+
+  <p>If you're debating whether to start DCA at all — the day of week is a third-order consideration. Start now, contribute consistently, and optimize timing later. An investor who starts daily DCA on Friday is infinitely better positioned than an investor who waits for the perfect Monday entry that never quite feels right.</p>
+
+  <div class="cta-box">
+    <h3>Backtest your Bitcoin DCA strategy</h3>
+    <p>See what weekly vs monthly DCA into Bitcoin would have returned historically — compare frequencies and see the actual difference in BTC accumulated.</p>
+    <a href="../dca-backtest.html" class="cta-btn">Try the DCA backtest calculator</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>If you already DCA into Bitcoin, switching to Monday is a reasonable historical optimization. The backtest data is consistent over seven years, and the real-world edge — while smaller than the headline figure — is real enough to act on. But it's a second-order improvement, not a strategy transformation.</p>
+
+  <p>Frequency and consistency matter more. An investor who DCA's weekly on Friday for five years will significantly outperform one who DCA's monthly on Mondays. The day of week is the last thing to optimize, not the first.</p>
+
+  <p>If you're optimizing: weekly frequency first, Monday second, automate it, and let it run.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute financial advice. Past backtesting results do not guarantee future performance. Bitcoin is a highly volatile asset. Day-of-week patterns observed historically may not persist as market structure evolves. Only invest what you can afford to lose. Consult a qualified financial advisor before making investment decisions.</p>
+  </div>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">JC</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
+    </div>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+window.addEventListener('load', function() {
+  var btn = document.getElementById('nav-hamburger');
+  var menu = document.getElementById('nav-mobile-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+  document.querySelectorAll('.dropdown').forEach(function(dd) {
+    var m = dd.querySelector('.dropdown-menu');
+    if (!m) return;
+    var t;
+    dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+    m.addEventListener('mouseenter', function() { clearTimeout(t); });
+    m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+  });
+});
+</script>
+
+</body>
+</html>

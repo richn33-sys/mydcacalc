@@ -28,7 +28,8 @@
     { href: 'investing-during-high-interest-rates.html',     label: 'High interest rates' },
     { href: 'ethereum-glamsterdam-upgrade-2026.html',         label: 'Ethereum Glamsterdam' },
     { href: 'ai-stocks-vs-traditional-value.html',           label: 'AI vs Value stocks' },
-    { href: 'should-you-dca-into-ai-crypto-tokens.html',    label: 'DCA into AI crypto' }
+    { href: 'should-you-dca-into-ai-crypto-tokens.html',    label: 'DCA into AI crypto' },
+    { href: 'best-day-to-dca-bitcoin.html',                  label: 'Best day to DCA' }
   ];
 
   var guideRoot = root + 'guides/';
