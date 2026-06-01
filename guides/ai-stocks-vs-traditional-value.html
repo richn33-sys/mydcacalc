@@ -332,36 +332,5 @@ footer a:hover { color: var(--text); }
   </p>
 </footer>
 
-<script>
-window.addEventListener('load', function() {
-  var btn = document.getElementById('nav-hamburger');
-  var menu = document.getElementById('nav-mobile-menu');
-  if (!btn || !menu) return;
-  btn.addEventListener('click', function() {
-    var open = menu.classList.toggle('open');
-    btn.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      menu.classList.remove('open');
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    });
-  });
-  // Dropdown hover
-  document.querySelectorAll('.dropdown').forEach(function(dd) {
-    var m = dd.querySelector('.dropdown-menu');
-    if (!m) return;
-    var t;
-    dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
-    dd.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
-    m.addEventListener('mouseenter', function() { clearTimeout(t); });
-    m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
-  });
-});
-</script>
 </body>
 </html>
