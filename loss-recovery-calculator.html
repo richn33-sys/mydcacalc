@@ -178,7 +178,41 @@ footer a:hover { color: var(--text); }
 
 <header>
   <a href="/" class="logo">mydca<span>calc</span>.com</a>
-  <div id="nav-root"></div><script src="nav.js"></script>
+  <nav>
+    <a href="/">DCA</a>
+    <a href="position-size.html">Position size</a>
+    <a href="compound-interest.html">Compound interest</a>
+    <a href="dca-backtest.html">DCA backtest</a>
+    <a href="loss-recovery-calculator.html">Loss recovery</a>
+    <a href="drip-calculator.html">DRIP</a>
+    <a href="inflation-calculator.html">Real returns</a>
+    <a href="asset-allocation.html">Asset allocation</a>
+    <a href="fire-calculator.html">FIRE</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+        <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+        <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+        <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+        <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+        <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+        <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
+        <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   </header>
 
 <!-- Mobile nav menu -->
@@ -571,5 +605,35 @@ document.querySelectorAll('.dropdown').forEach(dd => {
 calc();
 </script>
 
+<script>
+window.addEventListener('load', function() {
+  var btn = document.getElementById('nav-hamburger');
+  var menu = document.getElementById('nav-mobile-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+  document.querySelectorAll('.dropdown').forEach(function(dd) {
+    var m = dd.querySelector('.dropdown-menu');
+    if (!m) return;
+    var t;
+    dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display='block'; });
+    dd.addEventListener('mouseleave', function() { t=setTimeout(function(){m.style.display='none';},300); });
+    m.addEventListener('mouseenter', function() { clearTimeout(t); });
+    m.addEventListener('mouseleave', function() { t=setTimeout(function(){m.style.display='none';},300); });
+  });
+});
+</script>
 </body>
 </html>
