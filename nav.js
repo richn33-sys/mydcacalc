@@ -11,7 +11,8 @@
     { href: 'loss-recovery-calculator.html', label: 'Loss recovery' },
     { href: 'drip-calculator.html',          label: 'DRIP' },
     { href: 'inflation-calculator.html',     label: 'Real returns' },
-    { href: 'asset-allocation.html',         label: 'Asset allocation' }
+    { href: 'asset-allocation.html',         label: 'Asset allocation' },
+    { href: 'fire-calculator.html',           label: 'FIRE' }
   ];
 
   var guides = [
