@@ -123,7 +123,9 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── asset-allocation.html                         ← Asset Allocation & Risk Tolerance Quiz (NEW May 22)
 ├── drip-calculator.html                          ← DRIP Dividend Reinvestment Calculator (NEW May 27)
 ├── loss-recovery-calculator.html                 ← Investment Loss Recovery / Break-Even Calculator (NEW May 28)
-├── nav.js                                         ← Centralized nav (calculators + guides arrays)
+├── fire-calculator.html                          ← FIRE Calculator (9th calculator, NEW Jun 1)
+├── rebalancing-calculator.html                   ← Portfolio Rebalancing Calculator (10th calculator, NEW Jun 1)
+├── nav.js                                         ← ABANDONED — no page loads it; nav is hardcoded per-page (see Nav structure)
 ├── about.html
 ├── privacy.html
 ├── terms.html
@@ -136,7 +138,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 13 guides published, counter = 13
+│   ├── index.html                                ← 16 guides published; ⚠️ counter still reads 13 — needs update
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -149,7 +151,10 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── strategic-bitcoin-reserve-dca.html        ← NEW May 20
 │   ├── investing-during-high-interest-rates.html ← NEW May 26
 │   ├── ethereum-glamsterdam-upgrade-2026.html    ← NEW May 28
-│   └── ai-stocks-vs-traditional-value.html       ← NEW May 29
+│   ├── ai-stocks-vs-traditional-value.html       ← NEW May 29
+│   ├── should-you-dca-into-ai-crypto-tokens.html ← NEW Jun 1 (14th guide)
+│   ├── best-day-to-dca-bitcoin.html              ← NEW Jun 1 (15th guide)
+│   └── 4-percent-rule-explained.html             ← NEW Jun 1 (16th guide)
 └── CLAUDE.md
 ```
 ---
@@ -167,17 +172,18 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - **Borders:** `rgba(255,255,255,0.08)`
 - **Border radius:** 10px (components), 16px (cards)
 - **Favicon:** SVG data URI — dark bg, "DCA" in accent green
-### Nav structure (as of May 29 2026):
-- Centralized in `nav.js` — all 23 content pages include it (privacy.html and terms.html do not). Edit nav.js once; do NOT hand-edit each page.
-- Header (calculators array order): DCA · Position size · Compound interest · DCA backtest · Loss recovery · DRIP · Real returns · Asset allocation · Guides ▾
-- ✅ Nav consistent across all pages by construction (single shared nav.js)
-- Guides dropdown: 13 guides + "All guides →"
+### Nav structure (as of Jun 2 2026):
+- ⚠️ `nav.js` was ABANDONED. No page loads it (`grep -L "nav.js"` confirms 0 script references). The file still sits in the repo but is vestigial/stale — do NOT treat it as the source of truth. Safe to delete in a future cleanup.
+- Nav is now HARDCODED into every page, updated via Python regex scripts when a calculator or guide is added.
+- Header (calculators order): DCA · Position size · Compound interest · DCA backtest · Loss recovery · DRIP · Real returns · Asset allocation · FIRE · Rebalancing · Guides ▾
+- Guides dropdown: 16 guides + "All guides →"
 - Root pages: `href="guides/page.html"` for guide links
 - Guide pages: `href="../page.html"` for root, `href="page.html"` for guides
 - Authors pages: `href="../page.html"` for root, `href="../guides/page.html"` for guides
 - Dropdown: JS hover with 300ms delay
+- Mobile hamburger menu fixed site-wide Jun 1 — confirmed working on iOS
 ### Updating nav across all pages:
-Nav is now centralized in `nav.js`. When adding a new guide or calculator, add one entry to the `calculators` or `guides` array in nav.js — every page picks it up automatically. Do NOT manually edit each file or run per-page regex scripts.
+Nav is hardcoded per-page. When adding a new guide or calculator, run the Python update scripts that rewrite the nav block across all pages — do NOT rely on nav.js (abandoned) and do NOT hand-edit each file individually.
 ---
 ## Pages & Calculators
 ### index.html — DCA Calculator
@@ -211,6 +217,18 @@ Nav is now centralized in `nav.js`. When adding a new guide or calculator, add o
 - **Competitive edge:** dcaBTC.com only does Bitcoin — this does 4 assets
 - **Keywords:** dca backtest calculator, bitcoin dca backtest, S&P 500 DCA calculator
 - **Sitemap:** Added at priority 0.9
+
+### fire-calculator.html — FIRE Calculator (9th calculator, NEW Jun 1 2026)
+- Financial Independence / Retire Early calculator
+- Inputs: current age, savings, annual income/expenses, savings rate, expected return
+- Outputs: FIRE number, years to FI, projected retirement age
+- **Keywords:** FIRE calculator, financial independence retire early calculator
+
+### rebalancing-calculator.html — Portfolio Rebalancing Calculator (10th calculator, NEW Jun 1 2026)
+- Calculates buy/sell amounts to return a portfolio to target allocation
+- Inputs: holdings + current values, target % per asset, new contribution
+- Outputs: per-asset drift and rebalancing trades
+- **Keywords:** portfolio rebalancing calculator, asset allocation rebalance
 ---
 ## Author Personas
 ### James Colter — Long-term Investor & Personal Finance Writer
@@ -227,7 +245,7 @@ Nav is now centralized in `nav.js`. When adding a new guide or calculator, add o
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 ---
-## Guides Section (13 published as of May 29 2026)
+## Guides Section (16 published as of Jun 1 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -243,6 +261,9 @@ Nav is now centralized in `nav.js`. When adding a new guide or calculator, add o
 | investing-during-high-interest-rates.html | James Colter | ✅ Live | May 26 2026 |
 | ethereum-glamsterdam-upgrade-2026.html | James Colter | ✅ Live | May 28 2026 |
 | ai-stocks-vs-traditional-value.html | James Colter | ✅ Live | May 29 2026 |
+| should-you-dca-into-ai-crypto-tokens.html | James Colter | ✅ Live | Jun 1 2026 |
+| best-day-to-dca-bitcoin.html | James Colter | ✅ Live | Jun 1 2026 |
+| 4-percent-rule-explained.html | James Colter | ✅ Live | Jun 1 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -356,6 +377,8 @@ Nav is now centralized in `nav.js`. When adding a new guide or calculator, add o
 | inflation-calculator.html | inflation adjusted returns calculator |
 | asset-allocation.html | asset allocation calculator risk tolerance quiz |
 | loss-recovery-calculator.html | investment loss recovery calculator / break even calculator |
+| fire-calculator.html | FIRE calculator / financial independence retire early |
+| rebalancing-calculator.html | portfolio rebalancing calculator |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -369,6 +392,9 @@ Nav is now centralized in `nav.js`. When adding a new guide or calculator, add o
 | guides/investing-during-high-interest-rates.html | investing during high interest rates |
 | guides/ethereum-glamsterdam-upgrade-2026.html | ethereum glamsterdam upgrade 2026 |
 | guides/ai-stocks-vs-traditional-value.html | ai stocks vs value stocks |
+| guides/should-you-dca-into-ai-crypto-tokens.html | should you dca into ai crypto tokens |
+| guides/best-day-to-dca-bitcoin.html | best day to dca bitcoin |
+| guides/4-percent-rule-explained.html | 4 percent rule retirement withdrawal |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -441,8 +467,9 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Run manually:** `python3 ~/Desktop/ClaudeWork/mydcacalc_research/research_agent.py`
 - **Update CURRENT_GUIDES** whenever a new guide is published
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
+- **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of May 29 2026):
+### Current CURRENT_GUIDES (as of Jun 2 2026 — verified against disk, 16 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging",
@@ -458,10 +485,13 @@ CURRENT_GUIDES = [
     "How to invest when interest rates are high and cuts keep getting delayed",
     "Ethereum Glamsterdam upgrade 2026: what it means for ETH investors",
     "AI stocks vs traditional value: how to balance your portfolio in 2026",
+    "Should you DCA into AI crypto tokens",
+    "The best day to DCA Bitcoin: why Monday has historically outperformed",
+    "The 4% rule explained: is it still valid in 2026",
 ]
 ```
 
-### Current CURRENT_CALCULATORS (as of May 29 2026):
+### Current CURRENT_CALCULATORS (as of Jun 2 2026 — verified against disk, 10 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator",
@@ -472,11 +502,21 @@ CURRENT_CALCULATORS = [
     "Asset allocation and risk tolerance quiz",
     "DRIP calculator (dividend reinvestment calculator)",
     "Investment loss recovery / break-even calculator",
+    "FIRE calculator (financial independence, retire early)",
+    "Portfolio rebalancing calculator",
 ]
 ```
 ---
 ## Roadmap
 ### Done ✅
+- [x] FIRE Calculator (9th calculator) — Jun 1 2026
+- [x] Portfolio Rebalancing Calculator (10th calculator) — Jun 1 2026
+- [x] Should you DCA into AI crypto tokens guide (14th guide) — Jun 1 2026
+- [x] Best day to DCA Bitcoin guide (15th guide) — Jun 1 2026
+- [x] The 4% rule explained guide (16th guide) — Jun 1 2026
+- [x] Mobile hamburger menu fixed site-wide — confirmed working on iOS (Jun 1)
+- [x] FIRE + Rebalancing calculators added to all page navs (Jun 1)
+- [x] Research agent retuned — evergreen-only focus + no-repeat instruction
 - [x] 3 original calculators live
 - [x] DCA Backtest Simulator (4th calculator) — May 19 2026
 - [x] Inflation-Adjusted Returns Calculator (5th calculator) — May 21 2026
@@ -521,6 +561,14 @@ CURRENT_CALCULATORS = [
 - [x] **Ethereum Glamsterdam upgrade guide** — published May 28 2026 (12th guide) ✅
 - [x] **Break-Even Recovery Calculator** — built and deployed as loss-recovery-calculator.html (8th calculator), May 28 2026 ✅
 - [x] **AI stocks vs traditional value guide** — published May 29 2026 (13th guide) ✅
+- [x] **FIRE Calculator** — built and deployed (9th calculator), Jun 1 2026 ✅
+- [x] **Portfolio Rebalancing Calculator** — built and deployed (10th calculator), Jun 1 2026 ✅
+- [x] **Mobile hamburger menu fix** — fixed site-wide, working on iOS (Jun 1) ✅
+- [ ] **Investment Fee Impact Calculator** — next calculator to build
+- [ ] **Crypto DCA Portfolio guide** — next guide to write
+- [ ] **Portfolio Diversification guide** — next guide to write
+- [ ] ⚠️ **Fix guides/index.html counter** — still reads 13, should read 16
+- [ ] ⚠️ **Delete vestigial nav.js** — no page loads it; nav is hardcoded per-page
 - [ ] **Build Reddit karma** — new account needs comments before posting
 - [ ] Update Strategic Bitcoin Reserve guide when announcement drops
 - [ ] List Content Research Agent on Gumroad ($39)
@@ -532,6 +580,22 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 2 2026 — Calculators + Guides Build Session
+- FIRE Calculator built and deployed (9th calculator, fire-calculator.html) — Jun 1
+- Portfolio Rebalancing Calculator built and deployed (10th calculator, rebalancing-calculator.html) — Jun 1
+- Should you DCA into AI crypto tokens guide published (James Colter, 14th guide) — Jun 1
+- Best day to DCA Bitcoin guide published (James Colter, 15th guide) — Jun 1
+- The 4% rule explained guide published (James Colter, 16th guide) — Jun 1
+- Mobile hamburger menu fixed site-wide — confirmed working on iOS
+- FIRE + Rebalancing calculators added to all page navs
+- Research agent retuned: evergreen-only focus + no-repeat instruction added to prompt
+- **nav.js abandoned** — centralization attempt reverted; no page loads nav.js anymore, nav is hardcoded per-page and updated via Python regex scripts. nav.js left in repo as vestigial (flagged for deletion).
+- Sitemap now ~30 URLs (27 `<loc>` entries confirmed on disk)
+- Next priorities set: Investment Fee Impact Calculator, Crypto DCA Portfolio guide, Portfolio Diversification guide
+- **Audit (research_agent.py vs disk):** CURRENT_GUIDES was stale (only 10 of 16) and CURRENT_CALCULATORS had a duplicate "Portfolio rebalancing calculator" entry + was missing asset-allocation and FIRE — both lists corrected to match disk (16 guides / 10 calculators)
+- ⚠️ **Numbering note:** disk holds exactly 10 calculator pages, so FIRE = 9th and Rebalancing = 10th (not 10th/11th)
+- ⚠️ **Open issues found:** guides/index.html counter still reads 13 (should be 16); nav.js is dead code
 
 ### May 30 2026 — Post-Launch Build Session
 - Loss Recovery / Break-Even Calculator built and deployed (8th calculator) — May 28
