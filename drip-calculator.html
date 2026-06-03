@@ -180,12 +180,12 @@ footer a:hover { color: var(--text); }
 <header>
   <a href="/" class="logo">mydca<span>calc</span>.com</a>
   <nav>
-    <a href="/">DCA</a>
+    <a href="">DCA</a>
     <a href="position-size.html">Position size</a>
     <a href="compound-interest.html">Compound interest</a>
     <a href="dca-backtest.html">DCA backtest</a>
     <a href="loss-recovery-calculator.html">Loss recovery</a>
-    <a href="drip-calculator.html">DRIP</a>
+    <a href="drip-calculator.html" class="active">DRIP</a>
     <a href="inflation-calculator.html">Real returns</a>
     <a href="asset-allocation.html">Asset allocation</a>
     <a href="fire-calculator.html">FIRE</a>
@@ -219,7 +219,7 @@ footer a:hover { color: var(--text); }
   </button>
   </header>
 <div class="nav-mobile-menu" id="nav-mobile-menu">
-  <a href="/">DCA calculator</a>
+  <a href="">DCA</a>
   <a href="position-size.html">Position size</a>
   <a href="compound-interest.html">Compound interest</a>
   <a href="dca-backtest.html">DCA backtest</a>
@@ -227,7 +227,7 @@ footer a:hover { color: var(--text); }
   <a href="drip-calculator.html">DRIP</a>
   <a href="inflation-calculator.html">Real returns</a>
   <a href="asset-allocation.html">Asset allocation</a>
-  <a href="fire-calculator.html">FIRE calculator</a>
+  <a href="fire-calculator.html">FIRE</a>
   <a href="rebalancing-calculator.html">Rebalancing</a>
   <a href="fee-calculator.html">Fee impact</a>
   <span class="mobile-guides-label">Guides</span>
@@ -658,10 +658,10 @@ window.addEventListener('load', function() {
     var m = dd.querySelector('.dropdown-menu');
     if (!m) return;
     var t;
-    dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display='block'; });
-    dd.addEventListener('mouseleave', function() { t=setTimeout(function(){m.style.display='none';},300); });
+    dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
     m.addEventListener('mouseenter', function() { clearTimeout(t); });
-    m.addEventListener('mouseleave', function() { t=setTimeout(function(){m.style.display='none';},300); });
+    m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
   });
 });
 </script>
