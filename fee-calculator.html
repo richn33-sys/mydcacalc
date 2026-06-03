@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Fee Calculator — See How Fees Destroy Your Returns</title>
+<meta name="description" content="Free investment fee impact calculator. See exactly how much a 1% fee costs you over 20, 30, or 40 years. Compare low-cost vs high-cost funds side by side.">
+<meta name="keywords" content="investment fee calculator, expense ratio calculator, how much do fees cost, fund fee impact calculator, 1% fee cost long term">
+<meta property="og:title" content="Investment Fee Calculator — See How Much Fees Really Cost You">
+<meta property="og:description" content="A 1% annual fee on a $100K portfolio costs over $100K over 30 years. See exactly how fees erode your wealth over time.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/fee-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/fee-calculator.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Investment Fee Impact Calculator",
+  "description": "See exactly how investment fees erode your wealth over time and compare low vs high cost funds",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover { color: var(--accent); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+
+/* Hero */
+.hero { max-width: 800px; margin: 0 auto; padding: 40px 24px 20px; text-align: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(240,96,96,0.1); border: 1px solid rgba(240,96,96,0.3); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--red); margin-bottom: 20px; }
+h1 { font-size: clamp(24px, 4vw, 36px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 12px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 15px; color: var(--text-muted); font-weight: 300; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+/* Calc layout */
+.calc-wrap { max-width: 800px; margin: 0 auto 24px; padding: 24px 24px 0; }
+.calc-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+
+/* Controls */
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+@media (max-width: 520px) { .controls { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label { font-size: 11px; font-weight: 500; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; font-family: var(--font-mono); }
+.field .hint { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 2px; }
+.input-wrap { position: relative; display: flex; align-items: center; }
+.input-prefix { position: absolute; left: 12px; font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); pointer-events: none; }
+input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-family: var(--font-mono); font-size: 15px; padding: 10px 12px; outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+.has-prefix input[type="number"] { padding-left: 26px; }
+input[type="number"]:focus { border-color: var(--accent-border); }
+.range-wrap { display: flex; flex-direction: column; gap: 6px; }
+.range-header { display: flex; justify-content: space-between; align-items: center; }
+.range-val { font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--accent); }
+.range-val.red { color: var(--red); }
+input[type="range"] { width: 100%; height: 4px; appearance: none; background: var(--bg-input); border-radius: 2px; outline: none; border: 1px solid var(--border); cursor: pointer; }
+input[type="range"]::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid var(--bg-card); box-shadow: 0 0 0 1px var(--accent-border); }
+
+/* Fee comparison row */
+.fee-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+@media (max-width: 520px) { .fee-row { grid-template-columns: 1fr; } }
+.fee-card { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.fee-card.low { border-color: rgba(62,207,142,0.3); }
+.fee-card.high { border-color: rgba(240,96,96,0.3); }
+.fee-card-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+.fee-card.low .fee-card-label { color: var(--green); }
+.fee-card.high .fee-card-label { color: var(--red); }
+.fee-input-row { display: flex; align-items: center; gap: 8px; }
+.fee-input-row label { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); white-space: nowrap; }
+.fee-input-wrap { position: relative; flex: 1; }
+.fee-suffix { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+
+/* Metrics */
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 28px; }
+@media (max-width: 520px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+.metric { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.metric-label { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.metric-value { font-family: var(--font-mono); font-size: 18px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
+.metric-value.accent { color: var(--accent); }
+.metric-value.green { color: var(--green); }
+.metric-value.red { color: var(--red); }
+
+/* Chart */
+.chart-container { position: relative; width: 100%; height: 260px; margin-bottom: 14px; }
+.chart-legend { display: flex; gap: 20px; justify-content: flex-end; margin-bottom: 20px; }
+.legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+/* Fee table */
+.fee-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+.fee-table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: var(--font-mono); min-width: 500px; }
+.fee-table th { background: var(--bg-input); padding: 10px 14px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.fee-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.fee-table tr:last-child td { border-bottom: none; color: var(--text); font-weight: 500; }
+.fee-table td.green { color: var(--green); }
+.fee-table td.red { color: var(--red); }
+.fee-table td.accent { color: var(--accent); }
+
+/* Info + disclaimer */
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 16px; }
+.info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.info-box strong { color: var(--text); font-weight: 500; }
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 16px; }
+
+/* Content section */
+.content-section { max-width: 800px; margin: 0 auto; padding: 0 24px 60px; }
+
+/* Pro banner */
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your actual investment returns</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="/">DCA</a>
+    <a href="compound-interest.html">Compound interest</a>
+    <a href="inflation-calculator.html">Real returns</a>
+    <a href="fee-calculator.html" class="active">Fee impact</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+        <a href="guides/index.html" style="color:var(--accent);">All guides →</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="/">DCA calculator</a>
+  <a href="compound-interest.html">Compound interest</a>
+  <a href="inflation-calculator.html">Real returns</a>
+  <a href="fee-calculator.html">Fee impact</a>
+  <span class="mobile-guides-label">Guides</span>
+  <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">⚠ Fees compound too — against you</div>
+  <h1>Investment <em>Fee Impact</em> Calculator</h1>
+  <p>See exactly how much a 0.5%, 1%, or 1.5% annual fee costs you over time — and how much more you keep by switching to a low-cost fund.</p>
+</div>
+
+<div class="calc-wrap">
+  <div class="calc-card">
+
+    <div class="controls">
+      <div class="field">
+        <label>Initial investment</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="initial" value="50000" min="1000" step="5000" oninput="calc()">
+        </div>
+        <span class="hint">Starting portfolio value</span>
+      </div>
+      <div class="field">
+        <label>Annual contribution</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="annual" value="12000" min="0" step="1000" oninput="calc()">
+        </div>
+        <span class="hint">Added each year</span>
+      </div>
+      <div class="field range-wrap">
+        <label>Gross annual return</label>
+        <div class="range-header">
+          <span style="font-size:11px;color:var(--text-dim);font-family:var(--font-mono);">Before fees</span>
+          <span class="range-val" id="return-val">7%</span>
+        </div>
+        <input type="range" id="return-rate" min="3" max="15" value="7" step="0.5"
+          oninput="document.getElementById('return-val').textContent=this.value+'%';calc()">
+      </div>
+      <div class="field range-wrap">
+        <label>Time horizon</label>
+        <div class="range-header">
+          <span style="font-size:11px;color:var(--text-dim);font-family:var(--font-mono);">Years invested</span>
+          <span class="range-val" id="years-val">30 yrs</span>
+        </div>
+        <input type="range" id="years" min="5" max="50" value="30" step="1"
+          oninput="document.getElementById('years-val').textContent=this.value+' yrs';calc()">
+      </div>
+    </div>
+
+    <!-- Fee comparison -->
+    <div class="fee-row">
+      <div class="fee-card low">
+        <div class="fee-card-label">Low-cost fund</div>
+        <div class="fee-input-row">
+          <label>Expense ratio</label>
+          <div class="fee-input-wrap">
+            <input type="number" id="fee-low" value="0.03" min="0" max="5" step="0.01"
+              style="padding-right:28px;" oninput="calc()">
+            <span class="fee-suffix">%</span>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--text-dim);font-family:var(--font-mono);margin-top:6px;">e.g. Vanguard VTI = 0.03%</div>
+      </div>
+      <div class="fee-card high">
+        <div class="fee-card-label">High-cost fund</div>
+        <div class="fee-input-row">
+          <label>Expense ratio</label>
+          <div class="fee-input-wrap">
+            <input type="number" id="fee-high" value="1.00" min="0" max="5" step="0.01"
+              style="padding-right:28px;" oninput="calc()">
+            <span class="fee-suffix">%</span>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--text-dim);font-family:var(--font-mono);margin-top:6px;">e.g. active managed fund avg</div>
+      </div>
+    </div>
+
+    <!-- Metrics -->
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Low-cost value</div>
+        <div class="metric-value green" id="low-value">$0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">High-cost value</div>
+        <div class="metric-value red" id="high-value">$0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Fee drag cost</div>
+        <div class="metric-value red" id="fee-cost">$0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">% lost to fees</div>
+        <div class="metric-value accent" id="fee-pct">0%</div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#3ecf8e;"></div>Low-cost fund</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#f06060;"></div>High-cost fund</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#333;border:1px dashed #555;"></div>Total invested</div>
+    </div>
+    <div class="chart-container">
+      <canvas id="fee-chart"></canvas>
+    </div>
+
+    <!-- Year-by-year table -->
+    <div class="fee-table-wrap">
+      <table class="fee-table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Low-cost value</th>
+            <th>High-cost value</th>
+            <th>Fee drag to date</th>
+            <th>Annual fee paid</th>
+          </tr>
+        </thead>
+        <tbody id="fee-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <p><strong>Why fees matter so much:</strong> Investment fees compound against you every year, just like returns compound for you. A 1% annual fee doesn't cost 1% of your final portfolio — it costs far more because every dollar lost to fees today can't compound over the remaining years. On a $100,000 portfolio earning 7% for 30 years, the difference between 0.03% and 1% fees is over $180,000 in lost wealth.</p>
+    </div>
+
+    <div class="disclaimer">
+      Fee calculations assume fees are deducted annually from portfolio value. Actual fund expenses may be deducted differently. Does not account for taxes, advisor fees, transaction costs, or fund performance differences. Low-cost funds don't guarantee better performance — they guarantee lower costs. This calculator is for educational purposes only. Not financial advice.
+    </div>
+
+  </div>
+</div>
+
+<div class="content-section">
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the fee impact calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">An expense ratio is the annual fee a fund charges as a percentage of your investment. It's deducted automatically — you never write a check, which is exactly why most investors underestimate its impact. A 1% annual fee on a $100,000 portfolio is $1,000 in year one. But in year 30 of a growing portfolio, that same 1% is tens of thousands per year — and every dollar paid in fees is a dollar that can't compound for the remaining years.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator compares two funds side by side — a low-cost index fund (like Vanguard VTI at 0.03%) and a higher-cost active fund (typical average ~1%). The difference in final portfolio value is your "fee drag" — the wealth destroyed by higher fees over your investing lifetime.</p>
+  <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:28px 0 12px;">How to use this calculator</h3>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;">
+    <li style="margin-bottom:10px;">Enter your initial investment, annual contribution, expected gross return, and time horizon.</li>
+    <li style="margin-bottom:10px;">Set the low-cost fee (check your index fund's expense ratio — most are 0.03–0.20%).</li>
+    <li style="margin-bottom:10px;">Set the high-cost fee (check your current fund's expense ratio in its prospectus or on Morningstar).</li>
+    <li style="margin-bottom:10px;">The fee drag figure shows exactly how much wealth you lose by choosing the higher-cost fund.</li>
+  </ul>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Fees reduce your real return alongside inflation. Use the <a href="inflation-calculator.html" style="color:#c8f060;text-decoration:none;">inflation-adjusted returns calculator</a> to see the combined effect of both on your purchasing power.</p>
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For informational purposes only. Not financial advice.
+  </p>
+</footer>
+
+<script>
+let chart = null;
+
+function fmt(n) {
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function calc() {
+  const initial  = parseFloat(document.getElementById('initial').value) || 0;
+  const annual   = parseFloat(document.getElementById('annual').value) || 0;
+  const ret      = parseFloat(document.getElementById('return-rate').value) / 100;
+  const years    = parseInt(document.getElementById('years').value);
+  const feeLow   = parseFloat(document.getElementById('fee-low').value) / 100;
+  const feeHigh  = parseFloat(document.getElementById('fee-high').value) / 100;
+
+  const retLow  = ret - feeLow;
+  const retHigh = ret - feeHigh;
+
+  // Build yearly data
+  const labels = [], lowData = [], highData = [], investedData = [];
+  const tableRows = [];
+  let lowVal = initial, highVal = initial, invested = initial;
+
+  for (let y = 1; y <= years; y++) {
+    lowVal  = (lowVal + annual)  * (1 + retLow);
+    highVal = (highVal + annual) * (1 + retHigh);
+    invested += annual;
+
+    const drag = lowVal - highVal;
+    const annualFee = highVal * feeHigh;
+
+    labels.push('Yr ' + y);
+    lowData.push(Math.round(lowVal));
+    highData.push(Math.round(highVal));
+    investedData.push(Math.round(invested));
+
+    if (y % 5 === 0 || y === years) {
+      tableRows.push({ y, lowVal, highVal, drag, annualFee });
+    }
+  }
+
+  const feeDrag = lowVal - highVal;
+  const feePct  = lowVal > 0 ? (feeDrag / lowVal * 100) : 0;
+
+  // Update metrics
+  document.getElementById('low-value').textContent  = fmt(lowVal);
+  document.getElementById('high-value').textContent = fmt(highVal);
+  document.getElementById('fee-cost').textContent   = fmt(feeDrag);
+  document.getElementById('fee-pct').textContent    = feePct.toFixed(1) + '%';
+
+  // Update table
+  document.getElementById('fee-tbody').innerHTML = tableRows.map(r => `
+    <tr>
+      <td>Year ${r.y}</td>
+      <td class="green">${fmt(r.lowVal)}</td>
+      <td class="red">${fmt(r.highVal)}</td>
+      <td class="accent">${fmt(r.drag)}</td>
+      <td class="red">−${fmt(r.annualFee)}</td>
+    </tr>`).join('');
+
+  // Update chart
+  updateChart(labels, lowData, highData, investedData);
+}
+
+function updateChart(labels, low, high, invested) {
+  const ctx = document.getElementById('fee-chart').getContext('2d');
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Low-cost fund', data: low, borderColor: '#3ecf8e', backgroundColor: 'rgba(62,207,142,0.07)', borderWidth: 2, pointRadius: 0, fill: true, tension: 0.3 },
+        { label: 'High-cost fund', data: high, borderColor: '#f06060', backgroundColor: 'rgba(240,96,96,0.05)', borderWidth: 2, pointRadius: 0, fill: true, tension: 0.3 },
+        { label: 'Total invested', data: invested, borderColor: 'rgba(255,255,255,0.15)', backgroundColor: 'transparent', borderWidth: 1.5, borderDash: [4,3], pointRadius: 0, fill: false, tension: 0.3 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141416', borderColor: 'rgba(255,255,255,0.08)', borderWidth: 1,
+          titleColor: '#f0efe8', bodyColor: '#888884',
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          padding: 12,
+          callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + (ctx.raw >= 1e6 ? '$'+(ctx.raw/1e6).toFixed(2)+'M' : '$'+ctx.raw.toLocaleString()) }
+        }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 10 } },
+        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1e6 ? '$'+(v/1e6).toFixed(1)+'M' : v >= 1e3 ? '$'+(v/1e3).toFixed(0)+'K' : '$'+v } }
+      }
+    }
+  });
+}
+
+// Dropdowns
+document.querySelectorAll('.dropdown').forEach(function(dd) {
+  var m = dd.querySelector('.dropdown-menu'), t;
+  dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display='block'; });
+  dd.addEventListener('mouseleave', function() { t=setTimeout(function(){m.style.display='none';},300); });
+  m.addEventListener('mouseenter', function() { clearTimeout(t); });
+  m.addEventListener('mouseleave', function() { t=setTimeout(function(){m.style.display='none';},300); });
+});
+
+// Mobile menu
+window.addEventListener('load', function() {
+  var btn = document.getElementById('nav-hamburger');
+  var menu = document.getElementById('nav-mobile-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+});
+
+calc();
+</script>
+
+</body>
+</html>

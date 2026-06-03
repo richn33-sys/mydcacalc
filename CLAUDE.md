@@ -125,7 +125,6 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── loss-recovery-calculator.html                 ← Investment Loss Recovery / Break-Even Calculator (NEW May 28)
 ├── fire-calculator.html                          ← FIRE Calculator (9th calculator, NEW Jun 1)
 ├── rebalancing-calculator.html                   ← Portfolio Rebalancing Calculator (10th calculator, NEW Jun 1)
-├── nav.js                                         ← ABANDONED — no page loads it; nav is hardcoded per-page (see Nav structure)
 ├── about.html
 ├── privacy.html
 ├── terms.html
@@ -138,7 +137,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 16 guides published; ⚠️ counter still reads 13 — needs update
+│   ├── index.html                                ← 16 guides published; counter reads 16 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -173,7 +172,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - **Border radius:** 10px (components), 16px (cards)
 - **Favicon:** SVG data URI — dark bg, "DCA" in accent green
 ### Nav structure (as of Jun 2 2026):
-- ⚠️ `nav.js` was ABANDONED. No page loads it (`grep -L "nav.js"` confirms 0 script references). The file still sits in the repo but is vestigial/stale — do NOT treat it as the source of truth. Safe to delete in a future cleanup.
+- `nav.js` was ABANDONED and DELETED (Jun 2 2026) — no page ever loaded it (`grep -L "nav.js"` confirmed 0 script references). It is gone from the repo; nav is hardcoded per-page (see below).
 - Nav is now HARDCODED into every page, updated via Python regex scripts when a calculator or guide is added.
 - Header (calculators order): DCA · Position size · Compound interest · DCA backtest · Loss recovery · DRIP · Real returns · Asset allocation · FIRE · Rebalancing · Guides ▾
 - Guides dropdown: 16 guides + "All guides →"
@@ -565,10 +564,11 @@ CURRENT_CALCULATORS = [
 - [x] **Portfolio Rebalancing Calculator** — built and deployed (10th calculator), Jun 1 2026 ✅
 - [x] **Mobile hamburger menu fix** — fixed site-wide, working on iOS (Jun 1) ✅
 - [ ] **Investment Fee Impact Calculator** — next calculator to build
-- [ ] **Crypto DCA Portfolio guide** — next guide to write
-- [ ] **Portfolio Diversification guide** — next guide to write
-- [ ] ⚠️ **Fix guides/index.html counter** — still reads 13, should read 16
-- [ ] ⚠️ **Delete vestigial nav.js** — no page loads it; nav is hardcoded per-page
+- [ ] **Crypto DCA Portfolio guide (BTC/ETH/SOL)** — next guide to write
+- [ ] **Portfolio Diversification Guide 2026** — write after the Crypto DCA Portfolio guide
+- [ ] **Submit new pages to GSC** — rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens
+- [x] **Fix guides/index.html counter** — fixed to 16 (Jun 2) ✅
+- [x] **Delete vestigial nav.js** — deleted; was dead code, no page loaded it (Jun 2) ✅
 - [ ] **Build Reddit karma** — new account needs comments before posting
 - [ ] Update Strategic Bitcoin Reserve guide when announcement drops
 - [ ] List Content Research Agent on Gumroad ($39)
@@ -595,7 +595,11 @@ CURRENT_CALCULATORS = [
 - Next priorities set: Investment Fee Impact Calculator, Crypto DCA Portfolio guide, Portfolio Diversification guide
 - **Audit (research_agent.py vs disk):** CURRENT_GUIDES was stale (only 10 of 16) and CURRENT_CALCULATORS had a duplicate "Portfolio rebalancing calculator" entry + was missing asset-allocation and FIRE — both lists corrected to match disk (16 guides / 10 calculators)
 - ⚠️ **Numbering note:** disk holds exactly 10 calculator pages, so FIRE = 9th and Rebalancing = 10th (not 10th/11th)
-- ⚠️ **Open issues found:** guides/index.html counter still reads 13 (should be 16); nav.js is dead code
+- ✅ **guides/index.html counter fixed** to 16 (was showing 13)
+- ✅ **3 missing guide cards added** to guides/index.html: should-you-dca-into-ai-crypto-tokens, best-day-to-dca-bitcoin, 4-percent-rule-explained
+- ✅ **nav.js deleted** — was dead code, no pages were loading it
+- ✅ **Portfolio rebalancing calculator confirmed live** at mydcacalc.com/rebalancing-calculator.html
+- ✅ **All navs updated** with Rebalancing link
 
 ### May 30 2026 — Post-Launch Build Session
 - Loss Recovery / Break-Even Calculator built and deployed (8th calculator) — May 28
