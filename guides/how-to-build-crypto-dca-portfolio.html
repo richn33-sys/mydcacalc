@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Build a Crypto DCA Portfolio in 2026 (BTC, ETH, SOL)</title>
+<meta name="description" content="A data-backed framework for building a crypto DCA portfolio in 2026. How to allocate between BTC, ETH, and SOL, what spot ETFs change, and how to structure your contributions for three risk profiles.">
+<meta name="keywords" content="crypto DCA portfolio 2026, how to build crypto portfolio, BTC ETH SOL allocation, crypto portfolio strategy 2026, dollar cost average crypto">
+<meta property="og:title" content="How to Build a Crypto DCA Portfolio in 2026 (BTC, ETH, SOL)">
+<meta property="og:description" content="Core-satellite framework, three risk profiles, and what spot ETFs change about crypto allocation in 2026.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/how-to-build-crypto-dca-portfolio.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/how-to-build-crypto-dca-portfolio.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Build a Crypto DCA Portfolio in 2026 (BTC, ETH, SOL)",
+  "description": "Core-satellite framework, three risk profiles, and what spot ETFs change about crypto portfolio construction in 2026.",
+  "author": {
+    "@type": "Person",
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
+  },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2026-06-04",
+  "dateModified": "2026-06-04"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --btc: #f7931a; --eth: #627eea; --sol: #9945ff;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover { color: var(--accent); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-tag.btc { color: var(--btc); background: rgba(247,147,26,0.1); border-color: rgba(247,147,26,0.3); }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout.data { border-left-color: var(--blue); background: rgba(91,156,246,0.05); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.callout.data .callout-label { color: var(--blue); }
+.coin-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
+@media (max-width: 600px) { .coin-cards { grid-template-columns: 1fr; } }
+.coin-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+.coin-card.btc { border-top: 2px solid var(--btc); }
+.coin-card.eth { border-top: 2px solid var(--eth); }
+.coin-card.sol { border-top: 2px solid var(--sol); }
+.coin-ticker { font-size: 20px; font-weight: 600; font-family: var(--font-mono); margin-bottom: 4px; }
+.coin-card.btc .coin-ticker { color: var(--btc); }
+.coin-card.eth .coin-ticker { color: var(--eth); }
+.coin-card.sol .coin-ticker { color: var(--sol); }
+.coin-name { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 12px; }
+.coin-stat { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-family: var(--font-mono); }
+.coin-stat strong { color: var(--text); }
+.alloc-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.alloc-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.alloc-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.alloc-table tr:last-child td { border-bottom: none; }
+.alloc-table td.btc { color: var(--btc); font-weight: 500; }
+.alloc-table td.eth { color: var(--eth); font-weight: 500; }
+.alloc-table td.sol { color: var(--sol); font-weight: 500; }
+.alloc-table td.accent { color: var(--accent); font-weight: 500; }
+.profile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
+@media (max-width: 600px) { .profile-grid { grid-template-columns: 1fr; } }
+.profile-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+.profile-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+.profile-alloc { display: flex; flex-direction: column; gap: 6px; }
+.alloc-bar-row { display: flex; align-items: center; gap: 8px; }
+.alloc-bar-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); width: 35px; flex-shrink: 0; }
+.alloc-bar-wrap { flex: 1; height: 6px; background: var(--bg-input); border-radius: 3px; overflow: hidden; }
+.alloc-bar-fill { height: 100%; border-radius: 3px; }
+.alloc-pct { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); width: 32px; text-align: right; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your crypto DCA performance</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="../">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <a href="../dca-backtest.html">DCA backtest</a>
+    <a href="../loss-recovery-calculator.html">Loss recovery</a>
+    <a href="../drip-calculator.html">DRIP</a>
+    <a href="../inflation-calculator.html">Real returns</a>
+    <a href="../asset-allocation.html">Asset allocation</a>
+    <a href="../fire-calculator.html">FIRE</a>
+    <a href="../rebalancing-calculator.html">Rebalancing</a>
+    <a href="../fee-calculator.html">Fee impact</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="../guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="../guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+        <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+        <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+        <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+        <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+        <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+        <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
+        <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+        <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+        <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="../">DCA</a>
+  <a href="../position-size.html">Position size</a>
+  <a href="../compound-interest.html">Compound interest</a>
+  <a href="../dca-backtest.html">DCA backtest</a>
+  <a href="../loss-recovery-calculator.html">Loss recovery</a>
+  <a href="../drip-calculator.html">DRIP</a>
+  <a href="../inflation-calculator.html">Real returns</a>
+  <a href="../asset-allocation.html">Asset allocation</a>
+  <a href="../fire-calculator.html">FIRE</a>
+  <a href="../rebalancing-calculator.html">Rebalancing</a>
+  <a href="../fee-calculator.html">Fee impact</a>
+  <span class="mobile-guides-label">Guides</span>
+  <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+  <a href="../guides/how-to-calculate-position-size.html">How to calculate position size</a>
+  <a href="../guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+  <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+  <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
+  <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag btc">Crypto</span>
+    <span class="meta-tag">Portfolio</span>
+    <span class="meta-date">June 4, 2026</span>
+    <span class="meta-read">10 min read</span>
+  </div>
+
+  <h1>How to build a <em>crypto DCA portfolio</em> in 2026 (BTC, ETH, SOL)</h1>
+
+  <p class="intro">As of mid-2026, Bitcoin and Ethereum have well-established spot ETFs with deep institutional liquidity. Solana now has U.S.-listed ETF access through multiple products — Bitwise BSOL and Fidelity FSOL among them — with combined AUM reported at approaching or surpassing $1 billion, according to industry data from early 2026. The institutional infrastructure that didn't exist two years ago is now meaningfully in place across all three major assets. Here's how to build a crypto DCA portfolio that reflects where the market actually is — not where it was.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#what-changed">What changed in 2026 — the spot ETF effect</a></li>
+      <li><a href="#the-three-assets">BTC, ETH, and SOL — what each one is and why it belongs</a></li>
+      <li><a href="#framework">The core-satellite framework</a></li>
+      <li><a href="#three-profiles">Three allocation profiles</a></li>
+      <li><a href="#dca-mechanics">DCA mechanics — how to actually execute</a></li>
+      <li><a href="#rebalancing">Rebalancing your crypto portfolio</a></li>
+      <li><a href="#what-to-avoid">What to avoid</a></li>
+    </ol>
+  </div>
+
+  <h2 id="what-changed">What changed in 2026 — the spot ETF effect</h2>
+
+  <p>The arrival of spot crypto ETFs has fundamentally changed how institutional capital interacts with the asset class. Bitcoin spot ETFs launched in January 2024. Ethereum spot ETFs followed in mid-2024. By early 2026, Solana spot ETFs from Bitwise (BSOL) and Fidelity (FSOL) had crossed $1 billion in combined AUM, according to market data cited by TECHi.</p>
+
+  <p>What this means for DCA investors is meaningful: these three assets now have a category of institutional buyer — ETF inflows — that is structurally different from retail speculation. Institutional allocators buying through ETFs tend to hold positions over months and quarters, not days. This creates a demand base that provides some degree of price support that purely retail-driven assets lack.</p>
+
+  <p>It doesn't eliminate volatility. Bitcoin ETF flows remained stop-start in early 2026, with a $1.2 billion inflow surge in the first two trading days of January followed by renewed outflows mid-month, according to Amberdata's institutional flow analysis. But the structural shift toward institutionalization is real and has made BTC and ETH meaningfully different assets than they were in prior cycles.</p>
+
+  <div class="callout data">
+    <div class="callout-label">2026 baseline data</div>
+    <p>As of late April 2026 per SpotedCrypto market data: BTC dominance approximately 58% of total crypto market cap. ETH market cap approximately $279–290 billion. SOL market cap approximately $58 billion. Total market cap approximately $2.67 trillion. These figures change rapidly — verify current data before making allocation decisions.</p>
+  </div>
+
+  <h2 id="the-three-assets">BTC, ETH, and SOL — what each one is and why it belongs</h2>
+
+  <div class="coin-cards">
+    <div class="coin-card btc">
+      <div class="coin-ticker">BTC</div>
+      <div class="coin-name">Bitcoin</div>
+      <div class="coin-stat"><strong>Role:</strong> Digital gold / store of value</div>
+      <div class="coin-stat"><strong>Dominance:</strong> 58.1% of market</div>
+      <div class="coin-stat"><strong>ETF:</strong> BlackRock IBIT, Fidelity FBTC + others</div>
+      <div class="coin-stat"><strong>Supply:</strong> Hard cap 21M, ~94% mined</div>
+    </div>
+    <div class="coin-card eth">
+      <div class="coin-ticker">ETH</div>
+      <div class="coin-name">Ethereum</div>
+      <div class="coin-stat"><strong>Role:</strong> Smart contract platform / DeFi</div>
+      <div class="coin-stat"><strong>DeFi TVL:</strong> $56.3B (leads all chains)</div>
+      <div class="coin-stat"><strong>ETF:</strong> BlackRock ETHA, Fidelity FETH + others</div>
+      <div class="coin-stat"><strong>Upgrade:</strong> Glamsterdam Q3 2026</div>
+    </div>
+    <div class="coin-card sol">
+      <div class="coin-ticker">SOL</div>
+      <div class="coin-name">Solana</div>
+      <div class="coin-stat"><strong>Role:</strong> High-throughput L1 / payments</div>
+      <div class="coin-stat"><strong>Daily TXs:</strong> 150M (vs ETH's 1.2M)</div>
+      <div class="coin-stat"><strong>ETF:</strong> Bitwise BSOL, Fidelity FSOL ($1B+ AUM)</div>
+      <div class="coin-stat"><strong>Wallets:</strong> Phantom 15M+ monthly active users</div>
+    </div>
+  </div>
+
+  <p><strong>Bitcoin</strong> is the foundational position in any crypto portfolio. With 58.1% market dominance, a hard supply cap, and the deepest institutional liquidity of any crypto asset, BTC functions as the risk-adjusted anchor. It's the least volatile major crypto, has the longest track record, and benefits most directly from ETF inflows. Every serious crypto portfolio starts here.</p>
+
+  <p><strong>Ethereum</strong> is the infrastructure layer for the largest decentralized finance ecosystem in crypto. Its $56.3 billion in DeFi total value locked — significantly more than Solana's — reflects real economic activity built on its network. The upcoming Glamsterdam upgrade targeting lower gas fees and higher throughput addresses Ethereum's primary competitive weakness. ETH functions as a higher-risk, higher-upside complement to BTC's anchor role.</p>
+
+  <p><strong>Solana</strong> occupies a different niche: high-frequency, low-cost transactions. It leads in daily transaction volume and active addresses by significant margins over Ethereum, per TECHi's March 2026 analysis — though the comparison reflects different transaction types (Solana processes many more small, low-value transactions while Ethereum handles higher-value settlement). Western Union chose Solana for its USD stablecoin (USDPT) in H1 2026 — a significant institutional endorsement of its payments infrastructure. SOL is the highest-beta position of the three, with sharper upside and sharper drawdowns. The upcoming Alpenglow consensus upgrade targets 100-150ms finality — a significant improvement that developers have compared favorably to traditional payment network speeds, though real-world performance at scale remains to be demonstrated.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">What this guide doesn't cover</div>
+    <p>This guide focuses on BTC, ETH, and SOL — the three assets with approved U.S. spot ETFs and established institutional adoption. It doesn't cover altcoins, AI tokens, meme coins, DeFi protocols, or staking strategies. Those are valid areas but require different frameworks. For AI tokens specifically, see our guide on <a href="should-you-dca-into-ai-crypto-tokens.html" style="color:var(--accent);text-decoration:none;">whether to DCA into AI crypto tokens</a>.</p>
+  </div>
+
+  <h2 id="framework">The core-satellite framework</h2>
+
+  <p>The most widely cited professional framework for crypto portfolio construction is the core-satellite model. The core-satellite model has been discussed favorably in institutional research including Morningstar's portfolio construction work, with the general finding that balancing stable core holdings with higher-beta satellite positions can improve risk-adjusted returns versus either a pure-core or pure-satellite approach. The exact return differential varies significantly by time period and asset mix.</p>
+
+  <p>Applied to a crypto-only portfolio:</p>
+
+  <ul>
+    <li><strong>Core (60%):</strong> BTC and ETH — stability, institutional liquidity, established network effects. The part of your portfolio you hold through the full cycle regardless of market conditions.</li>
+    <li><strong>Satellite (30%):</strong> Large-cap altcoins with proven adoption — SOL fits here. Higher volatility, higher potential return, but with real-world usage metrics to justify the position.</li>
+    <li><strong>Dry powder (10%):</strong> Stablecoins — USDC or USDT. Not an investment; a reserve for opportunistic DCA purchases during extreme fear events when prices are significantly below average.</li>
+  </ul>
+
+  <p>For the BTC/ETH split within the core, VanEck's research suggests a 71.4% BTC / 28.6% ETH weighting — closely tracking their relative market cap ratio. This is a reasonable starting point. Some investors tilt more toward ETH given its upcoming upgrades and DeFi exposure; others prefer a higher BTC weighting given its dominance and institutional adoption trajectory.</p>
+
+  <h2 id="three-profiles">Three allocation profiles</h2>
+
+  <p>The right allocation depends on your time horizon, risk tolerance, and existing portfolio context. These are illustrative starting points:</p>
+
+  <div class="profile-grid">
+    <div class="profile-card">
+      <div class="profile-label">Conservative</div>
+      <div class="profile-alloc">
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--btc);">BTC</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:70%;background:var(--btc);"></div></div>
+          <div class="alloc-pct">70%</div>
+        </div>
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--eth);">ETH</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:20%;background:var(--eth);"></div></div>
+          <div class="alloc-pct">20%</div>
+        </div>
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--sol);">SOL</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:0%;background:var(--sol);"></div></div>
+          <div class="alloc-pct">0%</div>
+        </div>
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--text-dim);">Cash</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:10%;background:#888;"></div></div>
+          <div class="alloc-pct">10%</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);margin-top:12px;margin-bottom:0;">BTC-heavy, minimal ETH, no SOL. For investors who want crypto exposure anchored in the asset with the longest track record and deepest institutional liquidity. Suitable for shorter time horizons or lower drawdown tolerance.</p>
+    </div>
+    <div class="profile-card">
+      <div class="profile-label">Moderate</div>
+      <div class="profile-alloc">
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--btc);">BTC</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:55%;background:var(--btc);"></div></div>
+          <div class="alloc-pct">55%</div>
+        </div>
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--eth);">ETH</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:25%;background:var(--eth);"></div></div>
+          <div class="alloc-pct">25%</div>
+        </div>
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--sol);">SOL</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:10%;background:var(--sol);"></div></div>
+          <div class="alloc-pct">10%</div>
+        </div>
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--text-dim);">Cash</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:10%;background:#888;"></div></div>
+          <div class="alloc-pct">10%</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);margin-top:12px;margin-bottom:0;">BTC/ETH core with a 10% SOL satellite. For investors comfortable with full crypto cycle volatility — including 50-70% drawdowns — and a 5+ year time horizon.</p>
+    </div>
+    <div class="profile-card">
+      <div class="profile-label">Aggressive</div>
+      <div class="profile-alloc">
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--btc);">BTC</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:40%;background:var(--btc);"></div></div>
+          <div class="alloc-pct">40%</div>
+        </div>
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--eth);">ETH</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:30%;background:var(--eth);"></div></div>
+          <div class="alloc-pct">30%</div>
+        </div>
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--sol);">SOL</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:20%;background:var(--sol);"></div></div>
+          <div class="alloc-pct">20%</div>
+        </div>
+        <div class="alloc-bar-row">
+          <div class="alloc-bar-label" style="color:var(--text-dim);">Cash</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar-fill" style="width:10%;background:#888;"></div></div>
+          <div class="alloc-pct">10%</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);margin-top:12px;margin-bottom:0;">Meaningful SOL allocation only appropriate for investors who can genuinely tolerate 70-80% peak-to-trough drawdowns and have a 7+ year horizon. SOL's higher beta means sharper upside and sharper corrections.</p>
+    </div>
+  </div>
+
+  <p>These profiles are illustrative starting points, not recommendations. They show allocations within your crypto portfolio — not your total portfolio. Fidelity's research suggests a 0–5% allocation of total investable assets to crypto seems prudent for most investors. ETF access makes these assets easier to buy; it does not reduce their downside risk. A 70–80% portfolio drawdown is a realistic scenario across all three assets in a bear cycle.</p>
+
+  <h2 id="dca-mechanics">DCA mechanics — how to actually execute</h2>
+
+  <p>The core DCA principle is the same for crypto as for any asset: invest a fixed amount at regular intervals regardless of price. But crypto's higher volatility makes a few execution details more important:</p>
+
+  <h3>Frequency</h3>
+  <p>Weekly DCA historically outperforms monthly for crypto, for the same reason it outperforms for Bitcoin specifically — the asset moves fast enough that weekly purchases capture more volatility events and create more averaging opportunities. For smaller amounts (under $100/week), transaction fees may make biweekly or monthly more practical.</p>
+
+  <h3>Splitting your DCA across assets</h3>
+  <p>The simplest approach: treat each asset as a separate DCA schedule. If you're allocating $400/month to crypto at the moderate profile:</p>
+  <ul>
+    <li>BTC: $220/month (55%)</li>
+    <li>ETH: $100/month (25%)</li>
+    <li>SOL: $40/month (10%)</li>
+    <li>USDC reserve: $40/month (10%) — held as dry powder, not spent on schedule</li>
+  </ul>
+
+  <h3>Using the Fear &amp; Greed Index</h3>
+  <p>The stablecoin reserve is most useful when deployed during extreme fear. When the Crypto Fear &amp; Greed Index drops below 20 (Extreme Fear), deploying reserve capital in addition to your regular DCA amount means you're buying more at the lowest prices. SpotedCrypto's April 2026 analysis recommends this conservative-plus-opportunistic approach: stick to DCA in normal conditions, deploy reserves in extreme fear environments.</p>
+
+  <h3>Where to hold</h3>
+  <p>For most DCA investors, keeping assets on a reputable exchange with automatic recurring purchase features (Coinbase, Kraken, or Binance) is the simplest execution path. For larger positions (over $10,000 per asset), consider moving to a hardware wallet after purchase. Exchange risk is real — hardware custody eliminates it.</p>
+
+  <h2 id="rebalancing">Rebalancing your crypto portfolio</h2>
+
+  <p>Crypto markets move fast enough that even a well-constructed portfolio can drift significantly within a single quarter. BTC bull runs push it toward 70–80% of a portfolio; SOL corrections can halve its weighting. The general framework:</p>
+
+  <ul>
+    <li><strong>Review quarterly.</strong> Checking daily creates emotional decisions that undermine DCA discipline. A quarterly review is frequent enough to catch meaningful drift without becoming noise-driven.</li>
+    <li><strong>Rebalance when any asset drifts more than 10 percentage points</strong> from its target — a wider band than traditional equity portfolios, given crypto's normal volatility. Tighter bands (5%) will trigger unnecessary transaction costs.</li>
+    <li><strong>Rebalance by buying the underweight asset</strong> rather than selling the overweight one where possible. This avoids triggering capital gains events and lets you continue accumulating the lagging asset.</li>
+  </ul>
+
+  <p>Use the <a href="../rebalancing-calculator.html" style="color:var(--accent);text-decoration:none;">portfolio rebalancing calculator</a> to see exactly what to buy or sell to restore your target allocation.</p>
+
+  <h2 id="what-to-avoid">What to avoid</h2>
+
+  <ul>
+    <li><strong>Chasing recent performance.</strong> SOL's 150M daily transactions and ETH's Glamsterdam upgrade are real structural positives — but they're already partially priced in. Building your allocation around what has performed best recently is the single most common mistake in crypto portfolio construction.</li>
+    <li><strong>Overweighting SOL at the expense of BTC.</strong> SOL's positive funding rates and 71.5% long positioning (per Amberdata data) signal retail-driven speculative enthusiasm. BTC's dominant market cap and institutional ETF flows make it structurally different. Don't let SOL's higher recent volatility create the illusion of a more attractive risk/reward ratio.</li>
+    <li><strong>Skipping the stablecoin reserve.</strong> The 10% dry powder position looks like dead money until an extreme fear event arrives. In March 2020, May 2021, and November 2022, extreme fear events produced 40–70% drawdowns within days. Investors with reserves deployed them at historically low prices. Investors without reserves watched the opportunity pass.</li>
+    <li><strong>Ignoring crypto's role within your total portfolio.</strong> Crypto is a high-volatility, high-beta asset class. A 5% crypto allocation that rises 4x in a bull market becomes 15–20% of a total portfolio before rebalancing. Monitor your total portfolio allocation, not just your crypto allocation.</li>
+    <li><strong>Over-complicating with too many assets.</strong> Adding 10+ altcoins to a BTC/ETH/SOL core doesn't necessarily add diversification — most altcoins are highly correlated with BTC during downturns. Complexity adds risk management overhead without proportional return benefit for most investors.</li>
+  </ul>
+
+  <div class="cta-box">
+    <h3>Backtest your crypto DCA returns</h3>
+    <p>See what weekly DCA into BTC and ETH would have returned historically — across different time periods and market cycles.</p>
+    <a href="../dca-backtest.html" class="cta-btn">Try the DCA backtest calculator</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>A crypto DCA portfolio in 2026 is simpler to construct than at any point in the asset class's history — spot ETFs for all three major assets, institutional infrastructure, and seven-plus years of market cycle data to draw from. The framework is straightforward: BTC as your anchor, ETH as your smart contract exposure, SOL as your high-throughput satellite, and a stablecoin reserve for opportunistic deployment during fear events.</p>
+
+  <p>The allocation percentages matter less than the discipline. A 55/25/10/10 portfolio that you DCA into consistently for five years will dramatically outperform a theoretically optimal allocation that you abandon after the first major drawdown. Pick an allocation you can hold through a 70% correction, automate it, and review quarterly.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute financial advice. Cryptocurrency is highly volatile and speculative. Market data cited reflects specific past dates and will have changed. Spot ETF AUM, market caps, and metrics change rapidly. Past performance does not guarantee future results. Only invest what you can afford to lose entirely. Consult a qualified financial advisor before making investment decisions.</p>
+  </div>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">JC</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
+    </div>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+window.addEventListener('load', function() {
+  var btn = document.getElementById('nav-hamburger');
+  var menu = document.getElementById('nav-mobile-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+  document.querySelectorAll('.dropdown').forEach(function(dd) {
+    var m = dd.querySelector('.dropdown-menu');
+    if (!m) return;
+    var t;
+    dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+    m.addEventListener('mouseenter', function() { clearTimeout(t); });
+    m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+  });
+});
+</script>
+
+</body>
+</html>

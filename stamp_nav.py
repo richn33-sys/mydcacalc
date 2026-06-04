@@ -46,6 +46,7 @@ GUIDES = [
     ('should-you-dca-into-ai-crypto-tokens.html',     'DCA into AI crypto'),
     ('best-day-to-dca-bitcoin.html',                  'Best day to DCA'),
     ('4-percent-rule-explained.html',                 'The 4% Rule'),
+    ('how-to-build-crypto-dca-portfolio.html',      'Crypto DCA portfolio'),
 ]
 
 

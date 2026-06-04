@@ -125,6 +125,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── loss-recovery-calculator.html                 ← Investment Loss Recovery / Break-Even Calculator (NEW May 28)
 ├── fire-calculator.html                          ← FIRE Calculator (9th calculator, NEW Jun 1)
 ├── rebalancing-calculator.html                   ← Portfolio Rebalancing Calculator (10th calculator, NEW Jun 1)
+├── fee-calculator.html                           ← Investment Fee Impact Calculator (11th calculator, NEW Jun 3)
+├── stamp_nav.py                                  ← Single script to stamp correct full nav into any page
 ├── about.html
 ├── privacy.html
 ├── terms.html
@@ -182,7 +184,12 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - Dropdown: JS hover with 300ms delay
 - Mobile hamburger menu fixed site-wide Jun 1 — confirmed working on iOS
 ### Updating nav across all pages:
-Nav is hardcoded per-page. When adding a new guide or calculator, run the Python update scripts that rewrite the nav block across all pages — do NOT rely on nav.js (abandoned) and do NOT hand-edit each file individually.
+Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps the correct full nav into any page (handles relative path differences between root, guide, and author pages automatically). Do NOT rely on nav.js (abandoned, deleted) and do NOT hand-edit each file individually.
+
+**Workflow to add a calculator or guide:**
+1. Add the item to the CALCULATORS / GUIDES arrays in `stamp_nav.py`
+2. Run `python3 stamp_nav.py --all` to re-stamp the nav across every page
+3. Deploy: `python3 deploy.py "message"`
 ---
 ## Pages & Calculators
 ### index.html — DCA Calculator
@@ -228,6 +235,12 @@ Nav is hardcoded per-page. When adding a new guide or calculator, run the Python
 - Inputs: holdings + current values, target % per asset, new contribution
 - Outputs: per-asset drift and rebalancing trades
 - **Keywords:** portfolio rebalancing calculator, asset allocation rebalance
+
+### fee-calculator.html — Investment Fee Impact Calculator (11th calculator, NEW Jun 3 2026)
+- Shows how expense ratios and advisory fees erode long-term returns
+- Inputs: initial investment, annual contribution, years, expected return, fee %
+- Outputs: final value with vs without fees, total dollars lost to fees, drag on returns
+- **Keywords:** investment fee calculator, expense ratio impact calculator, fee drag calculator
 ---
 ## Author Personas
 ### James Colter — Long-term Investor & Personal Finance Writer
@@ -378,6 +391,7 @@ Nav is hardcoded per-page. When adding a new guide or calculator, run the Python
 | loss-recovery-calculator.html | investment loss recovery calculator / break even calculator |
 | fire-calculator.html | FIRE calculator / financial independence retire early |
 | rebalancing-calculator.html | portfolio rebalancing calculator |
+| fee-calculator.html | investment fee calculator / expense ratio impact |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -490,7 +504,7 @@ CURRENT_GUIDES = [
 ]
 ```
 
-### Current CURRENT_CALCULATORS (as of Jun 2 2026 — verified against disk, 10 calculators):
+### Current CURRENT_CALCULATORS (as of Jun 3 2026 — verified against disk, 11 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator",
@@ -503,11 +517,14 @@ CURRENT_CALCULATORS = [
     "Investment loss recovery / break-even calculator",
     "FIRE calculator (financial independence, retire early)",
     "Portfolio rebalancing calculator",
+    "Investment fee impact calculator",
 ]
 ```
 ---
 ## Roadmap
 ### Done ✅
+- [x] Investment Fee Impact Calculator (11th calculator) — Jun 3 2026
+- [x] stamp_nav.py — single nav-stamping script created and committed — Jun 3 2026
 - [x] FIRE Calculator (9th calculator) — Jun 1 2026
 - [x] Portfolio Rebalancing Calculator (10th calculator) — Jun 1 2026
 - [x] Should you DCA into AI crypto tokens guide (14th guide) — Jun 1 2026
@@ -563,10 +580,10 @@ CURRENT_CALCULATORS = [
 - [x] **FIRE Calculator** — built and deployed (9th calculator), Jun 1 2026 ✅
 - [x] **Portfolio Rebalancing Calculator** — built and deployed (10th calculator), Jun 1 2026 ✅
 - [x] **Mobile hamburger menu fix** — fixed site-wide, working on iOS (Jun 1) ✅
-- [ ] **Investment Fee Impact Calculator** — next calculator to build
+- [x] **Investment Fee Impact Calculator** — built and deployed as fee-calculator.html (11th calculator), Jun 3 2026 ✅
 - [ ] **Crypto DCA Portfolio guide (BTC/ETH/SOL)** — next guide to write
 - [ ] **Portfolio Diversification Guide 2026** — write after the Crypto DCA Portfolio guide
-- [ ] **Submit new pages to GSC** — rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens
+- [ ] **Submit new pages to GSC** — fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens
 - [x] **Fix guides/index.html counter** — fixed to 16 (Jun 2) ✅
 - [x] **Delete vestigial nav.js** — deleted; was dead code, no page loaded it (Jun 2) ✅
 - [ ] **Build Reddit karma** — new account needs comments before posting
@@ -580,6 +597,14 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 3 2026 — Fee Calculator + Nav Tooling Session
+- Investment Fee Impact Calculator built and deployed (fee-calculator.html, 11th calculator) — shows how expense ratios and advisory fees erode long-term returns
+- **stamp_nav.py created and committed** — single script that stamps the correct full nav into any page, handling root/guide/author relative-path differences automatically
+- New nav workflow established: add item to CALCULATORS/GUIDES arrays in stamp_nav.py → run `python3 stamp_nav.py --all` → deploy
+- All 29 pages re-stamped with consistent nav via `stamp_nav.py --all`
+- research_agent.py CURRENT_CALCULATORS updated — added "Investment fee impact calculator" (now 11 calculators)
+- Next priorities set: Crypto DCA Portfolio guide, Portfolio Diversification guide, submit outstanding pages to GSC (fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens)
 
 ### Jun 2 2026 — Calculators + Guides Build Session
 - FIRE Calculator built and deployed (9th calculator, fire-calculator.html) — Jun 1
