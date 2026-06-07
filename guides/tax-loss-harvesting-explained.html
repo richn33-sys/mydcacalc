@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax-Loss Harvesting Explained: How It Works, Rules, and 2026 Strategies</title>
+<meta name="description" content="Tax-loss harvesting lets you sell losing investments to offset gains and reduce your tax bill. Here's how it works, the wash sale rule explained, the 2026 income limit, and how DCA investors can use it year-round.">
+<meta name="keywords" content="tax loss harvesting explained, tax loss harvesting 2026, wash sale rule, how to harvest tax losses, capital loss deduction 2026, tax loss harvesting strategy">
+<meta property="og:title" content="Tax-Loss Harvesting Explained: How It Works, Rules, and 2026 Strategies">
+<meta property="og:description" content="Offset capital gains, reduce income by up to $3,000, and carry losses forward indefinitely. Here's how tax-loss harvesting works and how to do it correctly.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/tax-loss-harvesting-explained.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/tax-loss-harvesting-explained.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tax-Loss Harvesting Explained: How It Works, Rules, and 2026 Strategies",
+  "description": "How tax-loss harvesting works, the wash sale rule, the 2026 income limit, and how DCA investors can use it year-round.",
+  "author": {
+    "@type": "Person",
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
+  },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover { color: var(--accent); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout.data { border-left-color: var(--blue); background: rgba(91,156,246,0.05); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.callout.data .callout-label { color: var(--blue); }
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
+@media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; text-align: center; }
+.stat-number { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); margin-bottom: 6px; letter-spacing: -0.02em; }
+.stat-label { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+.example-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 28px 0; }
+.example-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.example-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; font-family: var(--font-mono); }
+.example-row:last-child { border-bottom: none; font-weight: 500; }
+.example-row span:first-child { color: var(--text-muted); }
+.example-row span:last-child { color: var(--text); }
+.example-row.green span:last-child { color: var(--green); }
+.example-row.red span:last-child { color: var(--red); }
+.example-row.accent span:last-child { color: var(--accent); }
+.wash-sale-timeline { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; margin: 28px 0; }
+.timeline-bar { display: flex; align-items: center; gap: 0; margin: 16px 0; }
+.tl-segment { text-align: center; flex: 1; padding: 10px 4px; font-size: 11px; font-family: var(--font-mono); }
+.tl-segment.danger { background: rgba(240,96,96,0.12); border: 1px solid rgba(240,96,96,0.3); color: var(--red); }
+.tl-segment.sale { background: rgba(200,240,96,0.12); border: 1px solid var(--accent-border); color: var(--accent); }
+.tl-segment.safe { background: var(--bg-input); border: 1px solid var(--border); color: var(--text-dim); }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your investment performance</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <a href="../">DCA</a>
+    <a href="../position-size.html">Position size</a>
+    <a href="../compound-interest.html">Compound interest</a>
+    <a href="../dca-backtest.html">DCA backtest</a>
+    <a href="../loss-recovery-calculator.html">Loss recovery</a>
+    <a href="../drip-calculator.html">DRIP</a>
+    <a href="../inflation-calculator.html">Real returns</a>
+    <a href="../asset-allocation.html">Asset allocation</a>
+    <a href="../fire-calculator.html">FIRE</a>
+    <a href="../rebalancing-calculator.html">Rebalancing</a>
+    <a href="../fee-calculator.html">Fee impact</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="../guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="../guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+        <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+        <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+        <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+        <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+        <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+        <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
+        <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+        <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+        <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+        <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+        <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="../">DCA</a>
+  <a href="../position-size.html">Position size</a>
+  <a href="../compound-interest.html">Compound interest</a>
+  <a href="../dca-backtest.html">DCA backtest</a>
+  <a href="../loss-recovery-calculator.html">Loss recovery</a>
+  <a href="../drip-calculator.html">DRIP</a>
+  <a href="../inflation-calculator.html">Real returns</a>
+  <a href="../asset-allocation.html">Asset allocation</a>
+  <a href="../fire-calculator.html">FIRE</a>
+  <a href="../rebalancing-calculator.html">Rebalancing</a>
+  <a href="../fee-calculator.html">Fee impact</a>
+  <span class="mobile-guides-label">Guides</span>
+  <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+  <a href="../guides/how-to-calculate-position-size.html">How to calculate position size</a>
+  <a href="../guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+  <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+  <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
+  <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Tax Strategy</span>
+    <span class="meta-tag">Evergreen</span>
+    <span class="meta-date">June 7, 2026</span>
+    <span class="meta-read">9 min read</span>
+  </div>
+
+  <h1>Tax-loss harvesting <em>explained</em> — how it works, the rules, and 2026 strategies</h1>
+
+  <p class="intro">Tax-loss harvesting is one of the few investment strategies where a loss makes you richer. By selling investments that have declined below their purchase price, you realize a capital loss that can offset gains elsewhere in your portfolio — reducing the taxes you owe this year. The 2026 rules haven't changed from prior years: losses offset gains dollar-for-dollar with no limit, and up to $3,000 of excess losses can reduce your ordinary income. Here's how it works in practice.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#how-it-works">How tax-loss harvesting works</a></li>
+      <li><a href="#the-math">The math — a concrete example</a></li>
+      <li><a href="#wash-sale">The wash sale rule — the critical constraint</a></li>
+      <li><a href="#2026-rules">2026 rules and limits</a></li>
+      <li><a href="#dca-investors">How DCA investors use tax-loss harvesting</a></li>
+      <li><a href="#crypto">Tax-loss harvesting and crypto</a></li>
+      <li><a href="#mistakes">Common mistakes to avoid</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+    </ol>
+  </div>
+
+  <h2 id="how-it-works">How tax-loss harvesting works</h2>
+
+  <p>When you sell an investment for less than you paid for it, you realize a capital loss. That loss has real monetary value — the IRS lets you use it to reduce your taxable income in two ways:</p>
+
+  <ol>
+    <li><strong>Offset capital gains dollar-for-dollar.</strong> If you have $10,000 in realized gains from other investments, a $10,000 harvested loss eliminates the tax on those gains entirely. There's no limit on how much you can offset this way.</li>
+    <li><strong>Offset ordinary income up to $3,000/year.</strong> If your losses exceed your gains, you can deduct up to $3,000 of the remaining net loss against wages and other ordinary income. Any losses beyond that carry forward to future tax years indefinitely.</li>
+  </ol>
+
+  <p>The key insight is that harvesting a loss doesn't mean abandoning the investment. You sell the declining asset, capture the tax loss, and immediately reinvest the proceeds in a <strong>similar but not identical</strong> investment. Your portfolio exposure is maintained, your tax bill is reduced, and you haven't actually changed your long-term investment thesis — you've just moved it to a different vehicle temporarily.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">The best time to harvest</div>
+    <p>Most investors treat tax-loss harvesting as a December activity. That leaves money on the table. Starting in April — after filing your prior-year return — gives you a full view of your tax situation and 9 months of market opportunity. Acting on market dips as they happen is more effective than scrambling in the last two weeks of December when every other investor is doing the same thing.</p>
+  </div>
+
+  <h2 id="the-math">The math — a concrete example</h2>
+
+  <div class="example-box">
+    <div class="example-title">Example: Offsetting a capital gain</div>
+    <div class="example-row red"><span>Bought Investment A at</span><span>$10,000</span></div>
+    <div class="example-row red"><span>Current value of Investment A</span><span>$7,500</span></div>
+    <div class="example-row red"><span>Harvested loss (sell Investment A)</span><span>−$2,500</span></div>
+    <div class="example-row green"><span>Gain realized on Investment B (sold earlier)</span><span>+$2,500</span></div>
+    <div class="example-row accent"><span>Net taxable gain after harvesting</span><span>$0</span></div>
+    <div class="example-row accent"><span>Tax saved (assuming 15% long-term CGT rate)</span><span>$375</span></div>
+  </div>
+
+  <p>The $375 in saved taxes is not lost — it compounds in your portfolio going forward. Over 20 years at 7% annual returns, $375 saved today is worth approximately $1,450 in future portfolio value. That's the compounding benefit of tax efficiency.</p>
+
+  <div class="example-box">
+    <div class="example-title">Example: Offsetting ordinary income (losses exceed gains)</div>
+    <div class="example-row red"><span>Total harvested losses this year</span><span>−$8,000</span></div>
+    <div class="example-row green"><span>Capital gains to offset</span><span>+$2,000</span></div>
+    <div class="example-row"><span>Remaining net loss</span><span>−$6,000</span></div>
+    <div class="example-row accent"><span>Deducted against ordinary income this year</span><span>−$3,000 (max)</span></div>
+    <div class="example-row accent"><span>Loss carried forward to future years</span><span>−$3,000</span></div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-number">$0</div>
+      <div class="stat-label">Limit on using losses to offset capital gains (unlimited)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">$3K</div>
+      <div class="stat-label">Annual limit for offsetting ordinary income (2026)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Years losses carry forward (no expiration)</div>
+    </div>
+  </div>
+
+  <h2 id="wash-sale">The wash sale rule — the critical constraint</h2>
+
+  <p>The wash sale rule is the IRS mechanism that prevents investors from selling a security at a loss and immediately buying it back — which would be a tax benefit without any real economic change. If you trigger a wash sale, your loss is disallowed and cannot be used to offset gains or income.</p>
+
+  <p><strong>The rule:</strong> If you sell a security at a loss and purchase the same or a "substantially identical" security within 30 days before or after the sale, the loss is disallowed. This creates a 61-day window during which you cannot repurchase the same investment.</p>
+
+  <div class="wash-sale-timeline">
+    <div class="example-title">The 61-day wash sale window</div>
+    <div class="timeline-bar">
+      <div class="tl-segment danger">Day −30<br>to −1<br>(danger zone)</div>
+      <div class="tl-segment sale">Day 0<br>SALE<br>(harvest date)</div>
+      <div class="tl-segment danger">Day +1<br>to +30<br>(danger zone)</div>
+      <div class="tl-segment safe">Day +31<br>onwards<br>(safe to rebuy)</div>
+    </div>
+    <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);margin-top:12px;margin-bottom:0;">If you buy the same or substantially identical security anywhere in the 61-day window — 30 days before your sale, the sale date, and 30 days after — your loss is disallowed.</p>
+  </div>
+
+  <h3>What counts as "substantially identical"?</h3>
+  <p>The IRS has not provided an exhaustive definition, which creates some ambiguity — but general guidance is clear on a few points:</p>
+  <ul>
+    <li><strong>Clearly identical:</strong> Selling Apple stock and buying Apple stock back within 30 days. Selling an S&P 500 ETF (SPY) and buying the same ETF back.</li>
+    <li><strong>Gray area — same index, different fund:</strong> Selling SPY and buying IVV (both track the S&P 500) may or may not be considered substantially identical — the IRS has not ruled definitively on ETF-to-ETF swaps. Practices vary among tax professionals. The more conservative approach is to swap into a fund tracking a different index entirely.</li>
+    <li><strong>Cleaner swap:</strong> Selling an S&P 500 fund and buying a total market fund (VTI, SCHB) or a different-index fund. Different composition makes the "not identical" case much stronger. This is the recommended approach for most investors.</li>
+  </ul>
+
+  <div class="callout warning">
+    <div class="callout-label">Critical: The wash sale rule applies across all accounts</div>
+    <p>The wash sale rule applies across all your accounts — taxable brokerage, IRA, 401(k), and your spouse's accounts. If you sell a stock at a loss in your taxable account and your spouse buys the same stock in their IRA within 30 days, your loss is disallowed. Always coordinate across your full household when harvesting losses.</p>
+  </div>
+
+  <h2 id="2026-rules">2026 rules and limits</h2>
+
+  <p>The core mechanics of tax-loss harvesting have not changed for 2026. Key figures:</p>
+
+  <ul>
+    <li><strong>Capital loss deduction limit:</strong> $3,000/year against ordinary income ($1,500 if married filing separately). No limit on offsetting capital gains.</li>
+    <li><strong>Carryforward:</strong> Unused losses carry forward indefinitely. Losses you harvest in 2026 can offset gains in 2027, 2028, or any future year.</li>
+    <li><strong>Short-term vs long-term ordering:</strong> Short-term losses first offset short-term gains; long-term losses first offset long-term gains. Excess losses in either category then offset the other type. Any offset is still tax-beneficial — but short-term gains (taxed at ordinary income rates up to 37%) are more valuable to offset than long-term gains (taxed at 0%, 15%, or 20%).</li>
+    <li><strong>Holding period:</strong> The holding period of the replacement asset starts fresh on the date of purchase — not from the original investment's purchase date.</li>
+    <li><strong>Crypto status:</strong> The IRS treats cryptocurrency as property. Crypto losses are deductible as capital losses. As of March 2026, the IRS had not released definitive guidance on whether the wash sale rule applies to crypto — legislation to extend it has been proposed but not passed as of this writing. Consult a tax professional for current status.</li>
+  </ul>
+
+  <div class="callout data">
+    <div class="callout-label">2025 tax law changes</div>
+    <p>Recent tax legislation (2025) included increases to the standard deduction, a higher SALT deduction cap, and a new seniors tax deduction. These changes affect the overall tax picture for many investors but do not change the fundamental mechanics of capital loss harvesting. Consult a tax advisor for how recent changes affect your specific situation.</p>
+  </div>
+
+  <h2 id="dca-investors">How DCA investors use tax-loss harvesting</h2>
+
+  <p>DCA investors are particularly well-positioned to benefit from tax-loss harvesting because they hold diversified positions purchased across many price points. Here's how it applies specifically:</p>
+
+  <h3>Harvesting dips without abandoning your strategy</h3>
+  <p>When a market correction hits a position in your DCA portfolio, you can harvest the loss by selling the declining asset and replacing it with a similar — but not identical — alternative. You stay fully invested, your long-term allocation is unchanged, and you've captured a tax benefit. After 31 days, you can switch back to your original holding if you prefer.</p>
+
+  <p>Example: You DCA into the S&P 500 via SPY. During a 15% correction, you sell SPY and immediately buy VTI (total market) or SCHB (Schwab US broad market). You've captured a loss for tax purposes while remaining exposed to US equities. After 31+ days, you can return to SPY if you choose.</p>
+
+  <h3>Identifying lots with losses</h3>
+  <p>Because DCA means you've purchased at multiple prices over time, some purchase lots will show losses even when the overall position is profitable. Tax-aware selling — specifically selling lots purchased at higher prices — can harvest losses on specific lots while the overall investment has appreciated. Most brokerages allow you to specify which lot to sell using the "specific identification" cost basis method.</p>
+
+  <h3>Year-round harvesting vs December-only</h3>
+  <p>A common mistake is treating tax-loss harvesting as a December-only activity. Year-round awareness is more effective. Every significant market dip is a potential harvesting opportunity. The April-to-December window is particularly valuable — you have a full picture of your tax year so far and can make informed decisions about how much harvesting provides meaningful benefit.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">DCA investor playbook</div>
+    <p>During any 10%+ market correction: (1) Identify positions showing losses. (2) Sell and immediately reinvest in similar-but-not-identical funds. (3) Note the 31-day date in your calendar. (4) After 31 days, decide whether to switch back to original holdings or stay in the replacement. (5) Record the harvested loss amount for tax filing. The process can meaningfully reduce taxes in volatile years — and takes less than an hour once you know your positions.</p>
+    <p style="font-size:13px;color:var(--text-muted);font-family:var(--font-mono);"><strong style="color:var(--text);">Important for DCA investors:</strong> Automatic recurring purchases — not just DRIPs — can also trigger wash sales. If you have a weekly auto-buy set up for a fund you just harvested a loss on, pause it during the 31-day window.</p>
+  </div>
+
+  <h2 id="crypto">Tax-loss harvesting and crypto</h2>
+
+  <p>Cryptocurrency is treated as property by the IRS, making crypto losses deductible as capital losses — subject to the same rules as stock losses with one important current distinction: <strong>the wash sale rule has historically not applied to crypto</strong>. This means you could theoretically sell Bitcoin at a loss and immediately buy it back without the 30-day waiting period.</p>
+
+  <p>However, this is an actively evolving area. Legislation to extend wash sale rules to crypto has been introduced multiple times. As of the IRS's March 2026 statement, a definitive ruling had not been issued. Given regulatory momentum, it's prudent to treat crypto with similar caution to stocks when harvesting losses — consult a tax professional before acting on the assumption that crypto is exempt from wash sale rules.</p>
+
+  <p>The practical opportunity: in years with significant crypto volatility, investors who actively DCA into BTC or ETH may have individual lots showing substantial losses even if their overall position is profitable. Harvesting those specific lots — using the specific identification method — can generate tax losses without changing your long-term crypto exposure.</p>
+
+  <h2 id="mistakes">Common mistakes to avoid</h2>
+
+  <ul>
+    <li><strong>Triggering a wash sale accidentally.</strong> Automatic dividend reinvestment plans (DRIPs) can trigger wash sales if you harvest a loss on a fund while dividends are reinvesting in the same fund. Temporarily pause DRIPs when harvesting.</li>
+    <li><strong>Harvesting in tax-advantaged accounts.</strong> Tax-loss harvesting only provides benefit in taxable brokerage accounts. There's no tax benefit to harvesting losses in an IRA or 401(k) — those accounts grow tax-deferred regardless.</li>
+    <li><strong>Ignoring transaction costs.</strong> The tax benefit of harvesting a small loss can be eroded by trading commissions or bid-ask spreads. For most investors using commission-free brokerages, this is less of a concern — but it matters for thinly traded assets.</li>
+    <li><strong>Harvesting short-term losses to offset long-term gains.</strong> Short-term gains are taxed at ordinary income rates (up to 37%); long-term gains at 0%, 15%, or 20%. A short-term loss is most valuable when offsetting short-term gains. Using it to offset long-term gains at 15% is less efficient — though still beneficial.</li>
+    <li><strong>Not tracking carryforward losses.</strong> Losses that exceed the current year's gains and the $3,000 income limit carry forward. Many investors don't track these and leave future tax benefits unclaimed. Keep a record of your carryforward loss balance each year.</li>
+    <li><strong>Waiting until December.</strong> Market corrections happen throughout the year. Harvesting losses when they're large (during the dip) rather than when the year is almost over (when markets may have recovered) produces better outcomes.</li>
+  </ul>
+
+  <h2 id="faq">Frequently asked questions</h2>
+
+  <h3>Can I harvest losses to offset gains from selling my home?</h3>
+  <p>Home sale gains up to $250,000 ($500,000 for married couples) are excluded from capital gains tax under the primary residence exclusion. For gains above those thresholds, investment losses can offset the taxable portion of the gain. Consult a tax advisor for specifics on your situation.</p>
+
+  <h3>Does tax-loss harvesting work if I'm in the 0% capital gains tax bracket?</h3>
+  <p>If your income is low enough to qualify for the 0% long-term capital gains rate, harvesting losses to offset those gains provides no immediate benefit — there's no tax to offset. However, harvesting losses now still generates carryforward losses that can be used in higher-income future years.</p>
+
+  <h3>What replacement funds are commonly used after harvesting?</h3>
+  <p>Common pairs: sell SPY (S&P 500) → buy VTI (total US market) or SCHB; sell IVV → buy VOO or SPLG; sell QQQ (Nasdaq) → buy QQQM or VGT; sell a bond fund → buy a similar-duration but different-index bond fund. The goal is similar exposure with enough compositional difference to avoid "substantially identical" classification.</p>
+
+  <h3>How does tax-loss harvesting interact with DCA purchases?</h3>
+  <p>Each DCA purchase creates a separate tax lot with its own cost basis and holding period. When harvesting, you can choose which specific lots to sell — selling only the lots showing losses, even if your overall position is profitable. Use the "specific identification" cost basis method at your brokerage to select individual lots.</p>
+
+  <div class="cta-box">
+    <h3>Track your investment returns and cost basis</h3>
+    <p>Use the DCA calculator to project your portfolio growth, and the backtest calculator to see historical returns on your DCA strategy.</p>
+    <a href="../index.html" class="cta-btn">Try the DCA calculator</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>Tax-loss harvesting is one of the highest-value, lowest-effort tax strategies available to investors — and most people either don't use it or only use it once a year in December. The mechanics are straightforward: sell losing positions, capture the tax loss, reinvest in similar alternatives, and wait 31 days before switching back if desired.</p>
+
+  <p>The constraints are manageable: know the wash sale rule, coordinate across all household accounts, and track your carryforward losses. For DCA investors specifically, the strategy pairs naturally with the regular purchase schedule — every market dip is both a buying opportunity and a potential harvesting opportunity for existing lots purchased at higher prices.</p>
+
+  <p>The value compounds. Tax savings reinvested today grow for decades. Research estimates systematic tax-loss harvesting can add approximately 0.5–1% in annual after-tax returns for taxable accounts — a meaningful edge that accumulates significantly over long holding periods. A $500 tax saving at age 35 is worth approximately $2,700 at age 65 at 7% returns.</p>
+
+  <p>One tradeoff worth knowing: harvested losses reduce your cost basis in the replacement investment, which means you'll owe more tax when you eventually sell it. Tax-loss harvesting is a deferral strategy — you're moving tax liability into the future, not eliminating it. For very long-term holders who plan to leave assets to heirs, the "step-up in basis" at death eliminates capital gains on appreciated assets entirely, which can make frequent harvesting less advantageous in some estate planning scenarios.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute tax or financial advice. Tax rules change and individual situations vary significantly. The wash sale rule's application to cryptocurrency is an evolving area of law. Always consult a qualified tax professional before implementing tax-loss harvesting strategies. References to 2026 tax rules reflect information available at the time of writing.</p>
+  </div>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">JC</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
+    </div>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+window.addEventListener('load', function() {
+  var btn = document.getElementById('nav-hamburger');
+  var menu = document.getElementById('nav-mobile-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+  document.querySelectorAll('.dropdown').forEach(function(dd) {
+    var m = dd.querySelector('.dropdown-menu');
+    if (!m) return;
+    var t;
+    dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
+    dd.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+    m.addEventListener('mouseenter', function() { clearTimeout(t); });
+    m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+  });
+});
+</script>
+
+</body>
+</html>

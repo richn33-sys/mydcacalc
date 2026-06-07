@@ -48,6 +48,7 @@ GUIDES = [
     ('4-percent-rule-explained.html',                 'The 4% Rule'),
     ('how-to-build-crypto-dca-portfolio.html',      'Crypto DCA portfolio'),
     ('portfolio-diversification-guide.html',        'Portfolio diversification'),
+    ('tax-loss-harvesting-explained.html',           'Tax-loss harvesting'),
 ]
 
 

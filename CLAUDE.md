@@ -139,7 +139,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 16 guides published; counter reads 16 ✅
+│   ├── index.html                                ← 18 guides published; counter reads 18 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -155,7 +155,9 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── ai-stocks-vs-traditional-value.html       ← NEW May 29
 │   ├── should-you-dca-into-ai-crypto-tokens.html ← NEW Jun 1 (14th guide)
 │   ├── best-day-to-dca-bitcoin.html              ← NEW Jun 1 (15th guide)
-│   └── 4-percent-rule-explained.html             ← NEW Jun 1 (16th guide)
+│   ├── 4-percent-rule-explained.html             ← NEW Jun 1 (16th guide)
+│   ├── how-to-build-crypto-dca-portfolio.html    ← NEW Jun 5 (17th guide)
+│   └── portfolio-diversification-guide.html      ← NEW Jun 5 (18th guide)
 └── CLAUDE.md
 ```
 ---
@@ -257,7 +259,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 ---
-## Guides Section (16 published as of Jun 1 2026)
+## Guides Section (18 published as of Jun 5 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -276,6 +278,8 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | should-you-dca-into-ai-crypto-tokens.html | James Colter | ✅ Live | Jun 1 2026 |
 | best-day-to-dca-bitcoin.html | James Colter | ✅ Live | Jun 1 2026 |
 | 4-percent-rule-explained.html | James Colter | ✅ Live | Jun 1 2026 |
+| how-to-build-crypto-dca-portfolio.html | James Colter | ✅ Live | Jun 5 2026 |
+| portfolio-diversification-guide.html | James Colter | ✅ Live | Jun 5 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -408,6 +412,8 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | guides/should-you-dca-into-ai-crypto-tokens.html | should you dca into ai crypto tokens |
 | guides/best-day-to-dca-bitcoin.html | best day to dca bitcoin |
 | guides/4-percent-rule-explained.html | 4 percent rule retirement withdrawal |
+| guides/how-to-build-crypto-dca-portfolio.html | how to build a crypto DCA portfolio (BTC/ETH/SOL) |
+| guides/portfolio-diversification-guide.html | portfolio diversification guide 2026 |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -482,7 +488,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jun 2 2026 — verified against disk, 16 guides):
+### Current CURRENT_GUIDES (as of Jun 5 2026 — verified against disk, 18 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging",
@@ -501,6 +507,8 @@ CURRENT_GUIDES = [
     "Should you DCA into AI crypto tokens",
     "The best day to DCA Bitcoin: why Monday has historically outperformed",
     "The 4% rule explained: is it still valid in 2026",
+    "How to build a crypto DCA portfolio (BTC/ETH/SOL)",
+    "Portfolio diversification guide 2026",
 ]
 ```
 
@@ -523,6 +531,8 @@ CURRENT_CALCULATORS = [
 ---
 ## Roadmap
 ### Done ✅
+- [x] Crypto DCA Portfolio guide (BTC/ETH/SOL) — James Colter, 17th guide — Jun 5 2026
+- [x] Portfolio Diversification Guide 2026 — James Colter, 18th guide — Jun 5 2026
 - [x] Investment Fee Impact Calculator (11th calculator) — Jun 3 2026
 - [x] stamp_nav.py — single nav-stamping script created and committed — Jun 3 2026
 - [x] FIRE Calculator (9th calculator) — Jun 1 2026
@@ -581,9 +591,10 @@ CURRENT_CALCULATORS = [
 - [x] **Portfolio Rebalancing Calculator** — built and deployed (10th calculator), Jun 1 2026 ✅
 - [x] **Mobile hamburger menu fix** — fixed site-wide, working on iOS (Jun 1) ✅
 - [x] **Investment Fee Impact Calculator** — built and deployed as fee-calculator.html (11th calculator), Jun 3 2026 ✅
-- [ ] **Crypto DCA Portfolio guide (BTC/ETH/SOL)** — next guide to write
-- [ ] **Portfolio Diversification Guide 2026** — write after the Crypto DCA Portfolio guide
-- [ ] **Submit new pages to GSC** — fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens
+- [x] **Crypto DCA Portfolio guide (BTC/ETH/SOL)** — published Jun 5 2026 (17th guide) ✅
+- [x] **Portfolio Diversification Guide 2026** — published Jun 5 2026 (18th guide) ✅
+- [ ] **Submit new pages to GSC** — fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide
+- [ ] **Await Monday research agent brief** for new content ideas (May 25 + Jun 1 brief items all complete ✅)
 - [x] **Fix guides/index.html counter** — fixed to 16 (Jun 2) ✅
 - [x] **Delete vestigial nav.js** — deleted; was dead code, no page loaded it (Jun 2) ✅
 - [ ] **Build Reddit karma** — new account needs comments before posting
@@ -597,6 +608,16 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 5 2026 — Guides Session (Crypto DCA Portfolio + Diversification)
+- Crypto DCA Portfolio guide published (James Colter, 17th guide) — `guides/how-to-build-crypto-dca-portfolio.html` — BTC/ETH/SOL portfolio construction
+- Portfolio Diversification Guide 2026 published (James Colter, 18th guide) — `guides/portfolio-diversification-guide.html`
+- Both guides added to the GUIDES array in `stamp_nav.py`; `python3 stamp_nav.py --all` run after each addition to re-stamp nav across every page
+- `guides/index.html` counter updated to 18
+- `sitemap.xml` updated with both new guide URLs
+- `research_agent.py` CURRENT_GUIDES updated — both guides registered (now 18 guides)
+- **All brief items from the May 25 + Jun 1 research briefs are now complete ✅**
+- Next priorities: submit outstanding pages to GSC (full list in roadmap), await Monday research agent brief for new content ideas, Reddit karma building
 
 ### Jun 3 2026 — Fee Calculator + Nav Tooling Session
 - Investment Fee Impact Calculator built and deployed (fee-calculator.html, 11th calculator) — shows how expense ratios and advisory fees erode long-term returns
