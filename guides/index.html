@@ -143,6 +143,28 @@ footer a:hover { color: var(--text); }
   nav { display: none; }
   .nav-hamburger { display: flex; }
 }
+
+/* ── GROUPED NAV DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 220px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu .group-label { padding: 8px 14px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+.nav-group-menu .group-divider { height: 1px; background: var(--border); margin: 2px 0; }
+/* Guides dropdown (right-aligned) */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
 </style>
 </head>
 <body>
@@ -150,18 +172,38 @@ footer a:hover { color: var(--text); }
 <header>
   <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
   <nav>
-    <a href="../">DCA</a>
-    <a href="../position-size.html">Position size</a>
-    <a href="../compound-interest.html">Compound interest</a>
-    <a href="../dca-backtest.html">DCA backtest</a>
-    <a href="../loss-recovery-calculator.html">Loss recovery</a>
-    <a href="../drip-calculator.html">DRIP</a>
-    <a href="../inflation-calculator.html">Real returns</a>
-    <a href="../asset-allocation.html">Asset allocation</a>
-    <a href="../fire-calculator.html">FIRE</a>
-    <a href="../rebalancing-calculator.html">Rebalancing</a>
-    <a href="../fee-calculator.html">Fee impact</a>
-    <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Investing</button>
+      <div class="nav-group-menu">
+        <a href="../">DCA calculator</a>
+        <a href="../dca-backtest.html">DCA backtest</a>
+        <a href="../compound-interest.html">Compound interest</a>
+        <a href="../loss-recovery-calculator.html">Loss recovery</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="../asset-allocation.html">Asset allocation</a>
+        <a href="../rebalancing-calculator.html">Rebalancing</a>
+        <a href="../position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="../fire-calculator.html">FIRE calculator</a>
+        <a href="../fee-calculator.html">Fee impact</a>
+        <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="../drip-calculator.html">DRIP</a>
+        <a href="../inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
     <div class="dropdown">
       <button class="dropdown-toggle active">Guides</button>
       <div class="dropdown-menu">
@@ -193,18 +235,22 @@ footer a:hover { color: var(--text); }
   </button>
   </header>
 <div class="nav-mobile-menu" id="nav-mobile-menu">
-  <a href="../">DCA</a>
-  <a href="../position-size.html">Position size</a>
-  <a href="../compound-interest.html">Compound interest</a>
+  <span class="mobile-guides-label">Investing</span>
+  <a href="../">DCA calculator</a>
   <a href="../dca-backtest.html">DCA backtest</a>
+  <a href="../compound-interest.html">Compound interest</a>
   <a href="../loss-recovery-calculator.html">Loss recovery</a>
-  <a href="../drip-calculator.html">DRIP</a>
-  <a href="../inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">Portfolio</span>
   <a href="../asset-allocation.html">Asset allocation</a>
-  <a href="../fire-calculator.html">FIRE</a>
   <a href="../rebalancing-calculator.html">Rebalancing</a>
+  <a href="../position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="../fire-calculator.html">FIRE calculator</a>
   <a href="../fee-calculator.html">Fee impact</a>
   <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="../drip-calculator.html">DRIP</a>
+  <a href="../inflation-calculator.html">Real returns</a>
   <span class="mobile-guides-label">Guides</span>
   <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
   <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
@@ -513,23 +559,36 @@ footer a:hover { color: var(--text); }
 
 <script>
 window.addEventListener('load', function() {
+  // Hamburger
   var btn = document.getElementById('nav-hamburger');
   var menu = document.getElementById('nav-mobile-menu');
-  if (!btn || !menu) return;
-  btn.addEventListener('click', function() {
-    var open = menu.classList.toggle('open');
-    btn.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      menu.classList.remove('open');
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+  if (btn && menu) {
+    btn.addEventListener('click', function() {
+      var open = menu.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
     });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+  // Calculator group dropdowns
+  document.querySelectorAll('.nav-group').forEach(function(ng) {
+    var m = ng.querySelector('.nav-group-menu');
+    if (!m) return;
+    var t;
+    ng.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
+    ng.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+    m.addEventListener('mouseenter', function() { clearTimeout(t); });
+    m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
   });
+  // Guides dropdown
   document.querySelectorAll('.dropdown').forEach(function(dd) {
     var m = dd.querySelector('.dropdown-menu');
     if (!m) return;

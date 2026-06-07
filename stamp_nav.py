@@ -1,10 +1,10 @@
 """
-stamp_nav.py — Stamps the correct full nav into any new mydcacalc.com page.
+stamp_nav.py — Stamps the correct full nav into any mydcacalc.com page.
 
 Usage:
   python3 stamp_nav.py fee-calculator.html
   python3 stamp_nav.py guides/new-guide.html
-  python3 stamp_nav.py --all        (re-stamps every page in the project)
+  python3 stamp_nav.py --all
 
 Run from: ~/Desktop/ClaudeWork/mydcacalc/
 """
@@ -13,23 +13,31 @@ import os, re, sys, glob
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
-# ── CALCULATORS (add new ones here) ──────────────────────────────────────────
-CALCULATORS = [
-    ('',                              'DCA'),
-    ('position-size.html',            'Position size'),
-    ('compound-interest.html',        'Compound interest'),
-    ('dca-backtest.html',             'DCA backtest'),
-    ('loss-recovery-calculator.html', 'Loss recovery'),
-    ('drip-calculator.html',          'DRIP'),
-    ('inflation-calculator.html',     'Real returns'),
-    ('asset-allocation.html',         'Asset allocation'),
-    ('fire-calculator.html',          'FIRE'),
-    ('rebalancing-calculator.html',   'Rebalancing'),
-    ('fee-calculator.html',           'Fee impact'),
-    ('tax-loss-harvesting-calculator.html', 'Tax-loss harvesting'),
+# ── CALCULATOR CATEGORIES ─────────────────────────────────────────────────────
+CALC_CATEGORIES = [
+    ('Investing', [
+        ('',                              'DCA calculator'),
+        ('dca-backtest.html',             'DCA backtest'),
+        ('compound-interest.html',        'Compound interest'),
+        ('loss-recovery-calculator.html', 'Loss recovery'),
+    ]),
+    ('Portfolio', [
+        ('asset-allocation.html',         'Asset allocation'),
+        ('rebalancing-calculator.html',   'Rebalancing'),
+        ('position-size.html',            'Position size'),
+    ]),
+    ('Retirement &amp; Tax', [
+        ('fire-calculator.html',              'FIRE calculator'),
+        ('fee-calculator.html',               'Fee impact'),
+        ('tax-loss-harvesting-calculator.html', 'Tax-loss harvesting'),
+    ]),
+    ('Income', [
+        ('drip-calculator.html',          'DRIP'),
+        ('inflation-calculator.html',     'Real returns'),
+    ]),
 ]
 
-# ── GUIDES (add new ones here) ────────────────────────────────────────────────
+# ── GUIDES ────────────────────────────────────────────────────────────────────
 GUIDES = [
     ('what-is-dollar-cost-averaging.html',            'What is dollar cost averaging?'),
     ('how-compound-interest-works.html',              'How compound interest works'),
@@ -47,76 +55,67 @@ GUIDES = [
     ('should-you-dca-into-ai-crypto-tokens.html',     'DCA into AI crypto'),
     ('best-day-to-dca-bitcoin.html',                  'Best day to DCA'),
     ('4-percent-rule-explained.html',                 'The 4% Rule'),
-    ('how-to-build-crypto-dca-portfolio.html',      'Crypto DCA portfolio'),
-    ('portfolio-diversification-guide.html',        'Portfolio diversification'),
-    ('tax-loss-harvesting-explained.html',           'Tax-loss harvesting'),
+    ('how-to-build-crypto-dca-portfolio.html',        'Crypto DCA portfolio'),
+    ('portfolio-diversification-guide.html',          'Portfolio diversification'),
+    ('tax-loss-harvesting-explained.html',            'Tax-loss harvesting'),
 ]
 
-
-def build_nav(root, active_href, in_guides):
-    g = root + 'guides/'
-    lines = []
-    for href, label in CALCULATORS:
-        active = ' class="active"' if href == active_href else ''
-        lines.append('<a href="' + root + href + '"' + active + '>' + label + '</a>')
-    calc_links = '\n    '.join(lines)
-
-    dlines = []
-    for href, label in GUIDES:
-        dlines.append('<a href="' + g + href + '">' + label + '</a>')
-    dlines.append('<a href="' + g + 'index.html" style="color:var(--accent);">All guides &#x2192;</a>')
-    dropdown_items = '\n        '.join(dlines)
-
-    active_cls = ' active' if in_guides else ''
-    return (
-        '<nav>\n    ' + calc_links +
-        '\n    <div class="dropdown">'
-        '\n      <button class="dropdown-toggle' + active_cls + '">Guides</button>'
-        '\n      <div class="dropdown-menu">\n        ' + dropdown_items +
-        '\n      </div>\n    </div>\n  </nav>'
-        '\n  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">'
-        '\n    <span></span><span></span><span></span>\n  </button>'
-    )
-
-
-def build_mobile_menu(root, in_guides):
-    g = root + 'guides/'
-    calc_lines = []
-    for href, label in CALCULATORS:
-        calc_lines.append('<a href="' + root + href + '">' + label + '</a>')
-    guide_lines = []
-    for href, label in GUIDES:
-        guide_lines.append('<a href="' + g + href + '">' + label + '</a>')
-    guide_lines.append('<a href="' + g + 'index.html" style="color:var(--accent);">All guides &#x2192;</a>')
-
-    return (
-        '<div class="nav-mobile-menu" id="nav-mobile-menu">\n  ' +
-        '\n  '.join(calc_lines) +
-        '\n  <span class="mobile-guides-label">Guides</span>\n  ' +
-        '\n  '.join(guide_lines) +
-        '\n</div>'
-    )
-
+# ── CSS for grouped dropdowns ─────────────────────────────────────────────────
+GROUPED_NAV_CSS = '''
+/* ── GROUPED NAV DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 220px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu .group-label { padding: 8px 14px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+.nav-group-menu .group-divider { height: 1px; background: var(--border); margin: 2px 0; }
+/* Guides dropdown (right-aligned) */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+'''
 
 NAV_EVENT_JS = '''<script>
 window.addEventListener('load', function() {
+  // Hamburger
   var btn = document.getElementById('nav-hamburger');
   var menu = document.getElementById('nav-mobile-menu');
-  if (!btn || !menu) return;
-  btn.addEventListener('click', function() {
-    var open = menu.classList.toggle('open');
-    btn.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      menu.classList.remove('open');
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+  if (btn && menu) {
+    btn.addEventListener('click', function() {
+      var open = menu.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
     });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+  // Calculator group dropdowns
+  document.querySelectorAll('.nav-group').forEach(function(ng) {
+    var m = ng.querySelector('.nav-group-menu');
+    if (!m) return;
+    var t;
+    ng.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
+    ng.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+    m.addEventListener('mouseenter', function() { clearTimeout(t); });
+    m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
   });
+  // Guides dropdown
   document.querySelectorAll('.dropdown').forEach(function(dd) {
     var m = dd.querySelector('.dropdown-menu');
     if (!m) return;
@@ -130,10 +129,72 @@ window.addEventListener('load', function() {
 </script>'''
 
 
+def build_nav(root, in_guides, active_href):
+    g = root + 'guides/'
+    lines = ['<nav>']
+
+    # Calculator category dropdowns
+    for cat_name, items in CALC_CATEGORIES:
+        # Check if any item in this category is the active page
+        cat_active = any(href == active_href for href, label in items)
+        active_cls = ' active' if cat_active else ''
+        lines.append('  <div class="nav-group">')
+        lines.append('    <button class="nav-group-toggle' + active_cls + '">' + cat_name + '</button>')
+        lines.append('    <div class="nav-group-menu">')
+        for href, label in items:
+            active_attr = ' class="active"' if href == active_href else ''
+            lines.append('      <a href="' + root + href + '"' + active_attr + '>' + label + '</a>')
+        lines.append('    </div>')
+        lines.append('  </div>')
+
+    # Guides dropdown (right-aligned)
+    guides_active = ' active' if in_guides else ''
+    lines.append('  <div class="dropdown">')
+    lines.append('    <button class="dropdown-toggle' + guides_active + '">Guides</button>')
+    lines.append('    <div class="dropdown-menu">')
+    for href, label in GUIDES:
+        lines.append('      <a href="' + g + href + '">' + label + '</a>')
+    lines.append('      <a href="' + g + 'index.html" style="color:var(--accent);">All guides &#x2192;</a>')
+    lines.append('    </div>')
+    lines.append('  </div>')
+
+    # Hamburger
+    lines.append('</nav>')
+    lines.append('<button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">')
+    lines.append('  <span></span><span></span><span></span>')
+    lines.append('</button>')
+
+    return '\n  '.join(lines)
+
+
+def build_mobile_menu(root, in_guides):
+    g = root + 'guides/'
+    lines = ['<div class="nav-mobile-menu" id="nav-mobile-menu">']
+
+    for cat_name, items in CALC_CATEGORIES:
+        lines.append('  <span class="mobile-guides-label">' + cat_name.replace('&amp;', '&') + '</span>')
+        for href, label in items:
+            lines.append('  <a href="' + root + href + '">' + label + '</a>')
+
+    lines.append('  <span class="mobile-guides-label">Guides</span>')
+    for href, label in GUIDES:
+        lines.append('  <a href="' + g + href + '">' + label + '</a>')
+    lines.append('  <a href="' + g + 'index.html" style="color:var(--accent);">All guides &#x2192;</a>')
+    lines.append('</div>')
+    return '\n'.join(lines)
+
+
+def ensure_css(c):
+    """Inject grouped nav CSS if not already present."""
+    if 'nav-group-toggle' not in c:
+        c = c.replace('</style>', GROUPED_NAV_CSS + '\n</style>', 1)
+    return c
+
+
 def stamp(filepath):
     path = os.path.join(BASE, filepath) if not os.path.isabs(filepath) else filepath
     if not os.path.exists(path):
-        print('  ERROR: file not found: ' + path)
+        print('  ERROR: not found: ' + path)
         return False
 
     with open(path) as f:
@@ -144,10 +205,13 @@ def stamp(filepath):
     fname = os.path.basename(path)
     active_href = '' if fname == 'index.html' and not in_guides else fname
 
-    nav_html    = build_nav(root, active_href, in_guides)
+    nav_html    = build_nav(root, in_guides, active_href)
     mobile_html = build_mobile_menu(root, in_guides)
 
-    # Replace nav + hamburger button
+    # Inject CSS
+    c = ensure_css(c)
+
+    # Replace nav + hamburger
     c = re.sub(
         r'<nav>.*?</nav>\s*<button class="nav-hamburger".*?</button>',
         nav_html, c, count=1, flags=re.DOTALL
@@ -166,7 +230,7 @@ def stamp(filepath):
     if 'id="nav-mobile-menu"' not in c:
         c = c.replace('</header>', '</header>\n' + mobile_html, 1)
 
-    # Replace or add event listener JS
+    # Replace or add event JS
     c = re.sub(
         r'<script>\s*window\.addEventListener\(\'load\'.*?</script>',
         NAV_EVENT_JS, c, flags=re.DOTALL
@@ -177,7 +241,7 @@ def stamp(filepath):
     with open(path, 'w') as f:
         f.write(c)
 
-    print('  ✓ Stamped: ' + filepath)
+    print('  ✓ ' + filepath)
     return True
 
 
