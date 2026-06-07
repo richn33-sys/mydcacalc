@@ -26,6 +26,7 @@ CALCULATORS = [
     ('fire-calculator.html',          'FIRE'),
     ('rebalancing-calculator.html',   'Rebalancing'),
     ('fee-calculator.html',           'Fee impact'),
+    ('tax-loss-harvesting-calculator.html', 'Tax-loss harvesting'),
 ]
 
 # ── GUIDES (add new ones here) ────────────────────────────────────────────────
