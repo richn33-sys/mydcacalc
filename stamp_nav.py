@@ -87,7 +87,6 @@ GROUPED_NAV_CSS = '''
 
 NAV_EVENT_JS = '''<script>
 window.addEventListener('load', function() {
-  // Hamburger
   var btn = document.getElementById('nav-hamburger');
   var menu = document.getElementById('nav-mobile-menu');
   if (btn && menu) {
@@ -106,26 +105,19 @@ window.addEventListener('load', function() {
       });
     });
   }
-  // Calculator group dropdowns
-  document.querySelectorAll('.nav-group').forEach(function(ng) {
-    var m = ng.querySelector('.nav-group-menu');
-    if (!m) return;
-    var t;
-    ng.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
-    ng.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
-    m.addEventListener('mouseenter', function() { clearTimeout(t); });
-    m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
-  });
-  // Guides dropdown
-  document.querySelectorAll('.dropdown').forEach(function(dd) {
-    var m = dd.querySelector('.dropdown-menu');
-    if (!m) return;
-    var t;
-    dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
-    dd.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
-    m.addEventListener('mouseenter', function() { clearTimeout(t); });
-    m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
-  });
+  function hookDropdown(selector, menuSelector) {
+    document.querySelectorAll(selector).forEach(function(el) {
+      var m = el.querySelector(menuSelector);
+      if (!m) return;
+      var t;
+      el.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
+      el.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+      m.addEventListener('mouseenter', function() { clearTimeout(t); });
+      m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+    });
+  }
+  hookDropdown('.nav-group', '.nav-group-menu');
+  hookDropdown('.dropdown', '.dropdown-menu');
 });
 </script>'''
 
