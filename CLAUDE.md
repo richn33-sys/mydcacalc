@@ -126,7 +126,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── fire-calculator.html                          ← FIRE Calculator (9th calculator, NEW Jun 1)
 ├── rebalancing-calculator.html                   ← Portfolio Rebalancing Calculator (10th calculator, NEW Jun 1)
 ├── fee-calculator.html                           ← Investment Fee Impact Calculator (11th calculator, NEW Jun 3)
-├── stamp_nav.py                                  ← Single script to stamp correct full nav into any page
+├── tax-loss-harvesting-calculator.html           ← Tax-Loss Harvesting Calculator (12th calculator, NEW Jun 7)
+├── stamp_nav.py                                  ← Single script to stamp correct full nav into any page (grouped dropdowns, rebuilt Jun 7)
 ├── about.html
 ├── privacy.html
 ├── terms.html
@@ -139,7 +140,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 18 guides published; counter reads 18 ✅
+│   ├── index.html                                ← 19 guides published; counter reads 19 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -157,7 +158,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── best-day-to-dca-bitcoin.html              ← NEW Jun 1 (15th guide)
 │   ├── 4-percent-rule-explained.html             ← NEW Jun 1 (16th guide)
 │   ├── how-to-build-crypto-dca-portfolio.html    ← NEW Jun 5 (17th guide)
-│   └── portfolio-diversification-guide.html      ← NEW Jun 5 (18th guide)
+│   ├── portfolio-diversification-guide.html      ← NEW Jun 5 (18th guide)
+│   └── tax-loss-harvesting-explained.html        ← NEW Jun 7 (19th guide)
 └── CLAUDE.md
 ```
 ---
@@ -175,21 +177,26 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - **Borders:** `rgba(255,255,255,0.08)`
 - **Border radius:** 10px (components), 16px (cards)
 - **Favicon:** SVG data URI — dark bg, "DCA" in accent green
-### Nav structure (as of Jun 2 2026):
+### Nav structure (as of Jun 7 2026 — grouped dropdowns):
 - `nav.js` was ABANDONED and DELETED (Jun 2 2026) — no page ever loaded it (`grep -L "nav.js"` confirmed 0 script references). It is gone from the repo; nav is hardcoded per-page (see below).
-- Nav is now HARDCODED into every page, updated via Python regex scripts when a calculator or guide is added.
-- Header (calculators order): DCA · Position size · Compound interest · DCA backtest · Loss recovery · DRIP · Real returns · Asset allocation · FIRE · Rebalancing · Guides ▾
-- Guides dropdown: 16 guides + "All guides →"
+- Nav is now HARDCODED into every page, stamped via `stamp_nav.py` when a calculator or guide is added.
+- **Calculators are now organized into grouped dropdown categories (rebuilt Jun 7):** Investing · Portfolio · Retirement & Tax · Income — replacing the old flat single-row list of every calculator.
+  - **Investing:** DCA · DCA backtest · Compound interest · Loss recovery
+  - **Portfolio:** Asset allocation · Rebalancing · Position size
+  - **Retirement & Tax:** FIRE · Fee impact · Tax-loss harvesting
+  - **Income:** DRIP · Real returns
+  - (Exact category membership lives in `stamp_nav.py`'s `CALC_CATEGORIES` array — that is the source of truth.)
+- Guides dropdown: 19 guides + "All guides →"
 - Root pages: `href="guides/page.html"` for guide links
 - Guide pages: `href="../page.html"` for root, `href="page.html"` for guides
 - Authors pages: `href="../page.html"` for root, `href="../guides/page.html"` for guides
 - Dropdown: JS hover with 300ms delay
-- Mobile hamburger menu fixed site-wide Jun 1 — confirmed working on iOS
+- Mobile hamburger menu confirmed working site-wide with static category labels (Jun 7) — verified on iOS
 ### Updating nav across all pages:
 Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps the correct full nav into any page (handles relative path differences between root, guide, and author pages automatically). Do NOT rely on nav.js (abandoned, deleted) and do NOT hand-edit each file individually.
 
 **Workflow to add a calculator or guide:**
-1. Add the item to the CALCULATORS / GUIDES arrays in `stamp_nav.py`
+1. Add the item to the appropriate `CALC_CATEGORIES` group (or `GUIDES` array) in `stamp_nav.py`
 2. Run `python3 stamp_nav.py --all` to re-stamp the nav across every page
 3. Deploy: `python3 deploy.py "message"`
 ---
@@ -243,6 +250,13 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Inputs: initial investment, annual contribution, years, expected return, fee %
 - Outputs: final value with vs without fees, total dollars lost to fees, drag on returns
 - **Keywords:** investment fee calculator, expense ratio impact calculator, fee drag calculator
+
+### tax-loss-harvesting-calculator.html — Tax-Loss Harvesting Calculator (12th calculator, NEW Jun 7 2026)
+- Estimates tax savings from harvesting investment losses to offset gains and ordinary income
+- Inputs: capital losses, capital gains (short/long-term), ordinary income offset ($3,000 cap), tax bracket
+- Outputs: tax saved this year, losses carried forward, net benefit
+- Pairs with the Tax-Loss Harvesting Explained guide (James Colter)
+- **Keywords:** tax loss harvesting calculator, capital gains tax offset calculator
 ---
 ## Author Personas
 ### James Colter — Long-term Investor & Personal Finance Writer
@@ -259,7 +273,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 ---
-## Guides Section (18 published as of Jun 5 2026)
+## Guides Section (19 published as of Jun 7 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -280,6 +294,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | 4-percent-rule-explained.html | James Colter | ✅ Live | Jun 1 2026 |
 | how-to-build-crypto-dca-portfolio.html | James Colter | ✅ Live | Jun 5 2026 |
 | portfolio-diversification-guide.html | James Colter | ✅ Live | Jun 5 2026 |
+| tax-loss-harvesting-explained.html | James Colter | ✅ Live | Jun 7 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -396,6 +411,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | fire-calculator.html | FIRE calculator / financial independence retire early |
 | rebalancing-calculator.html | portfolio rebalancing calculator |
 | fee-calculator.html | investment fee calculator / expense ratio impact |
+| tax-loss-harvesting-calculator.html | tax loss harvesting calculator / capital gains tax offset |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -414,6 +430,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | guides/4-percent-rule-explained.html | 4 percent rule retirement withdrawal |
 | guides/how-to-build-crypto-dca-portfolio.html | how to build a crypto DCA portfolio (BTC/ETH/SOL) |
 | guides/portfolio-diversification-guide.html | portfolio diversification guide 2026 |
+| guides/tax-loss-harvesting-explained.html | tax loss harvesting explained |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -480,7 +497,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 ---
 ## Research Agent ✅ LIVE
 - **Location:** `~/Desktop/ClaudeWork/mydcacalc_research/`
-- **Schedule:** Every Monday at 8am via launchd
+- **Schedule:** Every Sunday at 7am via launchd (changed Jun 7 2026 from Monday 8am — plist `StartCalendarInterval` now Weekday 0 / Hour 7; reloaded and confirmed loaded)
 - **Delivers to:** richn33@gmail.com
 - **Model:** claude-opus-4-5 with web search
 - **Run manually:** `python3 ~/Desktop/ClaudeWork/mydcacalc_research/research_agent.py`
@@ -488,7 +505,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jun 5 2026 — verified against disk, 18 guides):
+### Current CURRENT_GUIDES (as of Jun 7 2026 — verified against disk, 19 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging",
@@ -509,10 +526,12 @@ CURRENT_GUIDES = [
     "The 4% rule explained: is it still valid in 2026",
     "How to build a crypto DCA portfolio (BTC/ETH/SOL)",
     "Portfolio diversification guide 2026",
+    "Tax-loss harvesting explained",
 ]
 ```
+> ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
 
-### Current CURRENT_CALCULATORS (as of Jun 3 2026 — verified against disk, 11 calculators):
+### Current CURRENT_CALCULATORS (as of Jun 7 2026 — verified against disk, 12 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator",
@@ -526,11 +545,17 @@ CURRENT_CALCULATORS = [
     "FIRE calculator (financial independence, retire early)",
     "Portfolio rebalancing calculator",
     "Investment fee impact calculator",
+    "Tax-loss harvesting calculator",
 ]
 ```
 ---
 ## Roadmap
 ### Done ✅
+- [x] Tax-Loss Harvesting Calculator (12th calculator) — Jun 7 2026
+- [x] Tax-Loss Harvesting Explained guide — James Colter, 19th guide — Jun 7 2026
+- [x] stamp_nav.py rebuilt with grouped calculator dropdowns (Investing / Portfolio / Retirement & Tax / Income) — Jun 7 2026
+- [x] All 31 pages re-stamped with grouped nav via stamp_nav.py --all — Jun 7 2026
+- [x] Research agent schedule moved Monday 8am → Sunday 7am (launchd plist) — Jun 7 2026
 - [x] Crypto DCA Portfolio guide (BTC/ETH/SOL) — James Colter, 17th guide — Jun 5 2026
 - [x] Portfolio Diversification Guide 2026 — James Colter, 18th guide — Jun 5 2026
 - [x] Investment Fee Impact Calculator (11th calculator) — Jun 3 2026
@@ -593,8 +618,13 @@ CURRENT_CALCULATORS = [
 - [x] **Investment Fee Impact Calculator** — built and deployed as fee-calculator.html (11th calculator), Jun 3 2026 ✅
 - [x] **Crypto DCA Portfolio guide (BTC/ETH/SOL)** — published Jun 5 2026 (17th guide) ✅
 - [x] **Portfolio Diversification Guide 2026** — published Jun 5 2026 (18th guide) ✅
-- [ ] **Submit new pages to GSC** — fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide
-- [ ] **Await Monday research agent brief** for new content ideas (May 25 + Jun 1 brief items all complete ✅)
+- [x] **Tax-Loss Harvesting guide** — published Jun 7 2026 (19th guide) ✅
+- [x] **Tax-Loss Harvesting Calculator** — built and deployed Jun 7 2026 (12th calculator) ✅
+- [x] **Grouped nav dropdowns** — stamp_nav.py rebuilt, all 31 pages re-stamped Jun 7 2026 ✅
+- [ ] **Crypto Cost Basis / Average Price Calculator** — next calculator
+- [ ] **Crypto Staking Yields guide** — next guide
+- [ ] **Submit outstanding pages to GSC** — fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide, tax-loss-harvesting-calculator, tax-loss-harvesting-explained
+- [ ] **Await Sunday research agent brief** for new content ideas (May 25 + Jun 1 brief items all complete ✅)
 - [x] **Fix guides/index.html counter** — fixed to 16 (Jun 2) ✅
 - [x] **Delete vestigial nav.js** — deleted; was dead code, no page loaded it (Jun 2) ✅
 - [ ] **Build Reddit karma** — new account needs comments before posting
@@ -608,6 +638,17 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 7 2026 — Tax-Loss Harvesting + Grouped Nav Session
+- Tax-Loss Harvesting Explained guide published (James Colter, 19th guide) — `guides/tax-loss-harvesting-explained.html`
+- Tax-Loss Harvesting Calculator built and deployed (`tax-loss-harvesting-calculator.html`, 12th calculator) — estimates tax savings from harvesting losses against gains/income
+- **stamp_nav.py rebuilt with grouped calculator dropdowns** — calculators now organized into four categories (Investing / Portfolio / Retirement & Tax / Income) via the new `CALC_CATEGORIES` structure, replacing the old flat single-row list
+- All 31 pages re-stamped with the new grouped nav via `python3 stamp_nav.py --all`
+- Mobile nav confirmed working with static category labels
+- **Research agent schedule changed: Monday 8am → Sunday 7am** — launchd plist `StartCalendarInterval` updated to Weekday 0 / Hour 7, reloaded and confirmed loaded
+- **research_agent.py audit (vs disk):** CURRENT_GUIDES was stale at 16 (the Jun 5 crypto-portfolio + diversification guides had been logged in CLAUDE.md but never written to the script); added those two + tax-loss harvesting → 19. CURRENT_CALCULATORS missing tax-loss harvesting → added → 12. Both lists now match disk.
+- **GSC check:** 197 impressions, avg position 15.6; geopolitical-uncertainty guide standout at position 4.6 with 88 impressions
+- Next priorities: Crypto Cost Basis / Average Price Calculator, Crypto Staking Yields guide, submit outstanding pages to GSC
 
 ### Jun 5 2026 — Guides Session (Crypto DCA Portfolio + Diversification)
 - Crypto DCA Portfolio guide published (James Colter, 17th guide) — `guides/how-to-build-crypto-dca-portfolio.html` — BTC/ETH/SOL portfolio construction

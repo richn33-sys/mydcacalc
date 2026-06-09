@@ -20,6 +20,7 @@ CALC_CATEGORIES = [
         ('dca-backtest.html',             'DCA backtest'),
         ('compound-interest.html',        'Compound interest'),
         ('loss-recovery-calculator.html', 'Loss recovery'),
+        ('crypto-cost-basis-calculator.html', 'Crypto cost basis'),
     ]),
     ('Portfolio', [
         ('asset-allocation.html',         'Asset allocation'),

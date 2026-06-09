@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Average Cost Basis Calculator — Track Your DCA Purchases</title>
+<meta name="description" content="Free crypto cost basis calculator. Enter your Bitcoin, Ethereum, or any crypto purchases to calculate your average cost basis, total invested, unrealized gain/loss, and break-even price.">
+<meta name="keywords" content="crypto average cost basis calculator, crypto cost basis calculator, bitcoin average price calculator, DCA crypto cost basis, average cost crypto calculator 2026">
+<meta property="og:title" content="Crypto Average Cost Basis Calculator — Track Your DCA Purchases">
+<meta property="og:description" content="Enter your crypto buys to see your average cost basis, break-even price, unrealized P&L, and how each purchase moved your average.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/crypto-cost-basis-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/crypto-cost-basis-calculator.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Crypto Average Cost Basis Calculator",
+  "description": "Calculate your average cost basis across multiple crypto purchases and track unrealized P&L",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --btc: #f7931a;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover { color: var(--accent); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+
+/* Hero */
+.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(247,147,26,0.1); border: 1px solid rgba(247,147,26,0.3); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--btc); margin-bottom: 16px; }
+h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
+
+/* Asset selector */
+.asset-bar { max-width: 900px; margin: 0 auto; padding: 16px 24px 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.asset-btn { font-size: 12px; font-family: var(--font-mono); background: var(--bg-input); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+.asset-btn:hover { border-color: var(--border-hover); color: var(--text); }
+.asset-btn.active { color: var(--btc); border-color: rgba(247,147,26,0.4); background: rgba(247,147,26,0.08); }
+.asset-btn.eth.active { color: #627eea; border-color: rgba(98,126,234,0.4); background: rgba(98,126,234,0.08); }
+.asset-btn.sol.active { color: #9945ff; border-color: rgba(153,69,255,0.4); background: rgba(153,69,255,0.08); }
+.asset-btn.custom.active { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
+.asset-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); margin-right: 4px; }
+
+/* Main layout */
+.main { max-width: 900px; margin: 0 auto; padding: 20px 24px 80px; }
+
+/* Summary strip */
+.summary-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }
+@media (max-width: 700px) { .summary-strip { grid-template-columns: repeat(2, 1fr); } }
+.summary-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.summary-card.highlight { border-color: var(--accent-border); background: var(--accent-dim); }
+.summary-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.summary-value { font-family: var(--font-mono); font-size: 17px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); }
+.summary-value.green { color: var(--green); }
+.summary-value.red { color: var(--red); }
+.summary-value.accent { color: var(--accent); }
+
+/* Purchase entry area */
+.entry-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; }
+.entry-header { display: grid; grid-template-columns: 60px 1fr 1fr 1fr 36px; gap: 10px; margin-bottom: 10px; }
+@media (max-width: 600px) { .entry-header { grid-template-columns: 40px 1fr 1fr 36px; } }
+.entry-col-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; }
+.purchase-row { display: grid; grid-template-columns: 60px 1fr 1fr 1fr 36px; gap: 10px; align-items: center; margin-bottom: 8px; }
+@media (max-width: 600px) { .purchase-row { grid-template-columns: 40px 1fr 1fr 36px; } }
+.row-num { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); text-align: center; }
+.row-input { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+.row-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.row-input:focus { border-color: var(--accent-border); }
+.row-date { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; }
+.row-date:focus { border-color: var(--accent-border); }
+.remove-btn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 0; cursor: pointer; color: var(--text-dim); font-size: 16px; transition: all 0.15s; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+.remove-btn:hover { border-color: var(--red); color: var(--red); }
+.entry-footer { display: flex; gap: 10px; margin-top: 4px; flex-wrap: wrap; align-items: center; }
+.add-row-btn { background: none; border: 1px dashed var(--border); border-radius: var(--radius); padding: 8px 16px; cursor: pointer; color: var(--text-dim); font-size: 12px; font-family: var(--font-mono); transition: all 0.15s; }
+.add-row-btn:hover { border-color: var(--accent-border); color: var(--accent); }
+.current-price-wrap { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.current-price-label { font-size: 12px; font-family: var(--font-mono); color: var(--text-muted); white-space: nowrap; }
+.price-input-wrap { position: relative; }
+.price-prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+.current-price-input { background: var(--bg-input); border: 1px solid var(--accent-border); border-radius: 8px; padding: 7px 10px 7px 22px; font-size: 13px; font-family: var(--font-mono); color: var(--accent); outline: none; width: 130px; -moz-appearance: textfield; }
+.current-price-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+/* Lot table */
+.lot-table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 20px; }
+.lot-table-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+.lot-table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: var(--font-mono); }
+.lot-table th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.lot-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.lot-table tr:last-child td { border-bottom: none; color: var(--text); font-weight: 500; background: var(--bg-input); }
+.lot-table td.green { color: var(--green); }
+.lot-table td.red { color: var(--red); }
+.lot-table td.accent { color: var(--accent); font-weight: 500; }
+.avg-line { background: rgba(200,240,96,0.04); }
+.avg-line td { color: var(--accent) !important; font-weight: 500 !important; }
+
+/* Chart */
+.chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; margin-bottom: 20px; }
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+.chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.chart-legend { display: flex; gap: 14px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.chart-wrap { position: relative; height: 220px; }
+
+/* Info + disclaimer */
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 14px; }
+.info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.info-box strong { color: var(--text); font-weight: 500; }
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+
+/* Content section */
+.content-section { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+
+/* Pro banner */
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
+/* ── GROUPED NAV DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 220px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu .group-label { padding: 8px 14px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+.nav-group-menu .group-divider { height: 1px; background: var(--border); margin: 2px 0; }
+/* Guides dropdown (right-aligned) */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your crypto DCA performance</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle active">Investing</button>
+      <div class="nav-group-menu">
+        <a href="">DCA calculator</a>
+        <a href="dca-backtest.html">DCA backtest</a>
+        <a href="compound-interest.html">Compound interest</a>
+        <a href="loss-recovery-calculator.html">Loss recovery</a>
+        <a href="crypto-cost-basis-calculator.html" class="active">Crypto cost basis</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="asset-allocation.html">Asset allocation</a>
+        <a href="rebalancing-calculator.html">Rebalancing</a>
+        <a href="position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="fire-calculator.html">FIRE calculator</a>
+        <a href="fee-calculator.html">Fee impact</a>
+        <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="drip-calculator.html">DRIP</a>
+        <a href="inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+        <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+        <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+        <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+        <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+        <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+        <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
+        <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+        <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+        <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+        <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+        <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="">DCA calculator</a>
+  <a href="dca-backtest.html">DCA backtest</a>
+  <a href="compound-interest.html">Compound interest</a>
+  <a href="loss-recovery-calculator.html">Loss recovery</a>
+  <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="asset-allocation.html">Asset allocation</a>
+  <a href="rebalancing-calculator.html">Rebalancing</a>
+  <a href="position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="fire-calculator.html">FIRE calculator</a>
+  <a href="fee-calculator.html">Fee impact</a>
+  <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="drip-calculator.html">DRIP</a>
+  <a href="inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">Guides</span>
+  <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+  <a href="guides/how-to-calculate-position-size.html">How to calculate position size</a>
+  <a href="guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+  <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+  <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
+  <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">BTC · ETH · SOL · Any crypto</div>
+  <h1>Crypto Average <em>Cost Basis Calculator</em></h1>
+  <p>Enter your purchases to see your average cost basis, total invested, unrealized P&L, and break-even price. Works for any crypto — Bitcoin, Ethereum, Solana, or custom tokens.</p>
+</div>
+
+<!-- Asset selector -->
+<div class="asset-bar">
+  <span class="asset-label">Quick select:</span>
+  <button class="asset-btn active" onclick="setAsset('BTC', 97500)">₿ Bitcoin</button>
+  <button class="asset-btn eth" onclick="setAsset('ETH', 2650)">Ξ Ethereum</button>
+  <button class="asset-btn sol" onclick="setAsset('SOL', 172)">◎ Solana</button>
+  <button class="asset-btn custom" onclick="setAsset('TOKEN', 1)">Custom token</button>
+</div>
+
+<div class="main">
+
+  <!-- Summary strip -->
+  <div class="summary-strip">
+    <div class="summary-card highlight">
+      <div class="summary-label">Avg cost basis</div>
+      <div class="summary-value accent" id="avg-cost">$0.00</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-label">Total invested</div>
+      <div class="summary-value" id="total-invested">$0</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-label">Total coins held</div>
+      <div class="summary-value" id="total-coins">0</div>
+    </div>
+    <div class="summary-card" id="pnl-card">
+      <div class="summary-label">Unrealized P&L</div>
+      <div class="summary-value" id="unrealized-pnl">—</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-label">Break-even price</div>
+      <div class="summary-value accent" id="breakeven">$0.00</div>
+    </div>
+  </div>
+
+  <!-- Purchase entry -->
+  <div class="entry-card">
+    <div class="entry-header">
+      <div class="entry-col-label">#</div>
+      <div class="entry-col-label">Date (optional)</div>
+      <div class="entry-col-label">Price paid ($)</div>
+      <div class="entry-col-label">Amount bought</div>
+      <div></div>
+    </div>
+    <div id="purchase-rows"></div>
+    <div class="entry-footer">
+      <button class="add-row-btn" onclick="addRow()">+ Add purchase</button>
+      <div class="current-price-wrap">
+        <span class="current-price-label">Current price:</span>
+        <div class="price-input-wrap">
+          <span class="price-prefix">$</span>
+          <input type="number" class="current-price-input" id="current-price" value="97500" min="0" step="100" oninput="calc()" placeholder="Current price">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lot breakdown table -->
+  <div class="lot-table-card">
+    <div class="lot-table-title">Purchase breakdown — running average</div>
+    <div style="overflow-x:auto;">
+      <table class="lot-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Price paid</th>
+            <th>Amount</th>
+            <th>Cost</th>
+            <th>Running avg cost</th>
+            <th>P&L at current price</th>
+          </tr>
+        </thead>
+        <tbody id="lot-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <div class="chart-title">Average cost basis vs current price</div>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>Avg cost basis</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#f7931a;"></div>Current price</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#3ecf8e;opacity:0.5;"></div>Individual buy prices</div>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="basis-chart"></canvas>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>What is cost basis?</strong> Your cost basis is the average price you paid per coin across all your purchases. It determines your taxable gain or loss when you sell. If you sell above your cost basis, you have a capital gain; below, a capital loss. DCA investors who buy at multiple price points need to track their running average to know their true break-even price and unrealized P&L.</p>
+  </div>
+
+  <div class="disclaimer">
+    This calculator is for informational purposes only. Cost basis calculations shown use the average cost method. Your brokerage or exchange may use a different method (FIFO, LIFO, specific identification). Consult a tax professional for your actual cost basis and tax liability. Crypto prices used are illustrative only — enter your actual purchase prices.
+  </div>
+
+</div>
+
+<div class="content-section">
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the crypto cost basis calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Your average cost basis is the total amount you've invested divided by the total number of coins you hold. When you DCA — buying a fixed amount at regular intervals — each purchase adds to your total at a different price, moving your average cost up or down. This calculator tracks that running average across all your purchases and shows your unrealized profit or loss at the current price.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The break-even price is simply your average cost basis — the price at which your position becomes profitable. If you're DCA-ing during a downturn, each new purchase at a lower price reduces your average cost and brings your break-even price down, which is why continuing to invest during corrections is one of the core advantages of the DCA strategy.</p>
+  <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:28px 0 12px;">How to use this calculator</h3>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;">
+    <li style="margin-bottom:10px;">Enter each purchase — the price you paid and the amount of crypto you bought. Date is optional but helps track your history.</li>
+    <li style="margin-bottom:10px;">Enter the current market price in the bottom right to see your unrealized P&L and how far above or below your cost basis the current price sits.</li>
+    <li style="margin-bottom:10px;">Use the quick-select buttons to switch between BTC, ETH, SOL, or enter a custom token with your own price.</li>
+    <li style="margin-bottom:10px;">The running average column shows how your cost basis moved with each purchase — useful for understanding the DCA effect on your entry price.</li>
+  </ul>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For strategy context, read our guide on <a href="guides/how-to-build-crypto-dca-portfolio.html" style="color:#c8f060;text-decoration:none;">how to build a crypto DCA portfolio</a> and use the <a href="dca-backtest.html" style="color:#c8f060;text-decoration:none;">DCA backtest calculator</a> to see historical returns.</p>
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For informational purposes only. Not financial or tax advice.
+  </p>
+</footer>
+
+<script>
+let chart = null;
+let purchases = [
+  { date: '2025-01-15', price: 94000, amount: 0.05 },
+  { date: '2025-02-15', price: 85000, amount: 0.06 },
+  { date: '2025-03-15', price: 78000, amount: 0.065 },
+  { date: '2025-04-15', price: 88000, amount: 0.056 },
+  { date: '2025-05-15', price: 103000, amount: 0.048 },
+];
+let currentAsset = 'BTC';
+
+function fmt(n, decimals) {
+  if (decimals !== undefined) return '$' + n.toFixed(decimals);
+  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  if (Math.abs(n) >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function fmtCoin(n) {
+  if (n >= 1000) return n.toLocaleString(undefined, {maximumFractionDigits: 2});
+  if (n >= 1) return n.toFixed(4);
+  return n.toFixed(6);
+}
+
+function setAsset(asset, price) {
+  currentAsset = asset;
+  document.getElementById('current-price').value = price;
+  document.querySelectorAll('.asset-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  // Set example purchases
+  const examples = {
+    'BTC': [
+      { date: '2025-01-15', price: 94000, amount: 0.05 },
+      { date: '2025-02-15', price: 85000, amount: 0.06 },
+      { date: '2025-03-15', price: 78000, amount: 0.065 },
+      { date: '2025-04-15', price: 88000, amount: 0.056 },
+      { date: '2025-05-15', price: 103000, amount: 0.048 },
+    ],
+    'ETH': [
+      { date: '2025-01-15', price: 3200, amount: 1.5 },
+      { date: '2025-02-15', price: 2800, amount: 1.8 },
+      { date: '2025-03-15', price: 2400, amount: 2.1 },
+      { date: '2025-04-15', price: 2600, amount: 1.9 },
+    ],
+    'SOL': [
+      { date: '2025-01-15', price: 210, amount: 25 },
+      { date: '2025-02-15', price: 180, amount: 29 },
+      { date: '2025-03-15', price: 145, amount: 36 },
+      { date: '2025-04-15', price: 160, amount: 32 },
+    ],
+    'TOKEN': [
+      { date: '', price: 1.00, amount: 1000 },
+      { date: '', price: 0.80, amount: 1250 },
+    ],
+  };
+  purchases = examples[asset] || examples['TOKEN'];
+  renderRows();
+  calc();
+}
+
+function renderRows() {
+  const container = document.getElementById('purchase-rows');
+  container.innerHTML = purchases.map((p, i) => `
+    <div class="purchase-row" id="row-${i}">
+      <div class="row-num">${i + 1}</div>
+      <input type="date" class="row-date row-input" value="${p.date || ''}"
+        oninput="purchases[${i}].date=this.value;calc()">
+      <input type="number" class="row-input" value="${p.price}" min="0" step="any" placeholder="Price"
+        oninput="purchases[${i}].price=parseFloat(this.value)||0;calc()">
+      <input type="number" class="row-input" value="${p.amount}" min="0" step="any" placeholder="Amount"
+        oninput="purchases[${i}].amount=parseFloat(this.value)||0;calc()">
+      <button class="remove-btn" onclick="removeRow(${i})" title="Remove">×</button>
+    </div>
+  `).join('');
+}
+
+function addRow() {
+  purchases.push({ date: '', price: 0, amount: 0 });
+  renderRows();
+  calc();
+}
+
+function removeRow(i) {
+  if (purchases.length <= 1) return;
+  purchases.splice(i, 1);
+  renderRows();
+  calc();
+}
+
+function calc() {
+  const currentPrice = parseFloat(document.getElementById('current-price').value) || 0;
+  const valid = purchases.filter(p => p.price > 0 && p.amount > 0);
+  if (valid.length === 0) return;
+
+  let totalCost = 0, totalCoins = 0;
+  valid.forEach(p => { totalCost += p.price * p.amount; totalCoins += p.amount; });
+
+  const avgCost = totalCost / totalCoins;
+  const currentValue = totalCoins * currentPrice;
+  const pnl = currentValue - totalCost;
+  const pnlPct = (pnl / totalCost) * 100;
+
+  // Update summary
+  document.getElementById('avg-cost').textContent = fmt(avgCost, 2);
+  document.getElementById('total-invested').textContent = fmt(totalCost);
+  document.getElementById('total-coins').textContent = fmtCoin(totalCoins) + ' ' + currentAsset;
+  document.getElementById('breakeven').textContent = fmt(avgCost, 2);
+
+  const pnlEl = document.getElementById('unrealized-pnl');
+  const pnlCard = document.getElementById('pnl-card');
+  if (currentPrice > 0) {
+    pnlEl.textContent = (pnl >= 0 ? '+' : '') + fmt(pnl) + ' (' + (pnlPct >= 0 ? '+' : '') + pnlPct.toFixed(1) + '%)';
+    pnlEl.className = 'summary-value ' + (pnl >= 0 ? 'green' : 'red');
+    pnlCard.style.borderColor = pnl >= 0 ? 'rgba(62,207,142,0.3)' : 'rgba(240,96,96,0.3)';
+    pnlCard.style.background = pnl >= 0 ? 'rgba(62,207,142,0.04)' : 'rgba(240,96,96,0.04)';
+  } else {
+    pnlEl.textContent = '—';
+    pnlEl.className = 'summary-value';
+  }
+
+  // Build lot table with running average
+  let runCost = 0, runCoins = 0;
+  const tbody = document.getElementById('lot-tbody');
+  tbody.innerHTML = valid.map((p, i) => {
+    runCost += p.price * p.amount;
+    runCoins += p.amount;
+    const runAvg = runCost / runCoins;
+    const lotValue = currentPrice > 0 ? p.amount * currentPrice : null;
+    const lotCost = p.price * p.amount;
+    const lotPnl = lotValue !== null ? lotValue - lotCost : null;
+    const pnlClass = lotPnl === null ? '' : (lotPnl >= 0 ? 'green' : 'red');
+    const pnlStr = lotPnl === null ? '—' : ((lotPnl >= 0 ? '+' : '') + fmt(lotPnl));
+    return '<tr>' +
+      '<td>' + (i+1) + '</td>' +
+      '<td>' + (p.date || '—') + '</td>' +
+      '<td>' + fmt(p.price, 2) + '</td>' +
+      '<td>' + fmtCoin(p.amount) + '</td>' +
+      '<td>' + fmt(lotCost) + '</td>' +
+      '<td class="accent">' + fmt(runAvg, 2) + '</td>' +
+      '<td class="' + pnlClass + '">' + pnlStr + '</td>' +
+      '</tr>';
+  }).join('') +
+  '<tr>' +
+    '<td colspan="2">Total / Average</td>' +
+    '<td class="accent">' + fmt(avgCost, 2) + '</td>' +
+    '<td>' + fmtCoin(totalCoins) + '</td>' +
+    '<td>' + fmt(totalCost) + '</td>' +
+    '<td class="accent">' + fmt(avgCost, 2) + '</td>' +
+    '<td class="' + (pnl >= 0 ? 'green' : 'red') + '">' + (currentPrice > 0 ? (pnl >= 0 ? '+' : '') + fmt(pnl) : '—') + '</td>' +
+  '</tr>';
+
+  // Chart
+  updateChart(valid, avgCost, currentPrice);
+}
+
+function updateChart(valid, avgCost, currentPrice) {
+  const ctx = document.getElementById('basis-chart').getContext('2d');
+  if (chart) chart.destroy();
+
+  const labels = valid.map((p, i) => p.date || ('Buy ' + (i+1)));
+  const buyPrices = valid.map(p => p.price);
+  const avgLine = valid.map(() => avgCost);
+  const currentLine = currentPrice > 0 ? valid.map(() => currentPrice) : null;
+
+  const datasets = [
+    {
+      label: 'Avg cost basis',
+      data: avgLine,
+      borderColor: '#c8f060',
+      backgroundColor: 'transparent',
+      borderWidth: 2,
+      borderDash: [6, 3],
+      pointRadius: 0,
+      fill: false,
+      tension: 0,
+    },
+    {
+      label: 'Buy prices',
+      data: buyPrices,
+      borderColor: 'rgba(62,207,142,0.6)',
+      backgroundColor: 'rgba(62,207,142,0.15)',
+      borderWidth: 2,
+      pointRadius: 5,
+      pointBackgroundColor: '#3ecf8e',
+      fill: false,
+      tension: 0.2,
+    },
+  ];
+
+  if (currentLine) {
+    datasets.unshift({
+      label: 'Current price',
+      data: currentLine,
+      borderColor: '#f7931a',
+      backgroundColor: 'transparent',
+      borderWidth: 2,
+      pointRadius: 0,
+      fill: false,
+      tension: 0,
+    });
+  }
+
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          padding: 12,
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          callbacks: {
+            label: ctx => '  ' + ctx.dataset.label + ': $' + ctx.raw.toLocaleString(undefined, {maximumFractionDigits: 2})
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxRotation: 30 } },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => '$' + v.toLocaleString() }
+        }
+      }
+    }
+  });
+}
+
+// Dropdowns
+document.querySelectorAll('.dropdown').forEach(function(dd) {
+  var m = dd.querySelector('.dropdown-menu'), t;
+  dd.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display='block'; });
+  dd.addEventListener('mouseleave', function() { t=setTimeout(function(){m.style.display='none';},300); });
+  m.addEventListener('mouseenter', function() { clearTimeout(t); });
+  m.addEventListener('mouseleave', function() { t=setTimeout(function(){m.style.display='none';},300); });
+});
+
+// Mobile menu
+window.addEventListener('load', function() {
+  var btn = document.getElementById('nav-hamburger');
+  var menu = document.getElementById('nav-mobile-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+});
+
+// Init
+renderRows();
+calc();
+</script>
+
+</body>
+</html>
