@@ -127,6 +127,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── rebalancing-calculator.html                   ← Portfolio Rebalancing Calculator (10th calculator, NEW Jun 1)
 ├── fee-calculator.html                           ← Investment Fee Impact Calculator (11th calculator, NEW Jun 3)
 ├── tax-loss-harvesting-calculator.html           ← Tax-Loss Harvesting Calculator (12th calculator, NEW Jun 7)
+├── crypto-cost-basis-calculator.html             ← Crypto Cost Basis / Average Price Calculator (13th calculator, NEW Jun 9)
 ├── stamp_nav.py                                  ← Single script to stamp correct full nav into any page (grouped dropdowns, rebuilt Jun 7)
 ├── about.html
 ├── privacy.html
@@ -257,6 +258,13 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Outputs: tax saved this year, losses carried forward, net benefit
 - Pairs with the Tax-Loss Harvesting Explained guide (James Colter)
 - **Keywords:** tax loss harvesting calculator, capital gains tax offset calculator
+
+### crypto-cost-basis-calculator.html — Crypto Cost Basis / Average Price Calculator (13th calculator, NEW Jun 9 2026)
+- Calculates average purchase price (cost basis) across multiple crypto buys
+- Inputs: multiple buy entries (amount + price per buy), optional fees
+- Outputs: total invested, total units, average cost basis per unit, unrealized P&L vs current price
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
+- **Keywords:** crypto cost basis calculator, average price calculator, crypto average buy price
 ---
 ## Author Personas
 ### James Colter — Long-term Investor & Personal Finance Writer
@@ -412,6 +420,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | rebalancing-calculator.html | portfolio rebalancing calculator |
 | fee-calculator.html | investment fee calculator / expense ratio impact |
 | tax-loss-harvesting-calculator.html | tax loss harvesting calculator / capital gains tax offset |
+| crypto-cost-basis-calculator.html | crypto cost basis calculator / average price calculator |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -531,7 +540,7 @@ CURRENT_GUIDES = [
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
 
-### Current CURRENT_CALCULATORS (as of Jun 7 2026 — verified against disk, 12 calculators):
+### Current CURRENT_CALCULATORS (as of Jun 9 2026 — verified against disk, 13 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator",
@@ -546,11 +555,15 @@ CURRENT_CALCULATORS = [
     "Portfolio rebalancing calculator",
     "Investment fee impact calculator",
     "Tax-loss harvesting calculator",
+    "Crypto cost basis / average price calculator",
 ]
 ```
 ---
 ## Roadmap
 ### Done ✅
+- [x] Crypto Cost Basis / Average Price Calculator (13th calculator) — Jun 9 2026
+- [x] Dropdown root cause found + fixed: broken Chart.js path (index_files/chart.umd.js) on index.html was throwing a silent JS error that blocked all dropdown event listeners; Chart.js path repointed to CDN across all affected pages — Jun 9 2026
+- [x] stamp_nav.py NAV_EVENT_JS updated to use hookDropdown() helper for both .nav-group and .dropdown — Jun 9 2026
 - [x] Tax-Loss Harvesting Calculator (12th calculator) — Jun 7 2026
 - [x] Tax-Loss Harvesting Explained guide — James Colter, 19th guide — Jun 7 2026
 - [x] stamp_nav.py rebuilt with grouped calculator dropdowns (Investing / Portfolio / Retirement & Tax / Income) — Jun 7 2026
@@ -621,9 +634,9 @@ CURRENT_CALCULATORS = [
 - [x] **Tax-Loss Harvesting guide** — published Jun 7 2026 (19th guide) ✅
 - [x] **Tax-Loss Harvesting Calculator** — built and deployed Jun 7 2026 (12th calculator) ✅
 - [x] **Grouped nav dropdowns** — stamp_nav.py rebuilt, all 31 pages re-stamped Jun 7 2026 ✅
-- [ ] **Crypto Cost Basis / Average Price Calculator** — next calculator
+- [x] **Crypto Cost Basis / Average Price Calculator** — built and deployed (13th calculator), Jun 9 2026 ✅
 - [ ] **Crypto Staking Yields guide** — next guide
-- [ ] **Submit outstanding pages to GSC** — fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide, tax-loss-harvesting-calculator, tax-loss-harvesting-explained
+- [ ] **Submit outstanding pages to GSC** — fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide, tax-loss-harvesting-calculator, tax-loss-harvesting-explained, crypto-cost-basis-calculator
 - [ ] **Await Sunday research agent brief** for new content ideas (May 25 + Jun 1 brief items all complete ✅)
 - [x] **Fix guides/index.html counter** — fixed to 16 (Jun 2) ✅
 - [x] **Delete vestigial nav.js** — deleted; was dead code, no page loaded it (Jun 2) ✅
@@ -638,6 +651,14 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 9 2026 — Crypto Cost Basis Calculator + Dropdown Fix Session
+- Crypto Cost Basis / Average Price Calculator built and deployed (`crypto-cost-basis-calculator.html`, 13th calculator) — computes average cost basis across multiple crypto buys, total invested/units, and unrealized P&L vs current price
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under the **Investing** group
+- **Dropdown root cause found and fixed:** a broken Chart.js path (`index_files/chart.umd.js`) on index.html was throwing a silent JS error that halted script execution and blocked all dropdown event listeners from being attached. Repointed Chart.js to the CDN across all affected pages — dropdowns now confirmed working site-wide
+- **stamp_nav.py NAV_EVENT_JS updated** to use a `hookDropdown()` helper applied to both `.nav-group` and `.dropdown`, hardening the dropdown wiring
+- research_agent.py `CURRENT_CALCULATORS` updated — added "Crypto cost basis / average price calculator" (now 13 calculators), verified against disk
+- Next priorities: Crypto Staking Yields guide, submit outstanding pages to GSC, Reddit karma building
 
 ### Jun 7 2026 — Tax-Loss Harvesting + Grouped Nav Session
 - Tax-Loss Harvesting Explained guide published (James Colter, 19th guide) — `guides/tax-loss-harvesting-explained.html`

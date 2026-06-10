@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understanding Crypto Staking Yields in 2026 — ETH, SOL, and Real Returns</title>
+<meta name="description" content="Ethereum staking yields 2.78–4% APR in 2026. Solana yields 6.5–7.5%. But nominal APY is misleading — here's how to calculate real yield, compare staking methods, and understand the risks.">
+<meta name="keywords" content="crypto staking explained, crypto staking yields 2026, ethereum staking APY 2026, solana staking yield, how does crypto staking work, staking vs DCA">
+<meta property="og:title" content="Understanding Crypto Staking Yields in 2026 — ETH, SOL, and Real Returns">
+<meta property="og:description" content="ETH staking yields 2.78–4% APR. SOL yields 6.5–7.5%. Here's how to calculate real yield after inflation, compare methods, and understand the risks.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/crypto-staking-explained.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/crypto-staking-explained.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Understanding Crypto Staking Yields in 2026 — ETH, SOL, and Real Returns",
+  "description": "How crypto staking works, 2026 yield rates for ETH and SOL, real yield calculation, and how staking fits alongside a DCA strategy.",
+  "author": {
+    "@type": "Person",
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
+  },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --eth: #627eea; --sol: #9945ff; --btc: #f7931a;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover { color: var(--accent); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-tag.eth { color: var(--eth); background: rgba(98,126,234,0.1); border-color: rgba(98,126,234,0.3); }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout.data { border-left-color: var(--blue); background: rgba(91,156,246,0.05); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.callout.data .callout-label { color: var(--blue); }
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
+@media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; text-align: center; }
+.stat-card.eth-card { border-top: 2px solid var(--eth); }
+.stat-card.sol-card { border-top: 2px solid var(--sol); }
+.stat-card.warn { border-top: 2px solid var(--red); }
+.stat-number { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); margin-bottom: 6px; letter-spacing: -0.02em; }
+.stat-card.eth-card .stat-number { color: var(--eth); }
+.stat-card.sol-card .stat-number { color: var(--sol); }
+.stat-card.warn .stat-number { color: var(--red); }
+.stat-label { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+.yield-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.yield-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.yield-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.yield-table tr:last-child td { border-bottom: none; }
+.yield-table td.eth { color: var(--eth); font-weight: 500; }
+.yield-table td.sol { color: var(--sol); font-weight: 500; }
+.yield-table td.green { color: var(--green); }
+.yield-table td.red { color: var(--red); }
+.yield-table td.accent { color: var(--accent); font-weight: 500; }
+.method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0; }
+@media (max-width: 600px) { .method-grid { grid-template-columns: 1fr; } }
+.method-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.method-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+.method-yield { font-size: 13px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 8px; }
+.method-desc { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
+.method-risk { font-size: 11px; font-family: var(--font-mono); margin-top: 8px; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.risk-low { background: rgba(62,207,142,0.1); color: var(--green); }
+.risk-mid { background: rgba(247,147,26,0.1); color: var(--btc); }
+.risk-high { background: rgba(240,96,96,0.1); color: var(--red); }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ── GROUPED NAV DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 220px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu .group-label { padding: 8px 14px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+.nav-group-menu .group-divider { height: 1px; background: var(--border); margin: 2px 0; }
+/* Guides dropdown (right-aligned) */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+
+</style>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your crypto staking returns</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Investing</button>
+      <div class="nav-group-menu">
+        <a href="../">DCA calculator</a>
+        <a href="../dca-backtest.html">DCA backtest</a>
+        <a href="../compound-interest.html">Compound interest</a>
+        <a href="../loss-recovery-calculator.html">Loss recovery</a>
+        <a href="../crypto-cost-basis-calculator.html">Crypto cost basis</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="../asset-allocation.html">Asset allocation</a>
+        <a href="../rebalancing-calculator.html">Rebalancing</a>
+        <a href="../position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="../fire-calculator.html">FIRE calculator</a>
+        <a href="../fee-calculator.html">Fee impact</a>
+        <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="../drip-calculator.html">DRIP</a>
+        <a href="../inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+        <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+        <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+        <a href="../guides/how-to-calculate-position-size.html">How to calculate position size</a>
+        <a href="../guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+        <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+        <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+        <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+        <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+        <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+        <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+        <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+        <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+        <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
+        <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+        <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+        <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+        <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+        <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="../">DCA calculator</a>
+  <a href="../dca-backtest.html">DCA backtest</a>
+  <a href="../compound-interest.html">Compound interest</a>
+  <a href="../loss-recovery-calculator.html">Loss recovery</a>
+  <a href="../crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="../asset-allocation.html">Asset allocation</a>
+  <a href="../rebalancing-calculator.html">Rebalancing</a>
+  <a href="../position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="../fire-calculator.html">FIRE calculator</a>
+  <a href="../fee-calculator.html">Fee impact</a>
+  <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="../drip-calculator.html">DRIP</a>
+  <a href="../inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">Guides</span>
+  <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
+  <a href="../guides/how-to-calculate-position-size.html">How to calculate position size</a>
+  <a href="../guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+  <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
+  <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
+  <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag eth">Ethereum</span>
+    <span class="meta-tag">Crypto</span>
+    <span class="meta-date">June 10, 2026</span>
+    <span class="meta-read">10 min read</span>
+  </div>
+
+  <h1>Understanding <em>crypto staking yields</em> — ETH, SOL, and what the numbers really mean</h1>
+
+  <p class="intro">Ethereum staking yields approximately 2.78–4% APR in 2026. Solana yields 6.5–7.5%. But staking APY is not a return — it's a distribution mechanism. The real question is how much of it you keep after dilution, fees, and risk. Network inflation, platform fees, slashing risk, and liquidity constraints all affect what you actually earn. Here's how staking works, what the real yields look like, and how it fits alongside a DCA strategy.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#what-is-staking">What crypto staking actually is</a></li>
+      <li><a href="#2026-yields">2026 yield rates — ETH, SOL, and others</a></li>
+      <li><a href="#real-yield">Real yield vs nominal yield — the critical distinction</a></li>
+      <li><a href="#staking-methods">Staking methods compared</a></li>
+      <li><a href="#risks">The real risks of staking</a></li>
+      <li><a href="#staking-vs-dca">Staking vs DCA — how they fit together</a></li>
+      <li><a href="#tax">Tax treatment of staking rewards</a></li>
+    </ol>
+  </div>
+
+  <h2 id="what-is-staking">What crypto staking actually is</h2>
+
+  <p>Staking is the process of locking up cryptocurrency to participate in a proof-of-stake blockchain network's validation process. In exchange for providing this service — essentially putting capital at risk to vouch for the accuracy of transactions — the network issues rewards, typically in the same token you staked.</p>
+
+  <p>One foundational point many investors miss: staking yield is paid in the asset itself, not in dollars. If ETH drops 30% while you earn 3.5% APR, you have more ETH — but fewer dollars. Yield does not hedge volatility; it compounds it.</p>
+
+  <p>The mechanics differ by blockchain, but the core structure is the same: you commit tokens to the network, the network uses your stake as a security deposit (validators who behave dishonestly can have their stake "slashed"), and in return you earn a percentage of newly issued tokens plus transaction fees.</p>
+
+  <p>This is meaningfully different from yield farming or lending. In staking, you're not lending your tokens to a counterparty — you're using them to help run the network itself. The yield comes from protocol emissions (newly created tokens) and transaction fees, not from another party paying you interest.</p>
+
+  <div class="callout data">
+    <div class="callout-label">2026 context</div>
+    <p>Some Ethereum ETF structures have begun exploring staking yield distribution to holders, according to validator network reporting from mid-2026. Whether this becomes standard across ETF providers depends on regulatory clarity. What is confirmed: Ethereum's validator entry queue reached 3.59 million ETH with a 62-day wait time as of May 20, 2026 — staking demand is growing. Data sourced from validator dashboards including beaconcha.in and exchange staking reports.</p>
+  </div>
+
+  <h2 id="2026-yields">2026 yield rates — ETH, SOL, and others</h2>
+
+  <p style="font-size:13px;color:var(--text-muted);font-family:var(--font-mono);margin-bottom:16px;"><strong style="color:var(--text);">Headline ranges (early 2026):</strong> ETH 2.78–4% APR · SOL 6.5–7.5% APY · SOL inflation ~5.5%. Full comparison with real yield estimates below.</p>
+
+  <table class="yield-table">
+    <thead>
+      <tr>
+        <th>Asset</th>
+        <th>Nominal APY</th>
+        <th>Network inflation</th>
+        <th>Approx real yield</th>
+        <th>Lock-up</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="eth">Ethereum (ETH)</td>
+        <td>2.78–4%</td>
+        <td>~0.5% (deflationary in high-fee periods)</td>
+        <td class="green">~2.5–4%</td>
+        <td>Variable (exits queued)</td>
+      </tr>
+      <tr>
+        <td class="sol">Solana (SOL)</td>
+        <td>6.5–7.5%</td>
+        <td>~5.5% (declining)</td>
+        <td class="accent">~1–2% real</td>
+        <td>2–3 days unbonding</td>
+      </tr>
+      <tr>
+        <td style="color:var(--text-muted);">Cosmos (ATOM)</td>
+        <td>14–16%</td>
+        <td>~10%</td>
+        <td class="accent">~4–6% real</td>
+        <td>21 days</td>
+      </tr>
+      <tr>
+        <td style="color:var(--text-muted);">Cardano (ADA)</td>
+        <td>2–4%</td>
+        <td>~0.5%</td>
+        <td class="green">~2–3.5% real</td>
+        <td>No lock-up</td>
+      </tr>
+      <tr>
+        <td style="color:var(--text-muted);">Tezos (XTZ)</td>
+        <td>5–10%</td>
+        <td>~4.5%</td>
+        <td class="green">~0.5–5.5% real</td>
+        <td>No lock-up</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);margin-top:-16px;margin-bottom:24px;">All rates are approximate and change continuously with network conditions. Ethereum figures based on validator network data (beaconcha.in, rated.network) with similar ranges reported by exchange staking dashboards. Solana figures from Solana Foundation staking data and liquid staking protocol disclosures. Real yield is a simplified estimate — see section below for nuance. Verify current rates at beaconcha.in (ETH) or Solana Beach (SOL) before staking.</p>
+
+  <h2 id="real-yield">Real yield vs nominal yield — the critical distinction</h2>
+
+  <p>The most important concept in evaluating staking returns is the difference between nominal yield (the APY the protocol advertises) and real yield (what you actually earn in purchasing power after accounting for inflation).</p>
+
+  <p><strong>The Solana example makes this concrete.</strong> Solana's 6.5–7.5% nominal APY looks attractive against Ethereum's 2.78–4%. But Solana's current inflation rate is approximately 5.5%, declining roughly 15% per year. This means a significant portion of your staking rewards is simply offsetting the dilution of your existing SOL holdings from newly issued tokens. A simplified real yield estimate — nominal APY minus inflation — is approximately 1–2% for Solana stakers. Note this is a simplification: stakers capture a portion of inflation that non-stakers are diluted by, so the real yield is better framed as relative advantage over holding unstaked SOL rather than absolute purchasing-power yield. Ethereum's ~2.5–4% real yield is more genuine because the burn mechanism actually reduces supply rather than just redistributing issuance.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">Don't chase the headline number</div>
+    <p>A 14% APY on Cosmos looks better than 3.5% on Ethereum until you account for ATOM's ~10% annual inflation. Real yield is closer to 4% — similar to Ethereum's. Before staking any asset, look up its current inflation rate and subtract it from the advertised APY. The resulting real yield is a more accurate picture of what you're earning.</p>
+  </div>
+
+  <p>Ethereum is the outlier here. Thanks to EIP-1559 (which burns a portion of transaction fees), Ethereum's net issuance is near zero or negative during periods of high network activity. In high-fee environments, ETH is actually deflationary — more ETH is burned than created. This makes Ethereum's 2.78–4% APR closer to real yield in many market conditions — particularly during periods of high fee burn. In low-activity periods, ETH issuance resumes and real yield compresses. The point is directional: ETH's staking yield is less inflated-away than most competitors.</p>
+
+  <h2 id="staking-methods">Staking methods compared</h2>
+
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="method-name">Solo staking (ETH)</div>
+      <div class="method-yield">~3.3–4% APR all-in (including MEV)</div>
+      <div class="method-desc">Run your own validator node. Requires 32 ETH minimum (~$80K+), dedicated hardware, and technical knowledge. Captures full protocol rewards plus MEV tips. No counterparty risk.</div>
+      <span class="method-risk risk-low">Lowest counterparty risk</span>
+    </div>
+    <div class="method-card">
+      <div class="method-name">Liquid staking (Lido, Rocket Pool)</div>
+      <div class="method-yield">~2.6–3.5% APR after fees</div>
+      <div class="method-desc">Deposit ETH, receive stETH or rETH in return — tradeable tokens representing your staked position. Can be used in DeFi. Protocol charges ~10% of rewards as fee. Smart contract risk.</div>
+      <span class="method-risk risk-mid">Smart contract + depeg risk</span>
+    </div>
+    <div class="method-card">
+      <div class="method-name">Centralized exchange staking</div>
+      <div class="method-yield">~2.8–3.4% APR (ETH), ~5–6% (SOL)</div>
+      <div class="method-desc">Stake through Binance, Kraken, Coinbase. Simplest UX, no minimum. Exchange takes a cut. You don't control private keys — full counterparty risk if exchange fails.</div>
+      <span class="method-risk risk-high">Highest counterparty risk</span>
+    </div>
+    <div class="method-card">
+      <div class="method-name">Native SOL delegation</div>
+      <div class="method-yield">~7% APR (JitoSOL ~7.5% with MEV)</div>
+      <div class="method-desc">Delegate SOL to a validator of your choice directly from your wallet. 2–3 day unbonding period. No minimum. JitoSOL captures additional MEV rewards on top of base yield.</div>
+      <span class="method-risk risk-low">Low risk (validator selection matters)</span>
+    </div>
+  </div>
+
+  <h2 id="risks">The real risks of staking</h2>
+
+  <p>Staking is not a risk-free savings account. The risks fall into several distinct categories:</p>
+
+  <ul>
+    <li><strong>Price risk.</strong> Your staking rewards are denominated in the token you staked. If ETH falls 30% while you're earning 3.5% APR, your position lost money in fiat terms. Staking yield does not protect against token price decline — it's yield on top of the underlying asset's performance, for better or worse.</li>
+    <li><strong>Slashing risk.</strong> Validators who behave dishonestly (double-signing, downtime during certain conditions) can have a portion of their staked ETH permanently destroyed. For delegated staking and liquid staking, slashing risk passes through to you indirectly. The risk is low with reputable validators but not zero.</li>
+    <li><strong>Liquidity risk.</strong> Ethereum validator exits are not strictly locked but are rate-limited — exit capacity is capped per epoch, which can create multi-week delays during congestion periods. As of May 2026, the exit queue implied a 62-day wait. Cosmos has a 21-day unbonding period. During a market crash, you may not be able to exit staked positions quickly.</li>
+    <li><strong>Liquid staking token (LST) depeg risk.</strong> Liquid staking tokens like stETH can trade at a discount to spot ETH on secondary markets during market panics. During the 2022 Terra collapse, stETH briefly traded approximately 6% below ETH. Monitor the peg ratio if you hold significant LST positions.</li>
+    <li><strong>Smart contract risk.</strong> Liquid staking protocols and DeFi composability strategies introduce smart contract risk — bugs or exploits can result in permanent loss of staked assets. Solo staking and direct delegation avoid this; liquid staking protocols carry it.</li>
+    <li><strong>Centralization and client risk.</strong> Lido controls a disproportionate share of staked ETH — over 30% by some estimates. Additionally, if a dominant validator client (like Prysm historically) has a bug, it can affect a large portion of the network simultaneously. Client diversity matters for Ethereum's long-term security model.</li>
+    <li><strong>MEV policy risk.</strong> Solana's Jito protocol distributes MEV rewards to stakers, but MEV policy can change through governance. Jito's MEV boost adds ~0.5% to SOL staking yield today; future governance decisions could alter this distribution.</li>
+  </ul>
+
+  <h2 id="staking-vs-dca">Staking vs DCA — how they fit together</h2>
+
+  <p>Staking and DCA are not competing strategies — they're complementary. The relationship depends on which asset you hold and your time horizon.</p>
+
+  <p><strong>For long-term ETH holders:</strong> If you're DCA-ing into Ethereum with a 3-5+ year horizon, staking your existing ETH while continuing to buy is a reasonable approach. You're earning yield on holdings you plan to hold regardless, and Ethereum's near-zero inflation means the yield is largely genuine rather than inflationary dilution. Liquid staking (Lido, Rocket Pool) allows you to stay flexible while still earning.</p>
+
+  <p><strong>For long-term SOL holders:</strong> Staking makes sense too, but understand that SOL's 6.5–7.5% nominal yield is largely inflating away at the network's ~5.5% inflation rate. You're earning ~1–2% real yield. That's still better than holding unstaked SOL, but it's not the high-yield opportunity the headline number suggests. Native delegation is straightforward and doesn't introduce smart contract risk.</p>
+
+  <p><strong>The DCA investor's approach:</strong> Continue your regular DCA schedule unchanged. Stake the tokens you're accumulating once the position is large enough to make staking practical (no minimum for Solana delegation; 32 ETH for solo ETH staking, or any amount for liquid staking). Don't let staking mechanics influence your DCA schedule — the accumulation strategy is primary, the yield on accumulated assets is secondary.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">Practical takeaway</div>
+    <p>If you're a long-term ETH or SOL holder via DCA: stake what you have accumulated, keep DCA-ing as planned, and treat staking rewards as a bonus yield on your position — not as a reason to change your accumulation strategy. The compounding effect of staking rewards on a growing DCA position is meaningful over years; the short-term yield rate is less important than consistency.</p>
+  </div>
+
+  <h2 id="tax">Tax treatment of staking rewards</h2>
+
+  <p>In the United States, staking rewards are treated as ordinary income at their fair market value when received, according to IRS guidance. This means:</p>
+
+  <ul>
+    <li>Staking rewards are generally treated as income when you gain control over the rewards — typically at the time they are credited to your account. You owe income tax on the fair market value at that time.</li>
+    <li>When you later sell the staked tokens (including rewards), you owe capital gains tax on any appreciation from the original receipt value.</li>
+    <li>This creates a "double taxation" structure: income tax when received, capital gains tax when sold.</li>
+    <li>Keeping detailed records of every reward distribution — amount, date, price at receipt — is essential for accurate tax filing.</li>
+  </ul>
+
+  <p>Tax treatment varies by jurisdiction. Some countries treat staking rewards as capital gains rather than income. Consult a crypto-specialized tax professional for guidance on your specific situation.</p>
+
+  <p>For investors who prioritize tax efficiency, staking in a tax-advantaged account (if available through your platform) or concentrating staking in lower-income years can reduce the overall tax burden on rewards. The tax-loss harvesting strategies covered in our <a href="tax-loss-harvesting-explained.html" style="color:var(--accent);text-decoration:none;">tax-loss harvesting guide</a> apply to staking rewards just as they do to any other crypto holding.</p>
+
+  <div class="cta-box">
+    <h3>Track your crypto cost basis including staking rewards</h3>
+    <p>Use the crypto cost basis calculator to track your average entry price across DCA purchases and staking reward receipts.</p>
+    <a href="../crypto-cost-basis-calculator.html" class="cta-btn">Try the cost basis calculator</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>Staking is a legitimate yield source for long-term crypto holders — but the headline APY numbers require scrutiny. Ethereum's 2.78–4% is close to genuine yield given near-zero inflation. Solana's 6.5–7.5% is largely offset by ~5.5% network inflation, leaving real yield closer to 1–2%. High-yield chains like Cosmos (14–16% nominal) often have the highest inflation rates, making their real yields more modest than they appear.</p>
+
+  <p>The risks are real: price volatility, liquidity lock-ups, LST depeg events, and smart contract exposure all matter. Don't stake more than you're comfortable holding through a 70%+ drawdown without being able to exit quickly.</p>
+
+  <p>For DCA investors, the framework is simple: accumulate on your regular schedule, stake what you've accumulated, and let the compounding effect of both accumulation and staking rewards work over time. The yield is a bonus on your long-term position, not a reason to change how you invest.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational purposes only and does not constitute financial or tax advice. Staking yields change continuously with network conditions. All rates cited reflect specific past dates and will have changed. Staking involves significant risks including total loss of staked assets. Consult qualified financial and tax professionals before staking. Past yield rates do not guarantee future returns.</p>
+  </div>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">JC</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
+    </div>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+window.addEventListener('load', function() {
+  var btn = document.getElementById('nav-hamburger');
+  var menu = document.getElementById('nav-mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', function() {
+      var open = menu.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+  function hookDropdown(selector, menuSelector) {
+    document.querySelectorAll(selector).forEach(function(el) {
+      var m = el.querySelector(menuSelector);
+      if (!m) return;
+      var t;
+      el.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
+      el.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+      m.addEventListener('mouseenter', function() { clearTimeout(t); });
+      m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
+    });
+  }
+  hookDropdown('.nav-group', '.nav-group-menu');
+  hookDropdown('.dropdown', '.dropdown-menu');
+});
+</script>
+
+</body>
+</html>
