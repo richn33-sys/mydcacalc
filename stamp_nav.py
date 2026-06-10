@@ -59,6 +59,7 @@ GUIDES = [
     ('how-to-build-crypto-dca-portfolio.html',        'Crypto DCA portfolio'),
     ('portfolio-diversification-guide.html',          'Portfolio diversification'),
     ('tax-loss-harvesting-explained.html',            'Tax-loss harvesting'),
+    ('crypto-staking-explained.html',               'Crypto staking yields'),
 ]
 
 # ── CSS for grouped dropdowns ─────────────────────────────────────────────────
