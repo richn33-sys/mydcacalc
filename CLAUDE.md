@@ -141,7 +141,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 19 guides published; counter reads 19 ✅
+│   ├── index.html                                ← 20 guides published; counter reads 20 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -160,7 +160,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── 4-percent-rule-explained.html             ← NEW Jun 1 (16th guide)
 │   ├── how-to-build-crypto-dca-portfolio.html    ← NEW Jun 5 (17th guide)
 │   ├── portfolio-diversification-guide.html      ← NEW Jun 5 (18th guide)
-│   └── tax-loss-harvesting-explained.html        ← NEW Jun 7 (19th guide)
+│   ├── tax-loss-harvesting-explained.html        ← NEW Jun 7 (19th guide)
+│   └── crypto-staking-explained.html             ← NEW Jun 10 (20th guide)
 └── CLAUDE.md
 ```
 ---
@@ -187,7 +188,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
   - **Retirement & Tax:** FIRE · Fee impact · Tax-loss harvesting
   - **Income:** DRIP · Real returns
   - (Exact category membership lives in `stamp_nav.py`'s `CALC_CATEGORIES` array — that is the source of truth.)
-- Guides dropdown: 19 guides + "All guides →"
+- Guides dropdown: 20 guides + "All guides →"
 - Root pages: `href="guides/page.html"` for guide links
 - Guide pages: `href="../page.html"` for root, `href="page.html"` for guides
 - Authors pages: `href="../page.html"` for root, `href="../guides/page.html"` for guides
@@ -281,7 +282,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 ---
-## Guides Section (19 published as of Jun 7 2026)
+## Guides Section (20 published as of Jun 10 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -303,6 +304,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | how-to-build-crypto-dca-portfolio.html | James Colter | ✅ Live | Jun 5 2026 |
 | portfolio-diversification-guide.html | James Colter | ✅ Live | Jun 5 2026 |
 | tax-loss-harvesting-explained.html | James Colter | ✅ Live | Jun 7 2026 |
+| crypto-staking-explained.html | James Colter | ✅ Live | Jun 10 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -440,6 +442,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | guides/how-to-build-crypto-dca-portfolio.html | how to build a crypto DCA portfolio (BTC/ETH/SOL) |
 | guides/portfolio-diversification-guide.html | portfolio diversification guide 2026 |
 | guides/tax-loss-harvesting-explained.html | tax loss harvesting explained |
+| guides/crypto-staking-explained.html | crypto staking yields explained |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -514,7 +517,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jun 7 2026 — verified against disk, 19 guides):
+### Current CURRENT_GUIDES (as of Jun 10 2026 — verified against disk, 20 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging",
@@ -536,11 +539,12 @@ CURRENT_GUIDES = [
     "How to build a crypto DCA portfolio (BTC/ETH/SOL)",
     "Portfolio diversification guide 2026",
     "Tax-loss harvesting explained",
+    "Crypto staking yields explained",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
 
-### Current CURRENT_CALCULATORS (as of Jun 9 2026 — verified against disk, 13 calculators):
+### Current CURRENT_CALCULATORS (as of Jun 10 2026 — verified against disk, 13 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator",
@@ -561,6 +565,9 @@ CURRENT_CALCULATORS = [
 ---
 ## Roadmap
 ### Done ✅
+- [x] Crypto Staking Yields guide — James Colter, 20th guide — Jun 10 2026
+- [x] All nav dropdown issues root-caused + fixed: broken Chart.js path (index_files/chart.umd.js) on index.html silent JS error blocked all nav event listeners site-wide; repointed to CDN — Jun 10 2026
+- [x] GSC submissions completed for all outstanding pages — Jun 10 2026
 - [x] Crypto Cost Basis / Average Price Calculator (13th calculator) — Jun 9 2026
 - [x] Dropdown root cause found + fixed: broken Chart.js path (index_files/chart.umd.js) on index.html was throwing a silent JS error that blocked all dropdown event listeners; Chart.js path repointed to CDN across all affected pages — Jun 9 2026
 - [x] stamp_nav.py NAV_EVENT_JS updated to use hookDropdown() helper for both .nav-group and .dropdown — Jun 9 2026
@@ -635,9 +642,10 @@ CURRENT_CALCULATORS = [
 - [x] **Tax-Loss Harvesting Calculator** — built and deployed Jun 7 2026 (12th calculator) ✅
 - [x] **Grouped nav dropdowns** — stamp_nav.py rebuilt, all 31 pages re-stamped Jun 7 2026 ✅
 - [x] **Crypto Cost Basis / Average Price Calculator** — built and deployed (13th calculator), Jun 9 2026 ✅
-- [ ] **Crypto Staking Yields guide** — next guide
-- [ ] **Submit outstanding pages to GSC** — fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide, tax-loss-harvesting-calculator, tax-loss-harvesting-explained, crypto-cost-basis-calculator
-- [ ] **Await Sunday research agent brief** for new content ideas (May 25 + Jun 1 brief items all complete ✅)
+- [x] **Crypto Staking Yields guide** — published Jun 10 2026 (20th guide) ✅
+- [x] **Submit outstanding pages to GSC** — all outstanding pages (fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide, tax-loss-harvesting-calculator, tax-loss-harvesting-explained, crypto-cost-basis-calculator) submitted Jun 10 2026 ✅
+- [ ] **Submit guides/crypto-staking-explained.html to GSC** — newly published, not yet submitted
+- [ ] **Await Sunday research agent brief** (next: Sunday Jun 14 at 7am) for new content ideas (May 25 + Jun 1 brief items all complete ✅)
 - [x] **Fix guides/index.html counter** — fixed to 16 (Jun 2) ✅
 - [x] **Delete vestigial nav.js** — deleted; was dead code, no page loaded it (Jun 2) ✅
 - [ ] **Build Reddit karma** — new account needs comments before posting
@@ -651,6 +659,18 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 10 2026 — Crypto Staking Guide + Nav Fix Verification Session
+- Crypto Staking Yields guide published (James Colter, 20th guide) — `guides/crypto-staking-explained.html` ("Understanding Crypto Staking Yields in 2026 — ETH, SOL, and Real Returns")
+- `guides/index.html` counter updated to 20
+- `stamp_nav.py` GUIDES array updated with `crypto-staking-explained.html`; all 35 pages re-stamped via `python3 stamp_nav.py --all`
+- **Root cause of all nav dropdown issues confirmed + fixed:** broken Chart.js path (`index_files/chart.umd.js`) on index.html was throwing a silent JS error that blocked all nav event listeners site-wide — repointed to CDN
+- Crypto Cost Basis Calculator deployed (`crypto-cost-basis-calculator.html`, 13th calculator) — added to the Investing dropdown in `stamp_nav.py`
+- `stamp_nav.py` NAV_EVENT_JS updated with `hookDropdown()` helper handling both `.nav-group` and `.dropdown`
+- **GSC submissions completed for all outstanding pages** (fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide, tax-loss-harvesting-calculator, tax-loss-harvesting-explained, crypto-cost-basis-calculator)
+- All items from the Jun 1 brief now complete ✅
+- **research_agent.py audit (vs disk):** CURRENT_GUIDES was at 19 — added "Crypto staking yields explained" → 20, matches disk. CURRENT_CALCULATORS already correct at 13.
+- Next priorities: new research agent brief Sunday Jun 14 at 7am, submit `guides/crypto-staking-explained.html` to GSC, Reddit karma building
 
 ### Jun 9 2026 — Crypto Cost Basis Calculator + Dropdown Fix Session
 - Crypto Cost Basis / Average Price Calculator built and deployed (`crypto-cost-basis-calculator.html`, 13th calculator) — computes average cost basis across multiple crypto buys, total invested/units, and unrealized P&L vs current price

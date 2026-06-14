@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tax-Loss Harvesting Calculator — See Exactly How Much You Save</title>
-<meta name="description" content="Free tax-loss harvesting calculator. Enter your capital gains, harvested losses, and tax bracket to see exactly how much tax you save, what carries forward, and the long-term compounding value of those savings.">
-<meta name="keywords" content="tax loss harvesting calculator, capital gains tax calculator, how much do I save from tax loss harvesting, tax loss offset calculator 2026">
-<meta property="og:title" content="Tax-Loss Harvesting Calculator — See Exactly How Much You Save">
-<meta property="og:description" content="Enter your gains, losses, and bracket. See your exact tax savings, carryforward balance, and the long-term compounding value of harvesting.">
+<title>Safe Withdrawal Rate Calculator — How Long Will Your Portfolio Last?</title>
+<meta name="description" content="Free safe withdrawal rate calculator. See how long your retirement portfolio lasts at 3%, 3.5%, 4%, and 4.5% withdrawal rates with inflation adjustment. Find your break-even age and compare strategies.">
+<meta name="keywords" content="safe withdrawal rate calculator, retirement withdrawal calculator, how long will my money last, 4% rule calculator, retirement portfolio calculator 2026">
+<meta property="og:title" content="Safe Withdrawal Rate Calculator — How Long Will Your Portfolio Last?">
+<meta property="og:description" content="Compare 3%, 3.5%, 4%, and 4.5% withdrawal rates. See how long your portfolio lasts, your break-even age, and inflation-adjusted withdrawals over time.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mydcacalc.com/tax-loss-harvesting-calculator.html">
+<meta property="og:url" content="https://mydcacalc.com/withdrawal-rate-calculator.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/tax-loss-harvesting-calculator.html">
+<link rel="canonical" href="https://mydcacalc.com/withdrawal-rate-calculator.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +21,8 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Tax-Loss Harvesting Calculator",
-  "description": "Calculate exactly how much tax you save from harvesting losses, what carries forward, and the compounding value of those savings",
+  "name": "Safe Withdrawal Rate Calculator",
+  "description": "Compare retirement withdrawal rates and see how long your portfolio lasts with inflation adjustment",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -35,7 +35,7 @@
   --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
   --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
   --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
-  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6; --orange: #f7931a;
   --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
   --radius: 10px; --radius-lg: 16px;
 }
@@ -54,83 +54,97 @@ nav a.active { color: var(--accent); }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
 .nav-mobile-menu.open { display: flex; }
 .nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
-.nav-mobile-menu a:last-child { border-bottom: none; }
-.nav-mobile-menu a:hover { color: var(--accent); }
 .nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
 @media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
 
 /* Hero */
-.hero { max-width: 860px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 20px; }
 .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
 h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
 h1 em { font-style: normal; color: var(--accent); }
 .hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
 
-/* Main layout */
-.main { max-width: 860px; margin: 0 auto; padding: 24px 24px 80px; display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+/* Layout */
+.main { max-width: 900px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
 @media (max-width: 720px) { .main { grid-template-columns: 1fr; } }
 
 /* Controls */
 .controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
 .section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
 .input-group { margin-bottom: 16px; }
-.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
 .input-label span { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
 .input-wrap { position: relative; }
 .input-prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
 input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px 9px 24px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
 input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
 input[type="number"]:focus { border-color: var(--accent-border); }
-select { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; appearance: none; cursor: pointer; }
-select:focus { border-color: var(--accent-border); }
-.divider-line { height: 1px; background: var(--border); margin: 18px 0; }
+input[type="range"] { width: 100%; height: 4px; appearance: none; background: var(--bg-input); border-radius: 2px; outline: none; border: 1px solid var(--border); cursor: pointer; margin-top: 6px; }
+input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-card); }
+.range-header { display: flex; justify-content: space-between; align-items: center; }
+.range-val { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 500; }
+.divider-line { height: 1px; background: var(--border); margin: 16px 0; }
+
+/* Rate toggles */
+.rate-toggles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 16px; }
+.rate-toggle { background: var(--bg-input); border: 1px solid var(--border); border-radius: 8px; padding: 8px 4px; text-align: center; cursor: pointer; font-size: 12px; font-family: var(--font-mono); color: var(--text-muted); transition: all 0.15s; }
+.rate-toggle.active { border-color: var(--accent-border); background: var(--accent-dim); color: var(--accent); }
+.rate-toggle:hover { border-color: var(--border-hover); color: var(--text); }
 
 /* Results */
 .results { display: flex; flex-direction: column; gap: 14px; }
 
-/* Comparison cards */
-.compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.compare-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-.compare-card.before { border-color: rgba(240,96,96,0.3); background: rgba(240,96,96,0.04); }
-.compare-card.after { border-color: rgba(62,207,142,0.3); background: rgba(62,207,142,0.04); }
-.compare-label { font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-.compare-card.before .compare-label { color: var(--red); }
-.compare-card.after .compare-label { color: var(--green); }
-.compare-value { font-size: 22px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.02em; margin-bottom: 4px; }
-.compare-card.before .compare-value { color: var(--red); }
-.compare-card.after .compare-value { color: var(--green); }
-.compare-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
+/* Comparison grid */
+.rates-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.rate-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.rate-card.r30 { border-top: 2px solid var(--green); }
+.rate-card.r35 { border-top: 2px solid var(--accent); }
+.rate-card.r40 { border-top: 2px solid var(--orange); }
+.rate-card.r45 { border-top: 2px solid var(--red); }
+.rate-card-label { font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.rate-card.r30 .rate-card-label { color: var(--green); }
+.rate-card.r35 .rate-card-label { color: var(--accent); }
+.rate-card.r40 .rate-card-label { color: var(--orange); }
+.rate-card.r45 .rate-card-label { color: var(--red); }
+.rate-card-value { font-size: 20px; font-weight: 600; font-family: var(--font-mono); margin-bottom: 4px; letter-spacing: -0.02em; }
+.rate-card.r30 .rate-card-value { color: var(--green); }
+.rate-card.r35 .rate-card-value { color: var(--accent); }
+.rate-card.r40 .rate-card-value { color: var(--orange); }
+.rate-card.r45 .rate-card-value { color: var(--red); }
+.rate-card-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
 
 /* Summary metrics */
 .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 @media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
 .metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
 .metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
-.metric-value { font-family: var(--font-mono); font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+.metric-value { font-family: var(--font-mono); font-size: 18px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
 .metric-value.green { color: var(--green); }
 .metric-value.accent { color: var(--accent); }
 .metric-value.red { color: var(--red); }
-
-/* Breakdown table */
-.breakdown-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-.breakdown-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
-.breakdown-row { display: flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--border); font-size: 13px; font-family: var(--font-mono); }
-.breakdown-row:last-child { border-bottom: none; }
-.breakdown-row span:first-child { color: var(--text-muted); }
-.breakdown-row span:last-child { color: var(--text); font-weight: 500; }
-.breakdown-row.green span:last-child { color: var(--green); }
-.breakdown-row.red span:last-child { color: var(--red); }
-.breakdown-row.accent span:last-child { color: var(--accent); }
-.breakdown-row.total { background: var(--bg-input); }
 
 /* Chart */
 .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
 .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
 .chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
-.chart-wrap { position: relative; height: 200px; }
+.chart-legend { display: flex; gap: 12px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.chart-wrap { position: relative; height: 240px; }
+
+/* Year table */
+.table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.table-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 500px; }
+th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+tr:last-child td { border-bottom: none; }
+td.depleted { color: var(--red); font-style: italic; }
+td.accent { color: var(--accent); }
 
 /* Info + disclaimer */
 .info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
@@ -138,8 +152,8 @@ select:focus { border-color: var(--accent-border); }
 .info-box strong { color: var(--text); font-weight: 500; }
 .disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
 
-/* Content section */
-.content-section { max-width: 860px; margin: 0 auto; padding: 0 24px 60px; }
+/* Content */
+.content-section { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
 
 /* Pro banner */
 .pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
@@ -184,7 +198,7 @@ footer a:hover { color: var(--text); }
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Track your real investment returns after tax</strong> — live P&L, avg cost, weekly AI signals</span>
+  <span>📈 <strong>Plan your retirement with AI-powered insights</strong> — live P&L, weekly signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -215,8 +229,8 @@ footer a:hover { color: var(--text); }
       <div class="nav-group-menu">
         <a href="fire-calculator.html">FIRE calculator</a>
         <a href="fee-calculator.html">Fee impact</a>
-        <a href="tax-loss-harvesting-calculator.html" class="active">Tax-loss harvesting</a>
-        <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+        <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="withdrawal-rate-calculator.html" class="active">Withdrawal rate</a>
       </div>
     </div>
     <div class="nav-group">
@@ -302,87 +316,67 @@ footer a:hover { color: var(--text); }
 </div>
 
 <div class="hero">
-  <div class="hero-badge">Free · No sign-up required</div>
-  <h1>Tax-Loss Harvesting <em>Calculator</em></h1>
-  <p>Enter your capital gains, harvested losses, and tax bracket to see exactly how much tax you save, what carries forward, and how those savings compound over time.</p>
+  <div class="hero-badge">Based on historical withdrawal research</div>
+  <h1>Safe Withdrawal Rate <em>Calculator</em></h1>
+  <p>See how long your retirement portfolio lasts at different withdrawal rates — with inflation adjustment. Compare 3%, 3.5%, 4%, and 4.5% side by side.</p>
 </div>
 
 <div class="main">
 
   <!-- Controls -->
   <div class="controls-card">
+    <div class="section-label">Your portfolio</div>
 
-    <div class="section-label">Your gains this year</div>
     <div class="input-group">
-      <div class="input-label">Short-term capital gains <span id="stcg-display">$5,000</span></div>
+      <div class="input-label">Portfolio value at retirement <span id="portfolio-display">$1,000,000</span></div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="stcg" value="5000" min="0" step="500" oninput="document.getElementById('stcg-display').textContent='$'+Number(this.value).toLocaleString();calc()">
-      </div>
-    </div>
-    <div class="input-group">
-      <div class="input-label">Long-term capital gains <span id="ltcg-display">$10,000</span></div>
-      <div class="input-wrap">
-        <span class="input-prefix">$</span>
-        <input type="number" id="ltcg" value="10000" min="0" step="500" oninput="document.getElementById('ltcg-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+        <input type="number" id="portfolio" value="1000000" min="10000" step="10000" oninput="document.getElementById('portfolio-display').textContent='$'+Number(this.value).toLocaleString();calc()">
       </div>
     </div>
 
-    <div class="divider-line"></div>
-    <div class="section-label">Losses to harvest</div>
     <div class="input-group">
-      <div class="input-label">Harvested loss amount <span id="loss-display">$8,000</span></div>
+      <div class="input-label">Annual spending <span id="spend-display">$40,000</span></div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="loss" value="8000" min="0" step="500" oninput="document.getElementById('loss-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+        <input type="number" id="spend" value="40000" min="1000" step="1000" oninput="document.getElementById('spend-display').textContent='$'+Number(this.value).toLocaleString();calc()">
       </div>
     </div>
+
     <div class="input-group">
-      <div class="input-label">Prior-year carryforward losses <span id="carry-display">$0</span></div>
-      <div class="input-wrap">
-        <span class="input-prefix">$</span>
-        <input type="number" id="carry" value="0" min="0" step="500" oninput="document.getElementById('carry-display').textContent='$'+Number(this.value).toLocaleString();calc()">
-      </div>
+      <div class="input-label">Retirement age <span id="ret-age-display">65</span></div>
+      <input type="range" id="ret-age" min="40" max="75" value="65" step="1"
+        oninput="document.getElementById('ret-age-display').textContent=this.value;calc()">
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Your tax situation</div>
+    <div class="section-label">Assumptions</div>
+
     <div class="input-group">
-      <div class="input-label">Filing status</div>
-      <select id="filing" onchange="calc()">
-        <option value="single">Single</option>
-        <option value="married">Married filing jointly</option>
-        <option value="separate">Married filing separately</option>
-      </select>
+      <div class="range-header">
+        <div class="input-label" style="margin:0;">Annual portfolio return</div>
+        <span class="range-val" id="return-display">6%</span>
+      </div>
+      <input type="range" id="port-return" min="3" max="12" value="6" step="0.5"
+        oninput="document.getElementById('return-display').textContent=this.value+'%';calc()">
     </div>
+
     <div class="input-group">
-      <div class="input-label">Ordinary income tax bracket</div>
-      <select id="bracket" onchange="calc()">
-        <option value="0.10">10%</option>
-        <option value="0.12">12%</option>
-        <option value="0.22">22%</option>
-        <option value="0.24" selected>24%</option>
-        <option value="0.32">32%</option>
-        <option value="0.35">35%</option>
-        <option value="0.37">37%</option>
-      </select>
-    </div>
-    <div class="input-group">
-      <div class="input-label">Long-term CGT rate</div>
-      <select id="ltrate" onchange="calc()">
-        <option value="0">0%</option>
-        <option value="0.15" selected>15%</option>
-        <option value="0.20">20%</option>
-      </select>
+      <div class="range-header">
+        <div class="input-label" style="margin:0;">Annual inflation rate</div>
+        <span class="range-val" id="inflation-display">2.5%</span>
+      </div>
+      <input type="range" id="inflation" min="1" max="6" value="2.5" step="0.5"
+        oninput="document.getElementById('inflation-display').textContent=this.value+'%';calc()">
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Compounding assumption</div>
-    <div class="input-group">
-      <div class="input-label">Annual return on savings <span id="ret-display">7%</span></div>
-      <input type="range" id="ret-rate" min="3" max="12" value="7" step="0.5"
-        style="width:100%;margin-top:6px;height:4px;appearance:none;background:var(--bg-input);border-radius:2px;outline:none;border:1px solid var(--border);cursor:pointer;"
-        oninput="document.getElementById('ret-display').textContent=this.value+'%';calc()">
+    <div class="section-label">Show rates</div>
+    <div class="rate-toggles">
+      <div class="rate-toggle r30 active" onclick="toggleRate(this, '3.0')">3.0%</div>
+      <div class="rate-toggle r35 active" onclick="toggleRate(this, '3.5')">3.5%</div>
+      <div class="rate-toggle r40 active" onclick="toggleRate(this, '4.0')">4.0%</div>
+      <div class="rate-toggle r45 active" onclick="toggleRate(this, '4.5')">4.5%</div>
     </div>
 
   </div>
@@ -390,82 +384,105 @@ footer a:hover { color: var(--text); }
   <!-- Results -->
   <div class="results">
 
-    <!-- Before / After -->
-    <div class="compare-row">
-      <div class="compare-card before">
-        <div class="compare-label">Without harvesting</div>
-        <div class="compare-value" id="tax-before">$0</div>
-        <div class="compare-sub">Total tax owed on gains</div>
+    <!-- Rate cards -->
+    <div class="rates-grid">
+      <div class="rate-card r30">
+        <div class="rate-card-label">3.0% withdrawal</div>
+        <div class="rate-card-value" id="r30-years">—</div>
+        <div class="rate-card-sub" id="r30-annual">$0/year · $0/month</div>
       </div>
-      <div class="compare-card after">
-        <div class="compare-label">With harvesting</div>
-        <div class="compare-value" id="tax-after">$0</div>
-        <div class="compare-sub">Total tax owed on gains</div>
+      <div class="rate-card r35">
+        <div class="rate-card-label">3.5% withdrawal</div>
+        <div class="rate-card-value" id="r35-years">—</div>
+        <div class="rate-card-sub" id="r35-annual">$0/year · $0/month</div>
+      </div>
+      <div class="rate-card r40">
+        <div class="rate-card-label">4.0% withdrawal</div>
+        <div class="rate-card-value" id="r40-years">—</div>
+        <div class="rate-card-sub" id="r40-annual">$0/year · $0/month</div>
+      </div>
+      <div class="rate-card r45">
+        <div class="rate-card-label">4.5% withdrawal</div>
+        <div class="rate-card-value" id="r45-years">—</div>
+        <div class="rate-card-sub" id="r45-annual">$0/year · $0/month</div>
       </div>
     </div>
 
     <!-- Summary metrics -->
     <div class="metrics">
       <div class="metric">
-        <div class="metric-label">Tax saved this year</div>
-        <div class="metric-value green" id="tax-saved">$0</div>
+        <div class="metric-label">Your withdrawal rate</div>
+        <div class="metric-value accent" id="your-rate">0%</div>
       </div>
       <div class="metric">
-        <div class="metric-label">Loss carried forward</div>
-        <div class="metric-value accent" id="carry-forward">$0</div>
+        <div class="metric-label">Years portfolio lasts</div>
+        <div class="metric-value green" id="your-years">—</div>
       </div>
       <div class="metric">
-        <div class="metric-label">Savings value in 20 yrs</div>
-        <div class="metric-value green" id="compound-value">$0</div>
+        <div class="metric-label">Break-even age</div>
+        <div class="metric-value accent" id="breakeven-age">—</div>
       </div>
     </div>
 
-    <!-- Breakdown -->
-    <div class="breakdown-card">
-      <div class="breakdown-title">How the harvesting applies</div>
-      <div class="breakdown-row"><span>Short-term gains</span><span id="b-stcg">$0</span></div>
-      <div class="breakdown-row"><span>Long-term gains</span><span id="b-ltcg">$0</span></div>
-      <div class="breakdown-row"><span>Prior carryforward applied</span><span id="b-carry">$0</span></div>
-      <div class="breakdown-row"><span>New harvested loss applied</span><span id="b-loss">$0</span></div>
-      <div class="breakdown-row green"><span>Remaining taxable gains</span><span id="b-remaining">$0</span></div>
-      <div class="breakdown-row accent"><span>Income offset used (up to $3K limit)</span><span id="b-income">$0</span></div>
-      <div class="breakdown-row accent"><span>New carryforward to future years</span><span id="b-new-carry">$0</span></div>
-      <div class="breakdown-row total green"><span>Total tax saved</span><span id="b-total-saved">$0</span></div>
-    </div>
-
-    <!-- Compounding chart -->
+    <!-- Chart -->
     <div class="chart-card">
       <div class="chart-header">
-        <div class="chart-title">Compounding value of tax savings over time</div>
+        <div class="chart-title">Portfolio value over time by withdrawal rate</div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#3ecf8e;"></div>3.0%</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>3.5%</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f7931a;"></div>4.0%</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f06060;"></div>4.5%</div>
+        </div>
       </div>
       <div class="chart-wrap">
-        <canvas id="compound-chart"></canvas>
+        <canvas id="swr-chart"></canvas>
+      </div>
+    </div>
+
+    <!-- Year table -->
+    <div class="table-card">
+      <div class="table-title">Year-by-year at your withdrawal rate</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Age</th>
+              <th>Withdrawal</th>
+              <th>Portfolio start</th>
+              <th>Portfolio end</th>
+            </tr>
+          </thead>
+          <tbody id="year-tbody"></tbody>
+        </table>
       </div>
     </div>
 
     <div class="info-box">
-      <p><strong>Why losses offset gains first:</strong> The IRS requires capital losses to offset capital gains before they can reduce ordinary income. Short-term losses first offset short-term gains; long-term losses first offset long-term gains. Excess losses in either category then offset the other. After all gains are eliminated, up to $3,000 ($1,500 married filing separately) of remaining net losses can reduce ordinary income.</p>
+      <p><strong>How withdrawal rates work:</strong> Your withdrawal rate is your first-year withdrawal divided by your starting portfolio value. Each year, you withdraw the same dollar amount adjusted for inflation — not a fixed percentage of the current portfolio. A $1M portfolio at 4% means $40,000 in year one; year two is $40,000 × (1 + inflation rate), regardless of portfolio performance. This is the method used in Bengen's original 4% rule research.</p>
     </div>
 
     <div class="disclaimer">
-      This calculator provides estimates for educational purposes only. It does not account for state taxes, the net investment income tax (NIIT), AMT, or the specific ordering rules in complex multi-lot situations. Actual tax savings depend on your full tax situation. Consult a qualified tax professional before implementing tax-loss harvesting strategies. Not financial or tax advice.
+      This calculator uses a simplified model with constant average returns. Actual retirement outcomes depend on sequence of returns — the order in which good and bad years occur — which this model does not simulate. Historical Monte Carlo analysis suggests the 4% rule has approximately 90% success over 30 years; actual outcomes vary. Not financial advice. Consult a qualified financial advisor before making retirement income decisions.
     </div>
 
   </div>
 </div>
 
 <div class="content-section">
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the tax-loss harvesting calculator works</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator models the tax impact of harvesting investment losses against your capital gains. Enter your short-term and long-term gains for the year, the amount of losses you plan to harvest, any carryforward losses from prior years, and your tax bracket. The calculator applies losses in the correct IRS order — gains first, then up to $3,000 against ordinary income — and shows the remaining carryforward balance.</p>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The compounding chart shows the long-term value of reinvesting your tax savings. A $1,500 tax saving today, reinvested and compounding at 7% annually, is worth approximately $5,800 in 20 years. This is the actual return from tax-loss harvesting — not just the immediate reduction, but the compounded value of capital retained.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the safe withdrawal rate calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A safe withdrawal rate is the percentage of your retirement portfolio you can withdraw annually without running out of money over your retirement horizon. The most studied rate is 4% — from Bengen's 1994 research showing this rate survived every 30-year retirement period in U.S. historical data. Morningstar's 2026 research puts the conservative baseline at 3.9% for fixed-spending retirees.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator compares four common withdrawal rates side by side, showing how long your portfolio lasts at each rate with inflation-adjusted annual spending. The year-by-year table shows exactly how your portfolio depletes (or grows) over time at your actual withdrawal rate based on your annual spending and portfolio size.</p>
   <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:28px 0 12px;">How to use this calculator</h3>
   <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;">
-    <li style="margin-bottom:10px;">Enter your short-term gains (assets held under 1 year) and long-term gains (held over 1 year) separately — they're taxed at different rates.</li>
-    <li style="margin-bottom:10px;">Enter the total loss amount you plan to harvest this year.</li>
-    <li style="margin-bottom:10px;">If you have unused losses from prior years, enter them as carryforward losses — they apply before new harvested losses.</li>
-    <li style="margin-bottom:10px;">Select your filing status and tax brackets. The long-term CGT rate depends on your income — most middle-income investors use 15%.</li>
+    <li style="margin-bottom:10px;">Enter your expected portfolio value at retirement and your planned annual spending.</li>
+    <li style="margin-bottom:10px;">Set your retirement age, expected portfolio return, and inflation rate.</li>
+    <li style="margin-bottom:10px;">The four rate cards show how long your money lasts at each withdrawal rate.</li>
+    <li style="margin-bottom:10px;">The chart shows portfolio value trajectories — where lines hit zero is when the money runs out.</li>
+    <li style="margin-bottom:10px;">Your withdrawal rate is calculated automatically from your portfolio and spending inputs.</li>
   </ul>
-  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Read the full guide on <a href="guides/tax-loss-harvesting-explained.html" style="color:#c8f060;text-decoration:none;">how tax-loss harvesting works</a> including the wash sale rule, replacement fund strategies, and the DCA investor playbook.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For background on the 4% rule and what Morningstar's 2026 research says about safe withdrawal rates, read the <a href="guides/4-percent-rule-explained.html" style="color:#c8f060;text-decoration:none;">4% rule explained guide</a>. To calculate your FIRE number and years to retirement, use the <a href="fire-calculator.html" style="color:#c8f060;text-decoration:none;">FIRE calculator</a>.</p>
 </div>
 
 <footer>
@@ -475,99 +492,156 @@ footer a:hover { color: var(--text); }
     <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
     <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
     <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
-    For educational purposes only. Not tax or financial advice.
+    For informational purposes only. Not financial advice.
   </p>
 </footer>
 
 <script>
 let chart = null;
+let activeRates = new Set(['3.0', '3.5', '4.0', '4.5']);
 
 function fmt(n) {
   if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
   if (Math.abs(n) >= 1e3) return '$' + (Math.abs(n)/1e3).toFixed(1) + 'K';
-  return (n < 0 ? '-$' : '$') + Math.abs(Math.round(n)).toLocaleString();
+  return '$' + Math.round(Math.abs(n)).toLocaleString();
+}
+
+function toggleRate(el, rate) {
+  if (activeRates.has(rate)) {
+    if (activeRates.size > 1) {
+      activeRates.delete(rate);
+      el.classList.remove('active');
+    }
+  } else {
+    activeRates.add(rate);
+    el.classList.add('active');
+  }
+  calc();
+}
+
+function portfolioYears(portfolio, annualSpend, returnRate, inflationRate) {
+  let bal = portfolio;
+  let withdrawal = annualSpend;
+  for (let y = 1; y <= 100; y++) {
+    bal = bal * (1 + returnRate) - withdrawal;
+    if (bal <= 0) return y;
+    withdrawal *= (1 + inflationRate);
+  }
+  return '100+';
+}
+
+function portfolioPath(portfolio, annualSpend, returnRate, inflationRate, maxYears) {
+  let bal = portfolio;
+  let withdrawal = annualSpend;
+  const data = [bal];
+  for (let y = 1; y <= maxYears; y++) {
+    bal = bal * (1 + returnRate) - withdrawal;
+    if (bal <= 0) { data.push(0); break; }
+    data.push(Math.round(bal));
+    withdrawal *= (1 + inflationRate);
+  }
+  return data;
 }
 
 function calc() {
-  const stcg    = parseFloat(document.getElementById('stcg').value) || 0;
-  const ltcg    = parseFloat(document.getElementById('ltcg').value) || 0;
-  const loss    = parseFloat(document.getElementById('loss').value) || 0;
-  const carry   = parseFloat(document.getElementById('carry').value) || 0;
-  const bracket = parseFloat(document.getElementById('bracket').value);
-  const ltrate  = parseFloat(document.getElementById('ltrate').value);
-  const filing  = document.getElementById('filing').value;
-  const retRate = parseFloat(document.getElementById('ret-rate').value) / 100;
-  const incomeLimit = filing === 'separate' ? 1500 : 3000;
+  const portfolio  = parseFloat(document.getElementById('portfolio').value) || 1000000;
+  const spend      = parseFloat(document.getElementById('spend').value) || 40000;
+  const retAge     = parseInt(document.getElementById('ret-age').value) || 65;
+  const portReturn = parseFloat(document.getElementById('port-return').value) / 100;
+  const inflation  = parseFloat(document.getElementById('inflation').value) / 100;
 
-  // Tax WITHOUT harvesting
-  const taxBefore = stcg * bracket + ltcg * ltrate;
+  const yourRate = (spend / portfolio * 100).toFixed(1);
+  document.getElementById('your-rate').textContent = yourRate + '%';
 
-  // Apply losses in IRS order:
-  // 1. Carryforward first, then new losses
-  // 2. ST losses offset ST gains, LT losses offset LT gains (simplified: apply total)
-  let totalLoss = carry + loss;
-  let remStcg = Math.max(0, stcg - totalLoss);
-  let usedOnSt = Math.min(totalLoss, stcg);
-  totalLoss -= usedOnSt;
-  let remLtcg = Math.max(0, ltcg - totalLoss);
-  let usedOnLt = Math.min(totalLoss, ltcg);
-  totalLoss -= usedOnLt;
+  const rates = [
+    { id: 'r30', rate: 0.030, color: '#3ecf8e', label: '3.0%' },
+    { id: 'r35', rate: 0.035, color: '#c8f060', label: '3.5%' },
+    { id: 'r40', rate: 0.040, color: '#f7931a', label: '4.0%' },
+    { id: 'r45', rate: 0.045, color: '#f06060', label: '4.5%' },
+  ];
 
-  // Remaining loss after offsetting all gains
-  const incomeOffset = Math.min(totalLoss, incomeLimit);
-  const newCarryForward = Math.max(0, totalLoss - incomeLimit);
+  let maxYears = 50;
 
-  // Tax WITH harvesting
-  const taxAfter = remStcg * bracket + remLtcg * ltrate - incomeOffset * bracket;
-  const taxSaved = Math.max(0, taxBefore - Math.max(0, taxAfter));
+  rates.forEach(r => {
+    const annual = portfolio * r.rate;
+    const years = portfolioYears(portfolio, annual, portReturn, inflation);
+    const yearsNum = years === '100+' ? 100 : years;
+    const breakEven = retAge + yearsNum;
 
-  // Compounding value of savings
-  const years20 = taxSaved * Math.pow(1 + retRate, 20);
+    document.getElementById(r.id + '-years').textContent = years === '100+' ? '100+ yrs' : years + ' years';
+    document.getElementById(r.id + '-annual').textContent =
+      fmt(annual) + '/yr · ' + fmt(annual / 12) + '/mo';
+  });
 
-  // Update UI
-  document.getElementById('tax-before').textContent = fmt(taxBefore);
-  document.getElementById('tax-after').textContent = fmt(Math.max(0, taxAfter));
-  document.getElementById('tax-saved').textContent = fmt(taxSaved);
-  document.getElementById('carry-forward').textContent = fmt(newCarryForward);
-  document.getElementById('compound-value').textContent = fmt(years20);
+  // Your actual rate
+  const yourYears = portfolioYears(portfolio, spend, portReturn, inflation);
+  const yourYearsNum = yourYears === '100+' ? 100 : yourYears;
+  document.getElementById('your-years').textContent = yourYears === '100+' ? '100+ years' : yourYears + ' years';
+  document.getElementById('breakeven-age').textContent = retAge + yourYearsNum;
 
-  document.getElementById('b-stcg').textContent = fmt(stcg);
-  document.getElementById('b-ltcg').textContent = fmt(ltcg);
-  document.getElementById('b-carry').textContent = carry > 0 ? '-' + fmt(carry) : '$0';
-  document.getElementById('b-loss').textContent = loss > 0 ? '-' + fmt(loss) : '$0';
-  document.getElementById('b-remaining').textContent = fmt(remStcg + remLtcg);
-  document.getElementById('b-income').textContent = incomeOffset > 0 ? '-' + fmt(incomeOffset) : '$0';
-  document.getElementById('b-new-carry').textContent = fmt(newCarryForward);
-  document.getElementById('b-total-saved').textContent = fmt(taxSaved);
+  // Build chart
+  const labels = [];
+  for (let y = 0; y <= 50; y++) labels.push('Yr ' + y);
 
-  // Build compounding chart data
-  const labels = [], data = [];
-  for (let y = 0; y <= 30; y += 5) {
-    labels.push(y === 0 ? 'Now' : 'Yr ' + y);
-    data.push(Math.round(taxSaved * Math.pow(1 + retRate, y)));
+  const datasets = rates
+    .filter(r => activeRates.has(r.rate.toFixed(1).replace('0.0', '').replace('0', '') ||
+      (['3.0','3.5','4.0','4.5'].find(x => Math.abs(parseFloat(x)/100 - r.rate) < 0.001))))
+    .map(r => {
+      const rateKey = (r.rate * 100).toFixed(1);
+      if (!activeRates.has(rateKey)) return null;
+      const annual = portfolio * r.rate;
+      const path = portfolioPath(portfolio, annual, portReturn, inflation, 50);
+      while (path.length <= 50) path.push(0);
+      return {
+        label: r.label,
+        data: path.slice(0, 51),
+        borderColor: r.color,
+        backgroundColor: r.color + '15',
+        borderWidth: 2,
+        pointRadius: 0,
+        fill: false,
+        tension: 0.3,
+      };
+    }).filter(Boolean);
+
+  updateChart(labels, datasets);
+
+  // Year-by-year table for YOUR rate
+  const tbody = document.getElementById('year-tbody');
+  let bal = portfolio;
+  let withdrawal = spend;
+  let rows = '';
+  for (let y = 1; y <= 40; y++) {
+    const startBal = bal;
+    bal = bal * (1 + portReturn) - withdrawal;
+    const endBal = Math.max(0, bal);
+    const depleted = bal <= 0;
+    rows += '<tr>' +
+      '<td>' + y + '</td>' +
+      '<td>' + (retAge + y) + '</td>' +
+      '<td>' + fmt(withdrawal) + '</td>' +
+      '<td>' + fmt(startBal) + '</td>' +
+      '<td class="' + (depleted ? 'depleted' : endBal > portfolio ? 'accent' : '') + '">' +
+        (depleted ? 'Depleted' : fmt(endBal)) +
+      '</td>' +
+    '</tr>';
+    if (depleted) break;
+    withdrawal *= (1 + inflation);
+    if (y >= 40) break;
   }
-  updateChart(labels, data, taxSaved);
+  tbody.innerHTML = rows;
 }
 
-function updateChart(labels, data, baseline) {
-  const ctx = document.getElementById('compound-chart').getContext('2d');
+function updateChart(labels, datasets) {
+  const ctx = document.getElementById('swr-chart').getContext('2d');
   if (chart) chart.destroy();
   chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [{
-        label: 'Value of tax savings',
-        data,
-        backgroundColor: data.map((v, i) => i === 0 ? 'rgba(200,240,96,0.3)' : 'rgba(200,240,96,0.7)'),
-        borderColor: '#c8f060',
-        borderWidth: 1,
-        borderRadius: 4,
-      }]
-    },
+    type: 'line',
+    data: { labels, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -576,17 +650,21 @@ function updateChart(labels, data, baseline) {
           borderWidth: 1,
           titleColor: '#f0efe8',
           bodyColor: '#888884',
+          padding: 12,
           titleFont: { family: "'Sora', sans-serif", size: 12 },
           bodyFont: { family: "'DM Mono', monospace", size: 11 },
-          padding: 12,
           callbacks: {
-            label: ctx => '  Compounded value: ' + (ctx.raw >= 1000 ? '$'+(ctx.raw/1000).toFixed(1)+'K' : '$'+ctx.raw.toLocaleString())
+            label: ctx => '  ' + ctx.dataset.label + ': ' + (ctx.raw >= 1e6 ? '$'+(ctx.raw/1e6).toFixed(2)+'M' : ctx.raw >= 1000 ? '$'+(ctx.raw/1000).toFixed(0)+'K' : ctx.raw === 0 ? 'Depleted' : '$'+ctx.raw)
           }
         }
       },
       scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 } } },
-        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1000 ? '$'+(v/1000).toFixed(0)+'K' : '$'+v } }
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 11 } },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 },
+            callback: v => v >= 1e6 ? '$'+(v/1e6).toFixed(1)+'M' : v >= 1e3 ? '$'+(v/1e3).toFixed(0)+'K' : '$'+v }
+        }
       }
     }
   });
@@ -601,7 +679,6 @@ document.querySelectorAll('.dropdown').forEach(function(dd) {
   m.addEventListener('mouseleave', function() { t=setTimeout(function(){m.style.display='none';},300); });
 });
 
-// Mobile menu
 window.addEventListener('load', function() {
   var btn = document.getElementById('nav-hamburger');
   var menu = document.getElementById('nav-mobile-menu');

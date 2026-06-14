@@ -31,6 +31,7 @@ CALC_CATEGORIES = [
         ('fire-calculator.html',              'FIRE calculator'),
         ('fee-calculator.html',               'Fee impact'),
         ('tax-loss-harvesting-calculator.html', 'Tax-loss harvesting'),
+        ('withdrawal-rate-calculator.html',    'Withdrawal rate'),
     ]),
     ('Income', [
         ('drip-calculator.html',          'DRIP'),
