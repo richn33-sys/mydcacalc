@@ -160,6 +160,34 @@ footer a:hover { color: var(--text); }
 .dropdown-menu a:last-child { border-bottom: none; }
 .dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
 
+
+/* ── GROUPED CALC DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+/* ── ACCORDION GUIDES DROPDOWN ── */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
+
 </style>
 </head>
 <body>
@@ -195,9 +223,9 @@ footer a:hover { color: var(--text); }
       <button class="nav-group-toggle">Retirement &amp; Tax</button>
       <div class="nav-group-menu">
         <a href="../fire-calculator.html">FIRE calculator</a>
+        <a href="../withdrawal-rate-calculator.html">Withdrawal rate</a>
         <a href="../fee-calculator.html">Fee impact</a>
         <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
-        <a href="../withdrawal-rate-calculator.html">Withdrawal rate</a>
       </div>
     </div>
     <div class="nav-group">
@@ -210,28 +238,40 @@ footer a:hover { color: var(--text); }
     <div class="dropdown">
       <button class="dropdown-toggle active">Guides</button>
       <div class="dropdown-menu">
-        <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
-        <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
-        <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
-        <a href="../guides/how-to-calculate-position-size.html">How to calculate position size</a>
-        <a href="../guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
-        <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
-        <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
-        <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
-        <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
-        <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
-        <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
-        <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
-        <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
-        <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
-        <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
-        <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
-        <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
-        <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
-        <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
-        <a href="../guides/crypto-staking-explained.html">Crypto staking yields</a>
-        <a href="../guides/bond-ladder-retirement.html">Bond ladder strategy</a>
-        <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">›</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+          <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+          <a href="../guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+          <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+          <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+          <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+        </div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">›</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+          <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+          <a href="../guides/crypto-staking-explained.html">Crypto staking yields</a>
+          <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+          <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+          <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        </div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">›</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+          <a href="../guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+          <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+          <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+        </div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">›</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+          <a href="../guides/how-to-calculate-position-size.html">Position size</a>
+          <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+          <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+          <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+        </div>
+        <a href="../guides/index.html" class="all-guides-link">All guides &#x2192;</a>
       </div>
     </div>
   </nav>
@@ -252,34 +292,37 @@ footer a:hover { color: var(--text); }
   <a href="../position-size.html">Position size</a>
   <span class="mobile-guides-label">Retirement & Tax</span>
   <a href="../fire-calculator.html">FIRE calculator</a>
+  <a href="../withdrawal-rate-calculator.html">Withdrawal rate</a>
   <a href="../fee-calculator.html">Fee impact</a>
   <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
-  <a href="../withdrawal-rate-calculator.html">Withdrawal rate</a>
   <span class="mobile-guides-label">Income</span>
   <a href="../drip-calculator.html">DRIP</a>
   <a href="../inflation-calculator.html">Real returns</a>
-  <span class="mobile-guides-label">Guides</span>
+  <span class="mobile-guides-label">DCA & Investing</span>
   <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
-  <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
-  <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum investing</a>
-  <a href="../guides/how-to-calculate-position-size.html">How to calculate position size</a>
-  <a href="../guides/how-to-invest-in-a-volatile-market.html">How to invest in a volatile market</a>
+  <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+  <a href="../guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+  <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
   <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
-  <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Investing during uncertainty</a>
   <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
-  <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
-  <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
-  <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <span class="mobile-guides-label">Crypto</span>
+  <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="../guides/crypto-staking-explained.html">Crypto staking yields</a>
   <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
   <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
-  <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
-  <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA</a>
+  <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <span class="mobile-guides-label">Retirement & FIRE</span>
   <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
-  <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="../guides/bond-ladder-retirement.html">Bond ladder strategy</a>
   <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
   <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
-  <a href="../guides/crypto-staking-explained.html">Crypto staking yields</a>
-  <a href="../guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+  <span class="mobile-guides-label">Fundamentals</span>
+  <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="../guides/how-to-calculate-position-size.html">Position size</a>
+  <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
   <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
 </div>
 
@@ -604,6 +647,24 @@ window.addEventListener('load', function() {
   }
   hookDropdown('.nav-group', '.nav-group-menu');
   hookDropdown('.dropdown', '.dropdown-menu');
+  // Accordion guide categories
+  document.querySelectorAll('.guide-cat-header').forEach(function(hdr) {
+    hdr.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var links = hdr.nextElementSibling;
+      var isOpen = hdr.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.guide-cat-header').forEach(function(h) {
+        h.classList.remove('open');
+        if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
+      });
+      // Open clicked if was closed
+      if (!isOpen) {
+        hdr.classList.add('open');
+        if (links) links.classList.add('open');
+      }
+    });
+  });
 });
 </script>
 </body>

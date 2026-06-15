@@ -16,76 +16,90 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 # ── CALCULATOR CATEGORIES ─────────────────────────────────────────────────────
 CALC_CATEGORIES = [
     ('Investing', [
-        ('',                              'DCA calculator'),
-        ('dca-backtest.html',             'DCA backtest'),
-        ('compound-interest.html',        'Compound interest'),
-        ('loss-recovery-calculator.html', 'Loss recovery'),
-        ('crypto-cost-basis-calculator.html', 'Crypto cost basis'),
+        ('',                                    'DCA calculator'),
+        ('dca-backtest.html',                   'DCA backtest'),
+        ('compound-interest.html',              'Compound interest'),
+        ('loss-recovery-calculator.html',       'Loss recovery'),
+        ('crypto-cost-basis-calculator.html',   'Crypto cost basis'),
     ]),
     ('Portfolio', [
-        ('asset-allocation.html',         'Asset allocation'),
-        ('rebalancing-calculator.html',   'Rebalancing'),
-        ('position-size.html',            'Position size'),
+        ('asset-allocation.html',               'Asset allocation'),
+        ('rebalancing-calculator.html',         'Rebalancing'),
+        ('position-size.html',                  'Position size'),
     ]),
     ('Retirement &amp; Tax', [
-        ('fire-calculator.html',              'FIRE calculator'),
-        ('fee-calculator.html',               'Fee impact'),
-        ('tax-loss-harvesting-calculator.html', 'Tax-loss harvesting'),
-        ('withdrawal-rate-calculator.html',    'Withdrawal rate'),
+        ('fire-calculator.html',                    'FIRE calculator'),
+        ('withdrawal-rate-calculator.html',         'Withdrawal rate'),
+        ('fee-calculator.html',                     'Fee impact'),
+        ('tax-loss-harvesting-calculator.html',     'Tax-loss harvesting'),
     ]),
     ('Income', [
-        ('drip-calculator.html',          'DRIP'),
-        ('inflation-calculator.html',     'Real returns'),
+        ('drip-calculator.html',                'DRIP'),
+        ('inflation-calculator.html',           'Real returns'),
     ]),
 ]
 
-# ── GUIDES ────────────────────────────────────────────────────────────────────
-GUIDES = [
-    ('what-is-dollar-cost-averaging.html',            'What is dollar cost averaging?'),
-    ('how-compound-interest-works.html',              'How compound interest works'),
-    ('dca-vs-lump-sum.html',                          'DCA vs lump sum investing'),
-    ('how-to-calculate-position-size.html',           'How to calculate position size'),
-    ('how-to-invest-in-a-volatile-market.html',       'How to invest in a volatile market'),
-    ('bitcoin-dca-strategy.html',                     'Bitcoin DCA strategy'),
-    ('how-to-invest-during-geopolitical-uncertainty.html', 'Investing during uncertainty'),
-    ('fear-greed-index-dca-strategy.html',            'Fear &amp; Greed Index DCA'),
-    ('what-is-a-good-risk-reward-ratio.html',         'Risk/reward ratio'),
-    ('strategic-bitcoin-reserve-dca.html',            'Strategic Bitcoin Reserve'),
-    ('investing-during-high-interest-rates.html',     'High interest rates'),
-    ('ethereum-glamsterdam-upgrade-2026.html',         'Ethereum Glamsterdam'),
-    ('ai-stocks-vs-traditional-value.html',           'AI vs Value stocks'),
-    ('should-you-dca-into-ai-crypto-tokens.html',     'DCA into AI crypto'),
-    ('best-day-to-dca-bitcoin.html',                  'Best day to DCA'),
-    ('4-percent-rule-explained.html',                 'The 4% Rule'),
-    ('how-to-build-crypto-dca-portfolio.html',        'Crypto DCA portfolio'),
-    ('portfolio-diversification-guide.html',          'Portfolio diversification'),
-    ('tax-loss-harvesting-explained.html',            'Tax-loss harvesting'),
-    ('crypto-staking-explained.html',               'Crypto staking yields'),
-    ('bond-ladder-retirement.html',                 'Bond ladder strategy'),
+# ── GUIDE CATEGORIES (accordion dropdown) ────────────────────────────────────
+GUIDE_CATEGORIES = [
+    ('DCA &amp; Investing', [
+        ('what-is-dollar-cost-averaging.html',            'What is dollar cost averaging?'),
+        ('dca-vs-lump-sum.html',                          'DCA vs lump sum'),
+        ('how-to-invest-in-a-volatile-market.html',       'Investing in a volatile market'),
+        ('best-day-to-dca-bitcoin.html',                  'Best day to DCA Bitcoin'),
+        ('bitcoin-dca-strategy.html',                     'Bitcoin DCA strategy'),
+        ('fear-greed-index-dca-strategy.html',            'Fear &amp; Greed Index DCA'),
+    ]),
+    ('Crypto', [
+        ('how-to-build-crypto-dca-portfolio.html',        'Crypto DCA portfolio'),
+        ('should-you-dca-into-ai-crypto-tokens.html',     'DCA into AI crypto'),
+        ('crypto-staking-explained.html',                 'Crypto staking yields'),
+        ('ethereum-glamsterdam-upgrade-2026.html',         'Ethereum Glamsterdam'),
+        ('ai-stocks-vs-traditional-value.html',           'AI vs Value stocks'),
+        ('strategic-bitcoin-reserve-dca.html',            'Strategic Bitcoin Reserve'),
+    ]),
+    ('Retirement &amp; FIRE', [
+        ('4-percent-rule-explained.html',                 'The 4% Rule'),
+        ('bond-ladder-retirement.html',                   'Bond ladder strategy'),
+        ('portfolio-diversification-guide.html',          'Portfolio diversification'),
+        ('tax-loss-harvesting-explained.html',            'Tax-loss harvesting'),
+    ]),
+    ('Fundamentals', [
+        ('how-compound-interest-works.html',              'How compound interest works'),
+        ('how-to-calculate-position-size.html',           'Position size'),
+        ('what-is-a-good-risk-reward-ratio.html',         'Risk/reward ratio'),
+        ('investing-during-high-interest-rates.html',     'High interest rates'),
+        ('how-to-invest-during-geopolitical-uncertainty.html', 'Geopolitical uncertainty'),
+    ]),
 ]
 
-# ── CSS for grouped dropdowns ─────────────────────────────────────────────────
+# ── CSS ───────────────────────────────────────────────────────────────────────
 GROUPED_NAV_CSS = '''
-/* ── GROUPED NAV DROPDOWNS ── */
+/* ── GROUPED CALC DROPDOWNS ── */
 .nav-group { position: relative; }
 .nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
 .nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
 .nav-group-toggle::after { content: "▾"; font-size: 10px; }
-.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 220px; overflow: hidden; z-index: 200; padding: 4px 0; }
-.nav-group-menu .group-label { padding: 8px 14px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
 .nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
 .nav-group-menu a:last-child { border-bottom: none; }
 .nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
-.nav-group-menu .group-divider { height: 1px; background: var(--border); margin: 2px 0; }
-/* Guides dropdown (right-aligned) */
+/* ── ACCORDION GUIDES DROPDOWN ── */
 .dropdown { position: relative; }
 .dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
 .dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
 .dropdown-toggle::after { content: "▾"; font-size: 10px; }
-.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
-.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
-.dropdown-menu a:last-child { border-bottom: none; }
-.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
 '''
 
 NAV_EVENT_JS = '''<script>
@@ -121,6 +135,24 @@ window.addEventListener('load', function() {
   }
   hookDropdown('.nav-group', '.nav-group-menu');
   hookDropdown('.dropdown', '.dropdown-menu');
+  // Accordion guide categories
+  document.querySelectorAll('.guide-cat-header').forEach(function(hdr) {
+    hdr.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var links = hdr.nextElementSibling;
+      var isOpen = hdr.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.guide-cat-header').forEach(function(h) {
+        h.classList.remove('open');
+        if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
+      });
+      // Open clicked if was closed
+      if (!isOpen) {
+        hdr.classList.add('open');
+        if (links) links.classList.add('open');
+      }
+    });
+  });
 });
 </script>'''
 
@@ -131,7 +163,6 @@ def build_nav(root, in_guides, active_href):
 
     # Calculator category dropdowns
     for cat_name, items in CALC_CATEGORIES:
-        # Check if any item in this category is the active page
         cat_active = any(href == active_href for href, label in items)
         active_cls = ' active' if cat_active else ''
         lines.append('  <div class="nav-group">')
@@ -143,18 +174,21 @@ def build_nav(root, in_guides, active_href):
         lines.append('    </div>')
         lines.append('  </div>')
 
-    # Guides dropdown (right-aligned)
+    # Guides accordion dropdown
     guides_active = ' active' if in_guides else ''
     lines.append('  <div class="dropdown">')
     lines.append('    <button class="dropdown-toggle' + guides_active + '">Guides</button>')
     lines.append('    <div class="dropdown-menu">')
-    for href, label in GUIDES:
-        lines.append('      <a href="' + g + href + '">' + label + '</a>')
-    lines.append('      <a href="' + g + 'index.html" style="color:var(--accent);">All guides &#x2192;</a>')
+    for cat_name, items in GUIDE_CATEGORIES:
+        lines.append('      <div class="guide-cat-header"><span>' + cat_name + '</span><span class="cat-arrow">›</span></div>')
+        lines.append('      <div class="guide-cat-links">')
+        for href, label in items:
+            lines.append('        <a href="' + g + href + '">' + label + '</a>')
+        lines.append('      </div>')
+    lines.append('      <a href="' + g + 'index.html" class="all-guides-link">All guides &#x2192;</a>')
     lines.append('    </div>')
     lines.append('  </div>')
 
-    # Hamburger
     lines.append('</nav>')
     lines.append('<button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">')
     lines.append('  <span></span><span></span><span></span>')
@@ -172,18 +206,22 @@ def build_mobile_menu(root, in_guides):
         for href, label in items:
             lines.append('  <a href="' + root + href + '">' + label + '</a>')
 
-    lines.append('  <span class="mobile-guides-label">Guides</span>')
-    for href, label in GUIDES:
-        lines.append('  <a href="' + g + href + '">' + label + '</a>')
+    for cat_name, items in GUIDE_CATEGORIES:
+        lines.append('  <span class="mobile-guides-label">' + cat_name.replace('&amp;', '&') + '</span>')
+        for href, label in items:
+            lines.append('  <a href="' + g + href + '">' + label + '</a>')
+
     lines.append('  <a href="' + g + 'index.html" style="color:var(--accent);">All guides &#x2192;</a>')
     lines.append('</div>')
     return '\n'.join(lines)
 
 
 def ensure_css(c):
-    """Inject grouped nav CSS if not already present."""
-    if 'nav-group-toggle' not in c:
+    if 'guide-cat-header' not in c:
         c = c.replace('</style>', GROUPED_NAV_CSS + '\n</style>', 1)
+    else:
+        # Update existing CSS
+        c = re.sub(r'/\* ── GROUPED CALC DROPDOWNS ──.*?(?=</style>)', GROUPED_NAV_CSS + '\n', c, flags=re.DOTALL)
     return c
 
 
@@ -204,21 +242,12 @@ def stamp(filepath):
     nav_html    = build_nav(root, in_guides, active_href)
     mobile_html = build_mobile_menu(root, in_guides)
 
-    # Inject CSS
     c = ensure_css(c)
 
-    # Replace nav + hamburger
     c = re.sub(
         r'<nav>.*?</nav>\s*<button class="nav-hamburger".*?</button>',
         nav_html, c, count=1, flags=re.DOTALL
     )
-    # Handle old nav-root placeholder
-    c = re.sub(
-        r'<div id="nav-root"></div><script src="[^"]*nav\.js"></script>\s*<button class="nav-hamburger".*?</button>',
-        nav_html, c, count=1, flags=re.DOTALL
-    )
-
-    # Replace mobile menu
     c = re.sub(
         r'<div class="nav-mobile-menu"[^>]*>.*?</div>(?=\s*\n)',
         mobile_html, c, count=1, flags=re.DOTALL
@@ -226,7 +255,6 @@ def stamp(filepath):
     if 'id="nav-mobile-menu"' not in c:
         c = c.replace('</header>', '</header>\n' + mobile_html, 1)
 
-    # Replace or add event JS
     c = re.sub(
         r'<script>\s*window\.addEventListener\(\'load\'.*?</script>',
         NAV_EVENT_JS, c, flags=re.DOTALL
