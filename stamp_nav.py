@@ -13,6 +13,15 @@ import os, re, sys, glob
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
+GA_SNIPPET = '''<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>'''
+
 # ── CALCULATOR CATEGORIES ─────────────────────────────────────────────────────
 CALC_CATEGORIES = [
     ('Investing', [
@@ -243,6 +252,11 @@ def stamp(filepath):
     mobile_html = build_mobile_menu(root, in_guides)
 
     c = ensure_css(c)
+
+    # Inject GA4 if not present
+    if 'G-1HVC269Z8F' not in c:
+        c = c.replace('</head>', GA_SNIPPET + '
+</head>', 1)
 
     c = re.sub(
         r'<nav>.*?</nav>\s*<button class="nav-hamburger".*?</button>',

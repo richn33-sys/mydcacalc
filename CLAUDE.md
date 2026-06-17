@@ -128,7 +128,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── fee-calculator.html                           ← Investment Fee Impact Calculator (11th calculator, NEW Jun 3)
 ├── tax-loss-harvesting-calculator.html           ← Tax-Loss Harvesting Calculator (12th calculator, NEW Jun 7)
 ├── crypto-cost-basis-calculator.html             ← Crypto Cost Basis / Average Price Calculator (13th calculator, NEW Jun 9)
-├── stamp_nav.py                                  ← Single script to stamp correct full nav into any page (grouped dropdowns, rebuilt Jun 7)
+├── withdrawal-rate-calculator.html               ← Safe Withdrawal Rate Calculator (14th calculator, NEW Jun 15)
+├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown, rebuilt Jun 15)
 ├── about.html
 ├── privacy.html
 ├── terms.html
@@ -141,7 +142,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 20 guides published; counter reads 20 ✅
+│   ├── index.html                                ← 21 guides published; counter reads 21 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -161,7 +162,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── how-to-build-crypto-dca-portfolio.html    ← NEW Jun 5 (17th guide)
 │   ├── portfolio-diversification-guide.html      ← NEW Jun 5 (18th guide)
 │   ├── tax-loss-harvesting-explained.html        ← NEW Jun 7 (19th guide)
-│   └── crypto-staking-explained.html             ← NEW Jun 10 (20th guide)
+│   ├── crypto-staking-explained.html             ← NEW Jun 10 (20th guide)
+│   └── bond-ladder-retirement.html               ← NEW Jun 15 (21st guide)
 └── CLAUDE.md
 ```
 ---
@@ -179,7 +181,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - **Borders:** `rgba(255,255,255,0.08)`
 - **Border radius:** 10px (components), 16px (cards)
 - **Favicon:** SVG data URI — dark bg, "DCA" in accent green
-### Nav structure (as of Jun 7 2026 — grouped dropdowns):
+### Nav structure (as of Jun 15 2026 — grouped calc dropdowns + accordion guides dropdown):
 - `nav.js` was ABANDONED and DELETED (Jun 2 2026) — no page ever loaded it (`grep -L "nav.js"` confirmed 0 script references). It is gone from the repo; nav is hardcoded per-page (see below).
 - Nav is now HARDCODED into every page, stamped via `stamp_nav.py` when a calculator or guide is added.
 - **Calculators are now organized into grouped dropdown categories (rebuilt Jun 7):** Investing · Portfolio · Retirement & Tax · Income — replacing the old flat single-row list of every calculator.
@@ -188,7 +190,9 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
   - **Retirement & Tax:** FIRE · Fee impact · Tax-loss harvesting
   - **Income:** DRIP · Real returns
   - (Exact category membership lives in `stamp_nav.py`'s `CALC_CATEGORIES` array — that is the source of truth.)
-- Guides dropdown: 20 guides + "All guides →"
+  - Note: Safe Withdrawal Rate calculator (14th, Jun 15) lives under **Retirement & Tax** — confirm exact membership in `CALC_CATEGORIES`.
+- **Guides dropdown is now an ACCORDION (rebuilt Jun 15):** shows 4 collapsible category headers — **DCA & Investing · Crypto · Retirement & FIRE · Fundamentals** — that expand/collapse on click, one open at a time. Replaces the old flat 20-guide list.
+  - (Exact category membership lives in `stamp_nav.py`'s `GUIDE_CATEGORIES` array — that is the source of truth. Bond Ladder for Retirement sits under **Retirement & FIRE**.)
 - Root pages: `href="guides/page.html"` for guide links
 - Guide pages: `href="../page.html"` for root, `href="page.html"` for guides
 - Authors pages: `href="../page.html"` for root, `href="../guides/page.html"` for guides
@@ -266,6 +270,14 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Outputs: total invested, total units, average cost basis per unit, unrealized P&L vs current price
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
 - **Keywords:** crypto cost basis calculator, average price calculator, crypto average buy price
+
+### withdrawal-rate-calculator.html — Safe Withdrawal Rate Calculator (14th calculator, NEW Jun 15 2026)
+- Estimates how long a retirement portfolio lasts at a given withdrawal rate / how much can be safely withdrawn
+- Inputs: portfolio value, annual withdrawal (or withdrawal %), expected return, inflation, retirement horizon
+- Outputs: portfolio longevity, sustainable withdrawal amount, depletion year
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- Pairs with the 4% Rule and Bond Ladder for Retirement guides
+- **Keywords:** safe withdrawal rate calculator, how long will my portfolio last, retirement withdrawal calculator
 ---
 ## Author Personas
 ### James Colter — Long-term Investor & Personal Finance Writer
@@ -282,7 +294,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 ---
-## Guides Section (20 published as of Jun 10 2026)
+## Guides Section (21 published as of Jun 15 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -305,6 +317,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | portfolio-diversification-guide.html | James Colter | ✅ Live | Jun 5 2026 |
 | tax-loss-harvesting-explained.html | James Colter | ✅ Live | Jun 7 2026 |
 | crypto-staking-explained.html | James Colter | ✅ Live | Jun 10 2026 |
+| bond-ladder-retirement.html | James Colter | ✅ Live | Jun 15 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -423,6 +436,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | fee-calculator.html | investment fee calculator / expense ratio impact |
 | tax-loss-harvesting-calculator.html | tax loss harvesting calculator / capital gains tax offset |
 | crypto-cost-basis-calculator.html | crypto cost basis calculator / average price calculator |
+| withdrawal-rate-calculator.html | safe withdrawal rate calculator / how long will my portfolio last |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -443,6 +457,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | guides/portfolio-diversification-guide.html | portfolio diversification guide 2026 |
 | guides/tax-loss-harvesting-explained.html | tax loss harvesting explained |
 | guides/crypto-staking-explained.html | crypto staking yields explained |
+| guides/bond-ladder-retirement.html | how to build a bond ladder for retirement |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -517,7 +532,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jun 10 2026 — verified against disk, 20 guides):
+### Current CURRENT_GUIDES (as of Jun 15 2026 — verified against disk, 21 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging",
@@ -540,11 +555,12 @@ CURRENT_GUIDES = [
     "Portfolio diversification guide 2026",
     "Tax-loss harvesting explained",
     "Crypto staking yields explained",
+    "How to build a bond ladder for retirement",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
 
-### Current CURRENT_CALCULATORS (as of Jun 10 2026 — verified against disk, 13 calculators):
+### Current CURRENT_CALCULATORS (as of Jun 15 2026 — verified against disk, 14 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator",
@@ -560,11 +576,16 @@ CURRENT_CALCULATORS = [
     "Investment fee impact calculator",
     "Tax-loss harvesting calculator",
     "Crypto cost basis / average price calculator",
+    "Safe withdrawal rate calculator (portfolio longevity)",
 ]
 ```
+> ✅ Jun 15: research_agent.py audited vs disk — CURRENT_GUIDES was at 20, added bond-ladder → 21; CURRENT_CALCULATORS was at 13, added safe withdrawal rate → 14. Both now match disk.
 ---
 ## Roadmap
 ### Done ✅
+- [x] Bond Ladder for Retirement guide — James Colter, 21st guide — Jun 15 2026
+- [x] Safe Withdrawal Rate Calculator (14th calculator) — Jun 15 2026
+- [x] stamp_nav.py rebuilt with accordion guides dropdown (4 collapsible categories: DCA & Investing / Crypto / Retirement & FIRE / Fundamentals); all pages re-stamped via `stamp_nav.py --all` — Jun 15 2026
 - [x] Crypto Staking Yields guide — James Colter, 20th guide — Jun 10 2026
 - [x] All nav dropdown issues root-caused + fixed: broken Chart.js path (index_files/chart.umd.js) on index.html silent JS error blocked all nav event listeners site-wide; repointed to CDN — Jun 10 2026
 - [x] GSC submissions completed for all outstanding pages — Jun 10 2026
@@ -643,12 +664,18 @@ CURRENT_CALCULATORS = [
 - [x] **Grouped nav dropdowns** — stamp_nav.py rebuilt, all 31 pages re-stamped Jun 7 2026 ✅
 - [x] **Crypto Cost Basis / Average Price Calculator** — built and deployed (13th calculator), Jun 9 2026 ✅
 - [x] **Crypto Staking Yields guide** — published Jun 10 2026 (20th guide) ✅
+- [x] **Bond Ladder for Retirement guide** — published Jun 15 2026 (21st guide) ✅
+- [x] **Safe Withdrawal Rate Calculator** — built and deployed Jun 15 2026 (14th calculator) ✅
+- [x] **Accordion guides dropdown** — stamp_nav.py rebuilt, all pages re-stamped Jun 15 2026 ✅
+- [ ] **Build RMD Calculator** — last item from the brief
+- [ ] **Submit new pages to GSC** — withdrawal-rate-calculator.html + guides/bond-ladder-retirement.html
 - [x] **Submit outstanding pages to GSC** — all outstanding pages (fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide, tax-loss-harvesting-calculator, tax-loss-harvesting-explained, crypto-cost-basis-calculator) submitted Jun 10 2026 ✅
 - [ ] **Submit guides/crypto-staking-explained.html to GSC** — newly published, not yet submitted
-- [ ] **Await Sunday research agent brief** (next: Sunday Jun 14 at 7am) for new content ideas (May 25 + Jun 1 brief items all complete ✅)
+- [ ] **Await Sunday research agent brief** (next: Sunday Jun 21 at 7am) for new content ideas
+- [~] **Build Reddit karma** — active: comments posted in r/personalfinance and r/Fire; continue building before self-promo posts
 - [x] **Fix guides/index.html counter** — fixed to 16 (Jun 2) ✅
 - [x] **Delete vestigial nav.js** — deleted; was dead code, no page loaded it (Jun 2) ✅
-- [ ] **Build Reddit karma** — new account needs comments before posting
+- [~] **Build Reddit karma** — active: commenting in r/personalfinance and r/Fire (Jun 15)
 - [ ] Update Strategic Bitcoin Reserve guide when announcement drops
 - [ ] List Content Research Agent on Gumroad ($39)
 - [ ] Add bottom upgrade card CTA to calculator pages (only banner exists)
@@ -659,6 +686,17 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 15 2026 — Bond Ladder Guide + Withdrawal Calculator + Accordion Nav Session
+- Bond Ladder for Retirement guide published (James Colter, 21st guide) — `guides/bond-ladder-retirement.html` ("How to Build a Bond Ladder for Retirement — 2026 Strategy Guide")
+- Safe Withdrawal Rate Calculator built and deployed (`withdrawal-rate-calculator.html`, 14th calculator) — estimates portfolio longevity / sustainable withdrawal amount; pairs with the 4% Rule and Bond Ladder guides
+- **stamp_nav.py rebuilt with an accordion guides dropdown** — guides now organized into 4 collapsible categories (DCA & Investing / Crypto / Retirement & FIRE / Fundamentals) via the new `GUIDE_CATEGORIES` structure; category headers expand/collapse on click, one open at a time, replacing the old flat 20-guide list
+- Calculator nav unchanged — still grouped dropdowns (Investing / Portfolio / Retirement & Tax / Income); withdrawal-rate-calculator added under **Retirement & Tax**, bond-ladder guide under **Retirement & FIRE**
+- All pages re-stamped via `python3 stamp_nav.py --all`
+- `guides/index.html` counter updated to 21
+- **Reddit karma building active** — comments posted in r/personalfinance and r/Fire
+- **research_agent.py audit (vs disk):** CURRENT_GUIDES was at 20 — added "How to build a bond ladder for retirement" → 21, matches disk. CURRENT_CALCULATORS was at 13 — added "Safe withdrawal rate calculator (portfolio longevity)" → 14, matches disk.
+- Next priorities: RMD Calculator (last item from brief), submit withdrawal-rate-calculator.html + guides/bond-ladder-retirement.html to GSC, continue Reddit karma building
 
 ### Jun 10 2026 — Crypto Staking Guide + Nav Fix Verification Session
 - Crypto Staking Yields guide published (James Colter, 20th guide) — `guides/crypto-staking-explained.html` ("Understanding Crypto Staking Yields in 2026 — ETH, SOL, and Real Returns")
