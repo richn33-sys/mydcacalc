@@ -13,14 +13,14 @@ import os, re, sys, glob
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
-GA_SNIPPET = '''<!-- Google tag (gtag.js) -->
+GA4 = """<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-1HVC269Z8F');
-</script>'''
+</script>"""
 
 # ── CALCULATOR CATEGORIES ─────────────────────────────────────────────────────
 CALC_CATEGORIES = [
@@ -81,13 +81,12 @@ GUIDE_CATEGORIES = [
     ]),
 ]
 
-# ── CSS ───────────────────────────────────────────────────────────────────────
-GROUPED_NAV_CSS = '''
+GROUPED_NAV_CSS = """
 /* ── GROUPED CALC DROPDOWNS ── */
 .nav-group { position: relative; }
 .nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
 .nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
-.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-toggle::after { content: "\\u25be"; font-size: 10px; }
 .nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
 .nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
 .nav-group-menu a:last-child { border-bottom: none; }
@@ -96,7 +95,7 @@ GROUPED_NAV_CSS = '''
 .dropdown { position: relative; }
 .dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
 .dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
-.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-toggle::after { content: "\\u25be"; font-size: 10px; }
 .dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
 .guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
 .guide-cat-header:hover { background: var(--bg-input); }
@@ -109,9 +108,9 @@ GROUPED_NAV_CSS = '''
 .guide-cat-links a:last-child { border-bottom: none; }
 .dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
 .dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
-'''
+"""
 
-NAV_EVENT_JS = '''<script>
+NAV_EVENT_JS = """<script>
 window.addEventListener('load', function() {
   var btn = document.getElementById('nav-hamburger');
   var menu = document.getElementById('nav-mobile-menu');
@@ -144,18 +143,15 @@ window.addEventListener('load', function() {
   }
   hookDropdown('.nav-group', '.nav-group-menu');
   hookDropdown('.dropdown', '.dropdown-menu');
-  // Accordion guide categories
   document.querySelectorAll('.guide-cat-header').forEach(function(hdr) {
     hdr.addEventListener('click', function(e) {
       e.stopPropagation();
       var links = hdr.nextElementSibling;
       var isOpen = hdr.classList.contains('open');
-      // Close all
       document.querySelectorAll('.guide-cat-header').forEach(function(h) {
         h.classList.remove('open');
         if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
       });
-      // Open clicked if was closed
       if (!isOpen) {
         hdr.classList.add('open');
         if (links) links.classList.add('open');
@@ -163,14 +159,13 @@ window.addEventListener('load', function() {
     });
   });
 });
-</script>'''
+</script>"""
 
 
 def build_nav(root, in_guides, active_href):
     g = root + 'guides/'
     lines = ['<nav>']
 
-    # Calculator category dropdowns
     for cat_name, items in CALC_CATEGORIES:
         cat_active = any(href == active_href for href, label in items)
         active_cls = ' active' if cat_active else ''
@@ -183,13 +178,12 @@ def build_nav(root, in_guides, active_href):
         lines.append('    </div>')
         lines.append('  </div>')
 
-    # Guides accordion dropdown
     guides_active = ' active' if in_guides else ''
     lines.append('  <div class="dropdown">')
     lines.append('    <button class="dropdown-toggle' + guides_active + '">Guides</button>')
     lines.append('    <div class="dropdown-menu">')
     for cat_name, items in GUIDE_CATEGORIES:
-        lines.append('      <div class="guide-cat-header"><span>' + cat_name + '</span><span class="cat-arrow">›</span></div>')
+        lines.append('      <div class="guide-cat-header"><span>' + cat_name + '</span><span class="cat-arrow">&#x203a;</span></div>')
         lines.append('      <div class="guide-cat-links">')
         for href, label in items:
             lines.append('        <a href="' + g + href + '">' + label + '</a>')
@@ -228,9 +222,12 @@ def build_mobile_menu(root, in_guides):
 def ensure_css(c):
     if 'guide-cat-header' not in c:
         c = c.replace('</style>', GROUPED_NAV_CSS + '\n</style>', 1)
-    else:
-        # Update existing CSS
-        c = re.sub(r'/\* ── GROUPED CALC DROPDOWNS ──.*?(?=</style>)', GROUPED_NAV_CSS + '\n', c, flags=re.DOTALL)
+    return c
+
+
+def ensure_ga4(c):
+    if 'G-1HVC269Z8F' not in c:
+        c = c.replace('</head>', GA4 + '\n</head>', 1)
     return c
 
 
@@ -248,15 +245,11 @@ def stamp(filepath):
     fname = os.path.basename(path)
     active_href = '' if fname == 'index.html' and not in_guides else fname
 
+    c = ensure_css(c)
+    c = ensure_ga4(c)
+
     nav_html    = build_nav(root, in_guides, active_href)
     mobile_html = build_mobile_menu(root, in_guides)
-
-    c = ensure_css(c)
-
-    # Inject GA4 if not present
-    if 'G-1HVC269Z8F' not in c:
-        c = c.replace('</head>', GA_SNIPPET + '
-</head>', 1)
 
     c = re.sub(
         r'<nav>.*?</nav>\s*<button class="nav-hamburger".*?</button>',
