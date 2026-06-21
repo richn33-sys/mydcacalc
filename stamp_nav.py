@@ -87,7 +87,7 @@ GROUPED_NAV_CSS = """
 .nav-group { position: relative; }
 .nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
 .nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
-.nav-group-toggle::after { content: "\\u25be"; font-size: 10px; }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
 .nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
 .nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
 .nav-group-menu a:last-child { border-bottom: none; }
@@ -96,7 +96,7 @@ GROUPED_NAV_CSS = """
 .dropdown { position: relative; }
 .dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
 .dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
-.dropdown-toggle::after { content: "\\u25be"; font-size: 10px; }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
 .dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
 .guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
 .guide-cat-header:hover { background: var(--bg-input); }
