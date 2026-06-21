@@ -41,6 +41,7 @@ CALC_CATEGORIES = [
         ('withdrawal-rate-calculator.html',         'Withdrawal rate'),
         ('fee-calculator.html',                     'Fee impact'),
         ('tax-loss-harvesting-calculator.html',     'Tax-loss harvesting'),
+        ('rmd-calculator.html',                     'RMD calculator'),
     ]),
     ('Income', [
         ('drip-calculator.html',                'DRIP'),

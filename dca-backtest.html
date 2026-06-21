@@ -277,6 +277,7 @@ footer a:hover { color: var(--text); }
         <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
         <a href="fee-calculator.html">Fee impact</a>
         <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="rmd-calculator.html">RMD calculator</a>
       </div>
     </div>
     <div class="nav-group">
@@ -289,7 +290,7 @@ footer a:hover { color: var(--text); }
     <div class="dropdown">
       <button class="dropdown-toggle">Guides</button>
       <div class="dropdown-menu">
-        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">›</span></div>
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">&#x203a;</span></div>
         <div class="guide-cat-links">
           <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
           <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
@@ -298,7 +299,7 @@ footer a:hover { color: var(--text); }
           <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
           <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
         </div>
-        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">›</span></div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">&#x203a;</span></div>
         <div class="guide-cat-links">
           <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
           <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
@@ -307,14 +308,14 @@ footer a:hover { color: var(--text); }
           <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
           <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
         </div>
-        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">›</span></div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">&#x203a;</span></div>
         <div class="guide-cat-links">
           <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
           <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
           <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
           <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
         </div>
-        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">›</span></div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">&#x203a;</span></div>
         <div class="guide-cat-links">
           <a href="guides/how-compound-interest-works.html">How compound interest works</a>
           <a href="guides/how-to-calculate-position-size.html">Position size</a>
@@ -346,6 +347,7 @@ footer a:hover { color: var(--text); }
   <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
   <a href="fee-calculator.html">Fee impact</a>
   <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <a href="rmd-calculator.html">RMD calculator</a>
   <span class="mobile-guides-label">Income</span>
   <a href="drip-calculator.html">DRIP</a>
   <a href="inflation-calculator.html">Real returns</a>
@@ -799,18 +801,15 @@ window.addEventListener('load', function() {
   }
   hookDropdown('.nav-group', '.nav-group-menu');
   hookDropdown('.dropdown', '.dropdown-menu');
-  // Accordion guide categories
   document.querySelectorAll('.guide-cat-header').forEach(function(hdr) {
     hdr.addEventListener('click', function(e) {
       e.stopPropagation();
       var links = hdr.nextElementSibling;
       var isOpen = hdr.classList.contains('open');
-      // Close all
       document.querySelectorAll('.guide-cat-header').forEach(function(h) {
         h.classList.remove('open');
         if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
       });
-      // Open clicked if was closed
       if (!isOpen) {
         hdr.classList.add('open');
         if (links) links.classList.add('open');

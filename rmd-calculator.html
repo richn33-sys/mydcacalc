@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1HVC269Z8F');
-</script>
-
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tax-Loss Harvesting Calculator — See Exactly How Much You Save</title>
-<meta name="description" content="Free tax-loss harvesting calculator. Enter your capital gains, harvested losses, and tax bracket to see exactly how much tax you save, what carries forward, and the long-term compounding value of those savings.">
-<meta name="keywords" content="tax loss harvesting calculator, capital gains tax calculator, how much do I save from tax loss harvesting, tax loss offset calculator 2026">
-<meta property="og:title" content="Tax-Loss Harvesting Calculator — See Exactly How Much You Save">
-<meta property="og:description" content="Enter your gains, losses, and bracket. See your exact tax savings, carryforward balance, and the long-term compounding value of harvesting.">
+<title>RMD Calculator 2026 — Required Minimum Distribution Calculator</title>
+<meta name="description" content="Free RMD calculator for 2026. Calculate your required minimum distribution from a traditional IRA or 401(k) using the IRS Uniform Lifetime Table. Includes multi-year projection and penalty estimate.">
+<meta name="keywords" content="RMD calculator 2026, required minimum distribution calculator, IRA RMD calculator, how to calculate RMD, RMD age 73 calculator">
+<meta property="og:title" content="RMD Calculator 2026 — Required Minimum Distribution Calculator">
+<meta property="og:description" content="Calculate your required minimum distribution using the IRS Uniform Lifetime Table. See RMDs for the next 20 years and estimated tax impact.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mydcacalc.com/tax-loss-harvesting-calculator.html">
+<meta property="og:url" content="https://mydcacalc.com/rmd-calculator.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/tax-loss-harvesting-calculator.html">
+<link rel="canonical" href="https://mydcacalc.com/rmd-calculator.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,8 +21,8 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Tax-Loss Harvesting Calculator",
-  "description": "Calculate exactly how much tax you save from harvesting losses, what carries forward, and the compounding value of those savings",
+  "name": "RMD Calculator 2026",
+  "description": "Calculate required minimum distributions from traditional IRA or 401(k) using IRS Uniform Lifetime Table",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -64,30 +54,26 @@ nav a.active { color: var(--accent); }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
 .nav-mobile-menu.open { display: flex; }
 .nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
-.nav-mobile-menu a:last-child { border-bottom: none; }
-.nav-mobile-menu a:hover { color: var(--accent); }
 .nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
 @media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
 
-/* Hero */
-.hero { max-width: 860px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 20px; }
 .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
 h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
 h1 em { font-style: normal; color: var(--accent); }
 .hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
 
-/* Main layout */
-.main { max-width: 860px; margin: 0 auto; padding: 24px 24px 80px; display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+.main { max-width: 900px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
 @media (max-width: 720px) { .main { grid-template-columns: 1fr; } }
 
 /* Controls */
 .controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
 .section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
 .input-group { margin-bottom: 16px; }
-.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
 .input-label span { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
 .input-wrap { position: relative; }
 .input-prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
@@ -96,62 +82,58 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
 input[type="number"]:focus { border-color: var(--accent-border); }
 select { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; appearance: none; cursor: pointer; }
 select:focus { border-color: var(--accent-border); }
-.divider-line { height: 1px; background: var(--border); margin: 18px 0; }
+input[type="range"] { width: 100%; height: 4px; appearance: none; background: var(--bg-input); border-radius: 2px; outline: none; border: 1px solid var(--border); cursor: pointer; margin-top: 6px; }
+input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-card); }
+.range-header { display: flex; justify-content: space-between; align-items: center; }
+.range-val { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 500; }
+.divider-line { height: 1px; background: var(--border); margin: 16px 0; }
 
 /* Results */
 .results { display: flex; flex-direction: column; gap: 14px; }
 
-/* Comparison cards */
-.compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.compare-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-.compare-card.before { border-color: rgba(240,96,96,0.3); background: rgba(240,96,96,0.04); }
-.compare-card.after { border-color: rgba(62,207,142,0.3); background: rgba(62,207,142,0.04); }
-.compare-label { font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-.compare-card.before .compare-label { color: var(--red); }
-.compare-card.after .compare-label { color: var(--green); }
-.compare-value { font-size: 22px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.02em; margin-bottom: 4px; }
-.compare-card.before .compare-value { color: var(--red); }
-.compare-card.after .compare-value { color: var(--green); }
-.compare-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
+/* Hero metric */
+.rmd-hero { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 22px; text-align: center; background: var(--accent-dim); }
+.rmd-hero-label { font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.rmd-hero-amount { font-size: 42px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); letter-spacing: -0.03em; margin-bottom: 4px; }
+.rmd-hero-sub { font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); }
 
-/* Summary metrics */
+/* Metrics */
 .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 @media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
 .metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
 .metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
-.metric-value { font-family: var(--font-mono); font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+.metric-value { font-family: var(--font-mono); font-size: 17px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
 .metric-value.green { color: var(--green); }
 .metric-value.accent { color: var(--accent); }
 .metric-value.red { color: var(--red); }
-
-/* Breakdown table */
-.breakdown-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-.breakdown-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
-.breakdown-row { display: flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--border); font-size: 13px; font-family: var(--font-mono); }
-.breakdown-row:last-child { border-bottom: none; }
-.breakdown-row span:first-child { color: var(--text-muted); }
-.breakdown-row span:last-child { color: var(--text); font-weight: 500; }
-.breakdown-row.green span:last-child { color: var(--green); }
-.breakdown-row.red span:last-child { color: var(--red); }
-.breakdown-row.accent span:last-child { color: var(--accent); }
-.breakdown-row.total { background: var(--bg-input); }
 
 /* Chart */
 .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
 .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
 .chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
-.chart-wrap { position: relative; height: 200px; }
+.chart-wrap { position: relative; height: 220px; }
 
-/* Info + disclaimer */
+/* Table */
+.table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.table-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 480px; }
+th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+tr.current-year td { background: rgba(200,240,96,0.05); color: var(--text); }
+tr.current-year td.highlight { color: var(--accent); font-weight: 500; }
+tr:last-child td { border-bottom: none; }
+
+/* Info */
 .info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
 .info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
 .info-box strong { color: var(--text); font-weight: 500; }
+.warning-box { background: rgba(240,96,96,0.05); border: 1px solid rgba(240,96,96,0.3); border-radius: var(--radius); padding: 14px 16px; }
+.warning-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.warning-box strong { color: var(--red); font-weight: 500; }
 .disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
 
-/* Content section */
-.content-section { max-width: 860px; margin: 0 auto; padding: 0 24px 60px; }
-
-/* Pro banner */
+.content-section { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
 .pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
 .pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
 .pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
@@ -168,33 +150,11 @@ footer a:hover { color: var(--text); }
 .dropdown-menu a:last-child { border-bottom: none; }
 .dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
 
-/* ── GROUPED NAV DROPDOWNS ── */
-.nav-group { position: relative; }
-.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
-.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
-.nav-group-toggle::after { content: "▾"; font-size: 10px; }
-.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 220px; overflow: hidden; z-index: 200; padding: 4px 0; }
-.nav-group-menu .group-label { padding: 8px 14px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
-.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
-.nav-group-menu a:last-child { border-bottom: none; }
-.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
-.nav-group-menu .group-divider { height: 1px; background: var(--border); margin: 2px 0; }
-/* Guides dropdown (right-aligned) */
-.dropdown { position: relative; }
-.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
-.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
-.dropdown-toggle::after { content: "▾"; font-size: 10px; }
-.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
-.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
-.dropdown-menu a:last-child { border-bottom: none; }
-.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
-
-
 /* ── GROUPED CALC DROPDOWNS ── */
 .nav-group { position: relative; }
 .nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
 .nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
-.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-toggle::after { content: "\u25be"; font-size: 10px; }
 .nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
 .nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
 .nav-group-menu a:last-child { border-bottom: none; }
@@ -203,7 +163,7 @@ footer a:hover { color: var(--text); }
 .dropdown { position: relative; }
 .dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
 .dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
-.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-toggle::after { content: "\u25be"; font-size: 10px; }
 .dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
 .guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
 .guide-cat-header:hover { background: var(--bg-input); }
@@ -218,14 +178,19 @@ footer a:hover { color: var(--text); }
 .dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
 
 </style>
-
-
-
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
 </head>
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Track your real investment returns after tax</strong> — live P&L, avg cost, weekly AI signals</span>
+  <span>📈 <strong>Plan your retirement income</strong> — real returns, P&L tracking, weekly AI signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -257,8 +222,8 @@ footer a:hover { color: var(--text); }
         <a href="fire-calculator.html">FIRE calculator</a>
         <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
         <a href="fee-calculator.html">Fee impact</a>
-        <a href="tax-loss-harvesting-calculator.html" class="active">Tax-loss harvesting</a>
-        <a href="rmd-calculator.html">RMD calculator</a>
+        <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="rmd-calculator.html" class="active">RMD calculator</a>
       </div>
     </div>
     <div class="nav-group">
@@ -362,87 +327,71 @@ footer a:hover { color: var(--text); }
 </div>
 
 <div class="hero">
-  <div class="hero-badge">Free · No sign-up required</div>
-  <h1>Tax-Loss Harvesting <em>Calculator</em></h1>
-  <p>Enter your capital gains, harvested losses, and tax bracket to see exactly how much tax you save, what carries forward, and how those savings compound over time.</p>
+  <div class="hero-badge">IRS Uniform Lifetime Table · SECURE 2.0</div>
+  <h1>Required Minimum Distribution <em>Calculator</em></h1>
+  <p>Calculate your RMD from a traditional IRA or 401(k) using the IRS Uniform Lifetime Table. See your current year RMD, 20-year projection, and estimated tax impact.</p>
 </div>
 
 <div class="main">
 
   <!-- Controls -->
   <div class="controls-card">
+    <div class="section-label">Your account</div>
 
-    <div class="section-label">Your gains this year</div>
     <div class="input-group">
-      <div class="input-label">Short-term capital gains <span id="stcg-display">$5,000</span></div>
+      <div class="input-label">Account balance (Dec 31 prior year) <span id="bal-display">$500,000</span></div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="stcg" value="5000" min="0" step="500" oninput="document.getElementById('stcg-display').textContent='$'+Number(this.value).toLocaleString();calc()">
-      </div>
-    </div>
-    <div class="input-group">
-      <div class="input-label">Long-term capital gains <span id="ltcg-display">$10,000</span></div>
-      <div class="input-wrap">
-        <span class="input-prefix">$</span>
-        <input type="number" id="ltcg" value="10000" min="0" step="500" oninput="document.getElementById('ltcg-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+        <input type="number" id="balance" value="500000" min="1000" step="10000"
+          oninput="document.getElementById('bal-display').textContent='$'+Number(this.value).toLocaleString();calc()">
       </div>
     </div>
 
-    <div class="divider-line"></div>
-    <div class="section-label">Losses to harvest</div>
     <div class="input-group">
-      <div class="input-label">Harvested loss amount <span id="loss-display">$8,000</span></div>
-      <div class="input-wrap">
-        <span class="input-prefix">$</span>
-        <input type="number" id="loss" value="8000" min="0" step="500" oninput="document.getElementById('loss-display').textContent='$'+Number(this.value).toLocaleString();calc()">
-      </div>
-    </div>
-    <div class="input-group">
-      <div class="input-label">Prior-year carryforward losses <span id="carry-display">$0</span></div>
-      <div class="input-wrap">
-        <span class="input-prefix">$</span>
-        <input type="number" id="carry" value="0" min="0" step="500" oninput="document.getElementById('carry-display').textContent='$'+Number(this.value).toLocaleString();calc()">
-      </div>
-    </div>
-
-    <div class="divider-line"></div>
-    <div class="section-label">Your tax situation</div>
-    <div class="input-group">
-      <div class="input-label">Filing status</div>
-      <select id="filing" onchange="calc()">
-        <option value="single">Single</option>
-        <option value="married">Married filing jointly</option>
-        <option value="separate">Married filing separately</option>
+      <div class="input-label">Your age (as of Dec 31 this year)</div>
+      <select id="age" onchange="calc()">
+        <!-- Populated by JS -->
       </select>
     </div>
+
     <div class="input-group">
-      <div class="input-label">Ordinary income tax bracket</div>
-      <select id="bracket" onchange="calc()">
+      <div class="input-label">Account type</div>
+      <select id="account-type" onchange="calc()">
+        <option value="ira">Traditional IRA</option>
+        <option value="401k">401(k) / 403(b)</option>
+        <option value="sep">SEP-IRA</option>
+        <option value="simple">SIMPLE IRA</option>
+      </select>
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Tax & growth</div>
+
+    <div class="input-group">
+      <div class="input-label">Federal income tax bracket</div>
+      <select id="tax-bracket" onchange="calc()">
         <option value="0.10">10%</option>
         <option value="0.12">12%</option>
-        <option value="0.22">22%</option>
-        <option value="0.24" selected>24%</option>
+        <option value="0.22" selected>22%</option>
+        <option value="0.24">24%</option>
         <option value="0.32">32%</option>
         <option value="0.35">35%</option>
         <option value="0.37">37%</option>
       </select>
     </div>
+
     <div class="input-group">
-      <div class="input-label">Long-term CGT rate</div>
-      <select id="ltrate" onchange="calc()">
-        <option value="0">0%</option>
-        <option value="0.15" selected>15%</option>
-        <option value="0.20">20%</option>
-      </select>
+      <div class="range-header">
+        <div style="font-size:12px;color:var(--text-muted);">Annual portfolio return</div>
+        <span class="range-val" id="return-display">6%</span>
+      </div>
+      <input type="range" id="port-return" min="3" max="10" value="6" step="0.5"
+        oninput="document.getElementById('return-display').textContent=this.value+'%';calc()">
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Compounding assumption</div>
-    <div class="input-group">
-      <div class="input-label">Annual return on savings <span id="ret-display">7%</span></div>
-      <input type="range" id="ret-rate" min="3" max="12" value="7" step="0.5"
-        style="width:100%;margin-top:6px;height:4px;appearance:none;background:var(--bg-input);border-radius:2px;outline:none;border:1px solid var(--border);cursor:pointer;"
-        oninput="document.getElementById('ret-display').textContent=this.value+'%';calc()">
+    <div class="info-box" style="background:rgba(240,96,96,0.05);border-left-color:var(--red);">
+      <p style="font-size:12px;"><strong style="color:var(--red);">Missed RMD penalty:</strong> 25% of the shortfall (reducible to 10% if corrected within 2 years). Roth IRAs have no RMD during the owner's lifetime.</p>
     </div>
 
   </div>
@@ -450,82 +399,82 @@ footer a:hover { color: var(--text); }
   <!-- Results -->
   <div class="results">
 
-    <!-- Before / After -->
-    <div class="compare-row">
-      <div class="compare-card before">
-        <div class="compare-label">Without harvesting</div>
-        <div class="compare-value" id="tax-before">$0</div>
-        <div class="compare-sub">Total tax owed on gains</div>
-      </div>
-      <div class="compare-card after">
-        <div class="compare-label">With harvesting</div>
-        <div class="compare-value" id="tax-after">$0</div>
-        <div class="compare-sub">Total tax owed on gains</div>
-      </div>
+    <div class="rmd-hero">
+      <div class="rmd-hero-label">Your 2026 RMD</div>
+      <div class="rmd-hero-amount" id="rmd-amount">$0</div>
+      <div class="rmd-hero-sub" id="rmd-sub">— per month · IRS factor: —</div>
     </div>
 
-    <!-- Summary metrics -->
     <div class="metrics">
       <div class="metric">
-        <div class="metric-label">Tax saved this year</div>
-        <div class="metric-value green" id="tax-saved">$0</div>
+        <div class="metric-label">Withdrawal rate</div>
+        <div class="metric-value accent" id="withdrawal-pct">0%</div>
       </div>
       <div class="metric">
-        <div class="metric-label">Loss carried forward</div>
-        <div class="metric-value accent" id="carry-forward">$0</div>
+        <div class="metric-label">Est. federal tax</div>
+        <div class="metric-value red" id="est-tax">$0</div>
       </div>
       <div class="metric">
-        <div class="metric-label">Savings value in 20 yrs</div>
-        <div class="metric-value green" id="compound-value">$0</div>
+        <div class="metric-label">After-tax RMD</div>
+        <div class="metric-value green" id="after-tax">$0</div>
       </div>
     </div>
 
-    <!-- Breakdown -->
-    <div class="breakdown-card">
-      <div class="breakdown-title">How the harvesting applies</div>
-      <div class="breakdown-row"><span>Short-term gains</span><span id="b-stcg">$0</span></div>
-      <div class="breakdown-row"><span>Long-term gains</span><span id="b-ltcg">$0</span></div>
-      <div class="breakdown-row"><span>Prior carryforward applied</span><span id="b-carry">$0</span></div>
-      <div class="breakdown-row"><span>New harvested loss applied</span><span id="b-loss">$0</span></div>
-      <div class="breakdown-row green"><span>Remaining taxable gains</span><span id="b-remaining">$0</span></div>
-      <div class="breakdown-row accent"><span>Income offset used (up to $3K limit)</span><span id="b-income">$0</span></div>
-      <div class="breakdown-row accent"><span>New carryforward to future years</span><span id="b-new-carry">$0</span></div>
-      <div class="breakdown-row total green"><span>Total tax saved</span><span id="b-total-saved">$0</span></div>
-    </div>
-
-    <!-- Compounding chart -->
     <div class="chart-card">
       <div class="chart-header">
-        <div class="chart-title">Compounding value of tax savings over time</div>
+        <div class="chart-title">RMD amount and account balance over 20 years</div>
       </div>
       <div class="chart-wrap">
-        <canvas id="compound-chart"></canvas>
+        <canvas id="rmd-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-title">20-year RMD projection</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Age</th>
+              <th>IRS factor</th>
+              <th>Account balance</th>
+              <th>RMD amount</th>
+              <th>Est. tax (22%)</th>
+            </tr>
+          </thead>
+          <tbody id="rmd-tbody"></tbody>
+        </table>
       </div>
     </div>
 
     <div class="info-box">
-      <p><strong>Why losses offset gains first:</strong> The IRS requires capital losses to offset capital gains before they can reduce ordinary income. Short-term losses first offset short-term gains; long-term losses first offset long-term gains. Excess losses in either category then offset the other. After all gains are eliminated, up to $3,000 ($1,500 married filing separately) of remaining net losses can reduce ordinary income.</p>
+      <p><strong>How RMDs are calculated:</strong> Divide your December 31 prior-year account balance by the IRS Uniform Lifetime Table factor for your age. At age 73 the factor is 26.5, meaning you withdraw approximately 3.77% of your balance. The factor decreases each year, so the percentage you must withdraw rises as you age. IRAs can be aggregated — you can take the total from one IRA. 401(k)s must be calculated and withdrawn separately per account.</p>
+    </div>
+
+    <div class="warning-box">
+      <p><strong>SECURE 2.0 age rules:</strong> RMDs begin at age 73 if you were born between 1951 and 1959. If you were born in 1960 or later, your RMD age rises to 75 (effective 2033). Your first RMD may be delayed until April 1 of the following year — but delaying means two taxable RMDs in one calendar year, which can increase your tax bracket. Roth IRAs have no RMD during the owner's lifetime.</p>
     </div>
 
     <div class="disclaimer">
-      This calculator provides estimates for educational purposes only. It does not account for state taxes, the net investment income tax (NIIT), AMT, or the specific ordering rules in complex multi-lot situations. Actual tax savings depend on your full tax situation. Consult a qualified tax professional before implementing tax-loss harvesting strategies. Not financial or tax advice.
+      This calculator uses the IRS Uniform Lifetime Table (IRS Publication 590-B, Table III) and assumes a single account owner whose spouse is not the sole beneficiary and is not more than 10 years younger. If your spouse is the sole beneficiary and more than 10 years younger, use the Joint Life and Last Survivor Table for a lower RMD. This calculator does not account for inherited IRAs, state taxes, or after-tax basis. RMD calculations are for estimation purposes only. Consult a qualified tax professional for your actual RMD. Not tax or financial advice.
     </div>
 
   </div>
 </div>
 
 <div class="content-section">
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the tax-loss harvesting calculator works</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator models the tax impact of harvesting investment losses against your capital gains. Enter your short-term and long-term gains for the year, the amount of losses you plan to harvest, any carryforward losses from prior years, and your tax bracket. The calculator applies losses in the correct IRS order — gains first, then up to $3,000 against ordinary income — and shows the remaining carryforward balance.</p>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The compounding chart shows the long-term value of reinvesting your tax savings. A $1,500 tax saving today, reinvested and compounding at 7% annually, is worth approximately $5,800 in 20 years. This is the actual return from tax-loss harvesting — not just the immediate reduction, but the compounded value of capital retained.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the RMD calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A Required Minimum Distribution (RMD) is the minimum amount the IRS requires you to withdraw annually from tax-deferred retirement accounts — traditional IRAs, SEP-IRAs, SIMPLE IRAs, 401(k)s, and most other employer plans. The purpose is to ensure these accounts are eventually taxed; they were contributed pre-tax and have grown tax-deferred, so the IRS requires withdrawals that generate taxable income.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The formula is straightforward: take your account balance as of December 31 of the prior year, divide it by the IRS life expectancy factor from the Uniform Lifetime Table for your age. The result is your minimum required withdrawal for the year. You can always withdraw more than the minimum.</p>
   <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:28px 0 12px;">How to use this calculator</h3>
   <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;">
-    <li style="margin-bottom:10px;">Enter your short-term gains (assets held under 1 year) and long-term gains (held over 1 year) separately — they're taxed at different rates.</li>
-    <li style="margin-bottom:10px;">Enter the total loss amount you plan to harvest this year.</li>
-    <li style="margin-bottom:10px;">If you have unused losses from prior years, enter them as carryforward losses — they apply before new harvested losses.</li>
-    <li style="margin-bottom:10px;">Select your filing status and tax brackets. The long-term CGT rate depends on your income — most middle-income investors use 15%.</li>
+    <li style="margin-bottom:10px;">Enter your account balance as of December 31 of the prior year — this is the balance that drives the RMD calculation.</li>
+    <li style="margin-bottom:10px;">Select your age as of December 31 of the current year.</li>
+    <li style="margin-bottom:10px;">Select your tax bracket to see the estimated federal income tax on your RMD.</li>
+    <li style="margin-bottom:10px;">The 20-year projection assumes your account grows at the return rate you set, minus annual RMD withdrawals.</li>
   </ul>
-  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Read the full guide on <a href="guides/tax-loss-harvesting-explained.html" style="color:#c8f060;text-decoration:none;">how tax-loss harvesting works</a> including the wash sale rule, replacement fund strategies, and the DCA investor playbook.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For retirement income planning, use the <a href="withdrawal-rate-calculator.html" style="color:#c8f060;text-decoration:none;">safe withdrawal rate calculator</a> to see how long your portfolio lasts at different withdrawal rates, and the <a href="fire-calculator.html" style="color:#c8f060;text-decoration:none;">FIRE calculator</a> for pre-retirement planning.</p>
 </div>
 
 <footer>
@@ -542,92 +491,125 @@ footer a:hover { color: var(--text); }
 <script>
 let chart = null;
 
+// IRS Uniform Lifetime Table (Publication 590-B, Table III)
+// Age: Distribution Period
+const ULT = {
+  73:26.5, 74:25.5, 75:24.6, 76:23.7, 77:22.9, 78:22.0, 79:21.1,
+  80:20.2, 81:19.4, 82:18.5, 83:17.7, 84:16.8, 85:16.0, 86:15.2,
+  87:14.4, 88:13.7, 89:12.9, 90:12.2, 91:11.5, 92:10.8, 93:10.1,
+  94:9.5,  95:8.9,  96:8.4,  97:7.8,  98:7.3,  99:6.8, 100:6.4,
+  101:6.0, 102:5.6, 103:5.2, 104:4.9, 105:4.6, 106:4.3, 107:4.1,
+  108:3.9, 109:3.7, 110:3.5, 111:3.4, 112:3.3, 113:3.1, 114:3.0, 115:2.9
+};
+
 function fmt(n) {
-  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (Math.abs(n) >= 1e3) return '$' + (Math.abs(n)/1e3).toFixed(1) + 'K';
-  return (n < 0 ? '-$' : '$') + Math.abs(Math.round(n)).toLocaleString();
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  return '$' + Math.round(n).toLocaleString();
 }
+
+// Populate age dropdown
+(function() {
+  const sel = document.getElementById('age');
+  for (let a = 73; a <= 100; a++) {
+    const opt = document.createElement('option');
+    opt.value = a;
+    opt.textContent = a + ' years old';
+    if (a === 73) opt.selected = true;
+    sel.appendChild(opt);
+  }
+})();
 
 function calc() {
-  const stcg    = parseFloat(document.getElementById('stcg').value) || 0;
-  const ltcg    = parseFloat(document.getElementById('ltcg').value) || 0;
-  const loss    = parseFloat(document.getElementById('loss').value) || 0;
-  const carry   = parseFloat(document.getElementById('carry').value) || 0;
-  const bracket = parseFloat(document.getElementById('bracket').value);
-  const ltrate  = parseFloat(document.getElementById('ltrate').value);
-  const filing  = document.getElementById('filing').value;
-  const retRate = parseFloat(document.getElementById('ret-rate').value) / 100;
-  const incomeLimit = filing === 'separate' ? 1500 : 3000;
+  const balance   = parseFloat(document.getElementById('balance').value) || 0;
+  const age       = parseInt(document.getElementById('age').value) || 73;
+  const taxRate   = parseFloat(document.getElementById('tax-bracket').value) || 0.22;
+  const portRet   = parseFloat(document.getElementById('port-return').value) / 100;
 
-  // Tax WITHOUT harvesting
-  const taxBefore = stcg * bracket + ltcg * ltrate;
+  const factor = ULT[age] || ULT[115];
+  const rmd    = balance / factor;
+  const pct    = (rmd / balance * 100).toFixed(2);
+  const tax    = rmd * taxRate;
+  const afterTax = rmd - tax;
 
-  // Apply losses in IRS order:
-  // 1. Carryforward first, then new losses
-  // 2. ST losses offset ST gains, LT losses offset LT gains (simplified: apply total)
-  let totalLoss = carry + loss;
-  let remStcg = Math.max(0, stcg - totalLoss);
-  let usedOnSt = Math.min(totalLoss, stcg);
-  totalLoss -= usedOnSt;
-  let remLtcg = Math.max(0, ltcg - totalLoss);
-  let usedOnLt = Math.min(totalLoss, ltcg);
-  totalLoss -= usedOnLt;
+  // Hero
+  document.getElementById('rmd-amount').textContent = fmt(rmd);
+  document.getElementById('rmd-sub').textContent =
+    fmt(rmd/12) + ' per month · IRS factor: ' + factor;
+  document.getElementById('withdrawal-pct').textContent = pct + '%';
+  document.getElementById('est-tax').textContent = fmt(tax);
+  document.getElementById('after-tax').textContent = fmt(afterTax);
 
-  // Remaining loss after offsetting all gains
-  const incomeOffset = Math.min(totalLoss, incomeLimit);
-  const newCarryForward = Math.max(0, totalLoss - incomeLimit);
+  // 20-year projection
+  const years = 20;
+  const labels = [], rmdData = [], balData = [];
+  let bal = balance;
+  let rows = '';
 
-  // Tax WITH harvesting
-  const taxAfter = remStcg * bracket + remLtcg * ltrate - incomeOffset * bracket;
-  const taxSaved = Math.max(0, taxBefore - Math.max(0, taxAfter));
+  for (let i = 0; i < years; i++) {
+    const a = age + i;
+    const f = ULT[Math.min(a, 115)] || ULT[115];
+    const r = bal / f;
+    const t = r * taxRate;
+    const isFirst = i === 0;
 
-  // Compounding value of savings
-  const years20 = taxSaved * Math.pow(1 + retRate, 20);
+    labels.push('Age ' + a);
+    rmdData.push(Math.round(r));
+    balData.push(Math.round(bal));
 
-  // Update UI
-  document.getElementById('tax-before').textContent = fmt(taxBefore);
-  document.getElementById('tax-after').textContent = fmt(Math.max(0, taxAfter));
-  document.getElementById('tax-saved').textContent = fmt(taxSaved);
-  document.getElementById('carry-forward').textContent = fmt(newCarryForward);
-  document.getElementById('compound-value').textContent = fmt(years20);
+    rows += '<tr' + (isFirst ? ' class="current-year"' : '') + '>' +
+      '<td>' + (2026 + i) + '</td>' +
+      '<td>' + a + '</td>' +
+      '<td>' + f + '</td>' +
+      '<td>' + fmt(bal) + '</td>' +
+      '<td' + (isFirst ? ' class="highlight"' : '') + '>' + fmt(r) + '</td>' +
+      '<td>' + fmt(t) + '</td>' +
+      '</tr>';
 
-  document.getElementById('b-stcg').textContent = fmt(stcg);
-  document.getElementById('b-ltcg').textContent = fmt(ltcg);
-  document.getElementById('b-carry').textContent = carry > 0 ? '-' + fmt(carry) : '$0';
-  document.getElementById('b-loss').textContent = loss > 0 ? '-' + fmt(loss) : '$0';
-  document.getElementById('b-remaining').textContent = fmt(remStcg + remLtcg);
-  document.getElementById('b-income').textContent = incomeOffset > 0 ? '-' + fmt(incomeOffset) : '$0';
-  document.getElementById('b-new-carry').textContent = fmt(newCarryForward);
-  document.getElementById('b-total-saved').textContent = fmt(taxSaved);
-
-  // Build compounding chart data
-  const labels = [], data = [];
-  for (let y = 0; y <= 30; y += 5) {
-    labels.push(y === 0 ? 'Now' : 'Yr ' + y);
-    data.push(Math.round(taxSaved * Math.pow(1 + retRate, y)));
+    // Next year balance: grows by return, minus RMD
+    bal = (bal - r) * (1 + portRet);
+    if (bal <= 0) break;
   }
-  updateChart(labels, data, taxSaved);
+
+  document.getElementById('rmd-tbody').innerHTML = rows;
+  updateChart(labels, rmdData, balData);
 }
 
-function updateChart(labels, data, baseline) {
-  const ctx = document.getElementById('compound-chart').getContext('2d');
+function updateChart(labels, rmdData, balData) {
+  const ctx = document.getElementById('rmd-chart').getContext('2d');
   if (chart) chart.destroy();
   chart = new Chart(ctx, {
-    type: 'bar',
     data: {
       labels,
-      datasets: [{
-        label: 'Value of tax savings',
-        data,
-        backgroundColor: data.map((v, i) => i === 0 ? 'rgba(200,240,96,0.3)' : 'rgba(200,240,96,0.7)'),
-        borderColor: '#c8f060',
-        borderWidth: 1,
-        borderRadius: 4,
-      }]
+      datasets: [
+        {
+          type: 'bar',
+          label: 'RMD amount',
+          data: rmdData,
+          backgroundColor: 'rgba(200,240,96,0.5)',
+          borderColor: '#c8f060',
+          borderWidth: 1,
+          borderRadius: 3,
+          yAxisID: 'y2',
+        },
+        {
+          type: 'line',
+          label: 'Account balance',
+          data: balData,
+          borderColor: '#5b9cf6',
+          backgroundColor: 'rgba(91,156,246,0.08)',
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: true,
+          tension: 0.3,
+          yAxisID: 'y1',
+        }
+      ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -636,17 +618,26 @@ function updateChart(labels, data, baseline) {
           borderWidth: 1,
           titleColor: '#f0efe8',
           bodyColor: '#888884',
+          padding: 12,
           titleFont: { family: "'Sora', sans-serif", size: 12 },
           bodyFont: { family: "'DM Mono', monospace", size: 11 },
-          padding: 12,
           callbacks: {
-            label: ctx => '  Compounded value: ' + (ctx.raw >= 1000 ? '$'+(ctx.raw/1000).toFixed(1)+'K' : '$'+ctx.raw.toLocaleString())
+            label: ctx => '  ' + ctx.dataset.label + ': ' + fmt(ctx.raw)
           }
         }
       },
       scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 } } },
-        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1000 ? '$'+(v/1000).toFixed(0)+'K' : '$'+v } }
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 10 } },
+        y1: {
+          position: 'left',
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: { color: '#5b9cf6', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1e6 ? '$'+(v/1e6).toFixed(1)+'M' : '$'+(v/1e3).toFixed(0)+'K' }
+        },
+        y2: {
+          position: 'right',
+          grid: { drawOnChartArea: false },
+          ticks: { color: '#c8f060', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => '$'+(v/1e3).toFixed(0)+'K' }
+        }
       }
     }
   });
@@ -661,7 +652,6 @@ document.querySelectorAll('.dropdown').forEach(function(dd) {
   m.addEventListener('mouseleave', function() { t=setTimeout(function(){m.style.display='none';},300); });
 });
 
-// Mobile menu
 window.addEventListener('load', function() {
   var btn = document.getElementById('nav-hamburger');
   var menu = document.getElementById('nav-mobile-menu');
