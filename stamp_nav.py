@@ -177,6 +177,12 @@ def ensure_css(c):
     return c
 
 
+def ensure_nav_js(c):
+    if '/nav.js' not in c:
+        c = c.replace('</body>', '<script src="/nav.js"></script>\n</body>', 1)
+    return c
+
+
 def ensure_ga4(c):
     if 'G-1HVC269Z8F' not in c:
         c = c.replace('</head>', GA4 + '\n</head>', 1)
@@ -199,6 +205,7 @@ def stamp(filepath):
 
     c = ensure_css(c)
     c = ensure_ga4(c)
+    c = ensure_nav_js(c)
 
     nav_html    = build_nav(root, in_guides, active_href)
     mobile_html = build_mobile_menu(root, in_guides)
