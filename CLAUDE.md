@@ -129,7 +129,9 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── tax-loss-harvesting-calculator.html           ← Tax-Loss Harvesting Calculator (12th calculator, NEW Jun 7)
 ├── crypto-cost-basis-calculator.html             ← Crypto Cost Basis / Average Price Calculator (13th calculator, NEW Jun 9)
 ├── withdrawal-rate-calculator.html               ← Safe Withdrawal Rate Calculator (14th calculator, NEW Jun 15)
-├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown, rebuilt Jun 15)
+├── rmd-calculator.html                           ← RMD Calculator / Required Minimum Distribution (15th calculator, NEW Jun 21)
+├── nav.js                                         ← All nav dropdown/hamburger/accordion JS (RECREATED Jun 21 — moved out of inline; stamp_nav injects <script src="/nav.js"> on every page)
+├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown; NAV_EVENT_JS now just <script src="/nav.js">, ensure_nav_js() injects it, Jun 21)
 ├── about.html
 ├── privacy.html
 ├── terms.html
@@ -182,15 +184,15 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 - **Border radius:** 10px (components), 16px (cards)
 - **Favicon:** SVG data URI — dark bg, "DCA" in accent green
 ### Nav structure (as of Jun 15 2026 — grouped calc dropdowns + accordion guides dropdown):
-- `nav.js` was ABANDONED and DELETED (Jun 2 2026) — no page ever loaded it (`grep -L "nav.js"` confirmed 0 script references). It is gone from the repo; nav is hardcoded per-page (see below).
-- Nav is now HARDCODED into every page, stamped via `stamp_nav.py` when a calculator or guide is added.
+- `nav.js` was abandoned/deleted Jun 2 2026, then **RECREATED Jun 21 2026** — all nav dropdown/hamburger/accordion JS now lives in external `/nav.js`. `stamp_nav.py`'s `NAV_EVENT_JS` is now just a `<script src="/nav.js">` tag, and `ensure_nav_js()` always injects it on every page. (This is the inverse of the Jun 2 decision — nav JS is centralized again, but as a real external file every page actually loads.)
+- Nav markup is HARDCODED into every page, stamped via `stamp_nav.py` when a calculator or guide is added; the nav behavior JS is centralized in `/nav.js`.
 - **Calculators are now organized into grouped dropdown categories (rebuilt Jun 7):** Investing · Portfolio · Retirement & Tax · Income — replacing the old flat single-row list of every calculator.
   - **Investing:** DCA · DCA backtest · Compound interest · Loss recovery
   - **Portfolio:** Asset allocation · Rebalancing · Position size
   - **Retirement & Tax:** FIRE · Fee impact · Tax-loss harvesting
   - **Income:** DRIP · Real returns
   - (Exact category membership lives in `stamp_nav.py`'s `CALC_CATEGORIES` array — that is the source of truth.)
-  - Note: Safe Withdrawal Rate calculator (14th, Jun 15) lives under **Retirement & Tax** — confirm exact membership in `CALC_CATEGORIES`.
+  - Note: Safe Withdrawal Rate calculator (14th, Jun 15) and RMD calculator (15th, Jun 21) both live under **Retirement & Tax** — confirm exact membership in `CALC_CATEGORIES`.
 - **Guides dropdown is now an ACCORDION (rebuilt Jun 15):** shows 4 collapsible category headers — **DCA & Investing · Crypto · Retirement & FIRE · Fundamentals** — that expand/collapse on click, one open at a time. Replaces the old flat 20-guide list.
   - (Exact category membership lives in `stamp_nav.py`'s `GUIDE_CATEGORIES` array — that is the source of truth. Bond Ladder for Retirement sits under **Retirement & FIRE**.)
 - Root pages: `href="guides/page.html"` for guide links
@@ -278,6 +280,14 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
 - Pairs with the 4% Rule and Bond Ladder for Retirement guides
 - **Keywords:** safe withdrawal rate calculator, how long will my portfolio last, retirement withdrawal calculator
+
+### rmd-calculator.html — RMD Calculator / Required Minimum Distribution (15th calculator, NEW Jun 21 2026)
+- Calculates the IRS Required Minimum Distribution from retirement accounts (traditional IRA/401k) once RMD age is reached
+- Inputs: account balance (prior year-end), age / birth year, account type
+- Outputs: this year's RMD amount, distribution period factor, projected future RMDs
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- Pairs with the (planned) RMD Explained guide
+- **Keywords:** RMD calculator, required minimum distribution calculator, IRA 401k RMD
 ---
 ## Author Personas
 ### James Colter — Long-term Investor & Personal Finance Writer
@@ -437,6 +447,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | tax-loss-harvesting-calculator.html | tax loss harvesting calculator / capital gains tax offset |
 | crypto-cost-basis-calculator.html | crypto cost basis calculator / average price calculator |
 | withdrawal-rate-calculator.html | safe withdrawal rate calculator / how long will my portfolio last |
+| rmd-calculator.html | RMD calculator / required minimum distribution calculator |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -560,7 +571,7 @@ CURRENT_GUIDES = [
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
 
-### Current CURRENT_CALCULATORS (as of Jun 15 2026 — verified against disk, 14 calculators):
+### Current CURRENT_CALCULATORS (as of Jun 21 2026 — verified against disk, 15 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator",
@@ -577,12 +588,18 @@ CURRENT_CALCULATORS = [
     "Tax-loss harvesting calculator",
     "Crypto cost basis / average price calculator",
     "Safe withdrawal rate calculator (portfolio longevity)",
+    "RMD calculator (required minimum distribution)",
 ]
 ```
-> ✅ Jun 15: research_agent.py audited vs disk — CURRENT_GUIDES was at 20, added bond-ladder → 21; CURRENT_CALCULATORS was at 13, added safe withdrawal rate → 14. Both now match disk.
+> ✅ Jun 21: research_agent.py audited vs disk — CURRENT_CALCULATORS was at 14, added RMD calculator → 15, now matches disk. (CURRENT_GUIDES unchanged at 21.)
 ---
 ## Roadmap
 ### Done ✅
+- [x] RMD Calculator (15th calculator) — `rmd-calculator.html`, under Retirement & Tax — Jun 21 2026
+- [x] nav.js RECREATED — all nav dropdown/hamburger/accordion JS moved to external `/nav.js`; `stamp_nav.py` `ensure_nav_js()` injects `<script src="/nav.js">` on every page; `NAV_EVENT_JS` reduced to that tag — Jun 21 2026
+- [x] Nav arrow character fixed — was rendering as literal "u25be" text, now correct ▾ — Jun 21 2026
+- [x] GA4 tracking added to all pages (G-1HVC269Z8F), duplicate tags cleaned up; Realtime confirmed working; custom MyDCACalc collection published in GA4 — Jun 21 2026
+- [x] Git remote switched back to SSH (git@github.com) after HTTPS auth failure — Jun 21 2026
 - [x] Bond Ladder for Retirement guide — James Colter, 21st guide — Jun 15 2026
 - [x] Safe Withdrawal Rate Calculator (14th calculator) — Jun 15 2026
 - [x] stamp_nav.py rebuilt with accordion guides dropdown (4 collapsible categories: DCA & Investing / Crypto / Retirement & FIRE / Fundamentals); all pages re-stamped via `stamp_nav.py --all` — Jun 15 2026
@@ -667,7 +684,12 @@ CURRENT_CALCULATORS = [
 - [x] **Bond Ladder for Retirement guide** — published Jun 15 2026 (21st guide) ✅
 - [x] **Safe Withdrawal Rate Calculator** — built and deployed Jun 15 2026 (14th calculator) ✅
 - [x] **Accordion guides dropdown** — stamp_nav.py rebuilt, all pages re-stamped Jun 15 2026 ✅
-- [ ] **Build RMD Calculator** — last item from the brief
+- [x] **Build RMD Calculator** — built and deployed Jun 21 2026 (15th calculator) ✅
+- [ ] **RMD Explained guide** — pairs with the RMD calculator
+- [ ] **Dividend Growth Portfolio guide**
+- [ ] **Dividend Income Calculator**
+- [ ] **Rule of 72 Calculator**
+- [ ] **Submit rmd-calculator.html to GSC**
 - [ ] **Submit new pages to GSC** — withdrawal-rate-calculator.html + guides/bond-ladder-retirement.html
 - [x] **Submit outstanding pages to GSC** — all outstanding pages (fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide, tax-loss-harvesting-calculator, tax-loss-harvesting-explained, crypto-cost-basis-calculator) submitted Jun 10 2026 ✅
 - [ ] **Submit guides/crypto-staking-explained.html to GSC** — newly published, not yet submitted
@@ -686,6 +708,16 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 21 2026 — RMD Calculator + nav.js Recreation + GA4 Session
+- **RMD Calculator built and deployed** (`rmd-calculator.html`, 15th calculator) — required minimum distribution from traditional IRA/401k; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- **nav.js RECREATED** — all nav dropdown/hamburger/accordion JS moved out of inline and into external `/nav.js`. `stamp_nav.py` updated: `ensure_nav_js()` function added (always injects `<script src="/nav.js">` on new pages), and `NAV_EVENT_JS` is now just that tag. (Inverse of the Jun 2 decision to abandon nav.js — nav JS is centralized again, this time as a real external file every page loads.)
+- **Nav arrow character fixed** — was rendering as the literal text "u25be" instead of the ▾ glyph; corrected site-wide
+- **GA4 tracking added to all pages** (measurement ID `G-1HVC269Z8F`); duplicate GA tags cleaned up; Realtime confirmed working; custom **MyDCACalc** collection published in GA4
+- **Git remote switched back to SSH** (`git@github.com`) after the HTTPS token auth failed
+- **Reddit karma building active** — comments posted in r/personalfinance, r/Fire, r/financialindependence; self-promotion post submitted to the r/financialindependence weekly thread
+- **research_agent.py audit (vs disk):** CURRENT_CALCULATORS was at 14 — added "RMD calculator (required minimum distribution)" → 15, matches disk. CURRENT_GUIDES unchanged at 21.
+- Next priorities: RMD Explained guide, Dividend Growth Portfolio guide, Dividend Income Calculator, Rule of 72 Calculator, submit rmd-calculator.html to GSC
 
 ### Jun 15 2026 — Bond Ladder Guide + Withdrawal Calculator + Accordion Nav Session
 - Bond Ladder for Retirement guide published (James Colter, 21st guide) — `guides/bond-ladder-retirement.html` ("How to Build a Bond Ladder for Retirement — 2026 Strategy Guide")

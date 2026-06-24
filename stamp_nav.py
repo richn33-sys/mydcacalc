@@ -72,6 +72,7 @@ GUIDE_CATEGORIES = [
         ('bond-ladder-retirement.html',                   'Bond ladder strategy'),
         ('portfolio-diversification-guide.html',          'Portfolio diversification'),
         ('tax-loss-harvesting-explained.html',            'Tax-loss harvesting'),
+        ('rmd-explained.html',                            'RMD explained'),
     ]),
     ('Fundamentals', [
         ('how-compound-interest-works.html',              'How compound interest works'),

@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1HVC269Z8F');
-</script>
-
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The 4% Rule Explained: Is It Still Valid in 2026?</title>
-<meta name="description" content="The 4% rule says withdraw 4% of your retirement portfolio annually and your money lasts 30 years. Morningstar's 2026 research now suggests 3.9%. Here's what changed, what hasn't, and how to use it correctly.">
-<meta name="keywords" content="4% rule explained, 4% rule retirement 2026, safe withdrawal rate 2026, is 4% rule still valid, FIRE withdrawal rate, retirement withdrawal strategy">
-<meta property="og:title" content="The 4% Rule Explained: Is It Still Valid in 2026?">
-<meta property="og:description" content="Morningstar's 2026 research puts the safe withdrawal rate at 3.9%. Bengen revised his estimate to 4.7%. Here's what the 4% rule actually means and how to use it.">
+<title>Required Minimum Distributions (RMDs) Explained — 2026 Rules, Ages, and Strategies</title>
+<meta name="description" content="RMDs explained for 2026. When they start (age 73 or 75), how to calculate them, the SECURE 2.0 changes, penalties for missing them, and strategies to reduce their tax impact.">
+<meta name="keywords" content="RMD rules 2026, required minimum distribution explained, RMD age 73, SECURE 2.0 RMD changes, how to calculate RMD, RMD strategies">
+<meta property="og:title" content="Required Minimum Distributions Explained — 2026 Rules, Ages, and Strategies">
+<meta property="og:description" content="RMD age is 73 for most retirees in 2026. Miss one and pay a 25% penalty. Here's everything you need to know including SECURE 2.0 changes and tax strategies.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://mydcacalc.com/guides/4-percent-rule-explained.html">
+<meta property="og:url" content="https://mydcacalc.com/guides/rmd-explained.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/guides/4-percent-rule-explained.html">
+<link rel="canonical" href="https://mydcacalc.com/guides/rmd-explained.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,16 +20,16 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "The 4% Rule Explained: Is It Still Valid in 2026?",
-  "description": "Morningstar's 2026 research puts the safe withdrawal rate at 3.9%. Bengen revised to 4.7%. What the 4% rule means, what changed, and how to use it correctly.",
+  "headline": "Required Minimum Distributions Explained — 2026 Rules, Ages, and Strategies",
+  "description": "RMD age, calculation formula, SECURE 2.0 changes, penalties, and tax strategies for 2026.",
   "author": {
     "@type": "Person",
     "name": "James Colter",
     "url": "https://mydcacalc.com/authors/james-colter.html"
   },
   "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
-  "datePublished": "2026-06-02",
-  "dateModified": "2026-06-02"
+  "datePublished": "2026-06-21",
+  "dateModified": "2026-06-21"
 }
 </script>
 <style>
@@ -67,11 +57,9 @@ nav a:hover { color: var(--text); }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
 .nav-mobile-menu.open { display: flex; }
 .nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
-.nav-mobile-menu a:last-child { border-bottom: none; }
-.nav-mobile-menu a:hover { color: var(--accent); }
 .nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
 @media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
 .article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
@@ -98,19 +86,26 @@ ul li strong, ol li strong { color: var(--text); font-weight: 500; }
 .callout.tip .callout-label { color: var(--green); }
 .callout.warning .callout-label { color: var(--red); }
 .callout.data .callout-label { color: var(--blue); }
+.age-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.age-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.age-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.age-table tr:last-child td { border-bottom: none; }
+.age-table td.accent { color: var(--accent); font-weight: 500; }
+.age-table td.green { color: var(--green); }
 .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
 @media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
 .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; text-align: center; }
-.stat-number { font-size: 28px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); margin-bottom: 6px; letter-spacing: -0.02em; }
+.stat-card.warn { border-color: rgba(240,96,96,0.3); background: rgba(240,96,96,0.05); }
+.stat-number { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); margin-bottom: 6px; letter-spacing: -0.02em; }
+.stat-card.warn .stat-number { color: var(--red); }
 .stat-label { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
-.swr-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
-.swr-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
-.swr-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
-.swr-table tr:last-child td { border-bottom: none; }
-.swr-table td.accent { color: var(--accent); font-weight: 500; }
-.swr-table td.green { color: var(--green); }
-.swr-table td.red { color: var(--red); }
-.swr-table tr.highlight td { background: rgba(200,240,96,0.04); color: var(--text); }
+.example-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 28px 0; }
+.example-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.example-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; font-family: var(--font-mono); }
+.example-row:last-child { border-bottom: none; font-weight: 500; }
+.example-row span:first-child { color: var(--text-muted); }
+.example-row span:last-child { color: var(--text); }
+.example-row.accent span:last-child { color: var(--accent); }
 .cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
 .cta-box h3 { margin: 0 0 10px; font-size: 18px; }
 .cta-box p { font-size: 14px; margin-bottom: 20px; }
@@ -120,7 +115,7 @@ ul li strong, ol li strong { color: var(--text); font-weight: 500; }
 .toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
 .toc ol { margin: 0; padding-left: 18px; }
 .toc ol li { margin-bottom: 8px; }
-.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
 .toc a:hover { color: var(--accent); }
 .divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
 .author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
@@ -145,28 +140,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: ce
 footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
 footer a { color: var(--text-muted); text-decoration: none; }
 footer a:hover { color: var(--text); }
-
-/* ── GROUPED NAV DROPDOWNS ── */
-.nav-group { position: relative; }
-.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
-.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
-.nav-group-toggle::after { content: "▾"; font-size: 10px; }
-.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 220px; overflow: hidden; z-index: 200; padding: 4px 0; }
-.nav-group-menu .group-label { padding: 8px 14px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
-.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
-.nav-group-menu a:last-child { border-bottom: none; }
-.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
-.nav-group-menu .group-divider { height: 1px; background: var(--border); margin: 2px 0; }
-/* Guides dropdown (right-aligned) */
-.dropdown { position: relative; }
-.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
-.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
-.dropdown-toggle::after { content: "▾"; font-size: 10px; }
-.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
-.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
-.dropdown-menu a:last-child { border-bottom: none; }
-.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
-
 
 /* ── GROUPED CALC DROPDOWNS ── */
 .nav-group { position: relative; }
@@ -196,15 +169,20 @@ footer a:hover { color: var(--text); }
 .dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
 
 </style>
-
-
-
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
 </head>
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Calculate your FIRE number</strong> — free FIRE calculator, no sign-up required</span>
-  <a href="../fire-calculator.html" class="pro-cta-btn">Try it free →</a>
+  <span>📈 <strong>Plan your retirement income</strong> — live P&L, avg cost, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
 
@@ -345,195 +323,215 @@ footer a:hover { color: var(--text); }
 <article class="article-wrap">
 
   <div class="article-meta">
-    <span class="meta-tag">FIRE</span>
     <span class="meta-tag">Retirement</span>
-    <span class="meta-date">June 2, 2026</span>
+    <span class="meta-tag">Tax</span>
+    <span class="meta-date">June 21, 2026</span>
     <span class="meta-read">9 min read</span>
   </div>
 
-  <h1>The <em>4% rule</em> explained — is it still valid in 2026?</h1>
+  <h1>Required minimum distributions <em>explained</em> — 2026 rules, ages, and strategies</h1>
 
-  <p class="intro">The 4% rule says you can withdraw 4% of your retirement portfolio annually, adjusted for inflation each year, and your money will last 30 years. It's the most cited benchmark in retirement planning — and it's currently being revised. Morningstar's 2026 research suggests 3.9% as the conservative baseline. Bill Bengen, who created the rule, now puts it at 4.7%. Here's what the rule actually means, what changed, and how to use it correctly.</p>
+  <p class="intro">A Required Minimum Distribution (RMD) is the minimum amount the IRS requires you to withdraw annually from tax-deferred retirement accounts once you reach a certain age. Miss one and you face a 25% penalty on the amount you should have withdrawn. RMDs begin at age 73 for those born between 1951 and 1959, and at 75 for those born in 1960 or later (effective 2033 under SECURE 2.0). Here's what you need to know.</p>
 
   <div class="toc">
     <div class="toc-title">In this guide</div>
     <ol>
-      <li><a href="#what-it-is">What the 4% rule actually is</a></li>
-      <li><a href="#where-it-came-from">Where it came from — the original research</a></li>
-      <li><a href="#2026-update">The 2026 update — what's changed</a></li>
-      <li><a href="#fire-difference">How it applies to FIRE vs traditional retirement</a></li>
-      <li><a href="#use-correctly">How to use the rule correctly</a></li>
-      <li><a href="#alternatives">Alternatives to a fixed 4% withdrawal</a></li>
+      <li><a href="#what-are-rmds">What RMDs are and why they exist</a></li>
+      <li><a href="#who-must-take">Who must take RMDs in 2026</a></li>
+      <li><a href="#how-to-calculate">How to calculate your RMD</a></li>
+      <li><a href="#deadlines">RMD deadlines and the first-year trap</a></li>
+      <li><a href="#penalties">Penalties for missing an RMD</a></li>
+      <li><a href="#strategies">Strategies to reduce RMD tax impact</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
     </ol>
   </div>
 
-  <h2 id="what-it-is">What the 4% rule actually is</h2>
+  <h2 id="what-are-rmds">What RMDs are and why they exist</h2>
 
-  <p>The 4% rule is a retirement withdrawal guideline: in your first year of retirement, withdraw 4% of your total portfolio. In each subsequent year, adjust that dollar amount for inflation — regardless of what the market did. If you do this, historical data suggests your portfolio has survived every 30-year period in U.S. market data under the original study assumptions.</p>
+  <p>Tax-deferred retirement accounts — traditional IRAs, 401(k)s, 403(b)s, SEP-IRAs, and SIMPLE IRAs — let you invest pre-tax dollars and defer taxes on growth until you withdraw. The IRS allows this tax deferral as an incentive to save for retirement, but it was never intended to be a permanent tax shelter. RMDs are the mechanism that ensures these accounts are eventually taxed.</p>
 
-  <p>The rule has two practical implications that most people know:</p>
-
-  <p style="font-size:13px;color:var(--text-dim);font-family:var(--font-mono);padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:20px;">Note: Most withdrawal rate research assumes low investment fees and pre-tax returns. Higher investment costs or taxes on withdrawals can meaningfully reduce sustainable withdrawal rates in practice.</p>
-
-  <ul>
-    <li><strong>The 25x rule (accumulation side):</strong> To retire safely, you need to save 25 times your annual expenses. This is simply the inverse of 4% — if you withdraw 4%, you need 25x to make it work. $50,000/year in expenses = $1.25M needed. $80,000/year = $2M needed.</li>
-    <li><strong>The withdrawal rate (decumulation side):</strong> Once retired, limit annual spending to 4% of your starting portfolio value, then adjust for inflation each year. The dollar amount is fixed based on year one — not recalculated as a percentage each year.</li>
-  </ul>
+  <p>Without RMDs, a retiree could leave a $2 million IRA untouched indefinitely, passing the entire tax-deferred balance to heirs. The RMD rules prevent this by requiring minimum annual withdrawals that generate taxable income. You can always withdraw more than the RMD — but you must withdraw at least the minimum, on time, every year.</p>
 
   <div class="callout data">
-    <div class="callout-label">Quick example</div>
-    <p>Portfolio at retirement: $1,000,000<br>
-    Year 1 withdrawal: $40,000 (4%)<br>
-    Year 2 withdrawal: $40,000 × (1 + inflation rate) — e.g. $41,200 at 3% inflation<br>
-    Year 3: $41,200 × 1.03 = $42,436<br>
-    The dollar amount grows with inflation; the percentage changes each year as your portfolio grows or shrinks.</p>
+    <div class="callout-label">Which accounts require RMDs</div>
+    <p>Traditional IRAs · SEP-IRAs · SIMPLE IRAs · 401(k) plans · 403(b) plans · 457(b) governmental plans (note: non-governmental 457(b) plans follow different rules) · profit-sharing plans · other defined contribution plans<br><br>
+    <strong>No RMD required:</strong> Roth IRAs (during the owner's lifetime) · Roth 401(k) and Roth 403(b) accounts (starting 2024, per SECURE 2.0)</p>
   </div>
 
-  <h2 id="where-it-came-from">Where it came from — the original research</h2>
+  <h2 id="who-must-take">Who must take RMDs in 2026</h2>
 
-  <p>The 4% rule originates from a 1994 paper by financial planner William Bengen published in the Journal of Financial Planning. Bengen analyzed historical U.S. market data from 1926 to 1992 — including the Great Depression, multiple recessions, and high-inflation periods — and asked: what is the maximum withdrawal rate that would have survived every 30-year retirement period in that dataset?</p>
+  <p>The age at which RMDs begin depends on when you were born — the SECURE Act and SECURE 2.0 Act have changed the starting age twice in recent years:</p>
 
-  <p>His answer: 4.15%, which he rounded to 4%. The analysis assumed a portfolio of approximately 50-60% equities and 40-50% bonds, annual inflation adjustments, and a 30-year retirement horizon. The "worst case" in Bengen's dataset was a retiree who retired in 1966 — just before a brutal combination of poor equity returns and high inflation. Even that scenario survived at 4%.</p>
-
-  <p>The rule was later validated by the "Trinity Study" — research by three professors from Trinity University published in 1998 — which examined similar questions using portfolio success rates rather than worst-case scenarios. Their findings were consistent with Bengen's, and the 4% figure became the standard benchmark in retirement planning.</p>
-
-  <div class="callout">
-    <div class="callout-label">Important context</div>
-    <p>The original research was built around U.S. historical data, a 30-year time horizon, a specific stock/bond allocation, and a fixed spending strategy. All four of those assumptions matter — and changing any of them changes the result. The rule is most reliable when all four match your situation.</p>
-  </div>
-
-  <h2 id="2026-update">The 2026 update — what's changed</h2>
-
-  <p>The 4% rule is being actively debated and refined in 2026, with two prominent researchers arriving at different conclusions from different directions:</p>
-
-  <div class="stat-row">
-    <div class="stat-card">
-      <div class="stat-number">3.9%</div>
-      <div class="stat-label">Morningstar 2026 conservative baseline (fixed spending, 30-year horizon)</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">4.7%</div>
-      <div class="stat-label">Bengen's revised estimate (expanded portfolio assumptions)</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">5.7%</div>
-      <div class="stat-label">Morningstar flexible spending approach (guardrails method)</div>
-    </div>
-  </div>
-
-  <p><strong>Morningstar's 2026 State of Retirement Income report</strong> puts the baseline safe withdrawal rate at 3.9% for retirees using a fixed spending strategy with a 90% probability of funds remaining after 30 years. This is up from 3.7% in 2024, primarily because higher bond yields have improved fixed-income return expectations. Retirees who use a flexible spending approach — adjusting withdrawals in response to market performance — may be able to withdraw as much as 5.7% annually, according to Morningstar's research. Note that Morningstar uses forward-looking capital market assumptions rather than purely historical data, which tends to produce more conservative estimates than Bengen's historical approach.</p>
-
-  <p><strong>Bengen's revised estimate of ~4.7%</strong> comes from expanding beyond the original stock allocation to include small-cap value stocks. His updated analysis suggests withdrawal rates as high as ~4.7% under specific diversified allocations that include small-cap value exposure — an asset class many investors don't hold. This figure shouldn't be treated as broadly applicable without matching the specific portfolio assumptions.</p>
-
-  <p>The gap between 3.9% and 4.7% isn't a contradiction — it reflects different methods and assumptions:</p>
-
-  <table class="swr-table">
+  <table class="age-table">
     <thead>
       <tr>
-        <th>Source</th>
-        <th>Rate</th>
-        <th>Key assumption</th>
-        <th>Horizon</th>
+        <th>Born</th>
+        <th>RMD start age</th>
+        <th>First RMD due</th>
+        <th>Status in 2026</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Morningstar 2026 (conservative)</td>
-        <td class="red">3.9%</td>
-        <td>Fixed spending, forward-looking returns</td>
-        <td>30 years</td>
-      </tr>
-      <tr class="highlight">
-        <td>Original Bengen (1994)</td>
-        <td class="accent">4.15%</td>
-        <td>Historical worst-case, 50–60% equities</td>
-        <td>30 years</td>
+        <td>Before July 1, 1949</td>
+        <td>70½</td>
+        <td>Already taking RMDs</td>
+        <td class="accent">Active — taking RMDs</td>
       </tr>
       <tr>
-        <td>Bengen revised</td>
-        <td class="green">4.7%</td>
-        <td>Historical worst-case, includes small-cap value</td>
-        <td>30 years</td>
+        <td>July 1, 1949 – Dec 31, 1950</td>
+        <td>72</td>
+        <td>Already taking RMDs</td>
+        <td class="accent">Active — taking RMDs</td>
       </tr>
       <tr>
-        <td>Morningstar 2026 (flexible)</td>
-        <td class="green">5.7%</td>
-        <td>Guardrails/dynamic spending</td>
-        <td>30 years</td>
+        <td>1951 – 1959</td>
+        <td>73</td>
+        <td>April 1 after turning 73</td>
+        <td class="accent">Active or approaching</td>
       </tr>
       <tr>
-        <td>FIRE / early retirement</td>
-        <td class="red">3.0–3.5%</td>
-        <td>50-year horizon, higher sequence risk</td>
-        <td>50 years</td>
+        <td>1960 or later</td>
+        <td>75</td>
+        <td>April 1 after turning 75</td>
+        <td class="green">Not yet required (starts 2033+)</td>
       </tr>
     </tbody>
   </table>
 
-  <p>For practical purposes: <strong>the difference between 3.9% and 4% is $1,000/year on a $1 million portfolio</strong> — a minor calibration, not a retirement crisis. The more significant revision is for early retirees with 40-60 year horizons, where the research consistently points to 3.0-3.5% as a more appropriate withdrawal rate.</p>
-
-  <h2 id="fire-difference">How it applies to FIRE vs traditional retirement</h2>
-
-  <p>The 4% rule was designed for a 30-year retirement — roughly age 65 to 95. For FIRE investors retiring at 35, 40, or 45, the math changes significantly.</p>
-
-  <p>Extensions of Bengen-style analysis suggest a ~4% withdrawal rate has roughly an 85–90% success rate over 50-year periods, depending on assumptions — meaning potentially a 1-in-10 or higher chance of running out of money for someone retiring at 35 and living to 85. At 3.5%, the success rate climbs above 95% for 50-year windows in most extended historical analyses.</p>
-
-  <p>The rule of thumb for FIRE:</p>
-
-  <ul>
-    <li><strong>Traditional retirement (30-year horizon):</strong> 3.9-4% — Morningstar's current research range is reasonable</li>
-    <li><strong>Early retirement (40-year horizon):</strong> 3.5% is a more conservative starting point</li>
-    <li><strong>Very early retirement (50+ year horizon):</strong> 3.0-3.25% with dynamic adjustments provides significantly higher confidence</li>
-    <li><strong>Coast FIRE or with Social Security/pension:</strong> Higher rates become more defensible when non-portfolio income covers part of expenses, reducing the required withdrawal from investments</li>
-  </ul>
+  <p><strong>Still working exception:</strong> If you're still employed and participating in your current employer's 401(k), you may be able to delay RMDs from that specific plan until you retire — as long as you don't own more than 5% of the company. This exception applies only to the current employer's plan, not to IRAs or 401(k)s from previous employers.</p>
 
   <div class="callout warning">
-    <div class="callout-label">The sequence of returns risk</div>
-    <p>The biggest threat to any withdrawal strategy isn't average returns — it's the sequence in which returns arrive. Retiring into a bear market in your first few years of withdrawal permanently impairs your portfolio because you're selling shares at depressed prices. A 4% withdrawal from a portfolio that drops 30% in year one is effectively a 5.7% withdrawal rate going forward. This is why the first 5-10 years of retirement are the highest-risk period, and why FIRE investors with longer horizons benefit from more conservative initial withdrawal rates.</p>
+    <div class="callout-label">Born in 1959?</div>
+    <p>SECURE 2.0 created an ambiguity for those born in 1959 — they appear to fall under both the age-73 and age-75 rules based on the literal text of the law. IRS guidance has addressed this ambiguity — verify the current IRS position (regulations have been proposed and may have been finalized) and consult a tax professional for your specific situation.</p>
   </div>
 
-  <h2 id="use-correctly">How to use the rule correctly</h2>
+  <h2 id="how-to-calculate">How to calculate your RMD</h2>
 
-  <p>The 4% rule is a starting framework, not a rigid law. Here's how to apply it correctly:</p>
+  <p>The RMD formula is straightforward:</p>
 
-  <ol>
-    <li><strong>Use it for the accumulation target, not the withdrawal calculation.</strong> The 25x rule is the most reliable output of this research. "I need 25x my annual expenses" is a robust planning target. The precise withdrawal rate in retirement deserves more nuanced treatment.</li>
-    <li><strong>Adjust for your time horizon.</strong> Use 3.5% if you're retiring before 55. Use 3.0-3.25% if you're retiring before 45 or plan to live past 90.</li>
-    <li><strong>Build in flexibility.</strong> The Morningstar flexible spending approach (5.7% for dynamic withdrawers) shows that investors willing to reduce spending in down years can sustain significantly higher withdrawal rates. A 10-15% spending reduction in bad years dramatically improves portfolio survival.</li>
-    <li><strong>Account for non-portfolio income.</strong> Social Security, pension income, rental income, or part-time work all reduce the required portfolio withdrawal rate. A retiree covering $20,000/year in Social Security needs a much smaller portfolio than one relying entirely on investments.</li>
-    <li><strong>Don't treat 4% as the ceiling.</strong> Bengen's revised ~4.7% and the flexible-spending 5.7% suggest 4% may be conservative for some retirees — particularly those with flexible spending or additional income sources. For some retirees, especially those with flexibility or non-portfolio income, strictly targeting 25x may be more conservative than necessary.</li>
-  </ol>
+  <div class="example-box">
+    <div class="example-title">RMD formula</div>
+    <div class="example-row accent"><span>RMD =</span><span>Prior Dec 31 balance ÷ IRS life expectancy factor</span></div>
+  </div>
 
-  <h2 id="alternatives">Alternatives to a fixed 4% withdrawal</h2>
+  <p>The life expectancy factor comes from the IRS Uniform Lifetime Table (Publication 590-B, Table III), which assigns a distribution period to each age. At age 73 the factor is 26.5; at 80 it's 20.2; at 90 it's 12.2. The factor decreases each year, meaning the required withdrawal percentage rises as you age.</p>
 
-  <p>Several dynamic withdrawal strategies have been shown to outperform fixed percentage withdrawals while maintaining similar or better portfolio survival rates:</p>
+  <div class="example-box">
+    <div class="example-title">Example: Age 73, $500,000 IRA balance (as of Dec 31, 2025)</div>
+    <div class="example-row"><span>Account balance (Dec 31, 2025)</span><span>$500,000</span></div>
+    <div class="example-row"><span>IRS Uniform Lifetime Table factor (age 73)</span><span>26.5</span></div>
+    <div class="example-row"><span>RMD calculation</span><span>$500,000 ÷ 26.5</span></div>
+    <div class="example-row accent"><span>2026 RMD amount</span><span>$18,868</span></div>
+    <div class="example-row"><span>As percentage of balance</span><span>3.77%</span></div>
+  </div>
 
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-number">26.5</div>
+      <div class="stat-label">IRS Uniform Lifetime Table factor at age 73 — the starting point</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">3.77%</div>
+      <div class="stat-label">First-year RMD as percentage of balance (age 73)</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="stat-number">25%</div>
+      <div class="stat-label">Penalty on missed RMD amount (reducible to 10%)</div>
+    </div>
+  </div>
+
+  <h3>Which table to use</h3>
+  <p>Most account owners use the Uniform Lifetime Table. There are two exceptions:</p>
   <ul>
-    <li><strong>Guardrails method (Guyton-Klinger):</strong> Set an upper and lower withdrawal limit. If spending rises above 20% more than initial rate, cut it by 10%. If it falls below a lower threshold, increase it. For example, a retiree using a guardrails strategy might start at 5%, but reduce spending by 10% after a market decline — preserving long-term sustainability while allowing higher initial income. This flexibility allows higher initial withdrawals while protecting against sequence risk.</li>
-    <li><strong>Variable Percentage Withdrawal (VPW):</strong> Recalculate withdrawal as a percentage each year based on remaining portfolio value and expected remaining years. Eliminates the risk of running out entirely but creates variable income.</li>
-    <li><strong>Floor and ceiling:</strong> Set a minimum spending level (your floor) covered by guaranteed income (Social Security, annuity, bonds) and draw additional spending from your portfolio above that floor. This approach separates essential from discretionary spending.</li>
-    <li><strong>Bucket strategy:</strong> Divide your portfolio into short-term (cash, 1-3 years of expenses), medium-term (bonds, 4-10 years), and long-term (equities, 10+ years) buckets. Draw from cash first, refilling from bonds and equities as markets allow. Reduces sequence risk by ensuring you never sell equities at a loss to fund near-term expenses.</li>
+    <li><strong>Joint and Last Survivor Table:</strong> Use this if your spouse is both your sole designated beneficiary and more than 10 years younger than you. This produces a lower RMD because the distribution period is longer when measured against two lives.</li>
+    <li><strong>Single Life Expectancy Table:</strong> Used by beneficiaries of inherited IRAs, not original account owners.</li>
   </ul>
 
+  <h3>IRA aggregation rules</h3>
+  <p>If you have multiple traditional IRAs, you calculate the RMD for each account separately — but you can take the combined total from any one IRA or split it across accounts. This flexibility doesn't apply to 401(k)s: each 401(k) RMD must be calculated and withdrawn from that specific plan. 403(b) accounts can be aggregated like IRAs.</p>
+
+  <h2 id="deadlines">RMD deadlines and the first-year trap</h2>
+
+  <p>For most retirees, RMDs must be taken by <strong>December 31</strong> of each year. The one exception is your very first RMD — you may delay it until April 1 of the following year.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">The first-year delay trap</div>
+    <p>Delaying your first RMD to April 1 sounds convenient — but it means you must take two RMDs in the same calendar year. Your delayed first-year RMD (due by April 1) and your regular second-year RMD (due by December 31) both land in the same tax year. Two RMDs can push you into a higher tax bracket, increase Social Security taxation, and trigger higher Medicare IRMAA premiums. For many retirees, taking the first RMD by December 31 of the year they turn 73 — rather than delaying — produces a better tax outcome. Run the numbers before deciding.</p>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Example: Ben turns 73 in 2026</div>
+    <div class="example-row"><span>Option A: Take first RMD by Dec 31, 2026</span><span>One RMD in 2026, one in 2027</span></div>
+    <div class="example-row accent"><span>Option B: Delay first RMD to April 1, 2027</span><span>Two RMDs due in 2027 — potential bracket bump</span></div>
+  </div>
+
+  <h2 id="penalties">Penalties for missing an RMD</h2>
+
+  <p>If you fail to take your full RMD by the applicable deadline, the IRS imposes an excise tax on the shortfall. SECURE 2.0 reduced this penalty significantly:</p>
+
+  <ul>
+    <li><strong>25% excise tax</strong> on the amount you should have withdrawn but didn't</li>
+    <li><strong>Reduced to 10%</strong> if you correct the error by taking the missed distribution and filing IRS Form 5329 within two years</li>
+    <li>Prior to SECURE 2.0, the penalty was 50% — the reduction to 25% (and 10% for timely correction) is a significant improvement</li>
+  </ul>
+
+  <p>On a $20,000 missed RMD, the penalty is $5,000 at the 25% rate — or $2,000 if you correct it within two years. These are penalties on top of the ordinary income tax you'll owe on the distribution itself.</p>
+
+  <h2 id="strategies">Strategies to reduce RMD tax impact</h2>
+
+  <h3>Qualified Charitable Distributions (QCDs)</h3>
+  <p>A QCD allows you to transfer up to a set annual limit directly from a traditional IRA to a qualified charity — indexed for inflation from a $100,000 base starting 2024 (verify the current-year limit at IRS.gov before acting). This transfer counts toward your RMD without being included in your taxable income — a significant benefit. A $20,000 QCD satisfying your entire RMD means you pay no income tax on that distribution. QCDs are available only from IRAs (not 401(k)s), you must be 70½ or older, and the transfer must go directly from the IRA to the charity — not to you first.</p>
+
+  <h3>Roth conversions before RMDs begin</h3>
+  <p>Converting traditional IRA dollars to a Roth IRA in the years between retirement and age 73 reduces your future RMD obligations. The converted amount is taxable in the year of conversion, but once in the Roth it grows tax-free and is never subject to RMDs during your lifetime. This strategy is most effective in lower-income years — typically after retirement but before Social Security and RMDs create peak taxable income. A common approach: convert enough each year to fill up a lower tax bracket (e.g., to the top of the 22% bracket) without crossing into the 24% bracket.</p>
+
+  <h3>Spreading withdrawals throughout the year</h3>
+  <p>Taking your RMD as one lump sum in December is the most common approach — and often the worst. Monthly or quarterly distributions smooth your income and cash flow throughout the year. Note that taxes are not automatically withheld from RMDs unless you elect withholding — many retirees set up voluntary federal withholding to avoid underpayment penalties at year-end. Consider setting up automatic monthly RMD distributions rather than year-end lump sums.</p>
+
+  <h3>Coordinate with Social Security timing</h3>
+  <p>RMDs add to taxable income — specifically to "provisional income" (also called combined income), which determines what percentage of Social Security benefits are taxable. At higher provisional income levels, up to 85% of Social Security benefits become taxable. RMDs can also trigger Medicare IRMAA surcharges. If you're approaching age 73 and haven't yet claimed Social Security, factor RMD income into your Social Security claiming decision — the combined income effect can be substantial.</p>
+
+  <h3>Still-working exception for 401(k)s</h3>
+  <p>If you're still employed at the company sponsoring your 401(k) and don't own more than 5% of the company, you may be able to delay RMDs from that plan until you retire. This doesn't apply to IRAs or old employer 401(k)s. Some retirees roll old 401(k)s into their current employer's plan specifically to consolidate assets under this delay provision.</p>
+
+  <h2 id="faq">Frequently asked questions</h2>
+
+  <h3>Can I take more than the RMD?</h3>
+  <p>Yes — the RMD is a minimum, not a maximum. You can withdraw any amount above the minimum. However, excess withdrawals from one year cannot be credited toward a future year's RMD. Each year's obligation is calculated independently from that year's beginning balance.</p>
+
+  <h3>What if I have multiple IRAs?</h3>
+  <p>Calculate the RMD for each IRA separately, but you can take the combined total from any one IRA or split it across accounts. This flexibility only applies to IRAs — each 401(k) must satisfy its own RMD from within that plan.</p>
+
+  <h3>Do inherited IRAs have RMDs?</h3>
+  <p>Yes — and the rules are complex. Most non-spouse beneficiaries who inherited after 2019 must empty the account within 10 years. If the original owner had already begun taking RMDs, beneficiaries must also take annual RMDs in years 1–9. The rules for eligible designated beneficiaries (surviving spouses, minor children, disabled individuals) differ. Inherited IRA rules are beyond the scope of this guide. Note that IRS enforcement of annual RMD requirements for inherited IRAs has been inconsistent in recent years — confirm current IRS guidance and consult a tax professional.</p>
+
+  <h3>Are RMDs subject to state income tax?</h3>
+  <p>State taxation of RMDs varies significantly. Some states exempt retirement income entirely; others tax it at the same rate as ordinary income. A handful of states have no income tax. Verify your state's treatment of IRA and 401(k) distributions before estimating your total tax liability on RMDs.</p>
+
+  <h3>Are RMDs from Roth accounts required?</h3>
+  <p>Roth IRAs have no RMDs during the original owner's lifetime. Starting in 2024, SECURE 2.0 eliminated RMDs from Roth 401(k) and Roth 403(b) accounts during the owner's lifetime as well. Beneficiaries of Roth accounts are still subject to distribution requirements.</p>
+
+  <h3>What is the QCD limit?</h3>
+  <p>The QCD limit is indexed for inflation annually from a $100,000 base (starting 2024 under SECURE 2.0). Verify the current-year limit at IRS.gov — the limit changes each year. A one-time QCD to certain charitable vehicles (charitable remainder annuity trusts, charitable remainder unitrusts, or charitable gift annuities) is also available, subject to a separate indexed cap.</p>
+
   <div class="cta-box">
-    <h3>Calculate your FIRE number</h3>
-    <p>Use the free FIRE calculator to find your 25x target, Coast FIRE number, and how your savings rate affects your timeline.</p>
-    <a href="../fire-calculator.html" class="cta-btn">Try the FIRE calculator</a>
+    <h3>Calculate your 2026 RMD</h3>
+    <p>Enter your account balance and age to see your exact RMD, 20-year projection, and estimated tax impact using the IRS Uniform Lifetime Table.</p>
+    <a href="../rmd-calculator.html" class="cta-btn">Try the RMD calculator</a>
   </div>
 
   <div class="divider"></div>
 
   <h2>The bottom line</h2>
 
-  <p>The 4% rule is not dead — it's being refined. Morningstar's 2026 research puts the conservative fixed-spending baseline at 3.9%, while Bengen's revised research suggests 4.7% is achievable with a diversified equity allocation. The practical difference between these figures is small for most retirees.</p>
+  <p>RMDs are a non-negotiable feature of tax-deferred retirement accounts — the IRS will eventually collect taxes on pre-tax contributions and deferred growth. The rules have become more favorable in recent years: the starting age rose from 70½ to 73 (and will rise to 75 for younger cohorts), and the missed-RMD penalty dropped from 50% to 25%. But the obligation remains.</p>
 
-  <p>What matters more than the precise percentage: your time horizon, your willingness to adjust spending in down years, and whether you have non-portfolio income covering some expenses. A 35-year-old retiring with a 50-year horizon needs a more conservative rate than the original research supports. A 65-year-old with Social Security covering half their expenses can likely withdraw more than 4%.</p>
-
-  <p>Use 25x your annual expenses as your accumulation target. Use 3.5-4% as your starting withdrawal rate, adjusted lower for longer horizons and higher if you're willing to spend flexibly. The rule is a framework — not a guarantee.</p>
+  <p>The most important actions: know your RMD age, calculate your distribution each year using the prior December 31 balance, take it by the deadline, and consider strategies like QCDs and Roth conversions to reduce the tax impact over time. For most retirees, working with a tax professional in the years approaching age 73 to model the RMD tax impact alongside Social Security, Medicare, and other income is well worth the cost.</p>
 
   <div class="callout">
     <div class="callout-label">Disclaimer</div>
-    <p>This article is for informational purposes only and does not constitute financial advice. Withdrawal rate research is based on historical data that may not predict future results. Individual circumstances — tax situation, health, non-portfolio income, spending flexibility — significantly affect appropriate withdrawal rates. Consult a qualified financial advisor before making retirement income decisions.</p>
+    <p>This article is for informational purposes only and does not constitute tax or financial advice. RMD rules have changed multiple times and may change again. The rules for inherited IRAs, annuities, and certain plan types are more complex than described here. Verify current IRS guidance at IRS.gov and consult a qualified tax professional before making RMD decisions. All examples are illustrative only.</p>
   </div>
 
   <div class="author-bio-box">
@@ -560,7 +558,6 @@ footer a:hover { color: var(--text); }
 </footer>
 
 <script src="/nav.js"></script>
-
 <script src="/nav.js"></script>
 <script src="/nav.js"></script>
 </body>
