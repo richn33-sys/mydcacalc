@@ -83,6 +83,7 @@ GUIDE_CATEGORIES = [
         ('what-is-a-good-risk-reward-ratio.html',         'Risk/reward ratio'),
         ('investing-during-high-interest-rates.html',     'High interest rates'),
         ('how-to-invest-during-geopolitical-uncertainty.html', 'Geopolitical uncertainty'),
+        ('index-fund-investing-beginners.html',          'Index fund investing'),
     ]),
 ]
 

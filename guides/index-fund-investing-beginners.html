@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Build a Dividend Growth Portfolio — 2026 Strategy Guide</title>
-<meta name="description" content="Dividend growth investing means buying companies that raise their dividends every year. Here's how to build a dividend growth portfolio in 2026 — the core metrics, what to avoid, and how it pairs with DCA.">
-<meta name="keywords" content="dividend growth investing, how to build dividend portfolio, dividend growth strategy 2026, dividend aristocrats 2026, best dividend ETFs 2026">
-<meta property="og:title" content="How to Build a Dividend Growth Portfolio — 2026 Strategy Guide">
-<meta property="og:description" content="Microsoft's dividend is up 270% since 2015. Visa raises 15-20% per year. Here's how dividend growth investing works and how to build a portfolio around it.">
+<title>Index Fund Investing for Beginners — 2026 Complete Guide</title>
+<meta name="description" content="Index fund investing explained for beginners. What index funds are, how they differ from ETFs, how to choose between VOO and VTI, why expense ratios matter, and how to start investing in 2026.">
+<meta name="keywords" content="index fund investing beginners, index fund vs ETF, best index funds 2026, how to start investing index funds, VOO vs VTI, S&P 500 index fund">
+<meta property="og:title" content="Index Fund Investing for Beginners — 2026 Complete Guide">
+<meta property="og:description" content="Less than 5% of active large-blend funds outperformed their passive peers over 15 years. Here's how index fund investing works and how to start in 2026.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://mydcacalc.com/guides/dividend-growth-portfolio.html">
+<meta property="og:url" content="https://mydcacalc.com/guides/index-fund-investing-beginners.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/guides/dividend-growth-portfolio.html">
+<link rel="canonical" href="https://mydcacalc.com/guides/index-fund-investing-beginners.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,16 +20,16 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "How to Build a Dividend Growth Portfolio — 2026 Strategy Guide",
-  "description": "Core metrics, stock selection framework, ETF alternatives, and how dividend growth investing pairs with DCA.",
+  "headline": "Index Fund Investing for Beginners — 2026 Complete Guide",
+  "description": "What index funds are, how they differ from ETFs, expense ratios, VOO vs VTI, and how to start investing.",
   "author": {
     "@type": "Person",
     "name": "James Colter",
     "url": "https://mydcacalc.com/authors/james-colter.html"
   },
   "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
-  "datePublished": "2026-06-22",
-  "dateModified": "2026-06-22"
+  "datePublished": "2026-06-27",
+  "dateModified": "2026-06-27"
 }
 </script>
 <style>
@@ -86,31 +86,34 @@ ul li strong, ol li strong { color: var(--text); font-weight: 500; }
 .callout.tip .callout-label { color: var(--green); }
 .callout.warning .callout-label { color: var(--red); }
 .callout.data .callout-label { color: var(--blue); }
+.compare-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.compare-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td.accent { color: var(--accent); font-weight: 500; }
+.compare-table td.green { color: var(--green); }
+.fund-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0; }
+@media (max-width: 580px) { .fund-grid { grid-template-columns: 1fr; } }
+.fund-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.fund-ticker { font-size: 18px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); margin-bottom: 2px; }
+.fund-name { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 10px; }
+.fund-stat { display: flex; justify-content: space-between; font-size: 12px; font-family: var(--font-mono); padding: 4px 0; border-bottom: 1px solid var(--border); }
+.fund-stat:last-child { border-bottom: none; }
+.fund-stat span:first-child { color: var(--text-dim); }
+.fund-stat span:last-child { color: var(--text-muted); }
 .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
 @media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
 .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; text-align: center; }
 .stat-number { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); margin-bottom: 6px; letter-spacing: -0.02em; }
 .stat-label { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
-.metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0; }
-@media (max-width: 580px) { .metric-grid { grid-template-columns: 1fr; } }
-.metric-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
-.metric-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-.metric-target { font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 8px; }
-.metric-desc { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
-.strategy-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
-.strategy-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
-.strategy-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
-.strategy-table tr:last-child td { border-bottom: none; }
-.strategy-table td.accent { color: var(--accent); font-weight: 500; }
-.strategy-table td.green { color: var(--green); }
 .example-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 28px 0; }
 .example-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
 .example-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; font-family: var(--font-mono); }
-.example-row:last-child { border-bottom: none; font-weight: 500; }
+.example-row:last-child { border-bottom: none; }
 .example-row span:first-child { color: var(--text-muted); }
 .example-row span:last-child { color: var(--text); }
 .example-row.accent span:last-child { color: var(--accent); }
-.example-row.green span:last-child { color: var(--green); }
+.example-row.red span:last-child { color: var(--red); }
 .cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
 .cta-box h3 { margin: 0 0 10px; font-size: 18px; }
 .cta-box p { font-size: 14px; margin-bottom: 20px; }
@@ -186,7 +189,7 @@ footer a:hover { color: var(--text); }
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Track your dividend portfolio performance</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <span>📈 <strong>Track your index fund performance</strong> — real avg cost, live P&L, weekly signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -336,233 +339,240 @@ footer a:hover { color: var(--text); }
 <article class="article-wrap">
 
   <div class="article-meta">
-    <span class="meta-tag">Income</span>
-    <span class="meta-tag">Strategy</span>
-    <span class="meta-date">June 22, 2026</span>
+    <span class="meta-tag">Investing</span>
+    <span class="meta-tag">Beginners</span>
+    <span class="meta-date">June 27, 2026</span>
     <span class="meta-read">10 min read</span>
   </div>
 
-  <h1>How to build a <em>dividend growth portfolio</em> — 2026 strategy guide</h1>
+  <h1>Index fund investing <em>for beginners</em> — 2026 complete guide</h1>
 
-  <p class="intro">Microsoft's dividend has roughly tripled over the past decade — illustrative of how dividend growth compounds over time. Visa has grown its dividend at a double-digit annual rate for years, with a payout ratio typically well under 30%, leaving substantial room for continued growth. (Verify current figures at company investor relations pages before acting.) Dividend growth investing isn't about chasing the highest yield today. It's about owning companies that raise their dividends every year, so your income compounds while your underlying investment grows. Here's how to build a portfolio around that strategy.</p>
+  <p class="intro">Less than 5% of active large-blend funds survived and outperformed their passive peers over the past 15 years, according to Morningstar's Active/Passive Barometer. Index fund investing is the simplest, most proven way most people can build wealth in the stock market — and getting started requires less complexity than most beginners expect. Here's everything you need to know.</p>
 
   <div class="toc">
     <div class="toc-title">In this guide</div>
     <ol>
-      <li><a href="#what-is-dgi">What dividend growth investing is (and isn't)</a></li>
-      <li><a href="#why-2026">Why it matters in 2026</a></li>
-      <li><a href="#core-metrics">The five metrics that matter</a></li>
-      <li><a href="#three-tiers">Three stock tiers — how to allocate</a></li>
-      <li><a href="#etf-route">The ETF route — simpler and still effective</a></li>
-      <li><a href="#dca-pairing">How DCA pairs with dividend growth investing</a></li>
-      <li><a href="#mistakes">Common mistakes to avoid</a></li>
+      <li><a href="#what-is-index-fund">What an index fund is</a></li>
+      <li><a href="#index-vs-etf">Index fund vs ETF — what's the difference</a></li>
+      <li><a href="#why-index-investing">Why index investing works</a></li>
+      <li><a href="#expense-ratios">Expense ratios — the number that matters most</a></li>
+      <li><a href="#which-funds">Which index funds to start with</a></li>
+      <li><a href="#how-to-start">How to start investing in 5 steps</a></li>
+      <li><a href="#dca-pairing">How DCA pairs with index investing</a></li>
       <li><a href="#faq">Frequently asked questions</a></li>
     </ol>
   </div>
 
-  <h2 id="what-is-dgi">What dividend growth investing is (and isn't)</h2>
+  <h2 id="what-is-index-fund">What an index fund is</h2>
 
-  <p>Dividend growth investing (DGI) is a strategy focused on owning companies with a demonstrated history of increasing their dividends annually — not just paying them. The distinction matters. A company yielding 8% that hasn't raised its dividend in five years is a very different investment than a company yielding 1.5% that has raised its dividend 15% per year for 20 years.</p>
+  <p>An index fund is a mutual fund or ETF that tracks a market index — a predefined list of securities — rather than having a manager pick individual stocks. The most common index is the S&P 500, which holds the 500 largest publicly traded US companies. When you buy one share of an S&P 500 index fund, you own a small piece of all 500 companies simultaneously.</p>
 
-  <p>The math behind compounding dividend growth is what makes the strategy compelling. At a 10% annual dividend growth rate, a $1.00 annual dividend becomes $6.73 after 20 years. Your yield on cost — the current dividend divided by what you originally paid — rises every year even if the stock price doesn't move. Investors who bought Microsoft in 2015 and held now collect a yield on cost approaching 5% on their original investment, from a company that started at under 2% yield.</p>
+  <p>Because the fund simply follows the index rather than employing analysts to research and select stocks, the cost is dramatically lower than actively managed funds. <strong>The average active fund charges 0.50–1.00% per year. An S&P 500 index fund charges as little as 0.03%.</strong> That difference, compounded over decades, is the core financial case for index investing.</p>
 
-  <p><strong>What it isn't:</strong> A high-yield income strategy. The highest-yielding stocks are often the most dangerous — high yield frequently signals that the market expects a dividend cut. Dividend growth investing prioritizes sustainable and growing income over maximum current income.</p>
+  <p>Common indexes that funds track:</p>
 
-  <div class="callout warning">
-    <div class="callout-label">The yield trap</div>
-    <p>If a stock yields more than 6–7%, ask why before buying. Unusually high yields often mean the stock price has fallen because the market expects a dividend cut. A 10% yield that gets cut to zero produced a 100% income loss. Morningstar's research confirms that companies with wide economic moats are significantly less likely to cut dividends than companies without them — moat quality matters more than headline yield.</p>
-  </div>
+  <ul>
+    <li><strong>S&P 500</strong> — 500 largest US companies by market cap, covering approximately 80% of the US stock market</li>
+    <li><strong>Total US Stock Market</strong> — virtually all publicly traded US companies (3,000–4,000 stocks), including small and mid-cap companies not in the S&P 500</li>
+    <li><strong>Total International Stock Market</strong> — stocks from developed and emerging markets outside the US</li>
+    <li><strong>US Bond Market</strong> — a broad basket of US government and corporate bonds</li>
+    <li><strong>Nasdaq-100</strong> — the 100 largest non-financial companies on the Nasdaq, heavily concentrated in technology</li>
+  </ul>
 
-  <h2 id="why-2026">Why it matters in 2026</h2>
+  <h2 id="index-vs-etf">Index fund vs ETF — what's the difference</h2>
 
-  <p>Two structural facts make dividend growth investing more relevant in 2026 than it's been in years:</p>
+  <p>This distinction confuses most beginners. The short answer: an ETF (Exchange-Traded Fund) is a structure, not a strategy. Most ETFs are index funds, and most index funds are available as ETFs. The key practical differences:</p>
 
-  <p><strong>The S&P 500 yield problem.</strong> The S&P 500's dividend yield has been running below 1.2% in 2026 — roughly half its long-term historical average near 2.7%, based on multiple market data sources including Morningstar and State Street research. Verify the current figure before acting, as yields fluctuate daily. Investors holding broad index funds are receiving significantly less income than historical norms because mega-cap growth stocks that pay little or nothing now dominate index weights. Dividend-growth-focused strategies like SDY yield approximately 2.86% — above both the market's historical average and current inflation.</p>
-
-  <p><strong>AI concentration risk.</strong> iShares research highlighted significant AI/tech concentration in recent S&P 500 returns — a qualitative point about concentration risk that multiple sources have noted, even if exact percentages vary by methodology and time period. High-dividend and dividend-growth strategies have lower correlation to the technology sector than both the S&P 500 and a traditional 60/40 portfolio — making them a genuine diversifier, not just an income tool, in the current market environment.</p>
-
-  <div class="stat-row">
-    <div class="stat-card">
-      <div class="stat-number">1.1%</div>
-      <div class="stat-label">S&P 500 dividend yield in 2026 — less than half its historical average</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">~3x</div>
-      <div class="stat-label">Approximate Microsoft dividend growth over the past decade — illustrative of long-term compounding</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">~$9T+</div>
-      <div class="stat-label">Cash on sidelines at end of 2025 per iShares estimate — illustrative of income-seeking demand</div>
-    </div>
-  </div>
-
-  <h2 id="core-metrics">The five metrics that matter</h2>
-
-  <p>Before buying any dividend stock, evaluate these five metrics. They separate sustainable dividend growers from yield traps.</p>
-
-  <div class="metric-grid">
-    <div class="metric-card">
-      <div class="metric-name">Dividend Growth Rate (DGR)</div>
-      <div class="metric-target">Target: 5%+ annually, 10%+ for growth tier</div>
-      <div class="metric-desc">The annual rate at which the dividend has increased. Look at 1, 3, 5, and 10-year DGR — consistency matters as much as the rate. A company that grew 15%/year for 10 years is more reliable than one that grew 30% last year.</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-name">Payout Ratio</div>
-      <div class="metric-target">Target: under 60% (under 75% for REITs/utilities)</div>
-      <div class="metric-desc">The percentage of earnings paid as dividends. A 40% payout ratio means 60 cents of every dollar earned is reinvested — room to grow the dividend even if earnings dip. A 90% payout ratio has no cushion; any earnings decline threatens the dividend.</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-name">Dividend Streak</div>
-      <div class="metric-target">Target: 10+ years of consecutive increases</div>
-      <div class="metric-desc">How many consecutive years the dividend has been raised. Dividend Aristocrats (25+ years) and Dividend Kings (50+ years) have maintained streaks through recessions, market crashes, and pandemics — a form of stress testing no analyst report can replicate.</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-name">Free Cash Flow Coverage</div>
-      <div class="metric-target">Target: FCF exceeds dividend payments</div>
-      <div class="metric-desc">Dividends are paid from cash, not accounting earnings. A company paying out more cash than it generates in free cash flow is borrowing or depleting reserves to maintain the dividend — a warning sign regardless of what EPS-based payout ratios show.</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-name">Economic Moat</div>
-      <div class="metric-target">Target: wide or narrow moat (Morningstar)</div>
-      <div class="metric-desc">Morningstar's research shows companies with wide economic moats are significantly less likely to cut dividends. Moats — brand, network effects, switching costs, cost advantages — protect earnings in downturns, which protects dividends.</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-name">Yield on Cost Projection</div>
-      <div class="metric-target">Target: 4%+ yield on cost within 10 years</div>
-      <div class="metric-desc">Starting yield matters less than where the yield on cost lands in 10 years given the dividend growth rate. A 1.5% yield growing at 12%/year becomes a 4.6% yield on cost in 10 years. Model this before buying.</div>
-    </div>
-  </div>
-
-  <h2 id="three-tiers">Three stock tiers — how to allocate</h2>
-
-  <p>A well-constructed dividend growth portfolio typically blends three types of dividend stocks, each serving a different role. The allocations below are starting ranges for illustration — not rules. Adjust based on your income needs, time horizon, and risk tolerance.</p>
-
-  <table class="strategy-table">
+  <table class="compare-table">
     <thead>
       <tr>
-        <th>Tier</th>
-        <th>Current yield</th>
-        <th>Dividend growth</th>
-        <th>Role</th>
-        <th>Examples</th>
+        <th>Factor</th>
+        <th>Index ETF (e.g. VOO)</th>
+        <th>Index Mutual Fund (e.g. VFIAX)</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="accent">High growth, low yield</td>
-        <td>0.5–1.5%</td>
-        <td>10–20%/year</td>
-        <td>Future income engine — tiny yield today, powerful in 15–20 years</td>
-        <td>MSFT, AAPL, V, MA, AVGO</td>
+        <td>Trading</td>
+        <td class="green">Trades throughout the day like a stock</td>
+        <td>Trades once per day at closing price</td>
       </tr>
       <tr>
-        <td class="accent">Balanced growers</td>
-        <td>2–4%</td>
-        <td>5–10%/year</td>
-        <td>Core holding — meaningful income now plus reliable growth</td>
-        <td>JNJ, PG, KO, MCD, LOW</td>
+        <td>Minimum investment</td>
+        <td class="green">One share (or fractional at most brokers)</td>
+        <td>Often $1,000–$3,000 minimum</td>
       </tr>
       <tr>
-        <td class="accent">High yield, stable</td>
-        <td>4–6%</td>
-        <td>2–5%/year</td>
-        <td>Current income — higher yield, slower growth; best in tax-advantaged accounts</td>
-        <td>O (Realty Income), ENB, T</td>
+        <td>Tax efficiency</td>
+        <td class="green">Generally more tax-efficient in taxable accounts</td>
+        <td>Can trigger capital gains distributions</td>
+      </tr>
+      <tr>
+        <td>Automatic investing</td>
+        <td>Requires manual purchase or broker automation</td>
+        <td class="green">Easier to automate fixed-dollar contributions</td>
+      </tr>
+      <tr>
+        <td>Expense ratio</td>
+        <td class="accent">Often identical or near-identical</td>
+        <td class="accent">Often identical or near-identical</td>
+      </tr>
+      <tr>
+        <td>Best for</td>
+        <td>Taxable brokerage accounts, flexible investors</td>
+        <td>IRAs, investors who want automation</td>
       </tr>
     </tbody>
   </table>
 
-  <p>A common starting allocation: 30–40% high-growth tier, 40–50% balanced growers, 15–25% high yield. As you approach retirement, shift toward balanced growers and high yield for current income. Early in accumulation, lean toward high-growth stocks where time amplifies the compounding dividend growth rate.</p>
+  <p>For most beginners, ETFs are the more practical choice: lower minimums, available at any brokerage, and commission-free to trade at major platforms. The day-trading flexibility of ETFs is largely irrelevant for long-term investors — the functional difference between buying VOO (ETF) and VFIAX (mutual fund version of the same index) over a 20-year holding period is minimal.</p>
+
+  <h2 id="why-index-investing">Why index investing works</h2>
+
+  <p>The case for index investing rests on a simple and well-documented fact: most professional stock pickers fail to beat the market over long periods, net of fees. Morningstar's Active/Passive Barometer found that fewer than 5% of active large-blend funds survived and outperformed their passive counterparts over 15 years. This isn't because fund managers are incompetent — it's because markets are highly competitive and fees are a structural headwind that compounds unfavorably over time.</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-number">&lt;5%</div>
+      <div class="stat-label">Active large-blend funds that survived and beat passive peers over 15 years (Morningstar)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">0.03%</div>
+      <div class="stat-label">Typical S&P 500 index ETF expense ratio vs 0.50–1.00% for active funds</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">$18,688</div>
+      <div class="stat-label">Difference on $10,000 over 30 years: 0.03% vs 1.00% expense ratio at 7% returns</div>
+    </div>
+  </div>
+
+  <p>The $18,688 figure comes from a straightforward calculation: $10,000 at 7% for 30 years grows to $76,123 at a 0.03% expense ratio. At a 1.00% expense ratio, it grows to $57,435. The $18,688 difference goes to the fund manager rather than your account — and this assumes identical returns before fees, which is optimistic for the active fund. In practice, most active funds also underperform before fees, compounding the disadvantage.</p>
+
+  <h2 id="expense-ratios">Expense ratios — one of the most important factors you control</h2>
+
+  <p>Fees are guaranteed; returns are not. While your asset allocation drives most of your long-term results, minimizing costs is one of the simplest ways to improve outcomes — and unlike returns, it's entirely within your control. The expense ratio is the annual fee charged as a percentage of your investment. A 0.03% expense ratio on a $100,000 portfolio costs $30 per year. A 1.00% expense ratio costs $1,000 per year. That difference seems small annually — but compounded over 20–30 years, it becomes the single largest determinant of which investors end up wealthier, assuming similar asset allocations.</p>
 
   <div class="callout tip">
-    <div class="callout-label">The high-yield vs high-growth tradeoff</div>
-    <p>Morningstar's analysis shows this directly: Altria (MO) yields roughly 7–8% with modest dividend growth. Visa yields roughly 0.8% with 15–20% annual growth. Altria generates more total income for the first 15–18 years. After that, Visa's compounding catches up and eventually surpasses it — while also having appreciated significantly in price. If you have 20+ years, high-growth dividend stocks typically win on total return. If you need current income now, high-yield makes more sense.</p>
+    <div class="callout-label">The expense ratio rule</div>
+    <p>For broad US stock market index funds, there is no reason to pay more than 0.10% per year. Vanguard, Fidelity, and Schwab all offer broad US market index funds at 0.03–0.04%. Fidelity offers its Zero funds (FZROX, FZILX) at 0.00%. Any broad market index fund with an expense ratio above 0.20% should be questioned before purchasing.</p>
   </div>
 
-  <h2 id="etf-route">The ETF route — simpler and still effective</h2>
+  <p>Watch for other costs beyond the expense ratio: transaction fees (largely eliminated at major brokers), tax drag from capital gains distributions (relevant for taxable accounts), and bid-ask spreads on ETFs (minimal for large, liquid funds like VOO or VTI). On tax drag: an index mutual fund can distribute capital gains to shareholders — creating a tax bill even if you didn't sell any shares. ETFs generally avoid this because their share creation/redemption mechanism doesn't require selling underlying securities. This makes ETFs preferable in taxable brokerage accounts specifically.</p>
 
-  <p>Building a portfolio of individual dividend growth stocks requires research time and monitoring. For most investors, dividend-focused ETFs provide most of the benefit with a fraction of the complexity. Three categories worth knowing:</p>
+  <h2 id="which-funds">Which index funds to start with</h2>
 
-  <ul>
-    <li><strong>SCHD (Schwab US Dividend Equity ETF)</strong> — screens for quality, dividend growth history, and yield. Expense ratio 0.06%. Widely considered the best single-ETF option for US dividend growth exposure. Combines moderate yield (~3–3.5%) with a history of meaningful dividend growth.</li>
-    <li><strong>VIG (Vanguard Dividend Appreciation ETF)</strong> — tracks companies with 10+ consecutive years of dividend increases. Expense ratio 0.06%. Leans more toward the high-growth, lower-yield end of the spectrum — heavier technology weighting than SCHD.</li>
-    <li><strong>NOBL (ProShares S&P 500 Dividend Aristocrats ETF)</strong> — holds only Dividend Aristocrats (25+ consecutive years of increases). Expense ratio 0.35%. Higher quality filter but also higher fee and smaller portfolio universe than SCHD or VIG.</li>
-    <li><strong>DGRO (iShares Core Dividend Growth ETF)</strong> — screens for dividend growth history plus payout ratio sustainability. Expense ratio 0.08%. Good complement to SCHD for broader US coverage.</li>
-  </ul>
+  <p>For most beginners, a simple two-fund or three-fund portfolio covers everything. Here are the most widely recommended options at each major provider:</p>
 
-  <div class="callout warning">
-    <div class="callout-label">Avoid manufactured yield ETFs</div>
-    <p>YieldMax, covered call, and other options-overlay ETFs advertising 15–20%+ yields are not dividend growth vehicles. They manufacture income by selling upside — capping price appreciation while generating cash payments. In strong bull markets, they badly underperform. The rule of thumb: if the yield is above 10% and you don't fully understand the mechanism, treat it with extreme caution. These are income tools for specific retirement situations, not wealth-building tools.</p>
+  <div class="fund-grid">
+    <div class="fund-card">
+      <div class="fund-ticker">VTI</div>
+      <div class="fund-name">Vanguard Total Stock Market ETF</div>
+      <div class="fund-stat"><span>Index</span><span>CRSP US Total Market</span></div>
+      <div class="fund-stat"><span>Expense ratio</span><span>0.03%</span></div>
+      <div class="fund-stat"><span>Holdings</span><span>~3,700 US stocks</span></div>
+      <div class="fund-stat"><span>Best for</span><span>Total US market exposure</span></div>
+    </div>
+    <div class="fund-card">
+      <div class="fund-ticker">VOO</div>
+      <div class="fund-name">Vanguard S&P 500 ETF</div>
+      <div class="fund-name" style="margin-top:-6px;"></div>
+      <div class="fund-stat"><span>Index</span><span>S&P 500</span></div>
+      <div class="fund-stat"><span>Expense ratio</span><span>0.03%</span></div>
+      <div class="fund-stat"><span>Holdings</span><span>500 large-cap US stocks</span></div>
+      <div class="fund-stat"><span>Best for</span><span>Large-cap US focus</span></div>
+    </div>
+    <div class="fund-card">
+      <div class="fund-ticker">VXUS</div>
+      <div class="fund-name">Vanguard Total International Stock ETF</div>
+      <div class="fund-stat"><span>Index</span><span>FTSE Global All Cap ex-US</span></div>
+      <div class="fund-stat"><span>Expense ratio</span><span>0.05%</span></div>
+      <div class="fund-stat"><span>Holdings</span><span>~8,500 international stocks</span></div>
+      <div class="fund-stat"><span>Best for</span><span>International diversification</span></div>
+    </div>
+    <div class="fund-card">
+      <div class="fund-ticker">BND</div>
+      <div class="fund-name">Vanguard Total Bond Market ETF</div>
+      <div class="fund-stat"><span>Index</span><span>Bloomberg US Aggregate Bond</span></div>
+      <div class="fund-stat"><span>Expense ratio</span><span>0.03%</span></div>
+      <div class="fund-stat"><span>Holdings</span><span>~10,000 US bonds</span></div>
+      <div class="fund-stat"><span>Best for</span><span>Fixed income / stability</span></div>
+    </div>
   </div>
 
-  <h2 id="dca-pairing">How DCA pairs with dividend growth investing</h2>
+  <p><strong>Fidelity alternatives:</strong> FSKAX (Total Market, 0.015%), FXAIX (S&P 500, 0.015%), FTIHX (International, 0.06%), FXNAX (Bond, 0.025%). Fidelity's Zero funds (FZROX, FZILX) charge 0.00% but carry an important limitation: they cannot be transferred in-kind to another brokerage. Switching brokers means selling first — potentially triggering capital gains taxes in a taxable account. If you might want brokerage flexibility in the future, the near-zero-cost standard ETFs (VTI at 0.03%) are preferable.</p>
 
-  <p>Dollar cost averaging and dividend growth investing are natural complements — and combining them creates a compounding effect that neither strategy produces alone.</p>
+  <p><strong>Schwab alternatives:</strong> SCHB (Total Market, 0.03%), SCHX (Large Cap, 0.03%), SCHF (International, 0.06%), SCHZ (Bond, 0.03%).</p>
 
-  <p><strong>DCA into dividend growers:</strong> By investing a fixed amount monthly into dividend growth stocks or ETFs, you accumulate more shares during price dips — which also tend to be periods of higher yield, since dividend yield rises when price falls. You're buying more income at a lower cost per share.</p>
+  <h3>VOO vs VTI — which to choose?</h3>
+  <p>This is the most common beginner question. The honest answer: over long periods, the returns of VOO (S&P 500) and VTI (total market) have been nearly identical, because the S&P 500 companies make up roughly 85% of VTI's weight anyway. VTI adds exposure to mid-cap and small-cap stocks; VOO stays in large-cap. Either is a fine choice. If you can only own one, VTI provides marginally broader diversification. If your brokerage offers only S&P 500 options in your 401(k), VOO or an equivalent is perfectly reasonable.</p>
 
-  <p><strong>DRIP reinvestment:</strong> Reinvesting dividends through a DRIP (Dividend Reinvestment Plan) compounds your position automatically. Each dividend payment buys additional shares, which pay future dividends, which buy more shares. Over a 20–30 year holding period, DRIP reinvestment can account for a substantial portion of total return — the exact share varies significantly by dividend yield, growth rate, and stock price appreciation, but the compounding effect on long holding periods is material.</p>
+  <h2 id="how-to-start">How to start investing in 5 steps</h2>
+
+  <ol>
+    <li><strong>Open a brokerage or retirement account.</strong> For tax-advantaged investing, start with a Roth IRA (if you're eligible based on income) or a traditional IRA. For taxable investing, open a standard brokerage account. Fidelity, Vanguard, and Schwab are the most commonly recommended platforms for index fund investors — all offer the relevant ETFs commission-free. All are SIPC-insured up to $500,000 per account (covering brokerage accounts, not investment losses).</li>
+    <li><strong>Decide on your asset allocation.</strong> For most long-horizon investors (15+ years to retirement), a simple starting allocation is 80–90% stocks, 10–20% bonds. Bonds serve two roles: they dampen portfolio volatility during stock market downturns, and they provide assets to rebalance from (selling bonds to buy stocks when stocks fall). Consider your risk tolerance as well as your time horizon — an investor who would sell in a panic during a 40% downturn needs more bonds than their age alone might suggest. Within stocks, a common split is 70% US (VTI or VOO) and 30% international (VXUS). Younger investors often start 100% stocks and shift toward bonds in the decade before retirement.</li>
+    <li><strong>Choose your funds.</strong> Two to four low-cost index funds cover most investors' needs: a total US market fund, an international fund, and optionally a bond fund. Don't overcomplicate this — a single total world fund like VT (Vanguard Total World Stock ETF, 0.07%) covers both US and international in one holding.</li>
+    <li><strong>Invest and set up automatic contributions.</strong> Make your first investment, then set up automatic monthly contributions — even a modest amount. Time in the market and consistency of contributions matter more than the amount of any single purchase.</li>
+    <li><strong>Avoid sector and thematic ETFs early on.</strong> AI ETFs, clean energy ETFs, semiconductor ETFs — these are concentrated bets on narrow market segments. Start with broad market funds and add tilts only once you understand what you already own.
+    </li>
+    <li><strong>Rebalance annually.</strong> Once a year, check whether your actual allocation has drifted significantly from your target due to market movements, and rebalance back. For most index investors, this takes 15 minutes per year.</li>
+  </ol>
+
+  <div class="callout data">
+    <div class="callout-label">The two-fund portfolio</div>
+    <p>Many experienced index investors keep things extremely simple: VTI (or VOO) + VXUS, at roughly a 60/40 or 70/30 US/international split. No bonds until closer to retirement, no sector tilts, no thematic funds. This two-fund approach has outperformed the majority of actively managed alternatives over most 10+ year periods, requires almost no maintenance, and is comprehensible enough that investors tend to stick with it through downturns — which matters more than optimizing the portfolio mix.</p>
+  </div>
+
+  <h2 id="dca-pairing">How DCA pairs with index investing</h2>
+
+  <p>Dollar cost averaging — investing a fixed amount at regular intervals regardless of market conditions — is a practical approach for most index fund investors. It's worth noting that historically, lump-sum investing (investing all available money immediately) has outperformed DCA roughly two-thirds of the time, simply because markets trend upward over time. If you already have a large sum to invest, lump-sum is mathematically the better approach on average. DCA's real advantages are behavioral and cash-flow driven: Rather than trying to time the market (which research consistently shows is not reliably possible), DCA invests automatically on a schedule. When markets are down, your fixed contribution buys more shares. When markets are up, it buys fewer. Over time, this smooths your average cost per share.</p>
+
+  <p>For investors adding money from regular income, DCA is the natural approach — you invest each month as money becomes available. The practical implementation: set up automatic monthly transfers from your bank account to your brokerage, configured to buy your chosen index funds on the first of each month. This removes the psychological barrier of deciding when to invest and ensures you stay invested consistently — the most important behavioral factor in long-term returns.</p>
 
   <div class="example-box">
-    <div class="example-title">Example: $500/month DCA into dividend growth portfolio, 25 years</div>
-    <div class="example-row"><span>Monthly DCA amount</span><span>$500</span></div>
-    <div class="example-row"><span>Starting dividend yield</span><span>2.5%</span></div>
-    <div class="example-row"><span>Dividend growth rate</span><span>7% per year</span></div>
-    <div class="example-row"><span>Portfolio return (price + dividends)</span><span>9% per year</span></div>
-    <div class="example-row accent"><span>Approximate annual dividend income at year 25</span><span>$18,000–22,000</span></div>
-    <div class="example-row green"><span>Yield on cost (vs total invested $150K)</span><span>~12–15%</span></div>
+    <div class="example-title">Example: $400/month DCA into VTI over 20 years at 7% average return</div>
+    <div class="example-row"><span>Monthly contribution</span><span>$400</span></div>
+    <div class="example-row"><span>Total invested (20 years)</span><span>$96,000</span></div>
+    <div class="example-row"><span>Assumed annual return (inflation-adj. approx.)</span><span>7%</span></div>
+    <div class="example-row accent"><span>Approximate ending balance</span><span>~$261,000</span></div>
+    <div class="example-row"><span>Investment growth</span><span>~$165,000 from compounding</span></div>
   </div>
-
-  <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);margin-top:-12px;">Highly illustrative — actual results depend heavily on stock selection, dividend sustainability, reinvestment timing, and market conditions. Not a projection or guarantee of any specific outcome.</p>
-
-  <p>The key insight: the yield on cost grows every year as the dividend grows, even if you stop adding money. This is why long-term dividend growth investors often describe the strategy as building a "dividend income machine" — the cash flow keeps rising without requiring additional contributions.</p>
-
-  <p>Use the <a href="../drip-calculator.html" style="color:var(--accent);text-decoration:none;">DRIP calculator</a> to model how reinvested dividends compound over time on a specific position.</p>
-
-  <h2 id="mistakes">Common mistakes to avoid</h2>
-
-  <ul>
-    <li><strong>Chasing the highest yield.</strong> The biggest mistake in dividend investing. High yield is often a warning sign, not an opportunity. A company yielding 10% is yielding that much because its price has fallen — frequently because the market anticipates a dividend cut. Prioritize dividend growth rate and sustainability over current yield.</li>
-    <li><strong>Ignoring payout ratio and free cash flow.</strong> A payout ratio based on earnings can look safe while free cash flow payout is unsustainable. Always check whether the dividend is covered by actual free cash flow, not just accounting earnings.</li>
-    <li><strong>Concentrating in one sector.</strong> Dividend growth stocks cluster in certain sectors — utilities, consumer staples, healthcare, financials. A portfolio of 10 dividend stocks in three sectors isn't diversified. Check sector exposure regularly and maintain balance across at least 5–6 sectors.</li>
-    <li><strong>Holding high-yield REITs in taxable accounts.</strong> REIT dividends are generally taxed as ordinary income rather than at the lower qualified dividend rate. Holding REITs in a Roth IRA or traditional IRA shelters this income from immediate taxation. High-yield stocks generally belong in tax-advantaged accounts first.</li>
-    <li><strong>Selling during temporary dividend cuts.</strong> Some of the best long-term dividend growers have cut or suspended dividends during severe recessions (2008–2009, 2020) and then resumed and grew them afterward. Evaluate whether a cut is temporary (recession-driven) or structural (business model deterioration) before selling.</li>
-    <li><strong>Buying overvalued dividend stocks purely for the streak.</strong> Morningstar notes explicitly: "If you buy a stock that's way overvalued just for the dividend, that could be a poor total return over time." Valuation still matters — a 50-year dividend growth streak at a price that implies zero margin of safety is not a safe investment.</li>
-  </ul>
+  <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);margin-top:-12px;">Illustrative only. Uses simplified constant return assumption. Actual results vary with market conditions. Not a projection.</p>
 
   <h2 id="faq">Frequently asked questions</h2>
 
-  <h3>What's the difference between Dividend Aristocrats and Dividend Kings?</h3>
-  <p>Dividend Aristocrats have increased their dividend for at least 25 consecutive years and are members of the S&P 500. Dividend Kings have raised their dividend for 50 or more consecutive years — a more exclusive group. Both have demonstrated the ability to maintain and grow dividends through multiple recessions and market cycles. A long streak doesn't guarantee future safety — it's one input, not the only one.</p>
+  <h3>Can I lose money in an index fund?</h3>
+  <p>Yes. Index funds track the market — when the market falls, your index fund falls with it. The S&P 500 declined roughly 50% during the 2008–2009 financial crisis and approximately 34% during the 2020 COVID crash. Both recovered and went on to reach new highs, but there is no guarantee that any specific market will recover on any specific timeline. Index funds are appropriate for long-horizon investors who can tolerate short-term volatility without selling.</p>
 
-  <h3>Is dividend growth investing more suitable than index investing?</h3>
-  <p>Neither is universally superior — it depends on your goals, time horizon, and tax situation. Research on dividend growth strategies suggests they can produce competitive total returns over long periods, but the comparison depends heavily on the time period selected. The genuine advantages of dividend growth investing are behavioral (seeing growing cash payments makes it easier to hold through downturns), income-focused (growing income without selling shares), and diversification-related (lower correlation to AI/tech concentration in 2026). It's a strategy for specific goals, not a universal outperformer.</p>
+  <h3>How many index funds do I need?</h3>
+  <p>Two to four is sufficient for most investors. A total US market fund plus a total international fund covers global stock exposure. Adding a bond fund provides stability. Beyond that, adding more funds usually adds complexity without meaningful diversification benefit — many sector, thematic, or factor funds overlap heavily with a total market fund anyway.</p>
 
-  <h3>How many stocks do I need?</h3>
-  <p>Most individual investors achieve reasonable diversification with 20–30 stocks across 6–8 sectors. Under 15 stocks creates meaningful concentration risk from any single company cutting its dividend. Over 40 stocks becomes difficult to monitor. Note that sector overlap matters as much as raw count — 25 stocks concentrated in three sectors is not meaningfully diversified. Check sector weights regularly.</p>
+  <h3>Is it better to invest in a Roth IRA or a taxable account?</h3>
+  <p>For most people, maximize tax-advantaged accounts first: contribute enough to your 401(k) to capture any employer match (this is an immediate 50–100% return on that money), then fund a Roth IRA up to the annual limit ($7,000 in 2026 for those under 50), then return to your 401(k) up to the maximum, then invest in taxable accounts. Index funds are tax-efficient in taxable accounts (low turnover means few capital gains distributions), but tax-free growth in a Roth IRA is still preferable for long-horizon investing where possible.</p>
 
-  <h3>When should I start taking dividend income rather than reinvesting?</h3>
-  <p>This is a personal decision based on your income needs. Most dividend growth investors reinvest (via DRIP) during accumulation and switch to taking cash dividends at or near retirement. The flexibility is one of the strategy's advantages — you can gradually reduce DRIP reinvestment as you approach retirement without selling a single share, transitioning from growth mode to income mode.</p>
+  <h3>What is the difference between index fund investing and DCA?</h3>
+  <p>Index fund investing describes what you buy — a fund that tracks a market index rather than selecting individual stocks. DCA describes how you buy it — investing fixed amounts at regular intervals rather than all at once. They're complementary strategies: most long-term index fund investors use DCA as their purchasing method. Use the <a href="../index.html" style="color:var(--accent);text-decoration:none;">DCA calculator</a> to model your specific contribution schedule.</p>
+
+  <h3>Should I invest internationally or just in the US?</h3>
+  <p>Most financial planning guidelines suggest some international diversification — a common range is 20–40% international allocation within the equity portion of a portfolio. The argument for international: it reduces dependence on any single country's economy and captures growth from markets that may outperform the US in certain periods. The argument for US-only: US companies already generate significant international revenue, and the US market has historically been among the strongest performers. A reasonable starting default: 70% US / 30% international within your equity allocation. Either approach is defensible; what matters most is staying invested consistently.</p>
 
   <div class="cta-box">
-    <h3>Model your dividend reinvestment returns</h3>
-    <p>Use the DRIP calculator to see how reinvested dividends compound over time and how much your income grows with each reinvestment.</p>
-    <a href="../drip-calculator.html" class="cta-btn">Try the DRIP calculator</a>
+    <h3>Model your index fund growth with DCA</h3>
+    <p>Use the DCA calculator to see how regular monthly contributions compound over time in an index fund portfolio.</p>
+    <a href="../index.html" class="cta-btn">Try the DCA calculator</a>
   </div>
 
   <div class="divider"></div>
 
   <h2>The bottom line</h2>
 
-  <p>Dividend growth investing is a long-term strategy that rewards patience. The yield today is almost irrelevant — what matters is where the yield on cost lands in 10, 15, or 20 years given the company's dividend growth rate. The investors who bought Microsoft or Visa at sub-2% yields and held are now collecting 4–5% on their original cost, plus significant price appreciation.</p>
+  <p>Index fund investing works because it solves the two biggest problems in investing: cost and behavior. By eliminating the expense drag of active management, index funds keep more of your returns. By providing simple, well-diversified portfolios, they make it easier to stay invested through downturns rather than reacting emotionally to market noise.</p>
 
-  <p>In 2026, dividend growth investing is worth considering in the context of low S&P 500 dividend yields and elevated AI/tech concentration — two structural factors that make dividend-focused strategies a meaningful complement to broad index exposure for some investors. Dividend growth strategies provide both income and genuine diversification from the factors that have driven the last few years of returns — without requiring a prediction about when or whether those trends reverse.</p>
-
-  <p>Start with a core of well-established balanced growers (PG, JNJ, KO, MCD), add selective high-growth exposure (MSFT, V, AVGO), and use SCHD or VIG as an ETF foundation if individual stock research feels like too much overhead. DCA monthly, reinvest dividends, and give it years. The compounding takes time — which is also why starting early matters more than starting perfectly.</p>
+  <p>The implementation is genuinely straightforward: open an account at Fidelity, Vanguard, or Schwab; buy VTI or VOO (and optionally VXUS and BND); set up monthly automatic contributions; rebalance once a year. That's the full strategy. The difficulty isn't technical — it's behavioral. The investors who build wealth with index funds are the ones who set up the automatic contributions, ignore market headlines, and don't sell when markets drop.</p>
 
   <div class="callout">
     <div class="callout-label">Disclaimer</div>
-    <p>This article is for informational purposes only and does not constitute financial advice. Individual stock examples are illustrative only and not recommendations to buy or sell. Past dividend history does not guarantee future payments. All investments carry risk including potential loss of principal. Consult a qualified financial advisor before making investment decisions. All data cited reflects specific past dates and may have changed.</p>
+    <p>This article is for informational and educational purposes only and does not constitute financial advice. Specific funds mentioned are illustrative examples, not recommendations. Past performance does not guarantee future results. All investments carry risk including potential loss of principal. Expense ratios cited are approximate and subject to change — verify at the fund provider's website before investing. Consult a qualified financial advisor for personalized investment guidance.</p>
   </div>
 
   <div class="author-bio-box">
