@@ -45,6 +45,7 @@ CALC_CATEGORIES = [
     ]),
     ('Income', [
         ('drip-calculator.html',                'DRIP'),
+        ('dividend-calculator.html',            'Dividend income'),
         ('inflation-calculator.html',           'Real returns'),
     ]),
 ]
