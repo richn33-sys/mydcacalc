@@ -58,6 +58,7 @@ GUIDE_CATEGORIES = [
         ('best-day-to-dca-bitcoin.html',                  'Best day to DCA Bitcoin'),
         ('bitcoin-dca-strategy.html',                     'Bitcoin DCA strategy'),
         ('fear-greed-index-dca-strategy.html',            'Fear &amp; Greed Index DCA'),
+        ('dividend-growth-portfolio.html',              'Dividend growth portfolio'),
     ]),
     ('Crypto', [
         ('how-to-build-crypto-dca-portfolio.html',        'Crypto DCA portfolio'),

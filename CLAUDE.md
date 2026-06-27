@@ -144,7 +144,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 21 guides published; counter reads 21 ✅
+│   ├── index.html                                ← 22 guides published; counter reads 22 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -165,7 +165,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── portfolio-diversification-guide.html      ← NEW Jun 5 (18th guide)
 │   ├── tax-loss-harvesting-explained.html        ← NEW Jun 7 (19th guide)
 │   ├── crypto-staking-explained.html             ← NEW Jun 10 (20th guide)
-│   └── bond-ladder-retirement.html               ← NEW Jun 15 (21st guide)
+│   ├── bond-ladder-retirement.html               ← NEW Jun 15 (21st guide)
+│   └── rmd-explained.html                         ← NEW Jun 24 (22nd guide)
 └── CLAUDE.md
 ```
 ---
@@ -286,7 +287,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Inputs: account balance (prior year-end), age / birth year, account type
 - Outputs: this year's RMD amount, distribution period factor, projected future RMDs
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
-- Pairs with the (planned) RMD Explained guide
+- Pairs with the RMD Explained guide (`guides/rmd-explained.html`, published Jun 24 2026)
 - **Keywords:** RMD calculator, required minimum distribution calculator, IRA 401k RMD
 ---
 ## Author Personas
@@ -304,7 +305,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 ---
-## Guides Section (21 published as of Jun 15 2026)
+## Guides Section (22 published as of Jun 24 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -328,6 +329,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | tax-loss-harvesting-explained.html | James Colter | ✅ Live | Jun 7 2026 |
 | crypto-staking-explained.html | James Colter | ✅ Live | Jun 10 2026 |
 | bond-ladder-retirement.html | James Colter | ✅ Live | Jun 15 2026 |
+| rmd-explained.html | James Colter | ✅ Live | Jun 24 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -469,6 +471,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | guides/tax-loss-harvesting-explained.html | tax loss harvesting explained |
 | guides/crypto-staking-explained.html | crypto staking yields explained |
 | guides/bond-ladder-retirement.html | how to build a bond ladder for retirement |
+| guides/rmd-explained.html | required minimum distribution RMD explained |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -543,7 +546,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jun 15 2026 — verified against disk, 21 guides):
+### Current CURRENT_GUIDES (as of Jun 24 2026 — verified against disk, 22 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging",
@@ -567,9 +570,11 @@ CURRENT_GUIDES = [
     "Tax-loss harvesting explained",
     "Crypto staking yields explained",
     "How to build a bond ladder for retirement",
+    "Required minimum distributions explained 2026 rules ages strategies",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
+> ✅ Jun 24: RMD Explained guide added — research_agent.py CURRENT_GUIDES now at 22, audited against disk and matches (22 guide HTML files).
 
 ### Current CURRENT_CALCULATORS (as of Jun 21 2026 — verified against disk, 15 calculators):
 ```python
@@ -595,6 +600,7 @@ CURRENT_CALCULATORS = [
 ---
 ## Roadmap
 ### Done ✅
+- [x] RMD Explained guide — James Colter, 22nd guide — `guides/rmd-explained.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under Retirement & FIRE — Jun 24 2026
 - [x] RMD Calculator (15th calculator) — `rmd-calculator.html`, under Retirement & Tax — Jun 21 2026
 - [x] nav.js RECREATED — all nav dropdown/hamburger/accordion JS moved to external `/nav.js`; `stamp_nav.py` `ensure_nav_js()` injects `<script src="/nav.js">` on every page; `NAV_EVENT_JS` reduced to that tag — Jun 21 2026
 - [x] Nav arrow character fixed — was rendering as literal "u25be" text, now correct ▾ — Jun 21 2026
@@ -685,11 +691,12 @@ CURRENT_CALCULATORS = [
 - [x] **Safe Withdrawal Rate Calculator** — built and deployed Jun 15 2026 (14th calculator) ✅
 - [x] **Accordion guides dropdown** — stamp_nav.py rebuilt, all pages re-stamped Jun 15 2026 ✅
 - [x] **Build RMD Calculator** — built and deployed Jun 21 2026 (15th calculator) ✅
-- [ ] **RMD Explained guide** — pairs with the RMD calculator
+- [x] **RMD Explained guide** — published Jun 24 2026 (22nd guide, James Colter), under Retirement & FIRE ✅
 - [ ] **Dividend Growth Portfolio guide**
 - [ ] **Dividend Income Calculator**
 - [ ] **Rule of 72 Calculator**
-- [ ] **Submit rmd-calculator.html to GSC**
+- [ ] **Index Fund Investing for Beginners guide**
+- [ ] **Submit rmd-explained.html + rmd-calculator.html to GSC**
 - [ ] **Submit new pages to GSC** — withdrawal-rate-calculator.html + guides/bond-ladder-retirement.html
 - [x] **Submit outstanding pages to GSC** — all outstanding pages (fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide, tax-loss-harvesting-calculator, tax-loss-harvesting-explained, crypto-cost-basis-calculator) submitted Jun 10 2026 ✅
 - [ ] **Submit guides/crypto-staking-explained.html to GSC** — newly published, not yet submitted
@@ -708,6 +715,15 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 24 2026 — RMD Explained Guide + AIToolGrade Workflow Session
+- **RMD Explained guide published** (James Colter, 22nd guide) — `guides/rmd-explained.html`; pairs with the RMD calculator (15th calculator, built Jun 21)
+- Added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE**; nav re-stamped across all pages
+- `guides/index.html` counter updated to 22
+- `sitemap.xml` updated with the rmd-explained.html URL
+- **research_agent.py audit (vs disk):** CURRENT_GUIDES updated to 22 ("Required minimum distributions explained 2026 rules ages strategies"); CURRENT_CALCULATORS unchanged at 15 — both verified against disk and match
+- **NEW AIToolGrade build workflow:** reviews and blog posts for aitoolgrade.com can now be built directly in claude.ai chat (same approach as mydcacalc content), downloaded, and deployed locally — no more back-and-forth in Claude Code for net-new content
+- Next priorities: Dividend Growth Portfolio guide, Dividend Income Calculator, Rule of 72 Calculator, Index Fund Investing for Beginners guide, submit rmd-explained.html + rmd-calculator.html to GSC
 
 ### Jun 21 2026 — RMD Calculator + nav.js Recreation + GA4 Session
 - **RMD Calculator built and deployed** (`rmd-calculator.html`, 15th calculator) — required minimum distribution from traditional IRA/401k; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
