@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dividend Income Calculator — How Much Will Your Portfolio Pay?</title>
+<meta name="description" content="Free dividend income calculator. Enter your portfolio value, dividend yield, and annual growth rate to see your projected dividend income, yield on cost over 20 years, and how DRIP reinvestment compounds your income.">
+<meta name="keywords" content="dividend income calculator, dividend yield calculator, how much dividend income, DRIP calculator, yield on cost calculator, dividend portfolio calculator">
+<meta property="og:title" content="Dividend Income Calculator — See Your Projected Dividend Income">
+<meta property="og:description" content="Enter your portfolio value, yield, and dividend growth rate. See annual income, yield on cost, and how DRIP reinvestment compounds over 20 years.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/dividend-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/dividend-calculator.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Dividend Income Calculator",
+  "description": "Project dividend income, yield on cost, and DRIP compounding over 20 years",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
+h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
+
+.main { max-width: 900px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
+@media (max-width: 720px) { .main { grid-template-columns: 1fr; } }
+
+/* Controls */
+.controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
+.section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.input-group { margin-bottom: 16px; }
+.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.input-label span { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+.input-wrap { position: relative; }
+.input-prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+.input-suffix { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px 9px 24px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+input[type="number"].has-suffix { padding-right: 28px; }
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type="number"]:focus { border-color: var(--accent-border); }
+input[type="range"] { width: 100%; height: 4px; appearance: none; background: var(--bg-input); border-radius: 2px; outline: none; border: 1px solid var(--border); cursor: pointer; margin-top: 6px; }
+input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-card); }
+.range-header { display: flex; justify-content: space-between; align-items: center; }
+.range-val { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 500; }
+.divider-line { height: 1px; background: var(--border); margin: 16px 0; }
+.toggle-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.toggle-label { font-size: 12px; color: var(--text-muted); }
+.toggle { position: relative; width: 40px; height: 22px; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; cursor: pointer; inset: 0; background: var(--bg-input); border: 1px solid var(--border); border-radius: 22px; transition: 0.2s; }
+.toggle-slider::before { content: ''; position: absolute; width: 16px; height: 16px; left: 2px; top: 2px; background: var(--text-dim); border-radius: 50%; transition: 0.2s; }
+.toggle input:checked + .toggle-slider { background: var(--accent-dim); border-color: var(--accent-border); }
+.toggle input:checked + .toggle-slider::before { transform: translateX(18px); background: var(--accent); }
+
+/* Results */
+.results { display: flex; flex-direction: column; gap: 14px; }
+
+/* Hero metric */
+.income-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.income-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+.income-card.primary { border-color: var(--accent-border); background: var(--accent-dim); }
+.income-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.income-card.primary .income-label { color: var(--accent); }
+.income-value { font-size: 24px; font-weight: 600; font-family: var(--font-mono); color: var(--text); letter-spacing: -0.02em; margin-bottom: 4px; }
+.income-card.primary .income-value { color: var(--accent); }
+.income-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
+
+/* Metrics */
+.metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
+.metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.metric-value { font-family: var(--font-mono); font-size: 17px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
+.metric-value.green { color: var(--green); }
+.metric-value.accent { color: var(--accent); }
+
+/* Chart */
+.chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+.chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.chart-legend { display: flex; gap: 12px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.chart-wrap { position: relative; height: 220px; }
+
+/* Table */
+.table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.table-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 460px; }
+th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+tr:last-child td { border-bottom: none; }
+td.accent { color: var(--accent); font-weight: 500; }
+td.green { color: var(--green); }
+
+/* Info + disclaimer */
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
+.info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.info-box strong { color: var(--text); font-weight: 500; }
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+
+.content-section { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ── GROUPED CALC DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+/* ── ACCORDION GUIDES DROPDOWN ── */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
+
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your dividend portfolio performance</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Investing</button>
+      <div class="nav-group-menu">
+        <a href="">DCA calculator</a>
+        <a href="dca-backtest.html">DCA backtest</a>
+        <a href="compound-interest.html">Compound interest</a>
+        <a href="loss-recovery-calculator.html">Loss recovery</a>
+        <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="asset-allocation.html">Asset allocation</a>
+        <a href="rebalancing-calculator.html">Rebalancing</a>
+        <a href="position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="fire-calculator.html">FIRE calculator</a>
+        <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+        <a href="fee-calculator.html">Fee impact</a>
+        <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="rmd-calculator.html">RMD calculator</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle active">Income</button>
+      <div class="nav-group-menu">
+        <a href="drip-calculator.html">DRIP</a>
+        <a href="dividend-calculator.html" class="active">Dividend income</a>
+        <a href="inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+          <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+          <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+          <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+          <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+          <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+          <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+        </div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+          <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+          <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+          <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+          <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+          <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        </div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+          <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+          <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+          <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+          <a href="guides/rmd-explained.html">RMD explained</a>
+        </div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+          <a href="guides/how-to-calculate-position-size.html">Position size</a>
+          <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+          <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+          <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+        </div>
+        <a href="guides/index.html" class="all-guides-link">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="">DCA calculator</a>
+  <a href="dca-backtest.html">DCA backtest</a>
+  <a href="compound-interest.html">Compound interest</a>
+  <a href="loss-recovery-calculator.html">Loss recovery</a>
+  <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="asset-allocation.html">Asset allocation</a>
+  <a href="rebalancing-calculator.html">Rebalancing</a>
+  <a href="position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="fire-calculator.html">FIRE calculator</a>
+  <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+  <a href="fee-calculator.html">Fee impact</a>
+  <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <a href="rmd-calculator.html">RMD calculator</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="drip-calculator.html">DRIP</a>
+  <a href="dividend-calculator.html">Dividend income</a>
+  <a href="inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">DCA & Investing</span>
+  <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+  <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+  <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+  <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+  <span class="mobile-guides-label">Crypto</span>
+  <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+  <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <span class="mobile-guides-label">Retirement & FIRE</span>
+  <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+  <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="guides/rmd-explained.html">RMD explained</a>
+  <span class="mobile-guides-label">Fundamentals</span>
+  <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="guides/how-to-calculate-position-size.html">Position size</a>
+  <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+  <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">Dividend income · Yield on cost · DRIP growth</div>
+  <h1>Dividend Income <em>Calculator</em></h1>
+  <p>Enter your portfolio value, dividend yield, and annual growth rate to see your projected income, yield on cost, and how DRIP reinvestment compounds your dividends over 20 years.</p>
+</div>
+
+<div class="main">
+
+  <!-- Controls -->
+  <div class="controls-card">
+    <div class="section-label">Your portfolio</div>
+
+    <div class="input-group">
+      <div class="input-label">Portfolio value <span id="port-display">$100,000</span></div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="portfolio" value="100000" min="1000" step="5000"
+          oninput="document.getElementById('port-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="range-header">
+        <div style="font-size:12px;color:var(--text-muted);">Current dividend yield</div>
+        <span class="range-val" id="yield-display">2.5%</span>
+      </div>
+      <input type="range" id="div-yield" min="0.5" max="8" value="2.5" step="0.1"
+        oninput="document.getElementById('yield-display').textContent=this.value+'%';calc()">
+    </div>
+
+    <div class="input-group">
+      <div class="range-header">
+        <div style="font-size:12px;color:var(--text-muted);">Annual dividend growth rate</div>
+        <span class="range-val" id="dgr-display">7%</span>
+      </div>
+      <input type="range" id="div-growth" min="0" max="20" value="7" step="0.5"
+        oninput="document.getElementById('dgr-display').textContent=this.value+'%';calc()">
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Monthly contributions</div>
+
+    <div class="input-group">
+      <div class="input-label">Monthly DCA amount <span id="dca-display">$500</span></div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="monthly-dca" value="500" min="0" step="100"
+          oninput="document.getElementById('dca-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Settings</div>
+
+    <div class="toggle-row">
+      <span class="toggle-label">Reinvest dividends (DRIP)</span>
+      <label class="toggle">
+        <input type="checkbox" id="drip-toggle" checked onchange="calc()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="input-group">
+      <div class="range-header">
+        <div style="font-size:12px;color:var(--text-muted);">Portfolio price appreciation</div>
+        <span class="range-val" id="price-display">4%</span>
+      </div>
+      <input type="range" id="price-growth" min="0" max="12" value="4" step="0.5"
+        oninput="document.getElementById('price-display').textContent=this.value+'%';calc()">
+    </div>
+
+    <div class="input-group">
+      <div class="range-header">
+        <div style="font-size:12px;color:var(--text-muted);">Tax rate on dividends</div>
+        <span class="range-val" id="tax-display">15%</span>
+      </div>
+      <input type="range" id="tax-rate" min="0" max="37" value="15" step="1"
+        oninput="document.getElementById('tax-display').textContent=this.value+'%';calc()">
+    </div>
+
+  </div>
+
+  <!-- Results -->
+  <div class="results">
+
+    <!-- Hero metrics -->
+    <div class="income-hero">
+      <div class="income-card primary">
+        <div class="income-label">Annual dividend income (Year 1)</div>
+        <div class="income-value" id="annual-income">$0</div>
+        <div class="income-sub" id="monthly-income">$0 / month</div>
+      </div>
+      <div class="income-card">
+        <div class="income-label">After-tax annual income</div>
+        <div class="income-value" id="after-tax-income">$0</div>
+        <div class="income-sub" id="after-tax-monthly">$0 / month after tax</div>
+      </div>
+    </div>
+
+    <!-- Summary metrics -->
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Current yield</div>
+        <div class="metric-value accent" id="current-yield-display">0%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Yield on cost (Yr 10)</div>
+        <div class="metric-value green" id="yoc-10">0%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Annual income (Yr 20)</div>
+        <div class="metric-value green" id="income-20">$0</div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Dividend income growth over 20 years</div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>With DRIP</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6;"></div>Without DRIP</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="div-chart"></canvas>
+      </div>
+    </div>
+
+    <!-- Year table -->
+    <div class="table-card">
+      <div class="table-title">20-year dividend income projection</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Portfolio value</th>
+              <th>Annual dividend</th>
+              <th>Yield on cost</th>
+              <th>After-tax income</th>
+            </tr>
+          </thead>
+          <tbody id="div-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <p><strong>What is yield on cost?</strong> Yield on cost is your current annual dividend divided by what you originally paid for the investment — not the current market value. As dividends grow each year, your yield on cost rises even if the stock price stays flat. A stock purchased at $100 paying a $2 dividend (2% yield) that grows its dividend to $4 after 10 years has a 4% yield on cost — double the original yield, on the same original investment.</p>
+    </div>
+
+    <div class="disclaimer">
+      This calculator uses simplified assumptions: constant dividend growth rate, constant price appreciation, and consistent monthly contributions. Actual dividend income depends on stock selection, company performance, payout ratio sustainability, and market conditions. Dividend growth rates and stock prices are not guaranteed. This is for educational purposes only. Not financial advice.
+    </div>
+
+  </div>
+</div>
+
+<div class="content-section">
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the dividend income calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator projects your dividend income over 20 years based on your starting portfolio value, current dividend yield, annual dividend growth rate, and monthly DCA contributions. With DRIP toggled on, it reinvests dividend payments each year — compounding your share count alongside organic portfolio growth. With DRIP off, it shows the income you'd receive as cash without reinvestment.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The yield on cost metric shows how your effective income return rises over time as the dividend grows. A 2.5% starting yield growing at 7% per year becomes a 4.9% yield on cost after 10 years — nearly double, on the same original investment cost.</p>
+  <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:28px 0 12px;">How to use this calculator</h3>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;">
+    <li style="margin-bottom:10px;">Enter your current dividend portfolio value and the blended yield across your holdings.</li>
+    <li style="margin-bottom:10px;">Set the annual dividend growth rate — use the historical rate of your holdings or a target rate (7% is a common assumption for dividend growth portfolios).</li>
+    <li style="margin-bottom:10px;">Set your monthly DCA contribution to see how regular additions accelerate income growth.</li>
+    <li style="margin-bottom:10px;">Toggle DRIP on to see compounded returns from reinvestment vs cash income with DRIP off.</li>
+    <li style="margin-bottom:10px;">Set the tax rate to see after-tax income — qualified dividends are taxed at 0%, 15%, or 20% depending on your income bracket.</li>
+  </ul>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For a full guide on building a dividend growth portfolio, read <a href="guides/dividend-growth-portfolio.html" style="color:#c8f060;text-decoration:none;">how to build a dividend growth portfolio</a>. To model reinvestment on a specific holding, use the <a href="drip-calculator.html" style="color:#c8f060;text-decoration:none;">DRIP calculator</a>.</p>
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For educational purposes only. Not financial advice.
+  </p>
+</footer>
+
+<script src="/nav.js"></script>
+<script>
+let chart = null;
+
+function fmt(n) {
+  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  if (Math.abs(n) >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function calc() {
+  const portfolio   = parseFloat(document.getElementById('portfolio').value) || 0;
+  const divYield    = parseFloat(document.getElementById('div-yield').value) / 100;
+  const divGrowth   = parseFloat(document.getElementById('div-growth').value) / 100;
+  const monthlyDCA  = parseFloat(document.getElementById('monthly-dca').value) || 0;
+  const drip        = document.getElementById('drip-toggle').checked;
+  const priceGrowth = parseFloat(document.getElementById('price-growth').value) / 100;
+  const taxRate     = parseFloat(document.getElementById('tax-rate').value) / 100;
+
+  // Year 1 income
+  const annualIncome = portfolio * divYield;
+  const afterTax = annualIncome * (1 - taxRate);
+
+  document.getElementById('annual-income').textContent = fmt(annualIncome);
+  document.getElementById('monthly-income').textContent = fmt(annualIncome / 12) + ' / month';
+  document.getElementById('after-tax-income').textContent = fmt(afterTax);
+  document.getElementById('after-tax-monthly').textContent = fmt(afterTax / 12) + ' / month';
+  document.getElementById('current-yield-display').textContent = (divYield * 100).toFixed(1) + '%';
+
+  // Build 20-year projection
+  const years = 20;
+  const labelsAll = [], withDrip = [], withoutDrip = [];
+  let portDrip = portfolio, portNoDrip = portfolio;
+  let divPerShare = divYield; // tracks dividend as % of original cost
+  let totalCostBasis = portfolio;
+  let rows = '';
+
+  for (let y = 1; y <= years; y++) {
+    // Add DCA contributions
+    const annualDCA = monthlyDCA * 12;
+    portDrip += annualDCA;
+    portNoDrip += annualDCA;
+    totalCostBasis += annualDCA;
+
+    // Dividend for this year
+    const dripIncome = portDrip * divYield * Math.pow(1 + divGrowth, y - 1);
+    const noDripIncome = portNoDrip * divYield * Math.pow(1 + divGrowth, y - 1);
+
+    // Yield on cost
+    const yoc = (divYield * Math.pow(1 + divGrowth, y - 1)) * 100;
+
+    // After tax
+    const dripAfterTax = dripIncome * (1 - taxRate);
+
+    // Reinvest if DRIP
+    if (drip) portDrip += dripIncome * (1 - taxRate);
+
+    // Price appreciation
+    portDrip *= (1 + priceGrowth);
+    portNoDrip *= (1 + priceGrowth);
+
+    labelsAll.push('Yr ' + y);
+    withDrip.push(Math.round(drip ? dripIncome : noDripIncome));
+    withoutDrip.push(Math.round(noDripIncome));
+
+    // Table rows (every 5 years + year 1)
+    if (y === 1 || y % 5 === 0) {
+      rows += '<tr>' +
+        '<td>' + y + '</td>' +
+        '<td>' + fmt(portDrip) + '</td>' +
+        '<td class="accent">' + fmt(dripIncome) + '</td>' +
+        '<td class="green">' + yoc.toFixed(1) + '%</td>' +
+        '<td>' + fmt(dripAfterTax) + '</td>' +
+        '</tr>';
+    }
+
+    if (y === 10) document.getElementById('yoc-10').textContent = yoc.toFixed(1) + '%';
+    if (y === 20) document.getElementById('income-20').textContent = fmt(dripIncome);
+  }
+
+  document.getElementById('div-tbody').innerHTML = rows;
+  updateChart(labelsAll, withDrip, withoutDrip, drip);
+}
+
+function updateChart(labels, drip, noDrip, dripOn) {
+  const ctx = document.getElementById('div-chart').getContext('2d');
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'With DRIP',
+          data: drip,
+          backgroundColor: 'rgba(200,240,96,0.6)',
+          borderColor: '#c8f060',
+          borderWidth: 1,
+          borderRadius: 3,
+        },
+        {
+          label: 'Without DRIP',
+          data: noDrip,
+          backgroundColor: 'rgba(91,156,246,0.3)',
+          borderColor: '#5b9cf6',
+          borderWidth: 1,
+          borderRadius: 3,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          padding: 12,
+          titleFont: { family: "'Sora', sans-serif", size: 12 },
+          bodyFont: { family: "'DM Mono', monospace", size: 11 },
+          callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + fmt(ctx.raw) }
+        }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 10 } },
+        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1000 ? '$'+(v/1000).toFixed(0)+'K' : '$'+v } }
+      }
+    }
+  });
+}
+
+calc();
+</script>
+
+<script src="/nav.js"></script>
+<script src="/nav.js"></script>
+</body>
+</html>
