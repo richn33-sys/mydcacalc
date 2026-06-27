@@ -28,6 +28,7 @@ CALC_CATEGORIES = [
         ('',                                    'DCA calculator'),
         ('dca-backtest.html',                   'DCA backtest'),
         ('compound-interest.html',              'Compound interest'),
+        ('rule-of-72-calculator.html',          'Rule of 72'),
         ('loss-recovery-calculator.html',       'Loss recovery'),
         ('crypto-cost-basis-calculator.html',   'Crypto cost basis'),
     ]),
@@ -181,8 +182,11 @@ def ensure_css(c):
 
 
 def ensure_nav_js(c):
-    if '/nav.js' not in c:
-        c = c.replace('</body>', '<script src="/nav.js"></script>\n</body>', 1)
+    import re as _re
+    # Remove all existing nav.js tags first
+    c = _re.sub(r'\s*<script src="/nav\.js"></script>', '', c)
+    # Add exactly one before </body>
+    c = c.replace('</body>', '\n<script src="/nav.js"></script>\n</body>', 1)
     return c
 
 
