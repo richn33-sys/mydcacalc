@@ -130,6 +130,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── crypto-cost-basis-calculator.html             ← Crypto Cost Basis / Average Price Calculator (13th calculator, NEW Jun 9)
 ├── withdrawal-rate-calculator.html               ← Safe Withdrawal Rate Calculator (14th calculator, NEW Jun 15)
 ├── rmd-calculator.html                           ← RMD Calculator / Required Minimum Distribution (15th calculator, NEW Jun 21)
+├── dividend-calculator.html                       ← Dividend Income Calculator (16th calculator, NEW Jun 27)
+├── rule-of-72-calculator.html                     ← Rule of 72 Calculator (17th calculator, NEW Jun 27)
 ├── nav.js                                         ← All nav dropdown/hamburger/accordion JS (RECREATED Jun 21 — moved out of inline; stamp_nav injects <script src="/nav.js"> on every page)
 ├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown; NAV_EVENT_JS now just <script src="/nav.js">, ensure_nav_js() injects it, Jun 21)
 ├── about.html
@@ -144,7 +146,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 22 guides published; counter reads 22 ✅
+│   ├── index.html                                ← 24 guides published; counter reads 24 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -166,7 +168,9 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── tax-loss-harvesting-explained.html        ← NEW Jun 7 (19th guide)
 │   ├── crypto-staking-explained.html             ← NEW Jun 10 (20th guide)
 │   ├── bond-ladder-retirement.html               ← NEW Jun 15 (21st guide)
-│   └── rmd-explained.html                         ← NEW Jun 24 (22nd guide)
+│   ├── rmd-explained.html                         ← NEW Jun 24 (22nd guide)
+│   ├── dividend-growth-portfolio.html             ← NEW Jun 27 (23rd guide)
+│   └── index-fund-investing-beginners.html        ← NEW Jun 27 (24th guide)
 └── CLAUDE.md
 ```
 ---
@@ -187,13 +191,14 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ### Nav structure (as of Jun 15 2026 — grouped calc dropdowns + accordion guides dropdown):
 - `nav.js` was abandoned/deleted Jun 2 2026, then **RECREATED Jun 21 2026** — all nav dropdown/hamburger/accordion JS now lives in external `/nav.js`. `stamp_nav.py`'s `NAV_EVENT_JS` is now just a `<script src="/nav.js">` tag, and `ensure_nav_js()` always injects it on every page. (This is the inverse of the Jun 2 decision — nav JS is centralized again, but as a real external file every page actually loads.)
 - Nav markup is HARDCODED into every page, stamped via `stamp_nav.py` when a calculator or guide is added; the nav behavior JS is centralized in `/nav.js`.
+- **nav.js duplicate bug PERMANENTLY FIXED (Jun 27 2026):** `ensure_nav_js()` previously appended a `<script src="/nav.js">` tag without removing any existing one, so re-stamping accumulated duplicate tags. It now strips ALL existing `/nav.js` script tags before inserting exactly one — re-stamping is now idempotent.
 - **Calculators are now organized into grouped dropdown categories (rebuilt Jun 7):** Investing · Portfolio · Retirement & Tax · Income — replacing the old flat single-row list of every calculator.
   - **Investing:** DCA · DCA backtest · Compound interest · Loss recovery
   - **Portfolio:** Asset allocation · Rebalancing · Position size
   - **Retirement & Tax:** FIRE · Fee impact · Tax-loss harvesting
-  - **Income:** DRIP · Real returns
+  - **Income:** DRIP · Real returns · Dividend income
   - (Exact category membership lives in `stamp_nav.py`'s `CALC_CATEGORIES` array — that is the source of truth.)
-  - Note: Safe Withdrawal Rate calculator (14th, Jun 15) and RMD calculator (15th, Jun 21) both live under **Retirement & Tax** — confirm exact membership in `CALC_CATEGORIES`.
+  - Note: Safe Withdrawal Rate calculator (14th, Jun 15) and RMD calculator (15th, Jun 21) both live under **Retirement & Tax** — confirm exact membership in `CALC_CATEGORIES`. Rule of 72 (17th, Jun 27) lives under **Investing**; Dividend Income (16th, Jun 27) under **Income**.
 - **Guides dropdown is now an ACCORDION (rebuilt Jun 15):** shows 4 collapsible category headers — **DCA & Investing · Crypto · Retirement & FIRE · Fundamentals** — that expand/collapse on click, one open at a time. Replaces the old flat 20-guide list.
   - (Exact category membership lives in `stamp_nav.py`'s `GUIDE_CATEGORIES` array — that is the source of truth. Bond Ladder for Retirement sits under **Retirement & FIRE**.)
 - Root pages: `href="guides/page.html"` for guide links
@@ -289,6 +294,21 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
 - Pairs with the RMD Explained guide (`guides/rmd-explained.html`, published Jun 24 2026)
 - **Keywords:** RMD calculator, required minimum distribution calculator, IRA 401k RMD
+
+### dividend-calculator.html — Dividend Income Calculator (16th calculator, NEW Jun 27 2026)
+- Projects dividend income from a portfolio, factoring in dividend yield, contributions, and dividend growth/reinvestment
+- Inputs: investment amount, dividend yield, annual contribution, dividend growth rate, years, reinvestment toggle
+- Outputs: annual/monthly dividend income, total dividends, portfolio value over time
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Income**
+- Pairs with the Dividend Growth Portfolio guide (`guides/dividend-growth-portfolio.html`)
+- **Keywords:** dividend calculator, dividend income calculator, dividend reinvestment calculator
+
+### rule-of-72-calculator.html — Rule of 72 Calculator (17th calculator, NEW Jun 27 2026)
+- Estimates how long an investment takes to double at a given rate of return (72 ÷ rate), and the rate needed to double in a given time
+- Inputs: expected annual return (or target years), starting amount
+- Outputs: years to double, doubling rate, projected value milestones
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
+- **Keywords:** rule of 72 calculator, how long to double money, doubling time calculator
 ---
 ## Author Personas
 ### James Colter — Long-term Investor & Personal Finance Writer
@@ -305,7 +325,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 ---
-## Guides Section (22 published as of Jun 24 2026)
+## Guides Section (24 published as of Jun 27 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -330,6 +350,8 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | crypto-staking-explained.html | James Colter | ✅ Live | Jun 10 2026 |
 | bond-ladder-retirement.html | James Colter | ✅ Live | Jun 15 2026 |
 | rmd-explained.html | James Colter | ✅ Live | Jun 24 2026 |
+| dividend-growth-portfolio.html | James Colter | ✅ Live | Jun 27 2026 |
+| index-fund-investing-beginners.html | James Colter | ✅ Live | Jun 27 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -450,6 +472,8 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | crypto-cost-basis-calculator.html | crypto cost basis calculator / average price calculator |
 | withdrawal-rate-calculator.html | safe withdrawal rate calculator / how long will my portfolio last |
 | rmd-calculator.html | RMD calculator / required minimum distribution calculator |
+| dividend-calculator.html | dividend calculator / dividend income calculator |
+| rule-of-72-calculator.html | rule of 72 calculator / how long to double money |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -472,6 +496,8 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | guides/crypto-staking-explained.html | crypto staking yields explained |
 | guides/bond-ladder-retirement.html | how to build a bond ladder for retirement |
 | guides/rmd-explained.html | required minimum distribution RMD explained |
+| guides/dividend-growth-portfolio.html | how to build a dividend growth portfolio 2026 |
+| guides/index-fund-investing-beginners.html | index fund investing for beginners |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -546,60 +572,73 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jun 24 2026 — verified against disk, 22 guides):
+### Current CURRENT_GUIDES (as of Jun 27 2026 — verified against disk, 24 guides):
 ```python
 CURRENT_GUIDES = [
-    "What is dollar cost averaging",
+    "What is dollar cost averaging?",
     "How compound interest works",
     "DCA vs lump sum investing",
     "How to calculate position size",
     "How to invest in a volatile market",
-    "Bitcoin DCA strategy: best day, frequency and backtested returns",
+    "Bitcoin DCA strategy",
     "How to invest during geopolitical uncertainty",
-    "How to use the Fear and Greed Index to optimize your DCA strategy",
-    "What is a good risk reward ratio in trading",
-    "What the Strategic Bitcoin Reserve means for DCA investors",
-    "How to invest when interest rates are high and cuts keep getting delayed",
-    "Ethereum Glamsterdam upgrade 2026: what it means for ETH investors",
-    "AI stocks vs traditional value: how to balance your portfolio in 2026",
-    "Should you DCA into AI crypto tokens",
-    "The best day to DCA Bitcoin: why Monday has historically outperformed",
-    "The 4% rule explained: is it still valid in 2026",
-    "How to build a crypto DCA portfolio (BTC/ETH/SOL)",
+    "Fear & Greed Index DCA strategy",
+    "What is a good risk/reward ratio?",
+    "Strategic Bitcoin Reserve DCA",
+    "Investing during high interest rates",
+    "Ethereum Glamsterdam upgrade 2026",
+    "AI stocks vs traditional value",
+    "Should you DCA into AI crypto tokens?",
+    "Best day to DCA Bitcoin",
+    "The 4% rule explained",
+    "How to build a crypto DCA portfolio",
     "Portfolio diversification guide 2026",
     "Tax-loss harvesting explained",
     "Crypto staking yields explained",
     "How to build a bond ladder for retirement",
     "Required minimum distributions explained 2026 rules ages strategies",
+    "How to build a dividend growth portfolio 2026 strategy guide",
+    "Index fund investing for beginners 2026 complete guide",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
 > ✅ Jun 24: RMD Explained guide added — research_agent.py CURRENT_GUIDES now at 22, audited against disk and matches (22 guide HTML files).
+> ⚠️ Drift caught Jun 27: CURRENT_GUIDES was at 25 — the "Rule of 72 calculator how long to double money" entry had been mistakenly added to CURRENT_GUIDES (it's a calculator, not a guide). Removed from CURRENT_GUIDES → 24, matches disk (24 guide HTML files). The dividend-growth + index-fund guides are correctly present.
 
-### Current CURRENT_CALCULATORS (as of Jun 21 2026 — verified against disk, 15 calculators):
+### Current CURRENT_CALCULATORS (as of Jun 27 2026 — verified against disk, 17 calculators):
 ```python
 CURRENT_CALCULATORS = [
-    "DCA calculator",
+    "DCA calculator (index.html)",
     "Position size calculator",
     "Compound interest calculator",
-    "DCA backtest simulator (multi-asset: BTC, ETH, S&P 500, Nasdaq)",
-    "Inflation-adjusted returns calculator (real return calculator)",
-    "Asset allocation and risk tolerance quiz",
-    "DRIP calculator (dividend reinvestment calculator)",
-    "Investment loss recovery / break-even calculator",
-    "FIRE calculator (financial independence, retire early)",
+    "DCA backtest simulator",
+    "Investment loss recovery calculator",
+    "DRIP dividend reinvestment calculator",
+    "Inflation-adjusted returns calculator",
+    "Asset allocation quiz",
+    "FIRE calculator (includes Coast FIRE and Savings Rate modes)",
     "Portfolio rebalancing calculator",
     "Investment fee impact calculator",
     "Tax-loss harvesting calculator",
-    "Crypto cost basis / average price calculator",
-    "Safe withdrawal rate calculator (portfolio longevity)",
+    "Crypto average cost basis calculator",
+    "Safe withdrawal rate calculator",
     "RMD calculator (required minimum distribution)",
+    "Dividend income calculator",
+    "Rule of 72 calculator (how long to double your money)",
 ]
 ```
 > ✅ Jun 21: research_agent.py audited vs disk — CURRENT_CALCULATORS was at 14, added RMD calculator → 15, now matches disk. (CURRENT_GUIDES unchanged at 21.)
+> ✅ Jun 27: CURRENT_CALCULATORS was at 15, missing both the Dividend Income calculator and Rule of 72 calculator → added both → 17, matches disk (17 calculator HTML files).
 ---
 ## Roadmap
 ### Done ✅
+- [x] Index Fund Investing for Beginners guide — James Colter, 24th guide — `guides/index-fund-investing-beginners.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under Fundamentals — Jun 27 2026
+- [x] Dividend Growth Portfolio guide — James Colter, 23rd guide — `guides/dividend-growth-portfolio.html` — Jun 27 2026
+- [x] Rule of 72 Calculator (17th calculator) — `rule-of-72-calculator.html`, under Investing — Jun 27 2026
+- [x] Dividend Income Calculator (16th calculator) — `dividend-calculator.html`, under Income — Jun 27 2026
+- [x] nav.js duplicate bug PERMANENTLY FIXED — `ensure_nav_js()` now strips all existing `/nav.js` tags before adding one (re-stamping is idempotent) — Jun 27 2026
+- [x] AIToolGrade content build workflow established — reviews/blog posts built in claude.ai, downloaded, deployed locally — Jun 27 2026
+- [x] All 4 new pages submitted to GSC (dividend-growth-portfolio, dividend-calculator, rule-of-72-calculator, index-fund-investing-beginners) — plus rmd-explained + rmd-calculator from prior brief — Jun 27 2026
 - [x] RMD Explained guide — James Colter, 22nd guide — `guides/rmd-explained.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under Retirement & FIRE — Jun 24 2026
 - [x] RMD Calculator (15th calculator) — `rmd-calculator.html`, under Retirement & Tax — Jun 21 2026
 - [x] nav.js RECREATED — all nav dropdown/hamburger/accordion JS moved to external `/nav.js`; `stamp_nav.py` `ensure_nav_js()` injects `<script src="/nav.js">` on every page; `NAV_EVENT_JS` reduced to that tag — Jun 21 2026
@@ -692,11 +731,12 @@ CURRENT_CALCULATORS = [
 - [x] **Accordion guides dropdown** — stamp_nav.py rebuilt, all pages re-stamped Jun 15 2026 ✅
 - [x] **Build RMD Calculator** — built and deployed Jun 21 2026 (15th calculator) ✅
 - [x] **RMD Explained guide** — published Jun 24 2026 (22nd guide, James Colter), under Retirement & FIRE ✅
-- [ ] **Dividend Growth Portfolio guide**
-- [ ] **Dividend Income Calculator**
-- [ ] **Rule of 72 Calculator**
-- [ ] **Index Fund Investing for Beginners guide**
-- [ ] **Submit rmd-explained.html + rmd-calculator.html to GSC**
+- [x] **Dividend Growth Portfolio guide** — published Jun 27 2026 (23rd guide, James Colter) ✅
+- [x] **Dividend Income Calculator** — built and deployed Jun 27 2026 (16th calculator) ✅
+- [x] **Rule of 72 Calculator** — built and deployed Jun 27 2026 (17th calculator) ✅
+- [x] **Index Fund Investing for Beginners guide** — published Jun 27 2026 (24th guide, James Colter) ✅
+- [x] **Submit rmd-explained.html + rmd-calculator.html to GSC** — submitted Jun 27 2026 ✅
+- [x] **Submit all 4 new June 27 pages to GSC** — dividend-growth-portfolio, dividend-calculator, rule-of-72-calculator, index-fund-investing-beginners — submitted Jun 27 2026 ✅
 - [ ] **Submit new pages to GSC** — withdrawal-rate-calculator.html + guides/bond-ladder-retirement.html
 - [x] **Submit outstanding pages to GSC** — all outstanding pages (fee-calculator, rebalancing-calculator, fire-calculator, 4-percent-rule, best-day-to-dca, should-you-dca-into-ai-crypto-tokens, how-to-build-crypto-dca-portfolio, portfolio-diversification-guide, tax-loss-harvesting-calculator, tax-loss-harvesting-explained, crypto-cost-basis-calculator) submitted Jun 10 2026 ✅
 - [ ] **Submit guides/crypto-staking-explained.html to GSC** — newly published, not yet submitted
@@ -715,6 +755,20 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 27 2026 — Dividend + Index Fund + Rule of 72 Session
+- **Index Fund Investing for Beginners guide published** (James Colter, 24th guide) — `guides/index-fund-investing-beginners.html`; added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Fundamentals**
+- **Dividend Growth Portfolio guide published** (James Colter, 23rd guide) — `guides/dividend-growth-portfolio.html`
+- **Rule of 72 Calculator built and deployed** (`rule-of-72-calculator.html`, 17th calculator) — added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
+- **Dividend Income Calculator built and deployed** (`dividend-calculator.html`, 16th calculator) — added to `stamp_nav.py` `CALC_CATEGORIES` under **Income**
+- `guides/index.html` counter updated to 24
+- `sitemap.xml` updated with all 4 new URLs (dividend-calculator, rule-of-72-calculator, dividend-growth-portfolio, index-fund-investing-beginners)
+- All pages re-stamped via `python3 stamp_nav.py --all` (43 files)
+- **nav.js duplicate bug PERMANENTLY FIXED** — `ensure_nav_js()` previously appended a `<script src="/nav.js">` tag on every stamp without removing existing ones, accumulating duplicates; it now strips ALL existing `/nav.js` tags before inserting exactly one, so re-stamping is idempotent
+- **AIToolGrade content build workflow established** — new reviews and blog posts for aitoolgrade.com are now built directly in claude.ai chat, downloaded, and deployed locally (no Claude Code round-trip for net-new content)
+- **GSC submissions** — all 4 new June 27 pages submitted, plus rmd-explained.html + rmd-calculator.html from the Jun 24 brief (all June 21 brief items now complete)
+- **research_agent.py audit (vs disk):** found drift — CURRENT_GUIDES was at 25 (the Rule of 72 calculator had been mistakenly logged as a guide) and CURRENT_CALCULATORS was at 15 (missing both Dividend Income and Rule of 72 calculators). Fixed: removed Rule of 72 from CURRENT_GUIDES → 24; added Dividend Income + Rule of 72 to CURRENT_CALCULATORS → 17. Both lists now match disk (24 guides / 17 calculators)
+- Next priorities: await Sunday research agent brief for new content ideas; add images to guides (Google AI optimization); continue Reddit karma building
 
 ### Jun 24 2026 — RMD Explained Guide + AIToolGrade Workflow Session
 - **RMD Explained guide published** (James Colter, 22nd guide) — `guides/rmd-explained.html`; pairs with the RMD calculator (15th calculator, built Jun 21)

@@ -84,6 +84,7 @@ GUIDE_CATEGORIES = [
         ('investing-during-high-interest-rates.html',     'High interest rates'),
         ('how-to-invest-during-geopolitical-uncertainty.html', 'Geopolitical uncertainty'),
         ('index-fund-investing-beginners.html',          'Index fund investing'),
+        ('three-fund-portfolio.html',                  '3-fund portfolio'),
     ]),
 ]
 

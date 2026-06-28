@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Build a 3-Fund Portfolio — The Bogleheads Strategy Explained</title>
+<meta name="description" content="The 3-fund portfolio is VTI + VXUS + BND. Here's how to build one, how to set your allocation by age and risk tolerance, Fidelity and Schwab equivalents, and how to rebalance once a year.">
+<meta name="keywords" content="3 fund portfolio, three fund portfolio bogleheads, VTI VXUS BND, how to build 3 fund portfolio, bogleheads portfolio 2026">
+<meta property="og:title" content="How to Build a 3-Fund Portfolio — The Bogleheads Strategy Explained">
+<meta property="og:description" content="VTI + VXUS + BND. The simplest globally diversified portfolio in investing. How to set your allocation, rebalance, and build it at Vanguard, Fidelity, or Schwab.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/three-fund-portfolio.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/three-fund-portfolio.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Build a 3-Fund Portfolio — The Bogleheads Strategy Explained",
+  "description": "VTI + VXUS + BND allocation guide with age-based examples, Fidelity and Schwab equivalents, and rebalancing instructions.",
+  "author": {
+    "@type": "Person",
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
+  },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2026-06-28",
+  "dateModified": "2026-06-28"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout.data { border-left-color: var(--blue); background: rgba(91,156,246,0.05); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.callout .callout-label { color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.callout.data .callout-label { color: var(--blue); }
+/* Fund pills */
+.fund-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+@media (max-width: 560px) { .fund-trio { grid-template-columns: 1fr; } }
+.fund-pill { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 16px; text-align: center; }
+.fund-pill.us { border-top: 3px solid var(--accent); }
+.fund-pill.intl { border-top: 3px solid var(--blue); }
+.fund-pill.bond { border-top: 3px solid var(--green); }
+.fund-ticker { font-size: 24px; font-weight: 600; font-family: var(--font-mono); margin-bottom: 4px; }
+.fund-pill.us .fund-ticker { color: var(--accent); }
+.fund-pill.intl .fund-ticker { color: var(--blue); }
+.fund-pill.bond .fund-ticker { color: var(--green); }
+.fund-pill-name { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 12px; line-height: 1.4; }
+.fund-pill-er { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); background: var(--bg-input); padding: 4px 10px; border-radius: 20px; display: inline-block; }
+/* Allocation examples */
+.alloc-grid { display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
+.alloc-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+.alloc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.alloc-profile { font-size: 13px; font-weight: 500; color: var(--text); }
+.alloc-ratio { font-size: 12px; font-family: var(--font-mono); color: var(--accent); }
+.alloc-bars { display: flex; height: 10px; border-radius: 6px; overflow: hidden; gap: 2px; margin-bottom: 10px; }
+.bar-us { background: var(--accent); }
+.bar-intl { background: var(--blue); }
+.bar-bond { background: var(--green); }
+.alloc-legend { display: flex; gap: 16px; flex-wrap: wrap; }
+.alloc-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+/* Broker table */
+.broker-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; font-family: var(--font-mono); }
+.broker-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.broker-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.broker-table tr:last-child td { border-bottom: none; }
+.broker-table td.ticker { color: var(--accent); font-weight: 500; }
+.broker-table td.er { color: var(--green); }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ── GROUPED CALC DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+/* ── ACCORDION GUIDES DROPDOWN ── */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
+
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your 3-fund portfolio performance</strong> — real avg cost, live P&L, weekly signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Investing</button>
+      <div class="nav-group-menu">
+        <a href="../">DCA calculator</a>
+        <a href="../dca-backtest.html">DCA backtest</a>
+        <a href="../compound-interest.html">Compound interest</a>
+        <a href="../rule-of-72-calculator.html">Rule of 72</a>
+        <a href="../loss-recovery-calculator.html">Loss recovery</a>
+        <a href="../crypto-cost-basis-calculator.html">Crypto cost basis</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="../asset-allocation.html">Asset allocation</a>
+        <a href="../rebalancing-calculator.html">Rebalancing</a>
+        <a href="../position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="../fire-calculator.html">FIRE calculator</a>
+        <a href="../withdrawal-rate-calculator.html">Withdrawal rate</a>
+        <a href="../fee-calculator.html">Fee impact</a>
+        <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="../rmd-calculator.html">RMD calculator</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="../drip-calculator.html">DRIP</a>
+        <a href="../dividend-calculator.html">Dividend income</a>
+        <a href="../inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+          <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+          <a href="../guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+          <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+          <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+          <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+          <a href="../guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+        </div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+          <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+          <a href="../guides/crypto-staking-explained.html">Crypto staking yields</a>
+          <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+          <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+          <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+        </div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+          <a href="../guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+          <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+          <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+          <a href="../guides/rmd-explained.html">RMD explained</a>
+        </div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+          <a href="../guides/how-to-calculate-position-size.html">Position size</a>
+          <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+          <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+          <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+          <a href="../guides/index-fund-investing-beginners.html">Index fund investing</a>
+          <a href="../guides/three-fund-portfolio.html">3-fund portfolio</a>
+        </div>
+        <a href="../guides/index.html" class="all-guides-link">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="../">DCA calculator</a>
+  <a href="../dca-backtest.html">DCA backtest</a>
+  <a href="../compound-interest.html">Compound interest</a>
+  <a href="../rule-of-72-calculator.html">Rule of 72</a>
+  <a href="../loss-recovery-calculator.html">Loss recovery</a>
+  <a href="../crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="../asset-allocation.html">Asset allocation</a>
+  <a href="../rebalancing-calculator.html">Rebalancing</a>
+  <a href="../position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="../fire-calculator.html">FIRE calculator</a>
+  <a href="../withdrawal-rate-calculator.html">Withdrawal rate</a>
+  <a href="../fee-calculator.html">Fee impact</a>
+  <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <a href="../rmd-calculator.html">RMD calculator</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="../drip-calculator.html">DRIP</a>
+  <a href="../dividend-calculator.html">Dividend income</a>
+  <a href="../inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">DCA & Investing</span>
+  <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+  <a href="../guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+  <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+  <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="../guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+  <span class="mobile-guides-label">Crypto</span>
+  <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="../guides/crypto-staking-explained.html">Crypto staking yields</a>
+  <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <span class="mobile-guides-label">Retirement & FIRE</span>
+  <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="../guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+  <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="../guides/rmd-explained.html">RMD explained</a>
+  <span class="mobile-guides-label">Fundamentals</span>
+  <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="../guides/how-to-calculate-position-size.html">Position size</a>
+  <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+  <a href="../guides/index-fund-investing-beginners.html">Index fund investing</a>
+  <a href="../guides/three-fund-portfolio.html">3-fund portfolio</a>
+  <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Investing</span>
+    <span class="meta-tag">Bogleheads</span>
+    <span class="meta-date">June 28, 2026</span>
+    <span class="meta-read">9 min read</span>
+  </div>
+
+  <h1>How to build a <em>3-fund portfolio</em> — the Bogleheads strategy explained</h1>
+
+  <p style="font-size:13px;font-family:var(--font-mono);color:var(--accent);margin-bottom:20px;">Best for long-term investors who want a low-maintenance, evidence-based portfolio.</p>
+
+  <p class="intro">The 3-fund portfolio is the most debated, most recommended, and most straightforward investment strategy in the Bogleheads community: three broad index funds — total US market, total international, total bonds — held in proportions that match your risk tolerance. It captures virtually the entire global investable market at minimal cost, requires almost no maintenance, and has historically outperformed a majority of actively managed funds over long periods, after fees. Here's exactly how to build one.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#what-is-it">What the 3-fund portfolio is</a></li>
+      <li><a href="#the-three-funds">The three funds — VTI, VXUS, BND</a></li>
+      <li><a href="#allocation">How to set your allocation</a></li>
+      <li><a href="#age-examples">Allocation examples by age and risk tolerance</a></li>
+      <li><a href="#broker-equivalents">Fidelity and Schwab equivalents</a></li>
+      <li><a href="#rebalancing">How to rebalance — once a year</a></li>
+      <li><a href="#account-placement">Which funds go in which accounts</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+    </ol>
+  </div>
+
+  <h2 id="what-is-it">What the 3-fund portfolio is</h2>
+
+  <p>The 3-fund portfolio was popularized by the Bogleheads — an online investing community inspired by Vanguard founder John C. "Jack" Bogle and his philosophy of low-cost, passive investing. The core idea: instead of trying to select winning stocks or time the market, buy the entire market at the lowest possible cost and let compounding do the work.</p>
+
+  <p>Think of it as three jobs: <strong>growth</strong> (US stocks) + <strong>global diversification</strong> (international stocks) + <strong>stability</strong> (bonds). Three funds cover the three major asset classes most long-term investors need:</p>
+
+  <ul>
+    <li><strong>Total US stock market</strong> — ownership in thousands of US companies across all sizes and sectors</li>
+    <li><strong>Total international stock market</strong> — ownership in companies across developed and emerging markets outside the US</li>
+    <li><strong>Total US bond market</strong> — investment-grade US government and corporate bonds, providing stability and ballast during equity downturns</li>
+  </ul>
+
+  <p>Nothing more is needed for a highly diversified, low-cost core portfolio. <strong>The 3-fund portfolio provides genuine global diversification, low costs, and a level of simplicity that makes it easy to hold through market downturns</strong> — the behavioral advantage that matters most over long periods.</p>
+
+  <div class="callout data">
+    <div class="callout-label">Why simplicity matters for returns</div>
+    <p>This approach reflects a well-supported view in academic finance: markets incorporate available information quickly enough that consistent outperformance through stock picking or market timing is unlikely over long periods, net of fees. The 3-fund portfolio operationalizes that view without requiring any forecast — you don't need to predict which country, sector, or company will outperform. You own all of them.</p>
+  </div>
+
+  <h2 id="the-three-funds">The three funds — VTI, VXUS, BND</h2>
+
+  <p>The standard Vanguard implementation uses three ETFs. Each has a mutual fund equivalent (VTSAX, VTIAX, VBTLX) that works identically but requires a $3,000 minimum per fund at Vanguard:</p>
+
+  <div class="fund-trio">
+    <div class="fund-pill us">
+      <div class="fund-ticker">VTI</div>
+      <div class="fund-pill-name">Vanguard Total Stock Market ETF</div>
+      <div class="fund-pill-er">0.03% expense ratio</div>
+      <p style="font-size:12px;color:var(--text-dim);margin-top:10px;margin-bottom:0;line-height:1.5;">~3,700 US stocks. Large, mid, and small cap. Covers approximately 100% of the investable US market.</p>
+    </div>
+    <div class="fund-pill intl">
+      <div class="fund-ticker">VXUS</div>
+      <div class="fund-pill-name">Vanguard Total International Stock ETF</div>
+      <div class="fund-pill-er">0.05% expense ratio</div>
+      <p style="font-size:12px;color:var(--text-dim);margin-top:10px;margin-bottom:0;line-height:1.5;">~8,500 international stocks. Developed and emerging markets. Excludes US companies.</p>
+    </div>
+    <div class="fund-pill bond">
+      <div class="fund-ticker">BND</div>
+      <div class="fund-pill-name">Vanguard Total Bond Market ETF</div>
+      <div class="fund-pill-er">0.03% expense ratio</div>
+      <p style="font-size:12px;color:var(--text-dim);margin-top:10px;margin-bottom:0;line-height:1.5;">~10,000 US bonds. Investment-grade government and corporate. Tracks Bloomberg US Aggregate.</p>
+    </div>
+  </div>
+
+  <p>The blended expense ratio of a typical 3-fund portfolio runs well under 0.10% per year — a fraction of the 0.50–1.00% average active fund fee. The cost advantage compounds significantly over decades.</p>
+
+  <h2 id="allocation">How to set your allocation</h2>
+
+  <p>Asset allocation — the split between stocks and bonds — drives the majority of your portfolio's risk and long-term return. The 3-fund portfolio gives you two key decisions:</p>
+
+  <p><strong>1. Stocks vs bonds (your overall risk level).</strong> This is written as a ratio — 90/10 means 90% stocks, 10% bonds. A higher stock allocation produces higher expected long-term returns with higher short-term volatility. A higher bond allocation smooths the ride but reduces expected growth. Common starting points: 90/10 or 100/0 for investors with 20+ years to retirement; 70/30 or 60/40 for those within 10 years; more bonds in retirement to reduce sequence-of-returns risk.</p>
+
+  <p><strong>2. US vs international within your stock allocation.</strong> Global market weights are roughly 60% US / 40% international. Many investors choose anywhere from market weight to a moderate US tilt — a common default is 70/30. The Bogleheads community debates this constantly; both approaches are reasonable. What matters more than the exact split is picking one and sticking with it.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">Risk tolerance matters as much as age</div>
+    <p>Standard guidance ties bond allocation to age, but risk tolerance matters equally. An investor who would sell during a 40% market drawdown needs more bonds than their age alone suggests — because selling in a panic destroys the compounding the strategy depends on. Be honest about your ability to hold through significant downturns before choosing your stock/bond split.</p>
+  </div>
+
+  <h2 id="age-examples">Allocation examples by age and risk tolerance</h2>
+
+  <p>These are illustrative starting points, not prescriptions. Adjust based on your specific situation, income stability, other assets, and risk tolerance:</p>
+
+  <div class="alloc-grid">
+
+    <div class="alloc-card">
+      <div class="alloc-header">
+        <div class="alloc-profile">25-year-old, high risk tolerance (100/0)</div>
+        <div class="alloc-ratio">All stocks</div>
+      </div>
+      <div class="alloc-bars">
+        <div class="bar-us" style="width:70%;"></div>
+        <div class="bar-intl" style="width:30%;"></div>
+      </div>
+      <div class="alloc-legend">
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--accent);"></div>70% VTI</div>
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--blue);"></div>30% VXUS</div>
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--green);"></div>0% BND</div>
+      </div>
+    </div>
+
+    <div class="alloc-card">
+      <div class="alloc-header">
+        <div class="alloc-profile">30-year-old, medium-high risk tolerance (90/10)</div>
+        <div class="alloc-ratio">90% stocks / 10% bonds</div>
+      </div>
+      <div class="alloc-bars">
+        <div class="bar-us" style="width:63%;"></div>
+        <div class="bar-intl" style="width:27%;"></div>
+        <div class="bar-bond" style="width:10%;"></div>
+      </div>
+      <div class="alloc-legend">
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--accent);"></div>63% VTI</div>
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--blue);"></div>27% VXUS</div>
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--green);"></div>10% BND</div>
+      </div>
+    </div>
+
+    <div class="alloc-card">
+      <div class="alloc-header">
+        <div class="alloc-profile">40-year-old, medium risk tolerance (80/20)</div>
+        <div class="alloc-ratio">80% stocks / 20% bonds</div>
+      </div>
+      <div class="alloc-bars">
+        <div class="bar-us" style="width:56%;"></div>
+        <div class="bar-intl" style="width:24%;"></div>
+        <div class="bar-bond" style="width:20%;"></div>
+      </div>
+      <div class="alloc-legend">
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--accent);"></div>56% VTI</div>
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--blue);"></div>24% VXUS</div>
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--green);"></div>20% BND</div>
+      </div>
+    </div>
+
+    <div class="alloc-card">
+      <div class="alloc-header">
+        <div class="alloc-profile">55-year-old, medium-low risk tolerance (70/30)</div>
+        <div class="alloc-ratio">70% stocks / 30% bonds</div>
+      </div>
+      <div class="alloc-bars">
+        <div class="bar-us" style="width:49%;"></div>
+        <div class="bar-intl" style="width:21%;"></div>
+        <div class="bar-bond" style="width:30%;"></div>
+      </div>
+      <div class="alloc-legend">
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--accent);"></div>49% VTI</div>
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--blue);"></div>21% VXUS</div>
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--green);"></div>30% BND</div>
+      </div>
+    </div>
+
+    <div class="alloc-card">
+      <div class="alloc-header">
+        <div class="alloc-profile">65-year-old, conservative risk tolerance (60/40)</div>
+        <div class="alloc-ratio">60% stocks / 40% bonds</div>
+      </div>
+      <div class="alloc-bars">
+        <div class="bar-us" style="width:42%;"></div>
+        <div class="bar-intl" style="width:18%;"></div>
+        <div class="bar-bond" style="width:40%;"></div>
+      </div>
+      <div class="alloc-legend">
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--accent);"></div>42% VTI</div>
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--blue);"></div>18% VXUS</div>
+        <div class="alloc-legend-item"><div class="legend-dot" style="background:var(--green);"></div>40% BND</div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);">All examples use 70/30 US/international within the equity portion. These are illustrative starting points — not personalized advice. Adjust based on your specific situation and risk tolerance.</p>
+
+  <h2 id="broker-equivalents">Fidelity and Schwab equivalents</h2>
+
+  <p>You don't need to use Vanguard. All three funds have near-identical equivalents at Fidelity and Schwab, available commission-free:</p>
+
+  <table class="broker-table">
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Vanguard</th>
+        <th>Fidelity</th>
+        <th>Schwab</th>
+        <th>Exp ratio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>US stocks</td>
+        <td class="ticker">VTI</td>
+        <td class="ticker">FSKAX / FZROX*</td>
+        <td class="ticker">SCHB</td>
+        <td class="er">0.03% / 0.00%*</td>
+      </tr>
+      <tr>
+        <td>International</td>
+        <td class="ticker">VXUS</td>
+        <td class="ticker">FTIHX / FZILX*</td>
+        <td class="ticker">SCHF + SCHE</td>
+        <td class="er">0.05% / 0.00%*</td>
+      </tr>
+      <tr>
+        <td>US bonds</td>
+        <td class="ticker">BND</td>
+        <td class="ticker">FXNAX</td>
+        <td class="ticker">SCHZ</td>
+        <td class="er">0.03%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);">*Fidelity Zero funds cannot be transferred in-kind to another brokerage — selling to move may trigger capital gains taxes. Prefer them in tax-advantaged accounts only. Schwab's SCHF tracks developed markets only; add SCHE for emerging markets exposure.</p>
+
+  <h2 id="rebalancing">How to rebalance — once a year</h2>
+
+  <p>Market movements will gradually shift your portfolio away from your target allocation. A portfolio targeting 70% stocks / 30% bonds that experiences a strong equity bull run might drift to 80/20 over a few years — taking on more risk than intended. Rebalancing corrects this.</p>
+
+  <p>The standard approach: check your allocation once per year (the same date each year works well), and if any fund has drifted more than 5 percentage points from its target (e.g., your 70% VTI position grows to 75%), rebalance by selling what's overweight and buying what's underweight. Most years, contributions alone — directing new money toward underweight funds — can handle the rebalancing without selling anything.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">Rebalancing without selling</div>
+    <p>If you're still in the accumulation phase (contributing regularly), you can often rebalance just by directing new contributions toward whichever fund is below its target weight. This avoids triggering capital gains in taxable accounts. Only sell to rebalance when the drift is significant enough that contributions alone can't correct it within a reasonable time frame.</p>
+  </div>
+
+  <p>Use the <a href="../rebalancing-calculator.html" style="color:var(--accent);text-decoration:none;">rebalancing calculator</a> to see exactly how much to buy and sell to get back to your target allocation.</p>
+
+  <h2 id="account-placement">Which funds go in which accounts</h2>
+
+  <p>If you hold the 3-fund portfolio across multiple account types (taxable brokerage, traditional IRA, Roth IRA), fund placement affects your after-tax returns. General principles:</p>
+
+  <ul>
+    <li><strong>BND (bonds) — hold in tax-advantaged accounts (traditional IRA, 401k).</strong> Bond interest is taxed as ordinary income. Holding bonds in a tax-deferred or tax-free account shelters this income. BND in a taxable account generates fully taxable interest every year.</li>
+    <li><strong>VXUS (international) — hold in taxable accounts when possible.</strong> International stocks generate a foreign tax credit that is only available in taxable accounts, not IRAs. By holding VXUS in your taxable account, you can claim the foreign tax credit on your tax return. The credit is typically modest (often 0.1–0.3% annually), so prioritize your overall allocation first — don't force a suboptimal setup just to capture it.</li>
+    <li><strong>VTI (US stocks) — works well in any account.</strong> VTI is tax-efficient due to low turnover and qualified dividends. Place it wherever you have remaining space after optimizing BND and VXUS placement.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-label">Don't overthink placement</div>
+    <p>Tax-efficient fund placement matters, but it's a second-order optimization. The first-order decisions — saving consistently, maintaining your target allocation, keeping costs low — matter far more. A slightly suboptimal fund placement is better than paralysis or delay. Get invested first; optimize placement as your portfolio grows and your account structure matures.</p>
+  </div>
+
+  <h2 id="faq">Frequently asked questions</h2>
+
+  <h3>Do I need all three funds, or can I use just two?</h3>
+  <p>Many investors simplify to two funds — a total world stock fund (VT, which combines US and international) plus BND. This is effectively a two-fund Bogleheads portfolio and works well. The advantage of three funds is control over your US/international split; VT uses global market cap weights (~60/40 US/international), which may not match your preference. If you don't have a strong view on international weighting, VT + BND simplifies the portfolio further without meaningful performance sacrifice.</p>
+
+  <h3>Should I hold international stocks at all?</h3>
+  <p>This is one of the most debated questions in the Bogleheads community. The case for international: diversification across economies reduces dependence on any single country's market, and periods of US underperformance relative to international are common historically. The case against: US companies already generate significant international revenue, and the US market has been the strongest performer in recent decades. There is no universally correct answer. Most Bogleheads hold some international — a 70/30 US/international split within equities is a reasonable default if you want diversification without a heavy international tilt.</p>
+
+  <h3>Can I replace BND with dividend stocks or a SCHD-type ETF?</h3>
+  <p>No — not as a direct substitute for the bond role. SCHD's correlation to the US stock market is approximately 0.91, meaning it moves similarly to equities. BND's correlation to equities over similar periods is approximately 0.36. The function bonds serve — providing ballast and a rebalancing asset when equities fall — requires an asset that moves independently of stocks. Dividend-paying companies don't reliably do that during equity drawdowns. Dividend funds are equity investments and belong in the equity allocation, not the bond allocation. In a crash, dividend funds typically fall with the market. High-quality bonds often do not — that difference is the entire point of holding bonds.</p>
+
+  <h3>How often should I rebalance?</h3>
+  <p>Annual rebalancing is standard and sufficient for most investors. More frequent rebalancing (quarterly) doesn't meaningfully improve outcomes and creates more transaction costs and tax events. Less frequent (every few years) is acceptable if your allocation hasn't drifted significantly. A common threshold: rebalance when any asset class drifts more than 5 percentage points from its target. Use new contributions to rebalance when possible to avoid selling and triggering gains.</p>
+
+  <h3>What if my 401(k) doesn't offer these exact funds?</h3>
+  <p>Most 401(k) plans don't offer VTI, VXUS, or BND by name. Look for their functional equivalents: an S&P 500 fund (covers most of VTI's exposure), an international index fund (approximates VXUS), and a bond index fund (approximates BND). The Bogleheads wiki has detailed guidance on matching 401(k) fund offerings to the 3-fund framework. Choose the lowest-cost options available in each category, even if they're not perfect equivalents.</p>
+
+  <h2 id="mistakes">Common mistakes to avoid</h2>
+
+  <ul>
+    <li><strong>Chasing recent performance.</strong> Switching to whatever fund performed best last year is the most reliable way to underperform. The 3-fund portfolio works precisely because you don't need to predict what will outperform — you own everything.</li>
+    <li><strong>Overcomplicating with unnecessary funds.</strong> Adding sector ETFs, factor tilts, or thematic funds on top of VTI/VXUS/BND rarely improves outcomes and adds decision overhead. Start simple and add complexity only if you have a clear, evidence-based reason.</li>
+    <li><strong>Skipping bonds because they "drag performance."</strong> Bonds reduce volatility and provide assets to rebalance from when stocks fall. Their value shows up in downturns, not bull markets — precisely when it matters most.</li>
+    <li><strong>Not rebalancing for years.</strong> A portfolio that started 80/20 and drifted to 90/10 through a bull run is taking more risk than intended. Annual rebalancing takes 15 minutes and keeps your actual allocation aligned with your intended risk level.</li>
+    <li><strong>Panic selling during downturns.</strong> The most common and most costly mistake. The 3-fund portfolio will drop 30–50% in severe bear markets. That's expected. Selling locks in losses and breaks the compounding the strategy depends on.</li>
+  </ul>
+
+  <div class="cta-box">
+    <h3>Check your current allocation</h3>
+    <p>Use the rebalancing calculator to see how far your portfolio has drifted from your target and exactly what to buy and sell to get back on track.</p>
+    <a href="../rebalancing-calculator.html" class="cta-btn">Try the rebalancing calculator</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>The bottom line</h2>
+
+  <p>The 3-fund portfolio works because it solves the right problem. Most investors don't underperform because they picked the wrong funds — they underperform because they traded too much, paid too much in fees, panicked during downturns, or chased recent performance. Three broad index funds at 0.03–0.05% expense ratios, held in proportions that match your risk tolerance, and rebalanced once a year removes most of the behavioral and cost traps that erode long-term returns.</p>
+
+  <p>The allocation matters less than the discipline. A 70/30 portfolio held consistently through multiple market cycles will likely outperform a "better-optimized" portfolio that gets abandoned at the first significant drawdown. Choose an allocation that lets you sleep at night, automate your contributions, rebalance annually, and leave it alone. That's the strategy.</p>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational and educational purposes only and does not constitute financial advice. Fund examples (VTI, VXUS, BND) are illustrative and not recommendations to buy or sell. All investments carry risk including potential loss of principal. Past performance does not guarantee future results. Expense ratios cited are approximate and subject to change — verify at the fund provider's website before investing. Consult a qualified financial advisor for personalized investment guidance.</p>
+  </div>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">JC</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
+    </div>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script src="/nav.js"></script>
+<script src="/nav.js"></script>
+</body>
+</html>
