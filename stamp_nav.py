@@ -223,12 +223,10 @@ def stamp(filepath):
     if 'id="nav-mobile-menu"' not in c:
         c = c.replace('</header>', '</header>\n' + mobile_html, 1)
 
-    c = re.sub(
-        r'<script>\s*window\.addEventListener\(\'load\'.*?</script>',
-        NAV_EVENT_JS, c, flags=re.DOTALL
-    )
-    if 'window.addEventListener' not in c:
-        c = c.replace('</body>', NAV_EVENT_JS + '\n</body>', 1)
+    # Inject nav.js exactly once — strip all existing tags first
+    import re as _re
+    c = _re.sub(r'\s*<script[^>]+/nav\.js[^>]*></script>', '', c)
+    c = c.replace('</body>', '\n<script src="/nav.js"></script>\n</body>', 1)
 
     with open(path, 'w') as f:
         f.write(c)
