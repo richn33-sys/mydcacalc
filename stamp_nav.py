@@ -184,13 +184,6 @@ def ensure_css(c):
     return c
 
 
-def ensure_nav_js(c):
-    import re as _re
-    # Strip every possible variant of nav.js script tag
-    c = _re.sub(r'\s*<script[^>]+/nav\.js[^>]*></script>', '', c)
-    # Verify only one </body> exists and add tag before it
-    c = c.replace('</body>', '\n<script src="/nav.js"></script>\n</body>', 1)
-    return c
 
 
 def ensure_ga4(c):
@@ -215,7 +208,6 @@ def stamp(filepath):
 
     c = ensure_css(c)
     c = ensure_ga4(c)
-    c = ensure_nav_js(c)
 
     nav_html    = build_nav(root, in_guides, active_href)
     mobile_html = build_mobile_menu(root, in_guides)
