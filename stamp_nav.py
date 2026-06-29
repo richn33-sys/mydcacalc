@@ -69,6 +69,7 @@ GUIDE_CATEGORIES = [
         ('ethereum-glamsterdam-upgrade-2026.html',         'Ethereum Glamsterdam'),
         ('ai-stocks-vs-traditional-value.html',           'AI vs Value stocks'),
         ('strategic-bitcoin-reserve-dca.html',            'Strategic Bitcoin Reserve'),
+        ('tokenized-real-world-assets.html',             'Tokenized RWAs'),
     ]),
     ('Retirement &amp; FIRE', [
         ('4-percent-rule-explained.html',                 'The 4% Rule'),
@@ -185,9 +186,9 @@ def ensure_css(c):
 
 def ensure_nav_js(c):
     import re as _re
-    # Remove all existing nav.js tags first
-    c = _re.sub(r'\s*<script src="/nav\.js"></script>', '', c)
-    # Add exactly one before </body>
+    # Strip every possible variant of nav.js script tag
+    c = _re.sub(r'\s*<script[^>]+/nav\.js[^>]*></script>', '', c)
+    # Verify only one </body> exists and add tag before it
     c = c.replace('</body>', '\n<script src="/nav.js"></script>\n</body>', 1)
     return c
 

@@ -146,7 +146,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 24 guides published; counter reads 24 ✅
+│   ├── index.html                                ← 25 guides published; counter reads 25 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -170,7 +170,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── bond-ladder-retirement.html               ← NEW Jun 15 (21st guide)
 │   ├── rmd-explained.html                         ← NEW Jun 24 (22nd guide)
 │   ├── dividend-growth-portfolio.html             ← NEW Jun 27 (23rd guide)
-│   └── index-fund-investing-beginners.html        ← NEW Jun 27 (24th guide)
+│   ├── index-fund-investing-beginners.html        ← NEW Jun 27 (24th guide)
+│   └── three-fund-portfolio.html                  ← NEW Jun 28 (25th guide)
 └── CLAUDE.md
 ```
 ---
@@ -191,7 +192,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ### Nav structure (as of Jun 15 2026 — grouped calc dropdowns + accordion guides dropdown):
 - `nav.js` was abandoned/deleted Jun 2 2026, then **RECREATED Jun 21 2026** — all nav dropdown/hamburger/accordion JS now lives in external `/nav.js`. `stamp_nav.py`'s `NAV_EVENT_JS` is now just a `<script src="/nav.js">` tag, and `ensure_nav_js()` always injects it on every page. (This is the inverse of the Jun 2 decision — nav JS is centralized again, but as a real external file every page actually loads.)
 - Nav markup is HARDCODED into every page, stamped via `stamp_nav.py` when a calculator or guide is added; the nav behavior JS is centralized in `/nav.js`.
-- **nav.js duplicate bug PERMANENTLY FIXED (Jun 27 2026):** `ensure_nav_js()` previously appended a `<script src="/nav.js">` tag without removing any existing one, so re-stamping accumulated duplicate tags. It now strips ALL existing `/nav.js` script tags before inserting exactly one — re-stamping is now idempotent.
+- **nav.js duplicate bug PERMANENTLY FIXED (Jun 27 2026, hardened Jun 28 2026):** `ensure_nav_js()` previously appended a `<script src="/nav.js">` tag without removing any existing one, so re-stamping accumulated duplicate tags. It now strips ALL existing `/nav.js` script tags before inserting exactly one — re-stamping is now idempotent. Jun 28: the strip regex was broadened to catch every script-tag variant (different attribute ordering/spacing) using `<script[^>]+/nav\.js[^>]*></script>`.
 - **Calculators are now organized into grouped dropdown categories (rebuilt Jun 7):** Investing · Portfolio · Retirement & Tax · Income — replacing the old flat single-row list of every calculator.
   - **Investing:** DCA · DCA backtest · Compound interest · Loss recovery
   - **Portfolio:** Asset allocation · Rebalancing · Position size
@@ -325,7 +326,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 ---
-## Guides Section (24 published as of Jun 27 2026)
+## Guides Section (25 published as of Jun 28 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -352,6 +353,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | rmd-explained.html | James Colter | ✅ Live | Jun 24 2026 |
 | dividend-growth-portfolio.html | James Colter | ✅ Live | Jun 27 2026 |
 | index-fund-investing-beginners.html | James Colter | ✅ Live | Jun 27 2026 |
+| three-fund-portfolio.html | James Colter | ✅ Live | Jun 28 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -498,6 +500,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | guides/rmd-explained.html | required minimum distribution RMD explained |
 | guides/dividend-growth-portfolio.html | how to build a dividend growth portfolio 2026 |
 | guides/index-fund-investing-beginners.html | index fund investing for beginners |
+| guides/three-fund-portfolio.html | 3-fund portfolio Bogleheads VTI VXUS BND |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -572,7 +575,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jun 27 2026 — verified against disk, 24 guides):
+### Current CURRENT_GUIDES (as of Jun 28 2026 — verified against disk, 25 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging?",
@@ -599,11 +602,13 @@ CURRENT_GUIDES = [
     "Required minimum distributions explained 2026 rules ages strategies",
     "How to build a dividend growth portfolio 2026 strategy guide",
     "Index fund investing for beginners 2026 complete guide",
+    "How to build a 3-fund portfolio Bogleheads VTI VXUS BND",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
 > ✅ Jun 24: RMD Explained guide added — research_agent.py CURRENT_GUIDES now at 22, audited against disk and matches (22 guide HTML files).
 > ⚠️ Drift caught Jun 27: CURRENT_GUIDES was at 25 — the "Rule of 72 calculator how long to double money" entry had been mistakenly added to CURRENT_GUIDES (it's a calculator, not a guide). Removed from CURRENT_GUIDES → 24, matches disk (24 guide HTML files). The dividend-growth + index-fund guides are correctly present.
+> ✅ Jun 28: 3-Fund Portfolio guide added — CURRENT_GUIDES now at 25, audited against disk and matches (25 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
 
 ### Current CURRENT_CALCULATORS (as of Jun 27 2026 — verified against disk, 17 calculators):
 ```python
@@ -632,6 +637,8 @@ CURRENT_CALCULATORS = [
 ---
 ## Roadmap
 ### Done ✅
+- [x] 3-Fund Portfolio guide — James Colter, 25th guide — `guides/three-fund-portfolio.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under Fundamentals — Jun 28 2026
+- [x] nav.js duplicate bug hardened — `ensure_nav_js()` strip regex broadened to `<script[^>]+/nav\.js[^>]*></script>` to catch all script-tag variants — Jun 28 2026
 - [x] Index Fund Investing for Beginners guide — James Colter, 24th guide — `guides/index-fund-investing-beginners.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under Fundamentals — Jun 27 2026
 - [x] Dividend Growth Portfolio guide — James Colter, 23rd guide — `guides/dividend-growth-portfolio.html` — Jun 27 2026
 - [x] Rule of 72 Calculator (17th calculator) — `rule-of-72-calculator.html`, under Investing — Jun 27 2026
@@ -707,7 +714,15 @@ CURRENT_CALCULATORS = [
 - [x] Welcome email via Resend — domain verified ✅
 - [x] Content Research Agent packaged for Gumroad ($39) ✅
 
-### Next session priorities:
+### Next session priorities (from Jun 28 research brief):
+- [ ] **RWA Investing guide** (HIGH) — real-world asset tokenization investing
+- [ ] **Stock/Crypto Breakeven Calculator** (MEDIUM)
+- [ ] **IRA Contribution Calculator** (MEDIUM)
+- [ ] **529 College Savings Calculator** (MEDIUM)
+- [ ] **Submit all new pages to GSC** — three-fund-portfolio.html + any outstanding
+
+### Earlier priorities:
+- [x] **3-Fund Portfolio guide** — published Jun 28 2026 (25th guide, James Colter) ✅
 - [x] **Product Hunt launched May 27** ✅
 - [x] High interest rates guide published ✅
 - [x] DRIP Calculator built and deployed ✅
@@ -755,6 +770,16 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 28 2026 — 3-Fund Portfolio Guide Session
+- **3-Fund Portfolio guide published** (James Colter, 25th guide) — `guides/three-fund-portfolio.html` (Bogleheads VTI/VXUS/BND three-fund portfolio); added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Fundamentals**
+- `guides/index.html` counter updated to 25
+- `sitemap.xml` updated with the three-fund-portfolio.html URL
+- All pages re-stamped via `python3 stamp_nav.py --all` (43 files) and deployed
+- **nav.js duplicate bug hardened again** — `ensure_nav_js()` strip regex broadened to `<script[^>]+/nav\.js[^>]*></script>` so it catches every script-tag variant (any attribute ordering/spacing), not just the exact form previously matched; re-stamping remains idempotent
+- **research_agent.py audit (vs disk):** CURRENT_GUIDES updated to 25 (added "How to build a 3-fund portfolio Bogleheads VTI VXUS BND"); CURRENT_CALCULATORS unchanged at 17 — both verified against disk and match (25 guide HTML files / 17 calculator HTML files)
+- **Jun 28 research brief priorities:** RWA Investing guide (HIGH), Stock/Crypto Breakeven Calculator (MEDIUM), IRA Contribution Calculator (MEDIUM), 529 College Savings Calculator (MEDIUM), submit all new pages to GSC
+- Next priorities: RWA Investing guide; build Breakeven / IRA Contribution / 529 calculators; submit three-fund-portfolio.html to GSC
 
 ### Jun 27 2026 — Dividend + Index Fund + Rule of 72 Session
 - **Index Fund Investing for Beginners guide published** (James Colter, 24th guide) — `guides/index-fund-investing-beginners.html`; added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Fundamentals**
