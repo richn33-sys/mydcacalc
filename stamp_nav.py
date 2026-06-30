@@ -30,6 +30,7 @@ CALC_CATEGORIES = [
         ('compound-interest.html',              'Compound interest'),
         ('rule-of-72-calculator.html',          'Rule of 72'),
         ('loss-recovery-calculator.html',       'Loss recovery'),
+        ('breakeven-calculator.html',           'Breakeven'),
         ('crypto-cost-basis-calculator.html',   'Crypto cost basis'),
     ]),
     ('Portfolio', [

@@ -146,7 +146,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 25 guides published; counter reads 25 ✅
+│   ├── index.html                                ← 26 guides published; counter reads 26 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -171,7 +171,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── rmd-explained.html                         ← NEW Jun 24 (22nd guide)
 │   ├── dividend-growth-portfolio.html             ← NEW Jun 27 (23rd guide)
 │   ├── index-fund-investing-beginners.html        ← NEW Jun 27 (24th guide)
-│   └── three-fund-portfolio.html                  ← NEW Jun 28 (25th guide)
+│   ├── three-fund-portfolio.html                  ← NEW Jun 28 (25th guide)
+│   └── tokenized-real-world-assets.html            ← NEW Jun 29 (26th guide, Marcus Veil)
 └── CLAUDE.md
 ```
 ---
@@ -192,7 +193,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ### Nav structure (as of Jun 15 2026 — grouped calc dropdowns + accordion guides dropdown):
 - `nav.js` was abandoned/deleted Jun 2 2026, then **RECREATED Jun 21 2026** — all nav dropdown/hamburger/accordion JS now lives in external `/nav.js`. `stamp_nav.py`'s `NAV_EVENT_JS` is now just a `<script src="/nav.js">` tag, and `ensure_nav_js()` always injects it on every page. (This is the inverse of the Jun 2 decision — nav JS is centralized again, but as a real external file every page actually loads.)
 - Nav markup is HARDCODED into every page, stamped via `stamp_nav.py` when a calculator or guide is added; the nav behavior JS is centralized in `/nav.js`.
-- **nav.js duplicate bug PERMANENTLY FIXED (Jun 27 2026, hardened Jun 28 2026):** `ensure_nav_js()` previously appended a `<script src="/nav.js">` tag without removing any existing one, so re-stamping accumulated duplicate tags. It now strips ALL existing `/nav.js` script tags before inserting exactly one — re-stamping is now idempotent. Jun 28: the strip regex was broadened to catch every script-tag variant (different attribute ordering/spacing) using `<script[^>]+/nav\.js[^>]*></script>`.
+- **nav.js duplicate bug PERMANENTLY FIXED (Jun 27 2026, hardened Jun 28 2026, root-caused Jun 29 2026):** `ensure_nav_js()` previously appended a `<script src="/nav.js">` tag without removing any existing one, so re-stamping accumulated duplicate tags. It now strips ALL existing `/nav.js` script tags before inserting exactly one — re-stamping is now idempotent. Jun 28: the strip regex was broadened to catch every script-tag variant (different attribute ordering/spacing) using `<script[^>]+/nav\.js[^>]*></script>`. **Jun 29 — TRUE ROOT CAUSE found and fixed:** there were actually TWO injection points inside `stamp()` (the regex replacement path AND the fallback path) that each added a `/nav.js` tag — so even the idempotent `ensure_nav_js()` could be fed two tags per run. Both paths were replaced with a single dedup injection: strip all existing `/nav.js` tags with regex, then add exactly one before `</body>`. `NAV_EVENT_JS` is still defined but is now emitted via that single injection point only.
 - **Calculators are now organized into grouped dropdown categories (rebuilt Jun 7):** Investing · Portfolio · Retirement & Tax · Income — replacing the old flat single-row list of every calculator.
   - **Investing:** DCA · DCA backtest · Compound interest · Loss recovery
   - **Portfolio:** Asset allocation · Rebalancing · Position size
@@ -322,11 +323,17 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Voice: Direct, no-nonsense, practical
 - Articles: how-to-calculate-position-size, what-is-a-good-risk-reward-ratio
 
+### Marcus Veil — Emerging Assets & Crypto Markets Writer (NEW Jun 29 2026)
+- Covers: tokenization, real-world assets (RWA), emerging crypto markets, frontier/on-chain finance
+- Voice: forward-looking, explains novel asset classes plainly, careful with risk caveats
+- Articles: tokenized-real-world-assets.html (first guide)
+
 ### Attribution rule:
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
+- Tokenization / RWA / emerging crypto-market guides → Marcus Veil
 ---
-## Guides Section (25 published as of Jun 28 2026)
+## Guides Section (26 published as of Jun 29 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -354,6 +361,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | dividend-growth-portfolio.html | James Colter | ✅ Live | Jun 27 2026 |
 | index-fund-investing-beginners.html | James Colter | ✅ Live | Jun 27 2026 |
 | three-fund-portfolio.html | James Colter | ✅ Live | Jun 28 2026 |
+| tokenized-real-world-assets.html | Marcus Veil | ✅ Live | Jun 29 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -501,6 +509,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | guides/dividend-growth-portfolio.html | how to build a dividend growth portfolio 2026 |
 | guides/index-fund-investing-beginners.html | index fund investing for beginners |
 | guides/three-fund-portfolio.html | 3-fund portfolio Bogleheads VTI VXUS BND |
+| guides/tokenized-real-world-assets.html | tokenized real-world assets (RWA) investing 2026 |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -575,7 +584,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jun 28 2026 — verified against disk, 25 guides):
+### Current CURRENT_GUIDES (as of Jun 29 2026 — verified against disk, 26 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging?",
@@ -603,12 +612,14 @@ CURRENT_GUIDES = [
     "How to build a dividend growth portfolio 2026 strategy guide",
     "Index fund investing for beginners 2026 complete guide",
     "How to build a 3-fund portfolio Bogleheads VTI VXUS BND",
+    "Tokenized real world assets RWA investing 2026 guide",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
 > ✅ Jun 24: RMD Explained guide added — research_agent.py CURRENT_GUIDES now at 22, audited against disk and matches (22 guide HTML files).
 > ⚠️ Drift caught Jun 27: CURRENT_GUIDES was at 25 — the "Rule of 72 calculator how long to double money" entry had been mistakenly added to CURRENT_GUIDES (it's a calculator, not a guide). Removed from CURRENT_GUIDES → 24, matches disk (24 guide HTML files). The dividend-growth + index-fund guides are correctly present.
 > ✅ Jun 28: 3-Fund Portfolio guide added — CURRENT_GUIDES now at 25, audited against disk and matches (25 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
+> ✅ Jun 29: Tokenized RWA guide added (Marcus Veil) — CURRENT_GUIDES now at 26, audited against disk and matches (26 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
 
 ### Current CURRENT_CALCULATORS (as of Jun 27 2026 — verified against disk, 17 calculators):
 ```python
@@ -637,6 +648,8 @@ CURRENT_CALCULATORS = [
 ---
 ## Roadmap
 ### Done ✅
+- [x] Tokenized Real-World Assets (RWA) guide — Marcus Veil (new persona), 26th guide — `guides/tokenized-real-world-assets.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Crypto** — Jun 29 2026
+- [x] nav.js duplicate bug TRUE ROOT CAUSE fixed — `stamp()` had two `/nav.js` injection points (regex replacement + fallback); both replaced with a single dedup injection (strip all existing tags, add exactly one before `</body>`) — Jun 29 2026
 - [x] 3-Fund Portfolio guide — James Colter, 25th guide — `guides/three-fund-portfolio.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under Fundamentals — Jun 28 2026
 - [x] nav.js duplicate bug hardened — `ensure_nav_js()` strip regex broadened to `<script[^>]+/nav\.js[^>]*></script>` to catch all script-tag variants — Jun 28 2026
 - [x] Index Fund Investing for Beginners guide — James Colter, 24th guide — `guides/index-fund-investing-beginners.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under Fundamentals — Jun 27 2026
@@ -714,12 +727,12 @@ CURRENT_CALCULATORS = [
 - [x] Welcome email via Resend — domain verified ✅
 - [x] Content Research Agent packaged for Gumroad ($39) ✅
 
-### Next session priorities (from Jun 28 research brief):
-- [ ] **RWA Investing guide** (HIGH) — real-world asset tokenization investing
+### Next session priorities:
+- [x] **RWA Investing guide** (HIGH) — published Jun 29 2026 (`tokenized-real-world-assets.html`, 26th guide, Marcus Veil) ✅
 - [ ] **Stock/Crypto Breakeven Calculator** (MEDIUM)
 - [ ] **IRA Contribution Calculator** (MEDIUM)
 - [ ] **529 College Savings Calculator** (MEDIUM)
-- [ ] **Submit all new pages to GSC** — three-fund-portfolio.html + any outstanding
+- [ ] **Submit all new pages to GSC** — tokenized-real-world-assets.html + three-fund-portfolio.html + any outstanding
 
 ### Earlier priorities:
 - [x] **3-Fund Portfolio guide** — published Jun 28 2026 (25th guide, James Colter) ✅
@@ -770,6 +783,15 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 29 2026 — Tokenized RWA Guide + nav.js Root-Cause Session
+- **Tokenized Real-World Assets (RWA) guide published** (Marcus Veil, 26th guide) — `guides/tokenized-real-world-assets.html`; introduces a **new author persona, Marcus Veil** (emerging assets & crypto markets). Added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Crypto**
+- `guides/index.html` counter updated to 26
+- `sitemap.xml` updated with the tokenized-real-world-assets.html URL
+- All 45 files re-stamped via `stamp_nav.py` and deployed
+- **nav.js duplicate bug — TRUE ROOT CAUSE found and permanently fixed:** the `stamp()` function had TWO injection points that each added a `/nav.js` script tag (the regex-replacement path AND the fallback path), so a single stamp could emit two tags even after the earlier idempotency hardening. Both were replaced with one dedup injection: strip all existing `/nav.js` tags via regex, then add exactly one before `</body>`. `NAV_EVENT_JS` is still defined but is now used only via that single injection point
+- **research_agent.py audit (vs disk):** CURRENT_GUIDES updated to 26 (added "Tokenized real world assets RWA investing 2026 guide"); CURRENT_CALCULATORS unchanged at 17 — both verified against disk this session and match (26 guide HTML files / 17 calculator HTML files)
+- Next priorities: Stock/Crypto Breakeven Calculator, IRA Contribution Calculator, 529 College Savings Calculator; submit tokenized-real-world-assets.html (+ three-fund-portfolio.html) to GSC
 
 ### Jun 28 2026 — 3-Fund Portfolio Guide Session
 - **3-Fund Portfolio guide published** (James Colter, 25th guide) — `guides/three-fund-portfolio.html` (Bogleheads VTI/VXUS/BND three-fund portfolio); added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Fundamentals**

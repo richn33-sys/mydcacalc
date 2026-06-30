@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1HVC269Z8F');
-</script>
-
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Safe Withdrawal Rate Calculator — How Long Will Your Portfolio Last?</title>
-<meta name="description" content="Free safe withdrawal rate calculator. See how long your retirement portfolio lasts at 3%, 3.5%, 4%, and 4.5% withdrawal rates with inflation adjustment. Find your break-even age and compare strategies.">
-<meta name="keywords" content="safe withdrawal rate calculator, retirement withdrawal calculator, how long will my money last, 4% rule calculator, retirement portfolio calculator 2026">
-<meta property="og:title" content="Safe Withdrawal Rate Calculator — How Long Will Your Portfolio Last?">
-<meta property="og:description" content="Compare 3%, 3.5%, 4%, and 4.5% withdrawal rates. See how long your portfolio lasts, your break-even age, and inflation-adjusted withdrawals over time.">
+<title>Breakeven Calculator — How Much Do You Need to Recover a Loss?</title>
+<meta name="description" content="Free investment breakeven calculator. See the exact price needed to recover a loss, how averaging down changes your breakeven price, and why bigger losses need disproportionately bigger gains to recover.">
+<meta name="keywords" content="breakeven calculator, investment breakeven calculator, stock loss recovery calculator, crypto breakeven calculator, average down calculator, how much gain to break even">
+<meta property="og:title" content="Breakeven Calculator — How Much Do You Need to Recover a Loss?">
+<meta property="og:description" content="A 50% loss requires a 100% gain to break even. See your exact breakeven price and how averaging down changes the math.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mydcacalc.com/withdrawal-rate-calculator.html">
+<meta property="og:url" content="https://mydcacalc.com/breakeven-calculator.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/withdrawal-rate-calculator.html">
+<link rel="canonical" href="https://mydcacalc.com/breakeven-calculator.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,8 +21,8 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Safe Withdrawal Rate Calculator",
-  "description": "Compare retirement withdrawal rates and see how long your portfolio lasts with inflation adjustment",
+  "name": "Breakeven Calculator",
+  "description": "Calculate the price needed to recover an investment loss, including averaging down scenarios",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -45,7 +35,7 @@
   --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
   --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
   --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
-  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6; --orange: #f7931a;
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
   --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
   --radius: 10px; --radius-lg: 16px;
 }
@@ -70,18 +60,15 @@ nav a.active { color: var(--accent); }
 .nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
 @media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
 
-/* Hero */
 .hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 20px; }
 .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
 h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
 h1 em { font-style: normal; color: var(--accent); }
 .hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
 
-/* Layout */
 .main { max-width: 900px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
 @media (max-width: 720px) { .main { grid-template-columns: 1fr; } }
 
-/* Controls */
 .controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
 .section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
 .input-group { margin-bottom: 16px; }
@@ -92,80 +79,57 @@ h1 em { font-style: normal; color: var(--accent); }
 input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px 9px 24px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
 input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
 input[type="number"]:focus { border-color: var(--accent-border); }
-input[type="range"] { width: 100%; height: 4px; appearance: none; background: var(--bg-input); border-radius: 2px; outline: none; border: 1px solid var(--border); cursor: pointer; margin-top: 6px; }
-input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-card); }
-.range-header { display: flex; justify-content: space-between; align-items: center; }
-.range-val { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 500; }
 .divider-line { height: 1px; background: var(--border); margin: 16px 0; }
+.toggle-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.toggle-label { font-size: 12px; color: var(--text-muted); }
+.toggle { position: relative; width: 40px; height: 22px; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; cursor: pointer; inset: 0; background: var(--bg-input); border: 1px solid var(--border); border-radius: 22px; transition: 0.2s; }
+.toggle-slider::before { content: ''; position: absolute; width: 16px; height: 16px; left: 2px; top: 2px; background: var(--text-dim); border-radius: 50%; transition: 0.2s; }
+.toggle input:checked + .toggle-slider { background: var(--accent-dim); border-color: var(--accent-border); }
+.toggle input:checked + .toggle-slider::before { transform: translateX(18px); background: var(--accent); }
+#dca-section { display: none; }
 
-/* Rate toggles */
-.rate-toggles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 16px; }
-.rate-toggle { background: var(--bg-input); border: 1px solid var(--border); border-radius: 8px; padding: 8px 4px; text-align: center; cursor: pointer; font-size: 12px; font-family: var(--font-mono); color: var(--text-muted); transition: all 0.15s; }
-.rate-toggle.active { border-color: var(--accent-border); background: var(--accent-dim); color: var(--accent); }
-.rate-toggle:hover { border-color: var(--border-hover); color: var(--text); }
-
-/* Results */
 .results { display: flex; flex-direction: column; gap: 14px; }
 
-/* Comparison grid */
-.rates-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.rate-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
-.rate-card.r30 { border-top: 2px solid var(--green); }
-.rate-card.r35 { border-top: 2px solid var(--accent); }
-.rate-card.r40 { border-top: 2px solid var(--orange); }
-.rate-card.r45 { border-top: 2px solid var(--red); }
-.rate-card-label { font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
-.rate-card.r30 .rate-card-label { color: var(--green); }
-.rate-card.r35 .rate-card-label { color: var(--accent); }
-.rate-card.r40 .rate-card-label { color: var(--orange); }
-.rate-card.r45 .rate-card-label { color: var(--red); }
-.rate-card-value { font-size: 20px; font-weight: 600; font-family: var(--font-mono); margin-bottom: 4px; letter-spacing: -0.02em; }
-.rate-card.r30 .rate-card-value { color: var(--green); }
-.rate-card.r35 .rate-card-value { color: var(--accent); }
-.rate-card.r40 .rate-card-value { color: var(--orange); }
-.rate-card.r45 .rate-card-value { color: var(--red); }
-.rate-card-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
+.result-hero { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; text-align: center; }
+.result-hero.loss { border-color: rgba(240,96,96,0.3); background: rgba(240,96,96,0.05); }
+.result-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.result-amount { font-size: 38px; font-weight: 600; font-family: var(--font-mono); color: var(--text); letter-spacing: -0.03em; margin-bottom: 6px; }
+.result-hero.loss .result-amount { color: var(--red); }
+.result-sub { font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); }
 
-/* Summary metrics */
 .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 @media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
 .metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
 .metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
 .metric-value { font-family: var(--font-mono); font-size: 18px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
+.metric-value.red { color: var(--red); }
 .metric-value.green { color: var(--green); }
 .metric-value.accent { color: var(--accent); }
-.metric-value.red { color: var(--red); }
 
-/* Chart */
 .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
-.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 .chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
-.chart-legend { display: flex; gap: 12px; flex-wrap: wrap; }
-.legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); }
-.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
-.chart-wrap { position: relative; height: 240px; }
+.chart-wrap { position: relative; height: 220px; }
 
-/* Year table */
 .table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
 .table-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
 .table-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 500px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 440px; }
 th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
 td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
 tr:last-child td { border-bottom: none; }
-td.depleted { color: var(--red); font-style: italic; }
-td.accent { color: var(--accent); }
+tr.highlight td { background: rgba(200,240,96,0.05); color: var(--text); }
+td.red { color: var(--red); }
+td.accent { color: var(--accent); font-weight: 500; }
 
-/* Info + disclaimer */
 .info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
 .info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
 .info-box strong { color: var(--text); font-weight: 500; }
 .disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
 
-/* Content */
 .content-section { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
-
-/* Pro banner */
 .pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
 .pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
 .pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
@@ -181,28 +145,6 @@ footer a:hover { color: var(--text); }
 .dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
 .dropdown-menu a:last-child { border-bottom: none; }
 .dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
-
-/* ── GROUPED NAV DROPDOWNS ── */
-.nav-group { position: relative; }
-.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
-.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
-.nav-group-toggle::after { content: "▾"; font-size: 10px; }
-.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 220px; overflow: hidden; z-index: 200; padding: 4px 0; }
-.nav-group-menu .group-label { padding: 8px 14px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
-.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
-.nav-group-menu a:last-child { border-bottom: none; }
-.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
-.nav-group-menu .group-divider { height: 1px; background: var(--border); margin: 2px 0; }
-/* Guides dropdown (right-aligned) */
-.dropdown { position: relative; }
-.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
-.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
-.dropdown-toggle::after { content: "▾"; font-size: 10px; }
-.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
-.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
-.dropdown-menu a:last-child { border-bottom: none; }
-.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
-
 
 /* ── GROUPED CALC DROPDOWNS ── */
 .nav-group { position: relative; }
@@ -232,14 +174,19 @@ footer a:hover { color: var(--text); }
 .dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
 
 </style>
-
-
-
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
 </head>
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Plan your retirement with AI-powered insights</strong> — live P&L, weekly signals</span>
+  <span>📈 <strong>Track your real portfolio P&L</strong> — avg cost, live tracking, weekly signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -248,14 +195,14 @@ footer a:hover { color: var(--text); }
   <a href="/" class="logo">mydca<span>calc</span>.com</a>
   <nav>
     <div class="nav-group">
-      <button class="nav-group-toggle">Investing</button>
+      <button class="nav-group-toggle active">Investing</button>
       <div class="nav-group-menu">
         <a href="">DCA calculator</a>
         <a href="dca-backtest.html">DCA backtest</a>
         <a href="compound-interest.html">Compound interest</a>
         <a href="rule-of-72-calculator.html">Rule of 72</a>
         <a href="loss-recovery-calculator.html">Loss recovery</a>
-        <a href="breakeven-calculator.html">Breakeven</a>
+        <a href="breakeven-calculator.html" class="active">Breakeven</a>
         <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
       </div>
     </div>
@@ -268,10 +215,10 @@ footer a:hover { color: var(--text); }
       </div>
     </div>
     <div class="nav-group">
-      <button class="nav-group-toggle active">Retirement &amp; Tax</button>
+      <button class="nav-group-toggle">Retirement &amp; Tax</button>
       <div class="nav-group-menu">
         <a href="fire-calculator.html">FIRE calculator</a>
-        <a href="withdrawal-rate-calculator.html" class="active">Withdrawal rate</a>
+        <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
         <a href="fee-calculator.html">Fee impact</a>
         <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
         <a href="rmd-calculator.html">RMD calculator</a>
@@ -392,173 +339,201 @@ footer a:hover { color: var(--text); }
 </div>
 
 <div class="hero">
-  <div class="hero-badge">Based on historical withdrawal research</div>
-  <h1>Safe Withdrawal Rate <em>Calculator</em></h1>
-  <p>See how long your retirement portfolio lasts at different withdrawal rates — with inflation adjustment. Compare 3%, 3.5%, 4%, and 4.5% side by side.</p>
+  <div class="hero-badge">A 50% loss needs a 100% gain to recover</div>
+  <h1>Breakeven <em>Calculator</em></h1>
+  <p>See the exact price you need to recover a loss — and how averaging down changes your breakeven price. Works for stocks, crypto, or any investment.</p>
 </div>
 
 <div class="main">
 
-  <!-- Controls -->
   <div class="controls-card">
-    <div class="section-label">Your portfolio</div>
+    <div class="section-label">Your position</div>
 
     <div class="input-group">
-      <div class="input-label">Portfolio value at retirement <span id="portfolio-display">$1,000,000</span></div>
+      <div class="input-label">Original purchase price</div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="portfolio" value="1000000" min="10000" step="10000" oninput="document.getElementById('portfolio-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+        <input type="number" id="buy-price" value="100" min="0.01" step="1" oninput="calc()">
       </div>
     </div>
 
     <div class="input-group">
-      <div class="input-label">Annual spending <span id="spend-display">$40,000</span></div>
+      <div class="input-label">Current price</div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="spend" value="40000" min="1000" step="1000" oninput="document.getElementById('spend-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+        <input type="number" id="current-price" value="60" min="0.01" step="1" oninput="calc()">
       </div>
     </div>
 
     <div class="input-group">
-      <div class="input-label">Retirement age <span id="ret-age-display">65</span></div>
-      <input type="range" id="ret-age" min="40" max="75" value="65" step="1"
-        oninput="document.getElementById('ret-age-display').textContent=this.value;calc()">
+      <div class="input-label">Shares / units held</div>
+      <input type="number" id="shares" value="10" min="0.0001" step="1" oninput="calc()">
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Assumptions</div>
 
-    <div class="input-group">
-      <div class="range-header">
-        <div class="input-label" style="margin:0;">Annual portfolio return</div>
-        <span class="range-val" id="return-display">6%</span>
-      </div>
-      <input type="range" id="port-return" min="3" max="12" value="6" step="0.5"
-        oninput="document.getElementById('return-display').textContent=this.value+'%';calc()">
+    <div class="toggle-row">
+      <span class="toggle-label">Model averaging down</span>
+      <label class="toggle">
+        <input type="checkbox" id="dca-toggle" onchange="toggleDCA()">
+        <span class="toggle-slider"></span>
+      </label>
     </div>
 
-    <div class="input-group">
-      <div class="range-header">
-        <div class="input-label" style="margin:0;">Annual inflation rate</div>
-        <span class="range-val" id="inflation-display">2.5%</span>
+    <div id="dca-section">
+      <div class="input-group">
+        <div class="input-label">Additional investment amount</div>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="add-amount" value="500" min="0" step="100" oninput="calc()">
+        </div>
       </div>
-      <input type="range" id="inflation" min="1" max="6" value="2.5" step="0.5"
-        oninput="document.getElementById('inflation-display').textContent=this.value+'%';calc()">
-    </div>
-
-    <div class="divider-line"></div>
-    <div class="section-label">Show rates</div>
-    <div class="rate-toggles">
-      <div class="rate-toggle r30 active" onclick="toggleRate(this, '3.0')">3.0%</div>
-      <div class="rate-toggle r35 active" onclick="toggleRate(this, '3.5')">3.5%</div>
-      <div class="rate-toggle r40 active" onclick="toggleRate(this, '4.0')">4.0%</div>
-      <div class="rate-toggle r45 active" onclick="toggleRate(this, '4.5')">4.5%</div>
+      <div class="input-group">
+        <div class="input-label">Price for additional purchase</div>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="add-price" value="60" min="0.01" step="1" oninput="calc()">
+        </div>
+      </div>
     </div>
 
   </div>
 
-  <!-- Results -->
   <div class="results">
 
-    <!-- Rate cards -->
-    <div class="rates-grid">
-      <div class="rate-card r30">
-        <div class="rate-card-label">3.0% withdrawal</div>
-        <div class="rate-card-value" id="r30-years">—</div>
-        <div class="rate-card-sub" id="r30-annual">$0/year · $0/month</div>
-      </div>
-      <div class="rate-card r35">
-        <div class="rate-card-label">3.5% withdrawal</div>
-        <div class="rate-card-value" id="r35-years">—</div>
-        <div class="rate-card-sub" id="r35-annual">$0/year · $0/month</div>
-      </div>
-      <div class="rate-card r40">
-        <div class="rate-card-label">4.0% withdrawal</div>
-        <div class="rate-card-value" id="r40-years">—</div>
-        <div class="rate-card-sub" id="r40-annual">$0/year · $0/month</div>
-      </div>
-      <div class="rate-card r45">
-        <div class="rate-card-label">4.5% withdrawal</div>
-        <div class="rate-card-value" id="r45-years">—</div>
-        <div class="rate-card-sub" id="r45-annual">$0/year · $0/month</div>
-      </div>
+    <div class="result-hero loss" id="result-hero">
+      <div class="result-label">Price needed to break even</div>
+      <div class="result-amount" id="breakeven-price">$100.00</div>
+      <div class="result-sub" id="breakeven-sub">Requires a +66.7% gain from current price</div>
     </div>
 
-    <!-- Summary metrics -->
     <div class="metrics">
       <div class="metric">
-        <div class="metric-label">Your withdrawal rate</div>
-        <div class="metric-value accent" id="your-rate">0%</div>
+        <div class="metric-label">Current loss</div>
+        <div class="metric-value red" id="current-loss">-$400.00</div>
       </div>
       <div class="metric">
-        <div class="metric-label">Years portfolio lasts</div>
-        <div class="metric-value green" id="your-years">—</div>
+        <div class="metric-label">Loss percentage</div>
+        <div class="metric-value red" id="loss-pct">-40.0%</div>
       </div>
       <div class="metric">
-        <div class="metric-label">Break-even age</div>
-        <div class="metric-value accent" id="breakeven-age">—</div>
+        <div class="metric-label">Gain needed to recover</div>
+        <div class="metric-value accent" id="gain-needed">+66.7%</div>
       </div>
     </div>
 
-    <!-- Chart -->
     <div class="chart-card">
       <div class="chart-header">
-        <div class="chart-title">Portfolio value over time by withdrawal rate</div>
-        <div class="chart-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#3ecf8e;"></div>3.0%</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>3.5%</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#f7931a;"></div>4.0%</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#f06060;"></div>4.5%</div>
-        </div>
+        <div class="chart-title">Loss % vs gain needed to recover</div>
       </div>
       <div class="chart-wrap">
-        <canvas id="swr-chart"></canvas>
+        <canvas id="breakeven-chart"></canvas>
       </div>
     </div>
 
-    <!-- Year table -->
     <div class="table-card">
-      <div class="table-title">Year-by-year at your withdrawal rate</div>
+      <div class="table-title">Loss vs recovery gain — common scenarios</div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Year</th>
-              <th>Age</th>
-              <th>Withdrawal</th>
-              <th>Portfolio start</th>
-              <th>Portfolio end</th>
+              <th>Loss</th>
+              <th>Gain needed to recover</th>
+              <th>$10,000 → recovers to</th>
             </tr>
           </thead>
-          <tbody id="year-tbody"></tbody>
+          <tbody id="scenario-tbody"></tbody>
         </table>
       </div>
     </div>
 
     <div class="info-box">
-      <p><strong>How withdrawal rates work:</strong> Your withdrawal rate is your first-year withdrawal divided by your starting portfolio value. Each year, you withdraw the same dollar amount adjusted for inflation — not a fixed percentage of the current portfolio. A $1M portfolio at 4% means $40,000 in year one; year two is $40,000 × (1 + inflation rate), regardless of portfolio performance. This is the method used in Bengen's original 4% rule research.</p>
+      <p><strong>Why losses and gains aren't symmetric:</strong> A 10% loss only needs an 11.1% gain to recover. But a 50% loss needs a 100% gain. A 90% loss needs a 900% gain. This asymmetry exists because percentage gains are calculated from a smaller base after a loss — losing money shrinks the denominator you need to grow back from. The deeper the loss, the more disproportionate the recovery required.</p>
     </div>
 
     <div class="disclaimer">
-      This calculator uses a simplified model with constant average returns. Actual retirement outcomes depend on sequence of returns — the order in which good and bad years occur — which this model does not simulate. Historical Monte Carlo analysis suggests the 4% rule has approximately 90% success over 30 years; actual outcomes vary. Not financial advice. Consult a qualified financial advisor before making retirement income decisions.
+      This calculator shows the mathematical price needed to reach your original cost basis. It does not predict whether or when that price will be reached, and does not account for taxes, fees, or dividends. Averaging down lowers your breakeven price but does not guarantee a price recovery — and increases your total capital at risk in the position. Not financial advice.
     </div>
 
   </div>
 </div>
 
 <div class="content-section">
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the safe withdrawal rate calculator works</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A safe withdrawal rate is the percentage of your retirement portfolio you can withdraw annually without running out of money over your retirement horizon. The most studied rate is 4% — from Bengen's 1994 research showing this rate survived every 30-year retirement period in U.S. historical data. Morningstar's 2026 research puts the conservative baseline at 3.9% for fixed-spending retirees.</p>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator compares four common withdrawal rates side by side, showing how long your portfolio lasts at each rate with inflation-adjusted annual spending. The year-by-year table shows exactly how your portfolio depletes (or grows) over time at your actual withdrawal rate based on your annual spending and portfolio size.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the breakeven calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator shows the exact price your position needs to reach to return to your original cost basis — the price at which you'd have neither a gain nor a loss. The math is straightforward for a single purchase: your breakeven price is simply what you originally paid. The percentage gain required, however, is not the same as the percentage you lost — and that asymmetry is the key insight most investors underestimate.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">When you toggle on "Model averaging down," the calculator shows how adding to your position at a lower price changes your blended breakeven price. Averaging down can meaningfully lower the price needed to recover — but it also increases your total dollar exposure to the position, which is a real tradeoff, not a free lunch.</p>
   <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:28px 0 12px;">How to use this calculator</h3>
   <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;">
-    <li style="margin-bottom:10px;">Enter your expected portfolio value at retirement and your planned annual spending.</li>
-    <li style="margin-bottom:10px;">Set your retirement age, expected portfolio return, and inflation rate.</li>
-    <li style="margin-bottom:10px;">The four rate cards show how long your money lasts at each withdrawal rate.</li>
-    <li style="margin-bottom:10px;">The chart shows portfolio value trajectories — where lines hit zero is when the money runs out.</li>
-    <li style="margin-bottom:10px;">Your withdrawal rate is calculated automatically from your portfolio and spending inputs.</li>
+    <li style="margin-bottom:10px;">Enter your original purchase price and the current price of the position.</li>
+    <li style="margin-bottom:10px;">Enter the number of shares or units you hold.</li>
+    <li style="margin-bottom:10px;">Toggle "Model averaging down" to see how an additional purchase at the current (or any) price changes your blended breakeven.</li>
+    <li style="margin-bottom:10px;">Use the scenario table to understand the loss/recovery asymmetry at a glance for any position size.</li>
   </ul>
-  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For background on the 4% rule and what Morningstar's 2026 research says about safe withdrawal rates, read the <a href="guides/4-percent-rule-explained.html" style="color:#c8f060;text-decoration:none;">4% rule explained guide</a>. To calculate your FIRE number and years to retirement, use the <a href="fire-calculator.html" style="color:#c8f060;text-decoration:none;">FIRE calculator</a>.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For a deeper look at recovering from significant losses, read the <a href="guides/how-to-invest-in-a-volatile-market.html" style="color:#c8f060;text-decoration:none;">investing in a volatile market guide</a>. To model dollar cost averaging into a position over time, use the <a href="index.html" style="color:#c8f060;text-decoration:none;">DCA calculator</a>.</p>
+</div>
+
+
+<div class="content-section" style="padding-top:0;">
+
+  <!-- Worked example -->
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:20px;line-height:1.75;">Say you bought 100 shares of a stock at $50 — a $5,000 investment. The stock drops to $30, a 40% loss. Your position is now worth $3,000, down $2,000.</p>
+
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:32px;">
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Without averaging down</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Original cost</span><span style="color:var(--text);">$5,000 (100 shares @ $50)</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Current value</span><span style="color:var(--text);">$3,000 (100 shares @ $30)</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Loss</span><span style="color:var(--red);">-$2,000 (-40%)</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Gain needed to break even</span><span style="color:var(--accent);">+66.7% (price must reach $50)</span></div>
+  </div>
+
+  <p style="color:#888884;font-weight:300;margin-bottom:20px;line-height:1.75;">Now suppose instead you buy 100 more shares at $30, adding another $3,000. You now hold 200 shares for a total cost of $8,000 — a new average cost basis of $40 per share.</p>
+
+  <div style="background:var(--bg-card);border:1px solid var(--accent-border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:32px;background:var(--accent-dim);">
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">With averaging down (100 more shares @ $30)</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total shares</span><span style="color:var(--text);">200 (100 @ $50 + 100 @ $30)</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total cost</span><span style="color:var(--text);">$8,000</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">New average cost basis</span><span style="color:var(--text);">$40 per share</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Gain needed to break even</span><span style="color:var(--green);">+33.3% (price must reach $40, not $50)</span></div>
+  </div>
+
+  <p style="color:#888884;font-weight:300;margin-bottom:40px;line-height:1.75;">Averaging down cut the required recovery gain from 66.7% down to 33.3% — a real and meaningful change. But notice what also happened: total capital at risk doubled from $5,000 to $8,000. If the price keeps falling instead of recovering, the dollar loss on the larger position grows faster too. Averaging down lowers the bar for breakeven; it does not make the position safer.</p>
+
+  <!-- Why averaging down isn't magic -->
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">Why averaging down isn't a magic fix</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Averaging down — buying more of a position after it has dropped — is one of the most debated tactics in investing, and for good reason: it can work brilliantly or compound a loss significantly, depending entirely on what happens next. The math is real: adding shares at a lower price does lower your blended cost basis and therefore lowers the percentage gain needed to break even. But three things are easy to overlook in the moment.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">It increases total capital at risk.</strong> Averaging down means putting more money into a position that has already moved against you. If the underlying reason for the decline hasn't changed — a deteriorating business, a broken thesis, a structural problem — adding more capital simply increases the eventual loss if the price continues falling.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">It can become a behavioral trap.</strong> "Averaging down" and "throwing good money after bad" describe the identical action — the difference is entirely about whether the original investment thesis still holds. Investors frequently average down out of a desire to "make it back" rather than a genuine reassessment of the opportunity, which is closer to gambling than investing.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;"><strong style="color:#f0efe8;">It only helps if the price actually recovers.</strong> A lower breakeven price is only valuable if the price gets there. Averaging into a position that continues to decline produces a larger total loss than not averaging down at all — the lower percentage-gain requirement doesn't matter if the price never returns.</p>
+
+  <!-- FAQ -->
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Why does a 50% loss need a 100% gain to recover?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Percentage gains and losses are calculated from different starting points. A 50% loss on $100 leaves you with $50. To get back to $100 from $50, you need a 100% gain — because the gain is now calculated from the smaller $50 base, not the original $100. The formula is: gain needed = loss% ÷ (100% - loss%). At 50% loss: 50 ÷ 50 = 100% gain needed. At 90% loss: 90 ÷ 10 = 900% gain needed.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Is averaging down always a good strategy?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">No. Averaging down only makes sense if your investment thesis for the asset hasn't changed and you have genuine conviction the price will recover — not simply a desire to lower your average cost. Averaging down on a fundamentally broken company or a position where the original reasoning no longer holds typically compounds losses rather than recovering them. Many experienced investors distinguish "averaging down on conviction" from "averaging down on hope" — only the former is a defensible strategy.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Does this calculator account for taxes or fees?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">No — this calculator shows the pre-tax, pre-fee breakeven price based purely on cost basis. Trading fees (if any) slightly raise your true breakeven price. Tax treatment doesn't affect your breakeven price itself, but it does affect what you actually keep if you sell at a gain — for assets held over a year, long-term capital gains rates typically apply and are usually lower than short-term rates.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What's the difference between breakeven price and breakeven percentage?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Breakeven price is the dollar price your position needs to reach — for a single purchase, this is simply your original purchase price. Breakeven percentage is the gain needed from the current price to reach that breakeven price — and this number grows disproportionately as losses deepen, which is the core insight this calculator illustrates.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Should I set a stop-loss instead of waiting to break even?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">This depends on your strategy and risk tolerance — there's no universal answer. Some investors set predetermined stop-loss levels precisely because they recognize the recovery math gets harder the longer they wait and the deeper the loss grows. Others with a long time horizon and continued conviction in the underlying asset prefer to hold through volatility. The breakeven asymmetry shown in this calculator is one input into that decision, not a complete answer on its own.</p>
+  </div>
+
 </div>
 
 <footer>
@@ -568,156 +543,118 @@ footer a:hover { color: var(--text); }
     <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
     <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
     <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
-    For informational purposes only. Not financial advice.
+    For educational purposes only. Not financial advice.
   </p>
 </footer>
-
 <script>
 let chart = null;
-let activeRates = new Set(['3.0', '3.5', '4.0', '4.5']);
 
 function fmt(n) {
-  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (Math.abs(n) >= 1e3) return '$' + (Math.abs(n)/1e3).toFixed(1) + 'K';
-  return '$' + Math.round(Math.abs(n)).toLocaleString();
+  return '$' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-function toggleRate(el, rate) {
-  if (activeRates.has(rate)) {
-    if (activeRates.size > 1) {
-      activeRates.delete(rate);
-      el.classList.remove('active');
-    }
-  } else {
-    activeRates.add(rate);
-    el.classList.add('active');
-  }
+function toggleDCA() {
+  const on = document.getElementById('dca-toggle').checked;
+  document.getElementById('dca-section').style.display = on ? 'block' : 'none';
   calc();
 }
 
-function portfolioYears(portfolio, annualSpend, returnRate, inflationRate) {
-  let bal = portfolio;
-  let withdrawal = annualSpend;
-  for (let y = 1; y <= 100; y++) {
-    bal = bal * (1 + returnRate) - withdrawal;
-    if (bal <= 0) return y;
-    withdrawal *= (1 + inflationRate);
-  }
-  return '100+';
-}
-
-function portfolioPath(portfolio, annualSpend, returnRate, inflationRate, maxYears) {
-  let bal = portfolio;
-  let withdrawal = annualSpend;
-  const data = [bal];
-  for (let y = 1; y <= maxYears; y++) {
-    bal = bal * (1 + returnRate) - withdrawal;
-    if (bal <= 0) { data.push(0); break; }
-    data.push(Math.round(bal));
-    withdrawal *= (1 + inflationRate);
-  }
-  return data;
-}
-
 function calc() {
-  const portfolio  = parseFloat(document.getElementById('portfolio').value) || 1000000;
-  const spend      = parseFloat(document.getElementById('spend').value) || 40000;
-  const retAge     = parseInt(document.getElementById('ret-age').value) || 65;
-  const portReturn = parseFloat(document.getElementById('port-return').value) / 100;
-  const inflation  = parseFloat(document.getElementById('inflation').value) / 100;
+  const buyPrice = parseFloat(document.getElementById('buy-price').value) || 0;
+  const currentPrice = parseFloat(document.getElementById('current-price').value) || 0;
+  const shares = parseFloat(document.getElementById('shares').value) || 0;
+  const dcaOn = document.getElementById('dca-toggle').checked;
 
-  const yourRate = (spend / portfolio * 100).toFixed(1);
-  document.getElementById('your-rate').textContent = yourRate + '%';
+  let totalShares = shares;
+  let totalCost = buyPrice * shares;
+  let breakevenPrice = buyPrice;
 
-  const rates = [
-    { id: 'r30', rate: 0.030, color: '#3ecf8e', label: '3.0%' },
-    { id: 'r35', rate: 0.035, color: '#c8f060', label: '3.5%' },
-    { id: 'r40', rate: 0.040, color: '#f7931a', label: '4.0%' },
-    { id: 'r45', rate: 0.045, color: '#f06060', label: '4.5%' },
-  ];
-
-  let maxYears = 50;
-
-  rates.forEach(r => {
-    const annual = portfolio * r.rate;
-    const years = portfolioYears(portfolio, annual, portReturn, inflation);
-    const yearsNum = years === '100+' ? 100 : years;
-    const breakEven = retAge + yearsNum;
-
-    document.getElementById(r.id + '-years').textContent = years === '100+' ? '100+ yrs' : years + ' years';
-    document.getElementById(r.id + '-annual').textContent =
-      fmt(annual) + '/yr · ' + fmt(annual / 12) + '/mo';
-  });
-
-  // Your actual rate
-  const yourYears = portfolioYears(portfolio, spend, portReturn, inflation);
-  const yourYearsNum = yourYears === '100+' ? 100 : yourYears;
-  document.getElementById('your-years').textContent = yourYears === '100+' ? '100+ years' : yourYears + ' years';
-  document.getElementById('breakeven-age').textContent = retAge + yourYearsNum;
-
-  // Build chart
-  const labels = [];
-  for (let y = 0; y <= 50; y++) labels.push('Yr ' + y);
-
-  const datasets = rates
-    .filter(r => activeRates.has(r.rate.toFixed(1).replace('0.0', '').replace('0', '') ||
-      (['3.0','3.5','4.0','4.5'].find(x => Math.abs(parseFloat(x)/100 - r.rate) < 0.001))))
-    .map(r => {
-      const rateKey = (r.rate * 100).toFixed(1);
-      if (!activeRates.has(rateKey)) return null;
-      const annual = portfolio * r.rate;
-      const path = portfolioPath(portfolio, annual, portReturn, inflation, 50);
-      while (path.length <= 50) path.push(0);
-      return {
-        label: r.label,
-        data: path.slice(0, 51),
-        borderColor: r.color,
-        backgroundColor: r.color + '15',
-        borderWidth: 2,
-        pointRadius: 0,
-        fill: false,
-        tension: 0.3,
-      };
-    }).filter(Boolean);
-
-  updateChart(labels, datasets);
-
-  // Year-by-year table for YOUR rate
-  const tbody = document.getElementById('year-tbody');
-  let bal = portfolio;
-  let withdrawal = spend;
-  let rows = '';
-  for (let y = 1; y <= 40; y++) {
-    const startBal = bal;
-    bal = bal * (1 + portReturn) - withdrawal;
-    const endBal = Math.max(0, bal);
-    const depleted = bal <= 0;
-    rows += '<tr>' +
-      '<td>' + y + '</td>' +
-      '<td>' + (retAge + y) + '</td>' +
-      '<td>' + fmt(withdrawal) + '</td>' +
-      '<td>' + fmt(startBal) + '</td>' +
-      '<td class="' + (depleted ? 'depleted' : endBal > portfolio ? 'accent' : '') + '">' +
-        (depleted ? 'Depleted' : fmt(endBal)) +
-      '</td>' +
-    '</tr>';
-    if (depleted) break;
-    withdrawal *= (1 + inflation);
-    if (y >= 40) break;
+  if (dcaOn) {
+    const addAmount = parseFloat(document.getElementById('add-amount').value) || 0;
+    const addPrice = parseFloat(document.getElementById('add-price').value) || 0;
+    if (addPrice > 0) {
+      const addShares = addAmount / addPrice;
+      totalShares += addShares;
+      totalCost += addAmount;
+      breakevenPrice = totalCost / totalShares;
+    }
   }
-  tbody.innerHTML = rows;
+
+  const currentValue = currentPrice * totalShares;
+  const loss = currentValue - totalCost;
+  const lossPct = totalCost > 0 ? (loss / totalCost) * 100 : 0;
+  const gainNeeded = currentPrice > 0 ? ((breakevenPrice - currentPrice) / currentPrice) * 100 : 0;
+
+  // Hero
+  const heroEl = document.getElementById('result-hero');
+  heroEl.classList.toggle('loss', loss < 0);
+  document.getElementById('breakeven-price').textContent = fmt(breakevenPrice);
+  document.getElementById('breakeven-price').style.color = loss < 0 ? '' : 'var(--green)';
+
+  if (gainNeeded > 0) {
+    document.getElementById('breakeven-sub').textContent = 'Requires a +' + gainNeeded.toFixed(1) + '% gain from current price';
+  } else if (gainNeeded < 0) {
+    document.getElementById('breakeven-sub').textContent = 'Already above breakeven by ' + Math.abs(gainNeeded).toFixed(1) + '%';
+  } else {
+    document.getElementById('breakeven-sub').textContent = 'At breakeven';
+  }
+
+  // Metrics
+  document.getElementById('current-loss').textContent = (loss < 0 ? '-' : '+') + fmt(Math.abs(loss));
+  document.getElementById('current-loss').className = 'metric-value ' + (loss < 0 ? 'red' : 'green');
+  document.getElementById('loss-pct').textContent = (lossPct < 0 ? '' : '+') + lossPct.toFixed(1) + '%';
+  document.getElementById('loss-pct').className = 'metric-value ' + (lossPct < 0 ? 'red' : 'green');
+  document.getElementById('gain-needed').textContent = (gainNeeded > 0 ? '+' : '') + gainNeeded.toFixed(1) + '%';
+
+  updateChart();
+  updateScenarioTable();
 }
 
-function updateChart(labels, datasets) {
-  const ctx = document.getElementById('swr-chart').getContext('2d');
+function updateScenarioTable() {
+  const losses = [5, 10, 20, 25, 33.3, 40, 50, 60, 70, 80, 90];
+  let rows = '';
+  losses.forEach(lossPct => {
+    const gainNeeded = (lossPct / (100 - lossPct)) * 100;
+    const recovered = 10000; // always recovers to original since that's the definition
+    const afterLoss = 10000 * (1 - lossPct / 100);
+    const highlight = Math.abs(lossPct - 40) < 0.1 ? ' class="highlight"' : '';
+    rows += '<tr' + highlight + '>' +
+      '<td class="red">-' + lossPct.toFixed(1) + '%</td>' +
+      '<td class="accent">+' + gainNeeded.toFixed(1) + '%</td>' +
+      '<td>$' + afterLoss.toLocaleString(undefined,{maximumFractionDigits:0}) + ' → $10,000</td>' +
+      '</tr>';
+  });
+  document.getElementById('scenario-tbody').innerHTML = rows;
+}
+
+function updateChart() {
+  const losses = [];
+  const gains = [];
+  for (let l = 5; l <= 90; l += 5) {
+    losses.push(l);
+    gains.push((l / (100 - l)) * 100);
+  }
+
+  const ctx = document.getElementById('breakeven-chart').getContext('2d');
   if (chart) chart.destroy();
   chart = new Chart(ctx, {
     type: 'line',
-    data: { labels, datasets },
+    data: {
+      labels: losses.map(l => '-' + l + '%'),
+      datasets: [{
+        label: 'Gain needed to recover',
+        data: gains,
+        borderColor: '#f06060',
+        backgroundColor: 'rgba(240,96,96,0.08)',
+        borderWidth: 2,
+        pointRadius: 0,
+        fill: true,
+        tension: 0.3,
+      }]
+    },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -730,76 +667,18 @@ function updateChart(labels, datasets) {
           titleFont: { family: "'Sora', sans-serif", size: 12 },
           bodyFont: { family: "'DM Mono', monospace", size: 11 },
           callbacks: {
-            label: ctx => '  ' + ctx.dataset.label + ': ' + (ctx.raw >= 1e6 ? '$'+(ctx.raw/1e6).toFixed(2)+'M' : ctx.raw >= 1000 ? '$'+(ctx.raw/1000).toFixed(0)+'K' : ctx.raw === 0 ? 'Depleted' : '$'+ctx.raw)
+            title: ctx => 'Loss: ' + ctx[0].label,
+            label: ctx => '  Gain needed: +' + ctx.raw.toFixed(1) + '%'
           }
         }
       },
       scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 11 } },
-        y: {
-          grid: { color: 'rgba(255,255,255,0.04)' },
-          ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 },
-            callback: v => v >= 1e6 ? '$'+(v/1e6).toFixed(1)+'M' : v >= 1e3 ? '$'+(v/1e3).toFixed(0)+'K' : '$'+v }
-        }
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 10 }, title: { display: true, text: 'Loss %', color: '#555552', font: { family: "'DM Mono', monospace", size: 10 } } },
+        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => '+' + v + '%' }, title: { display: true, text: 'Gain needed', color: '#555552', font: { family: "'DM Mono', monospace", size: 10 } } }
       }
     }
   });
 }
-
-window.addEventListener('load', function() {
-  var btn = document.getElementById('nav-hamburger');
-  var menu = document.getElementById('nav-mobile-menu');
-  if (btn && menu) {
-    btn.addEventListener('click', function() {
-      var open = menu.classList.toggle('open');
-      btn.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    menu.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() {
-        menu.classList.remove('open');
-        btn.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-  function hookDropdown(selector, menuSelector) {
-    document.querySelectorAll(selector).forEach(function(el) {
-      var m = el.querySelector(menuSelector);
-      if (!m) return;
-      var t;
-      el.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
-      el.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
-      m.addEventListener('mouseenter', function() { clearTimeout(t); });
-      m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
-    });
-  }
-  hookDropdown('.nav-group', '.nav-group-menu');
-  hookDropdown('.dropdown', '.dropdown-menu');
-  document.querySelectorAll('.guide-cat-header').forEach(function(hdr) {
-    hdr.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var links = hdr.nextElementSibling;
-      var isOpen = hdr.classList.contains('open');
-      document.querySelectorAll('.guide-cat-header').forEach(function(h) {
-        h.classList.remove('open');
-        if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
-      });
-      if (!isOpen) { hdr.classList.add('open'); if (links) links.classList.add('open'); }
-    });
-  });
-});
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      menu.classList.remove('open');
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    });
-  });
-});
 
 calc();
 </script>
