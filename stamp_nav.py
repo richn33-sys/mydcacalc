@@ -29,6 +29,7 @@ CALC_CATEGORIES = [
         ('dca-backtest.html',                   'DCA backtest'),
         ('compound-interest.html',              'Compound interest'),
         ('rule-of-72-calculator.html',          'Rule of 72'),
+        ('529-calculator.html',                 '529 college savings'),
         ('loss-recovery-calculator.html',       'Loss recovery'),
         ('breakeven-calculator.html',           'Breakeven'),
         ('crypto-cost-basis-calculator.html',   'Crypto cost basis'),

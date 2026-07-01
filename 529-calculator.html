@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dividend Income Calculator — How Much Will Your Portfolio Pay?</title>
-<meta name="description" content="Free dividend income calculator. Enter your portfolio value, dividend yield, and annual growth rate to see your projected dividend income, yield on cost over 20 years, and how DRIP reinvestment compounds your income.">
-<meta name="keywords" content="dividend income calculator, dividend yield calculator, how much dividend income, DRIP calculator, yield on cost calculator, dividend portfolio calculator">
-<meta property="og:title" content="Dividend Income Calculator — See Your Projected Dividend Income">
-<meta property="og:description" content="Enter your portfolio value, yield, and dividend growth rate. See annual income, yield on cost, and how DRIP reinvestment compounds over 20 years.">
+<title>529 College Savings Calculator — How Much Do You Need to Save?</title>
+<meta name="description" content="Free 529 college savings calculator. Project future college costs with inflation, see how much your 529 plan will grow, and find out how much you need to save monthly to cover your goal. Updated for 2026.">
+<meta name="keywords" content="529 calculator, college savings calculator, how much to save for college, 529 plan calculator 2026, college cost calculator, education savings calculator">
+<meta property="og:title" content="529 College Savings Calculator — How Much Do You Need to Save?">
+<meta property="og:description" content="In-state public college costs $25,290/year today. At 5.5% annual inflation, a child born now will face $62,200/year by 2044. See how much you need to save monthly to hit your goal.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mydcacalc.com/dividend-calculator.html">
+<meta property="og:url" content="https://mydcacalc.com/529-calculator.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/dividend-calculator.html">
+<link rel="canonical" href="https://mydcacalc.com/529-calculator.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +21,8 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Dividend Income Calculator",
-  "description": "Project dividend income, yield on cost, and DRIP compounding over 20 years",
+  "name": "529 College Savings Calculator",
+  "description": "Project future college costs and 529 plan growth to see how much you need to save monthly",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -69,47 +69,36 @@ h1 em { font-style: normal; color: var(--accent); }
 .main { max-width: 900px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
 @media (max-width: 720px) { .main { grid-template-columns: 1fr; } }
 
-/* Controls */
 .controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
 .section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
 .input-group { margin-bottom: 16px; }
-.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
-.input-label span { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
 .input-wrap { position: relative; }
 .input-prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
-.input-suffix { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
 input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px 9px 24px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
-input[type="number"].has-suffix { padding-right: 28px; }
 input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
 input[type="number"]:focus { border-color: var(--accent-border); }
+select { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; appearance: none; cursor: pointer; }
+select:focus { border-color: var(--accent-border); }
 input[type="range"] { width: 100%; height: 4px; appearance: none; background: var(--bg-input); border-radius: 2px; outline: none; border: 1px solid var(--border); cursor: pointer; margin-top: 6px; }
 input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-card); }
 .range-header { display: flex; justify-content: space-between; align-items: center; }
 .range-val { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 500; }
 .divider-line { height: 1px; background: var(--border); margin: 16px 0; }
-.toggle-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.toggle-label { font-size: 12px; color: var(--text-muted); }
-.toggle { position: relative; width: 40px; height: 22px; }
-.toggle input { opacity: 0; width: 0; height: 0; }
-.toggle-slider { position: absolute; cursor: pointer; inset: 0; background: var(--bg-input); border: 1px solid var(--border); border-radius: 22px; transition: 0.2s; }
-.toggle-slider::before { content: ''; position: absolute; width: 16px; height: 16px; left: 2px; top: 2px; background: var(--text-dim); border-radius: 50%; transition: 0.2s; }
-.toggle input:checked + .toggle-slider { background: var(--accent-dim); border-color: var(--accent-border); }
-.toggle input:checked + .toggle-slider::before { transform: translateX(18px); background: var(--accent); }
 
-/* Results */
 .results { display: flex; flex-direction: column; gap: 14px; }
 
-/* Hero metric */
-.income-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.income-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
-.income-card.primary { border-color: var(--accent-border); background: var(--accent-dim); }
-.income-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
-.income-card.primary .income-label { color: var(--accent); }
-.income-value { font-size: 24px; font-weight: 600; font-family: var(--font-mono); color: var(--text); letter-spacing: -0.02em; margin-bottom: 4px; }
-.income-card.primary .income-value { color: var(--accent); }
-.income-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
+.hero-result { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
+.hero-result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.hr-item { text-align: center; }
+.hr-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.hr-value { font-size: 26px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.02em; }
+.hr-value.accent { color: var(--accent); }
+.hr-value.blue { color: var(--blue); }
+.hr-value.green { color: var(--green); }
+.hr-value.red { color: var(--red); }
+.hr-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 4px; }
 
-/* Metrics */
 .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 @media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
 .metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
@@ -117,28 +106,27 @@ input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; heigh
 .metric-value { font-family: var(--font-mono); font-size: 17px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
 .metric-value.green { color: var(--green); }
 .metric-value.accent { color: var(--accent); }
+.metric-value.red { color: var(--red); }
 
-/* Chart */
 .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
 .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
 .chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
-.chart-legend { display: flex; gap: 12px; flex-wrap: wrap; }
+.chart-legend { display: flex; gap: 12px; }
 .legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); }
 .legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
 .chart-wrap { position: relative; height: 220px; }
 
-/* Table */
 .table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
 .table-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
 .table-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 460px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 440px; }
 th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
 td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
 tr:last-child td { border-bottom: none; }
 td.accent { color: var(--accent); font-weight: 500; }
 td.green { color: var(--green); }
+td.red { color: var(--red); }
 
-/* Info + disclaimer */
 .info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
 .info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
 .info-box strong { color: var(--text); font-weight: 500; }
@@ -193,7 +181,7 @@ footer a:hover { color: var(--text); }
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Track your dividend portfolio performance</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <span>📈 <strong>Plan your family's financial future</strong> — real avg cost, live tracking, weekly signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -202,13 +190,13 @@ footer a:hover { color: var(--text); }
   <a href="/" class="logo">mydca<span>calc</span>.com</a>
   <nav>
     <div class="nav-group">
-      <button class="nav-group-toggle">Investing</button>
+      <button class="nav-group-toggle active">Investing</button>
       <div class="nav-group-menu">
         <a href="">DCA calculator</a>
         <a href="dca-backtest.html">DCA backtest</a>
         <a href="compound-interest.html">Compound interest</a>
         <a href="rule-of-72-calculator.html">Rule of 72</a>
-        <a href="529-calculator.html">529 college savings</a>
+        <a href="529-calculator.html" class="active">529 college savings</a>
         <a href="loss-recovery-calculator.html">Loss recovery</a>
         <a href="breakeven-calculator.html">Breakeven</a>
         <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
@@ -234,10 +222,10 @@ footer a:hover { color: var(--text); }
       </div>
     </div>
     <div class="nav-group">
-      <button class="nav-group-toggle active">Income</button>
+      <button class="nav-group-toggle">Income</button>
       <div class="nav-group-menu">
         <a href="drip-calculator.html">DRIP</a>
-        <a href="dividend-calculator.html" class="active">Dividend income</a>
+        <a href="dividend-calculator.html">Dividend income</a>
         <a href="inflation-calculator.html">Real returns</a>
       </div>
     </div>
@@ -350,177 +338,230 @@ footer a:hover { color: var(--text); }
 </div>
 
 <div class="hero">
-  <div class="hero-badge">Dividend income · Yield on cost · DRIP growth</div>
-  <h1>Dividend Income <em>Calculator</em></h1>
-  <p>Enter your portfolio value, dividend yield, and annual growth rate to see your projected income, yield on cost, and how DRIP reinvestment compounds your dividends over 20 years.</p>
+  <div class="hero-badge">Tax-free growth · No income limits · 2026 rules</div>
+  <h1>529 College Savings <em>Calculator</em></h1>
+  <p>Project future college costs with inflation, see how your 529 plan grows, and find the monthly savings needed to hit your goal. Works for any school type.</p>
 </div>
 
 <div class="main">
 
-  <!-- Controls -->
   <div class="controls-card">
-    <div class="section-label">Your portfolio</div>
+    <div class="section-label">Your child</div>
 
     <div class="input-group">
-      <div class="input-label">Portfolio value <span id="port-display">$100,000</span></div>
+      <div class="input-label">Child's current age</div>
+      <select id="child-age" onchange="calc()">
+        <option value="0">Newborn (0)</option>
+        <option value="1">1 year old</option>
+        <option value="2">2 years old</option>
+        <option value="3">3 years old</option>
+        <option value="4">4 years old</option>
+        <option value="5" selected>5 years old</option>
+        <option value="6">6 years old</option>
+        <option value="7">7 years old</option>
+        <option value="8">8 years old</option>
+        <option value="9">9 years old</option>
+        <option value="10">10 years old</option>
+        <option value="11">11 years old</option>
+        <option value="12">12 years old</option>
+        <option value="13">13 years old</option>
+        <option value="14">14 years old</option>
+        <option value="15">15 years old</option>
+        <option value="16">16 years old</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Type of college</div>
+      <select id="college-type" onchange="setCollegeCost()">
+        <option value="25290">Public in-state (~$25,290/yr today)</option>
+        <option value="43350">Public out-of-state (~$43,350/yr today)</option>
+        <option value="57570">Private non-profit (~$57,570/yr today)</option>
+        <option value="custom">Custom annual cost</option>
+      </select>
+    </div>
+
+    <div class="input-group" id="custom-cost-wrap" style="display:none;">
+      <div class="input-label">Custom annual cost today</div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="portfolio" value="100000" min="1000" step="5000"
-          oninput="document.getElementById('port-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+        <input type="number" id="custom-cost" value="30000" min="1000" step="1000" oninput="calc()">
       </div>
     </div>
 
     <div class="input-group">
-      <div class="range-header">
-        <div style="font-size:12px;color:var(--text-muted);">Current dividend yield</div>
-        <span class="range-val" id="yield-display">2.5%</span>
-      </div>
-      <input type="range" id="div-yield" min="0.5" max="8" value="2.5" step="0.1"
-        oninput="document.getElementById('yield-display').textContent=this.value+'%';calc()">
-    </div>
-
-    <div class="input-group">
-      <div class="range-header">
-        <div style="font-size:12px;color:var(--text-muted);">Annual dividend growth rate</div>
-        <span class="range-val" id="dgr-display">7%</span>
-      </div>
-      <input type="range" id="div-growth" min="0" max="20" value="7" step="0.5"
-        oninput="document.getElementById('dgr-display').textContent=this.value+'%';calc()">
+      <div class="input-label">Years of college</div>
+      <select id="college-years" onchange="calc()">
+        <option value="2">2 years</option>
+        <option value="4" selected>4 years</option>
+        <option value="6">6 years (including grad)</option>
+      </select>
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Monthly contributions</div>
+    <div class="section-label">Your 529 plan</div>
 
     <div class="input-group">
-      <div class="input-label">Monthly DCA amount <span id="dca-display">$500</span></div>
+      <div class="input-label">Current 529 balance</div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="monthly-dca" value="500" min="0" step="100"
-          oninput="document.getElementById('dca-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+        <input type="number" id="current-balance" value="0" min="0" step="1000" oninput="calc()">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Monthly contribution</div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="monthly-contrib" value="300" min="0" step="50" oninput="calc()">
       </div>
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Settings</div>
+    <div class="section-label">Assumptions</div>
 
-    <div class="toggle-row">
-      <span class="toggle-label">Reinvest dividends (DRIP)</span>
-      <label class="toggle">
-        <input type="checkbox" id="drip-toggle" checked onchange="calc()">
-        <span class="toggle-slider"></span>
-      </label>
+    <div class="input-group">
+      <div class="range-header">
+        <div class="input-label" style="margin:0;">Annual investment return</div>
+        <span class="range-val" id="return-display">6%</span>
+      </div>
+      <input type="range" id="inv-return" min="3" max="10" value="6" step="0.5"
+        oninput="document.getElementById('return-display').textContent=this.value+'%';calc()">
     </div>
 
     <div class="input-group">
       <div class="range-header">
-        <div style="font-size:12px;color:var(--text-muted);">Portfolio price appreciation</div>
-        <span class="range-val" id="price-display">4%</span>
+        <div class="input-label" style="margin:0;">Annual college cost inflation</div>
+        <span class="range-val" id="inflation-display">5.5%</span>
       </div>
-      <input type="range" id="price-growth" min="0" max="12" value="4" step="0.5"
-        oninput="document.getElementById('price-display').textContent=this.value+'%';calc()">
-    </div>
-
-    <div class="input-group">
-      <div class="range-header">
-        <div style="font-size:12px;color:var(--text-muted);">Tax rate on dividends</div>
-        <span class="range-val" id="tax-display">15%</span>
-      </div>
-      <input type="range" id="tax-rate" min="0" max="37" value="15" step="1"
-        oninput="document.getElementById('tax-display').textContent=this.value+'%';calc()">
+      <input type="range" id="cost-inflation" min="2" max="8" value="5.5" step="0.5"
+        oninput="document.getElementById('inflation-display').textContent=this.value+'%';calc()">
     </div>
 
   </div>
 
-  <!-- Results -->
   <div class="results">
 
-    <!-- Hero metrics -->
-    <div class="income-hero">
-      <div class="income-card primary">
-        <div class="income-label">Annual dividend income (Year 1)</div>
-        <div class="income-value" id="annual-income">$0</div>
-        <div class="income-sub" id="monthly-income">$0 / month</div>
-      </div>
-      <div class="income-card">
-        <div class="income-label">After-tax annual income</div>
-        <div class="income-value" id="after-tax-income">$0</div>
-        <div class="income-sub" id="after-tax-monthly">$0 / month after tax</div>
+    <div class="hero-result">
+      <div class="hero-result-grid">
+        <div class="hr-item">
+          <div class="hr-label">Projected total college cost</div>
+          <div class="hr-value blue" id="total-cost">$0</div>
+          <div class="hr-sub" id="cost-sub">When your child starts college</div>
+        </div>
+        <div class="hr-item">
+          <div class="hr-label">Projected 529 balance</div>
+          <div class="hr-value accent" id="total-529">$0</div>
+          <div class="hr-sub" id="balance-sub">At college start</div>
+        </div>
       </div>
     </div>
 
-    <!-- Summary metrics -->
     <div class="metrics">
       <div class="metric">
-        <div class="metric-label">Current yield</div>
-        <div class="metric-value accent" id="current-yield-display">0%</div>
+        <div class="metric-label">Coverage</div>
+        <div class="metric-value accent" id="coverage-pct">0%</div>
       </div>
       <div class="metric">
-        <div class="metric-label">Yield on cost (Yr 10)</div>
-        <div class="metric-value green" id="yoc-10">0%</div>
+        <div class="metric-label">Shortfall / surplus</div>
+        <div class="metric-value" id="gap-amount">$0</div>
       </div>
       <div class="metric">
-        <div class="metric-label">Annual income (Yr 20)</div>
-        <div class="metric-value green" id="income-20">$0</div>
+        <div class="metric-label">Monthly needed for 100%</div>
+        <div class="metric-value accent" id="monthly-needed">$0</div>
       </div>
     </div>
 
-    <!-- Chart -->
     <div class="chart-card">
       <div class="chart-header">
-        <div class="chart-title">Dividend income growth over 20 years</div>
+        <div class="chart-title">529 balance vs projected college cost</div>
         <div class="chart-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>With DRIP</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6;"></div>Without DRIP</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>529 balance</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6;"></div>Total cost</div>
         </div>
       </div>
       <div class="chart-wrap">
-        <canvas id="div-chart"></canvas>
+        <canvas id="savings-chart"></canvas>
       </div>
     </div>
 
-    <!-- Year table -->
     <div class="table-card">
-      <div class="table-title">20-year dividend income projection</div>
+      <div class="table-title">Year-by-year savings vs cost projection</div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Year</th>
-              <th>Portfolio value</th>
-              <th>Annual dividend</th>
-              <th>Yield on cost</th>
-              <th>After-tax income</th>
+              <th>Years to college</th>
+              <th>Child's age</th>
+              <th>529 balance</th>
+              <th>Projected annual cost</th>
+              <th>4-yr total cost</th>
             </tr>
           </thead>
-          <tbody id="div-tbody"></tbody>
+          <tbody id="proj-tbody"></tbody>
         </table>
       </div>
     </div>
 
     <div class="info-box">
-      <p><strong>What is yield on cost?</strong> Yield on cost is your current annual dividend divided by what you originally paid for the investment — not the current market value. As dividends grow each year, your yield on cost rises even if the stock price stays flat. A stock purchased at $100 paying a $2 dividend (2% yield) that grows its dividend to $4 after 10 years has a 4% yield on cost — double the original yield, on the same original investment.</p>
+      <p><strong>Key 529 facts for 2026:</strong> Contributions grow tax-free and qualified withdrawals (tuition, fees, room and board, books) are tax-free at the federal level. Many states offer a state income tax deduction for contributions — check your state's plan. The annual gift tax exclusion for 529 contributions is $19,000 per donor per beneficiary in 2026 ($38,000 for married couples). You can front-load 5 years of contributions ($95,000 per donor, $190,000 for married couples) without triggering gift tax. No federal annual contribution limit — state lifetime limits typically range from $300,000 to $550,000+ per beneficiary.</p>
     </div>
 
     <div class="disclaimer">
-      This calculator uses simplified assumptions: constant dividend growth rate, constant price appreciation, and consistent monthly contributions. Actual dividend income depends on stock selection, company performance, payout ratio sustainability, and market conditions. Dividend growth rates and stock prices are not guaranteed. This is for educational purposes only. Not financial advice.
+      College cost estimates are based on published 2026 averages from the College Board and NCES. Projections use simplified compound growth models — actual results depend on market returns, college cost inflation, financial aid, and scholarship availability. This calculator does not account for financial aid, state-specific 529 tax benefits, or fees. Not financial advice. Consult a qualified financial advisor before making education savings decisions.
     </div>
 
   </div>
 </div>
 
 <div class="content-section">
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the dividend income calculator works</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator projects your dividend income over 20 years based on your starting portfolio value, current dividend yield, annual dividend growth rate, and monthly DCA contributions. With DRIP toggled on, it reinvests dividend payments each year — compounding your share count alongside organic portfolio growth. With DRIP off, it shows the income you'd receive as cash without reinvestment.</p>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The yield on cost metric shows how your effective income return rises over time as the dividend grows. A 2.5% starting yield growing at 7% per year becomes a 4.9% yield on cost after 10 years — nearly double, on the same original investment cost.</p>
-  <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:28px 0 12px;">How to use this calculator</h3>
-  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;">
-    <li style="margin-bottom:10px;">Enter your current dividend portfolio value and the blended yield across your holdings.</li>
-    <li style="margin-bottom:10px;">Set the annual dividend growth rate — use the historical rate of your holdings or a target rate (7% is a common assumption for dividend growth portfolios).</li>
-    <li style="margin-bottom:10px;">Set your monthly DCA contribution to see how regular additions accelerate income growth.</li>
-    <li style="margin-bottom:10px;">Toggle DRIP on to see compounded returns from reinvestment vs cash income with DRIP off.</li>
-    <li style="margin-bottom:10px;">Set the tax rate to see after-tax income — qualified dividends are taxed at 0%, 15%, or 20% depending on your income bracket.</li>
-  </ul>
-  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For a full guide on building a dividend growth portfolio, read <a href="guides/dividend-growth-portfolio.html" style="color:#c8f060;text-decoration:none;">how to build a dividend growth portfolio</a>. To model reinvestment on a specific holding, use the <a href="drip-calculator.html" style="color:#c8f060;text-decoration:none;">DRIP calculator</a>.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the 529 college savings calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator projects two things simultaneously: how much your 529 plan will grow based on contributions and investment returns, and how much college will cost by the time your child enrolls — accounting for college cost inflation, which has historically run 4–6% per year, significantly above general inflation. The gap between the two tells you your shortfall or surplus, and the calculator shows the monthly contribution needed to cover 100% of projected costs.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A child born today with parents saving $300/month from birth, targeting an in-state public university:</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">18 years, $300/month, 6% return, 5.5% college inflation</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Current in-state cost (today)</span><span style="color:var(--text);">$25,290/year</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Projected cost at college start (2044)</span><span style="color:var(--blue);">~$62,200/year</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total 4-year projected cost</span><span style="color:var(--blue);">~$268,000</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total contributions ($300 × 216 months)</span><span style="color:var(--text);">$64,800</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Projected 529 balance at 18</span><span style="color:var(--accent);">~$118,000</span></div>
+  </div>
+  <p style="color:#888884;font-weight:300;margin-bottom:28px;line-height:1.75;">$300/month from birth covers approximately 44% of projected in-state costs. To cover 100%, you'd need roughly $680/month starting at birth — illustrating why starting early and contributing consistently matters enormously. The same $680/month started at age 5 (13 years to go) would cover far less, because compounding has less time to work.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">What a 529 plan actually is — and what it isn't</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A 529 plan is a tax-advantaged savings account sponsored by a state, designed specifically for education expenses. Contributions are made with after-tax dollars, but earnings grow tax-free and withdrawals for qualified education expenses — tuition, fees, room and board, books, supplies — are tax-free at the federal level. Many states also offer a state income tax deduction for contributions.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">What it is:</strong> A flexible, tax-efficient savings vehicle with high contribution limits (state lifetime limits typically $300,000–$550,000+), no income limits, and broad qualified expense coverage including K-12 tuition up to $10,000/year and even student loan repayment up to $10,000 lifetime. Under SECURE 2.0, up to $35,000 of unused 529 funds can roll into a Roth IRA for the beneficiary (account must be open 15+ years; annual rollover limited to the Roth contribution limit).</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">What it isn't:</strong> A guaranteed college funding solution. Non-qualified withdrawals incur income tax plus a 10% penalty on earnings. The account value can decline if markets fall — sequence of returns risk is real, especially in the years just before college when a significant drawdown could reduce available funds meaningfully. Most financial planners recommend shifting to more conservative allocations as college approaches (ages 16–18).</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What if my child doesn't go to college?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">You have several options. Change the beneficiary to another family member — a sibling, cousin, or even yourself — with no taxes or penalties. Use the funds for trade school, apprenticeship programs, or K-12 tuition. Roll up to $35,000 lifetime into a Roth IRA for the original beneficiary (account must be at least 15 years old; annual rollovers are subject to Roth contribution limits). As a last resort, withdraw the money as a non-qualified distribution — you'll owe income tax plus a 10% penalty on earnings only, not on contributions. The flexibility introduced by SECURE 2.0 has substantially reduced the "what if they don't go?" concern that previously made parents hesitant to open 529 accounts.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Does a 529 plan affect financial aid?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes, but less than many parents fear. A parent-owned 529 plan counts as a parental asset on the FAFSA, which reduces expected financial aid by a maximum of 5.64% of the account value — meaning a $50,000 529 balance reduces aid eligibility by at most $2,820. Grandparent-owned 529 plans have no impact on the FAFSA under the simplified rules effective for the 2024–2025 aid year and beyond. Student-owned accounts are assessed at a higher rate (20%), so parent ownership is generally more advantageous.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Should I use my state's 529 plan or another state's?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">You are not required to use your home state's plan — 529 plans can be used at any eligible institution nationwide (and many internationally). If your state offers a meaningful income tax deduction for 529 contributions, the in-state plan is often worth using even if it has slightly higher fees. If your state offers no deduction (California, for example, offers none), you're free to shop for the lowest-cost national plan. Utah, New York, and Nevada plans are frequently cited for low fees and strong investment options — verify current fees and options before opening an account.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Can grandparents contribute to a 529 plan?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes. Grandparents (or anyone) can contribute to a 529 plan for a beneficiary. The annual gift tax exclusion is $19,000 per donor per beneficiary in 2026 — a grandparent can contribute up to $19,000 without gift tax implications. Grandparents can also front-load 5 years of contributions ($95,000 per donor) in a single year without triggering gift tax, under the 529 superfunding election. Grandparent-owned 529 plans no longer affect FAFSA calculations under the simplified rules effective 2024–2025.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How should I invest a 529 plan?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Most 529 plans offer age-based portfolios that automatically shift from aggressive (stocks) to conservative (bonds, stable value) as college approaches — these are the simplest option for most families. If you choose your own allocation, financial planners generally suggest: aggressive growth (80–100% stocks) when the child is under 10; moderate (60–70% stocks) from ages 10–15; conservative (30–40% stocks) from ages 16 onward. The goal is to protect accumulated gains from a market downturn in the years immediately before tuition is due.</p>
+  </div>
+
 </div>
 
 <footer>
@@ -536,109 +577,149 @@ footer a:hover { color: var(--text); }
 <script>
 let chart = null;
 
+// 2026 college costs (College Board / NCES)
+const COLLEGE_COSTS = {
+  25290: 25290,
+  43350: 43350,
+  57570: 57570,
+};
+
+function setCollegeCost() {
+  const val = document.getElementById('college-type').value;
+  document.getElementById('custom-cost-wrap').style.display = val === 'custom' ? 'block' : 'none';
+  calc();
+}
+
 function fmt(n) {
-  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (Math.abs(n) >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
   return '$' + Math.round(n).toLocaleString();
 }
 
 function calc() {
-  const portfolio   = parseFloat(document.getElementById('portfolio').value) || 0;
-  const divYield    = parseFloat(document.getElementById('div-yield').value) / 100;
-  const divGrowth   = parseFloat(document.getElementById('div-growth').value) / 100;
-  const monthlyDCA  = parseFloat(document.getElementById('monthly-dca').value) || 0;
-  const drip        = document.getElementById('drip-toggle').checked;
-  const priceGrowth = parseFloat(document.getElementById('price-growth').value) / 100;
-  const taxRate     = parseFloat(document.getElementById('tax-rate').value) / 100;
+  const childAge      = parseInt(document.getElementById('child-age').value);
+  const collegeType   = document.getElementById('college-type').value;
+  const collegeYears  = parseInt(document.getElementById('college-years').value);
+  const currentBal    = parseFloat(document.getElementById('current-balance').value) || 0;
+  const monthlyContrib = parseFloat(document.getElementById('monthly-contrib').value) || 0;
+  const invReturn     = parseFloat(document.getElementById('inv-return').value) / 100;
+  const costInflation = parseFloat(document.getElementById('cost-inflation').value) / 100;
 
-  // Year 1 income
-  const annualIncome = portfolio * divYield;
-  const afterTax = annualIncome * (1 - taxRate);
+  const currentCost = collegeType === 'custom'
+    ? parseFloat(document.getElementById('custom-cost').value) || 25290
+    : parseInt(collegeType);
 
-  document.getElementById('annual-income').textContent = fmt(annualIncome);
-  document.getElementById('monthly-income').textContent = fmt(annualIncome / 12) + ' / month';
-  document.getElementById('after-tax-income').textContent = fmt(afterTax);
-  document.getElementById('after-tax-monthly').textContent = fmt(afterTax / 12) + ' / month';
-  document.getElementById('current-yield-display').textContent = (divYield * 100).toFixed(1) + '%';
+  const yearsToCollege = Math.max(1, 18 - childAge);
+  const monthlyRate = invReturn / 12;
 
-  // Build 20-year projection
-  const years = 20;
-  const labelsAll = [], withDrip = [], withoutDrip = [];
-  let portDrip = portfolio, portNoDrip = portfolio;
-  let divPerShare = divYield; // tracks dividend as % of original cost
-  let totalCostBasis = portfolio;
+  // Project 529 balance at college start
+  let bal = currentBal;
+  for (let m = 0; m < yearsToCollege * 12; m++) {
+    bal = bal * (1 + monthlyRate) + monthlyContrib;
+  }
+  const projected529 = bal;
+
+  // Project college costs (total over N years)
+  let totalCost = 0;
+  for (let y = 0; y < collegeYears; y++) {
+    const yearCost = currentCost * Math.pow(1 + costInflation, yearsToCollege + y);
+    totalCost += yearCost;
+  }
+  const annualCostAtStart = currentCost * Math.pow(1 + costInflation, yearsToCollege);
+
+  // Coverage
+  const coverage = Math.min(200, (projected529 / totalCost) * 100);
+  const gap = projected529 - totalCost;
+
+  // Monthly needed for 100% coverage
+  const target = totalCost;
+  let monthlyNeeded = 0;
+  if (yearsToCollege > 0) {
+    const n = yearsToCollege * 12;
+    const r = monthlyRate;
+    if (r > 0) {
+      monthlyNeeded = Math.max(0, (target - currentBal * Math.pow(1 + r, n)) * r / (Math.pow(1 + r, n) - 1));
+    } else {
+      monthlyNeeded = Math.max(0, (target - currentBal) / n);
+    }
+  }
+
+  // Update hero
+  document.getElementById('total-cost').textContent = fmt(totalCost);
+  document.getElementById('cost-sub').textContent = fmt(annualCostAtStart) + '/yr × ' + collegeYears + ' years';
+  document.getElementById('total-529').textContent = fmt(projected529);
+  document.getElementById('balance-sub').textContent = 'After ' + yearsToCollege + ' years of contributions';
+
+  // Metrics
+  document.getElementById('coverage-pct').textContent = coverage.toFixed(0) + '%';
+  const gapEl = document.getElementById('gap-amount');
+  gapEl.textContent = (gap >= 0 ? '+' : '-') + fmt(Math.abs(gap));
+  gapEl.className = 'metric-value ' + (gap >= 0 ? 'green' : 'red');
+  document.getElementById('monthly-needed').textContent = fmt(monthlyNeeded) + '/mo';
+
+  // Build chart and table
+  const labels = [], balData = [], costData = [];
+  let runBal = currentBal;
   let rows = '';
 
-  for (let y = 1; y <= years; y++) {
-    // Add DCA contributions
-    const annualDCA = monthlyDCA * 12;
-    portDrip += annualDCA;
-    portNoDrip += annualDCA;
-    totalCostBasis += annualDCA;
+  for (let y = 0; y <= yearsToCollege; y++) {
+    const age = childAge + y;
+    labels.push('Age ' + age);
+    balData.push(Math.round(runBal));
+    const yearAnnualCost = currentCost * Math.pow(1 + costInflation, y);
+    const yearTotal4 = yearAnnualCost * collegeYears;
+    costData.push(Math.round(yearTotal4));
 
-    // Dividend for this year
-    const dripIncome = portDrip * divYield * Math.pow(1 + divGrowth, y - 1);
-    const noDripIncome = portNoDrip * divYield * Math.pow(1 + divGrowth, y - 1);
-
-    // Yield on cost
-    const yoc = (divYield * Math.pow(1 + divGrowth, y - 1)) * 100;
-
-    // After tax
-    const dripAfterTax = dripIncome * (1 - taxRate);
-
-    // Reinvest if DRIP
-    if (drip) portDrip += dripIncome * (1 - taxRate);
-
-    // Price appreciation
-    portDrip *= (1 + priceGrowth);
-    portNoDrip *= (1 + priceGrowth);
-
-    labelsAll.push('Yr ' + y);
-    withDrip.push(Math.round(drip ? dripIncome : noDripIncome));
-    withoutDrip.push(Math.round(noDripIncome));
-
-    // Table rows (every 5 years + year 1)
-    if (y === 1 || y % 5 === 0) {
+    // Table: show every 2 years
+    if (y % 2 === 0 || y === yearsToCollege) {
+      const surplus = runBal - yearTotal4;
       rows += '<tr>' +
-        '<td>' + y + '</td>' +
-        '<td>' + fmt(portDrip) + '</td>' +
-        '<td class="accent">' + fmt(dripIncome) + '</td>' +
-        '<td class="green">' + yoc.toFixed(1) + '%</td>' +
-        '<td>' + fmt(dripAfterTax) + '</td>' +
+        '<td>' + (yearsToCollege - y) + ' yrs</td>' +
+        '<td>' + age + '</td>' +
+        '<td class="accent">' + fmt(runBal) + '</td>' +
+        '<td>' + fmt(yearAnnualCost) + '/yr</td>' +
+        '<td class="' + (runBal >= yearTotal4 ? 'green' : 'red') + '">' + fmt(yearTotal4) + '</td>' +
         '</tr>';
     }
 
-    if (y === 10) document.getElementById('yoc-10').textContent = yoc.toFixed(1) + '%';
-    if (y === 20) document.getElementById('income-20').textContent = fmt(dripIncome);
+    // Grow balance for next year
+    for (let m = 0; m < 12; m++) {
+      runBal = runBal * (1 + monthlyRate) + monthlyContrib;
+    }
   }
 
-  document.getElementById('div-tbody').innerHTML = rows;
-  updateChart(labelsAll, withDrip, withoutDrip, drip);
+  document.getElementById('proj-tbody').innerHTML = rows;
+  updateChart(labels, balData, costData);
 }
 
-function updateChart(labels, drip, noDrip, dripOn) {
-  const ctx = document.getElementById('div-chart').getContext('2d');
+function updateChart(labels, balData, costData) {
+  const ctx = document.getElementById('savings-chart').getContext('2d');
   if (chart) chart.destroy();
   chart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels,
       datasets: [
         {
-          label: 'With DRIP',
-          data: drip,
-          backgroundColor: 'rgba(200,240,96,0.6)',
+          label: '529 balance',
+          data: balData,
           borderColor: '#c8f060',
-          borderWidth: 1,
-          borderRadius: 3,
+          backgroundColor: 'rgba(200,240,96,0.08)',
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: true,
+          tension: 0.3,
         },
         {
-          label: 'Without DRIP',
-          data: noDrip,
-          backgroundColor: 'rgba(91,156,246,0.3)',
+          label: 'Total college cost',
+          data: costData,
           borderColor: '#5b9cf6',
-          borderWidth: 1,
-          borderRadius: 3,
+          backgroundColor: 'rgba(91,156,246,0.05)',
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: false,
+          tension: 0.3,
+          borderDash: [5, 4],
         }
       ]
     },
@@ -657,12 +738,12 @@ function updateChart(labels, drip, noDrip, dripOn) {
           padding: 12,
           titleFont: { family: "'Sora', sans-serif", size: 12 },
           bodyFont: { family: "'DM Mono', monospace", size: 11 },
-          callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + fmt(ctx.raw) }
+          callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + (ctx.raw >= 1000 ? '$' + (ctx.raw/1000).toFixed(0) + 'K' : '$' + ctx.raw) }
         }
       },
       scales: {
         x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 10 } },
-        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1000 ? '$'+(v/1000).toFixed(0)+'K' : '$'+v } }
+        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1000 ? '$' + (v/1000).toFixed(0) + 'K' : '$' + v } }
       }
     }
   });
