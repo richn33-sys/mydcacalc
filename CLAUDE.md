@@ -133,6 +133,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── dividend-calculator.html                       ← Dividend Income Calculator (16th calculator, NEW Jun 27)
 ├── rule-of-72-calculator.html                     ← Rule of 72 Calculator (17th calculator, NEW Jun 27)
 ├── breakeven-calculator.html                      ← Breakeven Calculator stock/crypto (18th calculator, NEW Jun 30 — full content: worked example + "why averaging down isn't magic" + 5-question FAQ)
+├── ira-contribution-calculator.html               ← IRA Contribution Calculator (19th calculator, NEW Jul 1 — 2026 IRS limits, Roth phaseout visual, traditional deductibility, 5-question FAQ)
+├── 529-calculator.html                            ← 529 College Savings Calculator (20th calculator, NEW Jul 1 — college cost projection, worked example, SECURE 2.0 Roth rollover, 5-question FAQ; nav category: Retirement & Tax)
 ├── nav.js                                         ← All nav dropdown/hamburger/accordion JS (RECREATED Jun 21 — moved out of inline; stamp_nav injects <script src="/nav.js"> on every page)
 ├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown; NAV_EVENT_JS now just <script src="/nav.js">, ensure_nav_js() injects it, Jun 21)
 ├── about.html
@@ -321,6 +323,22 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
 - Distinct from `loss-recovery-calculator.html` (8th, the loss-recovery/break-even tool) — this is the dedicated stock/crypto breakeven price calculator from the Jun 28 brief
 - **Keywords:** breakeven calculator, stock breakeven price, crypto breakeven calculator, price to break even
+
+### ira-contribution-calculator.html — IRA Contribution Calculator (19th calculator, NEW Jul 1 2026)
+- Shows how much a person can contribute to a Traditional and/or Roth IRA under the 2026 IRS limits, factoring in income phase-outs
+- Inputs: age (catch-up eligibility), filing status, MAGI, existing contributions
+- Outputs: max contribution, Roth eligibility with phase-out visual, Traditional deductibility
+- **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs/nuance section + 5-question FAQ
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- **Keywords:** IRA contribution calculator, Roth IRA income limits 2026, traditional IRA deduction calculator
+
+### 529-calculator.html — 529 College Savings Calculator (20th calculator, NEW Jul 1 2026)
+- Projects the future cost of college and how much to save monthly in a 529 plan to reach that target
+- Inputs: child's current age, years until college, current savings, monthly contribution, expected return, college cost inflation
+- Outputs: projected college cost, projected 529 balance, savings gap/surplus, required monthly contribution
+- **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs/nuance section (incl. SECURE 2.0 529→Roth rollover) + 5-question FAQ
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax** (moved from Investing on build day)
+- **Keywords:** 529 calculator, college savings calculator, how much to save for college
 ---
 ## Calculator Content Standard (NEW Jun 30 2026)
 > Standing rule for every future calculator. Established this session and saved to memory.
@@ -505,6 +523,8 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | dividend-calculator.html | dividend calculator / dividend income calculator |
 | rule-of-72-calculator.html | rule of 72 calculator / how long to double money |
 | breakeven-calculator.html | breakeven calculator / stock crypto price to break even |
+| ira-contribution-calculator.html | IRA contribution calculator / Roth IRA income limits 2026 |
+| 529-calculator.html | 529 calculator / college savings calculator |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -642,7 +662,7 @@ CURRENT_GUIDES = [
 > ✅ Jun 28: 3-Fund Portfolio guide added — CURRENT_GUIDES now at 25, audited against disk and matches (25 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
 > ✅ Jun 29: Tokenized RWA guide added (Marcus Veil) — CURRENT_GUIDES now at 26, audited against disk and matches (26 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
 
-### Current CURRENT_CALCULATORS (as of Jun 30 2026 — verified against disk, 18 calculators):
+### Current CURRENT_CALCULATORS (as of Jul 1 2026 — verified against disk, 20 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator (index.html)",
@@ -663,14 +683,20 @@ CURRENT_CALCULATORS = [
     "Dividend income calculator",
     "Rule of 72 calculator (how long to double your money)",
     "Breakeven calculator (stock/crypto price to break even)",
+    "IRA contribution calculator (traditional/Roth limits and phase-outs)",
+    "529 college savings calculator",
 ]
 ```
 > ✅ Jun 21: research_agent.py audited vs disk — CURRENT_CALCULATORS was at 14, added RMD calculator → 15, now matches disk. (CURRENT_GUIDES unchanged at 21.)
 > ✅ Jun 27: CURRENT_CALCULATORS was at 15, missing both the Dividend Income calculator and Rule of 72 calculator → added both → 17, matches disk (17 calculator HTML files).
 > ✅ Jun 30: CURRENT_CALCULATORS was at 17, missing the Breakeven calculator → added → 18, matches disk (18 calculator HTML files). CURRENT_GUIDES unchanged at 26.
+> ✅ Jul 1: CURRENT_CALCULATORS was at 18, missing IRA Contribution + 529 College Savings → added both → 20, matches disk (20 calculator HTML files). CURRENT_GUIDES unchanged at 26 (verified against disk — 26 guide HTML files).
 ---
 ## Roadmap
 ### Done ✅
+- [x] 529 College Savings Calculator (20th calculator) — `529-calculator.html`, college cost projection + required monthly savings, under **Retirement & Tax** (moved from Investing on build day); full-content build (worked example + honest tradeoffs incl. SECURE 2.0 529→Roth rollover + 5-question FAQ) — meets Calculator Content Standard — Jul 1 2026
+- [x] IRA Contribution Calculator (19th calculator) — `ira-contribution-calculator.html`, 2026 IRS limits + Roth phase-out visual + Traditional deductibility, under **Retirement & Tax**; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard — Jul 1 2026
+- [x] sitemap.xml updated with breakeven-calculator, ira-contribution-calculator, 529-calculator URLs (breakeven had been missing since Jun 30) — Jul 1 2026
 - [x] Breakeven Calculator (18th calculator) — `breakeven-calculator.html`, stock/crypto price to break even, under **Investing**; full-content build (worked example + "why averaging down isn't magic" + 5-question FAQ); first calculator built to the new Calculator Content Standard — verified live via Claude in Chrome (nav dropdown working, no nav.js duplicates) — Jun 30 2026
 - [x] Calculator Content Standard established — every future calculator must include a worked numerical example, an honest tradeoffs/nuance section, and a 4–5 question FAQ before deployment (saved to memory) — Jun 30 2026
 - [x] Tokenized Real-World Assets (RWA) guide — Marcus Veil (new persona), 26th guide — `guides/tokenized-real-world-assets.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Crypto** — Jun 29 2026
@@ -755,9 +781,10 @@ CURRENT_CALCULATORS = [
 ### Next session priorities:
 - [x] **RWA Investing guide** (HIGH) — published Jun 29 2026 (`tokenized-real-world-assets.html`, 26th guide, Marcus Veil) ✅
 - [x] **Stock/Crypto Breakeven Calculator** (MEDIUM) — built and deployed Jun 30 2026 (`breakeven-calculator.html`, 18th calculator), full-content build, verified live ✅
-- [ ] **IRA Contribution Calculator** (MEDIUM)
-- [ ] **529 College Savings Calculator** (MEDIUM)
-- [ ] **Submit all recent pages to GSC** — breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html + any outstanding
+- [x] **IRA Contribution Calculator** (MEDIUM) — built and deployed Jul 1 2026 (`ira-contribution-calculator.html`, 19th calculator), full-content build, under Retirement & Tax ✅
+- [x] **529 College Savings Calculator** (MEDIUM) — built and deployed Jul 1 2026 (`529-calculator.html`, 20th calculator), full-content build, under Retirement & Tax ✅
+- [ ] **Submit all recent pages to GSC** — 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html
+- [ ] **All brief items complete — await July 6 research agent brief** for new content ideas
 
 ### Earlier priorities:
 - [x] **3-Fund Portfolio guide** — published Jun 28 2026 (25th guide, James Colter) ✅
@@ -808,6 +835,16 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jul 1 2026 — IRA + 529 Calculators Session
+- **IRA Contribution Calculator built and deployed** (`ira-contribution-calculator.html`, 19th calculator) — 2026 IRS contribution limits with income phase-outs, Roth eligibility phase-out visual, Traditional deductibility, and a 5-question FAQ; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- **529 College Savings Calculator built and deployed** (`529-calculator.html`, 20th calculator) — projects college cost and required monthly savings; worked numerical example, honest tradeoffs section (incl. SECURE 2.0 529→Roth rollover), and a 5-question FAQ
+- **529 moved to Retirement & Tax nav category** — was initially stamped under Investing (after Rule of 72); moved to **Retirement & Tax** (after IRA contribution) and all pages re-stamped
+- **Both calculators meet the Calculator Content Standard** (worked example + honest tradeoffs/nuance + 4–5 question FAQ)
+- **sitemap.xml updated** — added `breakeven-calculator.html` (had been missing since Jun 30), `ira-contribution-calculator.html`, and `529-calculator.html` URLs
+- All pages re-stamped via `stamp_nav.py --all`; nav.js tag count verified at 1 (no duplicates)
+- **research_agent.py audit (vs disk):** CURRENT_CALCULATORS was at 18, missing IRA Contribution + 529 → added both → **20**, matches disk (20 calculator HTML files). CURRENT_GUIDES unchanged at **26**, verified against disk (26 guide HTML files)
+- Next priorities: all remaining brief items complete — await July 6 research agent brief; submit 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html to GSC
 
 ### Jun 30 2026 — Breakeven Calculator + Content Standard Session
 - **Breakeven Calculator built and deployed** (`breakeven-calculator.html`, 18th calculator) — stock/crypto price to break even after a loss / across multiple buys; added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
