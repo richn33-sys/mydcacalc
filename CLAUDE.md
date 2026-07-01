@@ -132,6 +132,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── rmd-calculator.html                           ← RMD Calculator / Required Minimum Distribution (15th calculator, NEW Jun 21)
 ├── dividend-calculator.html                       ← Dividend Income Calculator (16th calculator, NEW Jun 27)
 ├── rule-of-72-calculator.html                     ← Rule of 72 Calculator (17th calculator, NEW Jun 27)
+├── breakeven-calculator.html                      ← Breakeven Calculator stock/crypto (18th calculator, NEW Jun 30 — full content: worked example + "why averaging down isn't magic" + 5-question FAQ)
 ├── nav.js                                         ← All nav dropdown/hamburger/accordion JS (RECREATED Jun 21 — moved out of inline; stamp_nav injects <script src="/nav.js"> on every page)
 ├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown; NAV_EVENT_JS now just <script src="/nav.js">, ensure_nav_js() injects it, Jun 21)
 ├── about.html
@@ -311,6 +312,25 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Outputs: years to double, doubling rate, projected value milestones
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
 - **Keywords:** rule of 72 calculator, how long to double money, doubling time calculator
+
+### breakeven-calculator.html — Breakeven Calculator (18th calculator, NEW Jun 30 2026)
+- Calculates the price a stock or crypto must reach to break even after a loss (or across multiple buys), and the percentage gain required to recover
+- Inputs: purchase price(s) / average cost, current price, optional additional buys (averaging down), fees
+- Outputs: breakeven price, % gain needed to recover, new average cost if averaging down
+- **Full-content build:** includes a worked numerical example, a "why averaging down isn't magic" honest-tradeoffs section, and a 5-question FAQ — the first calculator built to the new standing content standard (see Calculator Content Standard below)
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
+- Distinct from `loss-recovery-calculator.html` (8th, the loss-recovery/break-even tool) — this is the dedicated stock/crypto breakeven price calculator from the Jun 28 brief
+- **Keywords:** breakeven calculator, stock breakeven price, crypto breakeven calculator, price to break even
+---
+## Calculator Content Standard (NEW Jun 30 2026)
+> Standing rule for every future calculator. Established this session and saved to memory.
+
+Every new calculator must include, before deployment:
+1. A **worked numerical example** — walk a concrete set of inputs through to the result
+2. An **honest tradeoffs / nuance section** — the caveats, what the math does *not* do (e.g. "why averaging down isn't magic"); aligns with YMYL accuracy standards
+3. A **4–5 question FAQ** — answers the common real questions (also feeds FAQPage schema / Google AI Overviews)
+
+This raises calculators from bare tools to non-commodity content that the Helpful Content System and AI Overviews reward. The Breakeven Calculator (18th) is the first built to this standard.
 ---
 ## Author Personas
 ### James Colter — Long-term Investor & Personal Finance Writer
@@ -484,6 +504,7 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 | rmd-calculator.html | RMD calculator / required minimum distribution calculator |
 | dividend-calculator.html | dividend calculator / dividend income calculator |
 | rule-of-72-calculator.html | rule of 72 calculator / how long to double money |
+| breakeven-calculator.html | breakeven calculator / stock crypto price to break even |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -621,7 +642,7 @@ CURRENT_GUIDES = [
 > ✅ Jun 28: 3-Fund Portfolio guide added — CURRENT_GUIDES now at 25, audited against disk and matches (25 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
 > ✅ Jun 29: Tokenized RWA guide added (Marcus Veil) — CURRENT_GUIDES now at 26, audited against disk and matches (26 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
 
-### Current CURRENT_CALCULATORS (as of Jun 27 2026 — verified against disk, 17 calculators):
+### Current CURRENT_CALCULATORS (as of Jun 30 2026 — verified against disk, 18 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator (index.html)",
@@ -641,13 +662,17 @@ CURRENT_CALCULATORS = [
     "RMD calculator (required minimum distribution)",
     "Dividend income calculator",
     "Rule of 72 calculator (how long to double your money)",
+    "Breakeven calculator (stock/crypto price to break even)",
 ]
 ```
 > ✅ Jun 21: research_agent.py audited vs disk — CURRENT_CALCULATORS was at 14, added RMD calculator → 15, now matches disk. (CURRENT_GUIDES unchanged at 21.)
 > ✅ Jun 27: CURRENT_CALCULATORS was at 15, missing both the Dividend Income calculator and Rule of 72 calculator → added both → 17, matches disk (17 calculator HTML files).
+> ✅ Jun 30: CURRENT_CALCULATORS was at 17, missing the Breakeven calculator → added → 18, matches disk (18 calculator HTML files). CURRENT_GUIDES unchanged at 26.
 ---
 ## Roadmap
 ### Done ✅
+- [x] Breakeven Calculator (18th calculator) — `breakeven-calculator.html`, stock/crypto price to break even, under **Investing**; full-content build (worked example + "why averaging down isn't magic" + 5-question FAQ); first calculator built to the new Calculator Content Standard — verified live via Claude in Chrome (nav dropdown working, no nav.js duplicates) — Jun 30 2026
+- [x] Calculator Content Standard established — every future calculator must include a worked numerical example, an honest tradeoffs/nuance section, and a 4–5 question FAQ before deployment (saved to memory) — Jun 30 2026
 - [x] Tokenized Real-World Assets (RWA) guide — Marcus Veil (new persona), 26th guide — `guides/tokenized-real-world-assets.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Crypto** — Jun 29 2026
 - [x] nav.js duplicate bug TRUE ROOT CAUSE fixed — `stamp()` had two `/nav.js` injection points (regex replacement + fallback); both replaced with a single dedup injection (strip all existing tags, add exactly one before `</body>`) — Jun 29 2026
 - [x] 3-Fund Portfolio guide — James Colter, 25th guide — `guides/three-fund-portfolio.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under Fundamentals — Jun 28 2026
@@ -729,10 +754,10 @@ CURRENT_CALCULATORS = [
 
 ### Next session priorities:
 - [x] **RWA Investing guide** (HIGH) — published Jun 29 2026 (`tokenized-real-world-assets.html`, 26th guide, Marcus Veil) ✅
-- [ ] **Stock/Crypto Breakeven Calculator** (MEDIUM)
+- [x] **Stock/Crypto Breakeven Calculator** (MEDIUM) — built and deployed Jun 30 2026 (`breakeven-calculator.html`, 18th calculator), full-content build, verified live ✅
 - [ ] **IRA Contribution Calculator** (MEDIUM)
 - [ ] **529 College Savings Calculator** (MEDIUM)
-- [ ] **Submit all new pages to GSC** — tokenized-real-world-assets.html + three-fund-portfolio.html + any outstanding
+- [ ] **Submit all recent pages to GSC** — breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html + any outstanding
 
 ### Earlier priorities:
 - [x] **3-Fund Portfolio guide** — published Jun 28 2026 (25th guide, James Colter) ✅
@@ -783,6 +808,14 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jun 30 2026 — Breakeven Calculator + Content Standard Session
+- **Breakeven Calculator built and deployed** (`breakeven-calculator.html`, 18th calculator) — stock/crypto price to break even after a loss / across multiple buys; added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
+- **Full-content build** — includes a worked numerical example, a "why averaging down isn't magic" honest-tradeoffs section, and a 5-question FAQ; this is the first calculator built to the new content standard
+- **New standing Calculator Content Standard established** — every future calculator must include (1) a worked numerical example, (2) an honest tradeoffs/nuance section, and (3) a 4–5 question FAQ before deployment. Saved to memory. Raises calculators to non-commodity content that the Helpful Content System and AI Overviews reward
+- **Verified live via Claude in Chrome** — calculator functioning, nav dropdown working, no nav.js duplicate tags
+- **research_agent.py audit (vs disk):** CURRENT_CALCULATORS updated to 18 (added "Breakeven calculator (stock/crypto price to break even)"); CURRENT_GUIDES unchanged at 26 — both verified against disk this session and match (18 calculator HTML files / 26 guide HTML files)
+- Next priorities: IRA Contribution Calculator, 529 College Savings Calculator; submit breakeven-calculator.html (+ tokenized-real-world-assets.html, three-fund-portfolio.html) to GSC
 
 ### Jun 29 2026 — Tokenized RWA Guide + nav.js Root-Cause Session
 - **Tokenized Real-World Assets (RWA) guide published** (Marcus Veil, 26th guide) — `guides/tokenized-real-world-assets.html`; introduces a **new author persona, Marcus Veil** (emerging assets & crypto markets). Added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Crypto**

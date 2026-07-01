@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRA Contribution Calculator 2026 — How Much Can You Contribute?</title>
+<meta name="description" content="Free 2026 IRA contribution calculator. Find your Roth IRA contribution limit based on income and filing status, traditional IRA deductibility, and how much you can contribute across all your IRAs this year.">
+<meta name="keywords" content="IRA contribution calculator 2026, Roth IRA income limit calculator, how much can I contribute to IRA, IRA limit 2026, Roth IRA eligibility calculator">
+<meta property="og:title" content="IRA Contribution Calculator 2026 — How Much Can You Contribute?">
+<meta property="og:description" content="The 2026 IRA limit is $7,500 ($8,600 if 50+). Find your exact Roth IRA contribution based on your MAGI and filing status — and whether your traditional IRA contribution is deductible.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/ira-contribution-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/ira-contribution-calculator.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "IRA Contribution Calculator 2026",
+  "description": "Calculate your 2026 IRA contribution limit based on age, income, filing status, and workplace plan coverage",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+
+.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
+h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
+
+.main { max-width: 900px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
+@media (max-width: 720px) { .main { grid-template-columns: 1fr; } }
+
+.controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
+.section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.input-group { margin-bottom: 16px; }
+.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+.input-wrap { position: relative; }
+.input-prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px 9px 24px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type="number"]:focus { border-color: var(--accent-border); }
+select { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; appearance: none; cursor: pointer; }
+select:focus { border-color: var(--accent-border); }
+.divider-line { height: 1px; background: var(--border); margin: 16px 0; }
+
+.results { display: flex; flex-direction: column; gap: 14px; }
+
+/* Result cards */
+.result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.result-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
+.result-card.primary { border-color: var(--accent-border); background: var(--accent-dim); }
+.result-card.blocked { border-color: rgba(240,96,96,0.3); background: rgba(240,96,96,0.05); }
+.result-card.partial { border-color: rgba(247,147,26,0.3); background: rgba(247,147,26,0.05); }
+.result-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.result-card.primary .result-label { color: var(--accent); }
+.result-card.blocked .result-label { color: var(--red); }
+.result-card.partial .result-label { color: #f7931a; }
+.result-amount { font-size: 28px; font-weight: 600; font-family: var(--font-mono); color: var(--text); letter-spacing: -0.02em; margin-bottom: 6px; }
+.result-card.primary .result-amount { color: var(--accent); }
+.result-card.blocked .result-amount { color: var(--red); }
+.result-card.partial .result-amount { color: #f7931a; }
+.result-sub { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); line-height: 1.5; }
+
+/* Status badge */
+.status-row { display: flex; flex-direction: column; gap: 10px; }
+.status-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; }
+.status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+.status-dot.green { background: var(--green); }
+.status-dot.red { background: var(--red); }
+.status-dot.yellow { background: #f7931a; }
+.status-dot.blue { background: var(--blue); }
+.status-content { flex: 1; }
+.status-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.status-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; font-family: var(--font-mono); }
+
+/* Phaseout bar */
+.phaseout-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
+.phaseout-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+.phaseout-bar-wrap { position: relative; height: 8px; background: var(--bg-input); border-radius: 4px; margin-bottom: 8px; overflow: hidden; }
+.phaseout-bar-fill { position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; transition: width 0.3s; }
+.phaseout-labels { display: flex; justify-content: space-between; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); margin-bottom: 12px; }
+.phaseout-marker { position: absolute; top: -4px; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--bg-card); transform: translateX(-50%); transition: left 0.3s; }
+.phaseout-desc { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); line-height: 1.5; }
+
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
+.info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.info-box strong { color: var(--text); font-weight: 500; }
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+
+.content-section { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ── GROUPED CALC DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+/* ── ACCORDION GUIDES DROPDOWN ── */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
+
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Plan your retirement savings</strong> — real avg cost, live P&L, weekly signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Investing</button>
+      <div class="nav-group-menu">
+        <a href="">DCA calculator</a>
+        <a href="dca-backtest.html">DCA backtest</a>
+        <a href="compound-interest.html">Compound interest</a>
+        <a href="rule-of-72-calculator.html">Rule of 72</a>
+        <a href="loss-recovery-calculator.html">Loss recovery</a>
+        <a href="breakeven-calculator.html">Breakeven</a>
+        <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="asset-allocation.html">Asset allocation</a>
+        <a href="rebalancing-calculator.html">Rebalancing</a>
+        <a href="position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle active">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="fire-calculator.html">FIRE calculator</a>
+        <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+        <a href="fee-calculator.html">Fee impact</a>
+        <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="rmd-calculator.html">RMD calculator</a>
+        <a href="ira-contribution-calculator.html" class="active">IRA contribution</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="drip-calculator.html">DRIP</a>
+        <a href="dividend-calculator.html">Dividend income</a>
+        <a href="inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+          <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+          <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+          <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+          <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+          <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+          <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+        </div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+          <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+          <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+          <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+          <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+          <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+          <a href="guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+        </div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+          <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+          <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+          <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+          <a href="guides/rmd-explained.html">RMD explained</a>
+        </div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+          <a href="guides/how-to-calculate-position-size.html">Position size</a>
+          <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+          <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+          <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+          <a href="guides/index-fund-investing-beginners.html">Index fund investing</a>
+          <a href="guides/three-fund-portfolio.html">3-fund portfolio</a>
+        </div>
+        <a href="guides/index.html" class="all-guides-link">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="">DCA calculator</a>
+  <a href="dca-backtest.html">DCA backtest</a>
+  <a href="compound-interest.html">Compound interest</a>
+  <a href="rule-of-72-calculator.html">Rule of 72</a>
+  <a href="loss-recovery-calculator.html">Loss recovery</a>
+  <a href="breakeven-calculator.html">Breakeven</a>
+  <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="asset-allocation.html">Asset allocation</a>
+  <a href="rebalancing-calculator.html">Rebalancing</a>
+  <a href="position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="fire-calculator.html">FIRE calculator</a>
+  <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+  <a href="fee-calculator.html">Fee impact</a>
+  <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <a href="rmd-calculator.html">RMD calculator</a>
+  <a href="ira-contribution-calculator.html">IRA contribution</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="drip-calculator.html">DRIP</a>
+  <a href="dividend-calculator.html">Dividend income</a>
+  <a href="inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">DCA & Investing</span>
+  <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+  <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+  <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+  <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+  <span class="mobile-guides-label">Crypto</span>
+  <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+  <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+  <span class="mobile-guides-label">Retirement & FIRE</span>
+  <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+  <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="guides/rmd-explained.html">RMD explained</a>
+  <span class="mobile-guides-label">Fundamentals</span>
+  <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="guides/how-to-calculate-position-size.html">Position size</a>
+  <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+  <a href="guides/index-fund-investing-beginners.html">Index fund investing</a>
+  <a href="guides/three-fund-portfolio.html">3-fund portfolio</a>
+  <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">2026 IRA limits · IRS-verified</div>
+  <h1>IRA Contribution <em>Calculator</em> 2026</h1>
+  <p>Find your exact Roth IRA contribution limit based on your income and filing status — and whether your traditional IRA contribution is tax-deductible. Updated for 2026 IRS limits.</p>
+</div>
+
+<div class="main">
+
+  <div class="controls-card">
+    <div class="section-label">Your situation</div>
+
+    <div class="input-group">
+      <div class="input-label">Tax filing status</div>
+      <select id="filing-status" onchange="calc()">
+        <option value="single">Single / Head of household</option>
+        <option value="mfj">Married filing jointly</option>
+        <option value="mfs">Married filing separately</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Your age</div>
+      <select id="age" onchange="calc()">
+        <option value="under50">Under 50</option>
+        <option value="50plus">50 or older (catch-up eligible)</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Modified AGI (MAGI)</div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="magi" value="100000" min="0" step="5000" oninput="calc()">
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Workplace plan coverage</div>
+
+    <div class="input-group">
+      <div class="input-label">Are you covered by a workplace retirement plan (401k, 403b, etc.)?</div>
+      <select id="covered" onchange="calc()">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
+
+    <div class="input-group" id="spouse-covered-wrap">
+      <div class="input-label">Is your spouse covered by a workplace plan?</div>
+      <select id="spouse-covered" onchange="calc()">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="results">
+
+    <!-- Result grid -->
+    <div class="result-grid">
+      <div class="result-card primary" id="roth-card">
+        <div class="result-label">Roth IRA contribution</div>
+        <div class="result-amount" id="roth-amount">$7,500</div>
+        <div class="result-sub" id="roth-sub">Full contribution allowed</div>
+      </div>
+      <div class="result-card" id="traditional-card">
+        <div class="result-label">Traditional IRA contribution</div>
+        <div class="result-amount" id="trad-amount">$7,500</div>
+        <div class="result-sub" id="trad-sub">Contribution allowed</div>
+      </div>
+    </div>
+
+    <!-- Status items -->
+    <div class="status-row" id="status-row"></div>
+
+    <!-- Phaseout bar -->
+    <div class="phaseout-card" id="phaseout-card">
+      <div class="phaseout-title" id="phaseout-title">Roth IRA income phaseout range</div>
+      <div style="position:relative;margin-bottom:24px;">
+        <div class="phaseout-bar-wrap">
+          <div class="phaseout-bar-fill" id="phaseout-fill" style="width:0%;background:var(--accent);"></div>
+          <div class="phaseout-marker" id="phaseout-marker" style="left:0%;background:var(--accent);"></div>
+        </div>
+        <div class="phaseout-labels">
+          <span id="phaseout-low">$153,000</span>
+          <span id="phaseout-high">$168,000</span>
+        </div>
+      </div>
+      <div class="phaseout-desc" id="phaseout-desc">Your income is below the phaseout range — full Roth contribution allowed.</div>
+    </div>
+
+    <div class="info-box">
+      <p><strong>Key 2026 IRA facts:</strong> The $7,500 (or $8,600 if 50+) limit is the combined maximum across all your traditional and Roth IRAs — you cannot contribute the full amount to each account separately. You can contribute to both a Roth and a traditional IRA in the same year, but the total cannot exceed the annual limit. The deadline to contribute for the 2026 tax year is April 15, 2027.</p>
+    </div>
+
+    <div class="disclaimer">
+      This calculator uses 2026 IRS limits (IRS IR-2025-111, November 13, 2025). MAGI for IRA purposes may differ from your AGI — certain deductions are added back. This calculator does not account for the backdoor Roth IRA strategy, spousal IRA rules, or SEP/SIMPLE IRA limits. Verify your eligibility with a qualified tax professional. Not tax or financial advice.
+    </div>
+
+  </div>
+</div>
+
+<!-- Content section -->
+<div class="content-section">
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the IRA contribution calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator determines two things: how much you can contribute to a Roth IRA based on your income and filing status, and whether your traditional IRA contribution is tax-deductible based on your workplace plan coverage. The 2026 IRA contribution limit is $7,500 for those under 50 and $8,600 for those 50 or older — this is the combined maximum across all your IRAs, not per account.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Sarah is 34, single, covered by a 401(k) at work, with a MAGI of $90,000 in 2026.</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Sarah's 2026 IRA situation</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Roth IRA eligibility</span><span style="color:var(--green);">Full — MAGI $90K below $153K phaseout</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Max Roth IRA contribution</span><span style="color:var(--accent);">$7,500</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Traditional IRA deductibility</span><span style="color:#f7931a;">Partially deductible (phaseout $81K–$91K)</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Best move</span><span style="color:var(--accent);">Contribute full $7,500 to Roth IRA</span></div>
+  </div>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">At $90,000, Sarah is in the traditional IRA deduction phaseout range ($81,000–$91,000 for single filers with a workplace plan). She can still contribute $7,500 to a traditional IRA but only a portion is deductible. Since she qualifies for the full Roth IRA contribution and is below the $153,000 Roth phaseout, her best move is a full Roth IRA contribution — tax-free growth beats a partial deduction for most long-term investors.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Roth IRA vs traditional IRA — which is better?</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The classic framework: if you expect to be in a higher tax bracket in retirement than you are today, a Roth IRA is likely better — you pay taxes now at the lower rate and withdrawals are tax-free. If you expect to be in a lower bracket in retirement, a traditional IRA deduction is likely better — you defer taxes now at the higher rate and pay at the lower rate in retirement.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">In practice, most younger investors and those early in their careers favor Roth IRAs because: current tax rates tend to be lower than eventual peak earnings rates; tax-free growth over 20–30 years is a significant compounding advantage; and Roth IRAs have no required minimum distributions during the owner's lifetime. If you're unsure, many financial planners suggest contributing to a Roth IRA when eligible — the flexibility of tax-free withdrawals in retirement is valuable regardless of where rates go.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">What if your income is too high for a Roth IRA?</strong> Investors above the $168,000 (single) or $252,000 (married filing jointly) Roth IRA income limits can use the backdoor Roth IRA strategy: contribute to a traditional IRA (non-deductible at that income level) and then convert it to a Roth IRA. The pro-rata rule can complicate this if you have other pre-tax IRA balances — consult a tax professional if you have existing traditional IRA funds.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Can I contribute to both a Roth and traditional IRA in the same year?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes, but the total across both accounts cannot exceed the annual limit ($7,500 under 50, $8,600 if 50 or older for 2026). For example, you could contribute $4,000 to a Roth IRA and $3,500 to a traditional IRA, totaling $7,500. You cannot contribute $7,500 to each.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What is MAGI and how do I calculate it?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">MAGI (Modified Adjusted Gross Income) for IRA purposes starts with your AGI (line 11 on Form 1040) and adds back certain deductions — student loan interest, IRA deductions, foreign income exclusions, and others. For most people with straightforward income (W-2 wages, no foreign income), MAGI is very close to or identical to AGI. IRS Publication 590-A has the full calculation worksheet.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What happens if I contribute too much to my IRA?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Excess contributions are subject to a 6% penalty tax for each year the excess amount remains in the account. To avoid the penalty, withdraw the excess contribution (plus any earnings on it) before the tax filing deadline (April 15, 2027 for 2026 contributions, or by your extended deadline if you file an extension). Earnings on the excess must be reported as income in the year the excess was contributed.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Can I contribute to an IRA if I have a 401(k) at work?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes — having a 401(k) does not prevent you from contributing to an IRA. However, it does affect whether your traditional IRA contribution is tax-deductible. If you're covered by a workplace plan, your ability to deduct traditional IRA contributions phases out at $81,000–$91,000 (single) and $129,000–$149,000 (married filing jointly) for 2026. Roth IRA contributions are not affected by workplace plan coverage — only by your income.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What is the IRA contribution deadline for 2026?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">You can make 2026 IRA contributions anytime from January 1, 2026 through April 15, 2027 (the unextended federal tax filing deadline). Contributing early in the year gives your money more time to grow. If you contribute between January 1 and April 15, 2027, make sure to specify to your IRA custodian which tax year the contribution is for — otherwise it may default to the current year.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For educational purposes only. Not tax or financial advice.
+  </p>
+</footer>
+<script>
+// 2026 IRA limits (IRS IR-2025-111)
+const LIMITS = {
+  under50: 7500,
+  '50plus': 8600,
+};
+
+const ROTH_PHASEOUT = {
+  single:  { lo: 153000, hi: 168000 },
+  mfj:     { lo: 242000, hi: 252000 },
+  mfs:     { lo: 0,      hi: 10000  },
+};
+
+const TRAD_PHASEOUT_COVERED = {
+  single:  { lo: 81000,  hi: 91000  },
+  mfj:     { lo: 129000, hi: 149000 },
+  mfs:     { lo: 0,      hi: 10000  },
+};
+
+const TRAD_PHASEOUT_SPOUSE_COVERED = {
+  mfj: { lo: 242000, hi: 252000 },
+};
+
+function fmtDollar(n) {
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function calcPhaseoutContrib(magi, lo, hi, maxContrib) {
+  if (magi <= lo) return maxContrib;
+  if (magi >= hi) return 0;
+  const ratio = (hi - magi) / (hi - lo);
+  // Round to nearest $10, min $200 if partial
+  let reduced = Math.round((ratio * maxContrib) / 10) * 10;
+  if (reduced < 200 && reduced > 0) reduced = 200;
+  return reduced;
+}
+
+function calc() {
+  const filing = document.getElementById('filing-status').value;
+  const age = document.getElementById('age').value;
+  const magi = parseFloat(document.getElementById('magi').value) || 0;
+  const covered = document.getElementById('covered').value;
+  const spouseCovered = document.getElementById('spouse-covered').value;
+
+  // Show/hide spouse covered question
+  const spouseWrap = document.getElementById('spouse-covered-wrap');
+  spouseWrap.style.display = filing === 'mfj' ? 'block' : 'none';
+
+  const maxContrib = LIMITS[age];
+
+  // ── ROTH IRA ──
+  const rothRange = ROTH_PHASEOUT[filing];
+  const rothContrib = calcPhaseoutContrib(magi, rothRange.lo, rothRange.hi, maxContrib);
+  const rothStatus = magi <= rothRange.lo ? 'full' : magi >= rothRange.hi ? 'none' : 'partial';
+
+  // ── TRADITIONAL IRA ──
+  let tradDeductible = 'full';
+  let tradPhaseout = null;
+
+  if (covered === 'yes') {
+    tradPhaseout = TRAD_PHASEOUT_COVERED[filing] || TRAD_PHASEOUT_COVERED['single'];
+    if (magi >= tradPhaseout.hi) tradDeductible = 'none';
+    else if (magi > tradPhaseout.lo) tradDeductible = 'partial';
+  } else if (filing === 'mfj' && spouseCovered === 'yes') {
+    tradPhaseout = TRAD_PHASEOUT_SPOUSE_COVERED.mfj;
+    if (magi >= tradPhaseout.hi) tradDeductible = 'none';
+    else if (magi > tradPhaseout.lo) tradDeductible = 'partial';
+  }
+
+  // ── Update Roth card ──
+  const rothCard = document.getElementById('roth-card');
+  const rothAmountEl = document.getElementById('roth-amount');
+  const rothSubEl = document.getElementById('roth-sub');
+  rothCard.className = 'result-card ' + (rothStatus === 'full' ? 'primary' : rothStatus === 'none' ? 'blocked' : 'partial');
+  rothAmountEl.textContent = rothStatus === 'none' ? '$0' : fmtDollar(rothContrib);
+  rothSubEl.textContent = rothStatus === 'full' ? 'Full contribution allowed' :
+    rothStatus === 'none' ? 'Income too high — consider backdoor Roth' :
+    'Partial — income in phaseout range';
+
+  // ── Update Traditional card ──
+  const tradCard = document.getElementById('traditional-card');
+  const tradAmountEl = document.getElementById('trad-amount');
+  const tradSubEl = document.getElementById('trad-sub');
+  tradCard.className = 'result-card ' + (tradDeductible === 'full' ? 'primary' : tradDeductible === 'none' ? '' : 'partial');
+  tradAmountEl.textContent = fmtDollar(maxContrib);
+  tradSubEl.textContent = tradDeductible === 'full' ? 'Fully tax-deductible' :
+    tradDeductible === 'partial' ? 'Partially deductible — income in phaseout' :
+    'Not deductible — can contribute but no deduction';
+
+  // ── Status items ──
+  const statuses = [];
+
+  // Contribution limit
+  statuses.push({
+    dot: 'blue',
+    title: '2026 contribution limit: ' + fmtDollar(maxContrib),
+    desc: age === '50plus' ? '$7,500 base + $1,100 catch-up contribution (age 50+)' : 'Combined maximum across all your IRAs this year'
+  });
+
+  // Roth status
+  statuses.push({
+    dot: rothStatus === 'full' ? 'green' : rothStatus === 'none' ? 'red' : 'yellow',
+    title: 'Roth IRA: ' + (rothStatus === 'full' ? 'Full contribution (' + fmtDollar(maxContrib) + ')' : rothStatus === 'none' ? 'Not eligible — income above limit' : 'Partial contribution (' + fmtDollar(rothContrib) + ')'),
+    desc: 'Phaseout: ' + fmtDollar(rothRange.lo) + '–' + fmtDollar(rothRange.hi) + ' (' + (filing === 'single' ? 'single' : filing === 'mfj' ? 'married filing jointly' : 'married filing separately') + ')'
+  });
+
+  // Traditional deductibility
+  statuses.push({
+    dot: tradDeductible === 'full' ? 'green' : tradDeductible === 'partial' ? 'yellow' : 'red',
+    title: 'Traditional IRA deduction: ' + (tradDeductible === 'full' ? 'Fully deductible' : tradDeductible === 'partial' ? 'Partially deductible' : 'Not deductible'),
+    desc: tradPhaseout ? 'Phaseout: ' + fmtDollar(tradPhaseout.lo) + '–' + fmtDollar(tradPhaseout.hi) : 'Not covered by a workplace plan — full deduction available regardless of income'
+  });
+
+  // Deadline
+  statuses.push({
+    dot: 'blue',
+    title: 'Contribution deadline: April 15, 2027',
+    desc: 'You can make 2026 IRA contributions until the 2026 tax filing deadline'
+  });
+
+  document.getElementById('status-row').innerHTML = statuses.map(s =>
+    '<div class="status-item">' +
+    '<div class="status-dot ' + s.dot + '"></div>' +
+    '<div class="status-content"><div class="status-title">' + s.title + '</div>' +
+    '<div class="status-desc">' + s.desc + '</div></div>' +
+    '</div>'
+  ).join('');
+
+  // ── Phaseout bar ──
+  const phaseoutCard = document.getElementById('phaseout-card');
+  const lo = rothRange.lo, hi = rothRange.hi;
+  const pct = Math.min(100, Math.max(0, ((magi - lo) / (hi - lo)) * 100));
+
+  document.getElementById('phaseout-title').textContent = 'Roth IRA income phaseout (' + (filing === 'single' ? 'single' : filing === 'mfj' ? 'married filing jointly' : 'married filing separately') + ')';
+  document.getElementById('phaseout-low').textContent = fmtDollar(lo);
+  document.getElementById('phaseout-high').textContent = fmtDollar(hi);
+  const fillColor = magi < lo ? 'var(--green)' : magi > hi ? 'var(--red)' : '#f7931a';
+  document.getElementById('phaseout-fill').style.width = (magi <= lo ? 0 : magi >= hi ? 100 : pct) + '%';
+  document.getElementById('phaseout-fill').style.background = fillColor;
+  document.getElementById('phaseout-marker').style.left = (magi <= lo ? 0 : magi >= hi ? 100 : pct) + '%';
+  document.getElementById('phaseout-marker').style.background = fillColor;
+  document.getElementById('phaseout-desc').textContent =
+    magi < lo ? 'Your MAGI is below the phaseout range — full Roth IRA contribution of ' + fmtDollar(maxContrib) + ' allowed.' :
+    magi > hi ? 'Your MAGI exceeds the phaseout range — direct Roth IRA contributions not allowed. Consider the backdoor Roth IRA strategy.' :
+    'Your MAGI is in the phaseout range — reduced Roth IRA contribution of ' + fmtDollar(rothContrib) + ' allowed.';
+}
+
+calc();
+</script>
+
+<script src="/nav.js"></script>
+</body>
+</html>
