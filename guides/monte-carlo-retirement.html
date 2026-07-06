@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monte Carlo Simulation for Retirement Planning — What It Is and How to Use It</title>
+<meta name="description" content="Monte Carlo simulation runs thousands of randomized scenarios to show the probability your retirement plan succeeds. Here's how it works, what success rates mean, where to run one for free, and why 95% success is not always better.">
+<meta name="keywords" content="Monte Carlo simulation retirement, Monte Carlo retirement calculator, retirement success rate, how Monte Carlo simulation works, retirement planning probability 2026">
+<meta property="og:title" content="Monte Carlo Simulation for Retirement Planning — What It Is and How to Use It">
+<meta property="og:description" content="An 85% Monte Carlo success rate doesn't mean a 15% chance of poverty. It means 15% of simulations required a plan adjustment. Here's how to interpret the results and use them to build a better plan.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/monte-carlo-retirement.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/monte-carlo-retirement.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Monte Carlo Simulation for Retirement Planning — What It Is and How to Use It",
+  "description": "How Monte Carlo simulation works, how to interpret success rates, where to run one free, and why chasing 95% may be too conservative.",
+  "author": {
+    "@type": "Person",
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
+  },
+  "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
+  "datePublished": "2026-07-06",
+  "dateModified": "2026-07-06"
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout.data { border-left-color: var(--blue); background: rgba(91,156,246,0.05); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.callout .callout-label { color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.callout.data .callout-label { color: var(--blue); }
+/* Success rate scale */
+.success-scale { display: flex; flex-direction: column; gap: 8px; margin: 28px 0; }
+.scale-row { display: flex; align-items: center; gap: 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; }
+.scale-badge { font-size: 13px; font-family: var(--font-mono); font-weight: 600; min-width: 80px; }
+.scale-badge.over95 { color: var(--blue); }
+.scale-badge.good { color: var(--green); }
+.scale-badge.ok { color: var(--accent); }
+.scale-badge.risk { color: #f7931a; }
+.scale-badge.low { color: var(--red); }
+.scale-desc { font-size: 14px; color: var(--text-muted); font-weight: 300; }
+/* Comparison table */
+.compare-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
+.compare-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td.green { color: var(--green); }
+.compare-table td.red { color: var(--red); }
+.compare-table td.accent { color: var(--accent); font-weight: 500; }
+/* Tool cards */
+.tool-grid { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+.tool-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+.tool-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.tool-url { font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 8px; }
+.tool-desc { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.6; margin: 0; }
+.tool-note { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); margin-top: 6px; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ── GROUPED CALC DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+/* ── ACCORDION GUIDES DROPDOWN ── */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
+
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Plan your retirement income</strong> — real P&L, avg cost, weekly AI signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Investing</button>
+      <div class="nav-group-menu">
+        <a href="../">DCA calculator</a>
+        <a href="../dca-backtest.html">DCA backtest</a>
+        <a href="../compound-interest.html">Compound interest</a>
+        <a href="../rule-of-72-calculator.html">Rule of 72</a>
+        <a href="../loss-recovery-calculator.html">Loss recovery</a>
+        <a href="../breakeven-calculator.html">Breakeven</a>
+        <a href="../crypto-cost-basis-calculator.html">Crypto cost basis</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="../asset-allocation.html">Asset allocation</a>
+        <a href="../rebalancing-calculator.html">Rebalancing</a>
+        <a href="../position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="../fire-calculator.html">FIRE calculator</a>
+        <a href="../net-worth-calculator.html">Net worth</a>
+        <a href="../withdrawal-rate-calculator.html">Withdrawal rate</a>
+        <a href="../fee-calculator.html">Fee impact</a>
+        <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="../rmd-calculator.html">RMD calculator</a>
+        <a href="../ira-contribution-calculator.html">IRA contribution</a>
+        <a href="../529-calculator.html">529 college savings</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="../drip-calculator.html">DRIP</a>
+        <a href="../dividend-calculator.html">Dividend income</a>
+        <a href="../inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+          <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+          <a href="../guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+          <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+          <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+          <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+          <a href="../guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+        </div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+          <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+          <a href="../guides/crypto-staking-explained.html">Crypto staking yields</a>
+          <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+          <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+          <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+          <a href="../guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+        </div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+          <a href="../guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+          <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+          <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+          <a href="../guides/rmd-explained.html">RMD explained</a>
+          <a href="../guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+          <a href="../guides/monte-carlo-retirement.html">Monte Carlo simulation</a>
+        </div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+          <a href="../guides/how-to-calculate-position-size.html">Position size</a>
+          <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+          <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+          <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+          <a href="../guides/index-fund-investing-beginners.html">Index fund investing</a>
+          <a href="../guides/three-fund-portfolio.html">3-fund portfolio</a>
+        </div>
+        <a href="../guides/index.html" class="all-guides-link">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="../">DCA calculator</a>
+  <a href="../dca-backtest.html">DCA backtest</a>
+  <a href="../compound-interest.html">Compound interest</a>
+  <a href="../rule-of-72-calculator.html">Rule of 72</a>
+  <a href="../loss-recovery-calculator.html">Loss recovery</a>
+  <a href="../breakeven-calculator.html">Breakeven</a>
+  <a href="../crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="../asset-allocation.html">Asset allocation</a>
+  <a href="../rebalancing-calculator.html">Rebalancing</a>
+  <a href="../position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="../fire-calculator.html">FIRE calculator</a>
+  <a href="../net-worth-calculator.html">Net worth</a>
+  <a href="../withdrawal-rate-calculator.html">Withdrawal rate</a>
+  <a href="../fee-calculator.html">Fee impact</a>
+  <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <a href="../rmd-calculator.html">RMD calculator</a>
+  <a href="../ira-contribution-calculator.html">IRA contribution</a>
+  <a href="../529-calculator.html">529 college savings</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="../drip-calculator.html">DRIP</a>
+  <a href="../dividend-calculator.html">Dividend income</a>
+  <a href="../inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">DCA & Investing</span>
+  <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+  <a href="../guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+  <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+  <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="../guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+  <span class="mobile-guides-label">Crypto</span>
+  <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="../guides/crypto-staking-explained.html">Crypto staking yields</a>
+  <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="../guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+  <span class="mobile-guides-label">Retirement & FIRE</span>
+  <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="../guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+  <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="../guides/rmd-explained.html">RMD explained</a>
+  <a href="../guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+  <a href="../guides/monte-carlo-retirement.html">Monte Carlo simulation</a>
+  <span class="mobile-guides-label">Fundamentals</span>
+  <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="../guides/how-to-calculate-position-size.html">Position size</a>
+  <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+  <a href="../guides/index-fund-investing-beginners.html">Index fund investing</a>
+  <a href="../guides/three-fund-portfolio.html">3-fund portfolio</a>
+  <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Retirement</span>
+    <span class="meta-tag">Planning</span>
+    <span class="meta-date">July 6, 2026</span>
+    <span class="meta-read">10 min read</span>
+  </div>
+
+  <h1>Monte Carlo simulation <em>for retirement</em> — what it is and how to use it</h1>
+
+  <p class="intro">Many simple retirement calculators assume your portfolio earns a steady 7% every year. Markets don't work that way. The S&P 500 returned +31.5% in 2024 and −18.1% in 2022. Monte Carlo simulation solves this by running thousands of randomized scenarios — each with a different sequence of market returns — to show the probability your plan survives, not just whether it works under optimistic assumptions. An 85% success rate means your plan held up in 850 of 1,000 simulations. Here's what that actually means, and how to use it.</p>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#what-is-it">What Monte Carlo simulation is</a></li>
+      <li><a href="#how-it-works">How it works — the mechanics</a></li>
+      <li><a href="#success-rates">How to interpret success rates</a></li>
+      <li><a href="#vs-fixed">Monte Carlo vs fixed-rate projections</a></li>
+      <li><a href="#inputs">The inputs that matter most</a></li>
+      <li><a href="#limitations">Limitations — what Monte Carlo can't tell you</a></li>
+      <li><a href="#tools">Where to run a free Monte Carlo simulation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+    </ol>
+  </div>
+
+  <h2 id="what-is-it">What Monte Carlo simulation is</h2>
+
+  <p>Monte Carlo simulation is a statistical technique that estimates the range of possible outcomes for an uncertain event by running thousands of randomized trials. The name comes from the Monte Carlo casino — named for its reliance on randomness. The technique was formalized in the 1940s by mathematicians using random sampling as a computational tool for complex probability problems.</p>
+
+  <p>In retirement planning, the "uncertain event" is whether your portfolio lasts as long as you need it to. The simulation replaces a single assumed return rate with thousands of randomized return sequences drawn from historical distributions — capturing the volatility, crash years, and boom years that real markets produce. After running those thousands of scenarios, it reports what percentage succeeded — i.e., your portfolio still had money at the end of your retirement horizon.</p>
+
+  <p><strong>The core insight it provides that fixed-rate projections can't:</strong> average returns don't determine retirement outcomes — the sequence of those returns does. A simulation that includes crash scenarios in early retirement years reveals the true fragility of a plan in a way that a steady 7% assumption never could. This is Monte Carlo's primary value: it stress-tests a plan against the scenarios that actually hurt retirees, not just the scenarios that look good on paper.</p>
+
+  <h2 id="how-it-works">How it works — the mechanics</h2>
+
+  <p>The process follows a consistent pattern across tools, even if the underlying methodology varies:</p>
+
+  <ol>
+    <li><strong>You provide inputs.</strong> Current portfolio value, planned annual withdrawal, expected retirement length, asset allocation (stock/bond mix), and optionally guaranteed income sources like Social Security.</li>
+    <li><strong>The simulator generates random return sequences.</strong> Each simulation run draws annual returns from a probability distribution based on historical market data — typically using historical mean returns and standard deviations for each asset class. "Random" here doesn't mean arbitrary: returns are sampled from a distribution calibrated to historical data or forward-looking assumptions, so the randomness mirrors how real markets behave over time. Each simulation uses a different sequence of good and bad years.</li>
+    <li><strong>Each simulation runs to completion.</strong> The model tracks the portfolio year by year, subtracting withdrawals and adding or subtracting market returns. If the portfolio reaches zero before the end of the retirement horizon, that simulation is a failure. If money remains, it's a success.</li>
+    <li><strong>The results are aggregated.</strong> After 1,000 or more simulations, the tool reports the success rate (percentage that survived), median ending balance, and often percentile ranges (10th, 50th, 90th percentile outcomes).</li>
+  </ol>
+
+  <div class="callout data">
+    <div class="callout-label">How many simulations is enough?</div>
+    <p>Most financial planning tools run 1,000 simulations. Some run 5,000 or 10,000. T. Rowe Price runs 1,000 iterations in its retirement calculator. Boldin runs 1,000. RetirePlanAI runs 5,000. Beyond 1,000 simulations, results tend to stabilize — running 10,000 vs 1,000 simulations rarely changes the success rate by more than 1–2 percentage points. The methodology — how return distributions are constructed — matters more than raw simulation count.</p>
+  </div>
+
+  <h2 id="success-rates">How to interpret success rates</h2>
+
+  <p>The success rate is the percentage of simulated scenarios in which the portfolio survives the full retirement period. An 85% success rate means 850 of 1,000 simulations had money remaining at the end. This is the number most financial planners focus on — but it's frequently misunderstood.</p>
+
+  <div style="background:var(--bg-card);border:1px solid var(--accent-border);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;font-family:var(--font-mono);font-size:13px;"><span style="color:var(--accent);">Example:</span> <span style="color:var(--text-muted);">You retire with $1M, withdraw $40,000/year, and get an 85% success rate. That means in 150 of 1,000 simulations, you'd need to reduce spending or adjust your plan at some point during retirement. In 850 of 1,000, no adjustment was needed.</span></div>
+  <div class="success-scale">
+    <div class="scale-row">
+      <div class="scale-badge over95">95–100%</div>
+      <div class="scale-desc">May indicate excessive conservatism — in almost every scenario you finish retirement with substantial unspent assets. Consider whether retiring earlier, spending more, or reducing savings might improve quality of life. That said, this depends on risk tolerance, legacy goals, and flexibility: some people genuinely want a near-certain outcome and that's a valid preference.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-badge good">85–95%</div>
+      <div class="scale-desc">The target range recommended by most financial planners. Your plan has strong probability of success while allowing you to actually enjoy retirement spending. T. Rowe Price, Boldin, and most major planning tools use 85–90% as the benchmark.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-badge ok">75–85%</div>
+      <div class="scale-desc">Acceptable with spending flexibility. In roughly 1 in 6 scenarios, some adjustment will be needed — reducing discretionary spending, taking on part-time work, or tapping other resources. If you have flexibility, this range is workable.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-badge risk">60–75%</div>
+      <div class="scale-desc">Notable risk. In roughly 1 in 4 to 2 in 5 scenarios, the plan runs into trouble. Consider saving more, spending less, or retiring later. May still be acceptable with a clear contingency plan and guaranteed income sources covering basic expenses.</div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-badge low">Below 60%</div>
+      <div class="scale-desc">High risk of running out of money. The plan needs significant adjustment — materially more savings, lower spending, later retirement, or increased guaranteed income before this is a viable retirement plan.</div>
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-label">What failure actually means</div>
+    <p>A "failed" simulation doesn't mean sudden financial collapse — most portfolio shortfalls are gradual pressure rather than an overnight crisis. Critically, timing matters enormously: running out of money in year 29 of a 30-year retirement is a very different outcome than running out in year 15. In most failure scenarios, the shortfall manifests as increasing pressure to reduce discretionary spending over time, not an immediate crisis. A 75% success rate means in 25% of scenarios, some adjustment — spending reductions, part-time income, earlier Social Security — will eventually be needed. The severity depends on how much of your spending is covered by guaranteed income sources outside the portfolio.</p>
+  </div>
+
+  <h2 id="vs-fixed">Monte Carlo vs fixed-rate projections</h2>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Factor</th>
+        <th>Fixed-rate projection</th>
+        <th>Monte Carlo simulation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Return assumption</td>
+        <td>Single constant rate (e.g., 7%/yr)</td>
+        <td class="green">Thousands of randomized sequences</td>
+      </tr>
+      <tr>
+        <td>Sequence of returns risk</td>
+        <td class="red">Not captured</td>
+        <td class="green">Directly modeled</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>Single projected balance</td>
+        <td class="green">Range of outcomes with probabilities</td>
+      </tr>
+      <tr>
+        <td>Usefulness for planning</td>
+        <td>Good for accumulation phase</td>
+        <td class="green">Far better for withdrawal phase</td>
+      </tr>
+      <tr>
+        <td>Complexity</td>
+        <td class="green">Simple to understand</td>
+        <td>Requires interpretation</td>
+      </tr>
+      <tr>
+        <td>Dependency on inputs</td>
+        <td>Very sensitive to assumed return</td>
+        <td>Sensitive to return distribution assumptions</td>
+      </tr>
+      <tr>
+        <td>Best used for</td>
+        <td>Quick estimates, accumulation planning</td>
+        <td class="accent">Retirement income planning, stress testing</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Fixed-rate projections aren't useless — they're perfectly adequate for accumulation-phase planning, where sequence risk is minimal. For retirement income planning, where sequence risk is the central risk, Monte Carlo simulation provides meaningfully better insight. Most serious retirement planners use both: fixed-rate projections to understand the general picture, Monte Carlo to stress-test it.</p>
+
+  <h2 id="inputs">The inputs that matter most</h2>
+
+  <p>Monte Carlo results are only as good as the assumptions behind them. The inputs that have the largest impact on your success rate:</p>
+
+  <ul>
+    <li><strong>Withdrawal rate.</strong> The single most important variable. The difference between 3.5% and 4.5% withdrawal rate can shift success probability by 15–20 percentage points. This is worth optimizing before any other input.</li>
+    <li><strong>Retirement length.</strong> A 30-year retirement is significantly harder to fund than a 25-year one. Each additional year of retirement reduces success probability. This is why retiring at 60 vs 65 is a much bigger financial decision than it appears.</li>
+    <li><strong>Asset allocation.</strong> A heavier equity allocation produces higher expected returns but higher volatility — which means worse outcomes in bad sequences but better outcomes in good ones. A 60/40 portfolio often shows higher Monte Carlo success rates than 100% stocks in many simulations of 30-year retirements, despite lower average returns, because volatility reduction can matter as much as average return in withdrawal scenarios — though results vary depending on return assumptions and horizon.</li>
+    <li><strong>Guaranteed income sources.</strong> Social Security, pension income, or annuity payments reduce the amount the portfolio must fund. Each dollar of guaranteed income significantly reduces sequence risk exposure. Including Social Security in the simulation often raises success rates by 10–20 percentage points for many retirees.</li>
+    <li><strong>Return distribution assumptions.</strong> Different tools use different assumptions about expected stock and bond returns. A tool using historical US equity returns (~10% nominal) produces different results than one using Morningstar's forward-looking capital market assumptions (~7–8% nominal). Recent forward-looking capital market estimates (including from Morningstar) suggest lower expected equity returns than long-run historical averages — which would reduce simulated success rates compared to historically-calibrated tools. This is worth checking when comparing results across platforms.</li>
+  </ul>
+
+  <h2 id="limitations">Limitations — what Monte Carlo can't tell you</h2>
+
+  <p>Monte Carlo simulation is a powerful tool, but it has real limitations that are worth understanding before treating results as definitive:</p>
+
+  <ul>
+    <li><strong>It depends entirely on its input assumptions.</strong> The return distributions used are typically based on historical data. If future market conditions differ materially from historical patterns — as they might in a period of structurally lower returns — the simulation's calibration will be off.</li>
+    <li><strong>It typically models constant spending.</strong> Real retirement spending isn't constant. Most retirees spend more in early retirement (travel, hobbies) and less in middle retirement, with potential increases in late retirement for healthcare. A simulation using flat inflation-adjusted withdrawals may understate early spending needs and overstate late ones.</li>
+    <li><strong>It doesn't model major life events.</strong> Long-term care costs, divorce, a financially distressed adult child needing support — none of these show up in a standard simulation. These can have a larger impact on retirement outcomes than market returns in some cases.</li>
+    <li><strong>It treats failure as binary.</strong> The "failure" flag in a simulation simply means the portfolio reached zero. It doesn't distinguish between running out of money in year 25 (with years left) vs year 29 (with months left). The severity of failure varies enormously.</li>
+    <li><strong>High success rates don't mean high certainty.</strong> A 90% success rate is a modeled probability based on simulated return sequences — not a guarantee. Real markets may behave in ways that no historical simulation anticipated. The 2020 pandemic, 2022 inflation surge, and 2008 financial crisis all contained elements outside normal historical distributions.</li>
+  </ul>
+
+  <h2 id="tools">Where to run a free Monte Carlo simulation</h2>
+
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-name">Portfolio Visualizer</div>
+      <div class="tool-url">portfoliovisualizer.com</div>
+      <p class="tool-desc">One of the most comprehensive free Monte Carlo tools available. Allows detailed asset class inputs, historical backtesting, and multiple withdrawal strategies. The gold standard for DIY retirement modelers.</p>
+      <div class="tool-note">Free tier available · Most comprehensive inputs · No account required for basic simulations</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">T. Rowe Price Retirement Income Calculator</div>
+      <div class="tool-url">troweprice.com/retirement-income-calculator</div>
+      <p class="tool-desc">Runs 1,000 simulations using T. Rowe Price's proprietary capital market assumptions. Outputs a "Confidence Score." Well-designed interface, clear results presentation. Uses forward-looking return assumptions rather than purely historical.</p>
+      <div class="tool-note">Free · Account not required · Widely cited by financial planners</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">FIRECalc</div>
+      <div class="tool-url">firecalc.com</div>
+      <p class="tool-desc">Uses actual historical return sequences rather than randomized distributions — tests your plan against every rolling historical period in the dataset (1871–present). Technically a historical backtesting tool rather than pure Monte Carlo, but answers similar questions. Popular in the FIRE community.</p>
+      <div class="tool-note">Free · No account · Historical backtesting methodology</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Boldin (formerly NewRetirement)</div>
+      <div class="tool-url">boldin.com</div>
+      <p class="tool-desc">More comprehensive planning platform with Monte Carlo simulation built in. Better for detailed plans with multiple accounts, Social Security optimization, and tax modeling. Free tier available; advanced features require subscription.</p>
+      <div class="tool-note">Free tier available · Most complete planning features · Account required</div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h3>Model your withdrawal rate first</h3>
+    <p>Before running a Monte Carlo simulation, use the withdrawal rate calculator to understand your current withdrawal rate and how long your portfolio lasts at different rates — the foundation for any Monte Carlo input.</p>
+    <a href="../withdrawal-rate-calculator.html" class="cta-btn">Try the withdrawal rate calculator</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 id="how-to-use">How to use Monte Carlo simulation in practice</h2>
+
+  <p>Running a simulation once gives you a snapshot. The real value comes from using it iteratively — adjusting inputs and watching how the success rate responds. A practical workflow:</p>
+
+  <ol>
+    <li><strong>Run your baseline plan.</strong> Enter your current portfolio, planned withdrawal, and expected retirement length. Record the success rate.</li>
+    <li><strong>Adjust your withdrawal rate.</strong> Try reducing your annual withdrawal by 5–10% and re-run. If success rate jumps significantly, you're in a sensitive zone where small spending changes matter a lot.</li>
+    <li><strong>Test retiring earlier vs later.</strong> Retiring at 62 vs 65 adds 3 years of retirement and 3 fewer years of contributions — this combination often reduces success rates by 10–15 percentage points. See the real cost of early retirement in your specific numbers.</li>
+    <li><strong>Add Social Security.</strong> If you haven't included Social Security as guaranteed income, add it and re-run. For most middle-income retirees, this significantly improves success rates — often by 10–20 points.</li>
+    <li><strong>Test delaying Social Security.</strong> Compare claiming at 62 vs 67 vs 70. Delaying increases the guaranteed income floor and often meaningfully improves the simulation outcome.</li>
+    <li><strong>Observe the sensitivity.</strong> Which input change moves your success rate the most? That's where to focus planning attention. For most people, it's the withdrawal rate and retirement age — not investment returns.</li>
+  </ol>
+
+  <h2 id="faq">Frequently asked questions</h2>
+
+  <h3>Is an 85% Monte Carlo success rate good enough?</h3>
+  <p>For most financial planners, 85–90% is the target range. It reflects a plan with high probability of success while still allowing reasonable retirement spending rather than over-saving. The right target depends on your flexibility — if you have guaranteed income (Social Security, pension) covering basic expenses and can reduce discretionary spending when needed, 80% may be adequate. If your entire budget depends on the portfolio and you have no flexibility, 90%+ is more appropriate.</p>
+
+  <h3>Why would a 100% success rate be a problem?</h3>
+  <p>A 100% success rate typically means the plan is so conservative that in every simulated scenario, you end retirement with a large remaining portfolio — money you never got to enjoy. It suggests you're either withdrawing too little, over-saving, or both. Unless leaving a large inheritance is a specific goal, a 100% success rate may mean you sacrificed quality of life in retirement unnecessarily. T. Rowe Price and other planners explicitly note that very high success rates signal excessive conservatism.</p>
+
+  <h3>Does Monte Carlo simulation account for Social Security?</h3>
+  <p>Most tools allow you to include Social Security as a guaranteed income source that reduces the amount your portfolio must fund. Including Social Security typically increases success rates significantly — a retiree whose Social Security covers 60% of spending needs a portfolio that's much more resilient than one funding 100% from investments. Always include guaranteed income sources when running simulations, as excluding them produces an unnecessarily pessimistic result.</p>
+
+  <h3>How does Monte Carlo relate to the 4% rule?</h3>
+  <p>The 4% rule was derived from historical return sequence analysis — Bengen tested whether $40,000/year withdrawal on a $1 million portfolio survived every 30-year historical period. Monte Carlo simulation is a related but different approach: instead of testing against all historical periods, it generates synthetic return sequences from a probability distribution. The two approaches often produce similar conclusions, but Monte Carlo can be calibrated to forward-looking return assumptions and tested against non-historical scenarios. Our <a href="4-percent-rule-explained.html" style="color:var(--accent);text-decoration:none;">4% Rule guide</a> covers the relationship in more detail.</p>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">JC</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational and educational purposes only. Monte Carlo simulation results are probabilistic estimates, not predictions or guarantees. Success rates depend heavily on input assumptions and return distribution methodology, which vary across tools. The S&P 500 return figures cited (+31.5% 2024, −18.1% 2022) are historical. Forward-looking return estimates referenced reflect broadly available capital market assumptions as of mid-2026. Not financial advice. Consult a qualified financial advisor for personalized retirement income planning.</p>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script src="/nav.js"></script>
+</body>
+</html>

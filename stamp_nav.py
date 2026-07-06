@@ -82,6 +82,7 @@ GUIDE_CATEGORIES = [
         ('tax-loss-harvesting-explained.html',            'Tax-loss harvesting'),
         ('rmd-explained.html',                            'RMD explained'),
         ('sequence-of-returns-risk.html',              'Sequence of returns risk'),
+        ('monte-carlo-retirement.html',                'Monte Carlo simulation'),
     ]),
     ('Fundamentals', [
         ('how-compound-interest-works.html',              'How compound interest works'),
