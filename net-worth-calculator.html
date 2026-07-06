@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Net Worth Calculator — What Are You Really Worth?</title>
+<meta name="description" content="Free net worth calculator. Add your assets and liabilities to see your net worth, asset breakdown, debt-to-asset ratio, and how you compare to US median net worth by age. Updated for 2026.">
+<meta name="keywords" content="net worth calculator, how to calculate net worth, net worth by age 2026, assets minus liabilities calculator, personal net worth calculator">
+<meta property="og:title" content="Net Worth Calculator — What Are You Really Worth?">
+<meta property="og:description" content="Net worth = assets minus liabilities. Add what you own and what you owe to see your complete financial picture — and how it compares to US median net worth by age.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/net-worth-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/net-worth-calculator.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Net Worth Calculator",
+  "description": "Calculate your net worth by adding assets and subtracting liabilities",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+
+.hero { max-width: 980px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
+h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
+
+.main { max-width: 980px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+@media (max-width: 780px) { .main { grid-template-columns: 1fr; } }
+
+/* Input sections */
+.input-section { display: flex; flex-direction: column; gap: 20px; }
+.input-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.input-card-header { padding: 14px 18px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.input-card-title { font-size: 13px; font-weight: 600; color: var(--text); }
+.input-card-total { font-size: 14px; font-family: var(--font-mono); font-weight: 500; }
+.input-card.assets .input-card-total { color: var(--green); }
+.input-card.liabilities .input-card-total { color: var(--red); }
+.input-row { display: flex; align-items: center; gap: 12px; padding: 10px 18px; border-bottom: 1px solid var(--border); }
+.input-row:last-child { border-bottom: none; }
+.input-row-label { font-size: 13px; color: var(--text-muted); flex: 1; }
+.input-row-field { position: relative; width: 160px; flex-shrink: 0; }
+.input-row-field .prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+.input-row-field input { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 8px 8px 22px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+.input-row-field input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.input-row-field input:focus { border-color: var(--accent-border); }
+
+/* Results sidebar */
+.results { display: flex; flex-direction: column; gap: 14px; }
+
+.net-worth-hero { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; text-align: center; }
+.net-worth-hero.positive { border-color: var(--accent-border); background: var(--accent-dim); }
+.net-worth-hero.negative { border-color: rgba(240,96,96,0.3); background: rgba(240,96,96,0.05); }
+.nw-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.net-worth-hero.positive .nw-label { color: var(--accent); }
+.net-worth-hero.negative .nw-label { color: var(--red); }
+.nw-amount { font-size: 36px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.03em; margin-bottom: 6px; }
+.net-worth-hero.positive .nw-amount { color: var(--accent); }
+.net-worth-hero.negative .nw-amount { color: var(--red); }
+.nw-sub { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.metric-value { font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
+.metric-value.green { color: var(--green); }
+.metric-value.red { color: var(--red); }
+.metric-value.accent { color: var(--accent); }
+
+.chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; }
+.chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+.chart-wrap { position: relative; height: 180px; }
+
+.benchmark-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.benchmark-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 14px 8px; border-bottom: 1px solid var(--border); }
+.benchmark-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 14px; border-bottom: 1px solid var(--border); font-size: 12px; font-family: var(--font-mono); }
+.benchmark-row:last-child { border-bottom: none; }
+.benchmark-row.highlight { background: rgba(200,240,96,0.05); }
+.benchmark-age { color: var(--text-muted); }
+.benchmark-median { color: var(--text-dim); }
+.benchmark-mean { color: var(--text-dim); }
+.benchmark-row.highlight .benchmark-age { color: var(--accent); font-weight: 500; }
+
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
+.info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.info-box strong { color: var(--text); font-weight: 500; }
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+
+.content-section { max-width: 980px; margin: 0 auto; padding: 0 24px 60px; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ── GROUPED CALC DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+/* ── ACCORDION GUIDES DROPDOWN ── */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
+
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your wealth growth over time</strong> — real avg cost, P&L, weekly signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Investing</button>
+      <div class="nav-group-menu">
+        <a href="">DCA calculator</a>
+        <a href="dca-backtest.html">DCA backtest</a>
+        <a href="compound-interest.html">Compound interest</a>
+        <a href="rule-of-72-calculator.html">Rule of 72</a>
+        <a href="loss-recovery-calculator.html">Loss recovery</a>
+        <a href="breakeven-calculator.html">Breakeven</a>
+        <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="asset-allocation.html">Asset allocation</a>
+        <a href="rebalancing-calculator.html">Rebalancing</a>
+        <a href="position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle active">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="fire-calculator.html">FIRE calculator</a>
+        <a href="net-worth-calculator.html" class="active">Net worth</a>
+        <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+        <a href="fee-calculator.html">Fee impact</a>
+        <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="rmd-calculator.html">RMD calculator</a>
+        <a href="ira-contribution-calculator.html">IRA contribution</a>
+        <a href="529-calculator.html">529 college savings</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="drip-calculator.html">DRIP</a>
+        <a href="dividend-calculator.html">Dividend income</a>
+        <a href="inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+          <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+          <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+          <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+          <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+          <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+          <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+        </div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+          <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+          <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+          <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+          <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+          <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+          <a href="guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+        </div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+          <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+          <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+          <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+          <a href="guides/rmd-explained.html">RMD explained</a>
+          <a href="guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+        </div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+          <a href="guides/how-to-calculate-position-size.html">Position size</a>
+          <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+          <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+          <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+          <a href="guides/index-fund-investing-beginners.html">Index fund investing</a>
+          <a href="guides/three-fund-portfolio.html">3-fund portfolio</a>
+        </div>
+        <a href="guides/index.html" class="all-guides-link">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="">DCA calculator</a>
+  <a href="dca-backtest.html">DCA backtest</a>
+  <a href="compound-interest.html">Compound interest</a>
+  <a href="rule-of-72-calculator.html">Rule of 72</a>
+  <a href="loss-recovery-calculator.html">Loss recovery</a>
+  <a href="breakeven-calculator.html">Breakeven</a>
+  <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="asset-allocation.html">Asset allocation</a>
+  <a href="rebalancing-calculator.html">Rebalancing</a>
+  <a href="position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="fire-calculator.html">FIRE calculator</a>
+  <a href="net-worth-calculator.html">Net worth</a>
+  <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+  <a href="fee-calculator.html">Fee impact</a>
+  <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <a href="rmd-calculator.html">RMD calculator</a>
+  <a href="ira-contribution-calculator.html">IRA contribution</a>
+  <a href="529-calculator.html">529 college savings</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="drip-calculator.html">DRIP</a>
+  <a href="dividend-calculator.html">Dividend income</a>
+  <a href="inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">DCA & Investing</span>
+  <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+  <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+  <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+  <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+  <span class="mobile-guides-label">Crypto</span>
+  <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+  <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+  <span class="mobile-guides-label">Retirement & FIRE</span>
+  <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+  <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="guides/rmd-explained.html">RMD explained</a>
+  <a href="guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+  <span class="mobile-guides-label">Fundamentals</span>
+  <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="guides/how-to-calculate-position-size.html">Position size</a>
+  <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+  <a href="guides/index-fund-investing-beginners.html">Index fund investing</a>
+  <a href="guides/three-fund-portfolio.html">3-fund portfolio</a>
+  <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">Assets − Liabilities = Net worth</div>
+  <h1>Net Worth <em>Calculator</em></h1>
+  <p>Enter what you own and what you owe to see your complete financial picture — with asset breakdown, debt ratios, and US median net worth benchmarks by age.</p>
+</div>
+
+<div class="main">
+
+  <!-- Input section -->
+  <div class="input-section">
+
+    <!-- Assets -->
+    <div class="input-card assets">
+      <div class="input-card-header">
+        <div class="input-card-title">Assets — what you own</div>
+        <div class="input-card-total" id="total-assets-display">$0</div>
+      </div>
+
+      <div style="padding:10px 18px 6px;font-size:10px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);">Cash & investments</div>
+      <div class="input-row"><div class="input-row-label">Checking & savings accounts</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="a-cash" value="0" min="0" step="1000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Brokerage / investment accounts</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="a-brokerage" value="0" min="0" step="1000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">401(k) / 403(b)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="a-401k" value="0" min="0" step="1000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">IRA (Traditional & Roth)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="a-ira" value="0" min="0" step="1000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Crypto / digital assets</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="a-crypto" value="0" min="0" step="1000" oninput="calc()"></div></div>
+
+      <div style="padding:10px 18px 6px;font-size:10px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);border-top:1px solid var(--border);">Real estate & property</div>
+      <div class="input-row"><div class="input-row-label">Primary home (market value)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="a-home" value="0" min="0" step="5000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Other real estate</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="a-realestate" value="0" min="0" step="5000" oninput="calc()"></div></div>
+
+      <div style="padding:10px 18px 6px;font-size:10px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);border-top:1px solid var(--border);">Other assets</div>
+      <div class="input-row"><div class="input-row-label">Vehicles (current value)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="a-vehicles" value="0" min="0" step="1000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Business ownership value</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="a-business" value="0" min="0" step="5000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Other assets</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="a-other" value="0" min="0" step="1000" oninput="calc()"></div></div>
+    </div>
+
+    <!-- Liabilities -->
+    <div class="input-card liabilities">
+      <div class="input-card-header">
+        <div class="input-card-title">Liabilities — what you owe</div>
+        <div class="input-card-total" id="total-liabilities-display">$0</div>
+      </div>
+
+      <div style="padding:10px 18px 6px;font-size:10px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);">Secured debt</div>
+      <div class="input-row"><div class="input-row-label">Mortgage balance</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="l-mortgage" value="0" min="0" step="5000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Home equity loan / HELOC</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="l-heloc" value="0" min="0" step="1000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Auto loan(s)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="l-auto" value="0" min="0" step="1000" oninput="calc()"></div></div>
+
+      <div style="padding:10px 18px 6px;font-size:10px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border);border-top:1px solid var(--border);">Unsecured debt</div>
+      <div class="input-row"><div class="input-row-label">Credit card balances</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="l-cc" value="0" min="0" step="500" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Student loans</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="l-student" value="0" min="0" step="1000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Personal loans</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="l-personal" value="0" min="0" step="1000" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Other debt</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="l-other" value="0" min="0" step="1000" oninput="calc()"></div></div>
+    </div>
+
+  </div>
+
+  <!-- Results sidebar -->
+  <div class="results">
+
+    <div class="net-worth-hero positive" id="nw-hero">
+      <div class="nw-label">Your net worth</div>
+      <div class="nw-amount" id="nw-amount">$0</div>
+      <div class="nw-sub" id="nw-sub">Enter your assets and liabilities above</div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Total assets</div>
+        <div class="metric-value green" id="m-assets">$0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Total liabilities</div>
+        <div class="metric-value red" id="m-liabilities">$0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Debt-to-asset ratio</div>
+        <div class="metric-value" id="m-dta">0%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Liquid net worth</div>
+        <div class="metric-value accent" id="m-liquid">$0</div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Asset breakdown</div>
+      <div class="chart-wrap">
+        <canvas id="nw-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="benchmark-card">
+      <div class="benchmark-title">US median net worth by age (Fed Survey 2022, approx)</div>
+      <div class="benchmark-row" id="bench-u35"><span class="benchmark-age">Under 35</span><span class="benchmark-median">Median: $39K</span><span class="benchmark-mean">Mean: $183K</span></div>
+      <div class="benchmark-row" id="bench-35"><span class="benchmark-age">35–44</span><span class="benchmark-median">Median: $135K</span><span class="benchmark-mean">Mean: $549K</span></div>
+      <div class="benchmark-row" id="bench-45"><span class="benchmark-age">45–54</span><span class="benchmark-median">Median: $248K</span><span class="benchmark-mean">Mean: $975K</span></div>
+      <div class="benchmark-row" id="bench-55"><span class="benchmark-age">55–64</span><span class="benchmark-median">Median: $365K</span><span class="benchmark-mean">Mean: $1.57M</span></div>
+      <div class="benchmark-row" id="bench-65"><span class="benchmark-age">65–74</span><span class="benchmark-median">Median: $410K</span><span class="benchmark-mean">Mean: $1.79M</span></div>
+      <div class="benchmark-row" id="bench-75"><span class="benchmark-age">75+</span><span class="benchmark-median">Median: $335K</span><span class="benchmark-mean">Mean: $1.62M</span></div>
+    </div>
+
+    <div class="info-box">
+      <p><strong>Liquid net worth</strong> is your net worth excluding illiquid assets — primarily your home and vehicles. It represents the wealth you could access relatively quickly in an emergency. A high net worth driven primarily by home equity is financially different from the same net worth held in liquid investments.</p>
+    </div>
+
+    <div class="disclaimer">
+      Net worth benchmarks are from the Federal Reserve's Survey of Consumer Finances (2022) — the most recent comprehensive data available. Mean net worth is significantly higher than median due to wealth concentration at the top. This calculator does not save or transmit your data. Not financial advice.
+    </div>
+
+  </div>
+</div>
+
+<!-- Content section -->
+<div class="content-section">
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How to use this net worth calculator</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Net worth is the single most important number in personal finance: total assets minus total liabilities. It's your financial starting point — the number that tells you where you actually stand, before goals, plans, or projections. Enter your best estimates for each category. Current market values, not purchase prices, for assets. Outstanding balances, not original loan amounts, for liabilities.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Sarah, age 38 — net worth snapshot</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div>
+        <div style="font-size:11px;font-family:var(--font-mono);color:var(--green);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">Assets</div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Checking/savings</span><span style="color:var(--text);">$18,000</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">401(k)</span><span style="color:var(--text);">$95,000</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Brokerage</span><span style="color:var(--text);">$42,000</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Home (market value)</span><span style="color:var(--text);">$380,000</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Total assets</span><span style="color:var(--green);">$535,000</span></div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-family:var(--font-mono);color:var(--red);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">Liabilities</div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Mortgage balance</span><span style="color:var(--text);">$290,000</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Student loans</span><span style="color:var(--text);">$28,000</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Auto loan</span><span style="color:var(--text);">$12,000</span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Total liabilities</span><span style="color:var(--red);">$330,000</span></div>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--border);margin-top:14px;padding-top:14px;display:flex;justify-content:space-between;font-size:15px;font-family:var(--font-mono);font-weight:600;">
+      <span style="color:var(--text-muted);">Net worth</span>
+      <span style="color:var(--accent);">$205,000</span>
+    </div>
+    <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);margin-top:10px;margin-bottom:0;">At 38, US median net worth is approximately $135,000 (Fed Survey 2022 for age 35–44). Sarah is above the median. Her liquid net worth (excluding home and vehicle) is approximately $155,000 — a meaningful distinction since most of her net worth is tied up in home equity and retirement accounts.</p>
+  </div>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Net worth vs income — why they're different</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">High income doesn't equal high net worth, and low income doesn't necessarily mean low net worth. Net worth is the cumulative result of what you've earned, spent, saved, and invested over your lifetime — not a snapshot of your current paycheck. A physician earning $400,000/year with $500,000 in student debt and no savings has a lower net worth than a teacher who earned $65,000/year for 30 years and consistently invested 15% of income. Income creates the opportunity to build net worth; savings rate and investment returns determine whether that opportunity is captured.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Should I include my home in net worth?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes — your home's current market value is an asset; your mortgage balance is a liability. The difference (home equity) is legitimately part of your net worth. However, many financial planners also track liquid net worth separately, which excludes the home and vehicles. This distinction matters because home equity isn't easily accessible without selling or borrowing against the property. A net worth of $500,000 of which $450,000 is home equity is a very different financial position than $500,000 in liquid investment accounts.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Should I include retirement accounts in net worth?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes — 401(k), IRA, and other retirement account balances are real assets and belong in a net worth calculation, even though they're not immediately accessible without penalties before age 59½. Some people calculate net worth both with and without retirement accounts to understand their liquid vs total financial position. For retirement planning purposes, the total including retirement accounts is most relevant.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What is a good net worth at my age?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">The benchmark table in the calculator shows US median and mean net worth by age group from the Federal Reserve's Survey of Consumer Finances (2022). Median is the more useful comparison — mean is pulled up significantly by the very wealthy. A common guideline is to target net worth equal to your annual income by 30, 3× by 40, and 7–10× by 65. These are rough benchmarks, not requirements — the right number depends on your income, spending, and retirement goals.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How often should I calculate my net worth?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Quarterly or annually is sufficient for most people. Tracking too frequently (monthly or weekly) can create anxiety around normal market fluctuations. The goal is to see the trend over time — is net worth growing? Is the debt-to-asset ratio improving? Is liquid net worth increasing as a percentage of total net worth? Annual tracking with a quarterly check-in for significant life changes (home purchase, job change, major expense) is a reasonable cadence.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What's the fastest way to increase net worth?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Three levers matter: increase income, reduce spending, and invest the difference consistently. Paying off high-interest debt (credit cards) is usually the highest-return action — eliminating a 20% interest rate is equivalent to earning a guaranteed 20% on that capital. After high-interest debt, maximizing tax-advantaged retirement account contributions (401k match first, then Roth IRA, then 401k maximum) accelerates net worth growth by reducing the tax drag on investment returns. Use the <a href="fire-calculator.html" style="color:var(--accent);text-decoration:none;">FIRE calculator</a> to see how your savings rate affects long-term wealth.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For educational purposes only. Not financial advice.
+  </p>
+</footer>
+<script>
+let chart = null;
+
+function fmt(n) {
+  const abs = Math.abs(n);
+  const sign = n < 0 ? '-' : '';
+  if (abs >= 1e6) return sign + '$' + (abs/1e6).toFixed(2) + 'M';
+  if (abs >= 1e3) return sign + '$' + (abs/1e3).toFixed(0) + 'K';
+  return sign + '$' + Math.round(abs).toLocaleString();
+}
+
+function getVal(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+function calc() {
+  const cash       = getVal('a-cash');
+  const brokerage  = getVal('a-brokerage');
+  const k401       = getVal('a-401k');
+  const ira        = getVal('a-ira');
+  const crypto     = getVal('a-crypto');
+  const home       = getVal('a-home');
+  const realestate = getVal('a-realestate');
+  const vehicles   = getVal('a-vehicles');
+  const business   = getVal('a-business');
+  const otherAsset = getVal('a-other');
+
+  const mortgage   = getVal('l-mortgage');
+  const heloc      = getVal('l-heloc');
+  const auto       = getVal('l-auto');
+  const cc         = getVal('l-cc');
+  const student    = getVal('l-student');
+  const personal   = getVal('l-personal');
+  const otherLiab  = getVal('l-other');
+
+  const liquid      = cash + brokerage + ira + crypto;
+  const retirement  = k401 + ira;
+  const property    = home + realestate;
+  const other       = vehicles + business + otherAsset;
+  const totalAssets = liquid + k401 + property + vehicles + business + otherAsset;
+  const totalLiab   = mortgage + heloc + auto + cc + student + personal + otherLiab;
+  const netWorth    = totalAssets - totalLiab;
+  const liquidNW    = liquid - cc - personal - otherLiab;
+  const dta         = totalAssets > 0 ? (totalLiab / totalAssets * 100) : 0;
+
+  // Update totals in headers
+  document.getElementById('total-assets-display').textContent = fmt(totalAssets);
+  document.getElementById('total-liabilities-display').textContent = fmt(totalLiab);
+
+  // Hero
+  const hero = document.getElementById('nw-hero');
+  hero.className = 'net-worth-hero ' + (netWorth >= 0 ? 'positive' : 'negative');
+  document.getElementById('nw-amount').textContent = fmt(netWorth);
+  document.getElementById('nw-sub').textContent = netWorth >= 0
+    ? fmt(totalAssets) + ' assets − ' + fmt(totalLiab) + ' liabilities'
+    : 'Liabilities exceed assets by ' + fmt(Math.abs(netWorth));
+
+  // Metrics
+  document.getElementById('m-assets').textContent = fmt(totalAssets);
+  document.getElementById('m-liabilities').textContent = fmt(totalLiab);
+  document.getElementById('m-dta').textContent = dta.toFixed(1) + '%';
+  document.getElementById('m-dta').className = 'metric-value ' + (dta < 30 ? 'green' : dta < 60 ? 'accent' : 'red');
+  document.getElementById('m-liquid').textContent = fmt(Math.max(0, liquidNW));
+
+  // Chart
+  updateChart(liquid + k401, property, vehicles + business + otherAsset);
+}
+
+function updateChart(investments, property, other) {
+  const ctx = document.getElementById('nw-chart').getContext('2d');
+  if (chart) chart.destroy();
+
+  const total = investments + property + other;
+  if (total === 0) {
+    chart = null;
+    return;
+  }
+
+  chart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Cash & Investments', 'Real Estate', 'Other'],
+      datasets: [{
+        data: [investments, property, other],
+        backgroundColor: ['#c8f060', '#5b9cf6', '#3ecf8e'],
+        borderColor: '#141416',
+        borderWidth: 3,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { color: '#888884', font: { family: "'DM Mono', monospace", size: 11 }, padding: 16, boxWidth: 12 }
+        },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          padding: 12,
+          callbacks: {
+            label: ctx => '  ' + ctx.label + ': ' + (ctx.raw >= 1000 ? '$' + (ctx.raw/1000).toFixed(0) + 'K' : '$' + ctx.raw) +
+              ' (' + ((ctx.raw / (investments + property + other)) * 100).toFixed(0) + '%)'
+          }
+        }
+      },
+      cutout: '65%',
+    }
+  });
+}
+
+calc();
+</script>
+
+<script src="/nav.js"></script>
+</body>
+</html>

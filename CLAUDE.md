@@ -149,7 +149,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 26 guides published; counter reads 26 ✅
+│   ├── index.html                                ← 27 guides published; counter reads 27 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -175,7 +175,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── dividend-growth-portfolio.html             ← NEW Jun 27 (23rd guide)
 │   ├── index-fund-investing-beginners.html        ← NEW Jun 27 (24th guide)
 │   ├── three-fund-portfolio.html                  ← NEW Jun 28 (25th guide)
-│   └── tokenized-real-world-assets.html            ← NEW Jun 29 (26th guide, Marcus Veil)
+│   ├── tokenized-real-world-assets.html            ← NEW Jun 29 (26th guide, Marcus Veil)
+│   └── sequence-of-returns-risk.html               ← NEW Jul 6 (27th guide, James Colter)
 └── CLAUDE.md
 ```
 ---
@@ -371,7 +372,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 - Trading/risk management guides → Sara Kline
 - Tokenization / RWA / emerging crypto-market guides → Marcus Veil
 ---
-## Guides Section (26 published as of Jun 29 2026)
+## Guides Section (27 published as of Jul 6 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -400,6 +401,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | index-fund-investing-beginners.html | James Colter | ✅ Live | Jun 27 2026 |
 | three-fund-portfolio.html | James Colter | ✅ Live | Jun 28 2026 |
 | tokenized-real-world-assets.html | Marcus Veil | ✅ Live | Jun 29 2026 |
+| sequence-of-returns-risk.html | James Colter | ✅ Live | Jul 6 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -551,6 +553,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | guides/index-fund-investing-beginners.html | index fund investing for beginners |
 | guides/three-fund-portfolio.html | 3-fund portfolio Bogleheads VTI VXUS BND |
 | guides/tokenized-real-world-assets.html | tokenized real-world assets (RWA) investing 2026 |
+| guides/sequence-of-returns-risk.html | sequence of returns risk retirement |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -625,7 +628,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jun 29 2026 — verified against disk, 26 guides):
+### Current CURRENT_GUIDES (as of Jul 6 2026 — verified against disk, 27 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging?",
@@ -654,6 +657,7 @@ CURRENT_GUIDES = [
     "Index fund investing for beginners 2026 complete guide",
     "How to build a 3-fund portfolio Bogleheads VTI VXUS BND",
     "Tokenized real world assets RWA investing 2026 guide",
+    "Sequence of returns risk explained retirement planning",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
@@ -661,6 +665,7 @@ CURRENT_GUIDES = [
 > ⚠️ Drift caught Jun 27: CURRENT_GUIDES was at 25 — the "Rule of 72 calculator how long to double money" entry had been mistakenly added to CURRENT_GUIDES (it's a calculator, not a guide). Removed from CURRENT_GUIDES → 24, matches disk (24 guide HTML files). The dividend-growth + index-fund guides are correctly present.
 > ✅ Jun 28: 3-Fund Portfolio guide added — CURRENT_GUIDES now at 25, audited against disk and matches (25 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
 > ✅ Jun 29: Tokenized RWA guide added (Marcus Veil) — CURRENT_GUIDES now at 26, audited against disk and matches (26 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
+> ✅ Jul 6: Sequence of Returns Risk guide added (James Colter) — CURRENT_GUIDES now at 27, audited against disk and matches (27 guide HTML files). CURRENT_CALCULATORS unchanged at 20.
 
 ### Current CURRENT_CALCULATORS (as of Jul 1 2026 — verified against disk, 20 calculators):
 ```python
@@ -694,6 +699,7 @@ CURRENT_CALCULATORS = [
 ---
 ## Roadmap
 ### Done ✅
+- [x] Sequence of Returns Risk guide (27th guide) — James Colter — `guides/sequence-of-returns-risk.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE**; `guides/index.html` counter → 27, `sitemap.xml` + `research_agent.py` updated, URL submitted to GSC — Jul 6 2026
 - [x] 529 College Savings Calculator (20th calculator) — `529-calculator.html`, college cost projection + required monthly savings, under **Retirement & Tax** (moved from Investing on build day); full-content build (worked example + honest tradeoffs incl. SECURE 2.0 529→Roth rollover + 5-question FAQ) — meets Calculator Content Standard — Jul 1 2026
 - [x] IRA Contribution Calculator (19th calculator) — `ira-contribution-calculator.html`, 2026 IRS limits + Roth phase-out visual + Traditional deductibility, under **Retirement & Tax**; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard — Jul 1 2026
 - [x] sitemap.xml updated with breakeven-calculator, ira-contribution-calculator, 529-calculator URLs (breakeven had been missing since Jun 30) — Jul 1 2026
@@ -778,13 +784,13 @@ CURRENT_CALCULATORS = [
 - [x] Welcome email via Resend — domain verified ✅
 - [x] Content Research Agent packaged for Gumroad ($39) ✅
 
-### Next session priorities:
-- [x] **RWA Investing guide** (HIGH) — published Jun 29 2026 (`tokenized-real-world-assets.html`, 26th guide, Marcus Veil) ✅
-- [x] **Stock/Crypto Breakeven Calculator** (MEDIUM) — built and deployed Jun 30 2026 (`breakeven-calculator.html`, 18th calculator), full-content build, verified live ✅
-- [x] **IRA Contribution Calculator** (MEDIUM) — built and deployed Jul 1 2026 (`ira-contribution-calculator.html`, 19th calculator), full-content build, under Retirement & Tax ✅
-- [x] **529 College Savings Calculator** (MEDIUM) — built and deployed Jul 1 2026 (`529-calculator.html`, 20th calculator), full-content build, under Retirement & Tax ✅
-- [ ] **Submit all recent pages to GSC** — 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html
-- [ ] **All brief items complete — await July 6 research agent brief** for new content ideas
+### Next session priorities (from Jul 5 research brief):
+- [ ] **Monte Carlo Simulation for Retirement guide** (HIGH) — probabilistic retirement outcome modeling; pairs with the Safe Withdrawal Rate calculator and the sequence-of-returns-risk guide
+- [ ] **Net Worth Calculator** (HIGH) — NerdWallet just updated theirs; full-content build (worked example + tradeoffs + FAQ)
+- [ ] **Mutual Fund Fee Impact Calculator** (check overlap with existing `fee-calculator.html` first — may be redundant or a variant angle)
+- [ ] **Evergreen Funds guide** (MEDIUM)
+- [ ] **Social Security Estimator** (MEDIUM — complex build)
+- [ ] **Submit remaining pages to GSC** — 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html (sequence-of-returns-risk.html submitted Jul 6 ✅)
 
 ### Earlier priorities:
 - [x] **3-Fund Portfolio guide** — published Jun 28 2026 (25th guide, James Colter) ✅
@@ -835,6 +841,16 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jul 6 2026 — Sequence of Returns Risk Guide Session
+- **Sequence of Returns Risk guide published** (James Colter, 27th guide) — `guides/sequence-of-returns-risk.html`; explains how the order of returns (not just the average) determines whether a retirement portfolio survives, especially early-retirement drawdowns. Added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE** (next to RMD explained)
+- `guides/index.html` counter updated to 27
+- `sitemap.xml` updated with the sequence-of-returns-risk.html URL
+- `research_agent.py` updated and all pages re-stamped via `stamp_nav.py`
+- **URL submitted to Google Search Console** ✅
+- **research_agent.py audit (vs disk):** CURRENT_GUIDES updated to **27** (added "Sequence of returns risk explained retirement planning"); CURRENT_CALCULATORS unchanged at **20** — both verified against disk this session and match (27 guide HTML files / 20 calculator HTML files)
+- **Jul 5 research brief priorities:** Monte Carlo Simulation for Retirement guide (HIGH), Net Worth Calculator (HIGH — NerdWallet just updated theirs), Mutual Fund Fee Impact Calculator (check overlap with existing fee calculator first), Evergreen Funds guide (MEDIUM), Social Security Estimator (MEDIUM — complex build)
+- Next priorities: Monte Carlo Simulation for Retirement guide; Net Worth Calculator; evaluate Mutual Fund Fee Impact Calculator vs existing fee-calculator.html; submit remaining pages to GSC
 
 ### Jul 1 2026 — IRA + 529 Calculators Session
 - **IRA Contribution Calculator built and deployed** (`ira-contribution-calculator.html`, 19th calculator) — 2026 IRS contribution limits with income phase-outs, Roth eligibility phase-out visual, Traditional deductibility, and a 5-question FAQ; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**

@@ -40,6 +40,7 @@ CALC_CATEGORIES = [
     ]),
     ('Retirement &amp; Tax', [
         ('fire-calculator.html',                    'FIRE calculator'),
+        ('net-worth-calculator.html',               'Net worth'),
         ('withdrawal-rate-calculator.html',         'Withdrawal rate'),
         ('fee-calculator.html',                     'Fee impact'),
         ('tax-loss-harvesting-calculator.html',     'Tax-loss harvesting'),
