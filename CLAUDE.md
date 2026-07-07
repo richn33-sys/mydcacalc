@@ -135,6 +135,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── breakeven-calculator.html                      ← Breakeven Calculator stock/crypto (18th calculator, NEW Jun 30 — full content: worked example + "why averaging down isn't magic" + 5-question FAQ)
 ├── ira-contribution-calculator.html               ← IRA Contribution Calculator (19th calculator, NEW Jul 1 — 2026 IRS limits, Roth phaseout visual, traditional deductibility, 5-question FAQ)
 ├── 529-calculator.html                            ← 529 College Savings Calculator (20th calculator, NEW Jul 1 — college cost projection, worked example, SECURE 2.0 Roth rollover, 5-question FAQ; nav category: Retirement & Tax)
+├── net-worth-calculator.html                      ← Net Worth Calculator (21st calculator, NEW Jul 6 — assets/liabilities breakdown; full-content build: worked example + honest tradeoffs + 5-question FAQ; nav category: Retirement & Tax)
 ├── nav.js                                         ← All nav dropdown/hamburger/accordion JS (RECREATED Jun 21 — moved out of inline; stamp_nav injects <script src="/nav.js"> on every page)
 ├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown; NAV_EVENT_JS now just <script src="/nav.js">, ensure_nav_js() injects it, Jun 21)
 ├── about.html
@@ -149,7 +150,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 27 guides published; counter reads 27 ✅
+│   ├── index.html                                ← 28 guides published; counter reads 28 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -176,7 +177,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── index-fund-investing-beginners.html        ← NEW Jun 27 (24th guide)
 │   ├── three-fund-portfolio.html                  ← NEW Jun 28 (25th guide)
 │   ├── tokenized-real-world-assets.html            ← NEW Jun 29 (26th guide, Marcus Veil)
-│   └── sequence-of-returns-risk.html               ← NEW Jul 6 (27th guide, James Colter)
+│   ├── sequence-of-returns-risk.html               ← NEW Jul 6 (27th guide, James Colter)
+│   └── monte-carlo-retirement.html                 ← NEW Jul 6 (28th guide, James Colter)
 └── CLAUDE.md
 ```
 ---
@@ -340,6 +342,15 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs/nuance section (incl. SECURE 2.0 529→Roth rollover) + 5-question FAQ
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax** (moved from Investing on build day)
 - **Keywords:** 529 calculator, college savings calculator, how much to save for college
+
+### net-worth-calculator.html — Net Worth Calculator (21st calculator, NEW Jul 6 2026)
+- Totals assets vs liabilities to compute net worth, with a category breakdown (cash, investments, retirement, property, etc. vs mortgage, loans, credit-card debt)
+- Inputs: itemized assets and liabilities across categories
+- Outputs: total assets, total liabilities, net worth, asset/liability breakdown
+- **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs/nuance section + 5-question FAQ
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- Built after confirming the Mutual Fund Fee Impact Calculator (Jul 5 brief) was redundant with the existing `fee-calculator.html` — skipped in favor of this
+- **Keywords:** net worth calculator, assets minus liabilities, how to calculate net worth
 ---
 ## Calculator Content Standard (NEW Jun 30 2026)
 > Standing rule for every future calculator. Established this session and saved to memory.
@@ -372,7 +383,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 - Trading/risk management guides → Sara Kline
 - Tokenization / RWA / emerging crypto-market guides → Marcus Veil
 ---
-## Guides Section (27 published as of Jul 6 2026)
+## Guides Section (28 published as of Jul 6 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -402,6 +413,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | three-fund-portfolio.html | James Colter | ✅ Live | Jun 28 2026 |
 | tokenized-real-world-assets.html | Marcus Veil | ✅ Live | Jun 29 2026 |
 | sequence-of-returns-risk.html | James Colter | ✅ Live | Jul 6 2026 |
+| monte-carlo-retirement.html | James Colter | ✅ Live | Jul 6 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -527,6 +539,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | breakeven-calculator.html | breakeven calculator / stock crypto price to break even |
 | ira-contribution-calculator.html | IRA contribution calculator / Roth IRA income limits 2026 |
 | 529-calculator.html | 529 calculator / college savings calculator |
+| net-worth-calculator.html | net worth calculator / how to calculate net worth |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -554,6 +567,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | guides/three-fund-portfolio.html | 3-fund portfolio Bogleheads VTI VXUS BND |
 | guides/tokenized-real-world-assets.html | tokenized real-world assets (RWA) investing 2026 |
 | guides/sequence-of-returns-risk.html | sequence of returns risk retirement |
+| guides/monte-carlo-retirement.html | monte carlo simulation retirement planning |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -628,7 +642,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jul 6 2026 — verified against disk, 27 guides):
+### Current CURRENT_GUIDES (as of Jul 6 2026 — verified against disk, 28 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging?",
@@ -658,6 +672,7 @@ CURRENT_GUIDES = [
     "How to build a 3-fund portfolio Bogleheads VTI VXUS BND",
     "Tokenized real world assets RWA investing 2026 guide",
     "Sequence of returns risk explained retirement planning",
+    "Monte Carlo simulation retirement planning how it works",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
@@ -666,8 +681,9 @@ CURRENT_GUIDES = [
 > ✅ Jun 28: 3-Fund Portfolio guide added — CURRENT_GUIDES now at 25, audited against disk and matches (25 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
 > ✅ Jun 29: Tokenized RWA guide added (Marcus Veil) — CURRENT_GUIDES now at 26, audited against disk and matches (26 guide HTML files). CURRENT_CALCULATORS unchanged at 17.
 > ✅ Jul 6: Sequence of Returns Risk guide added (James Colter) — CURRENT_GUIDES now at 27, audited against disk and matches (27 guide HTML files). CURRENT_CALCULATORS unchanged at 20.
+> ✅ Jul 6: Monte Carlo Retirement guide added (James Colter) — CURRENT_GUIDES now at 28, audited against disk and matches (28 guide HTML files). CURRENT_CALCULATORS at 21 after adding Net Worth (see below).
 
-### Current CURRENT_CALCULATORS (as of Jul 1 2026 — verified against disk, 20 calculators):
+### Current CURRENT_CALCULATORS (as of Jul 6 2026 — verified against disk, 21 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator (index.html)",
@@ -690,15 +706,20 @@ CURRENT_CALCULATORS = [
     "Breakeven calculator (stock/crypto price to break even)",
     "IRA contribution calculator (traditional/Roth limits and phase-outs)",
     "529 college savings calculator",
+    "Net worth calculator",
 ]
 ```
 > ✅ Jun 21: research_agent.py audited vs disk — CURRENT_CALCULATORS was at 14, added RMD calculator → 15, now matches disk. (CURRENT_GUIDES unchanged at 21.)
 > ✅ Jun 27: CURRENT_CALCULATORS was at 15, missing both the Dividend Income calculator and Rule of 72 calculator → added both → 17, matches disk (17 calculator HTML files).
 > ✅ Jun 30: CURRENT_CALCULATORS was at 17, missing the Breakeven calculator → added → 18, matches disk (18 calculator HTML files). CURRENT_GUIDES unchanged at 26.
 > ✅ Jul 1: CURRENT_CALCULATORS was at 18, missing IRA Contribution + 529 College Savings → added both → 20, matches disk (20 calculator HTML files). CURRENT_GUIDES unchanged at 26 (verified against disk — 26 guide HTML files).
+> ✅ Jul 6: CURRENT_CALCULATORS was at 20, missing the Net Worth calculator → added → 21, matches disk (21 calculator HTML files). CURRENT_GUIDES at 28 after adding Monte Carlo Retirement (28 guide HTML files). (Note: the Mutual Fund Fee Impact Calculator from the Jul 5 brief was skipped — confirmed redundant with the existing fee-calculator.html.)
 ---
 ## Roadmap
 ### Done ✅
+- [x] Monte Carlo Simulation for Retirement guide (28th guide) — James Colter — `guides/monte-carlo-retirement.html`, probabilistic retirement outcome modeling; pairs with the Safe Withdrawal Rate calculator and the sequence-of-returns-risk guide; added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE**; `guides/index.html` counter → 28, `sitemap.xml` + `research_agent.py` updated — Jul 6 2026
+- [x] Net Worth Calculator (21st calculator) — `net-worth-calculator.html`, assets vs liabilities with category breakdown, under **Retirement & Tax**; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard; `stamp_nav.py` `CALC_CATEGORIES` + `sitemap.xml` + `research_agent.py` updated — Jul 6 2026
+- [x] Mutual Fund Fee Impact Calculator (Jul 5 brief) evaluated — confirmed redundant with existing `fee-calculator.html`; skipped — Jul 6 2026
 - [x] Sequence of Returns Risk guide (27th guide) — James Colter — `guides/sequence-of-returns-risk.html`, added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE**; `guides/index.html` counter → 27, `sitemap.xml` + `research_agent.py` updated, URL submitted to GSC — Jul 6 2026
 - [x] 529 College Savings Calculator (20th calculator) — `529-calculator.html`, college cost projection + required monthly savings, under **Retirement & Tax** (moved from Investing on build day); full-content build (worked example + honest tradeoffs incl. SECURE 2.0 529→Roth rollover + 5-question FAQ) — meets Calculator Content Standard — Jul 1 2026
 - [x] IRA Contribution Calculator (19th calculator) — `ira-contribution-calculator.html`, 2026 IRS limits + Roth phase-out visual + Traditional deductibility, under **Retirement & Tax**; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard — Jul 1 2026
@@ -785,12 +806,13 @@ CURRENT_CALCULATORS = [
 - [x] Content Research Agent packaged for Gumroad ($39) ✅
 
 ### Next session priorities (from Jul 5 research brief):
-- [ ] **Monte Carlo Simulation for Retirement guide** (HIGH) — probabilistic retirement outcome modeling; pairs with the Safe Withdrawal Rate calculator and the sequence-of-returns-risk guide
-- [ ] **Net Worth Calculator** (HIGH) — NerdWallet just updated theirs; full-content build (worked example + tradeoffs + FAQ)
-- [ ] **Mutual Fund Fee Impact Calculator** (check overlap with existing `fee-calculator.html` first — may be redundant or a variant angle)
+- [x] **Monte Carlo Simulation for Retirement guide** (HIGH) — published Jul 6 2026 (28th guide, James Colter) ✅
+- [x] **Net Worth Calculator** (HIGH) — built and deployed Jul 6 2026 (21st calculator) ✅
+- [x] **Mutual Fund Fee Impact Calculator** — evaluated; confirmed redundant with existing `fee-calculator.html`, skipped Jul 6 2026 ✅
 - [ ] **Evergreen Funds guide** (MEDIUM)
 - [ ] **Social Security Estimator** (MEDIUM — complex build)
-- [ ] **Submit remaining pages to GSC** — 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html (sequence-of-returns-risk.html submitted Jul 6 ✅)
+- [ ] **Submit new URLs to GSC** — monte-carlo-retirement.html + net-worth-calculator.html + sequence-of-returns-risk.html
+- [ ] **Submit remaining pages to GSC** — 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html
 
 ### Earlier priorities:
 - [x] **3-Fund Portfolio guide** — published Jun 28 2026 (25th guide, James Colter) ✅
@@ -841,6 +863,17 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jul 6 2026 — Monte Carlo Guide + Net Worth Calculator Session
+- **Monte Carlo Simulation for Retirement guide published** (James Colter, 28th guide) — `guides/monte-carlo-retirement.html`; probabilistic retirement outcome modeling (why running many randomized return sequences beats a single average-return projection). Pairs with the Safe Withdrawal Rate calculator and the sequence-of-returns-risk guide. Added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE**
+- **Net Worth Calculator built and deployed** (`net-worth-calculator.html`, 21st calculator) — totals assets vs liabilities with a category breakdown; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard. Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- **Mutual Fund Fee Impact Calculator (Jul 5 brief) skipped** — evaluated and confirmed redundant with the existing `fee-calculator.html`; built the Net Worth Calculator instead
+- `guides/index.html` counter updated to 28
+- `sitemap.xml` updated with all three URLs — monte-carlo-retirement.html, net-worth-calculator.html, sequence-of-returns-risk.html
+- `research_agent.py` updated and all pages re-stamped via `stamp_nav.py`; deployed
+- **research_agent.py audit (vs disk):** CURRENT_GUIDES updated to **28** (added "Monte Carlo simulation retirement planning how it works" — sequence-of-returns-risk already present from earlier Jul 6 work); CURRENT_CALCULATORS updated to **21** (added "Net worth calculator"). Both verified against disk this session and match (28 guide HTML files / 21 calculator HTML files)
+- **Numbering reconciliation:** disk holds exactly 28 guide files, so Monte Carlo = **28th** guide (Sequence of Returns Risk = 27th, published earlier today) — not the 29th/28th the working notes implied
+- Next priorities: Evergreen Funds guide (MEDIUM); Social Security Estimator (MEDIUM — complex); submit monte-carlo-retirement.html + net-worth-calculator.html + sequence-of-returns-risk.html (and the earlier backlog: 529, ira-contribution, breakeven, tokenized-rwa, three-fund-portfolio) to GSC
 
 ### Jul 6 2026 — Sequence of Returns Risk Guide Session
 - **Sequence of Returns Risk guide published** (James Colter, 27th guide) — `guides/sequence-of-returns-risk.html`; explains how the order of returns (not just the average) determines whether a retirement portfolio survives, especially early-retirement drawdowns. Added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE** (next to RMD explained)
