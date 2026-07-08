@@ -45,6 +45,7 @@ CALC_CATEGORIES = [
         ('fee-calculator.html',                     'Fee impact'),
         ('tax-loss-harvesting-calculator.html',     'Tax-loss harvesting'),
         ('rmd-calculator.html',                     'RMD calculator'),
+        ('social-security-calculator.html',         'Social Security'),
         ('ira-contribution-calculator.html',        'IRA contribution'),
         ('529-calculator.html',                     '529 college savings'),
     ]),

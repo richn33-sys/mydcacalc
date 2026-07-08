@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>529 College Savings Calculator — How Much Do You Need to Save?</title>
-<meta name="description" content="Free 529 college savings calculator. Project future college costs with inflation, see how much your 529 plan will grow, and find out how much you need to save monthly to cover your goal. Updated for 2026.">
-<meta name="keywords" content="529 calculator, college savings calculator, how much to save for college, 529 plan calculator 2026, college cost calculator, education savings calculator">
-<meta property="og:title" content="529 College Savings Calculator — How Much Do You Need to Save?">
-<meta property="og:description" content="In-state public college costs $25,290/year today. At 5.5% annual inflation, a child born now will face $62,200/year by 2044. See how much you need to save monthly to hit your goal.">
+<title>Social Security Estimator 2026 — When Should You Claim?</title>
+<meta name="description" content="Free Social Security estimator. See your benefit at every claiming age from 62 to 70, find your breakeven age, and estimate how much of your benefit is taxable. Updated for 2026 SSA rules.">
+<meta name="keywords" content="social security calculator, social security estimator 2026, when should I claim social security, social security breakeven calculator, social security benefit by age">
+<meta property="og:title" content="Social Security Estimator 2026 — When Should You Claim?">
+<meta property="og:description" content="Claiming at 62 cuts your benefit by up to 30%. Waiting to 70 adds up to 24%. See your exact benefit at every age and find your personal breakeven point.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mydcacalc.com/529-calculator.html">
+<meta property="og:url" content="https://mydcacalc.com/social-security-calculator.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/529-calculator.html">
+<link rel="canonical" href="https://mydcacalc.com/social-security-calculator.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +21,8 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "529 College Savings Calculator",
-  "description": "Project future college costs and 529 plan growth to see how much you need to save monthly",
+  "name": "Social Security Estimator 2026",
+  "description": "Estimate Social Security benefits at different claiming ages, find your breakeven age, and see estimated taxation",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -60,14 +60,14 @@ nav a.active { color: var(--accent); }
 .nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
 @media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
 
-.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero { max-width: 980px; margin: 0 auto; padding: 40px 24px 20px; }
 .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
 h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
 h1 em { font-style: normal; color: var(--accent); }
-.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 600px; line-height: 1.7; }
 
-.main { max-width: 900px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
-@media (max-width: 720px) { .main { grid-template-columns: 1fr; } }
+.main { max-width: 980px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
+@media (max-width: 780px) { .main { grid-template-columns: 1fr; } }
 
 .controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
 .section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
@@ -85,54 +85,58 @@ input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; heigh
 .range-header { display: flex; justify-content: space-between; align-items: center; }
 .range-val { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 500; }
 .divider-line { height: 1px; background: var(--border); margin: 16px 0; }
+.helper-text { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 6px; line-height: 1.5; }
 
 .results { display: flex; flex-direction: column; gap: 14px; }
 
-.hero-result { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
-.hero-result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.hr-item { text-align: center; }
-.hr-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
-.hr-value { font-size: 26px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.02em; }
-.hr-value.accent { color: var(--accent); }
-.hr-value.blue { color: var(--blue); }
-.hr-value.green { color: var(--green); }
-.hr-value.red { color: var(--red); }
-.hr-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 4px; }
-
-.metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-@media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
-.metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
-.metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
-.metric-value { font-family: var(--font-mono); font-size: 17px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
-.metric-value.green { color: var(--green); }
-.metric-value.accent { color: var(--accent); }
-.metric-value.red { color: var(--red); }
+/* Three age cards */
+.age-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 600px) { .age-cards { grid-template-columns: 1fr; } }
+.age-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; text-align: center; }
+.age-card.fra { border-color: var(--accent-border); background: var(--accent-dim); }
+.age-card-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.age-card.fra .age-card-label { color: var(--accent); }
+.age-card-amount { font-size: 24px; font-weight: 600; font-family: var(--font-mono); color: var(--text); letter-spacing: -0.02em; margin-bottom: 4px; }
+.age-card.fra .age-card-amount { color: var(--accent); }
+.age-card-sub { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
 
 .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
 .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
 .chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
-.chart-legend { display: flex; gap: 12px; }
-.legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); }
-.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
 .chart-wrap { position: relative; height: 220px; }
+
+.metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
+.metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.metric-value { font-family: var(--font-mono); font-size: 17px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
+.metric-value.accent { color: var(--accent); }
+.metric-value.green { color: var(--green); }
 
 .table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
 .table-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
 .table-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 440px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 480px; }
 th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
 td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
 tr:last-child td { border-bottom: none; }
+tr.highlight td { background: rgba(200,240,96,0.05); color: var(--text); }
 td.accent { color: var(--accent); font-weight: 500; }
 td.green { color: var(--green); }
 td.red { color: var(--red); }
+
+.tax-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
+.tax-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; font-family: var(--font-mono); }
+.tax-row:last-child { border-bottom: none; font-weight: 500; }
+.tax-row span:first-child { color: var(--text-muted); }
+.tax-row span:last-child { color: var(--text); }
 
 .info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
 .info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
 .info-box strong { color: var(--text); font-weight: 500; }
 .disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
 
-.content-section { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+.content-section { max-width: 980px; margin: 0 auto; padding: 0 24px 60px; }
 .pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
 .pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
 .pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
@@ -181,7 +185,7 @@ footer a:hover { color: var(--text); }
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Plan your family's financial future</strong> — real avg cost, live tracking, weekly signals</span>
+  <span>📈 <strong>Plan your full retirement income picture</strong> — real avg cost, live tracking, weekly signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -218,9 +222,9 @@ footer a:hover { color: var(--text); }
         <a href="fee-calculator.html">Fee impact</a>
         <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
         <a href="rmd-calculator.html">RMD calculator</a>
-        <a href="social-security-calculator.html">Social Security</a>
+        <a href="social-security-calculator.html" class="active">Social Security</a>
         <a href="ira-contribution-calculator.html">IRA contribution</a>
-        <a href="529-calculator.html" class="active">529 college savings</a>
+        <a href="529-calculator.html">529 college savings</a>
       </div>
     </div>
     <div class="nav-group">
@@ -348,228 +352,196 @@ footer a:hover { color: var(--text); }
 </div>
 
 <div class="hero">
-  <div class="hero-badge">Tax-free growth · No income limits · 2026 rules</div>
-  <h1>529 College Savings <em>Calculator</em></h1>
-  <p>Project future college costs with inflation, see how your 529 plan grows, and find the monthly savings needed to hit your goal. Works for any school type.</p>
+  <div class="hero-badge">2026 SSA rules · Claiming ages 62–70</div>
+  <h1>Social Security <em>Estimator</em></h1>
+  <p>See your exact benefit at every claiming age, find your personal breakeven point, and estimate how much of your benefit will be taxable. Updated for 2026 rules.</p>
 </div>
 
 <div class="main">
 
   <div class="controls-card">
-    <div class="section-label">Your child</div>
+    <div class="section-label">Your benefit estimate</div>
 
     <div class="input-group">
-      <div class="input-label">Child's current age</div>
-      <select id="child-age" onchange="calc()">
-        <option value="0">Newborn (0)</option>
-        <option value="1">1 year old</option>
-        <option value="2">2 years old</option>
-        <option value="3">3 years old</option>
-        <option value="4">4 years old</option>
-        <option value="5" selected>5 years old</option>
-        <option value="6">6 years old</option>
-        <option value="7">7 years old</option>
-        <option value="8">8 years old</option>
-        <option value="9">9 years old</option>
-        <option value="10">10 years old</option>
-        <option value="11">11 years old</option>
-        <option value="12">12 years old</option>
-        <option value="13">13 years old</option>
-        <option value="14">14 years old</option>
-        <option value="15">15 years old</option>
-        <option value="16">16 years old</option>
-      </select>
-    </div>
-
-    <div class="input-group">
-      <div class="input-label">Type of college</div>
-      <select id="college-type" onchange="setCollegeCost()">
-        <option value="25290">Public in-state (~$25,290/yr today)</option>
-        <option value="43350">Public out-of-state (~$43,350/yr today)</option>
-        <option value="57570">Private non-profit (~$57,570/yr today)</option>
-        <option value="custom">Custom annual cost</option>
-      </select>
-    </div>
-
-    <div class="input-group" id="custom-cost-wrap" style="display:none;">
-      <div class="input-label">Custom annual cost today</div>
+      <div class="input-label">Monthly benefit at Full Retirement Age (FRA)</div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="custom-cost" value="30000" min="1000" step="1000" oninput="calc()">
+        <input type="number" id="fra-benefit" value="2400" min="0" step="50" oninput="calc()">
       </div>
+      <div class="helper-text">Find this on your Social Security statement at ssa.gov/myaccount — labeled "your estimated benefit at full retirement age"</div>
     </div>
 
     <div class="input-group">
-      <div class="input-label">Years of college</div>
-      <select id="college-years" onchange="calc()">
-        <option value="2">2 years</option>
-        <option value="4" selected>4 years</option>
-        <option value="6">6 years (including grad)</option>
+      <div class="input-label">Your full retirement age</div>
+      <select id="fra-age" onchange="calc()">
+        <option value="67">67 (born 1960 or later)</option>
+        <option value="66.833">66 yrs 10 mo (born 1959)</option>
+        <option value="66.667">66 yrs 8 mo (born 1958)</option>
+        <option value="66">66 (born 1943–1954)</option>
       </select>
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Your 529 plan</div>
+    <div class="section-label">Breakeven analysis</div>
 
     <div class="input-group">
-      <div class="input-label">Current 529 balance</div>
-      <div class="input-wrap">
-        <span class="input-prefix">$</span>
-        <input type="number" id="current-balance" value="0" min="0" step="1000" oninput="calc()">
+      <div class="range-header">
+        <div class="input-label" style="margin:0;">Life expectancy (age)</div>
+        <span class="range-val" id="life-exp-display">85</span>
       </div>
-    </div>
-
-    <div class="input-group">
-      <div class="input-label">Monthly contribution</div>
-      <div class="input-wrap">
-        <span class="input-prefix">$</span>
-        <input type="number" id="monthly-contrib" value="300" min="0" step="50" oninput="calc()">
-      </div>
+      <input type="range" id="life-exp" min="75" max="95" value="85" step="1"
+        oninput="document.getElementById('life-exp-display').textContent=this.value;calc()">
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Assumptions</div>
+    <div class="section-label">Taxation estimate (optional)</div>
 
     <div class="input-group">
-      <div class="range-header">
-        <div class="input-label" style="margin:0;">Annual investment return</div>
-        <span class="range-val" id="return-display">6%</span>
-      </div>
-      <input type="range" id="inv-return" min="3" max="10" value="6" step="0.5"
-        oninput="document.getElementById('return-display').textContent=this.value+'%';calc()">
+      <div class="input-label">Filing status</div>
+      <select id="filing-status" onchange="calc()">
+        <option value="single">Single</option>
+        <option value="mfj">Married filing jointly</option>
+      </select>
     </div>
 
     <div class="input-group">
-      <div class="range-header">
-        <div class="input-label" style="margin:0;">Annual college cost inflation</div>
-        <span class="range-val" id="inflation-display">5.5%</span>
+      <div class="input-label">Other annual income (pension, IRA withdrawals, etc.)</div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="other-income" value="20000" min="0" step="1000" oninput="calc()">
       </div>
-      <input type="range" id="cost-inflation" min="2" max="8" value="5.5" step="0.5"
-        oninput="document.getElementById('inflation-display').textContent=this.value+'%';calc()">
     </div>
 
   </div>
 
   <div class="results">
 
-    <div class="hero-result">
-      <div class="hero-result-grid">
-        <div class="hr-item">
-          <div class="hr-label">Projected total college cost</div>
-          <div class="hr-value blue" id="total-cost">$0</div>
-          <div class="hr-sub" id="cost-sub">When your child starts college</div>
-        </div>
-        <div class="hr-item">
-          <div class="hr-label">Projected 529 balance</div>
-          <div class="hr-value accent" id="total-529">$0</div>
-          <div class="hr-sub" id="balance-sub">At college start</div>
-        </div>
+    <div class="age-cards">
+      <div class="age-card">
+        <div class="age-card-label">Claim at 62</div>
+        <div class="age-card-amount" id="amt-62">$0</div>
+        <div class="age-card-sub" id="pct-62">−30% vs FRA</div>
       </div>
-    </div>
-
-    <div class="metrics">
-      <div class="metric">
-        <div class="metric-label">Coverage</div>
-        <div class="metric-value accent" id="coverage-pct">0%</div>
+      <div class="age-card fra">
+        <div class="age-card-label">Full retirement age</div>
+        <div class="age-card-amount" id="amt-fra">$0</div>
+        <div class="age-card-sub">100% of PIA</div>
       </div>
-      <div class="metric">
-        <div class="metric-label">Shortfall / surplus</div>
-        <div class="metric-value" id="gap-amount">$0</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Monthly needed for 100%</div>
-        <div class="metric-value accent" id="monthly-needed">$0</div>
+      <div class="age-card">
+        <div class="age-card-label">Claim at 70</div>
+        <div class="age-card-amount" id="amt-70">$0</div>
+        <div class="age-card-sub" id="pct-70">+24% vs FRA</div>
       </div>
     </div>
 
     <div class="chart-card">
       <div class="chart-header">
-        <div class="chart-title">529 balance vs projected college cost</div>
-        <div class="chart-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>529 balance</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6;"></div>Total cost</div>
-        </div>
+        <div class="chart-title">Monthly benefit by claiming age</div>
       </div>
       <div class="chart-wrap">
-        <canvas id="savings-chart"></canvas>
+        <canvas id="ss-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Breakeven age (62 vs FRA)</div>
+        <div class="metric-value accent" id="breakeven-fra">Age 0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Breakeven age (FRA vs 70)</div>
+        <div class="metric-value accent" id="breakeven-70">Age 0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Lifetime total at your life expectancy — claim 62</div>
+        <div class="metric-value" id="lifetime-62">$0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Lifetime total at your life expectancy — claim 70</div>
+        <div class="metric-value green" id="lifetime-70">$0</div>
       </div>
     </div>
 
     <div class="table-card">
-      <div class="table-title">Year-by-year savings vs cost projection</div>
+      <div class="table-title">Benefit by exact claiming age</div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Years to college</th>
-              <th>Child's age</th>
-              <th>529 balance</th>
-              <th>Projected annual cost</th>
-              <th>4-yr total cost</th>
+              <th>Claiming age</th>
+              <th>Monthly benefit</th>
+              <th>% of FRA benefit</th>
+              <th>Annual benefit</th>
             </tr>
           </thead>
-          <tbody id="proj-tbody"></tbody>
+          <tbody id="age-tbody"></tbody>
         </table>
       </div>
     </div>
 
+    <div class="tax-card">
+      <div class="section-label" style="margin-bottom:12px;">Estimated taxation of benefits</div>
+      <div class="tax-row"><span>Combined income (AGI + nontaxable interest + ½ SS benefit)</span><span id="tax-combined">$0</span></div>
+      <div class="tax-row"><span>Taxable threshold (your filing status)</span><span id="tax-threshold">$0</span></div>
+      <div class="tax-row"><span>Estimated % of benefit taxable</span><span id="tax-pct">0%</span></div>
+    </div>
+
     <div class="info-box">
-      <p><strong>Key 529 facts for 2026:</strong> Contributions grow tax-free and qualified withdrawals (tuition, fees, room and board, books) are tax-free at the federal level. Many states offer a state income tax deduction for contributions — check your state's plan. The annual gift tax exclusion for 529 contributions is $19,000 per donor per beneficiary in 2026 ($38,000 for married couples). You can front-load 5 years of contributions ($95,000 per donor, $190,000 for married couples) without triggering gift tax. No federal annual contribution limit — state lifetime limits typically range from $300,000 to $550,000+ per beneficiary.</p>
+      <p><strong>The core tradeoff:</strong> claiming at 62 gets you 96 extra months of checks but at a permanently reduced rate. Claiming at 70 gets you the highest possible monthly check but fewer years to collect it. The "right" answer depends heavily on your health, family longevity, other income sources, and whether you're still working.</p>
     </div>
 
     <div class="disclaimer">
-      College cost estimates are based on published 2026 averages from the College Board and NCES. Projections use simplified compound growth models — actual results depend on market returns, college cost inflation, financial aid, and scholarship availability. This calculator does not account for financial aid, state-specific 529 tax benefits, or fees. Not financial advice. Consult a qualified financial advisor before making education savings decisions.
+      This calculator uses 2026 SSA claiming-age adjustment rules and combined-income tax thresholds. It does not calculate your actual PIA from earnings history — enter the FRA benefit estimate from your official Social Security statement for accuracy. Does not account for spousal benefits, survivor benefits, the earnings test, or WEP/GPO provisions. Not tax or financial advice.
     </div>
 
   </div>
 </div>
 
+<!-- Content section -->
 <div class="content-section">
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the 529 college savings calculator works</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator projects two things simultaneously: how much your 529 plan will grow based on contributions and investment returns, and how much college will cost by the time your child enrolls — accounting for college cost inflation, which has historically run 4–6% per year, significantly above general inflation. The gap between the two tells you your shortfall or surplus, and the calculator shows the monthly contribution needed to cover 100% of projected costs.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How this Social Security estimator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator takes your Full Retirement Age (FRA) benefit estimate — found on your official Social Security statement at ssa.gov/myaccount — and applies the SSA's 2026 claiming-age adjustment formulas to show your benefit at every age from 62 to 70. It does not calculate your Primary Insurance Amount (PIA) from your raw earnings history — that calculation requires your complete 35-year indexed earnings record, which only the SSA has. Starting from your official FRA estimate is both more accurate and simpler than attempting to reconstruct the calculation yourself.</p>
 
   <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A child born today with parents saving $300/month from birth, targeting an in-state public university:</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A worker with an FRA (age 67) benefit of $2,400/month:</p>
   <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
-    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">18 years, $300/month, 6% return, 5.5% college inflation</div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Current in-state cost (today)</span><span style="color:var(--text);">$25,290/year</span></div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Projected cost at college start (2044)</span><span style="color:var(--blue);">~$62,200/year</span></div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total 4-year projected cost</span><span style="color:var(--blue);">~$268,000</span></div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total contributions ($300 × 216 months)</span><span style="color:var(--text);">$64,800</span></div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Projected 529 balance at 18</span><span style="color:var(--accent);">~$118,000</span></div>
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">$2,400/month FRA benefit — claiming at three ages</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Claim at 62 (60 months early)</span><span style="color:var(--red);">$1,680/mo (70% of FRA)</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Claim at FRA (67)</span><span style="color:var(--accent);">$2,400/mo (100% of FRA)</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Claim at 70 (36 months late)</span><span style="color:var(--green);">$2,976/mo (124% of FRA)</span></div>
   </div>
-  <p style="color:#888884;font-weight:300;margin-bottom:28px;line-height:1.75;">$300/month from birth covers approximately 44% of projected in-state costs. To cover 100%, you'd need roughly $680/month starting at birth — illustrating why starting early and contributing consistently matters enormously. The same $680/month started at age 5 (13 years to go) would cover far less, because compounding has less time to work.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:28px;line-height:1.75;">The difference between claiming at 62 and 70 is $1,296/month — nearly 77% more income every month for the rest of the retiree's life, in exchange for 8 fewer years of payments. This is the central tradeoff every Social Security claiming decision comes down to: more years of smaller checks, or fewer years of larger checks.</p>
 
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">What a 529 plan actually is — and what it isn't</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A 529 plan is a tax-advantaged savings account sponsored by a state, designed specifically for education expenses. Contributions are made with after-tax dollars, but earnings grow tax-free and withdrawals for qualified education expenses — tuition, fees, room and board, books, supplies — are tax-free at the federal level. Many states also offer a state income tax deduction for contributions.</p>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">What it is:</strong> A flexible, tax-efficient savings vehicle with high contribution limits (state lifetime limits typically $300,000–$550,000+), no income limits, and broad qualified expense coverage including K-12 tuition up to $10,000/year and even student loan repayment up to $10,000 lifetime. Under SECURE 2.0, up to $35,000 of unused 529 funds can roll into a Roth IRA for the beneficiary (account must be open 15+ years; annual rollover limited to the Roth contribution limit).</p>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">What it isn't:</strong> A guaranteed college funding solution. Non-qualified withdrawals incur income tax plus a 10% penalty on earnings. The account value can decline if markets fall — sequence of returns risk is real, especially in the years just before college when a significant drawdown could reduce available funds meaningfully. Most financial planners recommend shifting to more conservative allocations as college approaches (ages 16–18).</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Why claiming age matters more than most people realize</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Claiming Social Security at age 62 reduces your monthly benefit by up to 30% compared to your full retirement age — permanently, for life. The reduction formula: your benefit is reduced by 5/9 of 1% for each of the first 36 months claimed before FRA, and 5/12 of 1% for each additional month beyond that. Waiting past FRA works in the opposite direction — your benefit grows by approximately 8% per year (2/3 of 1% per month) up to age 70, when delayed credits stop accruing entirely. There's no benefit to waiting past 70.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">The breakeven concept:</strong> if you claim early, you collect more total checks in the early years but at a lower rate. If you delay, you collect fewer total checks but at a higher rate. At some age — the breakeven age — the cumulative dollars from delaying catch up to and surpass the cumulative dollars from claiming early. For claiming 62 vs FRA, breakeven typically falls in the late 70s to early 80s. For FRA vs 70, breakeven typically falls in the early-to-mid 80s. If you expect to live beyond the breakeven age, delaying produces more lifetime income; if not, claiming earlier does.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;"><strong style="color:#f0efe8;">Why breakeven age alone shouldn't drive the decision:</strong> the breakeven calculation treats the decision as purely mathematical, but Social Security also functions as longevity insurance and inflation-protected income. A higher guaranteed monthly benefit reduces sequence-of-returns risk on your other retirement assets (see our <a href="guides/sequence-of-returns-risk.html" style="color:#c8f060;text-decoration:none;">sequence of returns risk guide</a>) and provides more protection if you live longer than expected — which is precisely the scenario where running out of other money would matter most.</p>
 
   <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What if my child doesn't go to college?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">You have several options. Change the beneficiary to another family member — a sibling, cousin, or even yourself — with no taxes or penalties. Use the funds for trade school, apprenticeship programs, or K-12 tuition. Roll up to $35,000 lifetime into a Roth IRA for the original beneficiary (account must be at least 15 years old; annual rollovers are subject to Roth contribution limits). As a last resort, withdraw the money as a non-qualified distribution — you'll owe income tax plus a 10% penalty on earnings only, not on contributions. The flexibility introduced by SECURE 2.0 has substantially reduced the "what if they don't go?" concern that previously made parents hesitant to open 529 accounts.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How is my benefit taxed?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Whether your Social Security benefit is taxable depends on your "combined income" — your adjusted gross income, plus nontaxable interest, plus half of your Social Security benefit. For single filers, if combined income is between $25,000 and $34,000, up to 50% of benefits may be taxable; above $34,000, up to 85% may be taxable. For married filing jointly, the thresholds are $32,000 and $44,000. These thresholds are not inflation-indexed and have not changed since 1983 — meaning more retirees become subject to taxation each year as incomes rise with inflation. This calculator provides a simplified estimate; consult a tax professional for your exact situation.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Does a 529 plan affect financial aid?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes, but less than many parents fear. A parent-owned 529 plan counts as a parental asset on the FAFSA, which reduces expected financial aid by a maximum of 5.64% of the account value — meaning a $50,000 529 balance reduces aid eligibility by at most $2,820. Grandparent-owned 529 plans have no impact on the FAFSA under the simplified rules effective for the 2024–2025 aid year and beyond. Student-owned accounts are assessed at a higher rate (20%), so parent ownership is generally more advantageous.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What if I keep working after claiming benefits?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">If you claim benefits before reaching FRA and continue working, the earnings test applies. In 2026, if you're under FRA all year, $1 in benefits is withheld for every $2 you earn above $24,480. In the year you reach FRA, the limit rises to $65,160, with $1 withheld per $3 earned above that, counting only earnings before the month you reach FRA. Importantly, withheld benefits aren't lost — the SSA recalculates your benefit upward at FRA to account for the months benefits were withheld. Once you reach FRA, you can earn any amount without any reduction.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Should I use my state's 529 plan or another state's?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">You are not required to use your home state's plan — 529 plans can be used at any eligible institution nationwide (and many internationally). If your state offers a meaningful income tax deduction for 529 contributions, the in-state plan is often worth using even if it has slightly higher fees. If your state offers no deduction (California, for example, offers none), you're free to shop for the lowest-cost national plan. Utah, New York, and Nevada plans are frequently cited for low fees and strong investment options — verify current fees and options before opening an account.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Does this calculator account for spousal benefits?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">No — this calculator estimates individual benefits only. Spousal benefit rules are significantly more complex: a lower-earning spouse can receive up to 50% of the higher earner's PIA (at the spouse's own FRA), and survivor benefits allow a widow or widower to receive up to 100% of the deceased spouse's benefit. Married couples should model both spouses' claiming decisions together, since the higher earner's claiming age affects the survivor benefit available to the lower earner if the higher earner dies first. This is a common area where professional guidance adds real value.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Can grandparents contribute to a 529 plan?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes. Grandparents (or anyone) can contribute to a 529 plan for a beneficiary. The annual gift tax exclusion is $19,000 per donor per beneficiary in 2026 — a grandparent can contribute up to $19,000 without gift tax implications. Grandparents can also front-load 5 years of contributions ($95,000 per donor) in a single year without triggering gift tax, under the 529 superfunding election. Grandparent-owned 529 plans no longer affect FAFSA calculations under the simplified rules effective 2024–2025.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Is Social Security going to run out of money?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">The Social Security Trustees project the combined trust funds will be depleted in the mid-2030s under current law, at which point incoming payroll taxes would cover approximately 80% of scheduled benefits — not zero. Congress has adjusted the program multiple times historically (most significantly in 1983) and could do so again before depletion. No benefit cut has occurred to date. This uncertainty is a legitimate factor in claiming decisions but shouldn't be treated as a reason to assume benefits will disappear entirely.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How should I invest a 529 plan?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Most 529 plans offer age-based portfolios that automatically shift from aggressive (stocks) to conservative (bonds, stable value) as college approaches — these are the simplest option for most families. If you choose your own allocation, financial planners generally suggest: aggressive growth (80–100% stocks) when the child is under 10; moderate (60–70% stocks) from ages 10–15; conservative (30–40% stocks) from ages 16 onward. The goal is to protect accumulated gains from a market downturn in the years immediately before tuition is due.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Where do I find my actual FRA benefit estimate?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Create a free account at ssa.gov/myaccount. Your Social Security Statement shows your estimated benefit at 62, at full retirement age, and at 70, calculated from your actual earnings record — far more accurate than any third-party estimator. Check this at least annually, since your estimate changes as new earnings years are added and as you approach retirement. Also verify your earnings history is complete and accurate — missing or incorrect years can meaningfully reduce your benefit.</p>
   </div>
 
 </div>
@@ -581,162 +553,157 @@ footer a:hover { color: var(--text); }
     <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
     <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
     <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
-    For educational purposes only. Not financial advice.
+    For educational purposes only. Not tax or financial advice.
   </p>
 </footer>
 <script>
 let chart = null;
 
-// 2026 college costs (College Board / NCES)
-const COLLEGE_COSTS = {
-  25290: 25290,
-  43350: 43350,
-  57570: 57570,
-};
-
-function setCollegeCost() {
-  const val = document.getElementById('college-type').value;
-  document.getElementById('custom-cost-wrap').style.display = val === 'custom' ? 'block' : 'none';
-  calc();
-}
-
 function fmt(n) {
-  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
   return '$' + Math.round(n).toLocaleString();
 }
 
 function calc() {
-  const childAge      = parseInt(document.getElementById('child-age').value);
-  const collegeType   = document.getElementById('college-type').value;
-  const collegeYears  = parseInt(document.getElementById('college-years').value);
-  const currentBal    = parseFloat(document.getElementById('current-balance').value) || 0;
-  const monthlyContrib = parseFloat(document.getElementById('monthly-contrib').value) || 0;
-  const invReturn     = parseFloat(document.getElementById('inv-return').value) / 100;
-  const costInflation = parseFloat(document.getElementById('cost-inflation').value) / 100;
+  const fraBenefit = parseFloat(document.getElementById('fra-benefit').value) || 0;
+  const fraAge = parseFloat(document.getElementById('fra-age').value);
+  const lifeExp = parseFloat(document.getElementById('life-exp').value);
+  const filingStatus = document.getElementById('filing-status').value;
+  const otherIncome = parseFloat(document.getElementById('other-income').value) || 0;
 
-  const currentCost = collegeType === 'custom'
-    ? parseFloat(document.getElementById('custom-cost').value) || 25290
-    : parseInt(collegeType);
+  // ── Calculate benefit at each age 62-70 ──
+  const ages = [];
+  const amounts = [];
+  const pcts = [];
 
-  const yearsToCollege = Math.max(1, 18 - childAge);
-  const monthlyRate = invReturn / 12;
-
-  // Project 529 balance at college start
-  let bal = currentBal;
-  for (let m = 0; m < yearsToCollege * 12; m++) {
-    bal = bal * (1 + monthlyRate) + monthlyContrib;
-  }
-  const projected529 = bal;
-
-  // Project college costs (total over N years)
-  let totalCost = 0;
-  for (let y = 0; y < collegeYears; y++) {
-    const yearCost = currentCost * Math.pow(1 + costInflation, yearsToCollege + y);
-    totalCost += yearCost;
-  }
-  const annualCostAtStart = currentCost * Math.pow(1 + costInflation, yearsToCollege);
-
-  // Coverage
-  const coverage = Math.min(200, (projected529 / totalCost) * 100);
-  const gap = projected529 - totalCost;
-
-  // Monthly needed for 100% coverage
-  const target = totalCost;
-  let monthlyNeeded = 0;
-  if (yearsToCollege > 0) {
-    const n = yearsToCollege * 12;
-    const r = monthlyRate;
-    if (r > 0) {
-      monthlyNeeded = Math.max(0, (target - currentBal * Math.pow(1 + r, n)) * r / (Math.pow(1 + r, n) - 1));
+  for (let age = 62; age <= 70; age += 1) {
+    const monthsDiff = (age - fraAge) * 12;
+    let pct;
+    if (monthsDiff < 0) {
+      // Early claiming reduction
+      const monthsEarly = Math.abs(monthsDiff);
+      const first36 = Math.min(36, monthsEarly);
+      const beyond36 = Math.max(0, monthsEarly - 36);
+      const reduction = (first36 * (5/9/100)) + (beyond36 * (5/12/100));
+      pct = 1 - reduction;
+    } else if (monthsDiff > 0) {
+      // Delayed retirement credit: 2/3 of 1% per month = 8%/year
+      pct = 1 + (monthsDiff * (2/3/100));
     } else {
-      monthlyNeeded = Math.max(0, (target - currentBal) / n);
+      pct = 1;
     }
+    ages.push(age);
+    amounts.push(fraBenefit * pct);
+    pcts.push(pct * 100);
   }
 
-  // Update hero
-  document.getElementById('total-cost').textContent = fmt(totalCost);
-  document.getElementById('cost-sub').textContent = fmt(annualCostAtStart) + '/yr × ' + collegeYears + ' years';
-  document.getElementById('total-529').textContent = fmt(projected529);
-  document.getElementById('balance-sub').textContent = 'After ' + yearsToCollege + ' years of contributions';
+  // Key ages: 62, FRA, 70
+  const amt62 = amounts[0];
+  const amt70 = amounts[amounts.length - 1];
 
-  // Metrics
-  document.getElementById('coverage-pct').textContent = coverage.toFixed(0) + '%';
-  const gapEl = document.getElementById('gap-amount');
-  gapEl.textContent = (gap >= 0 ? '+' : '-') + fmt(Math.abs(gap));
-  gapEl.className = 'metric-value ' + (gap >= 0 ? 'green' : 'red');
-  document.getElementById('monthly-needed').textContent = fmt(monthlyNeeded) + '/mo';
+  document.getElementById('amt-62').textContent = fmt(amt62);
+  document.getElementById('amt-fra').textContent = fmt(fraBenefit);
+  document.getElementById('amt-70').textContent = fmt(amt70);
 
-  // Build chart and table
-  const labels = [], balData = [], costData = [];
-  let runBal = currentBal;
+  const pct62 = ((amt62 / fraBenefit - 1) * 100).toFixed(0);
+  const pct70 = ((amt70 / fraBenefit - 1) * 100).toFixed(0);
+  document.getElementById('pct-62').textContent = pct62 + '% vs FRA';
+  document.getElementById('pct-70').textContent = '+' + pct70 + '% vs FRA';
+
+  // ── Table ──
   let rows = '';
+  const fraAgeRounded = Math.round(fraAge);
+  for (let i = 0; i < ages.length; i++) {
+    const isFRA = Math.abs(ages[i] - fraAge) < 0.6;
+    rows += '<tr' + (isFRA ? ' class="highlight"' : '') + '>' +
+      '<td>' + (isFRA ? ages[i] + ' (FRA)' : ages[i]) + '</td>' +
+      '<td class="accent">' + fmt(amounts[i]) + '</td>' +
+      '<td>' + pcts[i].toFixed(1) + '%</td>' +
+      '<td>' + fmt(amounts[i] * 12) + '</td>' +
+      '</tr>';
+  }
+  document.getElementById('age-tbody').innerHTML = rows;
 
-  for (let y = 0; y <= yearsToCollege; y++) {
-    const age = childAge + y;
-    labels.push('Age ' + age);
-    balData.push(Math.round(runBal));
-    const yearAnnualCost = currentCost * Math.pow(1 + costInflation, y);
-    const yearTotal4 = yearAnnualCost * collegeYears;
-    costData.push(Math.round(yearTotal4));
-
-    // Table: show every 2 years
-    if (y % 2 === 0 || y === yearsToCollege) {
-      const surplus = runBal - yearTotal4;
-      rows += '<tr>' +
-        '<td>' + (yearsToCollege - y) + ' yrs</td>' +
-        '<td>' + age + '</td>' +
-        '<td class="accent">' + fmt(runBal) + '</td>' +
-        '<td>' + fmt(yearAnnualCost) + '/yr</td>' +
-        '<td class="' + (runBal >= yearTotal4 ? 'green' : 'red') + '">' + fmt(yearTotal4) + '</td>' +
-        '</tr>';
-    }
-
-    // Grow balance for next year
-    for (let m = 0; m < 12; m++) {
-      runBal = runBal * (1 + monthlyRate) + monthlyContrib;
+  // ── Breakeven analysis ──
+  // 62 vs FRA breakeven
+  const monthsDiff62FRA = (fraAge - 62) * 12;
+  let cumMonth = 0;
+  let breakeven62FRA = null;
+  for (let m = 0; m <= 480; m++) {
+    const total62 = amt62 * (m + 1);
+    const totalFRA = m < monthsDiff62FRA ? 0 : fraBenefit * (m - monthsDiff62FRA + 1);
+    if (totalFRA >= total62 && m > monthsDiff62FRA) {
+      breakeven62FRA = 62 + (m / 12);
+      break;
     }
   }
 
-  document.getElementById('proj-tbody').innerHTML = rows;
-  updateChart(labels, balData, costData);
+  // FRA vs 70 breakeven
+  const monthsDiffFRA70 = (70 - fraAge) * 12;
+  let breakevenFRA70 = null;
+  for (let m = 0; m <= 480; m++) {
+    const totalFRAcum = fraBenefit * (m + 1);
+    const total70 = m < monthsDiffFRA70 ? 0 : amt70 * (m - monthsDiffFRA70 + 1);
+    if (total70 >= totalFRAcum && m > monthsDiffFRA70) {
+      breakevenFRA70 = fraAge + (m / 12);
+      break;
+    }
+  }
+
+  document.getElementById('breakeven-fra').textContent = breakeven62FRA ? 'Age ' + breakeven62FRA.toFixed(0) : 'N/A';
+  document.getElementById('breakeven-70').textContent = breakevenFRA70 ? 'Age ' + breakevenFRA70.toFixed(0) : 'N/A';
+
+  // Lifetime totals at life expectancy
+  const monthsFrom62 = Math.max(0, (lifeExp - 62) * 12);
+  const lifetime62 = amt62 * monthsFrom62;
+
+  const monthsFrom70 = Math.max(0, (lifeExp - 70) * 12);
+  const lifetime70 = amt70 * monthsFrom70;
+
+  document.getElementById('lifetime-62').textContent = fmt(lifetime62);
+  document.getElementById('lifetime-70').textContent = fmt(lifetime70);
+  document.getElementById('lifetime-62').className = 'metric-value ' + (lifetime62 > lifetime70 ? 'green' : '');
+  document.getElementById('lifetime-70').className = 'metric-value ' + (lifetime70 > lifetime62 ? 'green' : '');
+
+  // ── Taxation estimate ──
+  const annualBenefitFRA = fraBenefit * 12;
+  const combinedIncome = otherIncome + (annualBenefitFRA / 2);
+  const threshold1 = filingStatus === 'mfj' ? 32000 : 25000;
+  const threshold2 = filingStatus === 'mfj' ? 44000 : 34000;
+
+  let taxablePct = 0;
+  if (combinedIncome > threshold2) {
+    taxablePct = 85;
+  } else if (combinedIncome > threshold1) {
+    taxablePct = 50;
+  }
+
+  document.getElementById('tax-combined').textContent = fmt(combinedIncome);
+  document.getElementById('tax-threshold').textContent = fmt(threshold1) + ' / ' + fmt(threshold2);
+  document.getElementById('tax-pct').textContent = 'Up to ' + taxablePct + '%';
+
+  updateChart(ages, amounts, fraAge);
 }
 
-function updateChart(labels, balData, costData) {
-  const ctx = document.getElementById('savings-chart').getContext('2d');
+function updateChart(ages, amounts, fraAge) {
+  const ctx = document.getElementById('ss-chart').getContext('2d');
   if (chart) chart.destroy();
+
+  const colors = ages.map(a => Math.abs(a - fraAge) < 0.6 ? '#c8f060' : (a < fraAge ? '#f06060' : '#3ecf8e'));
+
   chart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
-      labels,
-      datasets: [
-        {
-          label: '529 balance',
-          data: balData,
-          borderColor: '#c8f060',
-          backgroundColor: 'rgba(200,240,96,0.08)',
-          borderWidth: 2,
-          pointRadius: 0,
-          fill: true,
-          tension: 0.3,
-        },
-        {
-          label: 'Total college cost',
-          data: costData,
-          borderColor: '#5b9cf6',
-          backgroundColor: 'rgba(91,156,246,0.05)',
-          borderWidth: 2,
-          pointRadius: 0,
-          fill: false,
-          tension: 0.3,
-          borderDash: [5, 4],
-        }
-      ]
+      labels: ages.map(a => 'Age ' + a),
+      datasets: [{
+        label: 'Monthly benefit',
+        data: amounts,
+        backgroundColor: colors,
+        borderRadius: 4,
+      }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -748,12 +715,12 @@ function updateChart(labels, balData, costData) {
           padding: 12,
           titleFont: { family: "'Sora', sans-serif", size: 12 },
           bodyFont: { family: "'DM Mono', monospace", size: 11 },
-          callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + (ctx.raw >= 1000 ? '$' + (ctx.raw/1000).toFixed(0) + 'K' : '$' + ctx.raw) }
+          callbacks: { label: ctx => '  $' + Math.round(ctx.raw).toLocaleString() + '/month' }
         }
       },
       scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 10 } },
-        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1000 ? '$' + (v/1000).toFixed(0) + 'K' : '$' + v } }
+        x: { grid: { display: false }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 } } },
+        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => '$' + v.toLocaleString() } }
       }
     }
   });
