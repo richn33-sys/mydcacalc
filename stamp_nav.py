@@ -95,6 +95,7 @@ GUIDE_CATEGORIES = [
         ('index-fund-investing-beginners.html',          'Index fund investing'),
         ('three-fund-portfolio.html',                  '3-fund portfolio'),
         ('evergreen-funds-investing.html',             'Evergreen funds'),
+        ('how-to-calculate-cost-basis.html',           'Cost basis calculation'),
     ]),
 ]
 
