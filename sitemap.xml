@@ -276,6 +276,13 @@
   </url>
 
   <url>
+    <loc>https://mydcacalc.com/guides/bucket-strategy-retirement.html</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://mydcacalc.com/about.html</loc>
     <lastmod>2025-04-28</lastmod>
     <changefreq>yearly</changefreq>
@@ -313,6 +320,18 @@
   <url>
     <loc>https://mydcacalc.com/529-calculator.html</loc>
     <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mydcacalc.com/net-worth-calculator.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mydcacalc.com/social-security-calculator.html</loc>
+    <lastmod>2026-07-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

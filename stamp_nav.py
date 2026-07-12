@@ -84,6 +84,7 @@ GUIDE_CATEGORIES = [
         ('rmd-explained.html',                            'RMD explained'),
         ('sequence-of-returns-risk.html',              'Sequence of returns risk'),
         ('monte-carlo-retirement.html',                'Monte Carlo simulation'),
+        ('bucket-strategy-retirement.html',            'Bucket strategy'),
     ]),
     ('Fundamentals', [
         ('how-compound-interest-works.html',              'How compound interest works'),
