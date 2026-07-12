@@ -32,6 +32,7 @@ CALC_CATEGORIES = [
         ('loss-recovery-calculator.html',       'Loss recovery'),
         ('breakeven-calculator.html',           'Breakeven'),
         ('crypto-cost-basis-calculator.html',   'Crypto cost basis'),
+        ('cost-basis-calculator.html',           'Cost basis (stocks)'),
     ]),
     ('Portfolio', [
         ('asset-allocation.html',               'Asset allocation'),

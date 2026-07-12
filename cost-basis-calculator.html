@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cost Basis Calculator — Stocks (FIFO, LIFO, Specific ID)</title>
+<meta name="description" content="Free stock cost basis calculator. Enter multiple purchase lots to see your cost basis and taxable gain under FIFO, LIFO, and Specific ID methods side by side. Includes wash sale window check.">
+<meta name="keywords" content="cost basis calculator stocks, FIFO LIFO cost basis calculator, stock cost basis calculator, specific identification calculator, wash sale calculator 2026">
+<meta property="og:title" content="Cost Basis Calculator — Stocks (FIFO, LIFO, Specific ID)">
+<meta property="og:description" content="Enter your purchase lots and see your cost basis and taxable gain under FIFO, LIFO, and Specific ID — side by side, so you can see exactly how much the method choice matters.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/cost-basis-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/cost-basis-calculator.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Cost Basis Calculator",
+  "description": "Calculate stock cost basis and taxable gain under FIFO, LIFO, and Specific Identification methods across multiple purchase lots",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+
+.hero { max-width: 980px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
+h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 600px; line-height: 1.7; }
+
+.main { max-width: 980px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 340px 1fr; gap: 20px; }
+@media (max-width: 780px) { .main { grid-template-columns: 1fr; } }
+
+.controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
+.section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
+.add-lot-btn { background: var(--accent-dim); border: 1px solid var(--accent-border); color: var(--accent); font-family: var(--font-mono); font-size: 11px; padding: 4px 10px; border-radius: 20px; cursor: pointer; }
+.add-lot-btn:hover { background: var(--accent); color: #0c0c0e; }
+.lot-card { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 12px; position: relative; }
+.lot-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); margin-bottom: 10px; display: flex; justify-content: space-between; }
+.lot-remove { color: var(--red); cursor: pointer; font-size: 14px; }
+.lot-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.input-group { margin-bottom: 0; }
+.input-label { font-size: 10px; color: var(--text-dim); margin-bottom: 4px; font-family: var(--font-mono); }
+.input-wrap { position: relative; }
+.input-prefix { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+input[type="number"], input[type="date"] { width: 100%; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 7px 8px; font-size: 12px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type="number"].with-prefix { padding-left: 20px; }
+input:focus { border-color: var(--accent-border); }
+.divider-line { height: 1px; background: var(--border); margin: 16px 0; }
+
+.results { display: flex; flex-direction: column; gap: 14px; }
+
+.sale-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
+.sale-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+
+.method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 700px) { .method-grid { grid-template-columns: 1fr; } }
+.method-result { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; text-align: center; }
+.method-result.best { border-color: var(--accent-border); background: var(--accent-dim); }
+.method-result-name { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+.method-result.best .method-result-name { color: var(--accent); }
+.method-result-gain { font-size: 22px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.02em; margin-bottom: 4px; }
+.method-result-basis { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.lots-used-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.table-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 480px; }
+th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+tr:last-child td { border-bottom: none; }
+td.accent { color: var(--accent); font-weight: 500; }
+td.green { color: var(--green); }
+td.red { color: var(--red); }
+
+.wash-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
+.wash-status { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.wash-dot { width: 10px; height: 10px; border-radius: 50%; }
+.wash-dot.clear { background: var(--green); }
+.wash-dot.risk { background: var(--red); }
+.wash-title { font-size: 13px; font-weight: 500; color: var(--text); }
+.wash-desc { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); line-height: 1.6; }
+
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
+.info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.info-box strong { color: var(--text); font-weight: 500; }
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+
+.content-section { max-width: 980px; margin: 0 auto; padding: 0 24px 60px; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ── GROUPED CALC DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+/* ── ACCORDION GUIDES DROPDOWN ── */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
+
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your real cost basis automatically</strong> — avg cost, live P&L, weekly signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle active">Investing</button>
+      <div class="nav-group-menu">
+        <a href="">DCA calculator</a>
+        <a href="dca-backtest.html">DCA backtest</a>
+        <a href="compound-interest.html">Compound interest</a>
+        <a href="rule-of-72-calculator.html">Rule of 72</a>
+        <a href="loss-recovery-calculator.html">Loss recovery</a>
+        <a href="breakeven-calculator.html">Breakeven</a>
+        <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+        <a href="cost-basis-calculator.html" class="active">Cost basis (stocks)</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="asset-allocation.html">Asset allocation</a>
+        <a href="rebalancing-calculator.html">Rebalancing</a>
+        <a href="position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="fire-calculator.html">FIRE calculator</a>
+        <a href="net-worth-calculator.html">Net worth</a>
+        <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+        <a href="fee-calculator.html">Fee impact</a>
+        <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="rmd-calculator.html">RMD calculator</a>
+        <a href="social-security-calculator.html">Social Security</a>
+        <a href="ira-contribution-calculator.html">IRA contribution</a>
+        <a href="529-calculator.html">529 college savings</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="drip-calculator.html">DRIP</a>
+        <a href="dividend-calculator.html">Dividend income</a>
+        <a href="inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+          <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+          <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+          <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+          <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+          <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+          <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+        </div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+          <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+          <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+          <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+          <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+          <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+          <a href="guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+        </div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+          <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+          <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+          <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+          <a href="guides/rmd-explained.html">RMD explained</a>
+          <a href="guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+          <a href="guides/monte-carlo-retirement.html">Monte Carlo simulation</a>
+          <a href="guides/bucket-strategy-retirement.html">Bucket strategy</a>
+        </div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+          <a href="guides/how-to-calculate-position-size.html">Position size</a>
+          <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+          <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+          <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+          <a href="guides/index-fund-investing-beginners.html">Index fund investing</a>
+          <a href="guides/three-fund-portfolio.html">3-fund portfolio</a>
+          <a href="guides/evergreen-funds-investing.html">Evergreen funds</a>
+          <a href="guides/how-to-calculate-cost-basis.html">Cost basis calculation</a>
+        </div>
+        <a href="guides/index.html" class="all-guides-link">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="">DCA calculator</a>
+  <a href="dca-backtest.html">DCA backtest</a>
+  <a href="compound-interest.html">Compound interest</a>
+  <a href="rule-of-72-calculator.html">Rule of 72</a>
+  <a href="loss-recovery-calculator.html">Loss recovery</a>
+  <a href="breakeven-calculator.html">Breakeven</a>
+  <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <a href="cost-basis-calculator.html">Cost basis (stocks)</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="asset-allocation.html">Asset allocation</a>
+  <a href="rebalancing-calculator.html">Rebalancing</a>
+  <a href="position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="fire-calculator.html">FIRE calculator</a>
+  <a href="net-worth-calculator.html">Net worth</a>
+  <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+  <a href="fee-calculator.html">Fee impact</a>
+  <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <a href="rmd-calculator.html">RMD calculator</a>
+  <a href="social-security-calculator.html">Social Security</a>
+  <a href="ira-contribution-calculator.html">IRA contribution</a>
+  <a href="529-calculator.html">529 college savings</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="drip-calculator.html">DRIP</a>
+  <a href="dividend-calculator.html">Dividend income</a>
+  <a href="inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">DCA & Investing</span>
+  <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+  <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+  <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+  <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+  <span class="mobile-guides-label">Crypto</span>
+  <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+  <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+  <span class="mobile-guides-label">Retirement & FIRE</span>
+  <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+  <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="guides/rmd-explained.html">RMD explained</a>
+  <a href="guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+  <a href="guides/monte-carlo-retirement.html">Monte Carlo simulation</a>
+  <a href="guides/bucket-strategy-retirement.html">Bucket strategy</a>
+  <span class="mobile-guides-label">Fundamentals</span>
+  <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="guides/how-to-calculate-position-size.html">Position size</a>
+  <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+  <a href="guides/index-fund-investing-beginners.html">Index fund investing</a>
+  <a href="guides/three-fund-portfolio.html">3-fund portfolio</a>
+  <a href="guides/evergreen-funds-investing.html">Evergreen funds</a>
+  <a href="guides/how-to-calculate-cost-basis.html">Cost basis calculation</a>
+  <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">FIFO · LIFO · Specific ID side by side</div>
+  <h1>Cost Basis <em>Calculator</em></h1>
+  <p>Enter your purchase lots and a planned sale to see your cost basis and taxable gain under FIFO, LIFO, and Specific ID — side by side, so you can see exactly how much the method choice matters.</p>
+</div>
+
+<div class="main">
+
+  <div class="controls-card">
+    <div class="section-label">
+      <span>Purchase lots</span>
+      <button class="add-lot-btn" onclick="addLot()">+ Add lot</button>
+    </div>
+
+    <div id="lots-container"></div>
+
+    <div class="divider-line"></div>
+
+    <div class="input-group">
+      <div class="input-label">Number of shares to sell</div>
+      <div class="input-wrap">
+        <input type="number" id="shares-to-sell" value="150" min="1" step="1" oninput="calc()">
+      </div>
+    </div>
+
+    <div class="input-group" style="margin-top:10px;">
+      <div class="input-label">Sale price per share</div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="sale-price" value="210" min="0" step="1" class="with-prefix" oninput="calc()">
+      </div>
+    </div>
+
+    <div class="input-group" style="margin-top:10px;">
+      <div class="input-label">Sale date</div>
+      <input type="date" id="sale-date" oninput="calc()">
+    </div>
+  </div>
+
+  <div class="results">
+
+    <div class="method-grid" id="method-grid"></div>
+
+    <div class="lots-used-card">
+      <div class="table-title" id="lots-used-title">Lots used — FIFO</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Lot</th>
+              <th>Shares used</th>
+              <th>Basis</th>
+              <th>Holding period</th>
+            </tr>
+          </thead>
+          <tbody id="lots-used-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="wash-card">
+      <div class="section-label" style="margin-bottom:10px;">Wash sale window check</div>
+      <div class="wash-status">
+        <div class="wash-dot clear" id="wash-dot"></div>
+        <div class="wash-title" id="wash-title">No repurchase lot found within 30 days</div>
+      </div>
+      <div class="wash-desc" id="wash-desc">If this is a loss, check whether you bought the same stock within 30 days before or after this sale — that could trigger wash sale disallowance.</div>
+    </div>
+
+    <div class="info-box">
+      <p><strong>Note on method selection:</strong> switching between FIFO, LIFO, and Specific ID here is for comparison only. To actually use Specific ID for a real trade, you must identify the specific lot to your broker at or before the trade — it cannot be selected after the fact at tax filing time.</p>
+    </div>
+
+    <div class="disclaimer">
+      This calculator estimates cost basis and gain/loss for comparison purposes. It does not account for wash sale disallowance adjustments, state taxes, the Net Investment Income Tax, commissions, or your complete tax situation. Not tax advice. Consult a qualified tax professional before filing.
+    </div>
+
+  </div>
+</div>
+
+<!-- Content section -->
+<div class="content-section">
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How this cost basis calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Enter each purchase lot — the date, number of shares, and price you paid. Then enter how many shares you plan to sell and at what price. The calculator shows your cost basis and taxable gain under three methods: FIFO (oldest shares sold first), LIFO (newest shares sold first, a form of Specific Identification), and Specific ID optimized for the lowest gain (a HIFO — highest-in-first-out — approach). Comparing all three side by side shows exactly how much the method you choose can change your tax outcome on the same sale.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Marcus bought Apple stock in three lots over two years and now wants to sell 150 shares at $210/share:</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Lot history</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Lot 1 — Jan 2024</span><span style="color:var(--text);">100 shares @ $150</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Lot 2 — Aug 2024</span><span style="color:var(--text);">100 shares @ $180</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Lot 3 — Mar 2026</span><span style="color:var(--text);">100 shares @ $200</span></div>
+  </div>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Selling 150 shares at $210: FIFO uses all of Lot 1 plus 50 shares of Lot 2, producing a basis of $24,000 and a taxable gain of $7,500 — all long-term. Specific ID optimized for lowest gain uses all of Lot 3 plus 50 shares of Lot 2, producing a basis of $29,000 and a gain of just $2,500 — but part of that gain is short-term since Lot 3 was purchased less than a year ago.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">The $5,000 difference in taxable gain between the two methods is real — but so is the difference in tax character. A lower gain taxed partly at short-term (ordinary income) rates isn't automatically better than a higher gain taxed entirely at long-term capital gains rates. Run both scenarios through your actual tax bracket before deciding.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Why the method you choose isn't just about minimizing gain</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">It's tempting to always pick whichever method shows the smallest number on screen. But the smallest reported gain isn't always the smallest tax bill. Short-term capital gains (assets held one year or less) are taxed as ordinary income — up to 37% federally for top earners in 2026. Long-term capital gains (held over one year) are taxed at preferential rates of 0%, 15%, or 20% depending on income. A method that produces a larger gain but keeps it entirely long-term can result in less tax owed than a method that produces a smaller gain that's partly short-term. Always compare the after-tax outcome, not just the pre-tax gain shown.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Can I actually choose which method to use, or does my broker decide?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">You generally can choose, but the mechanics matter. FIFO applies automatically unless you specify otherwise. To use Specific Identification, you typically must instruct your broker which lot to sell at or before the trade — most brokerages let you select "specific lots" when placing a sell order. If you don't specify, FIFO is applied by default, even if you intended something else. Check with your specific broker for their exact process.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What if I don't know my exact purchase dates and prices?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Check your brokerage account — most platforms show your complete purchase history and often display cost basis automatically for "covered" securities (generally those purchased after 2011, when broker basis reporting became mandatory). For older holdings or transferred accounts, you may need to reconstruct purchase records from old trade confirmations, account statements, or your own records. Missing this information can force you into using a $0 cost basis in the worst case, so it's worth the effort to track down accurate records.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Does this work for ETFs and mutual funds too?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">ETFs are traded like individual stocks and follow the same FIFO/Specific ID rules used in this calculator. Mutual funds are different — they also permit the Average Cost method, which blends your total cost across all shares into a single per-share basis. If you're calculating basis for mutual fund shares, check whether your fund company has been using average cost by default, since switching methods on existing shares has specific IRS rules.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How does this interact with tax-loss harvesting?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">If you're selling at a loss for tax-loss harvesting purposes, Specific Identification becomes particularly valuable — it lets you precisely choose which losing lots to sell while retaining your winning positions. Use this calculator to compare which lots produce the largest deductible loss, then check the wash sale window before repurchasing. See our <a href="guides/tax-loss-harvesting-explained.html" style="color:#c8f060;text-decoration:none;">tax-loss harvesting guide</a> for the complete strategy.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What happens if I sell more shares than fit in my listed lots?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">This calculator will only account for the lots you've entered. If you're selling more shares than you've listed here, add additional lots using the "+ Add lot" button, or the calculation will be based on an incomplete purchase history. Always reconcile the total shares across all your lots against your actual current position before relying on any cost basis calculation for tax filing.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For educational purposes only. Not tax or financial advice.
+  </p>
+</footer>
+<script>
+let lotCount = 0;
+
+const DEFAULT_LOTS = [
+  { date: '2024-01-15', shares: 100, price: 150 },
+  { date: '2024-08-10', shares: 100, price: 180 },
+  { date: '2026-03-05', shares: 100, price: 200 },
+];
+
+function addLot(data) {
+  lotCount++;
+  const id = 'lot-' + lotCount;
+  const d = data || { date: '', shares: '', price: '' };
+  const div = document.createElement('div');
+  div.className = 'lot-card';
+  div.id = id;
+  div.innerHTML = `
+    <div class="lot-title">
+      <span>Lot ${lotCount}</span>
+      <span class="lot-remove" onclick="removeLot('${id}')">✕ remove</span>
+    </div>
+    <div class="lot-fields">
+      <div class="input-group">
+        <div class="input-label">Purchase date</div>
+        <input type="date" class="lot-date" value="${d.date}" oninput="calc()">
+      </div>
+      <div class="input-group">
+        <div class="input-label">Shares</div>
+        <input type="number" class="lot-shares" value="${d.shares}" min="0" step="1" oninput="calc()">
+      </div>
+      <div class="input-group" style="grid-column:1/3;">
+        <div class="input-label">Price per share</div>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" class="lot-price with-prefix" value="${d.price}" min="0" step="1" oninput="calc()">
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('lots-container').appendChild(div);
+  calc();
+}
+
+function removeLot(id) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+  calc();
+}
+
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function getLots() {
+  const cards = document.querySelectorAll('.lot-card');
+  const lots = [];
+  cards.forEach(card => {
+    const date = card.querySelector('.lot-date').value;
+    const shares = parseFloat(card.querySelector('.lot-shares').value) || 0;
+    const price = parseFloat(card.querySelector('.lot-price').value) || 0;
+    if (shares > 0) {
+      lots.push({ date, shares, price, remaining: shares });
+    }
+  });
+  return lots;
+}
+
+function isLongTerm(purchaseDate, saleDate) {
+  if (!purchaseDate || !saleDate) return false;
+  const p = new Date(purchaseDate);
+  const s = new Date(saleDate);
+  const oneYearLater = new Date(p);
+  oneYearLater.setFullYear(oneYearLater.getFullYear() + 1);
+  return s > oneYearLater;
+}
+
+function allocateShares(lots, sharesToSell, order) {
+  // order: 'fifo' (oldest first), 'lifo' (newest first), 'hifo' (highest price first)
+  const sorted = [...lots].map(l => ({...l}));
+  if (order === 'fifo') sorted.sort((a,b) => new Date(a.date) - new Date(b.date));
+  else if (order === 'lifo') sorted.sort((a,b) => new Date(b.date) - new Date(a.date));
+  else if (order === 'hifo') sorted.sort((a,b) => b.price - a.price);
+
+  let remaining = sharesToSell;
+  const used = [];
+  for (const lot of sorted) {
+    if (remaining <= 0) break;
+    const take = Math.min(lot.remaining, remaining);
+    if (take > 0) {
+      used.push({ date: lot.date, shares: take, price: lot.price, basis: take * lot.price });
+      remaining -= take;
+    }
+  }
+  return { used, unfilled: remaining };
+}
+
+function calc() {
+  const lots = getLots();
+  const sharesToSell = parseFloat(document.getElementById('shares-to-sell').value) || 0;
+  const salePrice = parseFloat(document.getElementById('sale-price').value) || 0;
+  const saleDate = document.getElementById('sale-date').value || new Date().toISOString().split('T')[0];
+
+  const proceeds = sharesToSell * salePrice;
+
+  const methods = [
+    { key: 'fifo', label: 'FIFO', order: 'fifo' },
+    { key: 'lifo', label: 'LIFO', order: 'lifo' },
+    { key: 'hifo', label: 'Specific ID (lowest gain)', order: 'hifo' },
+  ];
+
+  const results = methods.map(m => {
+    const { used, unfilled } = allocateShares(lots, sharesToSell, m.order);
+    const totalBasis = used.reduce((s, u) => s + u.basis, 0);
+    const gain = proceeds - totalBasis;
+    const hasShortTerm = used.some(u => !isLongTerm(u.date, saleDate));
+    return { ...m, used, unfilled, totalBasis, gain };
+  });
+
+  // Find best (lowest gain)
+  const validResults = results.filter(r => r.unfilled === 0 && lots.length > 0);
+  const minGain = validResults.length ? Math.min(...validResults.map(r => r.gain)) : null;
+
+  // Render method cards
+  const grid = document.getElementById('method-grid');
+  grid.innerHTML = results.map(r => {
+    const isBest = minGain !== null && Math.abs(r.gain - minGain) < 0.01 && r.unfilled === 0;
+    const gainColor = r.gain > 0 ? 'red' : 'green';
+    return `
+      <div class="method-result ${isBest ? 'best' : ''}">
+        <div class="method-result-name">${r.label}${isBest ? ' ★' : ''}</div>
+        <div class="method-result-gain" style="color:${r.gain > 0 ? 'var(--red)' : 'var(--green)'}">
+          ${r.gain >= 0 ? '' : '-'}${fmt(Math.abs(r.gain))}
+        </div>
+        <div class="method-result-basis">Basis: ${fmt(r.totalBasis)}</div>
+      </div>
+    `;
+  }).join('');
+
+  // Render lots used table (default to FIFO view)
+  const fifoResult = results.find(r => r.key === 'fifo');
+  document.getElementById('lots-used-tbody').innerHTML = fifoResult.used.map((u, i) => {
+    const lt = isLongTerm(u.date, saleDate);
+    return `<tr>
+      <td>Lot @ ${u.date || 'N/A'}</td>
+      <td>${u.shares}</td>
+      <td class="accent">${fmt(u.basis)}</td>
+      <td class="${lt ? 'green' : 'red'}">${lt ? 'Long-term' : 'Short-term'}</td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="4">Add purchase lots to see allocation</td></tr>';
+
+  // Wash sale check (simplified — checks if any lot purchase is within 30 days of sale date)
+  const saleD = new Date(saleDate);
+  let washRisk = false;
+  lots.forEach(lot => {
+    if (!lot.date) return;
+    const purchD = new Date(lot.date);
+    const diffDays = Math.abs((purchD - saleD) / (1000 * 60 * 60 * 24));
+    if (diffDays <= 30 && diffDays > 0) washRisk = true;
+  });
+
+  const totalGain = fifoResult.gain;
+  const washDot = document.getElementById('wash-dot');
+  const washTitle = document.getElementById('wash-title');
+  const washDesc = document.getElementById('wash-desc');
+
+  if (totalGain < 0 && washRisk) {
+    washDot.className = 'wash-dot risk';
+    washTitle.textContent = 'Possible wash sale — repurchase found within 30 days';
+    washDesc.textContent = 'This sale shows a loss, and you have a purchase lot within 30 days of the sale date. If this is the same security, the loss may be disallowed under the wash sale rule. Verify with a tax professional.';
+  } else if (totalGain < 0) {
+    washDot.className = 'wash-dot clear';
+    washTitle.textContent = 'No repurchase lot found within 30 days';
+    washDesc.textContent = 'Based on your entered lots, no purchase falls within the 30-day wash sale window around this sale date. Still verify manually if you have traded this security elsewhere.';
+  } else {
+    washDot.className = 'wash-dot clear';
+    washTitle.textContent = 'Not applicable — this sale shows a gain';
+    washDesc.textContent = 'The wash sale rule only applies to losses. This scenario shows a taxable gain, so wash sale rules do not apply.';
+  }
+}
+
+// Initialize with default lots
+DEFAULT_LOTS.forEach(lot => addLot(lot));
+
+// Set default sale date to today
+document.getElementById('sale-date').value = new Date().toISOString().split('T')[0];
+calc();
+</script>
+
+<script src="/nav.js"></script>
+</body>
+</html>
