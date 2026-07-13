@@ -137,6 +137,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── 529-calculator.html                            ← 529 College Savings Calculator (20th calculator, NEW Jul 1 — college cost projection, worked example, SECURE 2.0 Roth rollover, 5-question FAQ; nav category: Retirement & Tax)
 ├── net-worth-calculator.html                      ← Net Worth Calculator (21st calculator, NEW Jul 6 — assets/liabilities breakdown; full-content build: worked example + honest tradeoffs + 5-question FAQ; nav category: Retirement & Tax)
 ├── social-security-calculator.html                ← Social Security Estimator (22nd calculator, NEW Jul 8 — FRA-based benefit estimator, claim-age 62-70 comparison, breakeven analysis, taxation estimate; full-content build; nav category: Retirement & Tax)
+├── cost-basis-calculator.html                     ← Cost Basis Calculator, stocks (23rd calculator, NEW Jul 12 — multi-lot FIFO/LIFO/Specific ID comparison, wash sale window check; full-content build; nav category: Retirement & Tax)
 ├── nav.js                                         ← All nav dropdown/hamburger/accordion JS (RECREATED Jun 21 — moved out of inline; stamp_nav injects <script src="/nav.js"> on every page)
 ├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown; NAV_EVENT_JS now just <script src="/nav.js">, ensure_nav_js() injects it, Jun 21)
 ├── about.html
@@ -151,7 +152,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 29 guides published; counter reads 29 ✅
+│   ├── index.html                                ← 31 guides published; counter reads 31 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -180,7 +181,9 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── tokenized-real-world-assets.html            ← NEW Jun 29 (26th guide, Marcus Veil)
 │   ├── sequence-of-returns-risk.html               ← NEW Jul 6 (27th guide, James Colter)
 │   ├── monte-carlo-retirement.html                 ← NEW Jul 6 (28th guide, James Colter)
-│   └── evergreen-funds-investing.html              ← NEW Jul 7 (29th guide, Marcus Veil)
+│   ├── evergreen-funds-investing.html              ← NEW Jul 7 (29th guide, Marcus Veil)
+│   ├── bucket-strategy-retirement.html             ← NEW Jul 12 (30th guide, James Colter)
+│   └── how-to-calculate-cost-basis.html            ← NEW Jul 12 (31st guide, James Colter)
 └── CLAUDE.md
 ```
 ---
@@ -362,6 +365,18 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs section (breakeven framed as longevity insurance, not a bet) + 5-question FAQ
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
 - **Keywords:** social security calculator, when should you claim social security, social security breakeven age, social security estimator 2026
+
+### cost-basis-calculator.html — Cost Basis Calculator, stocks (23rd calculator, NEW Jul 12 2026)
+- Calculates cost basis and realized gain/loss when selling shares bought across multiple lots, comparing accounting methods
+- **Multi-lot entry** — enter each purchase lot (shares + price + date); specify shares sold and sale price
+- **Method comparison:** FIFO / LIFO / Specific ID — shows how the chosen method changes cost basis, realized gain, and remaining lots
+- **Wash sale window check** — flags potential wash sales when a loss lot overlaps a repurchase within the ±30-day window
+- **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs/nuance section + 5-question FAQ
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- Distinct from `crypto-cost-basis-calculator.html` (13th, average-price for crypto) — this is the multi-lot, method-comparison stock tool
+- Pairs with the How to Calculate Your Cost Basis guide (`guides/how-to-calculate-cost-basis.html`)
+- **JS bug fixed on build day:** double-escaped apostrophes broke string literals ("Unexpected identifier" console error); corrected and verified with `node --check` before redeploy
+- **Keywords:** cost basis calculator, FIFO LIFO cost basis, stock cost basis calculator, capital gains cost basis
 ---
 ## Calculator Content Standard (NEW Jun 30 2026)
 > Standing rule for every future calculator. Established this session and saved to memory.
@@ -394,7 +409,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 - Trading/risk management guides → Sara Kline
 - Tokenization / RWA / emerging crypto-market guides → Marcus Veil
 ---
-## Guides Section (29 published as of Jul 8 2026)
+## Guides Section (31 published as of Jul 12 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -426,6 +441,8 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | sequence-of-returns-risk.html | James Colter | ✅ Live | Jul 6 2026 |
 | monte-carlo-retirement.html | James Colter | ✅ Live | Jul 6 2026 |
 | evergreen-funds-investing.html | Marcus Veil | ✅ Live | Jul 7 2026 |
+| bucket-strategy-retirement.html | James Colter | ✅ Live | Jul 12 2026 |
+| how-to-calculate-cost-basis.html | James Colter | ✅ Live | Jul 12 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -553,6 +570,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | 529-calculator.html | 529 calculator / college savings calculator |
 | net-worth-calculator.html | net worth calculator / how to calculate net worth |
 | social-security-calculator.html | social security calculator / when should you claim social security |
+| cost-basis-calculator.html | cost basis calculator / FIFO LIFO stock cost basis |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -582,6 +600,8 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | guides/sequence-of-returns-risk.html | sequence of returns risk retirement |
 | guides/monte-carlo-retirement.html | monte carlo simulation retirement planning |
 | guides/evergreen-funds-investing.html | evergreen funds investing private markets 2026 |
+| guides/bucket-strategy-retirement.html | bucket strategy retirement three buckets |
+| guides/how-to-calculate-cost-basis.html | how to calculate cost basis stocks crypto FIFO |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -656,7 +676,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jul 8 2026 — verified against disk, 29 guides):
+### Current CURRENT_GUIDES (as of Jul 12 2026 — verified against disk, 31 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging?",
@@ -688,6 +708,8 @@ CURRENT_GUIDES = [
     "Sequence of returns risk explained retirement planning",
     "Monte Carlo simulation retirement planning how it works",
     "Evergreen funds investing private markets semi-liquid 2026",
+    "Bucket strategy retirement three buckets explained",
+    "How to calculate cost basis stocks crypto FIFO",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
@@ -698,8 +720,9 @@ CURRENT_GUIDES = [
 > ✅ Jul 6: Sequence of Returns Risk guide added (James Colter) — CURRENT_GUIDES now at 27, audited against disk and matches (27 guide HTML files). CURRENT_CALCULATORS unchanged at 20.
 > ✅ Jul 6: Monte Carlo Retirement guide added (James Colter) — CURRENT_GUIDES now at 28, audited against disk and matches (28 guide HTML files). CURRENT_CALCULATORS at 21 after adding Net Worth (see below).
 > ✅ Jul 8: Evergreen Funds guide added (Marcus Veil) — CURRENT_GUIDES now at **29**, audited against disk and matches (29 guide HTML files). Note: the Evergreen guide was committed Jul 7 (`cf718b9`) and had already been written into CURRENT_GUIDES, but was never logged in this CLAUDE.md until the Jul 8 session — reconciled now.
+> ✅ Jul 12: Bucket Strategy for Retirement + How to Calculate Your Cost Basis guides added (both James Colter) — CURRENT_GUIDES now at **31**, audited against disk and matches (31 guide HTML files).
 
-### Current CURRENT_CALCULATORS (as of Jul 8 2026 — verified against disk, 22 calculators):
+### Current CURRENT_CALCULATORS (as of Jul 12 2026 — verified against disk, 23 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator (index.html)",
@@ -724,6 +747,7 @@ CURRENT_CALCULATORS = [
     "529 college savings calculator",
     "Net worth calculator",
     "Social Security estimator calculator",
+    "Cost basis calculator (stocks, multi-lot FIFO/LIFO/Specific ID, wash sale check)",
 ]
 ```
 > ✅ Jun 21: research_agent.py audited vs disk — CURRENT_CALCULATORS was at 14, added RMD calculator → 15, now matches disk. (CURRENT_GUIDES unchanged at 21.)
@@ -732,9 +756,15 @@ CURRENT_CALCULATORS = [
 > ✅ Jul 1: CURRENT_CALCULATORS was at 18, missing IRA Contribution + 529 College Savings → added both → 20, matches disk (20 calculator HTML files). CURRENT_GUIDES unchanged at 26 (verified against disk — 26 guide HTML files).
 > ✅ Jul 6: CURRENT_CALCULATORS was at 20, missing the Net Worth calculator → added → 21, matches disk (21 calculator HTML files). CURRENT_GUIDES at 28 after adding Monte Carlo Retirement (28 guide HTML files). (Note: the Mutual Fund Fee Impact Calculator from the Jul 5 brief was skipped — confirmed redundant with the existing fee-calculator.html.)
 > ✅ Jul 8: CURRENT_CALCULATORS was at 21, missing the Social Security estimator → added → **22**, matches disk (22 calculator HTML files). CURRENT_GUIDES at **29** after reconciling the Evergreen Funds guide. Both lists verified against disk this session and match.
+> ✅ Jul 12: CURRENT_CALCULATORS was at 22, missing the stocks Cost Basis calculator → added → **23**, matches disk (23 calculator HTML files). CURRENT_GUIDES at **31** after adding the Bucket Strategy + Cost Basis guides (31 guide HTML files). Both lists verified against disk this session and match.
 ---
 ## Roadmap
 ### Done ✅
+- [x] Cost Basis Calculator, stocks (23rd calculator) — `cost-basis-calculator.html`, multi-lot FIFO/LIFO/Specific ID comparison + wash sale window check; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**. JS syntax bug fixed (double-escaped apostrophes broke string literals → "Unexpected identifier"; corrected, verified with `node --check` before redeploy); `sitemap.xml` + `research_agent.py` updated — Jul 12 2026
+- [x] Bucket Strategy for Retirement guide (30th guide) — James Colter — `guides/bucket-strategy-retirement.html`; added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE** — Jul 12 2026
+- [x] How to Calculate Your Cost Basis guide (31st guide) — James Colter — `guides/how-to-calculate-cost-basis.html`; pairs with the Cost Basis calculator — Jul 12 2026
+- [x] DCA into Index Funds guide idea (July brief) evaluated — confirmed redundant with existing `what-is-dollar-cost-averaging.html`; skipped — Jul 12 2026
+- [x] Mutual Fund Fee Impact Calculator idea (recurred in July brief) re-evaluated — again confirmed redundant with existing `fee-calculator.html`; skipped — Jul 12 2026
 - [x] Social Security Estimator (22nd calculator) — `social-security-calculator.html`, FRA-based benefit estimator (not AIME reconstruction) with claim-age 62–70 comparison, breakeven analysis, lifetime total comparison, and a 2026 combined-income taxation estimate; full-content build (worked example + breakeven-as-insurance framing + 5-question FAQ) — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**; all pages re-stamped and deployed, nav.js tag count verified at 1; `sitemap.xml` + `research_agent.py` updated — Jul 8 2026
 - [x] Evergreen Funds guide (29th guide) — Marcus Veil — `guides/evergreen-funds-investing.html`, evergreen/semi-liquid private-markets fund structures; added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Fundamentals**; committed Jul 7 (`cf718b9`) but only logged in CLAUDE.md Jul 8 — clears the last MEDIUM item from the Jul 5 brief — Jul 8 2026
 - [x] Monte Carlo Simulation for Retirement guide (28th guide) — James Colter — `guides/monte-carlo-retirement.html`, probabilistic retirement outcome modeling; pairs with the Safe Withdrawal Rate calculator and the sequence-of-returns-risk guide; added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE**; `guides/index.html` counter → 28, `sitemap.xml` + `research_agent.py` updated — Jul 6 2026
@@ -825,16 +855,17 @@ CURRENT_CALCULATORS = [
 - [x] Welcome email via Resend — domain verified ✅
 - [x] Content Research Agent packaged for Gumroad ($39) ✅
 
-### Next session priorities (Jul 5 brief fully cleared):
-- [x] **Monte Carlo Simulation for Retirement guide** (HIGH) — published Jul 6 2026 (28th guide, James Colter) ✅
-- [x] **Net Worth Calculator** (HIGH) — built and deployed Jul 6 2026 (21st calculator) ✅
-- [x] **Mutual Fund Fee Impact Calculator** — evaluated; confirmed redundant with existing `fee-calculator.html`, skipped Jul 6 2026 ✅
-- [x] **Evergreen Funds guide** (MEDIUM) — published Jul 7 2026 (29th guide, Marcus Veil) ✅
-- [x] **Social Security Estimator** (MEDIUM — complex build) — built and deployed Jul 8 2026 (22nd calculator) ✅
-- [ ] **Await next weekly research brief** — next Sunday research agent run (Sunday Jul 12 at 7am)
-- [ ] **Submit social-security-calculator.html to GSC**
-- [ ] **Submit new URLs to GSC** — monte-carlo-retirement.html + net-worth-calculator.html + sequence-of-returns-risk.html + evergreen-funds-investing.html
-- [ ] **Submit remaining backlog pages to GSC** — 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html
+### Next session priorities (July brief fully cleared):
+- [x] **Bucket Strategy for Retirement guide** — published Jul 12 2026 (30th guide, James Colter) ✅
+- [x] **How to Calculate Your Cost Basis guide** — published Jul 12 2026 (31st guide, James Colter) ✅
+- [x] **Cost Basis Calculator (stocks)** — built and deployed Jul 12 2026 (23rd calculator) ✅
+- [x] **DCA into Index Funds guide** — evaluated; confirmed redundant with existing `what-is-dollar-cost-averaging.html`, skipped Jul 12 2026 ✅
+- [x] **Mutual Fund Fee Impact Calculator** — re-evaluated; again confirmed redundant with existing `fee-calculator.html`, skipped Jul 12 2026 ✅
+- [ ] **Roth Conversion Calculator** (MEDIUM — from July brief)
+- [ ] **Retirement Budget Calculator** (MEDIUM — from July brief)
+- [ ] **Await next weekly research brief** — next Sunday research agent run (Sunday Jul 19 at 7am)
+- [ ] **Submit new URLs to GSC** — cost-basis-calculator.html + guides/bucket-strategy-retirement.html + guides/how-to-calculate-cost-basis.html
+- [ ] **Submit prior backlog pages to GSC** — social-security-calculator.html + monte-carlo-retirement.html + net-worth-calculator.html + sequence-of-returns-risk.html + evergreen-funds-investing.html + 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html
 
 ### Earlier priorities:
 - [x] **3-Fund Portfolio guide** — published Jun 28 2026 (25th guide, James Colter) ✅
@@ -885,6 +916,17 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jul 12 2026 — Cost Basis Calculator + Two Guides Session
+- **Cost Basis Calculator (stocks) built and deployed** (`cost-basis-calculator.html`, 23rd calculator) — multi-lot entry with **FIFO / LIFO / Specific ID** method comparison (shows how the method changes cost basis, realized gain, and remaining lots) plus a **wash sale window check** (±30-day). Full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard. Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**. Distinct from `crypto-cost-basis-calculator.html` (13th, average-price for crypto)
+- **JS syntax bug fixed** — double-escaped apostrophes broke string literals in the calculator's JS, throwing an "Unexpected identifier" console error. Corrected and verified with `node --check` before redeploy
+- **Bucket Strategy for Retirement guide published** (James Colter, 30th guide) — `guides/bucket-strategy-retirement.html`; added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE**
+- **How to Calculate Your Cost Basis guide published** (James Colter, 31st guide) — `guides/how-to-calculate-cost-basis.html`; pairs with the Cost Basis calculator
+- **Two brief ideas skipped as redundant:** DCA into Index Funds guide (redundant with `what-is-dollar-cost-averaging.html`) and Mutual Fund Fee Impact Calculator (again redundant with `fee-calculator.html`)
+- `guides/index.html` counter → 31; `sitemap.xml` updated (cost-basis-calculator.html + both new guide URLs); all pages re-stamped via `stamp_nav.py`; nav.js tag count verified at 1 (no duplicates)
+- **research_agent.py audit (vs disk):** CURRENT_CALCULATORS was at 22, missing the stocks Cost Basis calculator → added → **23**, matches disk (23 calculator HTML files). CURRENT_GUIDES was already at 31 (both new guides present) — matches disk (31 guide HTML files). Both lists verified against disk this session
+- **July brief now fully cleared** ✅
+- Next priorities: Roth Conversion Calculator (MEDIUM) + Retirement Budget Calculator (MEDIUM) from the July brief; await next weekly brief (Sunday Jul 19 at 7am); submit the new + backlog pages to GSC
 
 ### Jul 8 2026 — Social Security Estimator Session
 - **Social Security Estimator built and deployed** (`social-security-calculator.html`, 22nd calculator) — FRA-based benefit estimator (takes an estimated Full Retirement Age benefit as input rather than reconstructing AIME from an earnings history), with claim-age 62–70 comparison, breakeven analysis, lifetime total comparison, and a benefit-taxation estimate using 2026 combined-income (provisional income) thresholds. Full-content build (worked example + honest tradeoffs framing breakeven as longevity insurance + 5-question FAQ) — meets Calculator Content Standard. Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**

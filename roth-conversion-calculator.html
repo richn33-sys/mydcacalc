@@ -3,26 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>529 College Savings Calculator — How Much Do You Need to Save?</title>
-<meta name="description" content="Free 529 college savings calculator. Project future college costs with inflation, see how much your 529 plan will grow, and find out how much you need to save monthly to cover your goal. Updated for 2026.">
-<meta name="keywords" content="529 calculator, college savings calculator, how much to save for college, 529 plan calculator 2026, college cost calculator, education savings calculator">
-<meta property="og:title" content="529 College Savings Calculator — How Much Do You Need to Save?">
-<meta property="og:description" content="In-state public college costs $25,290/year today. At 5.5% annual inflation, a child born now will face $62,200/year by 2044. See how much you need to save monthly to hit your goal.">
+<title>Roth Conversion Calculator 2026 — Find Your Optimal Conversion Amount</title>
+<meta name="description" content="Free Roth conversion calculator for 2026. See how much you can convert while staying in your current tax bracket, the tax cost, IRMAA warnings if you're 63+, and the long-term breakeven analysis.">
+<meta name="keywords" content="Roth conversion calculator 2026, Roth conversion tax bracket calculator, IRA to Roth conversion calculator, Roth conversion IRMAA calculator, fill the bracket Roth conversion">
+<meta property="og:title" content="Roth Conversion Calculator 2026 — Find Your Optimal Conversion Amount">
+<meta property="og:description" content="See exactly how much you can convert this year to fill your current tax bracket without spilling into the next one — plus IRMAA warnings and breakeven analysis.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mydcacalc.com/529-calculator.html">
+<meta property="og:url" content="https://mydcacalc.com/roth-conversion-calculator.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/529-calculator.html">
+<link rel="canonical" href="https://mydcacalc.com/roth-conversion-calculator.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "529 College Savings Calculator",
-  "description": "Project future college costs and 529 plan growth to see how much you need to save monthly",
+  "name": "Roth Conversion Calculator 2026",
+  "description": "Calculate optimal Roth conversion amount using fill-the-bracket strategy, with IRMAA warnings and breakeven analysis",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -60,14 +59,14 @@ nav a.active { color: var(--accent); }
 .nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
 @media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
 
-.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero { max-width: 980px; margin: 0 auto; padding: 40px 24px 20px; }
 .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
 h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
 h1 em { font-style: normal; color: var(--accent); }
-.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 600px; line-height: 1.7; }
 
-.main { max-width: 900px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
-@media (max-width: 720px) { .main { grid-template-columns: 1fr; } }
+.main { max-width: 980px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+@media (max-width: 780px) { .main { grid-template-columns: 1fr; } }
 
 .controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
 .section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
@@ -88,51 +87,54 @@ input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; heigh
 
 .results { display: flex; flex-direction: column; gap: 14px; }
 
-.hero-result { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
-.hero-result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.hr-item { text-align: center; }
-.hr-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
-.hr-value { font-size: 26px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.02em; }
-.hr-value.accent { color: var(--accent); }
-.hr-value.blue { color: var(--blue); }
-.hr-value.green { color: var(--green); }
-.hr-value.red { color: var(--red); }
-.hr-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 4px; }
+.hero-result { background: var(--bg-card); border: 1px solid var(--accent-border); background: var(--accent-dim); border-radius: var(--radius-lg); padding: 24px; text-align: center; }
+.hero-label { font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.hero-amount { font-size: 32px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); letter-spacing: -0.03em; margin-bottom: 6px; }
+.hero-sub { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
 
 .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-@media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .metrics { grid-template-columns: 1fr; } }
 .metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
 .metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
 .metric-value { font-family: var(--font-mono); font-size: 17px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
+.metric-value.red { color: var(--red); }
 .metric-value.green { color: var(--green); }
 .metric-value.accent { color: var(--accent); }
-.metric-value.red { color: var(--red); }
+
+.bracket-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
+.bracket-bar-wrap { position: relative; height: 28px; background: var(--bg-input); border-radius: 6px; margin: 14px 0; overflow: hidden; display: flex; }
+.bracket-seg { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-family: var(--font-mono); color: rgba(255,255,255,0.5); border-right: 1px solid var(--bg-input); }
+.bracket-marker { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--accent); z-index: 5; }
+.bracket-labels { display: flex; justify-content: space-between; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); }
+
+.irmaa-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
+.irmaa-status { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.irmaa-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.irmaa-dot.clear { background: var(--green); }
+.irmaa-dot.warn { background: #f7931a; }
+.irmaa-dot.risk { background: var(--red); }
+.irmaa-title { font-size: 13px; font-weight: 500; color: var(--text); }
+.irmaa-desc { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); line-height: 1.6; }
 
 .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
-.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
-.chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
-.chart-legend { display: flex; gap: 12px; }
-.legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); }
-.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
-.chart-wrap { position: relative; height: 220px; }
+.chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
 
 .table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
 .table-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
 .table-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 440px; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 480px; }
 th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
 td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
 tr:last-child td { border-bottom: none; }
 td.accent { color: var(--accent); font-weight: 500; }
 td.green { color: var(--green); }
-td.red { color: var(--red); }
 
 .info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
 .info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
 .info-box strong { color: var(--text); font-weight: 500; }
 .disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
 
-.content-section { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+.content-section { max-width: 980px; margin: 0 auto; padding: 0 24px 60px; }
 .pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
 .pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
 .pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
@@ -181,7 +183,7 @@ footer a:hover { color: var(--text); }
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Plan your family's financial future</strong> — real avg cost, live tracking, weekly signals</span>
+  <span>📈 <strong>Plan your full retirement tax picture</strong> — real avg cost, live tracking, weekly signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -219,10 +221,10 @@ footer a:hover { color: var(--text); }
         <a href="fee-calculator.html">Fee impact</a>
         <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
         <a href="rmd-calculator.html">RMD calculator</a>
-        <a href="roth-conversion-calculator.html">Roth conversion</a>
+        <a href="roth-conversion-calculator.html" class="active">Roth conversion</a>
         <a href="social-security-calculator.html">Social Security</a>
         <a href="ira-contribution-calculator.html">IRA contribution</a>
-        <a href="529-calculator.html" class="active">529 college savings</a>
+        <a href="529-calculator.html">529 college savings</a>
       </div>
     </div>
     <div class="nav-group">
@@ -356,104 +358,78 @@ footer a:hover { color: var(--text); }
 </div>
 
 <div class="hero">
-  <div class="hero-badge">Tax-free growth · No income limits · 2026 rules</div>
-  <h1>529 College Savings <em>Calculator</em></h1>
-  <p>Project future college costs with inflation, see how your 529 plan grows, and find the monthly savings needed to hit your goal. Works for any school type.</p>
+  <div class="hero-badge">2026 tax brackets · Fill-the-bracket strategy</div>
+  <h1>Roth Conversion <em>Calculator</em></h1>
+  <p>See exactly how much you can convert this year to fill your current tax bracket without spilling into the next one — plus IRMAA warnings if you're 63 or older and a long-term breakeven view.</p>
 </div>
 
 <div class="main">
 
   <div class="controls-card">
-    <div class="section-label">Your child</div>
+    <div class="section-label">Your tax situation</div>
 
     <div class="input-group">
-      <div class="input-label">Child's current age</div>
-      <select id="child-age" onchange="calc()">
-        <option value="0">Newborn (0)</option>
-        <option value="1">1 year old</option>
-        <option value="2">2 years old</option>
-        <option value="3">3 years old</option>
-        <option value="4">4 years old</option>
-        <option value="5" selected>5 years old</option>
-        <option value="6">6 years old</option>
-        <option value="7">7 years old</option>
-        <option value="8">8 years old</option>
-        <option value="9">9 years old</option>
-        <option value="10">10 years old</option>
-        <option value="11">11 years old</option>
-        <option value="12">12 years old</option>
-        <option value="13">13 years old</option>
-        <option value="14">14 years old</option>
-        <option value="15">15 years old</option>
-        <option value="16">16 years old</option>
+      <div class="input-label">Filing status</div>
+      <select id="filing-status" onchange="calc()">
+        <option value="single">Single</option>
+        <option value="mfj">Married filing jointly</option>
       </select>
     </div>
 
     <div class="input-group">
-      <div class="input-label">Type of college</div>
-      <select id="college-type" onchange="setCollegeCost()">
-        <option value="25290">Public in-state (~$25,290/yr today)</option>
-        <option value="43350">Public out-of-state (~$43,350/yr today)</option>
-        <option value="57570">Private non-profit (~$57,570/yr today)</option>
-        <option value="custom">Custom annual cost</option>
-      </select>
-    </div>
-
-    <div class="input-group" id="custom-cost-wrap" style="display:none;">
-      <div class="input-label">Custom annual cost today</div>
+      <div class="input-label">Your age (older spouse if married)</div>
       <div class="input-wrap">
-        <span class="input-prefix">$</span>
-        <input type="number" id="custom-cost" value="30000" min="1000" step="1000" oninput="calc()">
+        <input type="number" id="age" value="62" min="18" max="100" step="1" oninput="calc()">
       </div>
     </div>
 
     <div class="input-group">
-      <div class="input-label">Years of college</div>
-      <select id="college-years" onchange="calc()">
-        <option value="2">2 years</option>
-        <option value="4" selected>4 years</option>
-        <option value="6">6 years (including grad)</option>
-      </select>
-    </div>
-
-    <div class="divider-line"></div>
-    <div class="section-label">Your 529 plan</div>
-
-    <div class="input-group">
-      <div class="input-label">Current 529 balance</div>
+      <div class="input-label">Other taxable income this year (before conversion)</div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="current-balance" value="0" min="0" step="1000" oninput="calc()">
-      </div>
-    </div>
-
-    <div class="input-group">
-      <div class="input-label">Monthly contribution</div>
-      <div class="input-wrap">
-        <span class="input-prefix">$</span>
-        <input type="number" id="monthly-contrib" value="300" min="0" step="50" oninput="calc()">
+        <input type="number" id="other-income" value="20000" min="0" step="1000" oninput="calc()">
       </div>
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Assumptions</div>
+    <div class="section-label">Conversion target</div>
+
+    <div class="input-group">
+      <div class="input-label">Strategy</div>
+      <select id="strategy" onchange="calc()">
+        <option value="fill-current">Fill up current bracket</option>
+        <option value="fill-next">Fill up next bracket</option>
+        <option value="custom">Custom conversion amount</option>
+      </select>
+    </div>
+
+    <div class="input-group" id="custom-wrap" style="display:none;">
+      <div class="input-label">Conversion amount</div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="custom-amount" value="50000" min="0" step="1000" oninput="calc()">
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Growth assumptions</div>
 
     <div class="input-group">
       <div class="range-header">
-        <div class="input-label" style="margin:0;">Annual investment return</div>
+        <div class="input-label" style="margin:0;">Years until withdrawal</div>
+        <span class="range-val" id="years-display">15</span>
+      </div>
+      <input type="range" id="years-to-withdraw" min="1" max="30" value="15" step="1"
+        oninput="document.getElementById('years-display').textContent=this.value;calc()">
+    </div>
+
+    <div class="input-group">
+      <div class="range-header">
+        <div class="input-label" style="margin:0;">Expected annual return</div>
         <span class="range-val" id="return-display">6%</span>
       </div>
-      <input type="range" id="inv-return" min="3" max="10" value="6" step="0.5"
+      <input type="range" id="growth-rate" min="2" max="10" value="6" step="0.5"
         oninput="document.getElementById('return-display').textContent=this.value+'%';calc()">
-    </div>
-
-    <div class="input-group">
-      <div class="range-header">
-        <div class="input-label" style="margin:0;">Annual college cost inflation</div>
-        <span class="range-val" id="inflation-display">5.5%</span>
-      </div>
-      <input type="range" id="cost-inflation" min="2" max="8" value="5.5" step="0.5"
-        oninput="document.getElementById('inflation-display').textContent=this.value+'%';calc()">
     </div>
 
   </div>
@@ -461,123 +437,116 @@ footer a:hover { color: var(--text); }
   <div class="results">
 
     <div class="hero-result">
-      <div class="hero-result-grid">
-        <div class="hr-item">
-          <div class="hr-label">Projected total college cost</div>
-          <div class="hr-value blue" id="total-cost">$0</div>
-          <div class="hr-sub" id="cost-sub">When your child starts college</div>
-        </div>
-        <div class="hr-item">
-          <div class="hr-label">Projected 529 balance</div>
-          <div class="hr-value accent" id="total-529">$0</div>
-          <div class="hr-sub" id="balance-sub">At college start</div>
-        </div>
-      </div>
+      <div class="hero-label">Recommended conversion amount</div>
+      <div class="hero-amount" id="conversion-amount">$0</div>
+      <div class="hero-sub" id="conversion-sub">Fills remaining room in your current bracket</div>
     </div>
 
     <div class="metrics">
       <div class="metric">
-        <div class="metric-label">Coverage</div>
-        <div class="metric-value accent" id="coverage-pct">0%</div>
+        <div class="metric-label">Federal tax on conversion</div>
+        <div class="metric-value red" id="tax-cost">$0</div>
       </div>
       <div class="metric">
-        <div class="metric-label">Shortfall / surplus</div>
-        <div class="metric-value" id="gap-amount">$0</div>
+        <div class="metric-label">Marginal rate on conversion</div>
+        <div class="metric-value" id="marginal-rate">0%</div>
       </div>
       <div class="metric">
-        <div class="metric-label">Monthly needed for 100%</div>
-        <div class="metric-value accent" id="monthly-needed">$0</div>
+        <div class="metric-label">Future value if left in traditional IRA</div>
+        <div class="metric-value" id="future-trad">$0</div>
       </div>
     </div>
 
-    <div class="chart-card">
-      <div class="chart-header">
-        <div class="chart-title">529 balance vs projected college cost</div>
-        <div class="chart-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>529 balance</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6;"></div>Total cost</div>
-        </div>
+    <div class="bracket-card">
+      <div class="section-label" style="margin-bottom:0;">Where this conversion lands in your 2026 bracket</div>
+      <div class="bracket-bar-wrap" id="bracket-bar"></div>
+      <div class="bracket-labels">
+        <span>10%</span><span>12%</span><span>22%</span><span>24%</span><span>32%</span><span>35%</span><span>37%</span>
       </div>
-      <div class="chart-wrap">
-        <canvas id="savings-chart"></canvas>
+    </div>
+
+    <div class="irmaa-card">
+      <div class="section-label" style="margin-bottom:10px;">IRMAA impact check</div>
+      <div class="irmaa-status">
+        <div class="irmaa-dot clear" id="irmaa-dot"></div>
+        <div class="irmaa-title" id="irmaa-title">Not applicable — IRMAA relevant at age 63+</div>
       </div>
+      <div class="irmaa-desc" id="irmaa-desc">IRMAA uses a two-year lookback — your MAGI this year affects Medicare premiums two years from now.</div>
     </div>
 
     <div class="table-card">
-      <div class="table-title">Year-by-year savings vs cost projection</div>
+      <div class="table-title">Long-term value comparison</div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Years to college</th>
-              <th>Child's age</th>
-              <th>529 balance</th>
-              <th>Projected annual cost</th>
-              <th>4-yr total cost</th>
+              <th>Scenario</th>
+              <th>Value at withdrawal</th>
+              <th>Taxes owed then</th>
+              <th>Net to you</th>
             </tr>
           </thead>
-          <tbody id="proj-tbody"></tbody>
+          <tbody id="compare-tbody"></tbody>
         </table>
       </div>
     </div>
 
     <div class="info-box">
-      <p><strong>Key 529 facts for 2026:</strong> Contributions grow tax-free and qualified withdrawals (tuition, fees, room and board, books) are tax-free at the federal level. Many states offer a state income tax deduction for contributions — check your state's plan. The annual gift tax exclusion for 529 contributions is $19,000 per donor per beneficiary in 2026 ($38,000 for married couples). You can front-load 5 years of contributions ($95,000 per donor, $190,000 for married couples) without triggering gift tax. No federal annual contribution limit — state lifetime limits typically range from $300,000 to $550,000+ per beneficiary.</p>
+      <p><strong>Key assumption driving this comparison:</strong> Roth conversions are most favorable when your current marginal tax rate is lower than your expected rate in retirement (including RMD-driven bracket creep). If you expect a similar or lower rate later, the benefit shrinks or reverses. This calculator assumes your tax rate at withdrawal equals your current marginal rate — adjust your expectations accordingly.</p>
     </div>
 
     <div class="disclaimer">
-      College cost estimates are based on published 2026 averages from the College Board and NCES. Projections use simplified compound growth models — actual results depend on market returns, college cost inflation, financial aid, and scholarship availability. This calculator does not account for financial aid, state-specific 529 tax benefits, or fees. Not financial advice. Consult a qualified financial advisor before making education savings decisions.
+      This calculator uses official 2026 IRS federal tax brackets and standard deductions. IRMAA threshold shown is an estimate based on commonly cited 2026 figures — verify current thresholds at CMS.gov before relying on this for Medicare planning. Does not model state taxes, the senior deduction (ages 65+, 2025–2028 only), Net Investment Income Tax, Social Security taxation impact, or the pro-rata rule for mixed pre-tax/after-tax IRAs. Not tax or financial advice.
     </div>
 
   </div>
 </div>
 
+<!-- Content section -->
 <div class="content-section">
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the 529 college savings calculator works</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator projects two things simultaneously: how much your 529 plan will grow based on contributions and investment returns, and how much college will cost by the time your child enrolls — accounting for college cost inflation, which has historically run 4–6% per year, significantly above general inflation. The gap between the two tells you your shortfall or surplus, and the calculator shows the monthly contribution needed to cover 100% of projected costs.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How this Roth conversion calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator uses the "fill-the-bracket" strategy — the most common approach financial planners recommend for Roth conversions. It calculates how much you can convert from a traditional IRA or 401(k) to a Roth IRA while staying within your current tax bracket, or optionally shows the cost of filling into the next bracket up. It uses official 2026 IRS tax brackets and standard deductions, adjusted by your filing status and other taxable income for the year.</p>
 
   <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A child born today with parents saving $300/month from birth, targeting an in-state public university:</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A 62-year-old single filer, recently retired, with $20,000 in other taxable income (pension, interest) for the year:</p>
   <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
-    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">18 years, $300/month, 6% return, 5.5% college inflation</div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Current in-state cost (today)</span><span style="color:var(--text);">$25,290/year</span></div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Projected cost at college start (2044)</span><span style="color:var(--blue);">~$62,200/year</span></div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total 4-year projected cost</span><span style="color:var(--blue);">~$268,000</span></div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total contributions ($300 × 216 months)</span><span style="color:var(--text);">$64,800</span></div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Projected 529 balance at 18</span><span style="color:var(--accent);">~$118,000</span></div>
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Fill-the-22%-bracket strategy</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Other taxable income</span><span style="color:var(--text);">$20,000</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Standard deduction (2026, single)</span><span style="color:var(--text);">$16,100</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">22% bracket ceiling (2026, single)</span><span style="color:var(--text);">$105,700</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Room to convert at 22% or lower</span><span style="color:var(--accent);">~$85,700</span></div>
   </div>
-  <p style="color:#888884;font-weight:300;margin-bottom:28px;line-height:1.75;">$300/month from birth covers approximately 44% of projected in-state costs. To cover 100%, you'd need roughly $680/month starting at birth — illustrating why starting early and contributing consistently matters enormously. The same $680/month started at age 5 (13 years to go) would cover far less, because compounding has less time to work.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">This retiree could convert roughly $85,700 this year and stay entirely within the 22% bracket — generating meaningful tax-free growth capacity without pushing into the 24% bracket. If this retiree is under 63, IRMAA isn't yet a factor; the two-year Medicare lookback only starts becoming relevant once you're within two years of Medicare eligibility at 65.</p>
 
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">What a 529 plan actually is — and what it isn't</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A 529 plan is a tax-advantaged savings account sponsored by a state, designed specifically for education expenses. Contributions are made with after-tax dollars, but earnings grow tax-free and withdrawals for qualified education expenses — tuition, fees, room and board, books, supplies — are tax-free at the federal level. Many states also offer a state income tax deduction for contributions.</p>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">What it is:</strong> A flexible, tax-efficient savings vehicle with high contribution limits (state lifetime limits typically $300,000–$550,000+), no income limits, and broad qualified expense coverage including K-12 tuition up to $10,000/year and even student loan repayment up to $10,000 lifetime. Under SECURE 2.0, up to $35,000 of unused 529 funds can roll into a Roth IRA for the beneficiary (account must be open 15+ years; annual rollover limited to the Roth contribution limit).</p>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">What it isn't:</strong> A guaranteed college funding solution. Non-qualified withdrawals incur income tax plus a 10% penalty on earnings. The account value can decline if markets fall — sequence of returns risk is real, especially in the years just before college when a significant drawdown could reduce available funds meaningfully. Most financial planners recommend shifting to more conservative allocations as college approaches (ages 16–18).</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">The retirement "gap years" — why this window matters so much</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The years between retirement and the start of required minimum distributions (RMDs, currently beginning at 73) are often called the "gap years" or "conversion window" — and for good reason. Income typically drops significantly after leaving work, Social Security may not have started yet, and the traditional IRA or 401(k) balance keeps growing untouched. This combination creates the lowest-tax-bracket years many retirees will ever see, making it the single most valuable Roth conversion opportunity in a typical financial life.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Every year this window is left unused, the traditional account balance compounds larger, which means future RMDs will be larger too — potentially pushing retirees into higher brackets involuntarily once RMDs begin. Converting during the gap years is, in effect, trading a known, controllable tax cost today for avoiding an unknown, larger, and mandatory tax cost later.</p>
 
   <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What if my child doesn't go to college?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">You have several options. Change the beneficiary to another family member — a sibling, cousin, or even yourself — with no taxes or penalties. Use the funds for trade school, apprenticeship programs, or K-12 tuition. Roll up to $35,000 lifetime into a Roth IRA for the original beneficiary (account must be at least 15 years old; annual rollovers are subject to Roth contribution limits). As a last resort, withdraw the money as a non-qualified distribution — you'll owe income tax plus a 10% penalty on earnings only, not on contributions. The flexibility introduced by SECURE 2.0 has substantially reduced the "what if they don't go?" concern that previously made parents hesitant to open 529 accounts.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What is IRMAA and why does it matter for Roth conversions?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">IRMAA (Income-Related Monthly Adjustment Amount) is a Medicare Part B and Part D surcharge for higher-income beneficiaries, based on your Modified Adjusted Gross Income (MAGI) from two years prior. A Roth conversion counts as ordinary income and increases your MAGI in the conversion year — a large conversion at age 63 can trigger higher Medicare premiums starting at 65. IRMAA operates as a "cliff": exceeding a threshold by even one dollar triggers the full surcharge for that tier, unlike graduated tax brackets. This makes precise sizing important once you're within two years of Medicare eligibility.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Does a 529 plan affect financial aid?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes, but less than many parents fear. A parent-owned 529 plan counts as a parental asset on the FAFSA, which reduces expected financial aid by a maximum of 5.64% of the account value — meaning a $50,000 529 balance reduces aid eligibility by at most $2,820. Grandparent-owned 529 plans have no impact on the FAFSA under the simplified rules effective for the 2024–2025 aid year and beyond. Student-owned accounts are assessed at a higher rate (20%), so parent ownership is generally more advantageous.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Should I convert everything at once or spread it over multiple years?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Spreading conversions over multiple years is almost always better than converting a large balance all at once. Converting everything in a single year typically pushes a large portion of the conversion into higher tax brackets, since only a limited amount of room exists in each bracket. A multi-year "conversion ladder" that fills a target bracket each year — for example, converting $50,000–$85,000 annually over 5-10 years rather than $500,000 in one year — captures far more of the conversion at lower marginal rates.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Should I use my state's 529 plan or another state's?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">You are not required to use your home state's plan — 529 plans can be used at any eligible institution nationwide (and many internationally). If your state offers a meaningful income tax deduction for 529 contributions, the in-state plan is often worth using even if it has slightly higher fees. If your state offers no deduction (California, for example, offers none), you're free to shop for the lowest-cost national plan. Utah, New York, and Nevada plans are frequently cited for low fees and strong investment options — verify current fees and options before opening an account.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What is the pro-rata rule and does it affect my conversion?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">If you have both pre-tax (deductible) and after-tax (nondeductible) money across all your traditional IRAs, the IRS treats them as one combined pool for conversion tax purposes — you can't choose to convert only the after-tax portion tax-free. The taxable percentage of any conversion is proportional to the pre-tax percentage of your total IRA balance. This calculator assumes a fully pre-tax balance; if you have nondeductible contributions, consult a tax professional to calculate the pro-rata taxable portion accurately.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Can grandparents contribute to a 529 plan?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes. Grandparents (or anyone) can contribute to a 529 plan for a beneficiary. The annual gift tax exclusion is $19,000 per donor per beneficiary in 2026 — a grandparent can contribute up to $19,000 without gift tax implications. Grandparents can also front-load 5 years of contributions ($95,000 per donor) in a single year without triggering gift tax, under the 529 superfunding election. Grandparent-owned 529 plans no longer affect FAFSA calculations under the simplified rules effective 2024–2025.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Does converting affect how much of my Social Security is taxed?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes, if you're already receiving Social Security. Roth conversions increase your provisional income, which determines what percentage of your Social Security benefit is taxable — up to 85% for higher-income recipients. This is a real cost that isn't captured in this calculator's bracket analysis alone. If you're already claiming Social Security, factor in this additional layer of tax impact, or consider converting before you start claiming benefits if your timeline allows it.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How should I invest a 529 plan?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Most 529 plans offer age-based portfolios that automatically shift from aggressive (stocks) to conservative (bonds, stable value) as college approaches — these are the simplest option for most families. If you choose your own allocation, financial planners generally suggest: aggressive growth (80–100% stocks) when the child is under 10; moderate (60–70% stocks) from ages 10–15; conservative (30–40% stocks) from ages 16 onward. The goal is to protect accumulated gains from a market downturn in the years immediately before tuition is due.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">When during the year should I execute a Roth conversion?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Many advisors recommend waiting until October or November to execute conversions, once you have a clearer picture of your actual full-year income. A January conversion based on projections can be thrown off by unexpected capital gains, a pension cost-of-living adjustment, or other income surprises later in the year — potentially pushing you into a higher bracket or IRMAA tier than planned. Conversions must be completed by December 31 of the tax year — there's no extension for Roth conversions the way there is for IRA contributions.</p>
   </div>
 
 </div>
@@ -589,182 +558,192 @@ footer a:hover { color: var(--text); }
     <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
     <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
     <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
-    For educational purposes only. Not financial advice.
+    For educational purposes only. Not tax or financial advice.
   </p>
 </footer>
 <script>
-let chart = null;
-
-// 2026 college costs (College Board / NCES)
-const COLLEGE_COSTS = {
-  25290: 25290,
-  43350: 43350,
-  57570: 57570,
+// 2026 official IRS tax brackets (IRS.gov, Rev. Proc. 2025-32)
+const BRACKETS = {
+  single: {
+    stdDeduction: 16100,
+    bands: [
+      { rate: 0.10, max: 12400 },
+      { rate: 0.12, max: 50400 },
+      { rate: 0.22, max: 105700 },
+      { rate: 0.24, max: 201775 },
+      { rate: 0.32, max: 256225 },
+      { rate: 0.35, max: 640600 },
+      { rate: 0.37, max: Infinity },
+    ]
+  },
+  mfj: {
+    stdDeduction: 32200,
+    bands: [
+      { rate: 0.10, max: 24800 },
+      { rate: 0.12, max: 100800 },
+      { rate: 0.22, max: 211400 },
+      { rate: 0.24, max: 403550 },
+      { rate: 0.32, max: 512450 },
+      { rate: 0.35, max: 768700 },
+      { rate: 0.37, max: Infinity },
+    ]
+  }
 };
 
-function setCollegeCost() {
-  const val = document.getElementById('college-type').value;
-  document.getElementById('custom-cost-wrap').style.display = val === 'custom' ? 'block' : 'none';
-  calc();
-}
+// Estimated 2026 IRMAA first-tier threshold (verify at CMS.gov)
+const IRMAA_THRESHOLD = { single: 109000, mfj: 218000 };
 
 function fmt(n) {
-  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
   return '$' + Math.round(n).toLocaleString();
 }
 
-function calc() {
-  const childAge      = parseInt(document.getElementById('child-age').value);
-  const collegeType   = document.getElementById('college-type').value;
-  const collegeYears  = parseInt(document.getElementById('college-years').value);
-  const currentBal    = parseFloat(document.getElementById('current-balance').value) || 0;
-  const monthlyContrib = parseFloat(document.getElementById('monthly-contrib').value) || 0;
-  const invReturn     = parseFloat(document.getElementById('inv-return').value) / 100;
-  const costInflation = parseFloat(document.getElementById('cost-inflation').value) / 100;
-
-  const currentCost = collegeType === 'custom'
-    ? parseFloat(document.getElementById('custom-cost').value) || 25290
-    : parseInt(collegeType);
-
-  const yearsToCollege = Math.max(1, 18 - childAge);
-  const monthlyRate = invReturn / 12;
-
-  // Project 529 balance at college start
-  let bal = currentBal;
-  for (let m = 0; m < yearsToCollege * 12; m++) {
-    bal = bal * (1 + monthlyRate) + monthlyContrib;
+function calcTaxOnIncome(taxableIncome, bands) {
+  let tax = 0;
+  let prevMax = 0;
+  for (const band of bands) {
+    if (taxableIncome > prevMax) {
+      const taxableInBand = Math.min(taxableIncome, band.max) - prevMax;
+      tax += taxableInBand * band.rate;
+      prevMax = band.max;
+    } else break;
   }
-  const projected529 = bal;
-
-  // Project college costs (total over N years)
-  let totalCost = 0;
-  for (let y = 0; y < collegeYears; y++) {
-    const yearCost = currentCost * Math.pow(1 + costInflation, yearsToCollege + y);
-    totalCost += yearCost;
-  }
-  const annualCostAtStart = currentCost * Math.pow(1 + costInflation, yearsToCollege);
-
-  // Coverage
-  const coverage = Math.min(200, (projected529 / totalCost) * 100);
-  const gap = projected529 - totalCost;
-
-  // Monthly needed for 100% coverage
-  const target = totalCost;
-  let monthlyNeeded = 0;
-  if (yearsToCollege > 0) {
-    const n = yearsToCollege * 12;
-    const r = monthlyRate;
-    if (r > 0) {
-      monthlyNeeded = Math.max(0, (target - currentBal * Math.pow(1 + r, n)) * r / (Math.pow(1 + r, n) - 1));
-    } else {
-      monthlyNeeded = Math.max(0, (target - currentBal) / n);
-    }
-  }
-
-  // Update hero
-  document.getElementById('total-cost').textContent = fmt(totalCost);
-  document.getElementById('cost-sub').textContent = fmt(annualCostAtStart) + '/yr × ' + collegeYears + ' years';
-  document.getElementById('total-529').textContent = fmt(projected529);
-  document.getElementById('balance-sub').textContent = 'After ' + yearsToCollege + ' years of contributions';
-
-  // Metrics
-  document.getElementById('coverage-pct').textContent = coverage.toFixed(0) + '%';
-  const gapEl = document.getElementById('gap-amount');
-  gapEl.textContent = (gap >= 0 ? '+' : '-') + fmt(Math.abs(gap));
-  gapEl.className = 'metric-value ' + (gap >= 0 ? 'green' : 'red');
-  document.getElementById('monthly-needed').textContent = fmt(monthlyNeeded) + '/mo';
-
-  // Build chart and table
-  const labels = [], balData = [], costData = [];
-  let runBal = currentBal;
-  let rows = '';
-
-  for (let y = 0; y <= yearsToCollege; y++) {
-    const age = childAge + y;
-    labels.push('Age ' + age);
-    balData.push(Math.round(runBal));
-    const yearAnnualCost = currentCost * Math.pow(1 + costInflation, y);
-    const yearTotal4 = yearAnnualCost * collegeYears;
-    costData.push(Math.round(yearTotal4));
-
-    // Table: show every 2 years
-    if (y % 2 === 0 || y === yearsToCollege) {
-      const surplus = runBal - yearTotal4;
-      rows += '<tr>' +
-        '<td>' + (yearsToCollege - y) + ' yrs</td>' +
-        '<td>' + age + '</td>' +
-        '<td class="accent">' + fmt(runBal) + '</td>' +
-        '<td>' + fmt(yearAnnualCost) + '/yr</td>' +
-        '<td class="' + (runBal >= yearTotal4 ? 'green' : 'red') + '">' + fmt(yearTotal4) + '</td>' +
-        '</tr>';
-    }
-
-    // Grow balance for next year
-    for (let m = 0; m < 12; m++) {
-      runBal = runBal * (1 + monthlyRate) + monthlyContrib;
-    }
-  }
-
-  document.getElementById('proj-tbody').innerHTML = rows;
-  updateChart(labels, balData, costData);
+  return tax;
 }
 
-function updateChart(labels, balData, costData) {
-  const ctx = document.getElementById('savings-chart').getContext('2d');
-  if (chart) chart.destroy();
-  chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: '529 balance',
-          data: balData,
-          borderColor: '#c8f060',
-          backgroundColor: 'rgba(200,240,96,0.08)',
-          borderWidth: 2,
-          pointRadius: 0,
-          fill: true,
-          tension: 0.3,
-        },
-        {
-          label: 'Total college cost',
-          data: costData,
-          borderColor: '#5b9cf6',
-          backgroundColor: 'rgba(91,156,246,0.05)',
-          borderWidth: 2,
-          pointRadius: 0,
-          fill: false,
-          tension: 0.3,
-          borderDash: [5, 4],
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#141416',
-          borderColor: 'rgba(255,255,255,0.08)',
-          borderWidth: 1,
-          titleColor: '#f0efe8',
-          bodyColor: '#888884',
-          padding: 12,
-          titleFont: { family: "'Sora', sans-serif", size: 12 },
-          bodyFont: { family: "'DM Mono', monospace", size: 11 },
-          callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + (ctx.raw >= 1000 ? '$' + (ctx.raw/1000).toFixed(0) + 'K' : '$' + ctx.raw) }
-        }
-      },
-      scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 10 } },
-        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1000 ? '$' + (v/1000).toFixed(0) + 'K' : '$' + v } }
-      }
+function getMarginalRate(taxableIncome, bands) {
+  for (const band of bands) {
+    if (taxableIncome <= band.max) return band.rate;
+  }
+  return bands[bands.length - 1].rate;
+}
+
+function getBracketCeiling(taxableIncome, bands) {
+  for (const band of bands) {
+    if (taxableIncome <= band.max) return band;
+  }
+  return bands[bands.length - 1];
+}
+
+function toggleCustom() {
+  const strategy = document.getElementById('strategy').value;
+  document.getElementById('custom-wrap').style.display = strategy === 'custom' ? 'block' : 'none';
+}
+
+function calc() {
+  toggleCustom();
+
+  const filing = document.getElementById('filing-status').value;
+  const age = parseFloat(document.getElementById('age').value) || 0;
+  const otherIncome = parseFloat(document.getElementById('other-income').value) || 0;
+  const strategy = document.getElementById('strategy').value;
+  const yearsToWithdraw = parseFloat(document.getElementById('years-to-withdraw').value);
+  const growthRate = parseFloat(document.getElementById('growth-rate').value) / 100;
+
+  const config = BRACKETS[filing];
+  const stdDed = config.stdDeduction;
+  const bands = config.bands;
+
+  const taxableBeforeConversion = Math.max(0, otherIncome - stdDed);
+  const currentBand = getBracketCeiling(taxableBeforeConversion, bands);
+
+  let conversionAmount = 0;
+
+  if (strategy === 'fill-current') {
+    conversionAmount = Math.max(0, currentBand.max - taxableBeforeConversion);
+    if (conversionAmount === Infinity || currentBand.max === Infinity) conversionAmount = 0;
+  } else if (strategy === 'fill-next') {
+    const currentIdx = bands.indexOf(currentBand);
+    const nextBand = bands[Math.min(currentIdx + 1, bands.length - 1)];
+    conversionAmount = Math.max(0, nextBand.max - taxableBeforeConversion);
+    if (nextBand.max === Infinity) conversionAmount = 100000; // fallback for top bracket
+  } else {
+    conversionAmount = parseFloat(document.getElementById('custom-amount').value) || 0;
+  }
+
+  const taxableAfterConversion = taxableBeforeConversion + conversionAmount;
+
+  const taxBefore = calcTaxOnIncome(taxableBeforeConversion, bands);
+  const taxAfter = calcTaxOnIncome(taxableAfterConversion, bands);
+  const conversionTax = taxAfter - taxBefore;
+  const marginalRate = getMarginalRate(taxableAfterConversion, bands);
+
+  // Update hero
+  document.getElementById('conversion-amount').textContent = fmt(conversionAmount);
+  const stratLabel = strategy === 'fill-current' ? 'Fills remaining room in your current bracket' :
+    strategy === 'fill-next' ? 'Fills through the next bracket up' : 'Custom amount you entered';
+  document.getElementById('conversion-sub').textContent = stratLabel;
+
+  // Metrics
+  document.getElementById('tax-cost').textContent = fmt(conversionTax);
+  document.getElementById('marginal-rate').textContent = (marginalRate * 100).toFixed(0) + '%';
+
+  const futureTrad = conversionAmount * Math.pow(1 + growthRate, yearsToWithdraw);
+  document.getElementById('future-trad').textContent = fmt(futureTrad);
+
+  // Bracket bar visualization
+  const maxScale = Math.min(300000, bands[4].max); // scale to 32% bracket top for visibility
+  const barEl = document.getElementById('bracket-bar');
+  let barHtml = '';
+  let prevMax = 0;
+  const colors = ['#3ecf8e','#5b9cf6','#c8f060','#f7931a','#f06060','#a855f7','#8b5cf6'];
+  bands.forEach((band, i) => {
+    const bandMax = Math.min(band.max, maxScale);
+    const width = ((bandMax - prevMax) / maxScale) * 100;
+    if (width > 0) {
+      barHtml += `<div class="bracket-seg" style="width:${width}%;background:${colors[i]};opacity:0.35;"></div>`;
     }
+    prevMax = bandMax;
+    if (band.max >= maxScale) return;
   });
+  barEl.innerHTML = barHtml;
+
+  const markerPos = Math.min(100, (taxableAfterConversion / maxScale) * 100);
+  barEl.innerHTML += `<div class="bracket-marker" style="left:${markerPos}%;" title="Your taxable income after conversion"></div>`;
+
+  // IRMAA check
+  const irmaaThreshold = IRMAA_THRESHOLD[filing];
+  const magi = otherIncome + conversionAmount; // simplified MAGI approximation
+  const irmaaDot = document.getElementById('irmaa-dot');
+  const irmaaTitle = document.getElementById('irmaa-title');
+  const irmaaDesc = document.getElementById('irmaa-desc');
+
+  if (age < 61) {
+    irmaaDot.className = 'irmaa-dot clear';
+    irmaaTitle.textContent = 'Not yet relevant — IRMAA lookback applies within 2 years of Medicare (65)';
+    irmaaDesc.textContent = 'At your current age, this conversion will not affect Medicare premiums for many years. Revisit this calculator as you approach 63.';
+  } else if (magi < irmaaThreshold * 0.9) {
+    irmaaDot.className = 'irmaa-dot clear';
+    irmaaTitle.textContent = 'Well below estimated IRMAA threshold';
+    irmaaDesc.textContent = 'Estimated MAGI of ' + fmt(magi) + ' is comfortably below the ~' + fmt(irmaaThreshold) + ' first-tier threshold (2026, ' + (filing === 'mfj' ? 'married' : 'single') + '). Verify exact figures at CMS.gov.';
+  } else if (magi < irmaaThreshold) {
+    irmaaDot.className = 'irmaa-dot warn';
+    irmaaTitle.textContent = 'Approaching estimated IRMAA threshold — size carefully';
+    irmaaDesc.textContent = 'Estimated MAGI of ' + fmt(magi) + ' is close to the ~' + fmt(irmaaThreshold) + ' threshold. If you are within 2 years of Medicare (age 63+), consider reducing the conversion to stay under this line.';
+  } else {
+    irmaaDot.className = 'irmaa-dot risk';
+    irmaaTitle.textContent = 'Likely exceeds estimated IRMAA first tier';
+    irmaaDesc.textContent = 'Estimated MAGI of ' + fmt(magi) + ' exceeds the ~' + fmt(irmaaThreshold) + ' threshold. If you are within 2 years of Medicare, this conversion may trigger a Medicare premium surcharge starting 2 years from now. Verify at CMS.gov and consider a smaller conversion.';
+  }
+
+  // Comparison table
+  const netRoth = futureTrad - conversionTax * Math.pow(1 + growthRate, 0); // tax paid now, not compounded
+  const futureTaxOnTrad = futureTrad * marginalRate; // simplified: assume same rate at withdrawal
+  const netTraditional = futureTrad - futureTaxOnTrad;
+
+  document.getElementById('compare-tbody').innerHTML = `
+    <tr>
+      <td>Convert now (Roth)</td>
+      <td class="accent">${fmt(futureTrad)}</td>
+      <td>${fmt(conversionTax)} (paid today)</td>
+      <td class="green">${fmt(futureTrad - conversionTax * Math.pow(1+growthRate, yearsToWithdraw) / Math.pow(1+growthRate, yearsToWithdraw))}</td>
+    </tr>
+    <tr>
+      <td>Leave in Traditional IRA</td>
+      <td>${fmt(futureTrad)}</td>
+      <td>${fmt(futureTaxOnTrad)} (paid later, at ${(marginalRate*100).toFixed(0)}% assumed)</td>
+      <td>${fmt(netTraditional)}</td>
+    </tr>
+  `;
 }
 
 calc();
