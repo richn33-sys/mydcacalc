@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retirement Budget Calculator — Essential vs Discretionary Expenses</title>
+<meta name="description" content="Free retirement budget calculator. Build a realistic budget split between essential and discretionary expenses, see the gap between spending and guaranteed income, and model how spending shifts across go-go, slow-go, and no-go retirement phases.">
+<meta name="keywords" content="retirement budget calculator, retirement budget planner, essential vs discretionary retirement expenses, go-go slow-go no-go retirement, how much do I need to retire budget">
+<meta property="og:title" content="Retirement Budget Calculator — Essential vs Discretionary Expenses">
+<meta property="og:description" content="Build a realistic retirement budget split between essential and discretionary spending, see your income gap, and model how expenses shift across retirement phases.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/retirement-budget-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/retirement-budget-calculator.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Retirement Budget Calculator",
+  "description": "Build a retirement budget split between essential and discretionary expenses and compare to guaranteed income sources",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+
+.hero { max-width: 980px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
+h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 600px; line-height: 1.7; }
+
+.main { max-width: 980px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+@media (max-width: 780px) { .main { grid-template-columns: 1fr; } }
+
+.input-section { display: flex; flex-direction: column; gap: 20px; }
+.input-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.input-card-header { padding: 14px 18px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.input-card-title { font-size: 13px; font-weight: 600; color: var(--text); }
+.input-card-total { font-size: 14px; font-family: var(--font-mono); font-weight: 500; }
+.input-card.essential .input-card-total { color: var(--blue); }
+.input-card.discretionary .input-card-total { color: var(--accent); }
+.input-card.income .input-card-total { color: var(--green); }
+.input-row { display: flex; align-items: center; gap: 12px; padding: 10px 18px; border-bottom: 1px solid var(--border); }
+.input-row:last-child { border-bottom: none; }
+.input-row-label { font-size: 13px; color: var(--text-muted); flex: 1; }
+.input-row-field { position: relative; width: 140px; flex-shrink: 0; }
+.input-row-field .prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+.input-row-field input { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 8px 8px 22px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+.input-row-field input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.input-row-field input:focus { border-color: var(--accent-border); }
+
+/* Results sidebar */
+.results { display: flex; flex-direction: column; gap: 14px; }
+
+.gap-hero { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; text-align: center; }
+.gap-hero.covered { border-color: var(--accent-border); background: var(--accent-dim); }
+.gap-hero.shortfall { border-color: rgba(240,96,96,0.3); background: rgba(240,96,96,0.05); }
+.gap-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.gap-hero.covered .gap-label { color: var(--accent); }
+.gap-hero.shortfall .gap-label { color: var(--red); }
+.gap-amount { font-size: 32px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.03em; margin-bottom: 6px; }
+.gap-hero.covered .gap-amount { color: var(--accent); }
+.gap-hero.shortfall .gap-amount { color: var(--red); }
+.gap-sub { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.metric-value { font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
+.metric-value.blue { color: var(--blue); }
+.metric-value.accent { color: var(--accent); }
+
+.chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; }
+.chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+.chart-wrap { position: relative; height: 180px; }
+
+.phase-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.phase-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 14px 8px; border-bottom: 1px solid var(--border); }
+.phase-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.phase-row:last-child { border-bottom: none; }
+.phase-name { font-size: 12px; color: var(--text); font-weight: 500; }
+.phase-ages { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); }
+.phase-amount { font-size: 13px; font-family: var(--font-mono); color: var(--accent); }
+
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
+.info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.info-box strong { color: var(--text); font-weight: 500; }
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+
+.content-section { max-width: 980px; margin: 0 auto; padding: 0 24px 60px; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ── GROUPED CALC DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+/* ── ACCORDION GUIDES DROPDOWN ── */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
+
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Plan your full retirement income picture</strong> — real avg cost, live tracking, weekly signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Investing</button>
+      <div class="nav-group-menu">
+        <a href="">DCA calculator</a>
+        <a href="dca-backtest.html">DCA backtest</a>
+        <a href="compound-interest.html">Compound interest</a>
+        <a href="rule-of-72-calculator.html">Rule of 72</a>
+        <a href="loss-recovery-calculator.html">Loss recovery</a>
+        <a href="breakeven-calculator.html">Breakeven</a>
+        <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+        <a href="cost-basis-calculator.html">Cost basis (stocks)</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="asset-allocation.html">Asset allocation</a>
+        <a href="rebalancing-calculator.html">Rebalancing</a>
+        <a href="position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="fire-calculator.html">FIRE calculator</a>
+        <a href="net-worth-calculator.html">Net worth</a>
+        <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+        <a href="fee-calculator.html">Fee impact</a>
+        <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="rmd-calculator.html">RMD calculator</a>
+        <a href="roth-conversion-calculator.html">Roth conversion</a>
+        <a href="social-security-calculator.html">Social Security</a>
+        <a href="ira-contribution-calculator.html">IRA contribution</a>
+        <a href="529-calculator.html">529 college savings</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="drip-calculator.html">DRIP</a>
+        <a href="dividend-calculator.html">Dividend income</a>
+        <a href="inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+          <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+          <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+          <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+          <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+          <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+          <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+        </div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+          <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+          <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+          <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+          <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+          <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+          <a href="guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+        </div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+          <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+          <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+          <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+          <a href="guides/rmd-explained.html">RMD explained</a>
+          <a href="guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+          <a href="guides/monte-carlo-retirement.html">Monte Carlo simulation</a>
+          <a href="guides/bucket-strategy-retirement.html">Bucket strategy</a>
+        </div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+          <a href="guides/how-to-calculate-position-size.html">Position size</a>
+          <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+          <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+          <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+          <a href="guides/index-fund-investing-beginners.html">Index fund investing</a>
+          <a href="guides/three-fund-portfolio.html">3-fund portfolio</a>
+          <a href="guides/evergreen-funds-investing.html">Evergreen funds</a>
+          <a href="guides/how-to-calculate-cost-basis.html">Cost basis calculation</a>
+        </div>
+        <a href="guides/index.html" class="all-guides-link">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="">DCA calculator</a>
+  <a href="dca-backtest.html">DCA backtest</a>
+  <a href="compound-interest.html">Compound interest</a>
+  <a href="rule-of-72-calculator.html">Rule of 72</a>
+  <a href="loss-recovery-calculator.html">Loss recovery</a>
+  <a href="breakeven-calculator.html">Breakeven</a>
+  <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <a href="cost-basis-calculator.html">Cost basis (stocks)</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="asset-allocation.html">Asset allocation</a>
+  <a href="rebalancing-calculator.html">Rebalancing</a>
+  <a href="position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="fire-calculator.html">FIRE calculator</a>
+  <a href="net-worth-calculator.html">Net worth</a>
+  <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+  <a href="fee-calculator.html">Fee impact</a>
+  <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <a href="rmd-calculator.html">RMD calculator</a>
+  <a href="roth-conversion-calculator.html">Roth conversion</a>
+  <a href="social-security-calculator.html">Social Security</a>
+  <a href="ira-contribution-calculator.html">IRA contribution</a>
+  <a href="529-calculator.html">529 college savings</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="drip-calculator.html">DRIP</a>
+  <a href="dividend-calculator.html">Dividend income</a>
+  <a href="inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">DCA & Investing</span>
+  <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+  <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+  <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+  <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+  <span class="mobile-guides-label">Crypto</span>
+  <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+  <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+  <span class="mobile-guides-label">Retirement & FIRE</span>
+  <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+  <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="guides/rmd-explained.html">RMD explained</a>
+  <a href="guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+  <a href="guides/monte-carlo-retirement.html">Monte Carlo simulation</a>
+  <a href="guides/bucket-strategy-retirement.html">Bucket strategy</a>
+  <span class="mobile-guides-label">Fundamentals</span>
+  <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="guides/how-to-calculate-position-size.html">Position size</a>
+  <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+  <a href="guides/index-fund-investing-beginners.html">Index fund investing</a>
+  <a href="guides/three-fund-portfolio.html">3-fund portfolio</a>
+  <a href="guides/evergreen-funds-investing.html">Evergreen funds</a>
+  <a href="guides/how-to-calculate-cost-basis.html">Cost basis calculation</a>
+  <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">Essential vs discretionary · Go-go / slow-go / no-go phases</div>
+  <h1>Retirement Budget <em>Calculator</em></h1>
+  <p>Build a realistic retirement budget split between what you must spend and what you'd like to spend. See your income gap and how spending typically shifts across retirement phases.</p>
+</div>
+
+<div class="main">
+
+  <div class="input-section">
+
+    <!-- Essential expenses -->
+    <div class="input-card essential">
+      <div class="input-card-header">
+        <div class="input-card-title">Essential expenses — monthly</div>
+        <div class="input-card-total" id="total-essential-display">$0</div>
+      </div>
+      <div class="input-row"><div class="input-row-label">Housing (mortgage/rent, property tax, insurance)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="e-housing" value="1800" min="0" step="50" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Utilities (electric, water, gas, internet)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="e-utilities" value="350" min="0" step="25" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Groceries</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="e-groceries" value="600" min="0" step="25" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Transportation (car payment, gas, insurance)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="e-transport" value="450" min="0" step="25" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Health insurance / Medicare premiums</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="e-health" value="600" min="0" step="25" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Out-of-pocket medical & prescriptions</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="e-medical" value="250" min="0" step="25" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Other essentials (phone, insurance, minimums)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="e-other" value="300" min="0" step="25" oninput="calc()"></div></div>
+    </div>
+
+    <!-- Discretionary expenses -->
+    <div class="input-card discretionary">
+      <div class="input-card-header">
+        <div class="input-card-title">Discretionary expenses — monthly</div>
+        <div class="input-card-total" id="total-discretionary-display">$0</div>
+      </div>
+      <div class="input-row"><div class="input-row-label">Travel & vacations</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="d-travel" value="500" min="0" step="25" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Dining out & entertainment</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="d-dining" value="400" min="0" step="25" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Hobbies & memberships</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="d-hobbies" value="200" min="0" step="25" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Gifts & charitable giving</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="d-gifts" value="200" min="0" step="25" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Other discretionary (subscriptions, shopping)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="d-other" value="150" min="0" step="25" oninput="calc()"></div></div>
+    </div>
+
+    <!-- Income sources -->
+    <div class="input-card income">
+      <div class="input-card-header">
+        <div class="input-card-title">Guaranteed income — monthly</div>
+        <div class="input-card-total" id="total-income-display">$0</div>
+      </div>
+      <div class="input-row"><div class="input-row-label">Social Security (you)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="i-ss1" value="2400" min="0" step="50" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Social Security (spouse, if applicable)</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="i-ss2" value="0" min="0" step="50" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Pension income</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="i-pension" value="0" min="0" step="50" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Part-time work / consulting</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="i-work" value="0" min="0" step="50" oninput="calc()"></div></div>
+      <div class="input-row"><div class="input-row-label">Rental / other guaranteed income</div><div class="input-row-field"><span class="prefix">$</span><input type="number" id="i-other" value="0" min="0" step="50" oninput="calc()"></div></div>
+    </div>
+
+  </div>
+
+  <!-- Results sidebar -->
+  <div class="results">
+
+    <div class="gap-hero covered" id="gap-hero">
+      <div class="gap-label">Monthly gap from savings</div>
+      <div class="gap-amount" id="gap-amount">$0</div>
+      <div class="gap-sub" id="gap-sub">Amount your portfolio needs to cover</div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Total monthly budget</div>
+        <div class="metric-value" id="m-total-budget">$0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Guaranteed income</div>
+        <div class="metric-value blue" id="m-total-income">$0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Annual portfolio need</div>
+        <div class="metric-value accent" id="m-annual-need">$0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Essential-only gap</div>
+        <div class="metric-value" id="m-essential-gap">$0</div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Budget breakdown</div>
+      <div class="chart-wrap">
+        <canvas id="budget-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <div class="phase-title">Estimated spending by retirement phase</div>
+      <div class="phase-row">
+        <div><div class="phase-name">Go-go years</div><div class="phase-ages">Ages 62–75, typically</div></div>
+        <div class="phase-amount" id="phase-gogo">$0/mo</div>
+      </div>
+      <div class="phase-row">
+        <div><div class="phase-name">Slow-go years</div><div class="phase-ages">Ages 75–85, typically</div></div>
+        <div class="phase-amount" id="phase-slowgo">$0/mo</div>
+      </div>
+      <div class="phase-row">
+        <div><div class="phase-name">No-go years</div><div class="phase-ages">Age 85+, typically</div></div>
+        <div class="phase-amount" id="phase-nogo">$0/mo</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <p><strong>Why the split matters:</strong> essential expenses are the floor you cannot easily cut. Discretionary expenses are the flex — the first place to trim if markets turn down or spending needs to be reduced. Knowing this line in advance gives your plan real resilience.</p>
+    </div>
+
+    <div class="disclaimer">
+      This calculator provides a planning estimate based on your inputs. It does not account for taxes on withdrawals, inflation over time, healthcare cost growth, or one-time expenses (home repairs, vehicle replacement, long-term care). Not financial advice.
+    </div>
+
+  </div>
+</div>
+
+<!-- Content section -->
+<div class="content-section">
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How this retirement budget calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator splits your expected retirement spending into two categories — essential (housing, food, healthcare, transportation) and discretionary (travel, dining, hobbies, gifts) — following the framework most financial planners recommend, including Fidelity, Schwab, and BlackRock. It then compares your total budget to your guaranteed income sources (Social Security, pension, part-time work) to show the monthly gap your investment portfolio needs to cover.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A retired couple with the default values in this calculator:</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Sample monthly budget</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Essential expenses</span><span style="color:var(--blue);">$4,350/month</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Discretionary expenses</span><span style="color:var(--accent);">$1,450/month</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total budget</span><span style="color:var(--text);">$5,800/month</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Guaranteed income (Social Security)</span><span style="color:var(--green);">$2,400/month</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Gap from portfolio</span><span style="color:var(--red);">$3,400/month ($40,800/year)</span></div>
+  </div>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">If markets have a bad year, this retiree's first move isn't to touch the $4,350 essential floor — it's to trim from the $1,450 discretionary bucket. Cutting travel and dining by 30% during a downturn reduces the portfolio draw by roughly $435/month without threatening housing, food, or healthcare. That flexibility is the entire point of separating the two categories in the first place.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">The go-go, slow-go, no-go framework</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Retirement spending isn't flat — it changes shape as you age. This framework, introduced by CFP Michael Stein in <em>The Prosperous Retirement</em> and later supported by David Blanchett's 2014 research in the <em>Journal of Financial Planning</em>, breaks retirement into three phases:</p>
+  <ul>
+    <li><strong>Go-go years (typically the first decade of retirement):</strong> The most active phase. Travel, hobbies, dining out, and discretionary spending peak here — you have the health and time to do everything you planned for.</li>
+    <li><strong>Slow-go years (typically the middle phase):</strong> Discretionary spending naturally pulls back as energy and interest in extensive travel decline. Total spending often decreases even as some costs (healthcare) begin rising.</li>
+    <li><strong>No-go years (typically the final phase):</strong> Spending narrows to essentials. Discretionary spending drops significantly, but healthcare and potentially long-term care costs rise, sometimes sharply.</li>
+  </ul>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">A flat spending assumption across all of retirement — assuming the same budget from 62 to 95 — tends to overstate costs in the middle years and can meaningfully understate healthcare costs late in life. This calculator applies a simplified version of this framework to illustrate the shape, though your actual trajectory depends on your health, family history, and personal spending priorities.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How much should I budget for healthcare in retirement?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">According to Fidelity's 2025 Retiree Health Care Cost Estimate, a 65-year-old individual may need approximately $172,500 in after-tax savings to cover healthcare expenses throughout retirement — this includes Medicare premiums, supplemental insurance, and out-of-pocket costs, but excludes long-term care. For a couple, budget roughly double that figure. This is a lifetime estimate, not an annual one — divide by your expected retirement length for a rough monthly planning number, and revisit it periodically since healthcare costs tend to rise faster than general inflation.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What percentage of my pre-retirement income will I need?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">A commonly cited rule of thumb suggests 70-80% of pre-retirement spending, though actual research shows a wider range — studies of real retiree spending find totals ranging from roughly 55% to 80% of pre-retirement levels, varying significantly based on whether the mortgage is paid off, health status, and lifestyle choices. Rather than relying solely on a percentage rule, building a bottom-up budget like this calculator provides is generally more accurate for your specific situation.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Should I include one-time expenses in this budget?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">This calculator focuses on recurring monthly expenses. One-time or irregular costs — a new roof, vehicle replacement, a child's wedding, major home renovations — should be budgeted separately as a lump-sum reserve rather than folded into your monthly number. A common approach: maintain a separate contingency fund for these irregular costs, sized based on your home's age, vehicle condition, and family circumstances, reviewed and replenished periodically.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How does this connect to my withdrawal rate?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Your annual portfolio gap (shown above) is the number that determines your required withdrawal rate. If your gap is $40,800/year and your portfolio is $1,000,000, that's a 4.08% withdrawal rate — right at the traditional 4% Rule threshold. Use the <a href="withdrawal-rate-calculator.html" style="color:#c8f060;text-decoration:none;">withdrawal rate calculator</a> to see how long your portfolio lasts at your specific gap amount, and the <a href="guides/bucket-strategy-retirement.html" style="color:#c8f060;text-decoration:none;">bucket strategy guide</a> for how to structure withdrawals to protect against sequence of returns risk.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What if my essential expenses alone exceed my guaranteed income?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">This is a meaningfully different situation than needing your portfolio for discretionary spending — it means your baseline survival costs depend on investment performance, not just your quality-of-life spending. If your essential-only gap is large relative to your portfolio size, consider strategies to increase your guaranteed income floor: delaying Social Security claiming (see our <a href="social-security-calculator.html" style="color:#c8f060;text-decoration:none;">Social Security estimator</a>), purchasing an annuity for a portion of essential expenses, or adjusting your retirement timeline. A larger guaranteed income floor reduces the risk that a market downturn threatens your basic living expenses.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For educational purposes only. Not financial advice.
+  </p>
+</footer>
+<script>
+let chart = null;
+
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function getVal(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+function calc() {
+  const essentialIds = ['e-housing','e-utilities','e-groceries','e-transport','e-health','e-medical','e-other'];
+  const discretionaryIds = ['d-travel','d-dining','d-hobbies','d-gifts','d-other'];
+  const incomeIds = ['i-ss1','i-ss2','i-pension','i-work','i-other'];
+
+  const totalEssential = essentialIds.reduce((s, id) => s + getVal(id), 0);
+  const totalDiscretionary = discretionaryIds.reduce((s, id) => s + getVal(id), 0);
+  const totalIncome = incomeIds.reduce((s, id) => s + getVal(id), 0);
+
+  const totalBudget = totalEssential + totalDiscretionary;
+  const gap = totalBudget - totalIncome;
+  const essentialGap = totalEssential - totalIncome;
+  const annualGap = gap * 12;
+
+  // Update card headers
+  document.getElementById('total-essential-display').textContent = fmt(totalEssential);
+  document.getElementById('total-discretionary-display').textContent = fmt(totalDiscretionary);
+  document.getElementById('total-income-display').textContent = fmt(totalIncome);
+
+  // Hero
+  const heroEl = document.getElementById('gap-hero');
+  heroEl.className = 'gap-hero ' + (gap > 0 ? 'shortfall' : 'covered');
+  document.getElementById('gap-amount').textContent = gap > 0 ? fmt(gap) + '/mo' : fmt(Math.abs(gap)) + '/mo surplus';
+  document.getElementById('gap-sub').textContent = gap > 0
+    ? 'Your portfolio needs to generate this monthly'
+    : 'Guaranteed income covers your full budget';
+
+  // Metrics
+  document.getElementById('m-total-budget').textContent = fmt(totalBudget);
+  document.getElementById('m-total-income').textContent = fmt(totalIncome);
+  document.getElementById('m-annual-need').textContent = fmt(Math.max(0, annualGap));
+  const essGapEl = document.getElementById('m-essential-gap');
+  essGapEl.textContent = essentialGap > 0 ? fmt(essentialGap) + '/mo' : '$0 — covered';
+  essGapEl.className = 'metric-value ' + (essentialGap > 0 ? '' : 'accent');
+
+  // Phase estimates (go-go higher discretionary, slow-go moderate, no-go minimal discretionary + higher medical)
+  const gogo = totalEssential + totalDiscretionary * 1.0;
+  const slowgo = totalEssential + totalDiscretionary * 0.6;
+  const nogo = totalEssential * 1.15 + totalDiscretionary * 0.25; // healthcare creep, minimal discretionary
+
+  document.getElementById('phase-gogo').textContent = fmt(gogo) + '/mo';
+  document.getElementById('phase-slowgo').textContent = fmt(slowgo) + '/mo';
+  document.getElementById('phase-nogo').textContent = fmt(nogo) + '/mo';
+
+  updateChart(totalEssential, totalDiscretionary, totalIncome);
+}
+
+function updateChart(essential, discretionary, income) {
+  const ctx = document.getElementById('budget-chart').getContext('2d');
+  if (chart) chart.destroy();
+
+  const total = essential + discretionary;
+  if (total === 0) { chart = null; return; }
+
+  chart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Essential', 'Discretionary'],
+      datasets: [{
+        data: [essential, discretionary],
+        backgroundColor: ['#5b9cf6', '#c8f060'],
+        borderColor: '#141416',
+        borderWidth: 3,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { color: '#888884', font: { family: "'DM Mono', monospace", size: 11 }, padding: 14, boxWidth: 12 }
+        },
+        tooltip: {
+          backgroundColor: '#141416',
+          borderColor: 'rgba(255,255,255,0.08)',
+          borderWidth: 1,
+          titleColor: '#f0efe8',
+          bodyColor: '#888884',
+          padding: 12,
+          callbacks: {
+            label: ctx => '  ' + ctx.label + ': $' + Math.round(ctx.raw).toLocaleString() + '/mo (' + ((ctx.raw/total)*100).toFixed(0) + '%)'
+          }
+        }
+      },
+      cutout: '65%',
+    }
+  });
+}
+
+calc();
+</script>
+
+<script src="/nav.js"></script>
+</body>
+</html>
