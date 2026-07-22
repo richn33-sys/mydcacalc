@@ -31,6 +31,7 @@ CALC_CATEGORIES = [
         ('rule-of-72-calculator.html',          'Rule of 72'),
         ('loss-recovery-calculator.html',       'Loss recovery'),
         ('breakeven-calculator.html',           'Breakeven'),
+        ('stock-profit-calculator.html',        'Stock profit'),
         ('crypto-cost-basis-calculator.html',   'Crypto cost basis'),
         ('cost-basis-calculator.html',           'Cost basis (stocks)'),
         ('capital-gains-tax-calculator.html',    'Capital gains tax'),

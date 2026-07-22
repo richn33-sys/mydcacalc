@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Capital Gains Tax Calculator 2026 — Short-Term vs Long-Term</title>
-<meta name="description" content="Free capital gains tax calculator for 2026. Enter your income and gain to see your exact federal tax under short-term and long-term treatment, including the 3.8% NIIT surtax, side by side.">
-<meta name="keywords" content="capital gains tax calculator, capital gains tax calculator 2026, short term long term capital gains calculator, NIIT calculator, stock sale tax calculator">
-<meta property="og:title" content="Capital Gains Tax Calculator 2026 — Short-Term vs Long-Term">
-<meta property="og:description" content="See your exact federal capital gains tax under short-term and long-term treatment side by side, including NIIT — and exactly how much holding one more day could save.">
+<title>Stock Profit Calculator — Profit, ROI, and Annualized Return</title>
+<meta name="description" content="Free stock profit calculator. See your dollar profit, ROI percentage, and annualized return after fees and dividends. Compare to a simple buy-and-hold benchmark.">
+<meta name="keywords" content="stock profit calculator, stock ROI calculator, how to calculate stock profit, annualized return calculator, stock gain calculator">
+<meta property="og:title" content="Stock Profit Calculator — Profit, ROI, and Annualized Return">
+<meta property="og:description" content="Enter your buy price, sell price, shares, and fees to see your exact dollar profit, ROI%, and annualized return — with dividends factored in.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mydcacalc.com/capital-gains-tax-calculator.html">
+<meta property="og:url" content="https://mydcacalc.com/stock-profit-calculator.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/capital-gains-tax-calculator.html">
+<link rel="canonical" href="https://mydcacalc.com/stock-profit-calculator.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +20,8 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Capital Gains Tax Calculator 2026",
-  "description": "Calculate federal capital gains tax under short-term and long-term treatment, including NIIT",
+  "name": "Stock Profit Calculator",
+  "description": "Calculate stock profit, ROI, and annualized return after fees and dividends",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -65,7 +65,7 @@ h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; let
 h1 em { font-style: normal; color: var(--accent); }
 .hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 600px; line-height: 1.7; }
 
-.main { max-width: 980px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+.main { max-width: 980px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
 @media (max-width: 780px) { .main { grid-template-columns: 1fr; } }
 
 .controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
@@ -74,39 +74,39 @@ h1 em { font-style: normal; color: var(--accent); }
 .input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
 .input-wrap { position: relative; }
 .input-prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
-input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px 9px 24px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+input[type="number"], input[type="date"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px 9px 24px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+input[type="date"] { padding-left: 10px; }
 input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
-input[type="number"]:focus { border-color: var(--accent-border); }
-select { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; appearance: none; cursor: pointer; }
-select:focus { border-color: var(--accent-border); }
+input:focus { border-color: var(--accent-border); }
 .divider-line { height: 1px; background: var(--border); margin: 16px 0; }
 
 .results { display: flex; flex-direction: column; gap: 14px; }
 
-.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media (max-width: 560px) { .compare-grid { grid-template-columns: 1fr; } }
-.compare-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
-.compare-card.better { border-color: var(--accent-border); background: var(--accent-dim); }
-.compare-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
-.compare-card.better .compare-label { color: var(--accent); }
-.compare-tax { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--text); letter-spacing: -0.02em; margin-bottom: 4px; }
-.compare-card.better .compare-tax { color: var(--accent); }
-.compare-rate { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
+.hero-result { border-radius: var(--radius-lg); padding: 26px; text-align: center; border: 1px solid var(--border); background: var(--bg-card); }
+.hero-result.profit { border-color: var(--accent-border); background: var(--accent-dim); }
+.hero-result.loss { border-color: rgba(240,96,96,0.3); background: rgba(240,96,96,0.05); }
+.hero-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.hero-result.profit .hero-label { color: var(--accent); }
+.hero-result.loss .hero-label { color: var(--red); }
+.hero-amount { font-size: 34px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.03em; margin-bottom: 6px; }
+.hero-result.profit .hero-amount { color: var(--accent); }
+.hero-result.loss .hero-amount { color: var(--red); }
+.hero-sub { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
 
-.savings-card { background: var(--bg-card); border: 1px solid var(--accent-border); background: var(--accent-dim); border-radius: var(--radius-lg); padding: 22px; text-align: center; }
-.savings-label { font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-.savings-amount { font-size: 30px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); letter-spacing: -0.03em; margin-bottom: 6px; }
-.savings-sub { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+.metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
+.metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.metric-value { font-family: var(--font-mono); font-size: 17px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
+.metric-value.green { color: var(--green); }
+.metric-value.red { color: var(--red); }
+.metric-value.accent { color: var(--accent); }
 
-.breakdown-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-.breakdown-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
-.table-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 460px; }
-th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
-td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
-tr:last-child td { border-bottom: none; }
-td.accent { color: var(--accent); font-weight: 500; }
-td.red { color: var(--red); }
+.breakdown-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
+.breakdown-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; font-family: var(--font-mono); }
+.breakdown-row:last-child { border-bottom: none; font-weight: 600; padding-top: 12px; }
+.breakdown-row span:first-child { color: var(--text-muted); }
+.breakdown-row span:last-child { color: var(--text); }
 
 .info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
 .info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
@@ -162,7 +162,7 @@ footer a:hover { color: var(--text); }
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Track your real cost basis automatically</strong> — avg cost, live P&L, weekly signals</span>
+  <span>📈 <strong>Track your real portfolio P&L</strong> — avg cost, live tracking, weekly signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -179,10 +179,10 @@ footer a:hover { color: var(--text); }
         <a href="rule-of-72-calculator.html">Rule of 72</a>
         <a href="loss-recovery-calculator.html">Loss recovery</a>
         <a href="breakeven-calculator.html">Breakeven</a>
-        <a href="stock-profit-calculator.html">Stock profit</a>
+        <a href="stock-profit-calculator.html" class="active">Stock profit</a>
         <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
         <a href="cost-basis-calculator.html">Cost basis (stocks)</a>
-        <a href="capital-gains-tax-calculator.html" class="active">Capital gains tax</a>
+        <a href="capital-gains-tax-calculator.html">Capital gains tax</a>
       </div>
     </div>
     <div class="nav-group">
@@ -345,95 +345,112 @@ footer a:hover { color: var(--text); }
 </div>
 
 <div class="hero">
-  <div class="hero-badge">2026 federal rates · Short-term vs long-term side by side</div>
-  <h1>Capital Gains Tax <em>Calculator</em></h1>
-  <p>See your exact federal tax under short-term and long-term treatment, side by side — including the 3.8% NIIT surtax if it applies to you.</p>
+  <div class="hero-badge">Profit · ROI · Annualized return</div>
+  <h1>Stock Profit <em>Calculator</em></h1>
+  <p>See your exact dollar profit, ROI percentage, and annualized return after fees and dividends — everything a simple "current price minus buy price" calculation leaves out.</p>
 </div>
 
 <div class="main">
 
   <div class="controls-card">
-    <div class="section-label">Your income & gain</div>
+    <div class="section-label">Your position</div>
 
     <div class="input-group">
-      <div class="input-label">Filing status</div>
-      <select id="filing-status" onchange="calc()">
-        <option value="single">Single</option>
-        <option value="mfj">Married filing jointly</option>
-      </select>
-    </div>
-
-    <div class="input-group">
-      <div class="input-label">Other taxable income (before this gain)</div>
+      <div class="input-label">Purchase price per share</div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="other-income" value="120000" min="0" step="1000" oninput="calc()">
+        <input type="number" id="buy-price" value="50" min="0.01" step="1" oninput="calc()">
       </div>
     </div>
 
     <div class="input-group">
-      <div class="input-label">Capital gain amount</div>
+      <div class="input-label">Sale price per share</div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="gain-amount" value="30000" min="0" step="1000" oninput="calc()">
+        <input type="number" id="sell-price" value="72" min="0.01" step="1" oninput="calc()">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Number of shares</div>
+      <div class="input-wrap">
+        <input type="number" id="shares" value="100" min="0.0001" step="1" oninput="calc()">
       </div>
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Holding period</div>
+    <div class="section-label">Fees & dividends</div>
 
     <div class="input-group">
-      <div class="input-label">Days held</div>
+      <div class="input-label">Total transaction fees (buy + sell)</div>
       <div class="input-wrap">
-        <input type="number" id="days-held" value="340" min="0" step="1" oninput="calc()">
+        <span class="input-prefix">$</span>
+        <input type="number" id="fees" value="0" min="0" step="1" oninput="calc()">
       </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Total dividends received</div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="dividends" value="0" min="0" step="1" oninput="calc()">
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Holding period (for annualized return)</div>
+
+    <div class="input-group">
+      <div class="input-label">Purchase date</div>
+      <input type="date" id="buy-date" oninput="calc()">
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Sale date</div>
+      <input type="date" id="sell-date" oninput="calc()">
     </div>
 
   </div>
 
   <div class="results">
 
-    <div class="compare-grid">
-      <div class="compare-card" id="short-card">
-        <div class="compare-label">Short-term (≤1 year)</div>
-        <div class="compare-tax" id="short-tax">$0</div>
-        <div class="compare-rate" id="short-rate">0% effective</div>
-      </div>
-      <div class="compare-card" id="long-card">
-        <div class="compare-label">Long-term (&gt;1 year)</div>
-        <div class="compare-tax" id="long-tax">$0</div>
-        <div class="compare-rate" id="long-rate">0% effective</div>
-      </div>
+    <div class="hero-result profit" id="hero-result">
+      <div class="hero-label">Total profit</div>
+      <div class="hero-amount" id="hero-amount">$0</div>
+      <div class="hero-sub" id="hero-sub">After fees and including dividends</div>
     </div>
 
-    <div class="savings-card">
-      <div class="savings-label">What waiting for long-term treatment saves</div>
-      <div class="savings-amount" id="savings-amount">$0</div>
-      <div class="savings-sub" id="savings-sub">Based on your current inputs</div>
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">ROI</div>
+        <div class="metric-value accent" id="m-roi">0%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Annualized return</div>
+        <div class="metric-value accent" id="m-annualized">0%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Days held</div>
+        <div class="metric-value" id="m-days">0</div>
+      </div>
     </div>
 
     <div class="breakdown-card">
-      <div class="breakdown-title" id="breakdown-title">Tax breakdown — your current holding period</div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Component</th>
-              <th>Amount</th>
-              <th>Rate applied</th>
-            </tr>
-          </thead>
-          <tbody id="breakdown-tbody"></tbody>
-        </table>
-      </div>
+      <div class="section-label" style="margin-bottom:12px;">Full breakdown</div>
+      <div class="breakdown-row"><span>Total cost (buy price × shares)</span><span id="b-cost">$0</span></div>
+      <div class="breakdown-row"><span>Total proceeds (sell price × shares)</span><span id="b-proceeds">$0</span></div>
+      <div class="breakdown-row"><span>Price gain/loss</span><span id="b-pricegain">$0</span></div>
+      <div class="breakdown-row"><span>Dividends received</span><span id="b-div">$0</span></div>
+      <div class="breakdown-row"><span>Transaction fees</span><span id="b-fees">$0</span></div>
+      <div class="breakdown-row"><span>Net profit</span><span id="b-net">$0</span></div>
     </div>
 
     <div class="info-box">
-      <p><strong>Note:</strong> "Other taxable income" should be your income after deductions (AGI minus standard or itemized deduction) — not gross income. This calculator stacks your gain on top of that number to determine which bracket(s) it falls into, following the same method the IRS uses.</p>
+      <p><strong>Why annualized return matters:</strong> a 20% profit sounds identical whether it took 3 months or 3 years — but the annualized return is wildly different (roughly 107% vs 6.3%). Comparing raw ROI across positions with different holding periods can be misleading; annualized return puts everything on the same footing.</p>
     </div>
 
     <div class="disclaimer">
-      Uses official 2026 IRS federal tax brackets and NIIT thresholds (Rev. Proc. 2025-32). Does not include state taxes, which vary significantly and can add substantially to your total tax. Does not model collectibles (28% cap), QSBS, Section 1250 recapture, or the 0% MAGI-based reduction some deductions require. Not tax advice — consult a professional before filing.
+      This calculator computes pre-tax profit. It does not calculate capital gains tax owed — use the <a href="capital-gains-tax-calculator.html" style="color:var(--accent);">capital gains tax calculator</a> for that. Not financial advice.
     </div>
 
   </div>
@@ -441,48 +458,51 @@ footer a:hover { color: var(--text); }
 
 <!-- Content section -->
 <div class="content-section">
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How this calculator works</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Enter your other taxable income, your gain amount, and how many days you've held (or plan to hold) the asset. The calculator computes your exact federal tax under both short-term treatment (ordinary income rates) and long-term treatment (0%/15%/20% preferential rates), including the 3.8% Net Investment Income Tax if your income exceeds the threshold — so you can see precisely what holding period matters for your specific numbers.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How this stock profit calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The basic formula is straightforward: stock profit equals (sale price minus purchase price) times number of shares, minus transaction fees, plus any dividends received during the holding period. This calculator computes that full picture — not just the price change most people think of as "profit" — along with your ROI percentage and annualized return, which accounts for how long you actually held the position.</p>
 
   <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A single filer with $180,000 in other taxable income and a $50,000 gain, comparing short-term vs long-term treatment:</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">100 shares bought at $50, sold at $72, held for 18 months, with $150 in dividends and $10 in total fees:</p>
   <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
-    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">$50,000 gain — short-term vs long-term</div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Short-term (ordinary rates + NIIT)</span><span style="color:var(--red);">$15,398 total tax</span></div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Long-term (15% LTCG + NIIT)</span><span style="color:var(--accent);">$8,640 total tax</span></div>
-    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Savings from waiting for long-term</span><span style="color:var(--green);">$6,758</span></div>
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Full profit breakdown</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Price gain: (72-50) × 100</span><span style="color:var(--text);">$2,200</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Plus dividends</span><span style="color:var(--text);">+$150</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Minus fees</span><span style="color:var(--text);">-$10</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total profit</span><span style="color:var(--accent);">$2,340</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">ROI ($2,340 ÷ $5,000 cost)</span><span style="color:var(--text);">46.8%</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Annualized return (548 days ≈ 18 months)</span><span style="color:var(--green);">29.1%/year</span></div>
   </div>
-  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">The exact savings depend heavily on your specific income and which tax brackets the gain straddles — there's no universal multiplier. This is precisely why a calculator is more useful than a rule of thumb: the difference could be a few hundred dollars or several thousand, depending entirely on your numbers.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Notice the dividends added $150 to the profit that a simple price-only calculation would have missed entirely — a 6.8% swing in the final ROI figure. For dividend-paying stocks held over long periods, ignoring dividends can meaningfully understate your actual return.</p>
 
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Is it always worth waiting for long-term treatment?</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Usually, but not automatically. The tax savings from waiting need to be weighed against the risk of the position moving against you while you wait. If you're 340 days into holding a volatile stock and it could easily drop 10% in the remaining 25 days, that risk may outweigh the tax benefit of crossing the one-year line — especially for a smaller gain where the tax difference is modest in dollar terms.</p>
-  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;"><strong style="color:#f0efe8;">The math is worth running explicitly, not assuming.</strong> For a large gain in a high tax bracket, the savings can be substantial and clearly worth a short wait. For a small gain or in a low tax bracket where you might already qualify for the 0% long-term rate, the difference may be minimal — in which case, other factors (like conviction in the position, or wanting to lock in a gain before a known risk event) may reasonably take priority.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Why ROI alone can be misleading</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A 46.8% ROI sounds impressive in isolation, but it doesn't tell you whether that was a good use of your capital compared to alternatives. The annualized return — 29.1%/year in the example above — is what actually allows fair comparison. A position that returns 10% in one month (annualizing to over 200%) is a fundamentally different result than one that returns 10% over five years (annualizing to under 2%), even though the raw ROI looks identical.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Annualized return also lets you compare a stock's performance against a benchmark like the S&P 500's long-run historical average (roughly 10% nominal annually) on equal footing — a comparison raw dollar profit or ROI alone cannot provide.</p>
 
   <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Why does the calculator ask for "other" income separately from the gain?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Because capital gains tax brackets — and short-term ordinary rates — depend on your total taxable income, not the gain in isolation. A $30,000 gain is taxed very differently for someone with $40,000 in other income (likely at or near the 0% long-term rate) versus someone with $400,000 in other income (likely at the top 20% rate plus NIIT). Separating the two lets the calculator stack them correctly, the same way the IRS does.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Does this calculator account for taxes?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">No — this shows pre-tax profit only. Your actual take-home profit depends on whether the gain is short-term or long-term, your tax bracket, and whether the NIIT surtax applies. Use the <a href="capital-gains-tax-calculator.html" style="color:#c8f060;text-decoration:none;">capital gains tax calculator</a> to see your after-tax result, and the <a href="guides/capital-gains-tax-stocks.html" style="color:#c8f060;text-decoration:none;">capital gains tax guide</a> for the full explanation of how holding period changes what you owe.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Does this calculator account for state taxes?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">No — this calculator shows federal tax only. Most states tax capital gains as ordinary income with no preferential long-term rate, and state rates vary enormously — from 0% in states with no income tax to over 13% in California. Add your state's marginal rate to these federal figures for a complete picture, or check whether your state offers any capital gains preferences (a small number do).</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What's the difference between ROI and annualized return?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">ROI (return on investment) is your total profit divided by your total cost — a single number regardless of how long you held the position. Annualized return converts that same profit into an equivalent yearly rate, accounting for the actual holding period, using the formula: (1 + ROI)^(365/days held) − 1. Annualized return is the correct way to compare investments held for different lengths of time; raw ROI is not.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What if I have multiple gains and losses in the same year?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">This calculator models a single gain in isolation. In practice, gains and losses are netted together — losses first offset gains of the same type (short-term against short-term, long-term against long-term), then excess losses offset the other type. Only your net gain after this netting process is what actually gets taxed. See our <a href="guides/capital-gains-tax-stocks.html" style="color:#c8f060;text-decoration:none;">capital gains tax guide</a> for the full netting rules.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Should I include dividends I reinvested, or only cash dividends?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Include all dividends received, whether taken as cash or automatically reinvested (DRIP). If dividends were reinvested, they purchased additional shares — meaning your final share count and sale proceeds already partially reflect that reinvestment. To avoid double-counting, either track reinvested dividends as part of your final share count and proceeds calculation, or treat this calculator's "shares" field as your original share count only and add reinvested dividend amounts to the dividends field for a simplified approximation.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How accurate is the NIIT calculation here?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">This calculator applies NIIT to the lesser of your net investment income or the amount your MAGI exceeds the threshold — the correct IRS methodology. However, it uses your taxable income as a proxy for MAGI, which is a simplification. True MAGI can differ from taxable income due to certain deductions and exclusions being added back. For income near the NIIT threshold, this simplification could shift the result modestly — verify with a tax professional if you're close to the line.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What counts as a "transaction fee" today?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Most major US brokers eliminated stock trading commissions years ago, so this field is often $0 for typical retail stock trades. It remains relevant for options trades (which often carry per-contract fees), some international or OTC stock trades, certain mutual funds with transaction fees, and any account still charging commissions. Check your specific broker's fee schedule if you're unsure.</p>
   </div>
 
   <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Can I use this for crypto gains too?</h3>
-    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes — the IRS taxes cryptocurrency gains under the same short-term/long-term framework and rates as stocks, so this calculator applies equally to crypto. Just make sure your cost basis and holding period are calculated correctly first, which is more complex for crypto due to per-wallet tracking rules — see our <a href="cost-basis-calculator.html" style="color:#c8f060;text-decoration:none;">cost basis calculator</a> to work that out first.</p>
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How is this different from the breakeven calculator?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">The <a href="breakeven-calculator.html" style="color:#c8f060;text-decoration:none;">breakeven calculator</a> answers a different question: what price do I need to reach to recover a loss? This calculator answers: given an actual (or hypothetical) buy and sell price, what's my complete profit picture including fees, dividends, ROI, and annualized return? Use breakeven when you're underwater and want to know the recovery target; use this calculator to fully evaluate a completed or planned trade.</p>
   </div>
 
 </div>
@@ -494,144 +514,79 @@ footer a:hover { color: var(--text); }
     <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
     <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
     <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
-    For educational purposes only. Not tax advice.
+    For educational purposes only. Not financial advice.
   </p>
 </footer>
 <script>
-// 2026 official IRS figures (Rev. Proc. 2025-32)
-const ORDINARY_BRACKETS = {
-  single: [
-    { rate: 0.10, max: 12400 },
-    { rate: 0.12, max: 50400 },
-    { rate: 0.22, max: 105700 },
-    { rate: 0.24, max: 201775 },
-    { rate: 0.32, max: 256225 },
-    { rate: 0.35, max: 640600 },
-    { rate: 0.37, max: Infinity },
-  ],
-  mfj: [
-    { rate: 0.10, max: 24800 },
-    { rate: 0.12, max: 100800 },
-    { rate: 0.22, max: 211400 },
-    { rate: 0.24, max: 403550 },
-    { rate: 0.32, max: 512450 },
-    { rate: 0.35, max: 768700 },
-    { rate: 0.37, max: Infinity },
-  ]
-};
-
-const LTCG_BRACKETS = {
-  single: [
-    { rate: 0.00, max: 49450 },
-    { rate: 0.15, max: 545500 },
-    { rate: 0.20, max: Infinity },
-  ],
-  mfj: [
-    { rate: 0.00, max: 98900 },
-    { rate: 0.15, max: 613700 },
-    { rate: 0.20, max: Infinity },
-  ]
-};
-
-const NIIT_THRESHOLD = { single: 200000, mfj: 250000 };
-const NIIT_RATE = 0.038;
-
 function fmt(n) {
-  return '$' + Math.round(n).toLocaleString();
-}
-
-function taxOnStackedGain(baseIncome, gain, brackets) {
-  // Calculate tax on the gain portion only, stacked on top of baseIncome
-  let tax = 0;
-  let remaining = gain;
-  let cursor = baseIncome;
-
-  for (const band of brackets) {
-    if (cursor >= band.max) continue;
-    const roomInBand = band.max - cursor;
-    const amountTaxedHere = Math.min(remaining, roomInBand);
-    tax += amountTaxedHere * band.rate;
-    remaining -= amountTaxedHere;
-    cursor += amountTaxedHere;
-    if (remaining <= 0) break;
-  }
-  return tax;
-}
-
-function calcNIIT(magi, gain, filing) {
-  const threshold = NIIT_THRESHOLD[filing];
-  if (magi <= threshold) return 0;
-  const excessOverThreshold = magi - threshold;
-  const niitBase = Math.min(gain, excessOverThreshold);
-  return Math.max(0, niitBase) * NIIT_RATE;
+  const sign = n < 0 ? '-' : '';
+  return sign + '$' + Math.abs(Math.round(n)).toLocaleString();
 }
 
 function calc() {
-  const filing = document.getElementById('filing-status').value;
-  const otherIncome = parseFloat(document.getElementById('other-income').value) || 0;
-  const gain = parseFloat(document.getElementById('gain-amount').value) || 0;
-  const daysHeld = parseFloat(document.getElementById('days-held').value) || 0;
+  const buyPrice = parseFloat(document.getElementById('buy-price').value) || 0;
+  const sellPrice = parseFloat(document.getElementById('sell-price').value) || 0;
+  const shares = parseFloat(document.getElementById('shares').value) || 0;
+  const fees = parseFloat(document.getElementById('fees').value) || 0;
+  const dividends = parseFloat(document.getElementById('dividends').value) || 0;
+  const buyDate = document.getElementById('buy-date').value;
+  const sellDate = document.getElementById('sell-date').value;
 
-  const totalIncome = otherIncome + gain;
+  const totalCost = buyPrice * shares;
+  const totalProceeds = sellPrice * shares;
+  const priceGain = totalProceeds - totalCost;
+  const netProfit = priceGain + dividends - fees;
+  const roi = totalCost > 0 ? (netProfit / totalCost) * 100 : 0;
 
-  // Short-term calculation
-  const shortTermIncomeTax = taxOnStackedGain(otherIncome, gain, ORDINARY_BRACKETS[filing]);
-  const shortTermNIIT = calcNIIT(totalIncome, gain, filing);
-  const shortTermTotal = shortTermIncomeTax + shortTermNIIT;
-  const shortTermRate = gain > 0 ? (shortTermTotal / gain * 100) : 0;
+  let daysHeld = 0;
+  if (buyDate && sellDate) {
+    const d1 = new Date(buyDate);
+    const d2 = new Date(sellDate);
+    daysHeld = Math.max(0, Math.round((d2 - d1) / (1000 * 60 * 60 * 24)));
+  }
 
-  // Long-term calculation
-  const longTermTax = taxOnStackedGain(otherIncome, gain, LTCG_BRACKETS[filing]);
-  const longTermNIIT = calcNIIT(totalIncome, gain, filing);
-  const longTermTotal = longTermTax + longTermNIIT;
-  const longTermRate = gain > 0 ? (longTermTotal / gain * 100) : 0;
-
-  const savings = shortTermTotal - longTermTotal;
-  const isLongTerm = daysHeld > 365;
-
-  // Update comparison cards
-  document.getElementById('short-tax').textContent = fmt(shortTermTotal);
-  document.getElementById('short-rate').textContent = shortTermRate.toFixed(1) + '% effective';
-  document.getElementById('long-tax').textContent = fmt(longTermTotal);
-  document.getElementById('long-rate').textContent = longTermRate.toFixed(1) + '% effective';
-
-  document.getElementById('short-card').className = 'compare-card' + (!isLongTerm ? ' better' : '');
-  document.getElementById('long-card').className = 'compare-card' + (isLongTerm ? ' better' : '');
-
-  // Savings card
-  document.getElementById('savings-amount').textContent = fmt(Math.max(0, savings));
-  const daysUntilLongTerm = Math.max(0, 366 - daysHeld);
-  document.getElementById('savings-sub').textContent = isLongTerm
-    ? 'You already qualify for long-term treatment at ' + daysHeld + ' days held'
-    : daysUntilLongTerm + ' more day' + (daysUntilLongTerm === 1 ? '' : 's') + ' needed to qualify for long-term rates';
-
-  // Breakdown table — show the actual (current holding period) scenario
-  const activeBrackets = isLongTerm ? LTCG_BRACKETS[filing] : ORDINARY_BRACKETS[filing];
-  const activeLabel = isLongTerm ? 'Long-term' : 'Short-term';
-  document.getElementById('breakdown-title').textContent = 'Tax breakdown — ' + activeLabel + ' (' + daysHeld + ' days held)';
-
-  let rows = '';
-  let remaining = gain;
-  let cursor = otherIncome;
-  for (const band of activeBrackets) {
-    if (cursor >= band.max) continue;
-    const roomInBand = band.max - cursor;
-    const amountHere = Math.min(remaining, roomInBand);
-    if (amountHere > 0) {
-      rows += '<tr><td>' + (band.rate * 100).toFixed(0) + '% bracket</td><td class="accent">' + fmt(amountHere) + '</td><td>' + (band.rate*100).toFixed(0) + '%</td></tr>';
+  let annualizedReturn = 0;
+  if (daysHeld > 0 && totalCost > 0) {
+    const roiDecimal = netProfit / totalCost;
+    const base = 1 + roiDecimal;
+    if (base > 0) {
+      annualizedReturn = (Math.pow(base, 365 / daysHeld) - 1) * 100;
+    } else {
+      annualizedReturn = -100;
     }
-    remaining -= amountHere;
-    cursor += amountHere;
-    if (remaining <= 0) break;
   }
-  const activeNIIT = isLongTerm ? longTermNIIT : shortTermNIIT;
-  if (activeNIIT > 0) {
-    rows += '<tr><td>NIIT surtax</td><td class="red">' + fmt(activeNIIT) + '</td><td>3.8%</td></tr>';
-  }
-  const activeTotal = isLongTerm ? longTermTotal : shortTermTotal;
-  rows += '<tr style="font-weight:600;"><td>Total tax on gain</td><td class="accent">' + fmt(activeTotal) + '</td><td>' + (gain > 0 ? (activeTotal/gain*100).toFixed(1) : '0') + '% effective</td></tr>';
 
-  document.getElementById('breakdown-tbody').innerHTML = rows;
+  // Hero
+  const heroEl = document.getElementById('hero-result');
+  heroEl.className = 'hero-result ' + (netProfit >= 0 ? 'profit' : 'loss');
+  document.getElementById('hero-amount').textContent = fmt(netProfit);
+  document.getElementById('hero-sub').textContent = netProfit >= 0
+    ? 'Profit after fees, including dividends'
+    : 'Loss after fees, including dividends';
+
+  // Metrics
+  const roiEl = document.getElementById('m-roi');
+  roiEl.textContent = (roi >= 0 ? '+' : '') + roi.toFixed(1) + '%';
+  roiEl.className = 'metric-value ' + (roi >= 0 ? 'green' : 'red');
+
+  const annEl = document.getElementById('m-annualized');
+  if (daysHeld > 0) {
+    annEl.textContent = (annualizedReturn >= 0 ? '+' : '') + annualizedReturn.toFixed(1) + '%';
+    annEl.className = 'metric-value ' + (annualizedReturn >= 0 ? 'green' : 'red');
+  } else {
+    annEl.textContent = 'Enter dates';
+    annEl.className = 'metric-value';
+  }
+
+  document.getElementById('m-days').textContent = daysHeld > 0 ? daysHeld.toLocaleString() : '—';
+
+  // Breakdown
+  document.getElementById('b-cost').textContent = fmt(totalCost);
+  document.getElementById('b-proceeds').textContent = fmt(totalProceeds);
+  document.getElementById('b-pricegain').textContent = fmt(priceGain);
+  document.getElementById('b-div').textContent = '+' + fmt(Math.abs(dividends));
+  document.getElementById('b-fees').textContent = '-' + fmt(Math.abs(fees));
+  document.getElementById('b-net').textContent = fmt(netProfit);
 }
 
 calc();
