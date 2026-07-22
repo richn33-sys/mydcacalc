@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Invest in Evergreen Funds — A Fast-Growing Private Markets Structure in 2026</title>
-<meta name="description" content="Evergreen funds hold $457B in the US alone and are the fastest-growing segment of alternative investing. Here's what they are, how they differ from traditional private equity, who can access them, and the real risks most coverage ignores.">
-<meta name="keywords" content="evergreen funds investing, what are evergreen funds, how to invest in evergreen funds, semi-liquid private equity 2026, evergreen fund vs closed end fund">
-<meta property="og:title" content="How to Invest in Evergreen Funds — A Fast-Growing Private Markets Structure in 2026">
-<meta property="og:description" content="$457B in US evergreen funds at year-end 2025. Minimums as low as $25,000. But liquidity windows can be gated and redemptions limited. Here's what you actually need to know before investing.">
+<title>How to Calculate Stock Profit and ROI — The Complete Formula</title>
+<meta name="description" content="Stock profit isn't just sale price minus purchase price. Here's the complete formula including fees and dividends, how ROI and annualized return differ, and how to benchmark your return against the market.">
+<meta name="keywords" content="how to calculate stock profit, stock ROI formula, annualized return formula, stock profit and ROI, CAGR calculation stocks">
+<meta property="og:title" content="How to Calculate Stock Profit and ROI — The Complete Formula">
+<meta property="og:description" content="A 46.8% ROI over 3 months and a 46.8% ROI over 3 years are not the same result. Here's the complete profit formula and why annualized return is the number that actually matters.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://mydcacalc.com/guides/evergreen-funds-investing.html">
+<meta property="og:url" content="https://mydcacalc.com/guides/stock-profit-roi-explained.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/guides/evergreen-funds-investing.html">
+<link rel="canonical" href="https://mydcacalc.com/guides/stock-profit-roi-explained.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,16 +20,16 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "How to Invest in Evergreen Funds — A Fast-Growing Private Markets Structure in 2026",
-  "description": "What evergreen funds are, how they differ from traditional private equity, who can invest, the real risks, and how to evaluate them.",
+  "headline": "How to Calculate Stock Profit and ROI — The Complete Formula",
+  "description": "The complete stock profit formula including fees and dividends, ROI vs annualized return, and how to benchmark against the market.",
   "author": {
     "@type": "Person",
-    "name": "Marcus Veil",
-    "url": "https://mydcacalc.com/authors/marcus-veil.html"
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
   },
   "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
-  "datePublished": "2026-07-07",
-  "dateModified": "2026-07-07"
+  "datePublished": "2026-07-22",
+  "dateModified": "2026-07-22"
 }
 </script>
 <style>
@@ -39,7 +39,7 @@
   --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
   --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
   --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
-  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6; --purple: #a78bfa;
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
   --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
   --radius: 10px; --radius-lg: 16px;
 }
@@ -59,8 +59,8 @@ nav a:hover { color: var(--text); }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
 .nav-mobile-menu.open { display: flex; }
-.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
 .nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
 @media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
 .article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
 .article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
@@ -87,22 +87,20 @@ ul li strong, ol li strong { color: var(--text); font-weight: 500; }
 .callout.tip .callout-label { color: var(--green); }
 .callout.warning .callout-label { color: var(--red); }
 .callout.data .callout-label { color: var(--blue); }
-.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
-@media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
-.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; text-align: center; }
-.stat-number { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); margin-bottom: 6px; letter-spacing: -0.02em; }
-.stat-label { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
-.compare-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; font-family: var(--font-mono); }
-.compare-table th { text-align: left; padding: 10px 14px; background: var(--bg-input); color: var(--text-dim); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
-.compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
+.formula-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; text-align: center; }
+.formula-box code { font-family: var(--font-mono); font-size: 15px; color: var(--accent); }
+.example-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 28px 0; }
+.example-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.example-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; font-family: var(--font-mono); }
+.example-row:last-child { border-bottom: none; font-weight: 600; padding-top: 12px; }
+.example-row span:first-child { color: var(--text-muted); }
+.example-row span:last-child { color: var(--text); }
+.compare-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; font-family: var(--font-mono); }
+.compare-table th { text-align: left; padding: 10px 12px; background: var(--bg-input); color: var(--text-dim); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.compare-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; font-size: 12px; }
 .compare-table tr:last-child td { border-bottom: none; }
+.compare-table td.accent { color: var(--accent); }
 .compare-table td.green { color: var(--green); }
-.compare-table td.red { color: var(--red); }
-.compare-table td.accent { color: var(--accent); font-weight: 500; }
-.risk-grid { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
-.risk-card { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: var(--radius); padding: 16px 18px; }
-.risk-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
-.risk-desc { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.6; margin: 0; }
 .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
 .toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
 .toc ol { margin: 0; padding-left: 18px; }
@@ -178,7 +176,7 @@ footer a:hover { color: var(--text); }
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Track your alternative investment performance</strong> — real avg cost, live P&L, weekly signals</span>
+  <span>📈 <strong>Track your real portfolio P&L</strong> — avg cost, live tracking, weekly signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -366,223 +364,165 @@ footer a:hover { color: var(--text); }
 <article class="article-wrap">
 
   <div class="article-meta">
-    <span class="meta-tag">Alternatives</span>
-    <span class="meta-tag">Private Markets</span>
-    <span class="meta-date">July 7, 2026</span>
-    <span class="meta-read">10 min read</span>
+    <span class="meta-tag">Fundamentals</span>
+    <span class="meta-tag">Investing</span>
+    <span class="meta-date">July 22, 2026</span>
+    <span class="meta-read">8 min read</span>
   </div>
 
-  <h1>How to invest in <em>evergreen funds</em> — a fast-growing private markets structure in 2026</h1>
+  <h1>How to calculate stock <em>profit and ROI</em> — the complete formula</h1>
 
-  <p class="intro">Private equity has historically been available only to large institutions willing to lock up millions of dollars for a decade. Evergreen funds change that structure — they're open-ended vehicles that accept new subscriptions monthly or quarterly, offer limited periodic redemption windows, and have minimum investments as low as $25,000. At year-end 2025, US semi-liquid evergreen funds held approximately $457 billion in assets across 486 funds, with more than half of those funds launched in the prior four years, according to Morgan Stanley research citing PitchBook data. Here's what they actually are, how they work, and what the marketing often leaves out.</p>
+  <p class="intro">A 46.8% ROI over three months and a 46.8% ROI over three years look identical on paper but represent wildly different investment outcomes. Most quick stock-profit estimates — just subtracting purchase price from sale price — miss fees, miss dividends, and don't account for how long the money was actually at work. Here's the complete formula, and why annualized return is the number that actually lets you compare investments fairly.</p>
 
   <div class="toc">
     <div class="toc-title">In this guide</div>
     <ol>
-      <li><a href="#what-is-it">What an evergreen fund is</a></li>
-      <li><a href="#vs-closed">Evergreen vs closed-end (drawdown) funds</a></li>
-      <li><a href="#who-can-invest">Who can invest and minimum requirements</a></li>
-      <li><a href="#asset-classes">The four main asset classes in evergreen funds</a></li>
-      <li><a href="#risks">Risks — what the marketing doesn't say</a></li>
-      <li><a href="#how-to-evaluate">How to evaluate an evergreen fund</a></li>
+      <li><a href="#basic-formula">The basic stock profit formula</a></li>
+      <li><a href="#what-gets-missed">What a simple price-only calculation misses</a></li>
+      <li><a href="#roi-formula">The ROI formula</a></li>
+      <li><a href="#annualized-return">Annualized return — why it's the number that matters</a></li>
+      <li><a href="#worked-example">A worked example</a></li>
+      <li><a href="#benchmarking">Benchmarking your return against the market</a></li>
       <li><a href="#faq">Frequently asked questions</a></li>
     </ol>
   </div>
 
-  <h2 id="what-is-it">What an evergreen fund is</h2>
+  <h2 id="basic-formula">The basic stock profit formula</h2>
 
-  <p>An evergreen fund (also called a perpetual fund, open-ended fund, or semi-liquid fund) is a private markets investment vehicle with no fixed end date. Unlike a traditional private equity or private credit fund — which raises capital once, deploys it over several years, and then winds down — an evergreen fund continuously accepts new capital and reinvests distributions into new deals rather than returning them to investors.</p>
+  <p>The full formula for stock profit is more complete than most people realize:</p>
 
-  <p>The term "evergreen" comes from the idea that the fund stays green — alive and growing — rather than terminating at a fixed date like a traditional closed-end fund. Key structural features:</p>
-
-  <ul>
-    <li><strong>Perpetual structure:</strong> No fixed end date. The fund continues indefinitely, recycling capital and making new investments as opportunities arise.</li>
-    <li><strong>Periodic subscriptions:</strong> New investors can enter on a scheduled basis — typically monthly or quarterly — at the current net asset value (NAV).</li>
-    <li><strong>Periodic redemptions:</strong> Investors can request to exit at scheduled intervals, typically quarterly, subject to limits and gating provisions.</li>
-    <li><strong>Immediate deployment:</strong> Capital is typically invested on the subscription date rather than sitting idle waiting for capital calls. This reduces or mitigates the J-curve — the period of early negative returns typical of closed-end funds while capital is being deployed. PE-heavy evergreen funds may still experience some J-curve effect depending on how quickly capital is deployed into underlying assets.</li>
-    <li><strong>Continuous reinvestment:</strong> Returns from portfolio investments are reinvested into new deals rather than distributed, compounding exposure over time.</li>
-  </ul>
-
-  <div class="callout data">
-    <div class="callout-label">Why the market is growing so fast</div>
-    <p>Private equity has become the dominant institutional asset class — KKR, Blackstone, Apollo, and similar firms now manage trillions. But traditional PE structures are operationally complex: capital calls arrive unpredictably, distributions are lumpy, tax reporting (K-1s) can arrive months late, and minimum investments often run $5 million or more. <cite index="27-1">Evergreen funds follow consumer preference for simplicity</cite> — a single subscription date, NAV-based pricing, and 1099 tax reporting in some structures, rather than K-1s. This meaningfully reduces the operational burden for both smaller institutions and qualified individual investors — though not all evergreen funds issue 1099s; structure varies by product and should be confirmed before investing.</p>
+  <div class="formula-box">
+    <code>Profit = (Sale Price − Purchase Price) × Shares + Dividends − Fees</code>
   </div>
 
-  <h2 id="vs-closed">Evergreen vs closed-end (drawdown) funds</h2>
+  <p>The core piece — sale price minus purchase price, times shares — is what most people calculate mentally. But two components are frequently left out entirely: dividends received during the holding period, and transaction fees, if any applied. Both can meaningfully change the real number, especially over longer holding periods. Even this fuller formula isn't the complete real-world picture — it doesn't account for taxes, bid-ask spread, or slippage (the difference between an expected trade price and the actual fill price). "Complete" here means complete for pre-tax profit calculation purposes, not every possible cost of executing a trade.</p>
+
+  <h2 id="what-gets-missed">What a simple price-only calculation misses</h2>
+
+  <p>Ignoring dividends is the more common and more costly omission. For dividend-paying stocks held over a year or more, dividend income can represent a significant share of total return — not a rounding error. A stock that appreciates modestly in price but pays a steady 3-4% dividend yield can meaningfully outperform a stock with faster price growth but no dividend, once total return is properly accounted for.</p>
+
+  <p>Fees matter less today than they used to. Most major US brokers eliminated stock trading commissions years ago, so for a typical retail stock trade, this term is often zero. It remains relevant for options contracts (which frequently carry per-contract fees), certain mutual funds, some international or OTC securities, and any account still charging commissions.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">This is still pre-tax profit</div>
+    <p>Every number in this guide is your profit before taxes. What you actually keep depends on your holding period (short-term vs long-term capital gains rates), your tax bracket, and whether the Net Investment Income Tax applies. See our <a href="capital-gains-tax-stocks.html" style="color:var(--accent);text-decoration:none;">capital gains tax guide</a> for the full breakdown of how much of this profit the IRS actually takes.</p>
+  </div>
+
+  <h2 id="roi-formula">The ROI formula</h2>
+
+  <p>Return on Investment (ROI) converts your dollar profit into a percentage, which makes it possible to compare investments of different sizes:</p>
+
+  <div class="formula-box">
+    <code>ROI = (Profit ÷ Total Cost) × 100</code>
+  </div>
+
+  <p>ROI is useful but incomplete on its own — it tells you the total return over the entire holding period, but says nothing about how long that period was. A $500 profit on a $1,000 investment is a 50% ROI whether it took two months or five years. Those are extremely different outcomes, and ROI alone can't distinguish between them.</p>
+
+  <h2 id="annualized-return">Annualized return — why it's the number that matters</h2>
+
+  <p>Annualized return converts your total ROI into an equivalent yearly rate, accounting for the actual time the money was invested:</p>
+
+  <div class="formula-box">
+    <code>Annualized Return = (1 + ROI)^(365 ÷ Days Held) − 1</code>
+  </div>
+
+  <p>This is the same underlying concept as CAGR (Compound Annual Growth Rate) — the standard way professional investors and fund managers report performance, precisely because it allows fair comparison across different time periods. Annualized return answers the question raw ROI can't: "if this rate of return continued for a full year, what would it have been?"</p>
 
   <table class="compare-table">
     <thead>
       <tr>
-        <th>Factor</th>
-        <th>Evergreen (open-end)</th>
-        <th>Closed-end (drawdown)</th>
+        <th>Scenario</th>
+        <th>ROI</th>
+        <th>Days held</th>
+        <th>Annualized return</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Fund term</td>
-        <td class="green">Perpetual — no fixed end date</td>
-        <td>Typically 10–12 years</td>
+        <td>Quick trade</td>
+        <td class="accent">10%</td>
+        <td>30 days</td>
+        <td class="green">~219%*</td>
       </tr>
       <tr>
-        <td>Capital timing</td>
-        <td class="green">Invested immediately at subscription</td>
-        <td>Called over 3–5 years (unpredictable)</td>
+        <td>Medium hold</td>
+        <td class="accent">10%</td>
+        <td>180 days</td>
+        <td class="green">~21.3%</td>
       </tr>
       <tr>
-        <td>Liquidity</td>
-        <td>Periodic redemptions (typically quarterly, with limits)</td>
-        <td class="red">None until fund wind-down or secondary sale</td>
-      </tr>
-      <tr>
-        <td>Minimum investment</td>
-        <td class="green">$25,000–$100,000 for many products</td>
-        <td>Often $1M–$5M+</td>
-      </tr>
-      <tr>
-        <td>Tax reporting</td>
-        <td class="green">Often 1099 (simpler)</td>
-        <td>K-1 (complex, often delayed)</td>
-      </tr>
-      <tr>
-        <td>Vintage diversification</td>
-        <td class="green">Immediate exposure across multiple cycles</td>
-        <td>Single vintage year concentration</td>
-      </tr>
-      <tr>
-        <td>J-curve effect</td>
-        <td class="green">Minimal or eliminated</td>
-        <td>Common — early negative returns during deployment</td>
-      </tr>
-      <tr>
-        <td>Return potential</td>
-        <td>Typically lower ceiling, but more consistent outcomes — less manager selection risk</td>
-        <td class="accent">Top-quartile funds can significantly outperform</td>
-      </tr>
-      <tr>
-        <td>Return dispersion</td>
-        <td class="green">Narrower — more diversified, less manager selection risk</td>
-        <td>Wider — manager selection matters much more</td>
+        <td>Long hold</td>
+        <td class="accent">10%</td>
+        <td>1,825 days (5 yrs)</td>
+        <td class="green">~1.9%</td>
       </tr>
     </tbody>
   </table>
+  <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);">*This figure illustrates why annualizing very short holding periods is mathematically valid but practically misleading — no investment sustains a 30-day return rate for a full year. Annualizing tiny time windows can produce eye-catching numbers that aren't useful for real decision-making. Use annualized return cautiously, and generally avoid relying on it, for holding periods under roughly 90 days.</p>
 
-  <div class="callout tip">
-    <div class="callout-label">The return tradeoff</div>
-    <p>Hamilton Lane's analysis of their own evergreen fund data found that over one-year and three-year periods through Q3 2025, private equity and secondary-focused evergreen funds outperformed buyout funds on a relative basis — though both still underperformed public equities in strong market years — a common pattern for private assets when public markets rally strongly. Return dispersion among evergreen funds was approximately 300 basis points between top and bottom quartile over three years, versus 600+ basis points for closed-end funds. Evergreens offer more consistent returns with lower dispersion — but the highest-returning closed-end managers can significantly exceed what any diversified evergreen product delivers. The tradeoff: certainty of access vs. possibility of exceptional return.</p>
+  <p>Notice: the identical 10% ROI produces annualized returns ranging from roughly 2% to over 200%, depending entirely on holding period. This is exactly why comparing raw ROI across trades with different timeframes is misleading — and why annualized return is the figure professional investors often use.</p>
+
+  <h2 id="worked-example">A worked example</h2>
+
+  <p>100 shares of a dividend-paying stock, bought at $50, sold at $72, held for 548 days (about 18 months), with $150 in dividends received and $10 in total fees:</p>
+
+  <div class="example-box">
+    <div class="example-title">Full calculation</div>
+    <div class="example-row"><span>Total cost (100 × $50)</span><span>$5,000</span></div>
+    <div class="example-row"><span>Price gain: (72−50) × 100</span><span>$2,200</span></div>
+    <div class="example-row"><span>Plus dividends</span><span>+$150</span></div>
+    <div class="example-row"><span>Minus fees</span><span>−$10</span></div>
+    <div class="example-row"><span>Total profit</span><span>$2,340</span></div>
+    <div class="example-row"><span>ROI ($2,340 ÷ $5,000)</span><span>46.8%</span></div>
+    <div class="example-row"><span>Annualized return (548 days)</span><span>29.1%/year</span></div>
   </div>
 
-  <h2 id="who-can-invest">Who can invest and minimum requirements</h2>
+  <p>The dividends alone contributed $150 to the total profit — money a naive "sale price minus purchase price" calculation would have missed entirely, a 6.8 percentage point swing in the final ROI figure. And the 29.1% annualized return is the number that fairly compares this position against other investments held for different lengths of time, or against a market benchmark.</p>
 
-  <p>Eligibility for evergreen funds varies significantly by product structure:</p>
+  <h2 id="benchmarking">Benchmarking your return against the market</h2>
 
-  <ul>
-    <li><strong>Accredited investors:</strong> Most evergreen funds are available to accredited investors — those with $200,000+ in annual income (or $300,000 joint) or $1 million in net worth excluding primary residence. This covers a much broader population than traditional PE's qualified purchaser threshold ($5 million in investments).</li>
-    <li><strong>Qualified clients / qualified purchasers:</strong> Some products with performance fee structures require qualified client or qualified purchaser status ($2.2 million in net worth or $5 million in investments, respectively).</li>
-    <li><strong>Minimum investments:</strong> Range from $2,500 to $100,000 depending on product and structure. <cite index="21-1">Individuals with as little as $25,000 to invest now have an opportunity to take advantage of institutional products</cite>, per Morgan Stanley. Products from major managers (KKR, Blackstone, Apollo, Hamilton Lane) typically require $25,000–$100,000.</li>
-    <li><strong>Platform access:</strong> Many evergreen funds are accessed through wealth management platforms (Schwab, Fidelity, Morgan Stanley Wealth Management, iCapital, CAIS) rather than directly. Some require a financial advisor relationship.</li>
-  </ul>
+  <p>Once you have an annualized return figure, you can compare it against a relevant benchmark — most commonly the S&P 500. The S&P 500's long-run average annual <strong style="color:#f0efe8;">total return</strong> — meaning price appreciation plus dividends reinvested — has been approximately 10% nominal since 1957, or roughly 6-7% after adjusting for inflation. This is an important distinction: price return alone (excluding dividends) is meaningfully lower over long periods, so make sure you're comparing your total return (as this guide calculates it) against the market's total return, not its price-only figure. This average, however, obscures enormous year-to-year variation: any individual year has landed close to that historical average surprisingly rarely — annual returns are typically either well above or well below the long-run figure, not near it.</p>
 
-  <div class="stat-row">
-    <div class="stat-card">
-      <div class="stat-number">$457B</div>
-      <div class="stat-label">US semi-liquid evergreen fund AUM at year-end 2025 (Morgan Stanley / PitchBook)</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">486</div>
-      <div class="stat-label">Semi-liquid evergreen funds in the US at year-end 2025 — over half launched in the prior 4 years</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">$25K</div>
-      <div class="stat-label">Minimum investment for many retail-accessible evergreen products vs $5M+ for traditional PE</div>
-    </div>
-  </div>
-
-  <h2 id="asset-classes">The four main asset classes in evergreen funds</h2>
-
-  <p>Evergreen structures span several private markets asset classes. Each has different characteristics in the open-ended format:</p>
-
-  <ul>
-    <li><strong>Private credit:</strong> The dominant and most natural evergreen category. Private credit's recurring income profile — regular interest payments from loans — aligns naturally with periodic liquidity windows, since incoming cash can fund redemptions without forcing asset sales. Yields on senior secured private credit have ranged from 7–12%+ in recent years, though these figures vary with market conditions and credit quality. Generally the best fit for evergreen structures because the underlying assets generate predictable cash flows — though credit quality and default rates still introduce variability.</li>
-    <li><strong>Private equity (buyout and growth):</strong> More challenging in an evergreen structure because underlying company investments are fully illiquid — the fund can't sell a portfolio company on demand to meet redemptions. Most PE-focused evergreen funds manage this through secondary investments (buying existing PE stakes from sellers) and maintaining some cash or liquid assets as a liquidity buffer. <cite index="21-1">Allocations to semi-liquid evergreen funds offering access to private equity remain in their early stages</cite> relative to private credit, per Morgan Stanley.</li>
-    <li><strong>Real estate:</strong> Property assets are illiquid by nature, making redemption management challenging. Evergreen real estate funds typically use a combination of income (rent) to fund redemptions and maintain liquidity reserves. Growth in non-traded REITs with evergreen characteristics (like Blackstone BREIT) has been significant, though BREIT's 2022–2023 redemption gates drew attention to the limitations of liquidity promises.</li>
-    <li><strong>Infrastructure:</strong> Long-duration assets (utilities, transportation, energy) with stable, inflation-linked cash flows. Well-suited to perpetual structures because the assets don't need to be sold — they generate income indefinitely. Increasingly offered in evergreen format for institutional and large retail investors.</li>
-  </ul>
-
-  <h2 id="risks">Risks — what the marketing doesn't say</h2>
-
-  <div class="risk-grid">
-    <div class="risk-card">
-      <div class="risk-name">Liquidity windows can be gated or suspended</div>
-      <p class="risk-desc">The most important risk most evergreen fund marketing undersells. <cite index="20-1">Redemptions are subject to limits on the amount of capital an investor can withdraw</cite>, per KKR. Most funds cap redemptions at 5% of NAV per quarter — typically on a fund-level aggregate basis, not per individual investor, meaning the gate applies to total redemption requests across all investors. During market stress — exactly when you might most want to exit — redemption gates can be imposed, suspending or limiting withdrawals. Blackstone's BREIT gated redemptions in late 2022 when withdrawal requests exceeded the quarterly limit. "Semi-liquid" is not the same as liquid. Treat evergreen fund capital as illiquid unless and until a redemption is processed.</p>
-    </div>
-    <div class="risk-card">
-      <div class="risk-name">NAV pricing is not daily market pricing</div>
-      <p class="risk-desc">Unlike publicly traded stocks or ETFs, evergreen fund NAVs are calculated periodically — monthly or quarterly — using appraisals of illiquid underlying assets. These valuations are inherently slower to reflect market reality than daily prices. In a downturn, NAV may lag the actual deterioration in asset values. You're subscribed and redeemed at a NAV that may not reflect current conditions. This creates a smoothing effect — lower apparent volatility, but delayed recognition of losses when market conditions deteriorate. This isn't fraud — it's structural — but it means the "price" you see may not reflect what you'd get if assets were sold immediately.</p>
-    </div>
-    <div class="risk-card">
-      <div class="risk-name">Higher fees than public market alternatives</div>
-      <p class="risk-desc">Evergreen funds typically charge management fees of 1–1.5% annually plus performance fees (carried interest) of 10–20% above a hurdle rate. Total fee drag significantly exceeds index funds or even active public equity funds. The case for paying these fees rests entirely on whether private market returns justify them net of fees — which requires evaluating the specific fund's track record and the current opportunity in its target asset class. Fees matter more in evergreen structures because there's no fund wind-down forcing a reckoning; fees compound over a perpetual life.</p>
-    </div>
-    <div class="risk-card">
-      <div class="risk-name">Concentration in the manager</div>
-      <p class="risk-desc">Unlike a diversified portfolio of closed-end funds across multiple managers and vintage years, an evergreen fund concentrates exposure in a single manager's decisions across market cycles. If that manager's strategy underperforms, rotation out is limited by redemption constraints. This is less of an issue for highly diversified evergreen funds (like Hamilton Lane's ELTIF or similar) but more significant for single-strategy products.</p>
-    </div>
-    <div class="risk-card">
-      <div class="risk-name">Short track records</div>
-      <p class="risk-desc">More than half of US evergreen funds were launched in the prior four years as of year-end 2025. Most have limited track records that don't include a full market cycle with significant sustained drawdowns. Performance data cited by managers typically covers a period of strong credit and equity markets. Evaluating evergreen funds based primarily on recent performance is inherently limited by survivorship bias and favorable market conditions.</p>
-    </div>
-  </div>
-
-  <h2 id="how-to-evaluate">How to evaluate an evergreen fund</h2>
-
-  <p>Before investing, these are the questions worth answering:</p>
-
-  <ol>
-    <li><strong>What is the liquidity mechanism?</strong> Specifically: what percentage of NAV can be redeemed per quarter, what triggers gating, and has this fund or its manager ever gated redemptions? Read the fund documents, not the marketing brochure.</li>
-    <li><strong>What does the fund invest in?</strong> Private credit, private equity, real estate, or infrastructure? How does the asset class's cash flow profile support periodic redemptions? Funds relying on secondary PE investments for liquidity management face different risks than funds with regular income from private credit loans.</li>
-    <li><strong>How long is the lock-up period?</strong> Most evergreen funds impose an initial lock-up of 6–24 months before any redemptions are available. Know the specific terms before committing capital.</li>
-    <li><strong>What is the fee structure?</strong> Management fee, performance fee, hurdle rate, and catch-up provisions. Calculate the total fee drag relative to expected returns in the asset class. Compare the net-of-fee return target to what public market alternatives offer.</li>
-    <li><strong>Who is the manager and what is their track record?</strong> Specifically in the evergreen format — not just their closed-end fund history. The two structures differ enough that past closed-end performance doesn't directly predict evergreen outcomes.</li>
-    <li><strong>How is NAV calculated?</strong> Who values the underlying assets, how frequently, and with what methodology? Third-party independent valuation is preferable to manager self-assessment.</li>
-    <li><strong>What percentage of assets are liquid or near-liquid?</strong> Most evergreen funds maintain a liquidity buffer — cash, public securities, or credit lines — to fund redemptions without forced asset sales. A higher liquidity buffer reduces gating risk but also dilutes returns. Ask specifically what the target buffer is and whether it has ever been breached.</li>
-  </ol>
+  <p>A 29.1% annualized return, as in the worked example above, meaningfully outpaces the long-run market average — a genuinely strong result if sustained. But a single position's annualized return over 18 months is a small sample; comparing it to a multi-decade market average isn't a like-for-like comparison. For a fairer benchmark, compare your return against the market's performance over that same specific window, not the long-run historical average.</p>
 
   <div class="cta-box">
-    <h3>Model how alternative investments affect your portfolio allocation</h3>
-    <p>Use the asset allocation tool to see how adding an alternatives sleeve to your portfolio changes your overall risk and return profile.</p>
-    <a href="../asset-allocation.html" class="cta-btn">Try the asset allocation tool</a>
+    <h3>Calculate your own profit and ROI</h3>
+    <p>Plug in your buy price, sell price, shares, fees, and dividends to see your complete profit picture, ROI, and annualized return.</p>
+    <a href="../stock-profit-calculator.html" class="cta-btn">Try the stock profit calculator</a>
   </div>
 
   <div class="divider"></div>
 
   <h2 id="faq">Frequently asked questions</h2>
 
-  <h3>Are evergreen funds suitable for retail investors?</h3>
-  <p>They can be, for accredited investors with adequate liquidity elsewhere. The key question is whether you can truly treat the invested capital as illiquid — despite the periodic redemption windows — because redemptions may be gated when you most want liquidity (market stress). Investors who need this capital within 3–5 years should be cautious. Investors with a long horizon (10+ years), adequate liquid reserves outside this allocation, and genuine interest in private market exposure may find certain evergreen products appropriate. The consensus guidance from Charles Schwab and other major platforms: treat the allocation as long-term capital, not an emergency reserve.</p>
+  <h3>Should I include reinvested dividends (DRIP) in my profit calculation?</h3>
+  <p>Yes, but carefully to avoid double-counting. If dividends were automatically reinvested, they purchased additional shares — meaning your final share count and sale proceeds already partly reflect that reinvestment. Either track your true final share count (including all DRIP purchases) and use that for the sale proceeds calculation, or keep your original share count fixed and separately add the dollar value of reinvested dividends to the dividends line, but not both — doing both overstates your profit.</p>
 
-  <h3>How do evergreen funds compare to REITs or BDCs?</h3>
-  <p>Real estate investment trusts (REITs) and business development companies (BDCs) are publicly traded alternatives providing exposure to real estate and private credit respectively — with daily liquidity, strong regulatory oversight, and typically lower minimum investments. Non-traded REITs and non-traded BDCs are closer to evergreen funds in structure. The tradeoff: publicly traded REITs and BDCs offer genuine daily liquidity and price transparency; non-traded alternatives and evergreen funds may offer different return profiles but with significantly less liquidity. Most retail investors are better served by understanding publicly traded alternatives before accessing evergreen structures.</p>
+  <h3>What's a "good" annualized return?</h3>
+  <p>There's no universal answer — it depends on what you're comparing against and the risk taken to achieve it. Beating the long-run S&P 500 average (roughly 10% nominal) is a common informal benchmark, but a higher return achieved through a much riskier, more volatile position isn't automatically "better" in a risk-adjusted sense. Consistency matters too: an investor who reliably captures 12% annualized returns across many positions has arguably done better than one who got a single 40% annualized return on one lucky trade and lost money on several others.</p>
 
-  <h3>What happened with Blackstone BREIT?</h3>
-  <p>Blackstone's BREIT (Broadstone Real Estate Investment Trust) was one of the first large-scale retail-accessible evergreen-style private real estate funds. In late 2022, redemption requests exceeded BREIT's quarterly cap (5% of NAV), triggering redemption gating — investors who submitted redemption requests received only a fraction of what they requested, with the remainder queued for future quarters. This was not a credit event or asset impairment; the underlying properties retained their value. But it demonstrated concretely that "periodic liquidity" in a market stress environment means limited liquidity. BREIT eventually opened redemptions as market conditions stabilized. The episode is the clearest real-world example of gating risk in evergreen-style structures.</p>
+  <h3>Does this formula work for partial sales?</h3>
+  <p>Yes, with one adjustment: use only the shares actually sold in your cost basis (purchase price × shares sold), and prorate any dividends received to the period you held those specific shares if you're calculating profit on a partial position. If you have multiple purchase lots at different prices, you'll also need to determine which lot's cost basis applies to the shares sold — see our <a href="how-to-calculate-cost-basis.html" style="color:var(--accent);text-decoration:none;">cost basis guide</a> for how FIFO, LIFO, and Specific Identification handle this.</p>
 
-  <h3>Can I hold evergreen funds in an IRA?</h3>
-  <p>Some evergreen funds can be held in self-directed IRAs, but this requires a custodian who accepts alternative investments — not all IRA custodians do. Some platforms (iCapital, CAIS, Schwab Wealth Management) facilitate IRA-accessible evergreen fund investments. Tax treatment inside an IRA differs from taxable accounts — some of the ordinary income from private credit funds that would generate 1099 income in a taxable account is deferred inside a traditional IRA. Consult a tax professional before placing alternative investments in retirement accounts, as the rules are complex.</p>
+  <h3>Why does the 30-day example show such an extreme annualized return?</h3>
+  <p>Because annualizing mathematically assumes the same rate of return compounds continuously for a full year — an assumption that becomes increasingly unrealistic as the actual holding period shrinks. A 10% gain in 30 days genuinely would compound to an enormous number if repeated identically 12 times in a row, but no real investment sustains that. Treat annualized return figures on very short holding periods (under roughly 90 days) as a mathematical curiosity rather than a meaningful performance metric.</p>
+
+  <h3>How is total return different from price return?</h3>
+  <p>Price return measures only the change in share price. Total return adds dividends (and any other cash distributions) on top of price return — it's the complete picture of what an investment actually earned. Financial benchmarks like "the S&P 500 returned 10% annually" almost always refer to total return with dividends reinvested, not price return alone, since dividends have historically contributed a meaningful share of the index's long-run total return.</p>
 
   <div class="author-bio-box">
-    <div class="author-bio-avatar">MV</div>
+    <div class="author-bio-avatar">JC</div>
     <div class="author-bio-info">
-      <div class="author-bio-name">Marcus Veil</div>
-      <div class="author-bio-title">Crypto & Web3 Analyst</div>
-      <div class="author-bio-text">Covering blockchain infrastructure, DeFi protocols, and the intersection of crypto and traditional finance. Independent analyst and writer.</div>
-      <a href="../authors/marcus-veil.html" class="author-bio-link">View all articles by Marcus →</a>
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
     </div>
   </div>
 
   <div class="callout">
     <div class="callout-label">Disclaimer</div>
-    <p>This article is for informational and educational purposes only. Evergreen funds are complex financial products not suitable for all investors. AUM figures ($457B, 486 funds) are from Morgan Stanley research citing PitchBook data as of year-end 2025 and may have changed. Return data referenced (Hamilton Lane) covers periods through Q3 2025. Redemption gating terms vary by fund and should be verified in fund documents. Not financial, legal, or investment advice. Consult a qualified financial advisor before investing in alternative investments. Past performance does not guarantee future results.</p>
+    <p>This article is for informational and educational purposes only. All figures shown are pre-tax. S&P 500 historical average return figures cited (~10% nominal, ~6-7% real since 1957) are widely cited long-run averages and do not predict future performance; actual annual returns vary substantially. Not financial advice.</p>
   </div>
 
 </article>
