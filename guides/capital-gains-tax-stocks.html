@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sequence of Returns Risk Explained — The Biggest Retirement Threat You're Not Measuring</title>
-<meta name="description" content="Two retirees with identical portfolios, identical withdrawal rates, and identical average returns can end up in completely different financial positions. Here's what sequence of returns risk is, why the first decade of retirement is the most dangerous, and five strategies to protect against it.">
-<meta name="keywords" content="sequence of returns risk, sequence risk retirement, sequence of returns explained, retirement risk zone, how to protect against sequence of returns risk 2026">
-<meta property="og:title" content="Sequence of Returns Risk Explained — The Biggest Retirement Threat You're Not Measuring">
-<meta property="og:description" content="Two retirees. Same $1M portfolio. Same 6.5% average return. Same withdrawals. One dies a multimillionaire. The other runs out at 87. The only difference: the order returns arrived.">
+<title>How to Calculate Capital Gains Tax on Stocks (2026 Rates)</title>
+<meta name="description" content="Capital gains tax depends on how long you held the stock. Here's exactly how short-term and long-term rates work in 2026, the 0%/15%/20% brackets, the 3.8% NIIT surtax, and how to calculate what you actually owe.">
+<meta name="keywords" content="capital gains tax calculator, how to calculate capital gains tax on stocks, long-term vs short-term capital gains 2026, capital gains tax brackets 2026, NIIT calculator">
+<meta property="og:title" content="How to Calculate Capital Gains Tax on Stocks (2026 Rates)">
+<meta property="og:description" content="Selling 11 months in vs 13 months in can cost thousands more in tax on the same gain. Here's exactly how the 2026 short-term and long-term capital gains rates work.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://mydcacalc.com/guides/sequence-of-returns-risk.html">
+<meta property="og:url" content="https://mydcacalc.com/guides/capital-gains-tax-stocks.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/guides/sequence-of-returns-risk.html">
+<link rel="canonical" href="https://mydcacalc.com/guides/capital-gains-tax-stocks.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,16 +20,16 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Sequence of Returns Risk Explained — The Biggest Retirement Threat You're Not Measuring",
-  "description": "What sequence of returns risk is, why the first decade of retirement is the most dangerous period, and five strategies to protect against it.",
+  "headline": "How to Calculate Capital Gains Tax on Stocks (2026 Rates)",
+  "description": "How short-term and long-term capital gains tax rates work in 2026, the 0%/15%/20% brackets, NIIT, and how to calculate your actual tax owed.",
   "author": {
     "@type": "Person",
     "name": "James Colter",
     "url": "https://mydcacalc.com/authors/james-colter.html"
   },
   "publisher": { "@type": "Organization", "name": "MyDCACalc.com", "url": "https://mydcacalc.com" },
-  "datePublished": "2026-07-06",
-  "dateModified": "2026-07-06"
+  "datePublished": "2026-07-22",
+  "dateModified": "2026-07-22"
 }
 </script>
 <style>
@@ -59,8 +59,8 @@ nav a:hover { color: var(--text); }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
 .nav-mobile-menu.open { display: flex; }
-.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
 .nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
 @media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
 .article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
 .article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
@@ -87,35 +87,19 @@ ul li strong, ol li strong { color: var(--text); font-weight: 500; }
 .callout.tip .callout-label { color: var(--green); }
 .callout.warning .callout-label { color: var(--red); }
 .callout.data .callout-label { color: var(--blue); }
+.compare-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; font-family: var(--font-mono); }
+.compare-table th { text-align: left; padding: 10px 12px; background: var(--bg-input); color: var(--text-dim); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.compare-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; font-size: 12px; }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td.accent { color: var(--accent); }
+.compare-table td.green { color: var(--green); }
+.compare-table td.red { color: var(--red); }
 .example-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 28px 0; }
 .example-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
-.example-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 560px) { .example-cols { grid-template-columns: 1fr; } }
-.example-col { background: var(--bg-input); border-radius: var(--radius); padding: 14px; }
-.example-col-label { font-size: 11px; font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
-.example-col.good .example-col-label { color: var(--green); }
-.example-col.bad .example-col-label { color: var(--red); }
-.example-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 13px; font-family: var(--font-mono); }
-.example-row:last-child { border-bottom: none; font-weight: 500; }
-.example-row span:first-child { color: var(--text-dim); }
-.example-row span:last-child { color: var(--text-muted); }
-.example-col.good .example-row:last-child span:last-child { color: var(--green); }
-.example-col.bad .example-row:last-child span:last-child { color: var(--red); }
-.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0; }
-@media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
-.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; text-align: center; }
-.stat-number { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); margin-bottom: 6px; letter-spacing: -0.02em; }
-.stat-label { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
-.strategy-grid { display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
-.strategy-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; border-left: 3px solid var(--accent); }
-.strategy-num { font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
-.strategy-name { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
-.strategy-desc { font-size: 14px; color: var(--text-muted); font-weight: 300; line-height: 1.65; margin: 0; }
-.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
-.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
-.cta-box p { font-size: 14px; margin-bottom: 20px; }
-.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
-.cta-btn:hover { opacity: 0.85; }
+.example-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; font-family: var(--font-mono); }
+.example-row:last-child { border-bottom: none; font-weight: 600; padding-top: 12px; }
+.example-row span:first-child { color: var(--text-muted); }
+.example-row span:last-child { color: var(--text); }
 .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
 .toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
 .toc ol { margin: 0; padding-left: 18px; }
@@ -123,6 +107,11 @@ ul li strong, ol li strong { color: var(--text); font-weight: 500; }
 .toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
 .toc a:hover { color: var(--accent); }
 .divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
 .author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
 .author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
 .author-bio-info { flex: 1; }
@@ -186,7 +175,7 @@ footer a:hover { color: var(--text); }
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Plan your retirement income</strong> — real P&L, avg cost, weekly AI signals</span>
+  <span>📈 <strong>Track your real cost basis automatically</strong> — avg cost, live P&L, weekly signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -368,170 +357,183 @@ footer a:hover { color: var(--text); }
 <article class="article-wrap">
 
   <div class="article-meta">
-    <span class="meta-tag">Retirement</span>
-    <span class="meta-tag">Risk</span>
-    <span class="meta-date">July 6, 2026</span>
-    <span class="meta-read">10 min read</span>
+    <span class="meta-tag">Taxes</span>
+    <span class="meta-tag">Fundamentals</span>
+    <span class="meta-date">July 22, 2026</span>
+    <span class="meta-read">9 min read</span>
   </div>
 
-  <h1>Sequence of returns risk <em>explained</em> — the biggest retirement threat you're not measuring</h1>
+  <h1>How to calculate <em>capital gains tax</em> on stocks — 2026 rates</h1>
 
-  <p class="intro">Two retirees start with $1,000,000, withdraw $50,000 a year, and earn the same 6.5% average return over 30 years. One finishes with over $2 million. The other runs out of money at 87. The only difference is the order of returns. That's sequence of returns risk — and it's the most dangerous thing your retirement plan almost certainly doesn't account for.</p>
+  <p class="intro">Selling a winning stock at 11 months instead of 13 months can cost thousands more in tax on the exact same gain, for many taxpayers. The difference comes down to one thing: how long you held it. Short-term gains are taxed as ordinary income, up to 37%. Long-term gains get preferential rates of 0%, 15%, or 20%. Here's exactly how the math works for 2026, including the often-overlooked 3.8% surtax, which applies above fixed income thresholds and reaches more taxpayers over time as incomes rise.</p>
 
   <div class="toc">
     <div class="toc-title">In this guide</div>
     <ol>
-      <li><a href="#what-is-it">What sequence of returns risk is</a></li>
-      <li><a href="#why-it-matters">Why the first decade of retirement is the most dangerous</a></li>
-      <li><a href="#the-math">The math: why average returns mislead you</a></li>
-      <li><a href="#reverse-dca">Reverse dollar-cost averaging — the withdrawal trap</a></li>
-      <li><a href="#strategies">Five strategies to reduce sequence risk</a></li>
-      <li><a href="#accumulation">Does sequence risk affect accumulators too?</a></li>
+      <li><a href="#what-is-it">What a capital gain is</a></li>
+      <li><a href="#short-vs-long">Short-term vs long-term — the holding period test</a></li>
+      <li><a href="#2026-brackets">2026 long-term capital gains brackets</a></li>
+      <li><a href="#niit">The 3.8% NIIT surtax</a></li>
+      <li><a href="#worked-example">A worked example</a></li>
+      <li><a href="#losses">Using losses to offset gains</a></li>
+      <li><a href="#special-rates">Special rates — collectibles and QSBS</a></li>
       <li><a href="#faq">Frequently asked questions</a></li>
     </ol>
   </div>
 
-  <h2 id="what-is-it">What sequence of returns risk is</h2>
+  <h2 id="what-is-it">What a capital gain is</h2>
 
-  <p>Sequence of returns risk is the danger that the timing of investment losses — specifically, when bad returns occur relative to when you're withdrawing money — can permanently damage a retirement portfolio, even when average long-term returns are perfectly adequate.</p>
+  <p>A capital gain is the profit you make when you sell an investment for more than you paid for it — the sale price minus your cost basis (see our <a href="how-to-calculate-cost-basis.html" style="color:var(--accent);text-decoration:none;">cost basis guide</a> for how that number is calculated). Capital gains tax only applies to <strong>realized</strong> gains — meaning you actually sold the asset. Stocks that have grown in value but remain unsold are "unrealized" and owe no tax, no matter how large the paper gain.</p>
 
-  <p>During most of the accumulation phase (when you're saving), the sequence of returns matters far less. A dollar-cost averaging investor who experiences three bad years followed by seven good years ends up in roughly the same place as one who experienced seven good years followed by three bad ones — the same average return produces the same ending balance when contributions are ongoing. <strong>This changes the moment withdrawals begin.</strong></p>
+  <p>This is a genuinely different treatment than most other income. Your salary is taxed the year you earn it. A stock gain is only taxed the year you sell — giving you meaningful control over timing that doesn't exist with wage income.</p>
 
-  <p>Withdrawals transform a bad sequence from a temporary setback into a permanent impairment. When you sell shares to fund living expenses during a market downturn, those shares cannot participate in the subsequent recovery. The fewer shares you hold at the bottom, the less you benefit from the rebound.</p>
+  <h2 id="short-vs-long">Short-term vs long-term — the holding period test</h2>
 
-  <h2 id="why-it-matters">Why the first decade of retirement is the most dangerous</h2>
-
-  <p>Retirement researchers Wade Pfau and Michael Kitces coined the term "retirement red zone" for the roughly ten-year window straddling the transition from working to retirement — approximately ages 60 to 70. Three forces converge to make this the most financially vulnerable decade of your life:</p>
+  <p>The single most important variable in capital gains tax is how long you held the asset before selling:</p>
 
   <ul>
-    <li><strong>The portfolio is at its largest absolute size.</strong> A 30% decline on a $1 million portfolio loses $300,000. A 30% decline on a $100,000 accumulation-phase portfolio loses $30,000 — one-tenth the dollar impact, with decades of future contributions ahead to compensate.</li>
-    <li><strong>Withdrawals have just begun.</strong> Every dollar withdrawn during a downturn is sold at depressed prices and cannot recover. The combination of falling asset values and ongoing withdrawals creates compounding damage that later good returns cannot fully undo.</li>
-    <li><strong>Remaining time is limited.</strong> A 35-year-old who experiences a severe bear market has 30 years for the portfolio to recover. A 65-year-old who experiences the same decline has perhaps 20–25 years of retirement ahead — and needs the portfolio to fund living expenses throughout.</li>
+    <li><strong>Short-term capital gains</strong> — assets held <strong>one year or less</strong>. Taxed as ordinary income at your regular marginal tax rate: 10%, 12%, 22%, 24%, 32%, 35%, or 37% for 2026, depending on your total taxable income.</li>
+    <li><strong>Long-term capital gains</strong> — assets held <strong>more than one year</strong>. Taxed at preferential rates of 0%, 15%, or 20% depending on your taxable income — significantly lower than ordinary rates for most investors.</li>
   </ul>
 
   <div class="callout warning">
-    <div class="callout-label">The asymmetry is stark</div>
-    <p>Charles Schwab's analysis illustrates this directly: a severe loss arriving in year 1 of retirement creates what Schwab describes as a "strong headwind" — withdrawals during the down market require selling more shares than would be needed in normal conditions, permanently reducing the shares available to recover. The same loss arriving in year 20 of a 30-year retirement, while unpleasant, is far less likely to be catastrophic — by that point, the most vulnerable window has passed.</p>
+    <div class="callout-label">The one-year test is stricter than it sounds</div>
+    <p>To qualify for long-term treatment, you must hold the asset for more than one year — meaning at least one year and one day. If you buy on March 15 and sell exactly one year later on March 15, that sale is still short-term. The holding period excludes your purchase date and starts counting the following day, running through and including your sale date. Missing this by even a single day can mean paying ordinary income rates instead of the much lower long-term rate on the exact same gain.</p>
   </div>
 
-  <h2 id="the-math">The math: why average returns mislead you</h2>
+  <h2 id="2026-brackets">2026 long-term capital gains brackets</h2>
 
-  <p>Average returns are the standard tool for retirement projections, but they are fundamentally misleading for withdrawal scenarios. Here's a concrete illustration:</p>
+  <p>Long-term capital gains brackets are separate from — but stack on top of — your ordinary income. Your bracket is determined by your <strong>total taxable income</strong> (ordinary income plus the gain itself), not the gain in isolation:</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Rate</th>
+        <th>Single</th>
+        <th>Married filing jointly</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="green">0%</td>
+        <td>Up to $49,450</td>
+        <td>Up to $98,900</td>
+      </tr>
+      <tr>
+        <td class="accent">15%</td>
+        <td>$49,450 – $545,500</td>
+        <td>$98,900 – $613,700</td>
+      </tr>
+      <tr>
+        <td class="red">20%</td>
+        <td>Above $545,500</td>
+        <td>Above $613,700</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);">Source: IRS Revenue Procedure 2025-32. Thresholds apply to taxable income (after your standard or itemized deduction) — not gross income. Unlike the NIIT thresholds below, these brackets are adjusted annually for inflation.</p>
+
+  <p>Because these brackets stack on top of ordinary income, the gain itself can straddle multiple rates. If your ordinary income already fills most of the 15% bracket, only the portion of your gain that pushes you past the next threshold gets taxed at the higher rate — the rest stays at the lower one. This is identical in structure to how ordinary marginal tax brackets work.</p>
+
+  <div class="callout tip">
+    <div class="callout-label">The 0% bracket is real and underused</div>
+    <p>If your total taxable income — including the gain — stays under $49,450 (single) or $98,900 (married), your long-term capital gains are taxed at 0% federally. This is a genuinely useful planning tool for retirees or anyone with a lower-income year: realizing gains while in this bracket, even without needing the cash, can reset your cost basis higher at no federal tax cost — a strategy sometimes called "gain harvesting," the inverse of tax-loss harvesting.</p>
+  </div>
+
+  <h2 id="niit">The 3.8% NIIT surtax</h2>
+
+  <p>Above certain income thresholds, an additional 3.8% Net Investment Income Tax (NIIT) applies on top of whatever capital gains rate you already owe. This is sometimes called the Medicare surtax, part of the Affordable Care Act. It applies to net investment income — including capital gains, interest, dividends, and rental income — for taxpayers with Modified Adjusted Gross Income (MAGI) above:</p>
+
+  <ul>
+    <li><strong>$200,000</strong> for single filers</li>
+    <li><strong>$250,000</strong> for married filing jointly</li>
+  </ul>
+
+  <div class="callout data">
+    <div class="callout-label">These thresholds never move</div>
+    <p>Unlike the capital gains brackets above, which are adjusted annually for inflation, the NIIT thresholds have not been indexed for inflation since the tax was enacted. Every year, more taxpayers cross into NIIT territory simply because their nominal income rises with inflation and career growth — even though their real, inflation-adjusted purchasing power hasn't necessarily increased. A "high earner" provision from 2013 increasingly captures upper-middle-class filers by 2026.</p>
+  </div>
+
+  <p>Stacked together, the effective top rate on long-term gains reaches 23.8% (20% + 3.8% NIIT) for the highest earners — and even the 15% bracket effectively becomes 18.8% once NIIT applies.</p>
+
+  <h2 id="worked-example">A worked example</h2>
+
+  <p>A single filer with $180,000 in ordinary income sells stock for a $50,000 long-term gain:</p>
 
   <div class="example-box">
-    <div class="example-title">Two retirees — same average return, radically different outcomes</div>
-    <p style="font-size:13px;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:16px;">$1,000,000 starting balance · $50,000/year withdrawal, inflation-adjusted at 2%/yr (all withdrawals increase with inflation each year) · 6.5% average annual return over 30 years · Same returns in reverse order</p>
-    <div class="example-cols">
-      <div class="example-col good">
-        <div class="example-col-label">Retiree A — good years first</div>
-        <div class="example-row"><span>Years 1–5</span><span>Strong markets</span></div>
-        <div class="example-row"><span>Years 15–20</span><span>Severe bear market</span></div>
-        <div class="example-row"><span>Avg annual return</span><span>6.5%</span></div>
-        <div class="example-row"><span>Balance at year 30</span><span>~$2.1M</span></div>
-      </div>
-      <div class="example-col bad">
-        <div class="example-col-label">Retiree B — bad years first</div>
-        <div class="example-row"><span>Years 1–5</span><span>Severe bear market</span></div>
-        <div class="example-row"><span>Years 15–20</span><span>Strong markets</span></div>
-        <div class="example-row"><span>Avg annual return</span><span>6.5%</span></div>
-        <div class="example-row"><span>Balance at year 30</span><span>Portfolio depleted at yr 23</span></div>
-      </div>
-    </div>
-    <p style="font-size:12px;color:var(--text-dim);font-family:var(--font-mono);margin-top:14px;margin-bottom:0;">Illustrative example based on scenarios referenced in Fidelity advisor materials and widely cited in retirement research. Actual outcomes depend on specific return sequences, withdrawal adjustments, and portfolio composition. Not a projection.</p>
+    <div class="example-title">Long-term scenario — stacking the gain on top of ordinary income</div>
+    <div class="example-row"><span>Ordinary taxable income</span><span>$180,000</span></div>
+    <div class="example-row"><span>Long-term capital gain</span><span>$50,000</span></div>
+    <div class="example-row"><span>Total taxable income</span><span>$230,000</span></div>
+    <div class="example-row"><span>LTCG bracket (15% zone: $49,450–$545,500)</span><span>Entire $50,000 gain at 15%</span></div>
+    <div class="example-row"><span>Federal LTCG tax</span><span>$7,500</span></div>
+    <div class="example-row"><span>NIIT — MAGI exceeds $200,000 threshold by $30,000</span><span>3.8% × $30,000 = $1,140</span></div>
+    <div class="example-row"><span>Total tax on the gain</span><span>$8,640</span></div>
   </div>
 
-  <p>To see why in simple arithmetic: if your portfolio drops 20% in year 1 (from $1M to $800,000) and you withdraw $50,000, your balance becomes $750,000. A 25% recovery the following year brings you to approximately $937,500 — not back to $1M. Repeat that dynamic with ongoing withdrawals in years 2 and 3, and the gap compounds irreversibly. Good returns later cannot undo the math.</p>
+  <p>The NIIT calculation applies to the <em>lesser</em> of the total net investment income ($50,000) or the amount MAGI exceeds the threshold ($230,000 − $200,000 = $30,000). Here, $30,000 is smaller, so NIIT applies only to that $30,000 slice — not the full $50,000 gain.</p>
 
-  <p>The same set of returns — just reversed — produces an outcome difference measured in millions. The retiree who got the bad years first isn't less skilled, didn't make worse decisions, and didn't have worse luck in terms of the overall returns they experienced. They simply experienced the same returns in the wrong order.</p>
+  <p>Now compare the same $50,000 gain if this investor had sold at 11 months instead of past the one-year mark. As short-term gain, it's taxed as ordinary income stacked on the existing $180,000 — meaning it fills the remainder of the 24% bracket first, then spills into the 32% bracket:</p>
 
-  <div class="stat-row">
-    <div class="stat-card">
-      <div class="stat-number">10 yrs</div>
-      <div class="stat-label">The "retirement red zone" — the most financially vulnerable decade of your life (Pfau & Kitces)</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">3.9%</div>
-      <div class="stat-label">Morningstar's 2026 safe withdrawal rate for fixed-spending retirees — below the traditional 4% rule</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">37%</div>
-      <div class="stat-label">S&P 500 decline in 2008 — anyone who retired that year experienced sequence risk immediately</div>
-    </div>
+  <div class="example-box">
+    <div class="example-title">Short-term scenario — same $50,000 gain, sold at 11 months</div>
+    <div class="example-row"><span>$180,000 to $201,775 (remainder of 24% bracket)</span><span>$21,775 × 24% = $5,226</span></div>
+    <div class="example-row"><span>$201,775 to $230,000 (32% bracket)</span><span>$28,225 × 32% = $9,032</span></div>
+    <div class="example-row"><span>Federal ordinary income tax on the gain</span><span>$14,258</span></div>
+    <div class="example-row"><span>NIIT (same $30,000 slice, since MAGI is identical)</span><span>3.8% × $30,000 = $1,140</span></div>
+    <div class="example-row"><span>Total tax on the gain</span><span>$15,398</span></div>
   </div>
 
-  <h2 id="reverse-dca">Reverse dollar-cost averaging — the withdrawal trap</h2>
+  <p>The two-month difference in holding period costs this investor $6,758 more in federal tax on the identical $50,000 gain — a meaningful illustration of why the one-year threshold matters, even though the effect is smaller than a flat-rate comparison would suggest. The exact gap depends heavily on your specific income and which brackets the gain straddles; use the calculator below to see your own numbers.</p>
 
-  <p>During accumulation, dollar-cost averaging works in your favor: buying more shares when prices are low lowers your average cost per share. When you switch to withdrawals, the same mathematical mechanism runs in reverse — and it works against you.</p>
+  <h2 id="losses">Using losses to offset gains</h2>
 
-  <p>When prices are low, each dollar you withdraw requires selling more shares. When prices recover, you have fewer shares to benefit from the rebound. This is what turns a temporary downturn into permanent damage — and why two portfolios with identical average returns can end up in completely different places depending on when the losses occurred.</p>
+  <p>Capital losses aren't just a bad outcome to accept — they have real tax value. The IRS allows you to net your gains and losses against each other before calculating what you owe:</p>
 
-  <p>The practical implication: a retiree who reduces or pauses withdrawals during a significant market downturn can dramatically reduce sequence risk exposure. The ability to be flexible about withdrawals — spending less during bad markets, more during good ones — is one of the most powerful tools a retiree has. This flexibility is exactly what fixed-spending projections (including the traditional 4% rule) don't account for.</p>
+  <ol>
+    <li><strong>Losses first offset gains of the same type.</strong> Short-term losses offset short-term gains first; long-term losses offset long-term gains first.</li>
+    <li><strong>Remaining losses offset the other type.</strong> If you have excess short-term losses after offsetting short-term gains, they can offset long-term gains, and vice versa.</li>
+    <li><strong>Excess losses offset ordinary income — up to $3,000/year.</strong> If losses still exceed all your gains, you can deduct up to $3,000 ($1,500 if married filing separately) against ordinary income like wages.</li>
+    <li><strong>Anything beyond that carries forward indefinitely.</strong> Unused losses roll forward to future tax years with no expiration, until fully used.</li>
+  </ol>
 
-  <h2 id="strategies">Five strategies to reduce sequence risk</h2>
+  <p>This is the mechanical foundation behind tax-loss harvesting — deliberately realizing losses to offset gains elsewhere in your portfolio. See our <a href="tax-loss-harvesting-explained.html" style="color:var(--accent);text-decoration:none;">tax-loss harvesting guide</a> for the full strategy, including how the wash sale rule limits repurchasing the same security too soon after harvesting a loss.</p>
 
-  <div class="strategy-grid">
+  <h2 id="special-rates">Special rates — collectibles and QSBS</h2>
 
-    <div class="strategy-card">
-      <div class="strategy-num">Strategy 01 · Prevents forced selling at market lows</div>
-      <div class="strategy-name">Build a cash/bond buffer</div>
-      <p class="strategy-desc">Hold 1–3 years of living expenses in cash or short-term bonds outside your equity portfolio. During a market downturn, draw from the buffer rather than selling equities at depressed prices. The buffer gives your stock portfolio time to recover without forcing asset sales. A bond ladder (covered in our <a href="bond-ladder-retirement.html" style="color:var(--accent);text-decoration:none;">bond ladder guide</a>) is a systematic way to implement this.</p>
-    </div>
+  <p>A few categories of assets don't follow the standard 0%/15%/20% long-term structure:</p>
 
-    <div class="strategy-card">
-      <div class="strategy-num">Strategy 02 · Aligns spending with portfolio health</div>
-      <div class="strategy-name">Flexible withdrawal rates (guardrails strategy)</div>
-      <p class="strategy-desc">Rather than fixed withdrawals regardless of market conditions, implement spending guardrails. Financial planners Guyton and Klinger's research shows that cutting spending by 10% when your withdrawal rate rises 20% above its initial level — and raising it by 10% when it falls 20% below — allows initial withdrawal rates of 5.2–5.6% to become sustainable at high confidence levels. The key insight: flexibility in spending is worth more than a fixed high withdrawal rate.</p>
-    </div>
-
-    <div class="strategy-card">
-      <div class="strategy-num">Strategy 03 · Increases the guaranteed income floor</div>
-      <div class="strategy-name">Delay Social Security to maximize guaranteed income</div>
-      <p class="strategy-desc">Each year you delay Social Security past 62 increases your benefit by approximately 6–8%. Claiming at 70 vs 62 can increase monthly benefits by 75–80%. Larger guaranteed Social Security income reduces the amount you need to withdraw from your portfolio — shrinking the sequence risk exposure. Delaying Social Security while drawing portfolio assets slightly early may seem counterintuitive, but it permanently increases the inflation-adjusted income floor that isn't subject to sequence risk.</p>
-    </div>
-
-    <div class="strategy-card">
-      <div class="strategy-num">Strategy 04 · Reduces exposure during the highest-risk window</div>
-      <div class="strategy-name">Reduce equity allocation before and just after retirement</div>
-      <p class="strategy-desc">The "bond tent" or "rising equity glidepath" strategy — popularized by Michael Kitces — involves decreasing equity allocation in the years approaching retirement (reducing sequence risk exposure) and then gradually increasing it back afterward. This is counterintuitive: most people think of retirement as the point to go most conservative. But research suggests the most conservative point should be at retirement, with equities rising slightly thereafter as the most vulnerable sequence risk window passes.</p>
-    </div>
-
-    <div class="strategy-card">
-      <div class="strategy-num">Strategy 05 · Eliminates portfolio withdrawals during the danger zone</div>
-      <div class="strategy-name">Part-time income in early retirement</div>
-      <p class="strategy-desc">Even modest part-time income ($10,000–$20,000/year) during the first 5–10 years of retirement can dramatically reduce sequence risk by reducing or eliminating portfolio withdrawals during the most vulnerable window. A retiree who needs to withdraw $50,000/year from their portfolio but earns $20,000 from consulting only needs to withdraw $30,000 — reducing portfolio stress by 40% during the highest-risk years. This doesn't require full-time work; consulting, freelance, or even part-time work can be sufficient.</p>
-    </div>
-
-  </div>
-
-  <h2 id="accumulation">Does sequence risk affect accumulators too?</h2>
-
-  <p>Technically yes, but far less severely. An accumulator who experiences a bad sequence of returns — say, a severe bear market in the final years before retirement — is affected in that their ending portfolio balance is lower than a flat or favorable return path would have produced. This is why a market crash the year before you retire is much worse than one a decade earlier.</p>
-
-  <p>However, accumulators have a tool that retirees don't: the ability to keep contributing. An accumulator buying more shares at lower prices during a downturn is dollar-cost averaging constructively. This partially offsets the sequence effect. The retiree selling shares at lower prices has no such offset.</p>
-
-  <p>The practical guidance for late-career accumulators (roughly 55+): start thinking about sequence risk before retirement, not at retirement. The bond tent strategy is most effective when implemented in the 5–10 years before retirement — building the cash/bond buffer before you need to draw on it.</p>
+  <ul>
+    <li><strong>Collectibles (art, antiques, precious metals, rare coins):</strong> Long-term gains are capped at a maximum 28% rate, regardless of your income level — higher than the standard top long-term rate of 20%. Short-term gains on collectibles are still taxed as ordinary income.</li>
+    <li><strong>Qualified Small Business Stock (QSBS):</strong> Under specific holding-period and eligibility requirements (Section 1202), a portion of gain on qualifying small business stock can potentially be excluded from tax entirely. QSBS does not follow the standard 0%/15%/20% long-term structure, and treatment of any taxable remainder is more complex than a simple flat rate — this is a genuinely intricate area of the tax code. Consult a tax professional if this applies to your situation.</li>
+    <li><strong>Unrecaptured Section 1250 gain</strong> (real estate depreciation recapture): Capped at 25%, relevant primarily for real estate investors, not typical stock investors.</li>
+  </ul>
 
   <div class="cta-box">
-    <h3>Model your retirement withdrawal rate</h3>
-    <p>Use the safe withdrawal rate calculator to see how long your portfolio lasts at different withdrawal rates — and understand the baseline before thinking about sequence risk adjustments.</p>
-    <a href="../withdrawal-rate-calculator.html" class="cta-btn">Try the withdrawal rate calculator</a>
+    <h3>Calculate your exact tax on a sale</h3>
+    <p>Use the capital gains tax calculator to plug in your income and gain and see your exact federal tax, including NIIT if applicable.</p>
+    <a href="../capital-gains-tax-calculator.html" class="cta-btn">Try the capital gains tax calculator</a>
   </div>
 
   <div class="divider"></div>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
 
-  <h3>Is sequence of returns risk the same as market risk?</h3>
-  <p>No — they're related but distinct. Market risk is the possibility that investments lose value. Sequence risk is specifically about the timing of those losses relative to your withdrawal schedule. A 30% decline is the same market risk event regardless of when it occurs; but a 30% decline in year 1 of retirement creates a fundamentally different outcome than the same decline in year 20, even if average long-term returns are identical. Sequence risk is a withdrawal-phase phenomenon that doesn't meaningfully affect accumulators who aren't selling.</p>
+  <h3>Do state taxes apply on top of federal capital gains tax?</h3>
+  <p>In most states, yes — most states tax capital gains as ordinary income, with no separate preferential rate the way federal law provides. Combined federal and state top rates can exceed 50% in high-tax states — California's top marginal rate is 13.3%, and New York plus New York City combined can approach 11.9%. A handful of states (Texas, Florida, Nevada, Washington, and others) have no state income tax at all, meaning only federal capital gains tax applies. Check your specific state's treatment, since rules vary significantly.</p>
 
-  <h3>Does the 4% rule account for sequence of returns risk?</h3>
-  <p>Yes — this is actually what the 4% rule was designed to address. William Bengen's original 1994 research tested the 4% withdrawal rate against every 30-year historical return sequence in US market data, including the worst sequences (Great Depression, 1970s stagflation). The rule survived all of them. However, Morningstar's 2026 analysis revised the sustainable rate to 3.9% for fixed-spending retirees, citing current valuations and lower expected future returns relative to historical averages. The 4% rule's margin of safety has narrowed in recent years.</p>
+  <h3>Do qualified dividends get the same treatment as long-term capital gains?</h3>
+  <p>Yes. Qualified dividends — dividends from US corporations and certain qualifying foreign corporations, held for more than 60 days during the 121-day period surrounding the ex-dividend date — are taxed at the same preferential 0%/15%/20% long-term capital gains rates, not as ordinary income. Non-qualified (ordinary) dividends don't get this treatment and are taxed as ordinary income instead.</p>
 
-  <h3>What is the safest withdrawal rate given sequence risk?</h3>
-  <p>There is no universally safe rate — it depends on asset allocation, spending flexibility, time horizon, guaranteed income sources, and market conditions. Morningstar's 2026 analysis suggests 3.9% for a fixed-spending, 30-year retirement with a 50/50 portfolio. With spending flexibility (guardrails approach), researchers Guyton and Klinger found rates of 5.2–5.6% sustainable at high confidence levels. The range is wide, and the right answer depends heavily on your specific situation and willingness to adjust spending during downturns.</p>
+  <h3>How do capital gains affect Social Security taxation?</h3>
+  <p>Capital gains count toward your "combined income" for Social Security taxation purposes — the calculation that determines what percentage of your Social Security benefit is taxable. A large capital gain in a year you're also receiving Social Security can push more of your benefit into taxable territory, even though the gain itself is taxed at preferential capital gains rates. This interaction is easy to overlook and worth modeling before realizing a large gain while collecting benefits.</p>
 
-  <h3>How does Social Security help with sequence risk?</h3>
-  <p>Social Security is a guaranteed, inflation-adjusted income stream that isn't subject to sequence risk — it doesn't matter what the market does, the payment arrives. The more of your retirement income covered by guaranteed sources (Social Security, pension, annuity income), the less you need to withdraw from your portfolio, and the smaller your sequence risk exposure. A retiree whose Social Security covers 80% of living expenses has dramatically lower sequence risk than one whose portfolio must cover 80%. This is one of the strongest arguments for delaying Social Security to maximize the guaranteed income floor.</p>
+  <h3>Can I avoid capital gains tax entirely by not selling?</h3>
+  <p>You can defer it indefinitely by holding, since only realized gains are taxed. One notable feature of current tax law: if you hold an appreciated asset until death, your heirs generally receive a "step-up in basis" to the asset's value at your death — potentially eliminating the built-up capital gain entirely for tax purposes. This is a significant estate planning consideration, though it shouldn't be the sole driver of investment decisions during your lifetime.</p>
+
+  <h3>Does this apply to cryptocurrency the same way?</h3>
+  <p>Yes — the IRS treats cryptocurrency as property, and the same short-term versus long-term framework and rates described in this guide apply to crypto gains. The mechanics of tracking cost basis differ somewhat for crypto (see our <a href="how-to-calculate-cost-basis.html" style="color:var(--accent);text-decoration:none;">cost basis guide</a> for the wallet-by-wallet tracking rules that took effect in 2025), but once a taxable gain is calculated, the same capital gains rate structure applies.</p>
 
   <div class="author-bio-box">
     <div class="author-bio-avatar">JC</div>
@@ -545,7 +547,7 @@ footer a:hover { color: var(--text); }
 
   <div class="callout">
     <div class="callout-label">Disclaimer</div>
-    <p>This article is for informational and educational purposes only. The two-retiree example is illustrative only — actual outcomes depend on specific return sequences, portfolio composition, and withdrawal behavior. Withdrawal rate research cited (Morningstar, Guyton-Klinger, Kitces-Pfau) reflects findings as of their respective publication dates and may be updated. Not financial advice. Consult a qualified financial advisor for personalized retirement income planning.</p>
+    <p>This article is for informational and educational purposes only and does not constitute tax advice. Figures cited reflect 2026 federal rates per IRS Revenue Procedure 2025-32 and are subject to change. State tax figures are illustrative and may not reflect current law. This guide does not cover every special situation (QSBS, Section 1250 recapture, state-specific rules) in full detail. Consult a qualified tax professional for guidance on your specific situation.</p>
   </div>
 
 </article>

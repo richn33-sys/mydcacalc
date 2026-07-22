@@ -138,6 +138,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── net-worth-calculator.html                      ← Net Worth Calculator (21st calculator, NEW Jul 6 — assets/liabilities breakdown; full-content build: worked example + honest tradeoffs + 5-question FAQ; nav category: Retirement & Tax)
 ├── social-security-calculator.html                ← Social Security Estimator (22nd calculator, NEW Jul 8 — FRA-based benefit estimator, claim-age 62-70 comparison, breakeven analysis, taxation estimate; full-content build; nav category: Retirement & Tax)
 ├── cost-basis-calculator.html                     ← Cost Basis Calculator, stocks (23rd calculator, NEW Jul 12 — multi-lot FIFO/LIFO/Specific ID comparison, wash sale window check; full-content build; nav category: Retirement & Tax)
+├── roth-conversion-calculator.html                ← Roth Conversion Calculator (24th calculator, NEW Jul 13 — 2026 IRS bracket-fill strategy, IRMAA warning system, breakeven comparison table; full-content build; nav category: Retirement & Tax)
+├── retirement-budget-calculator.html              ← Retirement Budget Calculator (25th calculator, NEW Jul 13 — essential vs discretionary split, income gap analysis, go-go/slow-go/no-go phase estimates; full-content build; nav category: Retirement & Tax)
 ├── nav.js                                         ← All nav dropdown/hamburger/accordion JS (RECREATED Jun 21 — moved out of inline; stamp_nav injects <script src="/nav.js"> on every page)
 ├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown; NAV_EVENT_JS now just <script src="/nav.js">, ensure_nav_js() injects it, Jun 21)
 ├── about.html
@@ -377,6 +379,28 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Pairs with the How to Calculate Your Cost Basis guide (`guides/how-to-calculate-cost-basis.html`)
 - **JS bug fixed on build day:** double-escaped apostrophes broke string literals ("Unexpected identifier" console error); corrected and verified with `node --check` before redeploy
 - **Keywords:** cost basis calculator, FIFO LIFO cost basis, stock cost basis calculator, capital gains cost basis
+
+### roth-conversion-calculator.html — Roth Conversion Calculator (24th calculator, NEW Jul 13 2026)
+- Models converting Traditional IRA/401k dollars to Roth, using the **2026 IRS bracket-fill strategy** (fill up to the top of a target tax bracket without spilling into the next)
+- **IRMAA warning system** — flags when a conversion pushes MAGI over the 2026 Medicare Part B/D IRMAA thresholds (a hidden 2-year-lagged surcharge)
+- **Breakeven comparison table** — tax paid now vs projected future tax if left in Traditional (RMD drag), showing the breakeven horizon
+- Inputs: conversion amount, current taxable income, filing status, target bracket, expected future tax rate/return
+- Outputs: conversion tax cost, resulting bracket, IRMAA flag, breakeven year
+- **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs/nuance section + 5-question FAQ
+- **Validated with `node --check`** on the extracted `<script>` block before delivery (same bug class as the Jul 12 cost-basis build)
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- **Keywords:** roth conversion calculator, roth conversion bracket fill, IRMAA calculator, roth conversion breakeven
+
+### retirement-budget-calculator.html — Retirement Budget Calculator (25th calculator, NEW Jul 13 2026)
+- Builds a retirement spending plan by splitting expenses into **essential vs discretionary**, then compares against retirement income to surface a gap or surplus
+- **Income gap analysis** — total income (Social Security, pension, portfolio withdrawals) vs total budget
+- **Go-go / slow-go / no-go phase estimates** — models how discretionary spending typically falls across the three phases of retirement (active early years → slower middle → later years)
+- Inputs: itemized essential + discretionary expenses, retirement income sources, phase adjustments
+- Outputs: monthly/annual budget, essential vs discretionary split, income gap/surplus, per-phase spending
+- **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs/nuance section + 5-question FAQ
+- **Validated with `node --check`** on the extracted `<script>` block before delivery
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax** (required a manual nav fix — see Jul 13 session note)
+- **Keywords:** retirement budget calculator, retirement spending plan, go-go slow-go no-go retirement, retirement income gap
 ---
 ## Calculator Content Standard (NEW Jun 30 2026)
 > Standing rule for every future calculator. Established this session and saved to memory.
@@ -571,6 +595,8 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | net-worth-calculator.html | net worth calculator / how to calculate net worth |
 | social-security-calculator.html | social security calculator / when should you claim social security |
 | cost-basis-calculator.html | cost basis calculator / FIFO LIFO stock cost basis |
+| roth-conversion-calculator.html | roth conversion calculator / roth conversion bracket fill IRMAA |
+| retirement-budget-calculator.html | retirement budget calculator / retirement spending plan |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -722,7 +748,7 @@ CURRENT_GUIDES = [
 > ✅ Jul 8: Evergreen Funds guide added (Marcus Veil) — CURRENT_GUIDES now at **29**, audited against disk and matches (29 guide HTML files). Note: the Evergreen guide was committed Jul 7 (`cf718b9`) and had already been written into CURRENT_GUIDES, but was never logged in this CLAUDE.md until the Jul 8 session — reconciled now.
 > ✅ Jul 12: Bucket Strategy for Retirement + How to Calculate Your Cost Basis guides added (both James Colter) — CURRENT_GUIDES now at **31**, audited against disk and matches (31 guide HTML files).
 
-### Current CURRENT_CALCULATORS (as of Jul 12 2026 — verified against disk, 23 calculators):
+### Current CURRENT_CALCULATORS (as of Jul 13 2026 — verified against disk, 25 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator (index.html)",
@@ -748,6 +774,8 @@ CURRENT_CALCULATORS = [
     "Net worth calculator",
     "Social Security estimator calculator",
     "Cost basis calculator (stocks, multi-lot FIFO/LIFO/Specific ID, wash sale check)",
+    "Roth conversion calculator (2026 bracket-fill strategy, IRMAA warning, breakeven)",
+    "Retirement budget calculator (essential vs discretionary, income gap, go-go/slow-go/no-go phases)",
 ]
 ```
 > ✅ Jun 21: research_agent.py audited vs disk — CURRENT_CALCULATORS was at 14, added RMD calculator → 15, now matches disk. (CURRENT_GUIDES unchanged at 21.)
@@ -757,9 +785,13 @@ CURRENT_CALCULATORS = [
 > ✅ Jul 6: CURRENT_CALCULATORS was at 20, missing the Net Worth calculator → added → 21, matches disk (21 calculator HTML files). CURRENT_GUIDES at 28 after adding Monte Carlo Retirement (28 guide HTML files). (Note: the Mutual Fund Fee Impact Calculator from the Jul 5 brief was skipped — confirmed redundant with the existing fee-calculator.html.)
 > ✅ Jul 8: CURRENT_CALCULATORS was at 21, missing the Social Security estimator → added → **22**, matches disk (22 calculator HTML files). CURRENT_GUIDES at **29** after reconciling the Evergreen Funds guide. Both lists verified against disk this session and match.
 > ✅ Jul 12: CURRENT_CALCULATORS was at 22, missing the stocks Cost Basis calculator → added → **23**, matches disk (23 calculator HTML files). CURRENT_GUIDES at **31** after adding the Bucket Strategy + Cost Basis guides (31 guide HTML files). Both lists verified against disk this session and match.
+> ✅ Jul 13: CURRENT_CALCULATORS was at 23, missing the Roth Conversion + Retirement Budget calculators → added both → **25**, matches disk (25 calculator HTML files). CURRENT_GUIDES unchanged at **31**, verified against disk (31 guide HTML files). Both lists verified against disk this session and match.
 ---
 ## Roadmap
 ### Done ✅
+- [x] Roth Conversion Calculator (24th calculator) — `roth-conversion-calculator.html`, 2026 IRS bracket-fill strategy + IRMAA warning system + breakeven comparison table; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**. Validated with `node --check` on the extracted `<script>` block before delivery — Jul 13 2026
+- [x] Retirement Budget Calculator (25th calculator) — `retirement-budget-calculator.html`, essential vs discretionary split + income gap analysis + go-go/slow-go/no-go phase estimates; full-content build — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**. Validated with `node --check` before delivery. **stamp_nav.py fix:** the str_replace entry failed to add this page to the nav due to a whitespace mismatch — diagnosed exact spacing and added manually — Jul 13 2026
+- [x] **July research brief fully cleared** — all calculator/guide items from the July brief now complete (Roth Conversion + Retirement Budget were the last two MEDIUM items) — Jul 13 2026
 - [x] Cost Basis Calculator, stocks (23rd calculator) — `cost-basis-calculator.html`, multi-lot FIFO/LIFO/Specific ID comparison + wash sale window check; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**. JS syntax bug fixed (double-escaped apostrophes broke string literals → "Unexpected identifier"; corrected, verified with `node --check` before redeploy); `sitemap.xml` + `research_agent.py` updated — Jul 12 2026
 - [x] Bucket Strategy for Retirement guide (30th guide) — James Colter — `guides/bucket-strategy-retirement.html`; added to `stamp_nav.py` `GUIDE_CATEGORIES` under **Retirement & FIRE** — Jul 12 2026
 - [x] How to Calculate Your Cost Basis guide (31st guide) — James Colter — `guides/how-to-calculate-cost-basis.html`; pairs with the Cost Basis calculator — Jul 12 2026
@@ -861,10 +893,11 @@ CURRENT_CALCULATORS = [
 - [x] **Cost Basis Calculator (stocks)** — built and deployed Jul 12 2026 (23rd calculator) ✅
 - [x] **DCA into Index Funds guide** — evaluated; confirmed redundant with existing `what-is-dollar-cost-averaging.html`, skipped Jul 12 2026 ✅
 - [x] **Mutual Fund Fee Impact Calculator** — re-evaluated; again confirmed redundant with existing `fee-calculator.html`, skipped Jul 12 2026 ✅
-- [ ] **Roth Conversion Calculator** (MEDIUM — from July brief)
-- [ ] **Retirement Budget Calculator** (MEDIUM — from July brief)
+- [x] **Roth Conversion Calculator** (MEDIUM — from July brief) — built and deployed Jul 13 2026 (24th calculator) ✅
+- [x] **Retirement Budget Calculator** (MEDIUM — from July brief) — built and deployed Jul 13 2026 (25th calculator) ✅
 - [ ] **Await next weekly research brief** — next Sunday research agent run (Sunday Jul 19 at 7am)
-- [ ] **Submit new URLs to GSC** — cost-basis-calculator.html + guides/bucket-strategy-retirement.html + guides/how-to-calculate-cost-basis.html
+- [ ] **Pre-flight check for calculator delivery** — build a step that always runs `node --check` on the extracted `<script>` block before presenting a calculator to Rich (formalizes the ad-hoc validation now done on the last two builds; catches the recurring double-escaped-apostrophe / syntax bug class)
+- [ ] **Submit new URLs to GSC** — roth-conversion-calculator.html + retirement-budget-calculator.html + cost-basis-calculator.html + guides/bucket-strategy-retirement.html + guides/how-to-calculate-cost-basis.html
 - [ ] **Submit prior backlog pages to GSC** — social-security-calculator.html + monte-carlo-retirement.html + net-worth-calculator.html + sequence-of-returns-risk.html + evergreen-funds-investing.html + 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html
 
 ### Earlier priorities:
@@ -916,6 +949,15 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jul 13 2026 — Roth Conversion + Retirement Budget Calculators Session
+- **Roth Conversion Calculator built and deployed** (`roth-conversion-calculator.html`, 24th calculator) — 2026 IRS **bracket-fill strategy** (convert up to the top of a target bracket), an **IRMAA warning system** (flags when a conversion pushes MAGI over 2026 Medicare Part B/D surcharge thresholds), and a **breakeven comparison table** (tax now vs projected future RMD tax drag). Full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard. Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- **Retirement Budget Calculator built and deployed** (`retirement-budget-calculator.html`, 25th calculator) — **essential vs discretionary** expense split, **income gap analysis** (income vs budget), and **go-go / slow-go / no-go** phase estimates for how discretionary spending falls across retirement. Full-content build — meets Calculator Content Standard. Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- **Both calculators validated with `node --check`** on the extracted `<script>` block before delivery — proactively catching the same JS syntax bug class (double-escaped apostrophes → "Unexpected identifier") that hit the Jul 12 cost-basis build
+- **stamp_nav.py nav bug fixed** — the `str_replace`-style entry for `retirement-budget-calculator.html` silently failed to add the page to the nav due to a **whitespace mismatch** in the target string; diagnosed the exact spacing and added the entry manually so the page appears in the Retirement & Tax dropdown
+- **July research brief now fully cleared** ✅ — Roth Conversion + Retirement Budget were the last two MEDIUM items
+- **research_agent.py audit (vs disk):** CURRENT_CALCULATORS was at 23, missing both new calculators → added → **25**, matches disk (25 calculator HTML files). CURRENT_GUIDES unchanged at **31**, verified against disk (31 guide HTML files). Both lists verified this session and match
+- Next priorities: await next weekly research brief (Sunday Jul 19 at 7am); build a **pre-flight `node --check`** step into future calculator delivery (always validate the extracted `<script>` block before presenting to Rich); submit the new + backlog pages to GSC
 
 ### Jul 12 2026 — Cost Basis Calculator + Two Guides Session
 - **Cost Basis Calculator (stocks) built and deployed** (`cost-basis-calculator.html`, 23rd calculator) — multi-lot entry with **FIFO / LIFO / Specific ID** method comparison (shows how the method changes cost basis, realized gain, and remaining lots) plus a **wash sale window check** (±30-day). Full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard. Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**. Distinct from `crypto-cost-basis-calculator.html` (13th, average-price for crypto)

@@ -99,6 +99,7 @@ GUIDE_CATEGORIES = [
         ('three-fund-portfolio.html',                  '3-fund portfolio'),
         ('evergreen-funds-investing.html',             'Evergreen funds'),
         ('how-to-calculate-cost-basis.html',           'Cost basis calculation'),
+        ('capital-gains-tax-stocks.html',              'Capital gains tax'),
     ]),
 ]
 
