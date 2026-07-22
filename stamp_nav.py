@@ -33,6 +33,7 @@ CALC_CATEGORIES = [
         ('breakeven-calculator.html',           'Breakeven'),
         ('crypto-cost-basis-calculator.html',   'Crypto cost basis'),
         ('cost-basis-calculator.html',           'Cost basis (stocks)'),
+        ('capital-gains-tax-calculator.html',    'Capital gains tax'),
     ]),
     ('Portfolio', [
         ('asset-allocation.html',               'Asset allocation'),

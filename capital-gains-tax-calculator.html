@@ -3,26 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dividend Income Calculator — How Much Will Your Portfolio Pay?</title>
-<meta name="description" content="Free dividend income calculator. Enter your portfolio value, dividend yield, and annual growth rate to see your projected dividend income, yield on cost over 20 years, and how DRIP reinvestment compounds your income.">
-<meta name="keywords" content="dividend income calculator, dividend yield calculator, how much dividend income, DRIP calculator, yield on cost calculator, dividend portfolio calculator">
-<meta property="og:title" content="Dividend Income Calculator — See Your Projected Dividend Income">
-<meta property="og:description" content="Enter your portfolio value, yield, and dividend growth rate. See annual income, yield on cost, and how DRIP reinvestment compounds over 20 years.">
+<title>Capital Gains Tax Calculator 2026 — Short-Term vs Long-Term</title>
+<meta name="description" content="Free capital gains tax calculator for 2026. Enter your income and gain to see your exact federal tax under short-term and long-term treatment, including the 3.8% NIIT surtax, side by side.">
+<meta name="keywords" content="capital gains tax calculator, capital gains tax calculator 2026, short term long term capital gains calculator, NIIT calculator, stock sale tax calculator">
+<meta property="og:title" content="Capital Gains Tax Calculator 2026 — Short-Term vs Long-Term">
+<meta property="og:description" content="See your exact federal capital gains tax under short-term and long-term treatment side by side, including NIIT — and exactly how much holding one more day could save.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mydcacalc.com/dividend-calculator.html">
+<meta property="og:url" content="https://mydcacalc.com/capital-gains-tax-calculator.html">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://mydcacalc.com/dividend-calculator.html">
+<link rel="canonical" href="https://mydcacalc.com/capital-gains-tax-calculator.html">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Dividend Income Calculator",
-  "description": "Project dividend income, yield on cost, and DRIP compounding over 20 years",
+  "name": "Capital Gains Tax Calculator 2026",
+  "description": "Calculate federal capital gains tax under short-term and long-term treatment, including NIIT",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -60,91 +59,61 @@ nav a.active { color: var(--accent); }
 .nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
 @media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
 
-.hero { max-width: 900px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero { max-width: 980px; margin: 0 auto; padding: 40px 24px 20px; }
 .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
 h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
 h1 em { font-style: normal; color: var(--accent); }
-.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 560px; line-height: 1.7; }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 600px; line-height: 1.7; }
 
-.main { max-width: 900px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
-@media (max-width: 720px) { .main { grid-template-columns: 1fr; } }
+.main { max-width: 980px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+@media (max-width: 780px) { .main { grid-template-columns: 1fr; } }
 
-/* Controls */
 .controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
 .section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
 .input-group { margin-bottom: 16px; }
-.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
-.input-label span { font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
 .input-wrap { position: relative; }
 .input-prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
-.input-suffix { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
 input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px 9px 24px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
-input[type="number"].has-suffix { padding-right: 28px; }
 input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
 input[type="number"]:focus { border-color: var(--accent-border); }
-input[type="range"] { width: 100%; height: 4px; appearance: none; background: var(--bg-input); border-radius: 2px; outline: none; border: 1px solid var(--border); cursor: pointer; margin-top: 6px; }
-input[type="range"]::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid var(--bg-card); }
-.range-header { display: flex; justify-content: space-between; align-items: center; }
-.range-val { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 500; }
+select { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; appearance: none; cursor: pointer; }
+select:focus { border-color: var(--accent-border); }
 .divider-line { height: 1px; background: var(--border); margin: 16px 0; }
-.toggle-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.toggle-label { font-size: 12px; color: var(--text-muted); }
-.toggle { position: relative; width: 40px; height: 22px; }
-.toggle input { opacity: 0; width: 0; height: 0; }
-.toggle-slider { position: absolute; cursor: pointer; inset: 0; background: var(--bg-input); border: 1px solid var(--border); border-radius: 22px; transition: 0.2s; }
-.toggle-slider::before { content: ''; position: absolute; width: 16px; height: 16px; left: 2px; top: 2px; background: var(--text-dim); border-radius: 50%; transition: 0.2s; }
-.toggle input:checked + .toggle-slider { background: var(--accent-dim); border-color: var(--accent-border); }
-.toggle input:checked + .toggle-slider::before { transform: translateX(18px); background: var(--accent); }
 
-/* Results */
 .results { display: flex; flex-direction: column; gap: 14px; }
 
-/* Hero metric */
-.income-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.income-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
-.income-card.primary { border-color: var(--accent-border); background: var(--accent-dim); }
-.income-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
-.income-card.primary .income-label { color: var(--accent); }
-.income-value { font-size: 24px; font-weight: 600; font-family: var(--font-mono); color: var(--text); letter-spacing: -0.02em; margin-bottom: 4px; }
-.income-card.primary .income-value { color: var(--accent); }
-.income-sub { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 560px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
+.compare-card.better { border-color: var(--accent-border); background: var(--accent-dim); }
+.compare-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+.compare-card.better .compare-label { color: var(--accent); }
+.compare-tax { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--text); letter-spacing: -0.02em; margin-bottom: 4px; }
+.compare-card.better .compare-tax { color: var(--accent); }
+.compare-rate { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
 
-/* Metrics */
-.metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-@media (max-width: 500px) { .metrics { grid-template-columns: 1fr; } }
-.metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
-.metric-label { font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
-.metric-value { font-family: var(--font-mono); font-size: 17px; font-weight: 500; color: var(--text); letter-spacing: -0.02em; }
-.metric-value.green { color: var(--green); }
-.metric-value.accent { color: var(--accent); }
+.savings-card { background: var(--bg-card); border: 1px solid var(--accent-border); background: var(--accent-dim); border-radius: var(--radius-lg); padding: 22px; text-align: center; }
+.savings-label { font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.savings-amount { font-size: 30px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); letter-spacing: -0.03em; margin-bottom: 6px; }
+.savings-sub { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
 
-/* Chart */
-.chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; }
-.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
-.chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
-.chart-legend { display: flex; gap: 12px; flex-wrap: wrap; }
-.legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); }
-.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
-.chart-wrap { position: relative; height: 220px; }
-
-/* Table */
-.table-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-.table-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+.breakdown-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.breakdown-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 460px; }
 th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
 td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
 tr:last-child td { border-bottom: none; }
 td.accent { color: var(--accent); font-weight: 500; }
-td.green { color: var(--green); }
+td.red { color: var(--red); }
 
-/* Info + disclaimer */
 .info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
 .info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
 .info-box strong { color: var(--text); font-weight: 500; }
 .disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
 
-.content-section { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+.content-section { max-width: 980px; margin: 0 auto; padding: 0 24px 60px; }
 .pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
 .pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
 .pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
@@ -193,7 +162,7 @@ footer a:hover { color: var(--text); }
 <body>
 
 <div class="pro-banner" id="pro-banner">
-  <span>📈 <strong>Track your dividend portfolio performance</strong> — real avg cost, live P&L, weekly AI signals</span>
+  <span>📈 <strong>Track your real cost basis automatically</strong> — avg cost, live P&L, weekly signals</span>
   <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
   <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
 </div>
@@ -202,7 +171,7 @@ footer a:hover { color: var(--text); }
   <a href="/" class="logo">mydca<span>calc</span>.com</a>
   <nav>
     <div class="nav-group">
-      <button class="nav-group-toggle">Investing</button>
+      <button class="nav-group-toggle active">Investing</button>
       <div class="nav-group-menu">
         <a href="">DCA calculator</a>
         <a href="dca-backtest.html">DCA backtest</a>
@@ -212,7 +181,7 @@ footer a:hover { color: var(--text); }
         <a href="breakeven-calculator.html">Breakeven</a>
         <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
         <a href="cost-basis-calculator.html">Cost basis (stocks)</a>
-        <a href="capital-gains-tax-calculator.html">Capital gains tax</a>
+        <a href="capital-gains-tax-calculator.html" class="active">Capital gains tax</a>
       </div>
     </div>
     <div class="nav-group">
@@ -240,10 +209,10 @@ footer a:hover { color: var(--text); }
       </div>
     </div>
     <div class="nav-group">
-      <button class="nav-group-toggle active">Income</button>
+      <button class="nav-group-toggle">Income</button>
       <div class="nav-group-menu">
         <a href="drip-calculator.html">DRIP</a>
-        <a href="dividend-calculator.html" class="active">Dividend income</a>
+        <a href="dividend-calculator.html">Dividend income</a>
         <a href="inflation-calculator.html">Real returns</a>
       </div>
     </div>
@@ -374,177 +343,146 @@ footer a:hover { color: var(--text); }
 </div>
 
 <div class="hero">
-  <div class="hero-badge">Dividend income · Yield on cost · DRIP growth</div>
-  <h1>Dividend Income <em>Calculator</em></h1>
-  <p>Enter your portfolio value, dividend yield, and annual growth rate to see your projected income, yield on cost, and how DRIP reinvestment compounds your dividends over 20 years.</p>
+  <div class="hero-badge">2026 federal rates · Short-term vs long-term side by side</div>
+  <h1>Capital Gains Tax <em>Calculator</em></h1>
+  <p>See your exact federal tax under short-term and long-term treatment, side by side — including the 3.8% NIIT surtax if it applies to you.</p>
 </div>
 
 <div class="main">
 
-  <!-- Controls -->
   <div class="controls-card">
-    <div class="section-label">Your portfolio</div>
+    <div class="section-label">Your income & gain</div>
 
     <div class="input-group">
-      <div class="input-label">Portfolio value <span id="port-display">$100,000</span></div>
+      <div class="input-label">Filing status</div>
+      <select id="filing-status" onchange="calc()">
+        <option value="single">Single</option>
+        <option value="mfj">Married filing jointly</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Other taxable income (before this gain)</div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="portfolio" value="100000" min="1000" step="5000"
-          oninput="document.getElementById('port-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+        <input type="number" id="other-income" value="120000" min="0" step="1000" oninput="calc()">
       </div>
     </div>
 
     <div class="input-group">
-      <div class="range-header">
-        <div style="font-size:12px;color:var(--text-muted);">Current dividend yield</div>
-        <span class="range-val" id="yield-display">2.5%</span>
-      </div>
-      <input type="range" id="div-yield" min="0.5" max="8" value="2.5" step="0.1"
-        oninput="document.getElementById('yield-display').textContent=this.value+'%';calc()">
-    </div>
-
-    <div class="input-group">
-      <div class="range-header">
-        <div style="font-size:12px;color:var(--text-muted);">Annual dividend growth rate</div>
-        <span class="range-val" id="dgr-display">7%</span>
-      </div>
-      <input type="range" id="div-growth" min="0" max="20" value="7" step="0.5"
-        oninput="document.getElementById('dgr-display').textContent=this.value+'%';calc()">
-    </div>
-
-    <div class="divider-line"></div>
-    <div class="section-label">Monthly contributions</div>
-
-    <div class="input-group">
-      <div class="input-label">Monthly DCA amount <span id="dca-display">$500</span></div>
+      <div class="input-label">Capital gain amount</div>
       <div class="input-wrap">
         <span class="input-prefix">$</span>
-        <input type="number" id="monthly-dca" value="500" min="0" step="100"
-          oninput="document.getElementById('dca-display').textContent='$'+Number(this.value).toLocaleString();calc()">
+        <input type="number" id="gain-amount" value="30000" min="0" step="1000" oninput="calc()">
       </div>
     </div>
 
     <div class="divider-line"></div>
-    <div class="section-label">Settings</div>
-
-    <div class="toggle-row">
-      <span class="toggle-label">Reinvest dividends (DRIP)</span>
-      <label class="toggle">
-        <input type="checkbox" id="drip-toggle" checked onchange="calc()">
-        <span class="toggle-slider"></span>
-      </label>
-    </div>
+    <div class="section-label">Holding period</div>
 
     <div class="input-group">
-      <div class="range-header">
-        <div style="font-size:12px;color:var(--text-muted);">Portfolio price appreciation</div>
-        <span class="range-val" id="price-display">4%</span>
+      <div class="input-label">Days held</div>
+      <div class="input-wrap">
+        <input type="number" id="days-held" value="340" min="0" step="1" oninput="calc()">
       </div>
-      <input type="range" id="price-growth" min="0" max="12" value="4" step="0.5"
-        oninput="document.getElementById('price-display').textContent=this.value+'%';calc()">
-    </div>
-
-    <div class="input-group">
-      <div class="range-header">
-        <div style="font-size:12px;color:var(--text-muted);">Tax rate on dividends</div>
-        <span class="range-val" id="tax-display">15%</span>
-      </div>
-      <input type="range" id="tax-rate" min="0" max="37" value="15" step="1"
-        oninput="document.getElementById('tax-display').textContent=this.value+'%';calc()">
     </div>
 
   </div>
 
-  <!-- Results -->
   <div class="results">
 
-    <!-- Hero metrics -->
-    <div class="income-hero">
-      <div class="income-card primary">
-        <div class="income-label">Annual dividend income (Year 1)</div>
-        <div class="income-value" id="annual-income">$0</div>
-        <div class="income-sub" id="monthly-income">$0 / month</div>
+    <div class="compare-grid">
+      <div class="compare-card" id="short-card">
+        <div class="compare-label">Short-term (≤1 year)</div>
+        <div class="compare-tax" id="short-tax">$0</div>
+        <div class="compare-rate" id="short-rate">0% effective</div>
       </div>
-      <div class="income-card">
-        <div class="income-label">After-tax annual income</div>
-        <div class="income-value" id="after-tax-income">$0</div>
-        <div class="income-sub" id="after-tax-monthly">$0 / month after tax</div>
-      </div>
-    </div>
-
-    <!-- Summary metrics -->
-    <div class="metrics">
-      <div class="metric">
-        <div class="metric-label">Current yield</div>
-        <div class="metric-value accent" id="current-yield-display">0%</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Yield on cost (Yr 10)</div>
-        <div class="metric-value green" id="yoc-10">0%</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Annual income (Yr 20)</div>
-        <div class="metric-value green" id="income-20">$0</div>
+      <div class="compare-card" id="long-card">
+        <div class="compare-label">Long-term (&gt;1 year)</div>
+        <div class="compare-tax" id="long-tax">$0</div>
+        <div class="compare-rate" id="long-rate">0% effective</div>
       </div>
     </div>
 
-    <!-- Chart -->
-    <div class="chart-card">
-      <div class="chart-header">
-        <div class="chart-title">Dividend income growth over 20 years</div>
-        <div class="chart-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#c8f060;"></div>With DRIP</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6;"></div>Without DRIP</div>
-        </div>
-      </div>
-      <div class="chart-wrap">
-        <canvas id="div-chart"></canvas>
-      </div>
+    <div class="savings-card">
+      <div class="savings-label">What waiting for long-term treatment saves</div>
+      <div class="savings-amount" id="savings-amount">$0</div>
+      <div class="savings-sub" id="savings-sub">Based on your current inputs</div>
     </div>
 
-    <!-- Year table -->
-    <div class="table-card">
-      <div class="table-title">20-year dividend income projection</div>
+    <div class="breakdown-card">
+      <div class="breakdown-title" id="breakdown-title">Tax breakdown — your current holding period</div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Year</th>
-              <th>Portfolio value</th>
-              <th>Annual dividend</th>
-              <th>Yield on cost</th>
-              <th>After-tax income</th>
+              <th>Component</th>
+              <th>Amount</th>
+              <th>Rate applied</th>
             </tr>
           </thead>
-          <tbody id="div-tbody"></tbody>
+          <tbody id="breakdown-tbody"></tbody>
         </table>
       </div>
     </div>
 
     <div class="info-box">
-      <p><strong>What is yield on cost?</strong> Yield on cost is your current annual dividend divided by what you originally paid for the investment — not the current market value. As dividends grow each year, your yield on cost rises even if the stock price stays flat. A stock purchased at $100 paying a $2 dividend (2% yield) that grows its dividend to $4 after 10 years has a 4% yield on cost — double the original yield, on the same original investment.</p>
+      <p><strong>Note:</strong> "Other taxable income" should be your income after deductions (AGI minus standard or itemized deduction) — not gross income. This calculator stacks your gain on top of that number to determine which bracket(s) it falls into, following the same method the IRS uses.</p>
     </div>
 
     <div class="disclaimer">
-      This calculator uses simplified assumptions: constant dividend growth rate, constant price appreciation, and consistent monthly contributions. Actual dividend income depends on stock selection, company performance, payout ratio sustainability, and market conditions. Dividend growth rates and stock prices are not guaranteed. This is for educational purposes only. Not financial advice.
+      Uses official 2026 IRS federal tax brackets and NIIT thresholds (Rev. Proc. 2025-32). Does not include state taxes, which vary significantly and can add substantially to your total tax. Does not model collectibles (28% cap), QSBS, Section 1250 recapture, or the 0% MAGI-based reduction some deductions require. Not tax advice — consult a professional before filing.
     </div>
 
   </div>
 </div>
 
+<!-- Content section -->
 <div class="content-section">
-  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the dividend income calculator works</h2>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">This calculator projects your dividend income over 20 years based on your starting portfolio value, current dividend yield, annual dividend growth rate, and monthly DCA contributions. With DRIP toggled on, it reinvests dividend payments each year — compounding your share count alongside organic portfolio growth. With DRIP off, it shows the income you'd receive as cash without reinvestment.</p>
-  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The yield on cost metric shows how your effective income return rises over time as the dividend grows. A 2.5% starting yield growing at 7% per year becomes a 4.9% yield on cost after 10 years — nearly double, on the same original investment cost.</p>
-  <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:28px 0 12px;">How to use this calculator</h3>
-  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;">
-    <li style="margin-bottom:10px;">Enter your current dividend portfolio value and the blended yield across your holdings.</li>
-    <li style="margin-bottom:10px;">Set the annual dividend growth rate — use the historical rate of your holdings or a target rate (7% is a common assumption for dividend growth portfolios).</li>
-    <li style="margin-bottom:10px;">Set your monthly DCA contribution to see how regular additions accelerate income growth.</li>
-    <li style="margin-bottom:10px;">Toggle DRIP on to see compounded returns from reinvestment vs cash income with DRIP off.</li>
-    <li style="margin-bottom:10px;">Set the tax rate to see after-tax income — qualified dividends are taxed at 0%, 15%, or 20% depending on your income bracket.</li>
-  </ul>
-  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For a full guide on building a dividend growth portfolio, read <a href="guides/dividend-growth-portfolio.html" style="color:#c8f060;text-decoration:none;">how to build a dividend growth portfolio</a>. To model reinvestment on a specific holding, use the <a href="drip-calculator.html" style="color:#c8f060;text-decoration:none;">DRIP calculator</a>.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How this calculator works</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Enter your other taxable income, your gain amount, and how many days you've held (or plan to hold) the asset. The calculator computes your exact federal tax under both short-term treatment (ordinary income rates) and long-term treatment (0%/15%/20% preferential rates), including the 3.8% Net Investment Income Tax if your income exceeds the threshold — so you can see precisely what holding period matters for your specific numbers.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A single filer with $180,000 in other taxable income and a $50,000 gain, comparing short-term vs long-term treatment:</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">$50,000 gain — short-term vs long-term</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Short-term (ordinary rates + NIIT)</span><span style="color:var(--red);">$15,398 total tax</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Long-term (15% LTCG + NIIT)</span><span style="color:var(--accent);">$8,640 total tax</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Savings from waiting for long-term</span><span style="color:var(--green);">$6,758</span></div>
+  </div>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">The exact savings depend heavily on your specific income and which tax brackets the gain straddles — there's no universal multiplier. This is precisely why a calculator is more useful than a rule of thumb: the difference could be a few hundred dollars or several thousand, depending entirely on your numbers.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Is it always worth waiting for long-term treatment?</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Usually, but not automatically. The tax savings from waiting need to be weighed against the risk of the position moving against you while you wait. If you're 340 days into holding a volatile stock and it could easily drop 10% in the remaining 25 days, that risk may outweigh the tax benefit of crossing the one-year line — especially for a smaller gain where the tax difference is modest in dollar terms.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;"><strong style="color:#f0efe8;">The math is worth running explicitly, not assuming.</strong> For a large gain in a high tax bracket, the savings can be substantial and clearly worth a short wait. For a small gain or in a low tax bracket where you might already qualify for the 0% long-term rate, the difference may be minimal — in which case, other factors (like conviction in the position, or wanting to lock in a gain before a known risk event) may reasonably take priority.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Why does the calculator ask for "other" income separately from the gain?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Because capital gains tax brackets — and short-term ordinary rates — depend on your total taxable income, not the gain in isolation. A $30,000 gain is taxed very differently for someone with $40,000 in other income (likely at or near the 0% long-term rate) versus someone with $400,000 in other income (likely at the top 20% rate plus NIIT). Separating the two lets the calculator stack them correctly, the same way the IRS does.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Does this calculator account for state taxes?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">No — this calculator shows federal tax only. Most states tax capital gains as ordinary income with no preferential long-term rate, and state rates vary enormously — from 0% in states with no income tax to over 13% in California. Add your state's marginal rate to these federal figures for a complete picture, or check whether your state offers any capital gains preferences (a small number do).</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What if I have multiple gains and losses in the same year?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">This calculator models a single gain in isolation. In practice, gains and losses are netted together — losses first offset gains of the same type (short-term against short-term, long-term against long-term), then excess losses offset the other type. Only your net gain after this netting process is what actually gets taxed. See our <a href="guides/capital-gains-tax-stocks.html" style="color:#c8f060;text-decoration:none;">capital gains tax guide</a> for the full netting rules.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">How accurate is the NIIT calculation here?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">This calculator applies NIIT to the lesser of your net investment income or the amount your MAGI exceeds the threshold — the correct IRS methodology. However, it uses your taxable income as a proxy for MAGI, which is a simplification. True MAGI can differ from taxable income due to certain deductions and exclusions being added back. For income near the NIIT threshold, this simplification could shift the result modestly — verify with a tax professional if you're close to the line.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Can I use this for crypto gains too?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes — the IRS taxes cryptocurrency gains under the same short-term/long-term framework and rates as stocks, so this calculator applies equally to crypto. Just make sure your cost basis and holding period are calculated correctly first, which is more complex for crypto due to per-wallet tracking rules — see our <a href="cost-basis-calculator.html" style="color:#c8f060;text-decoration:none;">cost basis calculator</a> to work that out first.</p>
+  </div>
+
 </div>
 
 <footer>
@@ -554,142 +492,144 @@ footer a:hover { color: var(--text); }
     <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
     <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
     <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
-    For educational purposes only. Not financial advice.
+    For educational purposes only. Not tax advice.
   </p>
 </footer>
 <script>
-let chart = null;
+// 2026 official IRS figures (Rev. Proc. 2025-32)
+const ORDINARY_BRACKETS = {
+  single: [
+    { rate: 0.10, max: 12400 },
+    { rate: 0.12, max: 50400 },
+    { rate: 0.22, max: 105700 },
+    { rate: 0.24, max: 201775 },
+    { rate: 0.32, max: 256225 },
+    { rate: 0.35, max: 640600 },
+    { rate: 0.37, max: Infinity },
+  ],
+  mfj: [
+    { rate: 0.10, max: 24800 },
+    { rate: 0.12, max: 100800 },
+    { rate: 0.22, max: 211400 },
+    { rate: 0.24, max: 403550 },
+    { rate: 0.32, max: 512450 },
+    { rate: 0.35, max: 768700 },
+    { rate: 0.37, max: Infinity },
+  ]
+};
+
+const LTCG_BRACKETS = {
+  single: [
+    { rate: 0.00, max: 49450 },
+    { rate: 0.15, max: 545500 },
+    { rate: 0.20, max: Infinity },
+  ],
+  mfj: [
+    { rate: 0.00, max: 98900 },
+    { rate: 0.15, max: 613700 },
+    { rate: 0.20, max: Infinity },
+  ]
+};
+
+const NIIT_THRESHOLD = { single: 200000, mfj: 250000 };
+const NIIT_RATE = 0.038;
 
 function fmt(n) {
-  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (Math.abs(n) >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
   return '$' + Math.round(n).toLocaleString();
 }
 
-function calc() {
-  const portfolio   = parseFloat(document.getElementById('portfolio').value) || 0;
-  const divYield    = parseFloat(document.getElementById('div-yield').value) / 100;
-  const divGrowth   = parseFloat(document.getElementById('div-growth').value) / 100;
-  const monthlyDCA  = parseFloat(document.getElementById('monthly-dca').value) || 0;
-  const drip        = document.getElementById('drip-toggle').checked;
-  const priceGrowth = parseFloat(document.getElementById('price-growth').value) / 100;
-  const taxRate     = parseFloat(document.getElementById('tax-rate').value) / 100;
+function taxOnStackedGain(baseIncome, gain, brackets) {
+  // Calculate tax on the gain portion only, stacked on top of baseIncome
+  let tax = 0;
+  let remaining = gain;
+  let cursor = baseIncome;
 
-  // Year 1 income
-  const annualIncome = portfolio * divYield;
-  const afterTax = annualIncome * (1 - taxRate);
-
-  document.getElementById('annual-income').textContent = fmt(annualIncome);
-  document.getElementById('monthly-income').textContent = fmt(annualIncome / 12) + ' / month';
-  document.getElementById('after-tax-income').textContent = fmt(afterTax);
-  document.getElementById('after-tax-monthly').textContent = fmt(afterTax / 12) + ' / month';
-  document.getElementById('current-yield-display').textContent = (divYield * 100).toFixed(1) + '%';
-
-  // Build 20-year projection
-  const years = 20;
-  const labelsAll = [], withDrip = [], withoutDrip = [];
-  let portDrip = portfolio, portNoDrip = portfolio;
-  let divPerShare = divYield; // tracks dividend as % of original cost
-  let totalCostBasis = portfolio;
-  let rows = '';
-
-  for (let y = 1; y <= years; y++) {
-    // Add DCA contributions
-    const annualDCA = monthlyDCA * 12;
-    portDrip += annualDCA;
-    portNoDrip += annualDCA;
-    totalCostBasis += annualDCA;
-
-    // Dividend for this year
-    const dripIncome = portDrip * divYield * Math.pow(1 + divGrowth, y - 1);
-    const noDripIncome = portNoDrip * divYield * Math.pow(1 + divGrowth, y - 1);
-
-    // Yield on cost
-    const yoc = (divYield * Math.pow(1 + divGrowth, y - 1)) * 100;
-
-    // After tax
-    const dripAfterTax = dripIncome * (1 - taxRate);
-
-    // Reinvest if DRIP
-    if (drip) portDrip += dripIncome * (1 - taxRate);
-
-    // Price appreciation
-    portDrip *= (1 + priceGrowth);
-    portNoDrip *= (1 + priceGrowth);
-
-    labelsAll.push('Yr ' + y);
-    withDrip.push(Math.round(drip ? dripIncome : noDripIncome));
-    withoutDrip.push(Math.round(noDripIncome));
-
-    // Table rows (every 5 years + year 1)
-    if (y === 1 || y % 5 === 0) {
-      rows += '<tr>' +
-        '<td>' + y + '</td>' +
-        '<td>' + fmt(portDrip) + '</td>' +
-        '<td class="accent">' + fmt(dripIncome) + '</td>' +
-        '<td class="green">' + yoc.toFixed(1) + '%</td>' +
-        '<td>' + fmt(dripAfterTax) + '</td>' +
-        '</tr>';
-    }
-
-    if (y === 10) document.getElementById('yoc-10').textContent = yoc.toFixed(1) + '%';
-    if (y === 20) document.getElementById('income-20').textContent = fmt(dripIncome);
+  for (const band of brackets) {
+    if (cursor >= band.max) continue;
+    const roomInBand = band.max - cursor;
+    const amountTaxedHere = Math.min(remaining, roomInBand);
+    tax += amountTaxedHere * band.rate;
+    remaining -= amountTaxedHere;
+    cursor += amountTaxedHere;
+    if (remaining <= 0) break;
   }
-
-  document.getElementById('div-tbody').innerHTML = rows;
-  updateChart(labelsAll, withDrip, withoutDrip, drip);
+  return tax;
 }
 
-function updateChart(labels, drip, noDrip, dripOn) {
-  const ctx = document.getElementById('div-chart').getContext('2d');
-  if (chart) chart.destroy();
-  chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: 'With DRIP',
-          data: drip,
-          backgroundColor: 'rgba(200,240,96,0.6)',
-          borderColor: '#c8f060',
-          borderWidth: 1,
-          borderRadius: 3,
-        },
-        {
-          label: 'Without DRIP',
-          data: noDrip,
-          backgroundColor: 'rgba(91,156,246,0.3)',
-          borderColor: '#5b9cf6',
-          borderWidth: 1,
-          borderRadius: 3,
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#141416',
-          borderColor: 'rgba(255,255,255,0.08)',
-          borderWidth: 1,
-          titleColor: '#f0efe8',
-          bodyColor: '#888884',
-          padding: 12,
-          titleFont: { family: "'Sora', sans-serif", size: 12 },
-          bodyFont: { family: "'DM Mono', monospace", size: 11 },
-          callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + fmt(ctx.raw) }
-        }
-      },
-      scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, maxTicksLimit: 10 } },
-        y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#555552', font: { family: "'DM Mono', monospace", size: 10 }, callback: v => v >= 1000 ? '$'+(v/1000).toFixed(0)+'K' : '$'+v } }
-      }
+function calcNIIT(magi, gain, filing) {
+  const threshold = NIIT_THRESHOLD[filing];
+  if (magi <= threshold) return 0;
+  const excessOverThreshold = magi - threshold;
+  const niitBase = Math.min(gain, excessOverThreshold);
+  return Math.max(0, niitBase) * NIIT_RATE;
+}
+
+function calc() {
+  const filing = document.getElementById('filing-status').value;
+  const otherIncome = parseFloat(document.getElementById('other-income').value) || 0;
+  const gain = parseFloat(document.getElementById('gain-amount').value) || 0;
+  const daysHeld = parseFloat(document.getElementById('days-held').value) || 0;
+
+  const totalIncome = otherIncome + gain;
+
+  // Short-term calculation
+  const shortTermIncomeTax = taxOnStackedGain(otherIncome, gain, ORDINARY_BRACKETS[filing]);
+  const shortTermNIIT = calcNIIT(totalIncome, gain, filing);
+  const shortTermTotal = shortTermIncomeTax + shortTermNIIT;
+  const shortTermRate = gain > 0 ? (shortTermTotal / gain * 100) : 0;
+
+  // Long-term calculation
+  const longTermTax = taxOnStackedGain(otherIncome, gain, LTCG_BRACKETS[filing]);
+  const longTermNIIT = calcNIIT(totalIncome, gain, filing);
+  const longTermTotal = longTermTax + longTermNIIT;
+  const longTermRate = gain > 0 ? (longTermTotal / gain * 100) : 0;
+
+  const savings = shortTermTotal - longTermTotal;
+  const isLongTerm = daysHeld > 365;
+
+  // Update comparison cards
+  document.getElementById('short-tax').textContent = fmt(shortTermTotal);
+  document.getElementById('short-rate').textContent = shortTermRate.toFixed(1) + '% effective';
+  document.getElementById('long-tax').textContent = fmt(longTermTotal);
+  document.getElementById('long-rate').textContent = longTermRate.toFixed(1) + '% effective';
+
+  document.getElementById('short-card').className = 'compare-card' + (!isLongTerm ? ' better' : '');
+  document.getElementById('long-card').className = 'compare-card' + (isLongTerm ? ' better' : '');
+
+  // Savings card
+  document.getElementById('savings-amount').textContent = fmt(Math.max(0, savings));
+  const daysUntilLongTerm = Math.max(0, 366 - daysHeld);
+  document.getElementById('savings-sub').textContent = isLongTerm
+    ? 'You already qualify for long-term treatment at ' + daysHeld + ' days held'
+    : daysUntilLongTerm + ' more day' + (daysUntilLongTerm === 1 ? '' : 's') + ' needed to qualify for long-term rates';
+
+  // Breakdown table — show the actual (current holding period) scenario
+  const activeBrackets = isLongTerm ? LTCG_BRACKETS[filing] : ORDINARY_BRACKETS[filing];
+  const activeLabel = isLongTerm ? 'Long-term' : 'Short-term';
+  document.getElementById('breakdown-title').textContent = 'Tax breakdown — ' + activeLabel + ' (' + daysHeld + ' days held)';
+
+  let rows = '';
+  let remaining = gain;
+  let cursor = otherIncome;
+  for (const band of activeBrackets) {
+    if (cursor >= band.max) continue;
+    const roomInBand = band.max - cursor;
+    const amountHere = Math.min(remaining, roomInBand);
+    if (amountHere > 0) {
+      rows += '<tr><td>' + (band.rate * 100).toFixed(0) + '% bracket</td><td class="accent">' + fmt(amountHere) + '</td><td>' + (band.rate*100).toFixed(0) + '%</td></tr>';
     }
-  });
+    remaining -= amountHere;
+    cursor += amountHere;
+    if (remaining <= 0) break;
+  }
+  const activeNIIT = isLongTerm ? longTermNIIT : shortTermNIIT;
+  if (activeNIIT > 0) {
+    rows += '<tr><td>NIIT surtax</td><td class="red">' + fmt(activeNIIT) + '</td><td>3.8%</td></tr>';
+  }
+  const activeTotal = isLongTerm ? longTermTotal : shortTermTotal;
+  rows += '<tr style="font-weight:600;"><td>Total tax on gain</td><td class="accent">' + fmt(activeTotal) + '</td><td>' + (gain > 0 ? (activeTotal/gain*100).toFixed(1) : '0') + '% effective</td></tr>';
+
+  document.getElementById('breakdown-tbody').innerHTML = rows;
 }
 
 calc();
