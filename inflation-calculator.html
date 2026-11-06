@@ -13,11 +13,11 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inflation-Adjusted Returns Calculator — Real Return Calculator</title>
-<meta name="description" content="Calculate your real investment returns after inflation. See how inflation erodes purchasing power and what your portfolio is actually worth in today's dollars.">
+<title>Inflation Adjusted Return Calculator | MyDCACalc</title>
+<meta name="description" content="Inflation adjusted return calculator: get your real return with (1+nominal)÷(1+inflation)−1 and see what your portfolio is worth in today&#x27;s dollars.">
 <meta name="keywords" content="inflation adjusted returns calculator, real return calculator, inflation calculator investing, real rate of return calculator, purchasing power calculator">
-<meta property="og:title" content="Inflation-Adjusted Returns Calculator — MyDCACalc.com">
-<meta property="og:description" content="See what your investments are really worth after inflation. Calculate real returns, purchasing power loss, and inflation-adjusted portfolio value.">
+<meta property="og:title" content="Inflation Adjusted Return Calculator | MyDCACalc">
+<meta property="og:description" content="Inflation adjusted return calculator: get your real return with (1+nominal)÷(1+inflation)−1 and see what your portfolio is worth in today&#x27;s dollars.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mydcacalc.com/inflation-calculator.html">
 <meta name="robots" content="index, follow">
@@ -232,6 +232,46 @@ footer a:hover { color: var(--text); }
 
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's the difference between real and nominal return?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nominal return is the percentage your account balance grows, the number your brokerage statement shows. Real return is that growth adjusted for inflation: how much more you can actually buy. A 7% nominal return with 3% inflation is a 3.88% real return. Over long periods, real return is the number that matters for goals like retirement, because future expenses rise with prices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why not just subtract inflation from my return?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Subtracting (nominal − inflation) is a quick approximation, but it ignores that inflation also erodes your gains, not just your principal. The exact formula is (1 + nominal) ÷ (1 + inflation) − 1. At 7% and 3%, the shortcut gives 4.00% versus the true 3.88%. At 10% and 8%, it gives 2.00% versus 1.85%. The higher inflation runs, the more the shortcut overstates your real growth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What inflation rate should I use for planning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "U.S. CPI inflation has averaged roughly 3% a year since 1926, and the Federal Reserve targets 2%. Many planners use 2.5–3% for long-term projections and test a higher rate, such as 4–5%, to see how a plan holds up if inflation runs hot. Using 0% will significantly overstate what your future balance can buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a real return be negative?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Whenever inflation is higher than your nominal return, you lose purchasing power even though your balance grows. Cash earning 4% during 5% inflation has a real return of (1.04 ÷ 1.05) − 1 = −0.95%. This happened to many savings accounts and bonds in 2021–2022, when inflation outpaced yields."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -487,7 +527,7 @@ footer a:hover { color: var(--text); }
     <div class="section-label">Inflation presets</div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;">
       <button onclick="setInflation(2)" style="font-size:11px;font-family:var(--font-mono);background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--text-muted);cursor:pointer;">2% target</button>
-      <button onclick="setInflation(3.5)" style="font-size:11px;font-family:var(--font-mono);background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--text-muted);cursor:pointer;">3.5% avg</button>
+      <button onclick="setInflation(3)" style="font-size:11px;font-family:var(--font-mono);background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--text-muted);cursor:pointer;">3% avg</button>
       <button onclick="setInflation(7)" style="font-size:11px;font-family:var(--font-mono);background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--text-muted);cursor:pointer;">7% high</button>
     </div>
   </div>
@@ -561,7 +601,7 @@ footer a:hover { color: var(--text); }
     </div>
 
     <div class="info-box">
-      <p><strong>What is the real rate of return?</strong> The real rate of return adjusts your investment gains for inflation using the Fisher equation: Real Rate ≈ Nominal Rate − Inflation Rate. If your portfolio returns 7% annually but inflation runs at 3%, your real return is approximately 4% — that's what your purchasing power actually gains each year.</p>
+      <p><strong>What is the real rate of return?</strong> The real rate of return adjusts your investment gains for inflation using the Fisher equation: Real Rate = (1 + Nominal) ÷ (1 + Inflation) − 1. If your portfolio returns 7% annually but inflation runs at 3%, your real return is 3.88% — a bit less than the 4% you get by simply subtracting. That's what your purchasing power actually gains each year.</p>
     </div>
 
     <div class="pro-cta">
@@ -570,7 +610,7 @@ footer a:hover { color: var(--text); }
     </div>
 
     <div class="disclaimer">
-      Inflation rates use simplified annual compounding. Real return calculated using the Fisher equation approximation. Historical U.S. inflation average ~3.5% (1926–2024); Fed target 2%. Actual inflation varies significantly year to year. This calculator is for educational purposes only. Not financial advice.
+      Real value is the nominal value deflated by annual inflation; the real rate of return uses the exact Fisher equation. Historical U.S. CPI inflation averaged ~3% a year (1926–2024); Fed target 2%. Actual inflation varies significantly year to year. This calculator is for educational purposes only. Not financial advice.
     </div>
 
   </div>
@@ -578,16 +618,70 @@ footer a:hover { color: var(--text); }
 
   <div class="content-section" style="max-width:860px;margin:0 auto;padding:0 24px 60px;">
     <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-bottom:16px;color:#f0efe8;">How the inflation-adjusted returns calculator works</h2>
-    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Your nominal return is what your portfolio shows on paper. Your real return is what that growth is actually worth in purchasing power after inflation. If your portfolio returns 7% when inflation runs at 3%, your real return is approximately 4%. This calculator uses the Fisher equation to show both figures side by side: nominal value, real value in today's dollars, and the purchasing power eroded over time.</p>
-    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The U.S. historical average inflation rate is approximately 3.5% from 1926 through 2024. The Fed's current target is 2%. Using 3-3.5% as a long-term planning assumption is reasonable. Using 0% ignores inflation entirely and will significantly overstate your real wealth accumulation.</p>
+    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Your nominal return is what your portfolio shows on paper. Your real return is what that growth is actually worth in purchasing power after inflation. If your portfolio returns 7% when inflation runs at 3%, your real return is about 3.9% (simply subtracting gives 4%). This calculator uses the Fisher equation to show both figures side by side: nominal value, real value in today's dollars, and the purchasing power eroded over time.</p>
+    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">U.S. CPI inflation averaged roughly 3% a year from 1926 through 2024. The Fed's current target is 2%. Using 3–3.5% as a long-term planning assumption is reasonable. Using 0% ignores inflation entirely and will significantly overstate your real wealth accumulation.</p>
     <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:28px 0 12px;">How to use this calculator</h3>
     <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;">
       <li style="margin-bottom:10px;">Enter your initial investment, monthly contribution, and expected annual return rate.</li>
-      <li style="margin-bottom:10px;">Set your inflation assumption using the presets: 2% (Fed target), 3.5% (historical average), or 7% (high inflation).</li>
+      <li style="margin-bottom:10px;">Set your inflation assumption using the presets: 2% (Fed target), 3% (historical average), or 7% (high inflation).</li>
       <li style="margin-bottom:10px;">The chart shows both nominal value and real value in today's dollars — the gap is purchasing power lost to inflation.</li>
       <li style="margin-bottom:10px;">The breakdown table shows the divergence at 5-year intervals across your full time horizon.</li>
     </ul>
     <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For more context on investing in inflationary environments, read our guide on <a href="guides/investing-during-high-interest-rates.html" style="color:#c8f060;text-decoration:none;">how to invest when interest rates are high</a>.</p>
+
+    <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;" id="real-rate-of-return">Real rate of return: the formula</h2>
+    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Your inflation-adjusted return (the real rate of return) is what your money gains in purchasing power each year. The exact formula, known as the Fisher equation, is:</p>
+    <div style="background:var(--bg-card);border:1px solid var(--accent-border);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:16px;font-family:var(--font-mono);font-size:15px;color:var(--accent);text-align:center;">Real return = (1 + nominal return) ÷ (1 + inflation) − 1</div>
+    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The quick shortcut, nominal minus inflation, is close when both numbers are small. It always overstates the real return when they're positive, and the gap widens as inflation rises.</p>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
+      <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Real rate of return calculator</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:14px;">
+        <label style="display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px;">Nominal return (%)<input type="number" id="rr-nominal" value="7" step="0.1" oninput="calcRealRate()" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;color:var(--text);font-family:var(--font-mono);font-size:14px;"></label>
+        <label style="display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px;">Inflation (%)<input type="number" id="rr-inflation" value="3" step="0.1" oninput="calcRealRate()" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;color:var(--text);font-family:var(--font-mono);font-size:14px;"></label>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Real return (exact)</span><span style="color:var(--accent);"><span id="rr-exact">3.88%</span></span></div>
+      <div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Shortcut (nominal − inflation)</span><span style="color:var(--text);"><span id="rr-approx">4.00%</span></span></div>
+      <div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Shortcut overstates by</span><span style="color:var(--text);"><span id="rr-gap">0.12 pts</span></span></div>
+    </div>
+
+    <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Say you invest $10,000 at a 7% annual return for 30 years while inflation averages 3%:</p>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
+      <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">$10,000 · 7% nominal · 3% inflation · 30 years</div>
+      <div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Real rate: 1.07 ÷ 1.03 − 1</span><span style="color:var(--accent);">3.88%</span></div>
+      <div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Nominal value after 30 years ($10,000 × 1.07³⁰)</span><span style="color:var(--green);">$76,123</span></div>
+      <div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Value in today's dollars ($76,123 ÷ 1.03³⁰)</span><span style="color:var(--accent);">$31,361</span></div>
+      <div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Same result compounding the real rate ($10,000 × 1.0388³⁰)</span><span style="color:var(--text);">$31,361</span></div>
+      <div style="display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Using the 4% shortcut instead ($10,000 × 1.04³⁰)</span><span style="color:var(--red);">$32,434 — overstated by $1,073</span></div>
+    </div>
+    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The account shows $76,123, but only $31,361 of that is real growth in purchasing power. Deflating the nominal total and compounding the real rate give the same answer, which is a good check that the formula is right. The shortcut error grows with inflation. At 10% nominal and 8% inflation, the real return is 1.85%, not 2%. That 0.15-point gap matters over decades.</p>
+
+    <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">What a real return still leaves out</h2>
+    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">Taxes are charged on nominal gains.</strong> If 7% returns are taxed at 15%, you keep 5.95% nominal, and your after-tax real return is (1.0595 ÷ 1.03) − 1 = 2.86%, not 3.88%. Inflation effectively raises your tax rate on real gains, which is a strong case for tax-advantaged accounts.</p>
+    <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">Your inflation isn't the CPI.</strong> The CPI tracks an average basket. Retirees who spend heavily on healthcare, or renters in high-cost cities, often face higher personal inflation than the headline number.</p>
+    <p style="color:#888884;font-weight:300;margin-bottom:28px;line-height:1.75;"><strong style="color:#f0efe8;">Averages hide sequences.</strong> A steady 3% assumption smooths over bursts like 2021–2022, when year-over-year CPI inflation peaked at 9.1% in June 2022. A few high-inflation years early in retirement do more damage than the long-run average suggests.</p>
+
+    <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+
+    <div style="margin-bottom:24px;">
+      <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What's the difference between real and nominal return?</h3>
+      <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Nominal return is the percentage your account balance grows, the number your brokerage statement shows. Real return is that growth adjusted for inflation: how much more you can actually buy. A 7% nominal return with 3% inflation is a 3.88% real return. Over long periods, real return is the number that matters for goals like retirement, because future expenses rise with prices.</p>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Why not just subtract inflation from my return?</h3>
+      <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Subtracting (nominal − inflation) is a quick approximation, but it ignores that inflation also erodes your gains, not just your principal. The exact formula is (1 + nominal) ÷ (1 + inflation) − 1. At 7% and 3%, the shortcut gives 4.00% versus the true 3.88%. At 10% and 8%, it gives 2.00% versus 1.85%. The higher inflation runs, the more the shortcut overstates your real growth.</p>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What inflation rate should I use for planning?</h3>
+      <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">U.S. CPI inflation has averaged roughly 3% a year since 1926, and the Federal Reserve targets 2%. Many planners use 2.5–3% for long-term projections and test a higher rate, such as 4–5%, to see how a plan holds up if inflation runs hot. Using 0% will significantly overstate what your future balance can buy.</p>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Can a real return be negative?</h3>
+      <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes. Whenever inflation is higher than your nominal return, you lose purchasing power even though your balance grows. Cash earning 4% during 5% inflation has a real return of (1.04 ÷ 1.05) − 1 = −0.95%. This happened to many savings accounts and bonds in 2021–2022, when inflation outpaced yields.</p>
+    </div>
   </div>
 
 <footer>
@@ -635,8 +729,6 @@ function calc() {
   const initial     = parseFloat(document.getElementById('initial').value) || 0;
   const monthly     = parseFloat(document.getElementById('monthly').value) || 0;
 
-  // Real rate (Fisher approximation)
-  const realRate = (1 + nomRate) / (1 + inflRate) - 1;
 
   // Build year-by-year data
   const nominalHistory  = [initial];
@@ -651,9 +743,10 @@ function calc() {
     // Monthly compounding within year
     for (let m = 0; m < 12; m++) {
       nomVal  = (nomVal + monthly)  * (1 + nomRate  / 12);
-      realVal = (realVal + monthly) * (1 + realRate / 12);
       invested += monthly;
     }
+    // Real value = nominal value deflated to today's dollars
+    realVal = nomVal / Math.pow(1 + inflRate, y);
     nominalHistory.push(nomVal);
     realHistory.push(realVal);
     investedHistory.push(invested);
@@ -682,7 +775,7 @@ function calc() {
   updateChart(labels, nominalHistory, realHistory, investedHistory);
 
   // Breakdown table — every 5 years
-  updateBreakdown(years, nomRate, realRate, initial, monthly);
+  updateBreakdown(years, nomRate, inflRate, initial, monthly);
 }
 
 function updateChart(labels, nominal, real, invested) {
@@ -767,7 +860,7 @@ function updateChart(labels, nominal, real, invested) {
   });
 }
 
-function updateBreakdown(totalYears, nomRate, realRate, initial, monthly) {
+function updateBreakdown(totalYears, nomRate, inflRate, initial, monthly) {
   const tbody = document.getElementById('breakdown-tbody');
   const rows = [];
   const milestones = [];
@@ -781,10 +874,10 @@ function updateBreakdown(totalYears, nomRate, realRate, initial, monthly) {
     for (let yr = 0; yr < y; yr++) {
       for (let m = 0; m < 12; m++) {
         nomVal  = (nomVal + monthly)  * (1 + nomRate  / 12);
-        realVal = (realVal + monthly) * (1 + realRate / 12);
         invested += monthly;
       }
     }
+    realVal = nomVal / Math.pow(1 + inflRate, y);
     const ppLost = nomVal - realVal;
     const realRet = invested > 0 ? (realVal - invested) / invested : 0;
     rows.push({ y, nomVal, realVal, ppLost, realRet, invested });
@@ -810,8 +903,20 @@ document.querySelectorAll('.dropdown').forEach(dd => {
   menu.addEventListener('mouseleave', () => { timer = setTimeout(() => menu.style.display = 'none', 300); });
 });
 
+function calcRealRate() {
+  const n = parseFloat(document.getElementById('rr-nominal').value) / 100;
+  const i = parseFloat(document.getElementById('rr-inflation').value) / 100;
+  if (isNaN(n) || isNaN(i) || i <= -1) return;
+  const exact  = (1 + n) / (1 + i) - 1;
+  const approx = n - i;
+  document.getElementById('rr-exact').textContent  = (exact * 100).toFixed(2) + '%';
+  document.getElementById('rr-approx').textContent = (approx * 100).toFixed(2) + '%';
+  document.getElementById('rr-gap').textContent    = ((approx - exact) * 100).toFixed(2) + ' pts';
+}
+
 // Init
 calc();
+calcRealRate();
 </script>
 
 <script src="/nav.js"></script>

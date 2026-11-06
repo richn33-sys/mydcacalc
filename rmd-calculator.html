@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RMD Calculator 2026 — Required Minimum Distribution Calculator</title>
-<meta name="description" content="Free RMD calculator for 2026. Calculate your required minimum distribution from a traditional IRA or 401(k) using the IRS Uniform Lifetime Table. Includes multi-year projection and penalty estimate.">
+<title>RMD Calculator: Required Minimum Distribution | MyDCACalc</title>
+<meta name="description" content="Free RMD calculator for 2026: find your required minimum distribution with the IRS Uniform Lifetime Table, see RMDs by age 73–100+, and estimate the tax.">
 <meta name="keywords" content="RMD calculator 2026, required minimum distribution calculator, IRA RMD calculator, how to calculate RMD, RMD age 73 calculator">
-<meta property="og:title" content="RMD Calculator 2026 — Required Minimum Distribution Calculator">
-<meta property="og:description" content="Calculate your required minimum distribution using the IRS Uniform Lifetime Table. See RMDs for the next 20 years and estimated tax impact.">
+<meta property="og:title" content="RMD Calculator: Required Minimum Distribution | MyDCACalc">
+<meta property="og:description" content="Free RMD calculator for 2026: find your required minimum distribution with the IRS Uniform Lifetime Table, see RMDs by age 73–100+, and estimate the tax.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mydcacalc.com/rmd-calculator.html">
 <meta name="robots" content="index, follow">
@@ -185,6 +185,55 @@ footer a:hover { color: var(--text); }
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-1HVC269Z8F');
+</script>
+<style>.ult-ref th,.ult-ref td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--border);}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When do RMDs start?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under SECURE 2.0, RMDs start at age 73 if you were born between 1951 and 1959, and at 75 if you were born in 1960 or later. Your first RMD is due by April 1 of the year after you reach RMD age; every later RMD is due by December 31. Delaying the first one to April 1 means taking two RMDs in that calendar year. If you're still working and don't own more than 5% of the company, you can generally delay RMDs from your current employer's 401(k) until you retire. IRAs get no such exception."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the penalty for missing an RMD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The IRS charges a 25% excise tax on the amount you failed to withdraw. That drops to 10% if you correct the shortfall within the correction window, generally by the end of the second year after the year the RMD was missed. You report it on Form 5329. If the miss came from a reasonable error and you've fixed it, you can ask the IRS to waive the penalty entirely by attaching an explanation to Form 5329."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Roth IRAs have RMDs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Roth IRAs have no required minimum distributions during the original owner's lifetime. Starting in 2024, SECURE 2.0 also removed lifetime RMDs from designated Roth accounts in employer plans, such as Roth 401(k)s and Roth 403(b)s. Beneficiaries who inherit a Roth account are still subject to inherited-account distribution rules. This calculator applies to traditional (pre-tax) accounts only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my spouse is more than 10 years younger?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your spouse is the sole beneficiary of your IRA for the entire year and is more than 10 years younger than you, you use the IRS Joint Life and Last Survivor Expectancy Table (Publication 590-B, Table II) instead of the Uniform Lifetime Table. It looks up a factor using both ages. Because it reflects two life expectancies, the factor is larger and your RMD is smaller than this calculator shows. Find your combined-age factor in Publication 590-B and divide your balance by it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I take more than my RMD, or take it from one account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The RMD is a minimum, and you can always withdraw more, though extra withdrawals don't count toward next year's RMD. For traditional IRAs, you calculate the RMD for each account and can take the combined total from any one or more of them. The same rule applies separately to 403(b)s. 401(k) RMDs must be calculated and taken from each plan separately."
+      }
+    }
+  ]
+}
 </script>
 </head>
 <body>
@@ -490,7 +539,7 @@ footer a:hover { color: var(--text); }
               <th>IRS factor</th>
               <th>Account balance</th>
               <th>RMD amount</th>
-              <th>Est. tax (22%)</th>
+              <th id="tax-col">Est. tax (22%)</th>
             </tr>
           </thead>
           <tbody id="rmd-tbody"></tbody>
@@ -525,6 +574,67 @@ footer a:hover { color: var(--text); }
     <li style="margin-bottom:10px;">The 20-year projection assumes your account grows at the return rate you set, minus annual RMD withdrawals.</li>
   </ul>
   <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For retirement income planning, use the <a href="withdrawal-rate-calculator.html" style="color:#c8f060;text-decoration:none;">safe withdrawal rate calculator</a> to see how long your portfolio lasts at different withdrawal rates, and the <a href="fire-calculator.html" style="color:#c8f060;text-decoration:none;">FIRE calculator</a> for pre-retirement planning.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example by age</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Take a $500,000 traditional IRA balance on December 31 and look at what the same balance requires at three ages:</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">$500,000 balance · RMD = balance ÷ IRS factor</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Age 73 · $500,000 ÷ 26.5</span><span style="color:var(--accent);">$18,868 (3.77%)</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Age 80 · $500,000 ÷ 20.2</span><span style="color:var(--accent);">$24,752 (4.95%)</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Age 90 · $500,000 ÷ 12.2</span><span style="color:var(--accent);">$40,984 (8.20%)</span></div>
+  </div>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The same balance more than doubles its required withdrawal between 73 and 90, because the divisor shrinks as life expectancy shortens. At a 22% federal bracket, that's about $4,151 of tax at 73, $5,446 at 80, and $9,016 at 90.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">In practice the balance doesn't stay at $500,000. Running the calculator's own projection (start at 73, 6% annual return, RMD taken each year):</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:28px;">
+    <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">$500,000 at 73 · 6% return · RMDs withdrawn</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Age 73 · balance $500,000</span><span style="color:var(--accent);">RMD $18,868</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Age 80 · balance ~$555,400</span><span style="color:var(--accent);">RMD ~$27,495</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Age 90 · balance ~$524,500</span><span style="color:var(--accent);">RMD ~$42,996</span></div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total RMDs taken, ages 73–90</span><span style="color:var(--text);">~$543,400</span></div>
+  </div>
+  <p style="color:#888884;font-weight:300;margin-bottom:28px;line-height:1.75;">At a 6% return the account keeps growing into the early 80s, because returns outpace the early 3.8–5% withdrawal rates. It peaks around $564,000 at age 84. After that, the withdrawal rate outpaces the return and the balance starts to shrink. The account still holds more than its starting value at 90 after paying out over $540,000. This is why large traditional balances can push retirees into higher brackets late in life.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">IRS Uniform Lifetime Table (ages 73–100+)</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">These are the distribution periods from the IRS Uniform Lifetime Table (Publication 590-B, Appendix B, Table III), in effect for distribution years 2022 onward. Divide your December 31 prior-year balance by the factor for the age you reach this year. The third column is the share of the balance that factor forces out.</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 16px;margin-bottom:16px;overflow-x:auto;">
+    <table class="ult-ref" style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:13px;color:var(--text);">
+      <thead><tr style="color:var(--text-dim);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;"><th>Age</th><th>Distribution period</th><th>RMD as % of balance</th></tr></thead>
+      <tbody><tr><td>73</td><td>26.5</td><td>3.77%</td></tr><tr><td>74</td><td>25.5</td><td>3.92%</td></tr><tr><td>75</td><td>24.6</td><td>4.07%</td></tr><tr><td>76</td><td>23.7</td><td>4.22%</td></tr><tr><td>77</td><td>22.9</td><td>4.37%</td></tr><tr><td>78</td><td>22.0</td><td>4.55%</td></tr><tr><td>79</td><td>21.1</td><td>4.74%</td></tr><tr><td>80</td><td>20.2</td><td>4.95%</td></tr><tr><td>81</td><td>19.4</td><td>5.15%</td></tr><tr><td>82</td><td>18.5</td><td>5.41%</td></tr><tr><td>83</td><td>17.7</td><td>5.65%</td></tr><tr><td>84</td><td>16.8</td><td>5.95%</td></tr><tr><td>85</td><td>16.0</td><td>6.25%</td></tr><tr><td>86</td><td>15.2</td><td>6.58%</td></tr><tr><td>87</td><td>14.4</td><td>6.94%</td></tr><tr><td>88</td><td>13.7</td><td>7.30%</td></tr><tr><td>89</td><td>12.9</td><td>7.75%</td></tr><tr><td>90</td><td>12.2</td><td>8.20%</td></tr><tr><td>91</td><td>11.5</td><td>8.70%</td></tr><tr><td>92</td><td>10.8</td><td>9.26%</td></tr><tr><td>93</td><td>10.1</td><td>9.90%</td></tr><tr><td>94</td><td>9.5</td><td>10.53%</td></tr><tr><td>95</td><td>8.9</td><td>11.24%</td></tr><tr><td>96</td><td>8.4</td><td>11.90%</td></tr><tr><td>97</td><td>7.8</td><td>12.82%</td></tr><tr><td>98</td><td>7.3</td><td>13.70%</td></tr><tr><td>99</td><td>6.8</td><td>14.71%</td></tr><tr><td>100</td><td>6.4</td><td>15.62%</td></tr></tbody>
+    </table>
+  </div>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Above 100 the factor keeps falling: 6.0 at 101, 5.2 at 103, 4.6 at 105, 3.5 at 110, 2.9 at 115, and 2.0 at 120 and older. If your spouse is your sole beneficiary and more than 10 years younger, use the Joint Life and Last Survivor table instead (see the FAQ below).</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">What the RMD number doesn't tell you</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">It's a floor, not a spending plan.</strong> The RMD is the minimum the IRS requires, not a safe withdrawal rate. Early on it's often below what a retiree spends; by the late 80s it can far exceed it. Money you withdraw but don't need can be reinvested in a taxable account, but it's still taxed as ordinary income in the year it comes out.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">Taxes ripple beyond your bracket.</strong> RMD income can increase how much of your Social Security is taxable and can push you over Medicare IRMAA thresholds, which raise Part B and D premiums two years later. The flat bracket estimate above doesn't capture either effect.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;">There are ways to soften it, each with costs.</strong> Roth conversions before RMD age shrink the future balance but cost tax now. Qualified charitable distributions (QCDs) from an IRA count toward your RMD without adding to taxable income, but only help if you'd give to charity anyway. Delaying your first RMD to April 1 means two taxable distributions in one year.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">When do RMDs start?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Under SECURE 2.0, RMDs start at age 73 if you were born between 1951 and 1959, and at 75 if you were born in 1960 or later. Your first RMD is due by April 1 of the year after you reach RMD age; every later RMD is due by December 31. Delaying the first one to April 1 means taking two RMDs in that calendar year. If you're still working and don't own more than 5% of the company, you can generally delay RMDs from your current employer's 401(k) until you retire. IRAs get no such exception.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What's the penalty for missing an RMD?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">The IRS charges a 25% excise tax on the amount you failed to withdraw. That drops to 10% if you correct the shortfall within the correction window, generally by the end of the second year after the year the RMD was missed. You report it on Form 5329. If the miss came from a reasonable error and you've fixed it, you can ask the IRS to waive the penalty entirely by attaching an explanation to Form 5329.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Do Roth IRAs have RMDs?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">No. Roth IRAs have no required minimum distributions during the original owner's lifetime. Starting in 2024, SECURE 2.0 also removed lifetime RMDs from designated Roth accounts in employer plans, such as Roth 401(k)s and Roth 403(b)s. Beneficiaries who inherit a Roth account are still subject to inherited-account distribution rules. This calculator applies to traditional (pre-tax) accounts only.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">What if my spouse is more than 10 years younger?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">If your spouse is the sole beneficiary of your IRA for the entire year and is more than 10 years younger than you, you use the IRS Joint Life and Last Survivor Expectancy Table (Publication 590-B, Table II) instead of the Uniform Lifetime Table. It looks up a factor using both ages. Because it reflects two life expectancies, the factor is larger and your RMD is smaller than this calculator shows. Find your combined-age factor in Publication 590-B and divide your balance by it.</p>
+  </div>
+
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px;">Can I take more than my RMD, or take it from one account?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes. The RMD is a minimum, and you can always withdraw more, though extra withdrawals don't count toward next year's RMD. For traditional IRAs, you calculate the RMD for each account and can take the combined total from any one or more of them. The same rule applies separately to 403(b)s. 401(k) RMDs must be calculated and taken from each plan separately.</p>
+  </div>
 </div>
 
 <footer>
@@ -549,7 +659,8 @@ const ULT = {
   87:14.4, 88:13.7, 89:12.9, 90:12.2, 91:11.5, 92:10.8, 93:10.1,
   94:9.5,  95:8.9,  96:8.4,  97:7.8,  98:7.3,  99:6.8, 100:6.4,
   101:6.0, 102:5.6, 103:5.2, 104:4.9, 105:4.6, 106:4.3, 107:4.1,
-  108:3.9, 109:3.7, 110:3.5, 111:3.4, 112:3.3, 113:3.1, 114:3.0, 115:2.9
+  108:3.9, 109:3.7, 110:3.5, 111:3.4, 112:3.3, 113:3.1, 114:3.0, 115:2.9,
+  116:2.8, 117:2.7, 118:2.5, 119:2.3, 120:2.0
 };
 
 function fmt(n) {
@@ -576,7 +687,7 @@ function calc() {
   const taxRate   = parseFloat(document.getElementById('tax-bracket').value) || 0.22;
   const portRet   = parseFloat(document.getElementById('port-return').value) / 100;
 
-  const factor = ULT[age] || ULT[115];
+  const factor = ULT[age] || ULT[120];
   const rmd    = balance / factor;
   const pct    = (rmd / balance * 100).toFixed(2);
   const tax    = rmd * taxRate;
@@ -589,6 +700,7 @@ function calc() {
   document.getElementById('withdrawal-pct').textContent = pct + '%';
   document.getElementById('est-tax').textContent = fmt(tax);
   document.getElementById('after-tax').textContent = fmt(afterTax);
+  document.getElementById('tax-col').textContent = 'Est. tax (' + Math.round(taxRate * 100) + '%)';
 
   // 20-year projection
   const years = 20;
@@ -598,7 +710,7 @@ function calc() {
 
   for (let i = 0; i < years; i++) {
     const a = age + i;
-    const f = ULT[Math.min(a, 115)] || ULT[115];
+    const f = ULT[Math.min(a, 120)] || ULT[120];
     const r = bal / f;
     const t = r * taxRate;
     const isFirst = i === 0;
