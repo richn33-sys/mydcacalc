@@ -140,6 +140,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── cost-basis-calculator.html                     ← Cost Basis Calculator, stocks (23rd calculator, NEW Jul 12 — multi-lot FIFO/LIFO/Specific ID comparison, wash sale window check; full-content build; nav category: Retirement & Tax)
 ├── roth-conversion-calculator.html                ← Roth Conversion Calculator (24th calculator, NEW Jul 13 — 2026 IRS bracket-fill strategy, IRMAA warning system, breakeven comparison table; full-content build; nav category: Retirement & Tax)
 ├── retirement-budget-calculator.html              ← Retirement Budget Calculator (25th calculator, NEW Jul 13 — essential vs discretionary split, income gap analysis, go-go/slow-go/no-go phase estimates; full-content build; nav category: Retirement & Tax)
+├── capital-gains-tax-calculator.html              ← Capital Gains Tax Calculator (26th calculator, NEW Jul 24 — short-term vs long-term stock gains, 2026 brackets; validated with node --check + cross-checked against guide worked example; full-content build; nav category: Retirement & Tax)
+├── stock-profit-calculator.html                   ← Stock Profit Calculator (27th calculator, NEW Jul 24 — profit and ROI on a stock trade; validated with node --check; full-content build; nav category: Investing)
 ├── nav.js                                         ← All nav dropdown/hamburger/accordion JS (RECREATED Jun 21 — moved out of inline; stamp_nav injects <script src="/nav.js"> on every page)
 ├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown; NAV_EVENT_JS now just <script src="/nav.js">, ensure_nav_js() injects it, Jun 21)
 ├── about.html
@@ -154,7 +156,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 31 guides published; counter reads 31 ✅
+│   ├── index.html                                ← 34 guides published; counter reads 34 ✅
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -185,7 +187,10 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── monte-carlo-retirement.html                 ← NEW Jul 6 (28th guide, James Colter)
 │   ├── evergreen-funds-investing.html              ← NEW Jul 7 (29th guide, Marcus Veil)
 │   ├── bucket-strategy-retirement.html             ← NEW Jul 12 (30th guide, James Colter)
-│   └── how-to-calculate-cost-basis.html            ← NEW Jul 12 (31st guide, James Colter)
+│   ├── how-to-calculate-cost-basis.html            ← NEW Jul 12 (31st guide, James Colter)
+│   ├── capital-gains-tax-stocks.html               ← NEW Jul 24 (32nd guide, James Colter — worked example corrected during Perplexity review: short-term bracket math)
+│   ├── stock-profit-roi-explained.html             ← NEW Jul 24 (33rd guide, James Colter — annualized return error caught + fixed before delivery)
+│   └── private-credit-investing.html               ← NEW Jul 24 (34th guide, Marcus Veil — early 2026 evergreen fund redemption gating stress test)
 └── CLAUDE.md
 ```
 ---
@@ -401,6 +406,26 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - **Validated with `node --check`** on the extracted `<script>` block before delivery
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax** (required a manual nav fix — see Jul 13 session note)
 - **Keywords:** retirement budget calculator, retirement spending plan, go-go slow-go no-go retirement, retirement income gap
+
+### capital-gains-tax-calculator.html — Capital Gains Tax Calculator (26th calculator, NEW Jul 24 2026)
+- Estimates the capital gains tax owed on stock sales, distinguishing **short-term (ordinary-income brackets) vs long-term (0/15/20%)** treatment under 2026 brackets
+- Inputs: purchase price, sale price, shares, holding period, filing status, taxable income
+- Outputs: gain, tax owed, effective rate, short-term vs long-term comparison
+- **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs/nuance section + 5-question FAQ
+- **Validated with `node --check`** on the extracted `<script>` block AND cross-checked against the paired guide's worked example before delivery
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- Pairs with the How to Calculate Capital Gains Tax on Stocks guide (`guides/capital-gains-tax-stocks.html`)
+- **Keywords:** capital gains tax calculator, short term vs long term capital gains, stock capital gains tax 2026
+
+### stock-profit-calculator.html — Stock Profit Calculator (27th calculator, NEW Jul 24 2026)
+- Calculates profit/loss and ROI on a stock trade, factoring in buy/sell price, shares, and optional commissions
+- Inputs: buy price, sell price, number of shares, buy/sell commissions
+- Outputs: total profit/loss, ROI %, annualized return, break-even price
+- **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs/nuance section + 5-question FAQ
+- **Validated with `node --check`** on the extracted `<script>` block before delivery
+- Added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
+- Pairs with the How to Calculate Stock Profit and ROI guide (`guides/stock-profit-roi-explained.html`)
+- **Keywords:** stock profit calculator, stock ROI calculator, stock gain loss calculator
 ---
 ## Calculator Content Standard (NEW Jun 30 2026)
 > Standing rule for every future calculator. Established this session and saved to memory.
@@ -426,14 +451,14 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 ### Marcus Veil — Emerging Assets & Crypto Markets Writer (NEW Jun 29 2026)
 - Covers: tokenization, real-world assets (RWA), emerging crypto markets, frontier/on-chain finance
 - Voice: forward-looking, explains novel asset classes plainly, careful with risk caveats
-- Articles: tokenized-real-world-assets.html, evergreen-funds-investing.html
+- Articles: tokenized-real-world-assets.html, evergreen-funds-investing.html, private-credit-investing.html
 
 ### Attribution rule:
 - Investing/DCA/long-term guides → James Colter
 - Trading/risk management guides → Sara Kline
 - Tokenization / RWA / emerging crypto-market guides → Marcus Veil
 ---
-## Guides Section (31 published as of Jul 12 2026)
+## Guides Section (34 published as of Jul 24 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -467,6 +492,9 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | evergreen-funds-investing.html | Marcus Veil | ✅ Live | Jul 7 2026 |
 | bucket-strategy-retirement.html | James Colter | ✅ Live | Jul 12 2026 |
 | how-to-calculate-cost-basis.html | James Colter | ✅ Live | Jul 12 2026 |
+| capital-gains-tax-stocks.html | James Colter | ✅ Live | Jul 24 2026 |
+| stock-profit-roi-explained.html | James Colter | ✅ Live | Jul 24 2026 |
+| private-credit-investing.html | Marcus Veil | ✅ Live | Jul 24 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -597,6 +625,8 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | cost-basis-calculator.html | cost basis calculator / FIFO LIFO stock cost basis |
 | roth-conversion-calculator.html | roth conversion calculator / roth conversion bracket fill IRMAA |
 | retirement-budget-calculator.html | retirement budget calculator / retirement spending plan |
+| capital-gains-tax-calculator.html | capital gains tax calculator / short term vs long term capital gains |
+| stock-profit-calculator.html | stock profit calculator / stock ROI calculator |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -628,6 +658,9 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | guides/evergreen-funds-investing.html | evergreen funds investing private markets 2026 |
 | guides/bucket-strategy-retirement.html | bucket strategy retirement three buckets |
 | guides/how-to-calculate-cost-basis.html | how to calculate cost basis stocks crypto FIFO |
+| guides/capital-gains-tax-stocks.html | how to calculate capital gains tax on stocks |
+| guides/stock-profit-roi-explained.html | how to calculate stock profit and ROI |
+| guides/private-credit-investing.html | private credit investing explained BDCs evergreen funds |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -702,7 +735,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jul 12 2026 — verified against disk, 31 guides):
+### Current CURRENT_GUIDES (as of Jul 24 2026 — verified against disk, 34 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging?",
@@ -736,6 +769,9 @@ CURRENT_GUIDES = [
     "Evergreen funds investing private markets semi-liquid 2026",
     "Bucket strategy retirement three buckets explained",
     "How to calculate cost basis stocks crypto FIFO",
+    "Capital gains tax stocks 2026 short term long term",
+    "How to calculate stock profit ROI annualized return",
+    "Private credit investing BDCs evergreen funds 2026",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
@@ -748,7 +784,7 @@ CURRENT_GUIDES = [
 > ✅ Jul 8: Evergreen Funds guide added (Marcus Veil) — CURRENT_GUIDES now at **29**, audited against disk and matches (29 guide HTML files). Note: the Evergreen guide was committed Jul 7 (`cf718b9`) and had already been written into CURRENT_GUIDES, but was never logged in this CLAUDE.md until the Jul 8 session — reconciled now.
 > ✅ Jul 12: Bucket Strategy for Retirement + How to Calculate Your Cost Basis guides added (both James Colter) — CURRENT_GUIDES now at **31**, audited against disk and matches (31 guide HTML files).
 
-### Current CURRENT_CALCULATORS (as of Jul 13 2026 — verified against disk, 25 calculators):
+### Current CURRENT_CALCULATORS (as of Jul 24 2026 — verified against disk, 27 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator (index.html)",
@@ -776,6 +812,8 @@ CURRENT_CALCULATORS = [
     "Cost basis calculator (stocks, multi-lot FIFO/LIFO/Specific ID, wash sale check)",
     "Roth conversion calculator (2026 bracket-fill strategy, IRMAA warning, breakeven)",
     "Retirement budget calculator (essential vs discretionary, income gap, go-go/slow-go/no-go phases)",
+    "Capital gains tax calculator (short-term/long-term stock gains)",
+    "Stock profit calculator (profit and ROI on a stock trade)",
 ]
 ```
 > ✅ Jun 21: research_agent.py audited vs disk — CURRENT_CALCULATORS was at 14, added RMD calculator → 15, now matches disk. (CURRENT_GUIDES unchanged at 21.)
@@ -786,9 +824,17 @@ CURRENT_CALCULATORS = [
 > ✅ Jul 8: CURRENT_CALCULATORS was at 21, missing the Social Security estimator → added → **22**, matches disk (22 calculator HTML files). CURRENT_GUIDES at **29** after reconciling the Evergreen Funds guide. Both lists verified against disk this session and match.
 > ✅ Jul 12: CURRENT_CALCULATORS was at 22, missing the stocks Cost Basis calculator → added → **23**, matches disk (23 calculator HTML files). CURRENT_GUIDES at **31** after adding the Bucket Strategy + Cost Basis guides (31 guide HTML files). Both lists verified against disk this session and match.
 > ✅ Jul 13: CURRENT_CALCULATORS was at 23, missing the Roth Conversion + Retirement Budget calculators → added both → **25**, matches disk (25 calculator HTML files). CURRENT_GUIDES unchanged at **31**, verified against disk (31 guide HTML files). Both lists verified against disk this session and match.
+> ✅ Jul 24: CURRENT_CALCULATORS was at 25, missing the Capital Gains Tax + Stock Profit calculators → added both → **27**, matches disk (27 calculator HTML files). CURRENT_GUIDES was at 34 (all three new guides — Capital Gains Tax, Stock Profit/ROI, Private Credit — already present) → matches disk (34 guide HTML files). Both lists verified against disk this session and match.
 ---
 ## Roadmap
 ### Done ✅
+- [x] Capital Gains Tax Calculator (26th calculator) — `capital-gains-tax-calculator.html`, short-term vs long-term stock gains under 2026 brackets; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**. Validated with `node --check` on the extracted `<script>` block AND cross-checked against the paired guide's worked example before delivery — Jul 24 2026
+- [x] Stock Profit Calculator (27th calculator) — `stock-profit-calculator.html`, profit and ROI on a stock trade (with commissions, annualized return, break-even); full-content build — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**. Validated with `node --check` before delivery — Jul 24 2026
+- [x] How to Calculate Capital Gains Tax on Stocks guide (32nd guide) — James Colter — `guides/capital-gains-tax-stocks.html`; worked example corrected during Perplexity review (short-term bracket math was initially wrong → fixed to accurate bracket-by-bracket calculation); pairs with the Capital Gains Tax calculator — Jul 24 2026
+- [x] How to Calculate Stock Profit and ROI guide (33rd guide) — James Colter — `guides/stock-profit-roi-explained.html`; caught + fixed an annualized-return math error in the comparison table before delivery (30-day figure was off by 15x); pairs with the Stock Profit calculator — Jul 24 2026
+- [x] Private Credit Investing Explained guide (34th guide) — Marcus Veil — `guides/private-credit-investing.html`; covers the early-2026 evergreen fund redemption gating stress test — Jul 24 2026
+- [x] **Pre-flight validation is now standard practice** — `node --check` on the extracted `<script>` block AND manual math verification are run before delivering ANY new calculator; catches JS syntax bugs (double-escaped-apostrophe class) and math errors before they reach Rich — Jul 24 2026
+- [x] **July research brief fully cleared (Jul 24)** — all calculator + guide items from the brief complete — Jul 24 2026
 - [x] Roth Conversion Calculator (24th calculator) — `roth-conversion-calculator.html`, 2026 IRS bracket-fill strategy + IRMAA warning system + breakeven comparison table; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**. Validated with `node --check` on the extracted `<script>` block before delivery — Jul 13 2026
 - [x] Retirement Budget Calculator (25th calculator) — `retirement-budget-calculator.html`, essential vs discretionary split + income gap analysis + go-go/slow-go/no-go phase estimates; full-content build — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**. Validated with `node --check` before delivery. **stamp_nav.py fix:** the str_replace entry failed to add this page to the nav due to a whitespace mismatch — diagnosed exact spacing and added manually — Jul 13 2026
 - [x] **July research brief fully cleared** — all calculator/guide items from the July brief now complete (Roth Conversion + Retirement Budget were the last two MEDIUM items) — Jul 13 2026
@@ -895,9 +941,12 @@ CURRENT_CALCULATORS = [
 - [x] **Mutual Fund Fee Impact Calculator** — re-evaluated; again confirmed redundant with existing `fee-calculator.html`, skipped Jul 12 2026 ✅
 - [x] **Roth Conversion Calculator** (MEDIUM — from July brief) — built and deployed Jul 13 2026 (24th calculator) ✅
 - [x] **Retirement Budget Calculator** (MEDIUM — from July brief) — built and deployed Jul 13 2026 (25th calculator) ✅
-- [ ] **Await next weekly research brief** — next Sunday research agent run (Sunday Jul 19 at 7am)
-- [ ] **Pre-flight check for calculator delivery** — build a step that always runs `node --check` on the extracted `<script>` block before presenting a calculator to Rich (formalizes the ad-hoc validation now done on the last two builds; catches the recurring double-escaped-apostrophe / syntax bug class)
-- [ ] **Submit new URLs to GSC** — roth-conversion-calculator.html + retirement-budget-calculator.html + cost-basis-calculator.html + guides/bucket-strategy-retirement.html + guides/how-to-calculate-cost-basis.html
+- [x] **Capital Gains Tax Calculator + guide** — built/published Jul 24 2026 (26th calculator + 32nd guide) ✅
+- [x] **Stock Profit Calculator + Stock Profit/ROI guide** — built/published Jul 24 2026 (27th calculator + 33rd guide) ✅
+- [x] **Private Credit Investing guide** — published Jul 24 2026 (34th guide, Marcus Veil) ✅
+- [x] **Pre-flight `node --check` + manual math verification** — now standard practice before delivering any new calculator (formalized Jul 24 2026) ✅
+- [ ] **Await next weekly research brief** — next Sunday research agent run (Sunday 7am)
+- [ ] **Submit new URLs to GSC** — capital-gains-tax-calculator.html + stock-profit-calculator.html + guides/capital-gains-tax-stocks.html + guides/stock-profit-roi-explained.html + guides/private-credit-investing.html + roth-conversion-calculator.html + retirement-budget-calculator.html + cost-basis-calculator.html + guides/bucket-strategy-retirement.html + guides/how-to-calculate-cost-basis.html
 - [ ] **Submit prior backlog pages to GSC** — social-security-calculator.html + monte-carlo-retirement.html + net-worth-calculator.html + sequence-of-returns-risk.html + evergreen-funds-investing.html + 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html
 
 ### Earlier priorities:
@@ -949,6 +998,17 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Jul 24 2026 — Capital Gains + Stock Profit + Private Credit Session
+- **How to Calculate Capital Gains Tax on Stocks guide published** (James Colter, 32nd guide) — `guides/capital-gains-tax-stocks.html`; short-term vs long-term treatment under 2026 brackets. **Worked example corrected during Perplexity review** — the short-term bracket math was initially wrong; fixed to an accurate bracket-by-bracket calculation before publishing
+- **Capital Gains Tax Calculator built and deployed** (`capital-gains-tax-calculator.html`, 26th calculator) — short-term (ordinary) vs long-term (0/15/20%) stock-gain tax under 2026 brackets. Full-content build — meets Calculator Content Standard. **Validated with `node --check` AND cross-checked against the guide's worked example** before delivery. Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
+- **Stock Profit Calculator built and deployed** (`stock-profit-calculator.html`, 27th calculator) — profit and ROI on a stock trade (buy/sell price, shares, commissions, annualized return, break-even). Full-content build — meets Calculator Content Standard. **Validated with `node --check`** before delivery. Added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
+- **How to Calculate Stock Profit and ROI guide published** (James Colter, 33rd guide) — `guides/stock-profit-roi-explained.html`; **caught + fixed an annualized-return math error in the comparison table before delivery** (the 30-day figure was off by 15x)
+- **Private Credit Investing Explained guide published** (Marcus Veil, 34th guide) — `guides/private-credit-investing.html`; covers the **early-2026 evergreen fund redemption gating stress test**
+- **Process note — pre-flight validation now standard:** `node --check` on the extracted `<script>` block AND manual math verification are run before delivering ANY new calculator. This session's builds caught both a JS syntax bug class and a math error (guide comparison table) before they reached Rich
+- **July research brief fully cleared** ✅
+- **research_agent.py audit (vs disk):** CURRENT_GUIDES was already at 34 (all three new guides present) — matches disk (34 guide HTML files). CURRENT_CALCULATORS was at 25, missing the Capital Gains Tax + Stock Profit calculators → added both → **27**, matches disk (27 calculator HTML files). Both lists verified against disk this session and match
+- Next priorities: await next weekly research brief (Sunday 7am); submit the new + backlog pages to GSC
 
 ### Jul 13 2026 — Roth Conversion + Retirement Budget Calculators Session
 - **Roth Conversion Calculator built and deployed** (`roth-conversion-calculator.html`, 24th calculator) — 2026 IRS **bracket-fill strategy** (convert up to the top of a target bracket), an **IRMAA warning system** (flags when a conversion pushes MAGI over 2026 Medicare Part B/D surcharge thresholds), and a **breakeven comparison table** (tax now vs projected future RMD tax drag). Full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard. Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
