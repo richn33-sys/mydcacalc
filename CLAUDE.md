@@ -156,7 +156,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 34 guides published; counter reads 34 ✅
+│   ├── index.html                                ← 35 guides published; counter reads 35 ✅; "Free calculators" stat fixed 3 → 27 (Nov 14 2026, verified on disk)
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -190,7 +190,8 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── how-to-calculate-cost-basis.html            ← NEW Jul 12 (31st guide, James Colter)
 │   ├── capital-gains-tax-stocks.html               ← NEW Jul 24 (32nd guide, James Colter — worked example corrected during Perplexity review: short-term bracket math)
 │   ├── stock-profit-roi-explained.html             ← NEW Jul 24 (33rd guide, James Colter — annualized return error caught + fixed before delivery)
-│   └── private-credit-investing.html               ← NEW Jul 24 (34th guide, Marcus Veil — early 2026 evergreen fund redemption gating stress test)
+│   ├── private-credit-investing.html               ← NEW Jul 24 (34th guide, Marcus Veil — early 2026 evergreen fund redemption gating stress test)
+│   └── net-worth-by-age.html                       ← NEW Nov 14 (35th guide, James Colter — 2025 Fed SCF median vs mean by age, standard-error caveats, age-40 worked example, 5-Q FAQ + FAQPage schema; nav: Fundamentals)
 └── CLAUDE.md
 ```
 ---
@@ -362,7 +363,9 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - **Full-content build (meets Calculator Content Standard):** worked numerical example + honest tradeoffs/nuance section + 5-question FAQ
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**
 - Built after confirming the Mutual Fund Fee Impact Calculator (Jul 5 brief) was redundant with the existing `fee-calculator.html` — skipped in favor of this
-- **Keywords:** net worth calculator, assets minus liabilities, how to calculate net worth
+- **Keywords:** net worth calculator, what is my net worth, assets minus liabilities, how to calculate net worth
+- **Nov 14 2026 GSC update:** title/meta rewritten (see Locked titles & metas); benchmark card switched to **2025 SCF** (median/mean by age, 2025 dollars); added "How does your net worth compare?" section linking to `guides/net-worth-by-age.html`; FAQPage schema added; worked example + FAQ updated to 2025 data
+- **Liquid net worth definition (fixed Nov 14 2026):** cash + brokerage + 401(k) + IRA + crypto − all non-real-estate debt (auto, credit card, student, personal, other). Excludes home, other real estate, vehicles, business, other assets. Previously the code excluded the 401(k) and contradicted the worked example ($60K vs $155K for "Sarah"); negative values now display instead of clamping to $0
 
 ### social-security-calculator.html — Social Security Estimator (22nd calculator, NEW Jul 8 2026)
 - Estimates monthly Social Security benefits and helps decide the best claiming age (62–70)
@@ -458,7 +461,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 - Trading/risk management guides → Sara Kline
 - Tokenization / RWA / emerging crypto-market guides → Marcus Veil
 ---
-## Guides Section (34 published as of Jul 24 2026)
+## Guides Section (35 published as of Nov 14 2026)
 | File | Author | Status | Published |
 |------|--------|--------|-----------|
 | what-is-dollar-cost-averaging.html | James Colter | ✅ Live | Apr 2025 |
@@ -495,6 +498,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | capital-gains-tax-stocks.html | James Colter | ✅ Live | Jul 24 2026 |
 | stock-profit-roi-explained.html | James Colter | ✅ Live | Jul 24 2026 |
 | private-credit-investing.html | Marcus Veil | ✅ Live | Jul 24 2026 |
+| net-worth-by-age.html | James Colter | ✅ Live | Nov 14 2026 |
 
 ### Content pipeline (every guide):
 1. Claude writes + self-fact-checks
@@ -597,6 +601,21 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 
 ### Display ads: Ezoic at ~10k visits, Mediavine at ~50k visits
 ---
+## Locked titles & metas (GSC-driven rewrites — do not overwrite)
+> These titles/meta descriptions were rewritten from Google Search Console data. Do NOT regenerate or "refresh" them when editing these pages for other reasons; change only with fresh GSC evidence. og:title/og:description were synced at the same time. Standard: title ≤60 chars with ` | MyDCACalc` suffix, meta ≤155 chars.
+
+| Page | Title (live) | Rewritten | Commit |
+|------|--------------|-----------|--------|
+| breakeven-calculator.html | Stock Falls 20%? How Much Gain to Break Even \| MyDCACalc | Nov 6 2026 | `6e57286` |
+| loss-recovery-calculator.html | Loss Recovery Calculator: Gain Needed to Recover \| MyDCACalc | Nov 6 2026 | `6e57286` |
+| compound-interest.html | Compound Interest Calculator — Watch Money Grow \| MyDCACalc | Nov 6 2026 | `6e57286` |
+| position-size.html | Position Size Calculator for Stocks & Crypto \| MyDCACalc | Nov 6 2026 | `6e57286` |
+| 529-calculator.html | 529 Calculator: How Much to Save for College \| MyDCACalc | Nov 6 2026 | `6e57286` |
+| rmd-calculator.html | RMD Calculator: Required Minimum Distribution \| MyDCACalc | Nov 6 2026 | `2dda82c` |
+| inflation-calculator.html | Inflation Adjusted Return Calculator \| MyDCACalc | Nov 6 2026 | `2dda82c` |
+| net-worth-calculator.html | Net Worth Calculator: What Is My Net Worth? \| MyDCACalc | **Nov 14 2026** | `90031c0` |
+| guides/net-worth-by-age.html | Average Net Worth by Age: 2025 Fed Data \| MyDCACalc | Nov 14 2026 (new page) | `90031c0` |
+---
 ## SEO
 | Page | Keyword |
 |------|---------|
@@ -620,7 +639,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | breakeven-calculator.html | breakeven calculator / stock crypto price to break even |
 | ira-contribution-calculator.html | IRA contribution calculator / Roth IRA income limits 2026 |
 | 529-calculator.html | 529 calculator / college savings calculator |
-| net-worth-calculator.html | net worth calculator / how to calculate net worth |
+| net-worth-calculator.html | net worth calculator / what is my net worth |
 | social-security-calculator.html | social security calculator / when should you claim social security |
 | cost-basis-calculator.html | cost basis calculator / FIFO LIFO stock cost basis |
 | roth-conversion-calculator.html | roth conversion calculator / roth conversion bracket fill IRMAA |
@@ -661,6 +680,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | guides/capital-gains-tax-stocks.html | how to calculate capital gains tax on stocks |
 | guides/stock-profit-roi-explained.html | how to calculate stock profit and ROI |
 | guides/private-credit-investing.html | private credit investing explained BDCs evergreen funds |
+| guides/net-worth-by-age.html | average net worth by age / net worth by age |
 
 ---
 ## Google AI Optimization Guidelines (May 2026)
@@ -735,7 +755,7 @@ Google uses multiple overlapping ranking systems simultaneously — not a single
 - **Update CURRENT_CALCULATORS** whenever a new calculator is published
 - **Prompt updates (Jun 1 2026):** retuned to EVERGREEN-ONLY focus (12+ month search relevance, deprioritize news/"this week" topics) + explicit NO-REPEAT instruction (do not recommend any topic already in CURRENT_GUIDES)
 
-### Current CURRENT_GUIDES (as of Jul 24 2026 — verified against disk, 34 guides):
+### Current CURRENT_GUIDES (as of Nov 14 2026 — verified against disk, 35 guides):
 ```python
 CURRENT_GUIDES = [
     "What is dollar cost averaging?",
@@ -772,6 +792,7 @@ CURRENT_GUIDES = [
     "Capital gains tax stocks 2026 short term long term",
     "How to calculate stock profit ROI annualized return",
     "Private credit investing BDCs evergreen funds 2026",
+    "Average net worth by age median vs mean 2025 Fed SCF",
 ]
 ```
 > ⚠️ Drift caught Jun 7: research_agent.py on disk was stale at 16 guides — the Jun 5 crypto-portfolio + diversification entries had been recorded in this CLAUDE.md but never actually written into research_agent.py. Fixed Jun 7 by adding those two + tax-loss harvesting (now 19, matches disk).
@@ -945,7 +966,10 @@ CURRENT_CALCULATORS = [
 - [x] **Stock Profit Calculator + Stock Profit/ROI guide** — built/published Jul 24 2026 (27th calculator + 33rd guide) ✅
 - [x] **Private Credit Investing guide** — published Jul 24 2026 (34th guide, Marcus Veil) ✅
 - [x] **Pre-flight `node --check` + manual math verification** — now standard practice before delivering any new calculator (formalized Jul 24 2026) ✅
+- [x] **Net worth by age guide + net worth calculator GSC rewrite** — published Nov 14 2026 (35th guide) ✅
 - [ ] **Await next weekly research brief** — next Sunday research agent run (Sunday 7am)
+- [ ] **Submit to GSC** — guides/net-worth-by-age.html + net-worth-calculator.html (Nov 14 rewrite)
+- [ ] **Perplexity/Grammarly pass on guides/net-worth-by-age.html** — deployed directly on Nov 14 without the usual review steps
 - [ ] **Submit new URLs to GSC** — capital-gains-tax-calculator.html + stock-profit-calculator.html + guides/capital-gains-tax-stocks.html + guides/stock-profit-roi-explained.html + guides/private-credit-investing.html + roth-conversion-calculator.html + retirement-budget-calculator.html + cost-basis-calculator.html + guides/bucket-strategy-retirement.html + guides/how-to-calculate-cost-basis.html
 - [ ] **Submit prior backlog pages to GSC** — social-security-calculator.html + monte-carlo-retirement.html + net-worth-calculator.html + sequence-of-returns-risk.html + evergreen-funds-investing.html + 529-calculator.html + ira-contribution-calculator.html + breakeven-calculator.html + tokenized-real-world-assets.html + three-fund-portfolio.html
 
@@ -998,6 +1022,15 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Nov 14 2026 — Net Worth by Age Guide + Net Worth Calculator GSC Session
+- **GSC trigger:** "net worth calculator" 127 impressions @ pos ~50; net-worth-calculator.html 616 impressions @ pos 37; related query "what is my net worth"
+- **Net Worth by Age guide published** (James Colter, 35th guide) — `guides/net-worth-by-age.html`; median AND mean by age bracket, why median is the better benchmark, 2022→2025 changes with standard-error caveats, age-40 worked example ($297,500 NW = 1.91× the 35–44 median), tradeoffs (home equity, pensions/Social Security excluded, family vs individual, cross-section vs life path), 5-Q FAQ + FAQPage schema, Chart.js median-vs-mean chart
+- **Data source — Fed SCF 2025** (latest; published Oct 9 2026, superseding 2022). Bulletin: https://www.federalreserve.gov/publications/files/scf26.pdf ("Changes in U.S. Family Finances from 2022 to 2025"), Table 2, thousands of 2025 dollars. Numbers pulled from the Fed's own xlsx files (PDF not parseable locally — no poppler): `https://www.federalreserve.gov/econres/files/2025_tables1_2_stderrs.xlsx` (Table 2 + standard errors) cross-checked against `scf2025_tables_internal_real_historical.xlsx` sheet "Table 4". Index: https://www.federalreserve.gov/econres/scfindex.htm. Next SCF (2028 survey) expected ~fall 2029 — update both pages then.
+- **2025 SCF net worth by age (median / mean):** <35 $32,970 / $135,430 · 35–44 $155,620 / $681,910 · 45–54 $253,650 / $1,244,530 · 55–64 $411,910 / $1,877,990 · 65–74 $431,320 / $1,897,550 · 75+ $504,900 / $1,962,240 · All $215,920 / $1,241,500
+- **net-worth-calculator.html:** new title/meta + og sync, 2025 benchmarks, "How does your net worth compare?" section, liquid-NW bug fix, FAQPage schema, misattributed "1× income by 30" rule removed from FAQ
+- Nav re-stamped (`stamp_nav.py --all`, 64 files, nav-only diff); guides index counter 34 → 35; sitemap updated; research_agent.py CURRENT_GUIDES updated
+- **Known pre-existing issues (not touched):** terms.html, privacy.html, authors/*.html have no nav/nav.js; index.html line 2 has a `file:///` "saved from" HTML comment
 
 ### Jul 24 2026 — Capital Gains + Stock Profit + Private Credit Session
 - **How to Calculate Capital Gains Tax on Stocks guide published** (James Colter, 32nd guide) — `guides/capital-gains-tax-stocks.html`; short-term vs long-term treatment under 2026 brackets. **Worked example corrected during Perplexity review** — the short-term bracket math was initially wrong; fixed to an accurate bracket-by-bracket calculation before publishing
