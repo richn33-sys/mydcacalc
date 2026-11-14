@@ -104,6 +104,7 @@ GUIDE_CATEGORIES = [
         ('how-to-calculate-cost-basis.html',           'Cost basis calculation'),
         ('capital-gains-tax-stocks.html',              'Capital gains tax'),
         ('stock-profit-roi-explained.html',            'Stock profit & ROI'),
+        ('net-worth-by-age.html',                      'Net worth by age'),
     ]),
 ]
 

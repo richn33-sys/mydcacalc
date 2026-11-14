@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Average Net Worth by Age: 2025 Fed Data | MyDCACalc</title>
+<meta name="description" content="Median and mean net worth by age from the Fed&#x27;s 2025 Survey of Consumer Finances, why the median is the better benchmark, plus a worked example at age 40.">
+<meta name="keywords" content="average net worth by age, net worth by age, median net worth by age, average net worth of a 40 year old, survey of consumer finances 2025">
+<meta property="og:title" content="Average Net Worth by Age — Median vs Mean, 2025 Fed Data">
+<meta property="og:description" content="The median US family is worth $215,920; the mean is $1.24M. Net worth by age from the Fed&#x27;s 2025 SCF, and which number to compare yourself to.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mydcacalc.com/guides/net-worth-by-age.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/guides/net-worth-by-age.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Average net worth by age — median vs mean, 2025 Fed data",
+  "description": "Median and mean net worth by age from the Fed's 2025 Survey of Consumer Finances, why the median is the better benchmark, plus a worked example at age 40.",
+  "author": {
+    "@type": "Person",
+    "name": "James Colter",
+    "url": "https://mydcacalc.com/authors/james-colter.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MyDCACalc.com",
+    "url": "https://mydcacalc.com"
+  },
+  "datePublished": "2026-11-14",
+  "dateModified": "2026-11-14",
+  "mainEntityOfPage": "https://mydcacalc.com/guides/net-worth-by-age.html",
+  "citation": "https://www.federalreserve.gov/publications/files/scf26.pdf"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the median net worth by age in the US?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "According to the Federal Reserve's 2025 Survey of Consumer Finances, median family net worth is $32,970 for families headed by someone under 35, $155,620 for ages 35–44, $253,650 for 45–54, $411,910 for 55–64, $431,320 for 65–74, and $504,900 for 75 and older. The median across all families is $215,920. All figures are in 2025 dollars."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the average net worth of a 40-year-old?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For families headed by someone aged 35–44, the 2025 SCF reports a median net worth of $155,620 and a mean (average) of $681,910. The median is the better benchmark for a typical household, because the mean is pulled up by a small number of very wealthy families."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is average net worth so much higher than median net worth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wealth is highly concentrated. The mean adds up everyone's wealth and divides by the number of families, so a few households worth tens or hundreds of millions raise it a lot. The median is simply the middle family and isn't affected by extreme values. In the 2025 survey the mean for all families was 5.8 times the median ($1,241,500 vs $215,920)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does net worth include my home and retirement accounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Federal Reserve's measure includes your home's value minus the mortgage, vehicles, business interests, and retirement accounts such as 401(k)s and IRAs. It excludes the value of defined-benefit pensions and future Social Security benefits. If you have a pension, your financial security is higher than your net worth alone suggests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I figure out what my net worth is?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add up the current market value of everything you own (cash, investment and retirement accounts, home, vehicles, and other assets), then subtract everything you owe (mortgage, auto loans, student loans, credit cards, and other debt). The result is your net worth. The MyDCACalc net worth calculator does the math, shows how much of your net worth is liquid, and compares your result with the 2025 Fed median for your age group."
+      }
+    }
+  ]
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.75; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+.article-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 32px; flex-wrap: wrap; }
+.meta-tag { font-size: 11px; font-family: var(--font-mono); color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 12px; }
+.meta-date { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+.meta-read { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 20px; }
+h1 em { font-style: normal; color: var(--accent); }
+.intro { font-size: 17px; color: var(--text-muted); font-weight: 300; line-height: 1.75; margin-bottom: 40px; border-left: 2px solid var(--accent-border); padding-left: 20px; }
+h2 { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin: 48px 0 16px; }
+h3 { font-size: 17px; font-weight: 500; color: var(--text); margin: 32px 0 12px; }
+p { color: var(--text-muted); margin-bottom: 20px; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+ul, ol { color: var(--text-muted); padding-left: 22px; margin-bottom: 20px; font-weight: 300; }
+ul li, ol li { margin-bottom: 10px; line-height: 1.7; }
+ul li strong, ol li strong { color: var(--text); font-weight: 500; }
+.callout { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.tip { border-left-color: var(--green); }
+.callout.warning { border-left-color: var(--red); }
+.callout.data { border-left-color: var(--blue); background: rgba(91,156,246,0.05); }
+.callout-label { font-size: 11px; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.callout .callout-label { color: var(--accent); }
+.callout.tip .callout-label { color: var(--green); }
+.callout.warning .callout-label { color: var(--red); }
+.callout.data .callout-label { color: var(--blue); }
+.formula-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; text-align: center; }
+.formula-box code { font-family: var(--font-mono); font-size: 15px; color: var(--accent); }
+.example-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 28px 0; }
+.example-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.example-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; font-family: var(--font-mono); }
+.example-row:last-child { border-bottom: none; font-weight: 600; padding-top: 12px; }
+.example-row span:first-child { color: var(--text-muted); }
+.example-row span:last-child { color: var(--text); }
+.compare-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; font-family: var(--font-mono); }
+.compare-table th { text-align: left; padding: 10px 12px; background: var(--bg-input); color: var(--text-dim); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.compare-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; font-size: 12px; }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td.accent { color: var(--accent); }
+.compare-table td.green { color: var(--green); }
+.toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 26px; margin-bottom: 40px; }
+.toc-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.toc ol { margin: 0; padding-left: 18px; }
+.toc ol li { margin-bottom: 8px; }
+.toc a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+.toc a:hover { color: var(--accent); }
+.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: var(--radius-lg); padding: 28px; margin: 48px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 10px; font-size: 18px; }
+.cta-box p { font-size: 14px; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--accent); color: #0c0c0e; font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: var(--radius); text-decoration: none; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.85; }
+.author-bio-box { display: flex; gap: 20px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; margin: 48px 0 32px; }
+.author-bio-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-input); border: 1px solid var(--accent-border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 16px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+.author-bio-info { flex: 1; }
+.author-bio-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.author-bio-title { font-size: 12px; color: var(--accent); font-family: var(--font-mono); margin-bottom: 8px; }
+.author-bio-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+.author-bio-link { font-size: 12px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); margin-top: 8px; display: inline-block; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 280px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.dropdown-menu a { display: block; padding: 11px 16px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: var(--bg-input); color: var(--text); }
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ── GROUPED CALC DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+/* ── ACCORDION GUIDES DROPDOWN ── */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
+
+.chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 20px 14px; margin: 28px 0; }
+.chart-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+.chart-wrap { position: relative; height: 300px; }
+@media (max-width: 600px) { .compare-table th, .compare-table td { padding: 8px 6px; font-size: 11px; } .chart-wrap { height: 260px; } }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your real portfolio P&L</strong> — avg cost, live tracking, weekly signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="../index.html" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Investing</button>
+      <div class="nav-group-menu">
+        <a href="../">DCA calculator</a>
+        <a href="../dca-backtest.html">DCA backtest</a>
+        <a href="../compound-interest.html">Compound interest</a>
+        <a href="../rule-of-72-calculator.html">Rule of 72</a>
+        <a href="../loss-recovery-calculator.html">Loss recovery</a>
+        <a href="../breakeven-calculator.html">Breakeven</a>
+        <a href="../stock-profit-calculator.html">Stock profit</a>
+        <a href="../crypto-cost-basis-calculator.html">Crypto cost basis</a>
+        <a href="../cost-basis-calculator.html">Cost basis (stocks)</a>
+        <a href="../capital-gains-tax-calculator.html">Capital gains tax</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="../asset-allocation.html">Asset allocation</a>
+        <a href="../rebalancing-calculator.html">Rebalancing</a>
+        <a href="../position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="../fire-calculator.html">FIRE calculator</a>
+        <a href="../net-worth-calculator.html">Net worth</a>
+        <a href="../withdrawal-rate-calculator.html">Withdrawal rate</a>
+        <a href="../retirement-budget-calculator.html">Retirement budget</a>
+        <a href="../fee-calculator.html">Fee impact</a>
+        <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="../rmd-calculator.html">RMD calculator</a>
+        <a href="../roth-conversion-calculator.html">Roth conversion</a>
+        <a href="../social-security-calculator.html">Social Security</a>
+        <a href="../ira-contribution-calculator.html">IRA contribution</a>
+        <a href="../529-calculator.html">529 college savings</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="../drip-calculator.html">DRIP</a>
+        <a href="../dividend-calculator.html">Dividend income</a>
+        <a href="../inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle active">Guides</button>
+      <div class="dropdown-menu">
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+          <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+          <a href="../guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+          <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+          <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+          <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+          <a href="../guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+        </div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+          <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+          <a href="../guides/crypto-staking-explained.html">Crypto staking yields</a>
+          <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+          <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+          <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+          <a href="../guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+        </div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+          <a href="../guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+          <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+          <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+          <a href="../guides/rmd-explained.html">RMD explained</a>
+          <a href="../guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+          <a href="../guides/monte-carlo-retirement.html">Monte Carlo simulation</a>
+          <a href="../guides/bucket-strategy-retirement.html">Bucket strategy</a>
+        </div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+          <a href="../guides/how-to-calculate-position-size.html">Position size</a>
+          <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+          <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+          <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+          <a href="../guides/index-fund-investing-beginners.html">Index fund investing</a>
+          <a href="../guides/three-fund-portfolio.html">3-fund portfolio</a>
+          <a href="../guides/evergreen-funds-investing.html">Evergreen funds</a>
+          <a href="../guides/private-credit-investing.html">Private credit</a>
+          <a href="../guides/how-to-calculate-cost-basis.html">Cost basis calculation</a>
+          <a href="../guides/capital-gains-tax-stocks.html">Capital gains tax</a>
+          <a href="../guides/stock-profit-roi-explained.html">Stock profit & ROI</a>
+          <a href="../guides/net-worth-by-age.html">Net worth by age</a>
+        </div>
+        <a href="../guides/index.html" class="all-guides-link">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="../">DCA calculator</a>
+  <a href="../dca-backtest.html">DCA backtest</a>
+  <a href="../compound-interest.html">Compound interest</a>
+  <a href="../rule-of-72-calculator.html">Rule of 72</a>
+  <a href="../loss-recovery-calculator.html">Loss recovery</a>
+  <a href="../breakeven-calculator.html">Breakeven</a>
+  <a href="../stock-profit-calculator.html">Stock profit</a>
+  <a href="../crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <a href="../cost-basis-calculator.html">Cost basis (stocks)</a>
+  <a href="../capital-gains-tax-calculator.html">Capital gains tax</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="../asset-allocation.html">Asset allocation</a>
+  <a href="../rebalancing-calculator.html">Rebalancing</a>
+  <a href="../position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="../fire-calculator.html">FIRE calculator</a>
+  <a href="../net-worth-calculator.html">Net worth</a>
+  <a href="../withdrawal-rate-calculator.html">Withdrawal rate</a>
+  <a href="../retirement-budget-calculator.html">Retirement budget</a>
+  <a href="../fee-calculator.html">Fee impact</a>
+  <a href="../tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <a href="../rmd-calculator.html">RMD calculator</a>
+  <a href="../roth-conversion-calculator.html">Roth conversion</a>
+  <a href="../social-security-calculator.html">Social Security</a>
+  <a href="../ira-contribution-calculator.html">IRA contribution</a>
+  <a href="../529-calculator.html">529 college savings</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="../drip-calculator.html">DRIP</a>
+  <a href="../dividend-calculator.html">Dividend income</a>
+  <a href="../inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">DCA & Investing</span>
+  <a href="../guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="../guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+  <a href="../guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+  <a href="../guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+  <a href="../guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="../guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="../guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+  <span class="mobile-guides-label">Crypto</span>
+  <a href="../guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="../guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="../guides/crypto-staking-explained.html">Crypto staking yields</a>
+  <a href="../guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="../guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="../guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="../guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+  <span class="mobile-guides-label">Retirement & FIRE</span>
+  <a href="../guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="../guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+  <a href="../guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="../guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="../guides/rmd-explained.html">RMD explained</a>
+  <a href="../guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+  <a href="../guides/monte-carlo-retirement.html">Monte Carlo simulation</a>
+  <a href="../guides/bucket-strategy-retirement.html">Bucket strategy</a>
+  <span class="mobile-guides-label">Fundamentals</span>
+  <a href="../guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="../guides/how-to-calculate-position-size.html">Position size</a>
+  <a href="../guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="../guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="../guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+  <a href="../guides/index-fund-investing-beginners.html">Index fund investing</a>
+  <a href="../guides/three-fund-portfolio.html">3-fund portfolio</a>
+  <a href="../guides/evergreen-funds-investing.html">Evergreen funds</a>
+  <a href="../guides/private-credit-investing.html">Private credit</a>
+  <a href="../guides/how-to-calculate-cost-basis.html">Cost basis calculation</a>
+  <a href="../guides/capital-gains-tax-stocks.html">Capital gains tax</a>
+  <a href="../guides/stock-profit-roi-explained.html">Stock profit & ROI</a>
+  <a href="../guides/net-worth-by-age.html">Net worth by age</a>
+  <a href="../guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<main>
+<article class="article-wrap">
+
+  <div class="article-meta">
+    <span class="meta-tag">Fundamentals</span>
+    <span class="meta-tag">Personal finance</span>
+    <span class="meta-date">November 14, 2026</span>
+    <span class="meta-read">10 min read</span>
+  </div>
+
+  <h1>Average net worth by age — <em>median vs mean</em>, 2025 Fed data</h1>
+
+  <p class="intro">The Federal Reserve's 2025 Survey of Consumer Finances, published October 9, 2026, puts the median American family's net worth at $215,920 and the mean at $1,241,500. Those two numbers measure the same families, yet one is almost six times the other. If you want to know how your net worth compares for your age, which of the two you use matters more than anything else on this page.</p>
+
+  <div class="cta-box" style="margin:0 0 40px;">
+    <h3>What is your net worth?</h3>
+    <p>Add up what you own and what you owe in about two minutes. The calculator compares your result with the 2025 Fed medians for your age.</p>
+    <a href="../net-worth-calculator.html" class="cta-btn">Open the net worth calculator →</a>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">In this guide</div>
+    <ol>
+      <li><a href="#by-age">Net worth by age: the 2025 Fed numbers</a></li>
+      <li><a href="#median-vs-mean">Why median is the better benchmark</a></li>
+      <li><a href="#what-changed">What changed since 2022, and what didn't</a></li>
+      <li><a href="#worked-example">Worked example: a 40-year-old's balance sheet</a></li>
+      <li><a href="#tradeoffs">What net worth leaves out</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+    </ol>
+  </div>
+
+  <h2 id="by-age">Net worth by age: the 2025 Fed numbers</h2>
+
+  <p>The Survey of Consumer Finances (SCF) is the Federal Reserve's survey of household balance sheets, run every three years. It is the standard source for net worth by age because it deliberately oversamples wealthy households, so the top of the distribution is captured properly. The figures below come from Table 2 of the Fed's 2025 report. They are in 2025 dollars, and the age is that of the family's reference person (usually the primary earner).</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr><th>Age of head of family</th><th>Median net worth</th><th>Mean net worth</th><th>Mean ÷ median</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Under 35</td><td class="accent">$32,970</td><td>$135,430</td><td>4.1×</td></tr>
+      <tr><td>35–44</td><td class="accent">$155,620</td><td>$681,910</td><td>4.4×</td></tr>
+      <tr><td>45–54</td><td class="accent">$253,650</td><td>$1,244,530</td><td>4.9×</td></tr>
+      <tr><td>55–64</td><td class="accent">$411,910</td><td>$1,877,990</td><td>4.6×</td></tr>
+      <tr><td>65–74</td><td class="accent">$431,320</td><td>$1,897,550</td><td>4.4×</td></tr>
+      <tr><td>75 and older</td><td class="accent">$504,900</td><td>$1,962,240</td><td>3.9×</td></tr>
+      <tr><td><strong>All families</strong></td><td class="accent"><strong>$215,920</strong></td><td><strong>$1,241,500</strong></td><td>5.8×</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px;">Source: Board of Governors of the Federal Reserve System, <a href="https://www.federalreserve.gov/publications/files/scf26.pdf" style="color:var(--accent);text-decoration:none;" rel="noopener">"Changes in U.S. Family Finances from 2022 to 2025: Evidence from the Survey of Consumer Finances"</a> (October 2026), Table 2. Figures were cross-checked against the Fed's <a href="https://www.federalreserve.gov/econres/scfindex.htm" style="color:var(--accent);text-decoration:none;" rel="noopener">SCF historical tables and standard-error files</a>.</p>
+
+  <div class="chart-card">
+    <div class="chart-title">Median vs mean net worth by age, 2025 SCF ($ thousands, 2025 dollars)</div>
+    <div class="chart-wrap"><canvas id="nw-age-chart" aria-label="Bar chart comparing median and mean net worth by age bracket" role="img"></canvas></div>
+  </div>
+
+  <p>The usual pattern holds. Net worth climbs steeply through the working years as people pay down mortgages and retirement accounts compound. It then levels off around retirement. The median rises about 2.6 times between the 35–44 and 55–64 brackets, from $155,620 to $411,910.</p>
+
+  <h2 id="median-vs-mean">Why median is the better benchmark</h2>
+
+  <p>The <strong>median</strong> is the family in the middle: half of families have more and half have less. The <strong>mean</strong> is total wealth divided by the number of families. Wealth is extremely concentrated, so a small number of very rich households pull the mean far above what a typical family holds.</p>
+
+  <p>The Fed's own table shows how lopsided it is. Families in the top 10% by usual income have a median net worth of $3,669,850, about 17 times the overall median. Because of families like these, the mean for <em>all</em> families ($1,241,500) is about three times the median for the 55–64 bracket ($411,910). Most families are nowhere near the mean, and very few are at it.</p>
+
+  <div class="callout data">
+    <div class="callout-label">Rule of thumb</div>
+    <p>Use the median to answer "how do I compare to a typical household my age?" Use the mean only to answer "how much wealth exists in this age group in total?" If you compare yourself with the mean, you will feel behind even when you are well ahead of most of your peers.</p>
+  </div>
+
+  <h2 id="what-changed">What changed since 2022, and what didn't</h2>
+
+  <p>The Fed reports both surveys in 2025 dollars, so the comparison below already accounts for inflation. Overall, the median rose 2.3% in real terms, from $211,140 to $215,920. Two age brackets moved a lot, and both need a caveat.</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr><th>Age</th><th>2022 median</th><th>2025 median</th><th>Real change</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Under 35</td><td>$42,720</td><td>$32,970</td><td style="color:var(--red);">−22.8%</td></tr>
+      <tr><td>35–44</td><td>$148,350</td><td>$155,620</td><td>+4.9%</td></tr>
+      <tr><td>45–54</td><td>$270,560</td><td>$253,650</td><td>−6.2%</td></tr>
+      <tr><td>55–64</td><td>$398,850</td><td>$411,910</td><td>+3.3%</td></tr>
+      <tr><td>65–74</td><td>$448,600</td><td>$431,320</td><td>−3.9%</td></tr>
+      <tr><td>75 and older</td><td>$367,250</td><td>$504,900</td><td class="green">+37.5%</td></tr>
+    </tbody>
+  </table>
+
+  <p>The SCF is a sample of a few thousand families, and the Fed publishes a standard error for every figure. For the under-35 median, the standard error is $4,100 in 2025 and $5,170 in 2022. A rough significance check using those errors gives a z-score of about −1.5, which falls short of the usual 95% confidence threshold. The decline may be real, but this survey alone doesn't prove it. The 75+ jump is similar (z ≈ 1.9). The 2025 median of $504,900 has a standard error of $65,000, so its 95% range runs from roughly $378,000 to $632,000. That range overlaps the 65–74 bracket, so the data does not show that people aged 75+ are now clearly wealthier than people aged 65–74.</p>
+
+  <div class="callout warning">
+    <div class="callout-label">Don't over-read one survey</div>
+    <p>Each figure here is an estimate with a margin of error. Most single-bracket changes in this table, including the 23% drop for under-35s, are within that margin. Wait for a second survey to confirm a trend before acting on it.</p>
+  </div>
+
+  <h2 id="worked-example">Worked example: a 40-year-old's balance sheet</h2>
+
+  <p>Take a hypothetical 40-year-old household with a fairly typical mix of assets: a home with a mortgage, workplace retirement savings, some cash, and a few consumer debts.</p>
+
+  <div class="example-box">
+    <div class="example-title">Assets</div>
+    <div class="example-row"><span>Checking & savings</span><span>$22,000</span></div>
+    <div class="example-row"><span>401(k)</span><span>$118,000</span></div>
+    <div class="example-row"><span>Roth IRA</span><span>$31,000</span></div>
+    <div class="example-row"><span>Taxable brokerage account</span><span>$14,000</span></div>
+    <div class="example-row"><span>Home (current market value)</span><span>$415,000</span></div>
+    <div class="example-row"><span>Car (current value)</span><span>$19,000</span></div>
+    <div class="example-row"><span>Total assets</span><span style="color:var(--green);">$619,000</span></div>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Liabilities</div>
+    <div class="example-row"><span>Mortgage balance</span><span>$298,000</span></div>
+    <div class="example-row"><span>Auto loan</span><span>$11,000</span></div>
+    <div class="example-row"><span>Student loans</span><span>$9,000</span></div>
+    <div class="example-row"><span>Credit card balance</span><span>$3,500</span></div>
+    <div class="example-row"><span>Total liabilities</span><span style="color:var(--red);">$321,500</span></div>
+  </div>
+
+  <div class="formula-box"><code>$619,000 − $321,500 = $297,500 net worth</code></div>
+
+  <p>Compared with the 2025 benchmarks for ages 35–44:</p>
+  <ul>
+    <li><strong>Against the median ($155,620):</strong> $297,500 ÷ $155,620 = <strong>1.91×</strong>. This household has nearly twice the net worth of a typical family its age.</li>
+    <li><strong>Against the mean ($681,910):</strong> $297,500 ÷ $681,910 = <strong>44%</strong>. If you compare with the mean, the same household looks like it's less than halfway there.</li>
+  </ul>
+
+  <p>The $297,500 is the right total, but where it sits matters too. Here is the same figure split by source:</p>
+
+  <div class="example-box">
+    <div class="example-title">Where the $297,500 actually sits</div>
+    <div class="example-row"><span>Home equity ($415,000 − $298,000)</span><span>$117,000</span></div>
+    <div class="example-row"><span>Car equity ($19,000 − $11,000)</span><span>$8,000</span></div>
+    <div class="example-row"><span>Retirement accounts (401(k) + Roth IRA)</span><span>$149,000</span></div>
+    <div class="example-row"><span>Cash + taxable brokerage</span><span>$36,000</span></div>
+    <div class="example-row"><span>Unsecured debt (student loans + card)</span><span>−$12,500</span></div>
+    <div class="example-row"><span>Net worth</span><span style="color:var(--accent);">$297,500</span></div>
+  </div>
+
+  <p>About 39% of this household's net worth is home equity ($117,000 ÷ $297,500), and another 50% is in retirement accounts. Only $23,500 ($36,000 minus the $12,500 of unsecured debt) can be reached without selling the house, borrowing against it, or paying an early-withdrawal penalty. That is about 3½ months of the 2025 median family income ($82,160 before tax). The household is ahead of the median on paper but has a thin cash cushion. One number can't show both facts. To split your own net worth the same way, enter your figures in the <a href="../net-worth-calculator.html" style="color:var(--accent);text-decoration:none;">net worth calculator</a>, which shows your total net worth alongside a liquid figure that excludes property and vehicles.</p>
+
+  <h2 id="tradeoffs">What net worth leaves out, and why averages mislead</h2>
+
+  <h3>Home equity is not spendable money</h3>
+  <p>The SCF counts your home's value minus the mortgage, and for most middle-class families home equity is the largest single asset. But you can't buy groceries with home equity unless you sell, downsize, or take on a new loan. Two households with the same net worth can be in very different positions: one has $300,000 mostly in a house, the other has $300,000 in a brokerage account.</p>
+
+  <h3>Pensions and Social Security are excluded</h3>
+  <p>The Fed's net worth measure includes balances in 401(k)s, IRAs and similar accounts. It does <strong>not</strong> include the value of traditional defined-benefit pensions or future Social Security benefits. A retired teacher with a $55,000-a-year pension may show a modest net worth. Yet producing that income for 25 years at a 5% return would take about $775,000. A retiree who funds the same income from a 401(k) shows that $775,000 on paper. Comparing by net worth alone undervalues people with pensions, and this matters most for older age brackets and public-sector workers. Our <a href="../social-security-calculator.html" style="color:var(--accent);text-decoration:none;">Social Security estimator</a> helps fill in the part net worth leaves out.</p>
+
+  <h3>The table compares families, not individuals</h3>
+  <p>The SCF unit is the family. A married couple's combined net worth counts once, under the age of the reference person. A single 40-year-old comparing personal net worth with the 35–44 median is comparing one person with what is often two earners. The Fed's headline table doesn't break net worth down by age and marital status together. If you're single, treat the age benchmark as a high bar.</p>
+
+  <h3>It's a snapshot of different people, not one life path</h3>
+  <p>The table compares today's 40-year-olds with today's 65-year-olds. It doesn't show what today's 40-year-olds will have at 65. Each generation faces different house prices, interest rates and market returns. The current 65–74 bracket built wealth through decades of falling interest rates and rising asset prices, and that may not repeat.</p>
+
+  <h3>Comparing yourself with averages can push you into bad decisions</h3>
+  <p>Feeling "behind" the mean leads some people to take on concentrated or leveraged risk to catch up. Feeling "ahead" of the median can lead to under-saving. Neither benchmark knows your income, cost of living, or retirement plan. The most useful comparison is with your own net worth a year ago, plus a target based on what you'll actually spend in retirement. Our <a href="../fire-calculator.html" style="color:var(--accent);text-decoration:none;">FIRE calculator</a> and <a href="../retirement-budget-calculator.html" style="color:var(--accent);text-decoration:none;">retirement budget calculator</a> help you set that target.</p>
+
+  <div class="cta-box">
+    <h3>Calculate your net worth</h3>
+    <p>Enter your assets and debts to see your total net worth, your liquid net worth, and how you compare with the 2025 Fed medians for your age.</p>
+    <a href="../net-worth-calculator.html" class="cta-btn">Open the net worth calculator →</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 id="faq">Frequently asked questions</h2>
+
+  <h3>What is the median net worth by age in the US?</h3>
+  <p>According to the Federal Reserve's 2025 Survey of Consumer Finances, median family net worth is $32,970 for families headed by someone under 35, $155,620 for ages 35–44, $253,650 for 45–54, $411,910 for 55–64, $431,320 for 65–74, and $504,900 for 75 and older. The median across all families is $215,920. All figures are in 2025 dollars.</p>
+
+  <h3>What is the average net worth of a 40-year-old?</h3>
+  <p>For families headed by someone aged 35–44, the 2025 SCF reports a median net worth of $155,620 and a mean (average) of $681,910. The median is the better benchmark for a typical household, because the mean is pulled up by a small number of very wealthy families.</p>
+
+  <h3>Why is average net worth so much higher than median net worth?</h3>
+  <p>Wealth is highly concentrated. The mean adds up everyone's wealth and divides by the number of families, so a few households worth tens or hundreds of millions raise it a lot. The median is simply the middle family and isn't affected by extreme values. In the 2025 survey the mean for all families was 5.8 times the median ($1,241,500 vs $215,920).</p>
+
+  <h3>Does net worth include my home and retirement accounts?</h3>
+  <p>Yes. The Federal Reserve's measure includes your home's value minus the mortgage, vehicles, business interests, and retirement accounts such as 401(k)s and IRAs. It excludes the value of defined-benefit pensions and future Social Security benefits. If you have a pension, your financial security is higher than your net worth alone suggests.</p>
+
+  <h3>How do I figure out what my net worth is?</h3>
+  <p>Add up the current market value of everything you own (cash, investment and retirement accounts, home, vehicles, and other assets), then subtract everything you owe (mortgage, auto loans, student loans, credit cards, and other debt). The result is your net worth. The MyDCACalc net worth calculator does the math, shows how much of your net worth is liquid, and compares your result with the 2025 Fed median for your age group.</p>
+
+  <div class="author-bio-box">
+    <div class="author-bio-avatar">JC</div>
+    <div class="author-bio-info">
+      <div class="author-bio-name">James Colter</div>
+      <div class="author-bio-title">Long-term Investor & Personal Finance Writer</div>
+      <div class="author-bio-text">Former financial analyst writing about long-term investing, dollar cost averaging, and compound growth. Based in Denver, CO.</div>
+      <a href="../authors/james-colter.html" class="author-bio-link">View all articles by James →</a>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Disclaimer</div>
+    <p>This article is for informational and educational purposes only. Net worth figures are survey estimates from the Federal Reserve's 2025 Survey of Consumer Finances. They are reported in 2025 dollars, by age of the family's reference person, and each has a margin of error. The worked example is hypothetical. Past performance does not guarantee future results. Not financial advice.</p>
+  </div>
+
+</article>
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="../about.html">About</a> &nbsp;·&nbsp;
+    <a href="../privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="../terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+(function () {
+  var el = document.getElementById('nw-age-chart');
+  if (!el || typeof Chart === 'undefined') return;
+  new Chart(el.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: ['Under 35', '35–44', '45–54', '55–64', '65–74', '75+'],
+      datasets: [
+        { label: 'Median', data: [32.97, 155.62, 253.65, 411.91, 431.32, 504.9], backgroundColor: '#c8f060', borderRadius: 4 },
+        { label: 'Mean', data: [135.43, 681.91, 1244.53, 1877.99, 1897.55, 1962.24], backgroundColor: '#5b9cf6', borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#888884', font: { family: "'DM Mono', monospace", size: 11 }, boxWidth: 12 } },
+        tooltip: {
+          backgroundColor: '#141416', borderColor: 'rgba(255,255,255,0.08)', borderWidth: 1,
+          titleColor: '#f0efe8', bodyColor: '#888884', padding: 10,
+          callbacks: { label: function (c) { return ' ' + c.dataset.label + ': $' + Math.round(c.raw * 1000).toLocaleString('en-US'); } }
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#888884', font: { family: "'DM Mono', monospace", size: 11 } }, grid: { display: false } },
+        y: { ticks: { color: '#888884', font: { family: "'DM Mono', monospace", size: 11 }, callback: function (v) { return '$' + v + 'K'; } }, grid: { color: 'rgba(255,255,255,0.06)' } }
+      }
+    }
+  });
+})();
+</script>
+
+<script src="/nav.js"></script>
+</body>
+</html>
