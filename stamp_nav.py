@@ -53,6 +53,7 @@ CALC_CATEGORIES = [
         ('social-security-calculator.html',         'Social Security'),
         ('ira-contribution-calculator.html',        'IRA contribution'),
         ('529-calculator.html',                     '529 college savings'),
+        ('charitable-deduction-calculator.html',    'Charitable deduction'),
     ]),
     ('Income', [
         ('drip-calculator.html',                'DRIP'),

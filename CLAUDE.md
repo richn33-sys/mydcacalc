@@ -142,6 +142,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 ├── retirement-budget-calculator.html              ← Retirement Budget Calculator (25th calculator, NEW Jul 13 — essential vs discretionary split, income gap analysis, go-go/slow-go/no-go phase estimates; full-content build; nav category: Retirement & Tax)
 ├── capital-gains-tax-calculator.html              ← Capital Gains Tax Calculator (26th calculator, NEW Jul 24 — short-term vs long-term stock gains, 2026 brackets; validated with node --check + cross-checked against guide worked example; full-content build; nav category: Retirement & Tax)
 ├── stock-profit-calculator.html                   ← Stock Profit Calculator (27th calculator, NEW Jul 24 — profit and ROI on a stock trade; validated with node --check; full-content build; nav category: Investing)
+├── charitable-deduction-calculator.html           ← Charitable Deduction Calculator (28th calculator, NEW Nov 19 — 2026 OBBBA rules: standard+$1k/$2k non-itemizer vs itemize, 0.5% AGI floor, §68 2/37 cap, 60% cash limit, 2-year bunching scenario; full-content build + FAQPage schema + primary-source citations; nav category: Retirement & Tax)
 ├── nav.js                                         ← All nav dropdown/hamburger/accordion JS (RECREATED Jun 21 — moved out of inline; stamp_nav injects <script src="/nav.js"> on every page)
 ├── stamp_nav.py                                  ← Single script to stamp full nav into any page (grouped calc dropdowns + accordion guides dropdown; NAV_EVENT_JS now just <script src="/nav.js">, ensure_nav_js() injects it, Jun 21)
 ├── about.html
@@ -156,7 +157,7 @@ Supabase → Table Editor → profiles → find row → set subscription_status 
 │   ├── james-colter.html + james-colter.jpg
 │   └── sara-kline.html + sara-kline.jpg
 ├── guides/
-│   ├── index.html                                ← 35 guides published; counter reads 35 ✅; "Free calculators" stat fixed 3 → 27 (Nov 14 2026, verified on disk)
+│   ├── index.html                                ← 35 guides published; counter reads 35 ✅; "Free calculators" stat 28 (Nov 19 2026, verified on disk); calc CTA grid now 2×2 with Charitable Deduction card
 │   ├── what-is-dollar-cost-averaging.html
 │   ├── how-compound-interest-works.html
 │   ├── dca-vs-lump-sum.html
@@ -429,6 +430,15 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 - Added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**
 - Pairs with the How to Calculate Stock Profit and ROI guide (`guides/stock-profit-roi-explained.html`)
 - **Keywords:** stock profit calculator, stock ROI calculator, stock gain loss calculator
+
+### charitable-deduction-calculator.html — Charitable Deduction Calculator (28th calculator, NEW Nov 19 2026)
+- Tax year 2026 rules under the One Big Beautiful Bill Act (P.L. 119-21). Inputs: filing status (single/MFJ/HOH/MFS), AGI, other itemized deductions, planned cash gifts, marginal bracket (Auto from 2026 brackets or manual), count of 65+/blind boxes
+- Outputs: standard path (std deduction + non-itemizer charity deduction) vs itemize, 0.5% floor in dollars, deduction value of gifts, tax savings, net cost of giving, 2-year bunching comparison, verdict (incl. "small-itemizer trap"), carryforward when gifts exceed 60% AGI
+- **Rules modeled (verified from primary sources Nov 19 2026):** Sec. 70424 → IRC 170(p) $1,000/$2,000 for non-itemizers from 2026, cash to 170(b)(1)(A) orgs only, excludes DAFs + 509(a)(3) supporting orgs; taken via §63(b)(4) in computing taxable income — **it does NOT reduce AGI (not above-the-line)**; not subject to the 0.5% floor (70425(a)(3)). Sec. 70425 → 0.5%-of-contribution-base floor for itemizers (170(b)(1)(I)); floor amount carries forward only when % limits are exceeded (170(d)(1)(C)); 60% cash limit no longer sunsets. Sec. 70111 → new §68: itemized reduced by 2/37 × lesser of itemized or (TI+itemized − 37% bracket start) ≈ 35¢/$ cap, applied after other limits
+- 2026 figures from Rev. Proc. 2025-32: std $16,100 / $32,200 / HOH $24,150 / MFS $16,100; aged/blind $1,650 (married) / $2,050 (unmarried); 37% starts $640,600 single+HOH / $768,700 MFJ / $384,350 MFS; HOH brackets 17,700 / 67,450 / 105,700 / 201,750 / 256,200 / 640,600
+- **Worked example (default inputs):** MFJ, AGI $150k, other itemized $24k, $10k gifts, 22% → floor $750, itemized $33,250 < $34,200 standard path → saves $440/yr; bunching $20k → itemize $43,250, saves $2,431 vs $880 → +$1,551. Verified by running the page's own extracted script in node (all 10 figures match)
+- **Full-content build (meets Calculator Content Standard):** worked example + tradeoffs (small itemizers, bunching/DAFs, what doesn't qualify, give before Dec 31, what it doesn't model) + 5-question FAQ + FAQPage schema + Sources list
+- **Keywords:** charitable deduction calculator, charitable deduction standard deduction 2026
 ---
 ## Calculator Content Standard (NEW Jun 30 2026)
 > Standing rule for every future calculator. Established this session and saved to memory.
@@ -646,6 +656,7 @@ This raises calculators from bare tools to non-commodity content that the Helpfu
 | retirement-budget-calculator.html | retirement budget calculator / retirement spending plan |
 | capital-gains-tax-calculator.html | capital gains tax calculator / short term vs long term capital gains |
 | stock-profit-calculator.html | stock profit calculator / stock ROI calculator |
+| charitable-deduction-calculator.html | charitable deduction calculator / charitable deduction standard deduction 2026 |
 | guides/what-is-dollar-cost-averaging.html | what is dollar cost averaging |
 | guides/how-compound-interest-works.html | how compound interest works |
 | guides/dca-vs-lump-sum.html | dca vs lump sum |
@@ -805,7 +816,7 @@ CURRENT_GUIDES = [
 > ✅ Jul 8: Evergreen Funds guide added (Marcus Veil) — CURRENT_GUIDES now at **29**, audited against disk and matches (29 guide HTML files). Note: the Evergreen guide was committed Jul 7 (`cf718b9`) and had already been written into CURRENT_GUIDES, but was never logged in this CLAUDE.md until the Jul 8 session — reconciled now.
 > ✅ Jul 12: Bucket Strategy for Retirement + How to Calculate Your Cost Basis guides added (both James Colter) — CURRENT_GUIDES now at **31**, audited against disk and matches (31 guide HTML files).
 
-### Current CURRENT_CALCULATORS (as of Jul 24 2026 — verified against disk, 27 calculators):
+### Current CURRENT_CALCULATORS (as of Nov 19 2026 — verified against disk, 28 calculators):
 ```python
 CURRENT_CALCULATORS = [
     "DCA calculator (index.html)",
@@ -835,6 +846,7 @@ CURRENT_CALCULATORS = [
     "Retirement budget calculator (essential vs discretionary, income gap, go-go/slow-go/no-go phases)",
     "Capital gains tax calculator (short-term/long-term stock gains)",
     "Stock profit calculator (profit and ROI on a stock trade)",
+    "Charitable deduction calculator (2026 OBBBA rules: standard vs itemize, $1,000/$2,000 non-itemizer deduction, 0.5% AGI floor, bunching)",
 ]
 ```
 > ✅ Jun 21: research_agent.py audited vs disk — CURRENT_CALCULATORS was at 14, added RMD calculator → 15, now matches disk. (CURRENT_GUIDES unchanged at 21.)
@@ -845,10 +857,12 @@ CURRENT_CALCULATORS = [
 > ✅ Jul 8: CURRENT_CALCULATORS was at 21, missing the Social Security estimator → added → **22**, matches disk (22 calculator HTML files). CURRENT_GUIDES at **29** after reconciling the Evergreen Funds guide. Both lists verified against disk this session and match.
 > ✅ Jul 12: CURRENT_CALCULATORS was at 22, missing the stocks Cost Basis calculator → added → **23**, matches disk (23 calculator HTML files). CURRENT_GUIDES at **31** after adding the Bucket Strategy + Cost Basis guides (31 guide HTML files). Both lists verified against disk this session and match.
 > ✅ Jul 13: CURRENT_CALCULATORS was at 23, missing the Roth Conversion + Retirement Budget calculators → added both → **25**, matches disk (25 calculator HTML files). CURRENT_GUIDES unchanged at **31**, verified against disk (31 guide HTML files). Both lists verified against disk this session and match.
+> ✅ Nov 19: Charitable Deduction calculator added → CURRENT_CALCULATORS **28**, matches disk (28 calculator HTML files).
 > ✅ Jul 24: CURRENT_CALCULATORS was at 25, missing the Capital Gains Tax + Stock Profit calculators → added both → **27**, matches disk (27 calculator HTML files). CURRENT_GUIDES was at 34 (all three new guides — Capital Gains Tax, Stock Profit/ROI, Private Credit — already present) → matches disk (34 guide HTML files). Both lists verified against disk this session and match.
 ---
 ## Roadmap
 ### Done ✅
+- [x] Charitable Deduction Calculator (28th calculator) — `charitable-deduction-calculator.html`, 2026 OBBBA rules; full-content build + FAQPage schema + primary-source citations; added to `stamp_nav.py` under **Retirement & Tax**; `node --check` + worked example verified by running the page's own script — Nov 19 2026
 - [x] Capital Gains Tax Calculator (26th calculator) — `capital-gains-tax-calculator.html`, short-term vs long-term stock gains under 2026 brackets; full-content build (worked example + honest tradeoffs + 5-question FAQ) — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Retirement & Tax**. Validated with `node --check` on the extracted `<script>` block AND cross-checked against the paired guide's worked example before delivery — Jul 24 2026
 - [x] Stock Profit Calculator (27th calculator) — `stock-profit-calculator.html`, profit and ROI on a stock trade (with commissions, annualized return, break-even); full-content build — meets Calculator Content Standard; added to `stamp_nav.py` `CALC_CATEGORIES` under **Investing**. Validated with `node --check` before delivery — Jul 24 2026
 - [x] How to Calculate Capital Gains Tax on Stocks guide (32nd guide) — James Colter — `guides/capital-gains-tax-stocks.html`; worked example corrected during Perplexity review (short-term bracket math was initially wrong → fixed to accurate bracket-by-bracket calculation); pairs with the Capital Gains Tax calculator — Jul 24 2026
@@ -968,6 +982,8 @@ CURRENT_CALCULATORS = [
 - [x] **Pre-flight `node --check` + manual math verification** — now standard practice before delivering any new calculator (formalized Jul 24 2026) ✅
 - [x] **Net worth by age guide + net worth calculator GSC rewrite** — published Nov 14 2026 (35th guide) ✅
 - [ ] **Await next weekly research brief** — next Sunday research agent run (Sunday 7am)
+- [ ] **Submit to GSC** — charitable-deduction-calculator.html (Nov 19, new)
+- [ ] **Charitable deduction calculator — before 2027:** update to 2027 figures (Rev. Proc. 2026-35, IR-2026-133) in Jan 2027; Perplexity pass on the page (deployed without it)
 - [ ] **Submit to GSC** — guides/net-worth-by-age.html + net-worth-calculator.html (Nov 14 rewrite)
 - [ ] **Perplexity/Grammarly pass on guides/net-worth-by-age.html** — deployed directly on Nov 14 without the usual review steps
 - [ ] **Submit new URLs to GSC** — capital-gains-tax-calculator.html + stock-profit-calculator.html + guides/capital-gains-tax-stocks.html + guides/stock-profit-roi-explained.html + guides/private-credit-investing.html + roth-conversion-calculator.html + retirement-budget-calculator.html + cost-basis-calculator.html + guides/bucket-strategy-retirement.html + guides/how-to-calculate-cost-basis.html
@@ -1022,6 +1038,12 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Nov 19 2026 — Charitable Deduction Calculator Session
+- **Built `charitable-deduction-calculator.html`** (28th calculator) targeting "charitable deduction calculator" / "charitable deduction standard deduction 2026". Title: `Charitable Deduction Calculator 2026 (OBBBA) | MyDCACalc` (56 chars); meta 146 chars; og synced
+- **Primary sources:** P.L. 119-21 enrolled text (congress.gov PLAW-119publ21.htm, Secs. 70111/70424/70425); govinfo 26 USC 170(p) + 63(b)(4); IRS IR-2025-103 + Rev. Proc. 2025-32 PDF (text extracted locally with pypdf in a scratch venv — no poppler); IR-2026-135 (Nov 10 2026); IRS OBBB provisions page; Pub 526 (timing: check = mail date, credit card = charge year). uscode.house.gov returned 404 for §§63/68/170 — used govinfo instead
+- **Correction to the brief:** the $1,000/$2,000 non-itemizer deduction is NOT above-the-line — §170(p) is taken under §63(b)(4) in computing taxable income; AGI unchanged. Page says so
+- Nav re-stamped (`stamp_nav.py --all`, 65 files, nav-only diff: +2 lines/page); guides index calc counter 27 → 28 + new CTA card (grid 3 → 2 columns); sitemap; research_agent.py CURRENT_CALCULATORS → 28
 
 ### Nov 14 2026 — Net Worth by Age Guide + Net Worth Calculator GSC Session
 - **GSC trigger:** "net worth calculator" 127 impressions @ pos ~50; net-worth-calculator.html 616 impressions @ pos 37; related query "what is my net worth"

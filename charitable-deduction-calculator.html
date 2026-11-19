@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charitable Deduction Calculator 2026 (OBBBA) | MyDCACalc</title>
+<meta name="description" content="Will your 2026 donations beat the standard deduction? Models the new $1,000/$2,000 non-itemizer deduction, the 0.5% AGI floor, and bunching gifts.">
+<meta name="keywords" content="charitable deduction calculator, charitable deduction standard deduction 2026, charitable deduction non-itemizers 2026, 0.5% AGI floor charitable, bunching charitable donations">
+<meta property="og:title" content="Charitable Deduction Calculator 2026 (OBBBA) | MyDCACalc">
+<meta property="og:description" content="Will your 2026 donations beat the standard deduction? Models the new $1,000/$2,000 non-itemizer deduction, the 0.5% AGI floor, and bunching gifts.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mydcacalc.com/charitable-deduction-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mydcacalc.com/charitable-deduction-calculator.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0c0e'/%3E%3Ctext x='5' y='22' font-family='monospace' font-size='13' font-weight='700' fill='%23c8f060'%3EDCA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Charitable Deduction Calculator 2026",
+  "description": "Compare the 2026 standard deduction (plus the new non-itemizer charitable deduction) against itemizing, with the 0.5% AGI floor, the 2/37 itemized-deduction limit, and a two-year bunching scenario",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I take the $1,000 charitable deduction and the standard deduction in 2026?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Starting with tax year 2026, if you do not itemize you can deduct up to $1,000 ($2,000 married filing jointly) of qualifying cash gifts in addition to the standard deduction. It reduces taxable income, not adjusted gross income. Amounts above the cap are not deductible and do not carry forward." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do donor-advised fund contributions count for the non-itemizer deduction?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The non-itemizer deduction only covers cash gifts to public charities. Contributions to donor-advised funds and supporting organizations are excluded, and so are gifts of stock or other property. Donor-advised fund contributions can still be deducted if you itemize." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the 0.5% AGI floor on charitable deductions work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "From 2026, itemizers can deduct charitable gifts only to the extent the year's total exceeds 0.5% of their contribution base, which is generally AGI. With $150,000 of AGI the first $750 of gifts is not deductible. The floor does not apply to the $1,000/$2,000 non-itemizer deduction." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my charitable deduction worth 37% if I am in the top bracket?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not fully. Starting in 2026, new IRC section 68 reduces itemized deductions by 2/37 of the lesser of your itemized deductions or the amount by which your income reaches into the 37% bracket. For a filer fully in the top bracket, each deducted dollar saves about 35 cents instead of 37." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a donation made on December 31 count for this tax year?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, if it is delivered by December 31. According to IRS Publication 526, a mailed check counts on the date you mail it, and a credit card gift counts in the year the charge is made, even if you pay the card bill in January." }
+    }
+  ]
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0c0c0e; --bg-card: #141416; --bg-input: #1a1a1e;
+  --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+  --text: #f0efe8; --text-muted: #888884; --text-dim: #555552;
+  --accent: #c8f060; --accent-dim: rgba(200,240,96,0.12); --accent-border: rgba(200,240,96,0.3);
+  --green: #3ecf8e; --red: #f06060; --blue: #5b9cf6;
+  --font-body: 'Sora', sans-serif; --font-mono: 'DM Mono', monospace;
+  --radius: 10px; --radius-lg: 16px;
+}
+html, body { overflow-x: hidden; max-width: 100%; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+header { padding: 0 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; background: rgba(12,12,14,0.92); backdrop-filter: blur(12px); z-index: 100; }
+.logo { font-family: var(--font-mono); font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; text-decoration: none; }
+.logo span { color: var(--text-muted); }
+nav { display: flex; gap: 20px; align-items: center; }
+nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+nav a:hover { color: var(--text); }
+nav a.active { color: var(--accent); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all 0.2s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; background: var(--bg-card); padding: 12px 0; z-index: 999; flex-direction: column; overflow-y: scroll; }
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a { padding: 12px 24px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
+.nav-mobile-menu .mobile-guides-label { padding: 10px 24px 4px; font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: none; }
+@media (max-width: 768px) { nav { display: none; } .nav-hamburger { display: flex; } }
+
+.hero { max-width: 980px; margin: 0 auto; padding: 40px 24px 20px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); margin-bottom: 16px; }
+h1 { font-size: clamp(24px, 4vw, 34px); font-weight: 600; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 10px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 14px; color: var(--text-muted); font-weight: 300; max-width: 600px; line-height: 1.7; }
+
+.main { max-width: 980px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+@media (max-width: 780px) { .main { grid-template-columns: 1fr; } }
+
+.controls-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; align-self: start; }
+.section-label { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.input-group { margin-bottom: 16px; }
+.input-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+.input-wrap { position: relative; }
+.input-prefix { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); pointer-events: none; }
+input[type="number"] { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px 9px 24px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; -moz-appearance: textfield; }
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type="number"]:focus { border-color: var(--accent-border); }
+select { width: 100%; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 10px; font-size: 13px; font-family: var(--font-mono); color: var(--text); outline: none; transition: border-color 0.15s; appearance: none; cursor: pointer; }
+select:focus { border-color: var(--accent-border); }
+.divider-line { height: 1px; background: var(--border); margin: 16px 0; }
+
+.results { display: flex; flex-direction: column; gap: 14px; }
+
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 560px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
+.compare-card.better { border-color: var(--accent-border); background: var(--accent-dim); }
+.compare-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+.compare-card.better .compare-label { color: var(--accent); }
+.compare-tax { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--text); letter-spacing: -0.02em; margin-bottom: 4px; }
+.compare-card.better .compare-tax { color: var(--accent); }
+.compare-rate { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.savings-card { background: var(--bg-card); border: 1px solid var(--accent-border); background: var(--accent-dim); border-radius: var(--radius-lg); padding: 22px; text-align: center; }
+.savings-label { font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.savings-amount { font-size: 30px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); letter-spacing: -0.03em; margin-bottom: 6px; }
+.savings-sub { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.breakdown-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.breakdown-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-mono); min-width: 460px; }
+th { background: var(--bg-input); padding: 9px 12px; text-align: left; font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+tr:last-child td { border-bottom: none; }
+td.accent { color: var(--accent); font-weight: 500; }
+td.red { color: var(--red); }
+
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 14px 16px; }
+.info-box p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.7; font-weight: 300; }
+.info-box strong { color: var(--text); font-weight: 500; }
+.disclaimer { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.6; padding: 12px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+
+.content-section { max-width: 980px; margin: 0 auto; padding: 0 24px 60px; }
+.pro-banner{background:#0F6E56;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-family:-apple-system,sans-serif;font-size:14px;position:relative}
+.pro-banner a.pro-cta-btn-top{background:#fff;color:#0F6E56;padding:5px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:13px}
+.pro-banner-close{position:absolute;right:16px;background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); line-height: 1.8; }
+footer a { color: var(--text-muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ── GROUPED CALC DROPDOWNS ── */
+.nav-group { position: relative; }
+.nav-group-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.nav-group-toggle:hover, .nav-group-toggle.active { color: var(--text); }
+.nav-group-toggle::after { content: "▾"; font-size: 10px; }
+.nav-group-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 210px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.nav-group-menu a { display: block; padding: 9px 14px; font-size: 13px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.nav-group-menu a:last-child { border-bottom: none; }
+.nav-group-menu a:hover { background: var(--bg-input); color: var(--text); }
+/* ── ACCORDION GUIDES DROPDOWN ── */
+.dropdown { position: relative; }
+.dropdown-toggle { font-size: 13px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); padding: 0; transition: color 0.15s; }
+.dropdown-toggle:hover, .dropdown-toggle.active { color: var(--text); }
+.dropdown-toggle::after { content: "▾"; font-size: 10px; }
+.dropdown-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); min-width: 240px; overflow: hidden; z-index: 200; padding: 4px 0; }
+.guide-cat-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 11px; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-bottom: 1px solid var(--border); user-select: none; transition: background 0.15s; }
+.guide-cat-header:hover { background: var(--bg-input); }
+.guide-cat-header .cat-arrow { font-size: 10px; transition: transform 0.2s; }
+.guide-cat-header.open .cat-arrow { transform: rotate(90deg); }
+.guide-cat-links { display: none; }
+.guide-cat-links.open { display: block; }
+.guide-cat-links a { display: block; padding: 8px 14px 8px 22px; font-size: 12px; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.15s; }
+.guide-cat-links a:hover { background: var(--bg-input); color: var(--text); }
+.guide-cat-links a:last-child { border-bottom: none; }
+.dropdown-menu .all-guides-link { display: block; padding: 10px 14px; font-size: 12px; font-family: var(--font-mono); color: var(--accent); text-decoration: none; text-align: center; border-top: 1px solid var(--border); }
+.dropdown-menu .all-guides-link:hover { background: var(--bg-input); }
+
+.input-hint { font-size: 11px; color: var(--text-dim); margin-top: 5px; line-height: 1.5; }
+.compare-card .compare-label { min-height: 16px; }
+.prose h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin: 40px 0 16px; color: var(--text); }
+.prose h2:first-of-type { margin-top: 8px; }
+.prose h3 { font-size: 16px; font-weight: 500; color: var(--text); margin: 26px 0 10px; }
+.prose p, .prose li { color: var(--text-muted); font-weight: 300; line-height: 1.75; }
+.prose p { margin-bottom: 16px; }
+.prose ul { margin: 0 0 16px 20px; }
+.prose li { margin-bottom: 8px; }
+.prose strong { color: var(--text); font-weight: 500; }
+.prose a { color: var(--accent); text-decoration: none; }
+.prose .updated { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); }
+.prose .faq h3 { margin-top: 22px; }
+.prose .sources li { font-size: 13px; }
+.prose .related { font-size: 13px; margin-top: 24px; }
+.example-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 22px; margin-bottom: 20px; }
+.example-title { font-size: 12px; font-family: var(--font-mono); color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+.example-row { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; font-family: var(--font-mono); color: var(--text-muted); }
+.example-row span:last-child { white-space: nowrap; color: var(--text); }
+.example-row .acc { color: var(--accent) !important; }
+.example-row.last { border-bottom: none; font-weight: 500; }
+td[colspan] { color: var(--text-muted); font-size: 11px; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVC269Z8F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HVC269Z8F');
+</script>
+</head>
+<body>
+
+<div class="pro-banner" id="pro-banner">
+  <span>📈 <strong>Track your real cost basis automatically</strong> — avg cost, live P&L, weekly signals</span>
+  <a href="https://pro.mydcacalc.com/upgrade.html" class="pro-cta-btn-top">Try Pro free →</a>
+  <button class="pro-banner-close" onclick="document.getElementById('pro-banner').style.display='none'">×</button>
+</div>
+
+<header>
+  <a href="/" class="logo">mydca<span>calc</span>.com</a>
+  <nav>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Investing</button>
+      <div class="nav-group-menu">
+        <a href="">DCA calculator</a>
+        <a href="dca-backtest.html">DCA backtest</a>
+        <a href="compound-interest.html">Compound interest</a>
+        <a href="rule-of-72-calculator.html">Rule of 72</a>
+        <a href="loss-recovery-calculator.html">Loss recovery</a>
+        <a href="breakeven-calculator.html">Breakeven</a>
+        <a href="stock-profit-calculator.html">Stock profit</a>
+        <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+        <a href="cost-basis-calculator.html">Cost basis (stocks)</a>
+        <a href="capital-gains-tax-calculator.html">Capital gains tax</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Portfolio</button>
+      <div class="nav-group-menu">
+        <a href="asset-allocation.html">Asset allocation</a>
+        <a href="rebalancing-calculator.html">Rebalancing</a>
+        <a href="position-size.html">Position size</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle active">Retirement &amp; Tax</button>
+      <div class="nav-group-menu">
+        <a href="fire-calculator.html">FIRE calculator</a>
+        <a href="net-worth-calculator.html">Net worth</a>
+        <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+        <a href="retirement-budget-calculator.html">Retirement budget</a>
+        <a href="fee-calculator.html">Fee impact</a>
+        <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+        <a href="rmd-calculator.html">RMD calculator</a>
+        <a href="roth-conversion-calculator.html">Roth conversion</a>
+        <a href="social-security-calculator.html">Social Security</a>
+        <a href="ira-contribution-calculator.html">IRA contribution</a>
+        <a href="529-calculator.html">529 college savings</a>
+        <a href="charitable-deduction-calculator.html" class="active">Charitable deduction</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button class="nav-group-toggle">Income</button>
+      <div class="nav-group-menu">
+        <a href="drip-calculator.html">DRIP</a>
+        <a href="dividend-calculator.html">Dividend income</a>
+        <a href="inflation-calculator.html">Real returns</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle">Guides</button>
+      <div class="dropdown-menu">
+        <div class="guide-cat-header"><span>DCA &amp; Investing</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+          <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+          <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+          <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+          <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+          <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+          <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+        </div>
+        <div class="guide-cat-header"><span>Crypto</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+          <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+          <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+          <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+          <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+          <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+          <a href="guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+        </div>
+        <div class="guide-cat-header"><span>Retirement &amp; FIRE</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+          <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+          <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+          <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+          <a href="guides/rmd-explained.html">RMD explained</a>
+          <a href="guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+          <a href="guides/monte-carlo-retirement.html">Monte Carlo simulation</a>
+          <a href="guides/bucket-strategy-retirement.html">Bucket strategy</a>
+        </div>
+        <div class="guide-cat-header"><span>Fundamentals</span><span class="cat-arrow">&#x203a;</span></div>
+        <div class="guide-cat-links">
+          <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+          <a href="guides/how-to-calculate-position-size.html">Position size</a>
+          <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+          <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+          <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+          <a href="guides/index-fund-investing-beginners.html">Index fund investing</a>
+          <a href="guides/three-fund-portfolio.html">3-fund portfolio</a>
+          <a href="guides/evergreen-funds-investing.html">Evergreen funds</a>
+          <a href="guides/private-credit-investing.html">Private credit</a>
+          <a href="guides/how-to-calculate-cost-basis.html">Cost basis calculation</a>
+          <a href="guides/capital-gains-tax-stocks.html">Capital gains tax</a>
+          <a href="guides/stock-profit-roi-explained.html">Stock profit & ROI</a>
+          <a href="guides/net-worth-by-age.html">Net worth by age</a>
+        </div>
+        <a href="guides/index.html" class="all-guides-link">All guides &#x2192;</a>
+      </div>
+    </div>
+  </nav>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <span class="mobile-guides-label">Investing</span>
+  <a href="">DCA calculator</a>
+  <a href="dca-backtest.html">DCA backtest</a>
+  <a href="compound-interest.html">Compound interest</a>
+  <a href="rule-of-72-calculator.html">Rule of 72</a>
+  <a href="loss-recovery-calculator.html">Loss recovery</a>
+  <a href="breakeven-calculator.html">Breakeven</a>
+  <a href="stock-profit-calculator.html">Stock profit</a>
+  <a href="crypto-cost-basis-calculator.html">Crypto cost basis</a>
+  <a href="cost-basis-calculator.html">Cost basis (stocks)</a>
+  <a href="capital-gains-tax-calculator.html">Capital gains tax</a>
+  <span class="mobile-guides-label">Portfolio</span>
+  <a href="asset-allocation.html">Asset allocation</a>
+  <a href="rebalancing-calculator.html">Rebalancing</a>
+  <a href="position-size.html">Position size</a>
+  <span class="mobile-guides-label">Retirement & Tax</span>
+  <a href="fire-calculator.html">FIRE calculator</a>
+  <a href="net-worth-calculator.html">Net worth</a>
+  <a href="withdrawal-rate-calculator.html">Withdrawal rate</a>
+  <a href="retirement-budget-calculator.html">Retirement budget</a>
+  <a href="fee-calculator.html">Fee impact</a>
+  <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting</a>
+  <a href="rmd-calculator.html">RMD calculator</a>
+  <a href="roth-conversion-calculator.html">Roth conversion</a>
+  <a href="social-security-calculator.html">Social Security</a>
+  <a href="ira-contribution-calculator.html">IRA contribution</a>
+  <a href="529-calculator.html">529 college savings</a>
+  <a href="charitable-deduction-calculator.html">Charitable deduction</a>
+  <span class="mobile-guides-label">Income</span>
+  <a href="drip-calculator.html">DRIP</a>
+  <a href="dividend-calculator.html">Dividend income</a>
+  <a href="inflation-calculator.html">Real returns</a>
+  <span class="mobile-guides-label">DCA & Investing</span>
+  <a href="guides/what-is-dollar-cost-averaging.html">What is dollar cost averaging?</a>
+  <a href="guides/dca-vs-lump-sum.html">DCA vs lump sum</a>
+  <a href="guides/how-to-invest-in-a-volatile-market.html">Investing in a volatile market</a>
+  <a href="guides/best-day-to-dca-bitcoin.html">Best day to DCA Bitcoin</a>
+  <a href="guides/bitcoin-dca-strategy.html">Bitcoin DCA strategy</a>
+  <a href="guides/fear-greed-index-dca-strategy.html">Fear &amp; Greed Index DCA</a>
+  <a href="guides/dividend-growth-portfolio.html">Dividend growth portfolio</a>
+  <span class="mobile-guides-label">Crypto</span>
+  <a href="guides/how-to-build-crypto-dca-portfolio.html">Crypto DCA portfolio</a>
+  <a href="guides/should-you-dca-into-ai-crypto-tokens.html">DCA into AI crypto</a>
+  <a href="guides/crypto-staking-explained.html">Crypto staking yields</a>
+  <a href="guides/ethereum-glamsterdam-upgrade-2026.html">Ethereum Glamsterdam</a>
+  <a href="guides/ai-stocks-vs-traditional-value.html">AI vs Value stocks</a>
+  <a href="guides/strategic-bitcoin-reserve-dca.html">Strategic Bitcoin Reserve</a>
+  <a href="guides/tokenized-real-world-assets.html">Tokenized RWAs</a>
+  <span class="mobile-guides-label">Retirement & FIRE</span>
+  <a href="guides/4-percent-rule-explained.html">The 4% Rule</a>
+  <a href="guides/bond-ladder-retirement.html">Bond ladder strategy</a>
+  <a href="guides/portfolio-diversification-guide.html">Portfolio diversification</a>
+  <a href="guides/tax-loss-harvesting-explained.html">Tax-loss harvesting</a>
+  <a href="guides/rmd-explained.html">RMD explained</a>
+  <a href="guides/sequence-of-returns-risk.html">Sequence of returns risk</a>
+  <a href="guides/monte-carlo-retirement.html">Monte Carlo simulation</a>
+  <a href="guides/bucket-strategy-retirement.html">Bucket strategy</a>
+  <span class="mobile-guides-label">Fundamentals</span>
+  <a href="guides/how-compound-interest-works.html">How compound interest works</a>
+  <a href="guides/how-to-calculate-position-size.html">Position size</a>
+  <a href="guides/what-is-a-good-risk-reward-ratio.html">Risk/reward ratio</a>
+  <a href="guides/investing-during-high-interest-rates.html">High interest rates</a>
+  <a href="guides/how-to-invest-during-geopolitical-uncertainty.html">Geopolitical uncertainty</a>
+  <a href="guides/index-fund-investing-beginners.html">Index fund investing</a>
+  <a href="guides/three-fund-portfolio.html">3-fund portfolio</a>
+  <a href="guides/evergreen-funds-investing.html">Evergreen funds</a>
+  <a href="guides/private-credit-investing.html">Private credit</a>
+  <a href="guides/how-to-calculate-cost-basis.html">Cost basis calculation</a>
+  <a href="guides/capital-gains-tax-stocks.html">Capital gains tax</a>
+  <a href="guides/stock-profit-roi-explained.html">Stock profit & ROI</a>
+  <a href="guides/net-worth-by-age.html">Net worth by age</a>
+  <a href="guides/index.html" style="color:var(--accent);">All guides &#x2192;</a>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">Tax year 2026 · One Big Beautiful Bill Act rules</div>
+  <h1>Charitable Deduction <em>Calculator</em></h1>
+  <p>Find out whether your 2026 donations beat the standard deduction, what they actually save you, and whether bunching two years of gifts into one is worth it. Covers the new $1,000/$2,000 deduction for non-itemizers, the 0.5% AGI floor, and the 35% cap for top-bracket itemizers.</p>
+</div>
+
+<div class="main">
+
+  <div class="controls-card">
+    <div class="section-label">Your 2026 numbers</div>
+
+    <div class="input-group">
+      <div class="input-label">Filing status</div>
+      <select id="status" onchange="calc()">
+        <option value="single">Single</option>
+        <option value="mfj" selected>Married filing jointly</option>
+        <option value="hoh">Head of household</option>
+        <option value="mfs">Married filing separately</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Adjusted gross income (AGI)</div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="agi" value="150000" min="0" step="1000" oninput="calc()">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Other itemized deductions (after caps)</div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="other" value="24000" min="0" step="500" oninput="calc()">
+      </div>
+      <div class="input-hint">Mortgage interest, state and local taxes (after the SALT cap), deductible medical costs. Leave out charity.</div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Planned cash gifts this year</div>
+      <div class="input-wrap">
+        <span class="input-prefix">$</span>
+        <input type="number" id="gifts" value="10000" min="0" step="250" oninput="calc()">
+      </div>
+      <div class="input-hint">Cash, check or card gifts to public charities. Not donor-advised funds.</div>
+    </div>
+
+    <div class="divider-line"></div>
+    <div class="section-label">Tax rate</div>
+
+    <div class="input-group">
+      <div class="input-label">Marginal federal bracket</div>
+      <select id="rate" onchange="calc()">
+        <option value="auto" selected>Auto: figure it from 2026 brackets</option>
+        <option value="0.10">10%</option>
+        <option value="0.12">12%</option>
+        <option value="0.22">22%</option>
+        <option value="0.24">24%</option>
+        <option value="0.32">32%</option>
+        <option value="0.35">35%</option>
+        <option value="0.37">37%</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">People age 65+ or blind (boxes on your return)</div>
+      <select id="aged" onchange="calc()">
+        <option value="0" selected>0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="results">
+
+    <div class="compare-grid">
+      <div class="compare-card" id="std-card">
+        <div class="compare-label">Standard + charity deduction</div>
+        <div class="compare-tax" id="std-total">$0</div>
+        <div class="compare-rate" id="std-sub"></div>
+      </div>
+      <div class="compare-card" id="item-card">
+        <div class="compare-label">Itemize</div>
+        <div class="compare-tax" id="item-total">$0</div>
+        <div class="compare-rate" id="item-sub"></div>
+      </div>
+    </div>
+
+    <div class="savings-card">
+      <div class="savings-label">Federal tax your gifts save this year</div>
+      <div class="savings-amount" id="savings">$0</div>
+      <div class="savings-sub" id="savings-sub"></div>
+    </div>
+
+    <div class="breakdown-card">
+      <div class="breakdown-title">How your gifts are counted</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Amount</th><th>Note</th></tr></thead>
+          <tbody id="detail"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="breakdown-card">
+      <div class="breakdown-title">Bunching: two years of gifts in one year</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Strategy (2 years)</th><th>Gifts deducted</th><th>Tax saved</th></tr></thead>
+          <tbody id="bunch"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-box" id="verdict-box"><p id="verdict"></p></div>
+
+    <div class="disclaimer">
+      Uses 2026 IRS figures from Rev. Proc. 2025-32 and the charitable rules in Public Law 119-21 (the One Big Beautiful Bill Act), sections 70111, 70424 and 70425. Federal income tax only. Assumes all gifts are cash to public charities, all income is ordinary income, and no other below-the-line deductions. Bunching assumes the same tax figures in both years. Married filing separately: if one spouse itemizes, the other must too, which this calculator does not check. Not tax advice. Consult a tax professional before filing.
+    </div>
+
+  </div>
+</div>
+
+<div class="content-section prose">
+  <p class="updated">Last updated November 19, 2026 · Rules checked against IRS.gov and Congress.gov</p>
+
+  <h2>How 2026 charitable deductions work</h2>
+  <p>The One Big Beautiful Bill Act changed charitable deductions from tax year 2026 on. There are now two separate paths, and you get one or the other:</p>
+  <ul>
+    <li><strong>You take the standard deduction</strong> ($16,100 single, $32,200 married filing jointly, $24,150 head of household). On top of it you can deduct up to <strong>$1,000 ($2,000 joint)</strong> of cash gifts to public charities. Gifts to donor-advised funds and supporting organizations don't count. This deduction lowers taxable income, not AGI. Anything over the cap is simply lost: it doesn't carry forward.</li>
+    <li><strong>You itemize.</strong> All your qualifying gifts count, but only the part above <strong>0.5% of your AGI</strong>. Cash gifts to public charities are still limited to 60% of AGI, and that limit is now permanent. In the 37% bracket, your total itemized deductions are cut by 2/37, which caps their value at about 35 cents per dollar.</li>
+  </ul>
+  <p>The calculator runs both paths and picks the larger deduction. Then it works out how much tax your gifts save compared with giving nothing. That figure is what your generosity really costs or saves you.</p>
+
+  <h2>A worked example</h2>
+  <p>A married couple filing jointly, with $150,000 AGI and $24,000 of other itemized deductions (mortgage interest plus state and local taxes). They plan to give $10,000 in cash to their church and a food bank, and they're in the 22% bracket. These are the calculator's default inputs.</p>
+  <div class="example-card">
+    <div class="example-title">Giving $10,000 a year</div>
+    <div class="example-row"><span>0.5% AGI floor (0.005 × $150,000)</span><span>$750</span></div>
+    <div class="example-row"><span>Itemized: $24,000 + ($10,000 − $750)</span><span>$33,250</span></div>
+    <div class="example-row"><span>Standard path: $32,200 + $2,000 non-itemizer deduction</span><span class="acc">$34,200 ← larger</span></div>
+    <div class="example-row"><span>Deduction from gifts ($34,200 − $32,200)</span><span>$2,000</span></div>
+    <div class="example-row last"><span>Tax saved (22% × $2,000)</span><span class="acc">$440 a year</span></div>
+  </div>
+  <p>Only $2,000 of their $10,000 does anything for their taxes. Itemizing gets them $33,250, which falls $950 short of the standard path.</p>
+  <div class="example-card">
+    <div class="example-title">Bunching: $20,000 in 2026, nothing in 2027</div>
+    <div class="example-row"><span>2026 itemized: $24,000 + ($20,000 − $750)</span><span>$43,250</span></div>
+    <div class="example-row"><span>2026 deduction above the $32,200 standard deduction</span><span>$11,050</span></div>
+    <div class="example-row"><span>2026 tax saved (22% × $11,050)</span><span>$2,431</span></div>
+    <div class="example-row"><span>2027: standard deduction, no gifts</span><span>$0</span></div>
+    <div class="example-row"><span>Giving every year, two-year total (2 × $440)</span><span>$880</span></div>
+    <div class="example-row last"><span>Extra tax saved by bunching</span><span class="acc">$1,551</span></div>
+  </div>
+  <p>The couple gives the same $20,000 over two years either way. Bunching moves $7,050 more of it into deductions. The calculator gets these same figures from its own formula when you load the page.</p>
+
+  <h2>Tradeoffs: who wins and who loses under the new rules</h2>
+
+  <h3>Small itemizers lose the most</h3>
+  <p>If your itemized deductions land just above the standard deduction, you take a double hit. The 0.5% floor removes the first slice of your giving, and by itemizing you give up the $1,000/$2,000 non-itemizer deduction. Couple in the example: if they itemized $33,250, they'd beat the plain standard deduction by $1,050 but lose to standard-plus-$2,000 by $950. For many households, the new deduction makes the standard deduction even harder to beat. The calculator flags it when you're in this zone.</p>
+
+  <h3>Bunching and donor-advised funds</h3>
+  <p>Bunching means you give two (or more) years of gifts in one year, itemize that year, and take the standard deduction plus the non-itemizer deduction in the off years. It works best when your other itemized deductions sit close to the standard deduction. It also beats the floor in a second way: the floor applies once per year, so giving everything in one year means you lose only one year's 0.5%. A donor-advised fund (DAF) makes bunching practical. You deduct the big contribution in the year you make it, then send grants to charities over the following years, so they still get steady support. One catch: DAF contributions only count when you itemize. They never qualify for the $1,000/$2,000 deduction.</p>
+
+  <h3>What doesn't qualify</h3>
+  <ul>
+    <li><strong>For the non-itemizer deduction:</strong> anything except cash to a public charity. That rules out gifts to donor-advised funds, supporting organizations and most private foundations, gifts of stock or other property, and carryovers from prior years.</li>
+    <li><strong>For anyone:</strong> gifts to individuals, political campaigns or GoFundMe-style personal fundraisers, and the part of a payment that buys you something (gala dinner, auction item, event tickets). The value of your time isn't deductible either.</li>
+    <li><strong>Without records:</strong> you can't deduct a cash gift of any size without a bank record or written acknowledgment from the charity. For $250 or more you need a written acknowledgment. See IRS Publication 526.</li>
+  </ul>
+
+  <h3>Give before December 31</h3>
+  <p>Gifts count in the year you make them, not the year you pledge or when the charity cashes the check. According to IRS Publication 526, a check counts on the day you mail it, and a credit-card gift counts in the year you charge it, even if you pay the bill in January. If bunching wins for you this year, the deadline that matters is December 31. Online payments started on the last day of the year can post late, so don't cut it close.</p>
+
+  <h3>What this calculator doesn't model</h3>
+  <p>It treats all income as ordinary income, so it leaves out capital gains rates and the effect of giving appreciated stock (often better than cash, but only if you itemize). It ignores state taxes, other deductions you get whether or not you itemize, and carryforwards from earlier years. If your gifts go over 60% of AGI, the calculator shows the carryforward amount, but it doesn't model using it in future years.</p>
+
+  <h2>Frequently asked questions</h2>
+
+  <div class="faq">
+    <h3>Can I take the $1,000 charitable deduction and the standard deduction in 2026?</h3>
+    <p>Yes. Starting with tax year 2026, if you don't itemize you can deduct up to $1,000 ($2,000 married filing jointly) of qualifying cash gifts on top of the standard deduction. It reduces taxable income, not adjusted gross income, so it won't lower AGI-based figures such as IRMAA or credit phaseouts. Anything above the cap isn't deductible and doesn't carry forward.</p>
+  </div>
+  <div class="faq">
+    <h3>Do donor-advised fund contributions count for the non-itemizer deduction?</h3>
+    <p>No. The law limits the non-itemizer deduction to cash gifts to public charities. It excludes donor-advised funds and supporting organizations. Gifts of stock or other property don't qualify either. DAF contributions are still deductible if you itemize, which is why DAFs pair well with bunching.</p>
+  </div>
+  <div class="faq">
+    <h3>How does the 0.5% AGI floor on charitable deductions work?</h3>
+    <p>Starting in 2026, itemizers can deduct charitable gifts only to the extent the year's total exceeds 0.5% of their contribution base, which is AGI before any net operating loss carryback. With $150,000 of AGI, the first $750 of gifts isn't deductible. With $400,000, it's the first $2,000. The floor doesn't apply to the $1,000/$2,000 non-itemizer deduction. The floored amount carries forward only in a year when your gifts also exceed the AGI percentage limits.</p>
+  </div>
+  <div class="faq">
+    <h3>Is my charitable deduction worth 37% if I'm in the top bracket?</h3>
+    <p>Not fully. Starting in 2026, new IRC section 68 reduces itemized deductions by 2/37 of the smaller of two amounts: your total itemized deductions, or how far your income reaches into the 37% bracket. If your income is fully in the top bracket, each deducted dollar saves about 35 cents instead of 37. If you're only partly in the 37% bracket, the reduction is smaller. The calculator applies it automatically.</p>
+  </div>
+  <div class="faq">
+    <h3>Does a donation made on December 31 count for this tax year?</h3>
+    <p>Yes, if it's delivered by December 31. According to IRS Publication 526, a mailed check counts on the date you mail it, and a credit-card gift counts in the year the charge is made, even if you pay the bill in January. Pledges don't count until paid.</p>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources">
+    <li>Public Law 119-21 (One Big Beautiful Bill Act), enrolled text: <a href="https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.htm" rel="nofollow noopener" target="_blank">congress.gov</a>. Sec. 70111 (itemized deduction limitation, new IRC §68), Sec. 70424 (non-itemizer deduction raised to $1,000/$2,000 in IRC §170(p) from 2026), Sec. 70425 (0.5% floor in IRC §170(b)(1)(I), floor carryforward rule in §170(d)(1)(C), 60% cash limit).</li>
+    <li>26 U.S.C. §170(p) and §63(b)(4): who qualifies for the non-itemizer deduction (cash to §170(b)(1)(A) organizations, excluding §509(a)(3) supporting organizations and donor-advised funds) and how it's taken in computing taxable income: <a href="https://www.govinfo.gov/content/pkg/USCODE-2024-title26/html/USCODE-2024-title26-subtitleA-chap1-subchapB-partVI-sec170.htm" rel="nofollow noopener" target="_blank">govinfo.gov §170</a>, <a href="https://www.govinfo.gov/content/pkg/USCODE-2023-title26/html/USCODE-2023-title26-subtitleA-chap1-subchapB-partI-sec63.htm" rel="nofollow noopener" target="_blank">govinfo.gov §63</a>.</li>
+    <li>IRS, <a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill" rel="nofollow noopener" target="_blank">IR-2025-103</a>, and <a href="https://www.irs.gov/pub/irs-drop/rp-25-32.pdf" rel="nofollow noopener" target="_blank">Rev. Proc. 2025-32</a>: 2026 standard deductions, additional amounts for age 65+ or blind, and tax brackets.</li>
+    <li>IRS, <a href="https://www.irs.gov/newsroom/irs-reminder-permanent-charitable-contribution-deduction-begins-for-returns-filed-next-year-for-taxpayers-who-do-not-itemize" rel="nofollow noopener" target="_blank">IR-2026-135</a> and <a href="https://www.irs.gov/newsroom/one-big-beautiful-bill-provisions" rel="nofollow noopener" target="_blank">One Big Beautiful Bill provisions</a>: non-itemizer deduction, cash only, DAFs and supporting organizations excluded.</li>
+    <li>IRS <a href="https://www.irs.gov/publications/p526" rel="nofollow noopener" target="_blank">Publication 526</a>: when a contribution counts as made, and recordkeeping.</li>
+  </ul>
+
+  <p class="related">Related: <a href="capital-gains-tax-calculator.html">Capital gains tax calculator</a> · <a href="tax-loss-harvesting-calculator.html">Tax-loss harvesting calculator</a> · <a href="rmd-calculator.html">RMD calculator</a></p>
+</div>
+
+<footer>
+  <p>
+    &copy; 2026 MyDCACalc.com &nbsp;·&nbsp;
+    <a href="about.html">About</a> &nbsp;·&nbsp;
+    <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of use</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@mydcacalc.com">Contact</a><br><br>
+    For educational purposes only. Not tax advice.
+  </p>
+</footer>
+<script>
+// 2026 figures. Standard deduction, aged/blind add-on, brackets: Rev. Proc. 2025-32 (IR-2025-103).
+// Charitable rules: P.L. 119-21 secs. 70111 (IRC 68), 70424 (IRC 170(p)), 70425 (IRC 170(b)(1)(I), 60% cash limit).
+const STD = { single: 16100, mfj: 32200, hoh: 24150, mfs: 16100 };
+const ADD_STD = { single: 2050, hoh: 2050, mfj: 1650, mfs: 1650 };   // per person 65+ or blind
+const NONITEM_CAP = { single: 1000, mfj: 2000, hoh: 1000, mfs: 1000 };
+const BRACKETS = {
+  single: [[12400, .10], [50400, .12], [105700, .22], [201775, .24], [256225, .32], [640600, .35], [Infinity, .37]],
+  mfj:    [[24800, .10], [100800, .12], [211400, .22], [403550, .24], [512450, .32], [768700, .35], [Infinity, .37]],
+  hoh:    [[17700, .10], [67450, .12], [105700, .22], [201750, .24], [256200, .32], [640600, .35], [Infinity, .37]],
+  mfs:    [[12400, .10], [50400, .12], [105700, .22], [201775, .24], [256225, .32], [384350, .35], [Infinity, .37]],
+};
+const FLOOR_RATE = 0.005;   // IRC 170(b)(1)(I)
+const CASH_LIMIT = 0.60;    // IRC 170(b)(1)(G)
+
+function topBracketStart(s) { return BRACKETS[s][5][0]; }
+
+function taxOn(ti, s) {
+  let tax = 0, lo = 0;
+  for (const [hi, r] of BRACKETS[s]) {
+    if (ti <= lo) break;
+    tax += (Math.min(ti, hi) - lo) * r;
+    lo = hi;
+  }
+  return tax;
+}
+
+function marginalRate(ti, s) {
+  for (const [hi, r] of BRACKETS[s]) if (ti <= hi) return r;
+  return 0.37;
+}
+
+// One tax year. gifts = qualifying cash gifts to public charities (170(b)(1)(A) organizations).
+function scenario(p, gifts) {
+  const s = p.status, agi = Math.max(0, p.agi);
+  const std = STD[s] + ADD_STD[s] * p.agedBlind;
+  const nonItem = Math.min(gifts, NONITEM_CAP[s]);          // no floor, no carryforward
+  const stdPath = std + nonItem;
+
+  const floor = FLOOR_RATE * agi;
+  const afterLimit = Math.min(gifts, CASH_LIMIT * agi);
+  const over60 = gifts - afterLimit;
+  const giftDed = Math.max(0, afterLimit - floor);
+  const floorLost = Math.min(afterLimit, floor);
+  const itemRaw = Math.max(0, p.other) + giftDed;
+  // IRC 68: reduce by 2/37 of lesser of itemized deductions or (taxable income + itemized) above the 37% start.
+  // With no other below-the-line items, taxable income + itemized = AGI.
+  const sec68 = (2 / 37) * Math.min(itemRaw, Math.max(0, agi - topBracketStart(s)));
+  const itemNet = itemRaw - sec68;
+
+  const itemize = itemNet > stdPath;
+  const deduction = itemize ? itemNet : stdPath;
+  const ti = Math.max(0, agi - deduction);
+  const carryforward = over60 > 0 ? over60 + floorLost : 0;  // 170(d)(1)(C): floor amount carries only if limit exceeded
+  return { std, nonItem, stdPath, floor, giftDed, floorLost, over60, itemRaw, sec68, itemNet, itemize, deduction, ti, carryforward };
+}
+
+function analyze(p) {
+  const s = p.status;
+  const base = scenario(p, 0);
+  const withG = scenario(p, p.gifts);
+  const bunched = scenario(p, 2 * p.gifts);
+  const auto = p.rate === 'auto';
+  const rate = auto ? marginalRate(withG.ti, s) : Number(p.rate);
+  const savingsFor = (sc) => auto ? taxOn(base.ti, s) - taxOn(sc.ti, s) : (sc.deduction - base.deduction) * rate;
+  const annualSavings = savingsFor(withG);
+  const everyYear2 = 2 * annualSavings;
+  const bunched2 = savingsFor(bunched);       // year 2 has no gifts, so it saves nothing vs baseline
+  return {
+    base, withG, bunched, rate, auto,
+    deductionValue: withG.deduction - base.deduction,
+    annualSavings, everyYear2, bunched2,
+    bunchGain: bunched2 - everyYear2,
+    bunchDedGain: (bunched.deduction - base.deduction) - 2 * (withG.deduction - base.deduction),
+  };
+}
+
+
+function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function num(id) { const v = parseFloat(document.getElementById(id).value); return isFinite(v) && v > 0 ? v : 0; }
+function pct(r) { return Math.round(r * 100) + '%'; }
+
+function calc() {
+  const p = {
+    status: document.getElementById('status').value,
+    agi: num('agi'), other: num('other'), gifts: num('gifts'),
+    rate: document.getElementById('rate').value,
+    agedBlind: parseInt(document.getElementById('aged').value, 10) || 0,
+  };
+  const r = analyze(p), g = r.withG, b = r.bunched;
+
+  document.getElementById('std-total').textContent = fmt(g.stdPath);
+  document.getElementById('std-sub').textContent = fmt(g.std) + ' standard + ' + fmt(g.nonItem) + ' charity';
+  document.getElementById('item-total').textContent = fmt(g.itemNet);
+  document.getElementById('item-sub').textContent = fmt(p.other) + ' other + ' + fmt(g.giftDed) + ' gifts' + (g.sec68 > 0 ? ' − ' + fmt(g.sec68) + ' §68' : '');
+  document.getElementById('std-card').classList.toggle('better', !g.itemize);
+  document.getElementById('item-card').classList.toggle('better', g.itemize);
+
+  document.getElementById('savings').textContent = fmt(r.annualSavings);
+  const share = p.gifts > 0 ? Math.round(r.deductionValue / p.gifts * 100) : 0;
+  document.getElementById('savings-sub').textContent =
+    fmt(r.deductionValue) + ' of ' + fmt(p.gifts) + ' in gifts deducted (' + share + '%) · ' +
+    (r.auto ? 'marginal rate ' + pct(r.rate) + ' from 2026 brackets' : pct(r.rate) + ' bracket you selected') +
+    ' · net cost of giving ' + fmt(p.gifts - r.annualSavings);
+
+  let rows = '';
+  rows += '<tr><td>2026 standard deduction</td><td>' + fmt(g.std) + '</td><td>' + (p.agedBlind ? 'includes 65+/blind add-on' : 'Rev. Proc. 2025-32') + '</td></tr>';
+  rows += '<tr><td>Non-itemizer charity deduction</td><td>' + fmt(g.nonItem) + '</td><td>cap ' + fmt(NONITEM_CAP[p.status]) + ', no floor, standard path only</td></tr>';
+  rows += '<tr><td>0.5% AGI floor</td><td class="red">' + fmt(g.floor) + '</td><td>first ' + fmt(g.floor) + ' of gifts not deductible if you itemize</td></tr>';
+  rows += '<tr><td>Gifts deductible if itemizing</td><td>' + fmt(g.giftDed) + '</td><td>after floor' + (g.over60 > 0 ? ' and 60% AGI limit' : '') + '</td></tr>';
+  if (g.sec68 > 0) rows += '<tr><td>§68 reduction (37% bracket)</td><td class="red">' + fmt(g.sec68) + '</td><td>2/37 of itemized or excess over 37% start</td></tr>';
+  if (g.carryforward > 0) rows += '<tr><td>Carryforward (up to 5 yrs)</td><td>' + fmt(g.carryforward) + '</td><td>over 60% limit, plus floor amount</td></tr>';
+  rows += '<tr><td>Best deduction</td><td class="accent">' + fmt(g.deduction) + '</td><td>' + (g.itemize ? 'itemize' : 'standard + charity') + '</td></tr>';
+  rows += '<tr><td>Taxable income</td><td>' + fmt(g.ti) + '</td><td>AGI − best deduction</td></tr>';
+  document.getElementById('detail').innerHTML = rows;
+
+  const best = r.bunchGain > 0.5;
+  let br = '';
+  br += '<tr><td>Give ' + fmt(p.gifts) + ' each year</td><td>' + fmt(2 * r.deductionValue) + '</td><td' + (best ? '' : ' class="accent"') + '>' + fmt(r.everyYear2) + '</td></tr>';
+  br += '<tr><td>Give ' + fmt(2 * p.gifts) + ' in year 1, $0 in year 2</td><td>' + fmt(b.deduction - r.base.deduction) + '</td><td' + (best ? ' class="accent"' : '') + '>' + fmt(r.bunched2) + '</td></tr>';
+  br += '<tr><td>Bunching advantage</td><td>' + (r.bunchDedGain >= 0 ? '+' : '−') + fmt(Math.abs(r.bunchDedGain)) + '</td><td class="' + (r.bunchGain > 0.5 ? 'accent' : (r.bunchGain < -0.5 ? 'red' : '')) + '">' + (r.bunchGain >= 0 ? '+' : '−') + fmt(Math.abs(r.bunchGain)) + '</td></tr>';
+  if (b.carryforward > 0) br += '<tr><td colspan="3">Bunched gifts exceed 60% of AGI: ' + fmt(b.carryforward) + ' carries forward.</td></tr>';
+  document.getElementById('bunch').innerHTML = br;
+
+  let v;
+  if (p.gifts === 0) v = '<strong>Enter planned gifts</strong> to see what they save.';
+  else if (g.itemize && r.bunchGain > 0.5) v = '<strong>Itemizing wins this year,</strong> and bunching would add ' + fmt(r.bunchGain) + ' more over two years.';
+  else if (g.itemize) v = '<strong>Itemizing wins every year.</strong> Your deductions clear the standard deduction comfortably, so bunching adds nothing; giving steadily works as well.';
+  else if (g.itemNet > g.std) v = '<strong>You are in the small-itemizer trap.</strong> Itemizing (' + fmt(g.itemNet) + ') beats the plain standard deduction but loses to standard + ' + fmt(g.nonItem) + ' charity deduction. ' + (r.bunchGain > 0.5 ? 'Bunching saves ' + fmt(r.bunchGain) + ' more over two years.' : '');
+  else if (r.bunchGain > 0.5) v = '<strong>Take the standard deduction this year,</strong> but bunching two years of gifts would push you over and save ' + fmt(r.bunchGain) + ' more over two years.';
+  else v = '<strong>Take the standard deduction.</strong> Only ' + fmt(g.nonItem) + ' of your gifts reduces your tax, and bunching doesn\'t get you past the standard deduction.';
+  document.getElementById('verdict').innerHTML = v;
+}
+
+calc();
+
+</script>
+
+<script src="/nav.js"></script>
+</body>
+</html>
