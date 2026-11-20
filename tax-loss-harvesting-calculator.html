@@ -579,7 +579,7 @@ footer a:hover { color: var(--text); }
     <li style="margin-bottom:10px;">If you have unused losses from prior years, enter them as carryforward losses — they apply before new harvested losses.</li>
     <li style="margin-bottom:10px;">Select your filing status and tax brackets. The long-term CGT rate depends on your income — most middle-income investors use 15%.</li>
   </ul>
-  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Read the full guide on <a href="guides/tax-loss-harvesting-explained.html" style="color:#c8f060;text-decoration:none;">how tax-loss harvesting works</a> including the wash sale rule, replacement fund strategies, and the DCA investor playbook.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Read the full guide on <a href="guides/tax-loss-harvesting-explained.html" style="color:#c8f060;text-decoration:none;">how tax-loss harvesting works</a> including the wash sale rule, replacement fund strategies, and the DCA investor playbook. Doing other year-end tax planning? Our <a href="charitable-deduction-calculator.html" style="color:#c8f060;text-decoration:none;">charitable deduction calculator</a> shows whether your 2026 donations beat the standard deduction, and whether bunching two years of gifts saves more.</p>
 </div>
 
 <footer>
@@ -705,62 +705,6 @@ function updateChart(labels, data, baseline) {
     }
   });
 }
-
-// Mobile menu
-window.addEventListener('load', function() {
-  var btn = document.getElementById('nav-hamburger');
-  var menu = document.getElementById('nav-mobile-menu');
-  if (btn && menu) {
-    btn.addEventListener('click', function() {
-      var open = menu.classList.toggle('open');
-      btn.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    menu.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() {
-        menu.classList.remove('open');
-        btn.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-  function hookDropdown(selector, menuSelector) {
-    document.querySelectorAll(selector).forEach(function(el) {
-      var m = el.querySelector(menuSelector);
-      if (!m) return;
-      var t;
-      el.addEventListener('mouseenter', function() { clearTimeout(t); m.style.display = 'block'; });
-      el.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
-      m.addEventListener('mouseenter', function() { clearTimeout(t); });
-      m.addEventListener('mouseleave', function() { t = setTimeout(function() { m.style.display = 'none'; }, 300); });
-    });
-  }
-  hookDropdown('.nav-group', '.nav-group-menu');
-  hookDropdown('.dropdown', '.dropdown-menu');
-  document.querySelectorAll('.guide-cat-header').forEach(function(hdr) {
-    hdr.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var links = hdr.nextElementSibling;
-      var isOpen = hdr.classList.contains('open');
-      document.querySelectorAll('.guide-cat-header').forEach(function(h) {
-        h.classList.remove('open');
-        if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
-      });
-      if (!isOpen) { hdr.classList.add('open'); if (links) links.classList.add('open'); }
-    });
-  });
-});
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      menu.classList.remove('open');
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    });
-  });
-});
 
 calc();
 </script>
