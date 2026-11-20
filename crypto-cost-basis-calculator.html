@@ -230,6 +230,54 @@ footer a:hover { color: var(--text); }
 
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is my average cost the cost basis I report to the IRS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not for crypto. The IRS virtual currency FAQ (Q39–Q41) says you may choose which units you sold if you can specifically identify them and substantiate their basis. Otherwise, units are treated as sold first in, first out. Average cost is useful for tracking a DCA position and its break-even price, but the gain you report comes from the specific units sold."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include trading fees in my cost basis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The IRS says your basis in virtual currency bought with dollars is the amount you spent, including fees, commissions and other acquisition costs (FAQ Q8). To reflect them here, enter each purchase price as the total cost including fees divided by the coins you received."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I owe tax when I buy crypto or move it between my own wallets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "According to the IRS digital assets page, buying digital assets with US dollars without selling, or moving them between wallets or accounts you own, means you answer “No” to the digital asset question on Form 1040. The exception is paying a transaction fee in crypto, which is itself a digital asset transaction. Selling, exchanging or otherwise disposing of crypto is where gains and losses arise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did my break-even price go up after I bought more?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your average only falls when you buy below it. In the worked example, the October purchase at $4,000 was above the $2,408.33 average at the time, so the break-even price rose to $2,682.76. DCA lowers your average only when you keep buying during dips."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the profit or loss calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It’s your total coins times the current price, minus the total you invested. In the example that’s 1.45 ETH × $3,000 − $3,890 = +$460, or +11.8%. It’s a paper figure: nothing is realized until you sell, exchange or otherwise dispose of the coins."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -545,6 +593,46 @@ footer a:hover { color: var(--text); }
     <li style="margin-bottom:10px;">The running average column shows how your cost basis moved with each purchase — useful for understanding the DCA effect on your entry price.</li>
   </ul>
   <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For strategy context, read our guide on <a href="guides/how-to-build-crypto-dca-portfolio.html" style="color:#c8f060;text-decoration:none;">how to build a crypto DCA portfolio</a> and use the <a href="dca-backtest.html" style="color:#c8f060;text-decoration:none;">DCA backtest calculator</a> to see historical returns.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">An investor buys Ethereum four times in 2025, spending about $1,000 each time. The prices below are illustrative, not historical quotes. They value the position at $3,000 per ETH. Entered into this calculator:</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 22px;margin-bottom:20px;">
+  <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;">4 ETH purchases · current price $3,000</div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Jan 10: 0.30 ETH at $3,300 ($990)</span><span style="color:var(--text);white-space:nowrap;">running avg $3,300.00</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Apr 10: 0.50 ETH at $1,800 ($900)</span><span style="color:var(--green);white-space:nowrap;">running avg $2,362.50</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Jul 10: 0.40 ETH at $2,500 ($1,000)</span><span style="color:var(--text);white-space:nowrap;">running avg $2,408.33</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Oct 10: 0.25 ETH at $4,000 ($1,000)</span><span style="color:var(--red);white-space:nowrap;">running avg $2,682.76</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Total: 1.45 ETH for $3,890</span><span style="color:var(--accent);white-space:nowrap;">avg cost / break-even $2,682.76</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:13px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Unrealized P&L at $3,000</span><span style="color:var(--green);white-space:nowrap;">+$460 (+11.8%)</span></div>
+</div>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The April purchase at $1,800 bought the most coins for the money and pulled the average down to $2,362.50. The October buy at $4,000 pushed it back up to $2,682.76. At $3,000 two lots are underwater (−$90 and −$250) and two are in profit (+$600 and +$200), but the position as a whole is up $460.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">What this calculator doesn’t model</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Average cost is a good way to understand a DCA position. It is not how the IRS works out your gain when you sell.</p>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;margin-bottom:16px;"><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">The IRS doesn’t use your average cost for crypto.</strong> When you sell some units, you can choose which ones you sold if you can specifically identify them and back up their basis. If you don’t, the IRS treats the earliest units you bought as sold first (first in, first out) (<a href="https://www.irs.gov/individuals/international-taxpayers/frequently-asked-questions-on-virtual-currency-transactions" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">IRS virtual currency FAQ, Q39–Q41</a>).</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Why it matters.</strong> Say this investor sells 0.5 ETH at $3,000 ($1,500). Under FIFO the basis is 0.30 × $3,300 + 0.20 × $1,800 = $1,350, a $150 gain. Specifically identifying the two most expensive lots (0.25 at $4,000 + 0.25 at $3,300) gives a $1,825 basis, a $325 loss. The calculator’s average cost implies $1,341.38, a $158.62 gain. The same sale can produce a gain or a loss depending on the method.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Fees aren’t included.</strong> The IRS says your basis includes “fees, commissions and other acquisition costs” (<a href="https://www.irs.gov/individuals/international-taxpayers/frequently-asked-questions-on-virtual-currency-transactions" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">Q8</a>). To include them, enter an effective price: total cost including fees divided by the coins received.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Purchases only.</strong> Sales, transfers, staking rewards and coins received as payment aren’t tracked, so the average only covers coins you bought.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">One asset at a time.</strong> Each coin needs its own calculation.</li></ul>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">For stocks and ETFs, where lot choice also matters, use the <a href="cost-basis-calculator.html" style="color:#c8f060;text-decoration:none;">cost basis calculator for stocks</a>. Our guide on <a href="guides/how-to-calculate-cost-basis.html" style="color:#c8f060;text-decoration:none;">how to calculate cost basis</a> walks through FIFO and specific identification step by step.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Is my average cost the cost basis I report to the IRS?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Not for crypto. The IRS virtual currency FAQ (Q39–Q41) says you may choose which units you sold if you can specifically identify them and substantiate their basis. Otherwise, units are treated as sold first in, first out. Average cost is useful for tracking a DCA position and its break-even price, but the gain you report comes from the specific units sold.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Should I include trading fees in my cost basis?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes. The IRS says your basis in virtual currency bought with dollars is the amount you spent, including fees, commissions and other acquisition costs (FAQ Q8). To reflect them here, enter each purchase price as the total cost including fees divided by the coins you received.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Do I owe tax when I buy crypto or move it between my own wallets?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">According to the IRS digital assets page, buying digital assets with US dollars without selling, or moving them between wallets or accounts you own, means you answer “No” to the digital asset question on Form 1040. The exception is paying a transaction fee in crypto, which is itself a digital asset transaction. Selling, exchanging or otherwise disposing of crypto is where gains and losses arise.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Why did my break-even price go up after I bought more?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Your average only falls when you buy below it. In the worked example, the October purchase at $4,000 was above the $2,408.33 average at the time, so the break-even price rose to $2,682.76. DCA lowers your average only when you keep buying during dips.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">How is the profit or loss calculated?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">It’s your total coins times the current price, minus the total you invested. In the example that’s 1.45 ETH × $3,000 − $3,890 = +$460, or +11.8%. It’s a paper figure: nothing is realized until you sell, exchange or otherwise dispose of the coins.</p>
+  </div>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Sources</h2>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;margin-bottom:16px;"><li style="margin-bottom:10px;" ><a href="https://www.irs.gov/individuals/international-taxpayers/frequently-asked-questions-on-virtual-currency-transactions" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">IRS, Frequently asked questions on virtual currency transactions</a>: Q8 (basis includes fees and commissions) and Q39–Q41 (specific identification, or FIFO by default).</li><li style="margin-bottom:10px;" ><a href="https://www.irs.gov/filing/digital-assets" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">IRS, Digital assets</a>: digital assets are treated as property, plus when to answer “No” to the digital asset question.</li></ul>
 </div>
 
 <footer>
@@ -571,8 +659,8 @@ let currentAsset = 'BTC';
 
 function fmt(n, decimals) {
   if (decimals !== undefined) return '$' + n.toFixed(decimals);
-  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (Math.abs(n) >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  if (Math.abs(n) >= 1e6) return '$' + (Math.sign(n) * Math.round(Math.abs(n) / 1e4) / 100).toFixed(2) + 'M';
+  if (Math.abs(n) >= 1e3) return '$' + (Math.sign(n) * Math.round(Math.abs(n) / 100) / 10).toFixed(1) + 'K';
   return '$' + Math.round(n).toLocaleString();
 }
 

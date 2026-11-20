@@ -235,6 +235,54 @@ footer a:hover { color: var(--text); }
 
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does the 4% rate last longer here than the 30 years the 4% rule is built on?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 4% rule comes from testing historical market sequences, including bad ones, over 30-year retirements. This calculator uses one steady return. At the default 6% return and 2.5% inflation, a 4% rate lasts 62 years. At 4% returns with 3% inflation, it lasts 30. The steady-return result is a best case for that average, not a guarantee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I enter a nominal or a real return?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter a nominal return, the return before inflation. The calculator grows your withdrawals by the inflation rate separately. Entering an inflation-adjusted return as well would count inflation twice and make the plan look worse than it is."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do Social Security or a pension fit in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Subtract them from your spending. If you need $60,000 a year and Social Security pays $24,000, enter $36,000 as your annual spending. That makes your withdrawal rate reflect only what the portfolio has to cover."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the calculator account for taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It treats withdrawals as spending, so enter the gross amount you take out, including any income tax on withdrawals from traditional accounts. Withdrawals from Roth accounts and taxable accounts are taxed differently, which this calculator doesn’t model."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does “break-even age” mean here?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It’s the age at which the money runs out: your retirement age plus the number of years the portfolio lasts. In the worked example that’s 62 + 31 = 93. When the portfolio lasts 100 years or more, the calculator shows 100+ and adds 100 years to your retirement age."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -597,6 +645,43 @@ footer a:hover { color: var(--text); }
     <li style="margin-bottom:10px;">Your withdrawal rate is calculated automatically from your portfolio and spending inputs.</li>
   </ul>
   <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">For background on the 4% rule and what Morningstar's 2026 research says about safe withdrawal rates, read the <a href="guides/4-percent-rule-explained.html" style="color:#c8f060;text-decoration:none;">4% rule explained guide</a>. To calculate your FIRE number and years to retirement, use the <a href="fire-calculator.html" style="color:#c8f060;text-decoration:none;">FIRE calculator</a>.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A 62-year-old retires with $800,000 and plans to withdraw $36,000 in the first year (a 4.5% rate). Withdrawals rise 3% a year with inflation, and the portfolio earns 5% a year. Entered into this calculator:</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 22px;margin-bottom:20px;">
+  <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;">$800,000 · $36,000 first-year spending · 5% return · 3% inflation</div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Year 1 (age 63): $800,000 × 1.05 − $36,000</span><span style="color:var(--text);white-space:nowrap;">ends at $804,000</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Year 20 (age 82): withdrawal $63,126</span><span style="color:var(--text);white-space:nowrap;">ends at $597,703</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Year 30 (age 92): withdrawal $84,836</span><span style="color:var(--red);white-space:nowrap;">ends at $47,130</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Year 31 (age 93): withdrawal $87,381</span><span style="color:var(--red);white-space:nowrap;">depleted</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">3.0% / 3.5% / 4.0% rates ($24K / $28K / $32K)</span><span style="color:var(--text);white-space:nowrap;">58 / 45 / 37 years</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:13px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">4.5% rate (this plan): money runs out at</span><span style="color:var(--accent);white-space:nowrap;">age 93 · 31 years</span></div>
+</div>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The balance grows for the first few years because 5% growth beats the withdrawals. Then the inflation-adjusted withdrawals overtake the growth and the decline speeds up. Lower the return to 4% and the same plan lasts 27 years (to age 89). At 4% returns, the 4.0% rate lasts 30 years.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">What this calculator doesn’t model</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The calculator projects a straight line. Real retirements are bumpier:</p>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;margin-bottom:16px;"><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">The same return every year.</strong> Every year earns exactly the return you enter, so there’s no sequence-of-returns risk. A crash early in retirement can shorten a plan’s life far more than the average return suggests. See our guides to <a href="guides/sequence-of-returns-risk.html" style="color:#c8f060;text-decoration:none;">sequence of returns risk</a> and <a href="guides/monte-carlo-retirement.html" style="color:#c8f060;text-decoration:none;">Monte Carlo retirement simulation</a>, which test thousands of possible return paths. Past performance does not guarantee future results.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Withdrawals come out at the end of each year.</strong> The portfolio grows for a full year before each withdrawal, which is slightly more optimistic than withdrawing at the start of the year.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Spending never adjusts.</strong> Withdrawals rise with inflation every year no matter how markets do. Many retirees cut back after bad years, which helps a portfolio last longer.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">No other income.</strong> Social Security, pensions and part-time work aren’t included. Estimate your benefit with the <a href="social-security-calculator.html" style="color:#c8f060;text-decoration:none;">Social Security calculator</a> and subtract it from your spending.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">No taxes or required withdrawals.</strong> Enter spending as the gross amount you withdraw, including any income tax. Required minimum distributions from traditional accounts can force larger withdrawals than you plan.</li></ul>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Why does the 4% rate last longer here than the 30 years the 4% rule is built on?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">The 4% rule comes from testing historical market sequences, including bad ones, over 30-year retirements. This calculator uses one steady return. At the default 6% return and 2.5% inflation, a 4% rate lasts 62 years. At 4% returns with 3% inflation, it lasts 30. The steady-return result is a best case for that average, not a guarantee.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Should I enter a nominal or a real return?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Enter a nominal return, the return before inflation. The calculator grows your withdrawals by the inflation rate separately. Entering an inflation-adjusted return as well would count inflation twice and make the plan look worse than it is.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">How do Social Security or a pension fit in?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Subtract them from your spending. If you need $60,000 a year and Social Security pays $24,000, enter $36,000 as your annual spending. That makes your withdrawal rate reflect only what the portfolio has to cover.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Does the calculator account for taxes?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">No. It treats withdrawals as spending, so enter the gross amount you take out, including any income tax on withdrawals from traditional accounts. Withdrawals from Roth accounts and taxable accounts are taxed differently, which this calculator doesn’t model.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">What does “break-even age” mean here?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">It’s the age at which the money runs out: your retirement age plus the number of years the portfolio lasts. In the worked example that’s 62 + 31 = 93. When the portfolio lasts 100 years or more, the calculator shows 100+ and adds 100 years to your retirement age.</p>
+  </div>
 </div>
 
 <footer>
@@ -615,8 +700,8 @@ let chart = null;
 let activeRates = new Set(['3.0', '3.5', '4.0', '4.5']);
 
 function fmt(n) {
-  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (Math.abs(n) >= 1e3) return '$' + (Math.abs(n)/1e3).toFixed(1) + 'K';
+  if (Math.abs(n) >= 1e6) return '$' + (Math.sign(n) * Math.round(Math.abs(n) / 1e4) / 100).toFixed(2) + 'M';
+  if (Math.abs(n) >= 1e3) return '$' + (Math.round(Math.abs(n) / 100) / 10).toFixed(1) + 'K';
   return '$' + Math.round(Math.abs(n)).toLocaleString();
 }
 

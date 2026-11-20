@@ -221,6 +221,54 @@ footer a:hover { color: var(--text); }
 
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a 1% fee cost over 30 years?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With this calculator’s default inputs ($50,000 to start, $12,000 a year, 7% gross return, 30 years), a 0.03% fund grows to about $1.58M and a 1.00% fund to about $1.29M. The 1% fee costs roughly $290.6K, or 18.4% of what the low-cost fund would have produced. Change any input to see your own number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I find a fund’s expense ratio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Funds list their expense ratio in the prospectus and on the fund’s fact sheet, and most brokerages show it on the fund’s quote page. Enter it as a percentage, for example 0.03 for 0.03%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I include an advisor’s fee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, as an approximation. Add the advisory fee to the fund’s expense ratio and enter the total as the high-cost fee. For example, a 0.85% fund held through a 1.00% advisory account becomes 1.85%. The math is the same because both fees come out of your return each year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a higher-fee fund ever worth it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only if it earns more than the fee difference, after fees. To test that, lower its fee by the extra return you expect. If you think a 0.85% fund will beat an index fund by 0.50% a year before fees, enter its fee as 0.35%. The result shows whether that edge would actually cover the cost."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the fee drag grow so fast in later years?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A percentage fee is charged on a growing balance, and every dollar paid also stops compounding for all the years that remain. In the worked example above, the gap is $7,545 after 10 years but $69,946 after 25."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -558,6 +606,44 @@ footer a:hover { color: var(--text); }
     <li style="margin-bottom:10px;">The fee drag figure shows exactly how much wealth you lose by choosing the higher-cost fund.</li>
   </ul>
   <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Fees reduce your real return alongside inflation. Use the <a href="inflation-calculator.html" style="color:#c8f060;text-decoration:none;">inflation-adjusted returns calculator</a> to see the combined effect of both on your purchasing power.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Two investors each start with $25,000 and add $6,000 at the start of every year for 25 years. Both funds earn 7% a year before fees. One charges a 0.04% expense ratio, the other 0.85%. Entered into this calculator:</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 22px;margin-bottom:20px;">
+  <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;">$25,000 + $6,000/yr · 7% gross · 25 years</div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Year 10: 0.04% fund vs 0.85% fund</span><span style="color:var(--text);white-space:nowrap;">$137,496 vs $129,951</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Year 15</span><span style="color:var(--text);white-space:nowrap;">$229,362 vs $211,148</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Year 20</span><span style="color:var(--text);white-space:nowrap;">$357,968 vs $320,579</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Year 25 (final)</span><span style="color:var(--text);white-space:nowrap;">$538,007 vs $468,061</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Fee paid by the 0.85% fund in year 25 alone</span><span style="color:var(--red);white-space:nowrap;">$3,979</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:13px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Fee drag after 25 years (13.0% of the low-cost result)</span><span style="color:var(--red);white-space:nowrap;">$69,946</span></div>
+</div>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The fee gap is 0.81 percentage points a year, yet it costs 13.0% of the final balance. The drag also accelerates: it was $37,389 after 20 years, so almost half of the $69,946 total piles up in the last five years, when the balance is largest.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">What this calculator doesn’t model</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The calculator isolates one variable, the expense ratio. That makes the comparison clean, but it leaves out several things that matter in real life:</p>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;margin-bottom:16px;"><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Both funds earn the same return before fees.</strong> That is the central assumption. An actively managed fund only comes out ahead if it beats the cheaper fund by more than the fee gap, after fees, year after year.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Returns are constant.</strong> Every year earns exactly the gross return you enter, so the result is a projection, not a forecast. Real markets vary, and past performance does not guarantee future results.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Only the expense ratio is modeled.</strong> Advisory fees, account fees, sales charges, trading costs and taxes are not included. You can approximate an advisory fee by adding it to the fee figure (see the FAQ).</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Simplified fee timing.</strong> The fee is subtracted from the annual return, and contributions are added at the start of each year. Real funds deduct fees gradually through the year, so results are close but not exact.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Nominal dollars.</strong> Results are not adjusted for inflation. Use the <a href="compound-interest.html" style="color:#c8f060;text-decoration:none;">compound interest calculator</a> or the inflation-adjusted returns calculator to see growth in today’s dollars.</li></ul>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Low-cost index funds are the usual way to keep this drag small. Our guides to <a href="guides/index-fund-investing-beginners.html" style="color:#c8f060;text-decoration:none;">index fund investing for beginners</a> and the <a href="guides/three-fund-portfolio.html" style="color:#c8f060;text-decoration:none;">3-fund portfolio</a> show how investors build a whole portfolio from a few low-fee funds.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">How much does a 1% fee cost over 30 years?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">With this calculator’s default inputs ($50,000 to start, $12,000 a year, 7% gross return, 30 years), a 0.03% fund grows to about $1.58M and a 1.00% fund to about $1.29M. The 1% fee costs roughly $290.6K, or 18.4% of what the low-cost fund would have produced. Change any input to see your own number.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Where do I find a fund’s expense ratio?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Funds list their expense ratio in the prospectus and on the fund’s fact sheet, and most brokerages show it on the fund’s quote page. Enter it as a percentage, for example 0.03 for 0.03%.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Can I include an advisor’s fee?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Yes, as an approximation. Add the advisory fee to the fund’s expense ratio and enter the total as the high-cost fee. For example, a 0.85% fund held through a 1.00% advisory account becomes 1.85%. The math is the same because both fees come out of your return each year.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Is a higher-fee fund ever worth it?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Only if it earns more than the fee difference, after fees. To test that, lower its fee by the extra return you expect. If you think a 0.85% fund will beat an index fund by 0.50% a year before fees, enter its fee as 0.35%. The result shows whether that edge would actually cover the cost.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Why does the fee drag grow so fast in later years?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">A percentage fee is charged on a growing balance, and every dollar paid also stops compounding for all the years that remain. In the worked example above, the gap is $7,545 after 10 years but $69,946 after 25.</p>
+  </div>
 </div>
 
 <footer>
@@ -575,8 +661,8 @@ footer a:hover { color: var(--text); }
 let chart = null;
 
 function fmt(n) {
-  if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (n >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  if (n >= 1e6) return '$' + (Math.sign(n) * Math.round(Math.abs(n) / 1e4) / 100).toFixed(2) + 'M';
+  if (n >= 1e3) return '$' + (Math.sign(n) * Math.round(Math.abs(n) / 100) / 10).toFixed(1) + 'K';
   return '$' + Math.round(n).toLocaleString();
 }
 

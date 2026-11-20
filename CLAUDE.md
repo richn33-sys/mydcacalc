@@ -1041,12 +1041,19 @@ CURRENT_CALCULATORS = [
 ---
 ## Session History
 
+### Nov 20 2026 — Content-standard upgrade: fee, rebalancing, TLH, crypto cost basis, withdrawal rate
+- All 5 now meet the Calculator Content Standard: worked example (every figure produced by running the page's own script in headless Chrome), "What this calculator doesn't model" section, 5-Q FAQ + FAQPage schema (generated from the visible FAQ text — verified identical), 2–3 contextual internal links, Sources list where tax rules are stated
+- **Titles/metas/og deliberately NOT changed** on these pages — Rich wants a clean CTR read on the Nov 20 script fix alone. Don't touch them until that read is done
+- Primary sources cited: 26 USC §§1211(b), 1212(b), 1091 (govinfo); IRS Pub 550 (Schedule D netting), Topic 409, Pub 590-B (IRA gains not taxed until distributed); Rev. Proc. 2025-32 §4.03 (2026 0%/15% LTCG thresholds: single 49,450/545,500 · MFJ 98,900/613,700 · HOH 66,200/579,600); IRS virtual currency FAQ Q8 (basis incl. fees) + Q39–41 (specific ID or FIFO — average cost is NOT a crypto tax method); IRS digital assets page; SEC Beginners' Guide to Asset Allocation (sec.gov). SEC fee bulletin (investor.gov) 403s automated fetches — fee page makes no regulatory claims
+- **TLH calculator math bug fixed:** `taxSaved` dropped the ordinary-income offset (up to $3K × bracket) whenever harvested losses exceeded gains (e.g. $16K gains + $20K harvest showed $2,760 saved; correct $3,480). "With harvesting" now shows tax on remaining gains + subtitle noting the income-offset saving. Correction note on page
+- **fmt() rounding bug fixed on 12 pages** (toFixed on binary floats: $1,650 → "$1.6K"): crypto-cost-basis, dca-backtest, dividend, drip, fee, fire, inflation, loss-recovery, rebalancing, rmd, tax-loss-harvesting, withdrawal-rate. Now rounds half-up on the true value ($1.7K). 529 + net-worth use whole-K formatting (not affected)
+
 ### Nov 20 2026 — Broken-calculator audit + inline-nav root-cause fix
 - **Bug:** a one-off Jun 21 2026 patch (commit `441a64c`, "Fix hookDropdown on all calculator pages", script not in repo) replaced inline "Mobile menu" handlers on 5 calculators only up to the first `});`, leaving an orphaned tail → `SyntaxError: Unexpected token '}'` killed each page's whole script. **Tax-loss harvesting, crypto cost basis, fee impact, withdrawal rate and rebalancing calculators were all broken live (showed $0 / button did nothing) from Jun 21 to Nov 20 2026.** Fixed by removing the inline nav block (nav.js already covers it): TLH Nov 20 (`ce54556`), other 4 in this session
 - **rmd-calculator.html** had a well-formed duplicate inline nav handler (parsed fine) → hamburger and guide accordion double-toggled with nav.js (mobile menu wouldn't open). Removed
 - **Audit:** all 69 .html files, every inline script `node --check` → 0 failures after fixes. Defaults verified against independent math (fee $1.58M/$1.29M/$290.6K; withdrawal 100+/100+/62/45 yrs; crypto avg $88,681 +9.9%; rebalancing 5.0% drift/$5K; TLH $1,650 saved; RMD worked example all match)
 - **Prevention:** `stamp_nav.py --check` (+ auto-run after stamping), deploy.py pre-flight gate, implement_nav_js.py disabled
-- **Pages with no worked example (predate content standard):** crypto-cost-basis, fee, rebalancing, withdrawal-rate, tax-loss-harvesting calculators — candidates for a content upgrade
+- **Pages with no worked example (predate content standard):** crypto-cost-basis, fee, rebalancing, withdrawal-rate, tax-loss-harvesting calculators — ✅ upgraded Nov 20 2026 (see next entry)
 
 ### Nov 19 2026 — Charitable Deduction Calculator Session
 - **Built `charitable-deduction-calculator.html`** (28th calculator) targeting "charitable deduction calculator" / "charitable deduction standard deduction 2026". Title: `Charitable Deduction Calculator 2026 (OBBBA) | MyDCACalc` (56 chars); meta 146 chars; og synced

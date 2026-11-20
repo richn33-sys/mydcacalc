@@ -221,6 +221,54 @@ footer a:hover { color: var(--text); }
 
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much of a capital loss can I deduct against ordinary income?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Up to $3,000 a year, or $1,500 if you’re married filing separately, once your losses have offset all your capital gains. The limit is in 26 U.S.C. §1211(b), and IRS Topic 409 describes the same rule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to losses above the $3,000 limit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They carry forward to later years. Under 26 U.S.C. §1212(b), unused short-term losses carry over as short-term losses and unused long-term losses as long-term losses, so they keep their character. Enter them in the carryforward field next year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the wash sale rule?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you sell stock or securities at a loss and buy substantially identical stock or securities within 30 days before or after the sale, the loss isn’t deductible at that time (26 U.S.C. §1091). Investors usually switch to a similar but not identical fund, or wait more than 30 days to buy back."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which long-term capital gains rate should I pick for 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your taxable income, including the gains. Under IRS Rev. Proc. 2025-32, the 0% rate applies up to $49,450 of taxable income for single filers, $98,900 for married couples filing jointly and $66,200 for heads of household. The 15% rate applies up to $545,500, $613,700 and $579,600 respectively, and 20% applies above those amounts. If your gains straddle a threshold, use the capital gains tax calculator for the exact split."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why can the tax saved be bigger than the tax I owed on my gains?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because once your losses wipe out all your gains, up to $3,000 of what’s left reduces your ordinary income too. In the worked example, $2,760 of tax on gains disappears, and the $3,000 deduction saves another $720 at a 24% rate, for $3,480 in total."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -514,7 +562,7 @@ footer a:hover { color: var(--text); }
       <div class="compare-card after">
         <div class="compare-label">With harvesting</div>
         <div class="compare-value" id="tax-after">$0</div>
-        <div class="compare-sub">Total tax owed on gains</div>
+        <div class="compare-sub" id="tax-after-sub">Total tax owed on gains</div>
       </div>
     </div>
 
@@ -580,6 +628,47 @@ footer a:hover { color: var(--text); }
     <li style="margin-bottom:10px;">Select your filing status and tax brackets. The long-term CGT rate depends on your income — most middle-income investors use 15%.</li>
   </ul>
   <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Read the full guide on <a href="guides/tax-loss-harvesting-explained.html" style="color:#c8f060;text-decoration:none;">how tax-loss harvesting works</a> including the wash sale rule, replacement fund strategies, and the DCA investor playbook. Doing other year-end tax planning? Our <a href="charitable-deduction-calculator.html" style="color:#c8f060;text-decoration:none;">charitable deduction calculator</a> shows whether your 2026 donations beat the standard deduction, and whether bunching two years of gifts saves more.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A single filer in the 24% bracket, with a 15% long-term capital gains rate, has $4,000 of short-term gains and $12,000 of long-term gains this year. They harvest $20,000 of losses and have no carryforward. Entered into this calculator:</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 22px;margin-bottom:20px;">
+  <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;">$16,000 of gains · $20,000 harvested · single, 24% / 15%</div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Tax without harvesting: $4,000 × 24% + $12,000 × 15%</span><span style="color:var(--red);white-space:nowrap;">$2,760</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Gains left after applying $16,000 of the losses</span><span style="color:var(--text);white-space:nowrap;">$0</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Loss used against ordinary income (cap)</span><span style="color:var(--green);white-space:nowrap;">$3,000 → saves $720</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Loss carried forward to future years</span><span style="color:var(--text);white-space:nowrap;">$1,000</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Tax saved this year</span><span style="color:var(--green);white-space:nowrap;">$3,480</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:13px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">That saving reinvested at 7% for 20 years</span><span style="color:var(--accent);white-space:nowrap;">$13,467</span></div>
+</div>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The saving exceeds the $2,760 tax on the gains. The $3,000 deduction against ordinary income is worth another $720 at a 24% rate. The remaining $1,000 of loss carries forward to future years.</p>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;"><strong style="color:#f0efe8;font-weight:500;">Correction (November 2026):</strong> earlier versions of this calculator left out the $720 ordinary-income saving whenever harvested losses exceeded gains. They would have shown $2,760 saved for this example. The calculation now includes it.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">What this calculator doesn’t model</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Treat the result as an estimate of the tax value, not a prepared return. The calculator simplifies in several ways:</p>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;margin-bottom:16px;"><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Loss character.</strong> You enter one loss figure, and the calculator applies it to short-term gains first, then long-term. On Schedule D, short-term and long-term results are netted separately and then combined (<a href="https://www.irs.gov/publications/p550" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">IRS Publication 550</a>). If your harvested losses are long-term, they offset long-term gains first, which can mean a smaller saving than shown here.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">One rate per type.</strong> Each type of gain is taxed at the single rate you pick. Large gains or losses can cross a bracket line. The net investment income tax and state taxes aren’t included. For bracket-by-bracket math, use the <a href="capital-gains-tax-calculator.html" style="color:#c8f060;text-decoration:none;">capital gains tax calculator</a>.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">No wash-sale check.</strong> A loss is disallowed if you buy substantially identical stock or securities within 30 days before or after the sale (<a href="https://www.govinfo.gov/content/pkg/USCODE-2024-title26/html/USCODE-2024-title26-subtitleA-chap1-subchapO-partVII-sec1091.htm" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">26 U.S.C. §1091</a>). The calculator assumes your losses are allowed.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Deferral, not forgiveness.</strong> If you reinvest the sale proceeds in a similar fund, its lower purchase price means a larger gain when you eventually sell it. Most of the benefit is in the timing, plus the reinvested savings shown in the chart.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Future carryforwards aren’t valued.</strong> The calculator shows the carryforward amount but not what it will save you in later years.</li></ul>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">To check which lots are actually sitting at a loss, run them through the <a href="cost-basis-calculator.html" style="color:#c8f060;text-decoration:none;">cost basis calculator</a>. For the full rules, see our guide to <a href="guides/capital-gains-tax-stocks.html" style="color:#c8f060;text-decoration:none;">capital gains tax on stocks</a>.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">How much of a capital loss can I deduct against ordinary income?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Up to $3,000 a year, or $1,500 if you’re married filing separately, once your losses have offset all your capital gains. The limit is in 26 U.S.C. §1211(b), and IRS Topic 409 describes the same rule.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">What happens to losses above the $3,000 limit?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">They carry forward to later years. Under 26 U.S.C. §1212(b), unused short-term losses carry over as short-term losses and unused long-term losses as long-term losses, so they keep their character. Enter them in the carryforward field next year.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">What is the wash sale rule?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">If you sell stock or securities at a loss and buy substantially identical stock or securities within 30 days before or after the sale, the loss isn’t deductible at that time (26 U.S.C. §1091). Investors usually switch to a similar but not identical fund, or wait more than 30 days to buy back.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Which long-term capital gains rate should I pick for 2026?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">It depends on your taxable income, including the gains. Under IRS Rev. Proc. 2025-32, the 0% rate applies up to $49,450 of taxable income for single filers, $98,900 for married couples filing jointly and $66,200 for heads of household. The 15% rate applies up to $545,500, $613,700 and $579,600 respectively, and 20% applies above those amounts. If your gains straddle a threshold, use the capital gains tax calculator for the exact split.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Why can the tax saved be bigger than the tax I owed on my gains?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Because once your losses wipe out all your gains, up to $3,000 of what’s left reduces your ordinary income too. In the worked example, $2,760 of tax on gains disappears, and the $3,000 deduction saves another $720 at a 24% rate, for $3,480 in total.</p>
+  </div>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Sources</h2>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;margin-bottom:16px;"><li style="margin-bottom:10px;" ><a href="https://www.govinfo.gov/content/pkg/USCODE-2024-title26/html/USCODE-2024-title26-subtitleA-chap1-subchapP-partII-sec1211.htm" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">26 U.S.C. §1211(b)</a>: $3,000 ($1,500 married filing separately) limit on net capital losses against other income.</li><li style="margin-bottom:10px;" ><a href="https://www.govinfo.gov/content/pkg/USCODE-2024-title26/html/USCODE-2024-title26-subtitleA-chap1-subchapP-partII-sec1212.htm" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">26 U.S.C. §1212(b)</a>: carryover of net capital losses as short-term or long-term losses.</li><li style="margin-bottom:10px;" ><a href="https://www.govinfo.gov/content/pkg/USCODE-2024-title26/html/USCODE-2024-title26-subtitleA-chap1-subchapO-partVII-sec1091.htm" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">26 U.S.C. §1091</a>: wash sales, a 30-day window before and after the sale.</li><li style="margin-bottom:10px;" ><a href="https://www.irs.gov/publications/p550" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">IRS Publication 550</a> and <a href="https://www.irs.gov/taxtopics/tc409" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">Topic 409</a>: netting short-term and long-term gains and losses on Schedule D, plus the capital loss deduction and carryover.</li><li style="margin-bottom:10px;" ><a href="https://www.irs.gov/pub/irs-drop/rp-25-32.pdf" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">IRS Rev. Proc. 2025-32</a>, section 4.03: 2026 maximum 0% and 15% rate amounts.</li></ul>
 </div>
 
 <footer>
@@ -597,8 +686,8 @@ footer a:hover { color: var(--text); }
 let chart = null;
 
 function fmt(n) {
-  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (Math.abs(n) >= 1e3) return '$' + (Math.abs(n)/1e3).toFixed(1) + 'K';
+  if (Math.abs(n) >= 1e6) return '$' + (Math.sign(n) * Math.round(Math.abs(n) / 1e4) / 100).toFixed(2) + 'M';
+  if (Math.abs(n) >= 1e3) return '$' + (Math.round(Math.abs(n) / 100) / 10).toFixed(1) + 'K';
   return (n < 0 ? '-$' : '$') + Math.abs(Math.round(n)).toLocaleString();
 }
 
@@ -631,16 +720,22 @@ function calc() {
   const incomeOffset = Math.min(totalLoss, incomeLimit);
   const newCarryForward = Math.max(0, totalLoss - incomeLimit);
 
-  // Tax WITH harvesting
-  const taxAfter = remStcg * bracket + remLtcg * ltrate - incomeOffset * bracket;
-  const taxSaved = Math.max(0, taxBefore - Math.max(0, taxAfter));
+  // Tax WITH harvesting: tax on the gains that remain, plus the tax the income offset
+  // saves on other (ordinary) income at your bracket. (Fixed Nov 2026: the income-offset
+  // saving was previously dropped whenever harvested losses exceeded gains.)
+  const taxAfterGains = remStcg * bracket + remLtcg * ltrate;
+  const incomeTaxSaved = incomeOffset * bracket;
+  const taxSaved = Math.max(0, taxBefore - taxAfterGains + incomeTaxSaved);
 
   // Compounding value of savings
   const years20 = taxSaved * Math.pow(1 + retRate, 20);
 
   // Update UI
   document.getElementById('tax-before').textContent = fmt(taxBefore);
-  document.getElementById('tax-after').textContent = fmt(Math.max(0, taxAfter));
+  document.getElementById('tax-after').textContent = fmt(taxAfterGains);
+  document.getElementById('tax-after-sub').textContent = incomeTaxSaved > 0
+    ? 'Tax on gains · plus ' + fmt(incomeTaxSaved) + ' less tax on other income'
+    : 'Total tax owed on gains';
   document.getElementById('tax-saved').textContent = fmt(taxSaved);
   document.getElementById('carry-forward').textContent = fmt(newCarryForward);
   document.getElementById('compound-value').textContent = fmt(years20);

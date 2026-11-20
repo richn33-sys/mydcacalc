@@ -235,6 +235,54 @@ footer a:hover { color: var(--text); }
 
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How often should I rebalance my portfolio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The SEC’s beginners’ guide describes two approaches: rebalancing on a calendar, such as every six or twelve months, or only when an asset class moves more than a percentage you set in advance. It adds that rebalancing “tends to work best when done on a relatively infrequent basis.” This calculator uses the second approach with a 5-percentage-point trigger."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does “drift” mean in this calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Drift is the gap, in percentage points, between a holding’s current share of the portfolio and its target. A holding targeted at 50% that is now 55.4% of the portfolio has drifted +5.4 points. The status shows “Rebalance” when any holding drifts 5 or more points in either direction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I rebalance without selling anything?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often, yes. The SEC lists three ways to rebalance: sell overweight holdings and buy underweight ones, buy more of the underweight holdings, or steer ongoing contributions to the underweight holdings until the mix is back in balance. In the worked example, $10,000 of new money into bonds cuts the largest drift from 5.4% to 1.4% without a single sale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will rebalancing trigger taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It can. Selling an investment in a taxable account for more than your basis is a capital gain, according to IRS Topic 409. Trades inside an IRA aren’t taxed when they happen; IRS Publication 590-B says amounts in an IRA, including earnings and gains, generally aren’t taxed until distributed. Rebalancing inside retirement accounts, or with new money, avoids realizing gains."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do my targets have to add up to 100%?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They should. Each target is a share of the whole portfolio, so if they total more or less than 100% the buy and sell amounts won’t restore a complete allocation. Check the total before you click Calculate."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -535,6 +583,44 @@ footer a:hover { color: var(--text); }
       <li style="margin-bottom:10px;">Use the presets to load common portfolio templates as a starting point.</li>
     </ul>
     <p style="color:#888884;font-weight:300;margin-bottom:0;line-height:1.75;">Not sure what your target allocation should be? Take the <a href="asset-allocation.html" style="color:#c8f060;text-decoration:none;">asset allocation quiz</a> first, then come back here to rebalance toward that target.</p>
+
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">A worked example</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">A $130,000 portfolio has a target of 50% US stocks, 20% international and 30% bonds. After a strong year for US stocks it holds $72,000, $26,000 and $32,000. Entered into this calculator:</p>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 22px;margin-bottom:20px;">
+  <div style="font-size:12px;font-family:var(--font-mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;">$130,000 · target 50 / 20 / 30</div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">US stocks: $72,000 = 55.4% (target 50%)</span><span style="color:var(--red);white-space:nowrap;">+5.4 pts · Sell $7,000</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">International: $26,000 = 20.0% (target 20%)</span><span style="color:var(--text);white-space:nowrap;">0.0 pts · Hold</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-family:var(--font-mono);"><span style="color:var(--text-muted);">Bonds: $32,000 = 24.6% (target 30%)</span><span style="color:var(--green);white-space:nowrap;">−5.4 pts · Buy $7,000</span></div>
+  <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:13px;font-family:var(--font-mono);font-weight:500;"><span style="color:var(--text-muted);">Largest drift / status</span><span style="color:var(--accent);white-space:nowrap;">5.4% · Rebalance</span></div>
+</div>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">Moving $7,000 from US stocks to bonds restores the 50/20/30 mix. There is another option that avoids selling. Put the next $10,000 of new money into bonds instead, and the calculator shows bonds at 30.0%, US stocks at 51.4% and international at 18.6%. The largest drift falls to 1.4%, and the status changes to “On target”.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">What this calculator doesn’t model</h2>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">The calculator shows the trades that restore your targets. It doesn’t show what those trades cost you:</p>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;margin-bottom:16px;"><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Taxes.</strong> In a taxable account, selling an investment for more than your basis is a capital gain (IRS <a href="https://www.irs.gov/taxtopics/tc409" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">Topic 409</a>). Inside an IRA, “amounts in your IRA (including earnings and gains) aren’t taxed until distributed” (<a href="https://www.irs.gov/publications/p590b" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">IRS Publication 590-B</a>). Rebalancing inside tax-advantaged accounts, or with new contributions, can avoid a tax bill. Check a sale with the <a href="capital-gains-tax-calculator.html" style="color:#c8f060;text-decoration:none;">capital gains tax calculator</a> first.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">Trading costs.</strong> The SEC’s guide advises considering “whether the method of rebalancing you decide to use will trigger transaction fees or tax consequences” (<a href="https://www.sec.gov/about/reports-publications/investorpubsassetallocationhtm" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">SEC</a>). Commissions, spreads and fund minimums are not modeled.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">A fixed 5-point trigger.</strong> The status flips to “Rebalance” when any holding is 5 or more percentage points from target. That is a common rule of thumb, not an official rule. For a small holding, such as a 5% cash target, 5 points is a doubling, so you may want a tighter band for small positions.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">No lot selection.</strong> The calculator says how much to sell, not which shares. Selling higher-basis lots first can shrink the taxable gain.</li><li style="margin-bottom:10px;"><strong style="color:#f0efe8;font-weight:500;">No forecast.</strong> Rebalancing controls risk; it isn’t a way to boost returns. The SEC describes it as returning “your portfolio to a comfortable level of risk.”</li></ul>
+  <p style="color:#888884;font-weight:300;margin-bottom:16px;line-height:1.75;">For the bigger picture of choosing targets, see our <a href="guides/portfolio-diversification-guide.html" style="color:#c8f060;text-decoration:none;">portfolio diversification guide</a> and the <a href="guides/three-fund-portfolio.html" style="color:#c8f060;text-decoration:none;">3-fund portfolio</a>, a simple allocation that’s easy to rebalance.</p>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Frequently asked questions</h2>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">How often should I rebalance my portfolio?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">The SEC’s beginners’ guide describes two approaches: rebalancing on a calendar, such as every six or twelve months, or only when an asset class moves more than a percentage you set in advance. It adds that rebalancing “tends to work best when done on a relatively infrequent basis.” This calculator uses the second approach with a 5-percentage-point trigger.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">What does “drift” mean in this calculator?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Drift is the gap, in percentage points, between a holding’s current share of the portfolio and its target. A holding targeted at 50% that is now 55.4% of the portfolio has drifted +5.4 points. The status shows “Rebalance” when any holding drifts 5 or more points in either direction.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Can I rebalance without selling anything?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">Often, yes. The SEC lists three ways to rebalance: sell overweight holdings and buy underweight ones, buy more of the underweight holdings, or steer ongoing contributions to the underweight holdings until the mix is back in balance. In the worked example, $10,000 of new money into bonds cuts the largest drift from 5.4% to 1.4% without a single sale.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Will rebalancing trigger taxes?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">It can. Selling an investment in a taxable account for more than your basis is a capital gain, according to IRS Topic 409. Trades inside an IRA aren’t taxed when they happen; IRS Publication 590-B says amounts in an IRA, including earnings and gains, generally aren’t taxed until distributed. Rebalancing inside retirement accounts, or with new money, avoids realizing gains.</p>
+  </div>
+  <div style="margin-bottom:22px;">
+    <h3 style="font-size:16px;font-weight:500;color:#f0efe8;margin:24px 0 10px;">Do my targets have to add up to 100%?</h3>
+    <p style="color:#888884;font-weight:300;line-height:1.75;margin:0;">They should. Each target is a share of the whole portfolio, so if they total more or less than 100% the buy and sell amounts won’t restore a complete allocation. Check the total before you click Calculate.</p>
+  </div>
+  <h2 style="font-size:20px;font-weight:600;letter-spacing:-0.02em;margin:40px 0 16px;color:#f0efe8;">Sources</h2>
+  <ul style="color:#888884;font-weight:300;padding-left:22px;line-height:1.75;margin-bottom:16px;"><li style="margin-bottom:10px;" ><a href="https://www.sec.gov/about/reports-publications/investorpubsassetallocationhtm" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">SEC, Beginners’ Guide to Asset Allocation, Diversification, and Rebalancing</a>: what rebalancing is, the three methods, calendar vs threshold timing, and the warning about fees and taxes.</li><li style="margin-bottom:10px;" ><a href="https://www.irs.gov/taxtopics/tc409" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">IRS Topic 409, Capital gains and losses</a>: selling a capital asset for more than its basis produces a capital gain.</li><li style="margin-bottom:10px;" ><a href="https://www.irs.gov/publications/p590b" rel="nofollow noopener" target="_blank" style="color:#c8f060;text-decoration:none;">IRS Publication 590-B</a>: amounts in an IRA, including earnings and gains, generally aren’t taxed until distributed.</li></ul>
   </div>
 
 </div>
@@ -563,8 +649,8 @@ let assets = [
 ];
 
 function fmt(n) {
-  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
-  if (Math.abs(n) >= 1e3) return '$' + (n/1e3).toFixed(1) + 'K';
+  if (Math.abs(n) >= 1e6) return '$' + (Math.sign(n) * Math.round(Math.abs(n) / 1e4) / 100).toFixed(2) + 'M';
+  if (Math.abs(n) >= 1e3) return '$' + (Math.sign(n) * Math.round(Math.abs(n) / 100) / 10).toFixed(1) + 'K';
   return (n < 0 ? '-$' : '$') + Math.abs(Math.round(n)).toLocaleString();
 }
 
