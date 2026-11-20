@@ -7,6 +7,14 @@ os.chdir(os.path.expanduser('~/Desktop/ClaudeWork/mydcacalc'))
 
 message = sys.argv[1] if len(sys.argv) > 1 else f"update {datetime.now().strftime('%Y-%m-%d %H:%M')}"
 
+# Step 0 — pre-flight: no inline nav handlers, nav.js once per page, every inline script parses
+print("Pre-flight check (stamp_nav.py --check)...")
+pre = subprocess.run([sys.executable, 'stamp_nav.py', '--check'], capture_output=True, text=True)
+print(pre.stdout.strip())
+if pre.returncode != 0:
+    print("Deploy ABORTED — fix the problems above (or run: python3 stamp_nav.py --check)")
+    sys.exit(1)
+
 # Step 1 — git add, commit, push
 commands = [
     ['git', 'add', '.'],

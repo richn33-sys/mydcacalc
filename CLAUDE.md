@@ -233,8 +233,10 @@ Nav is hardcoded per-page. Use `stamp_nav.py` — a single script that stamps th
 
 **Workflow to add a calculator or guide:**
 1. Add the item to the appropriate `CALC_CATEGORIES` group (or `GUIDES` array) in `stamp_nav.py`
-2. Run `python3 stamp_nav.py --all` to re-stamp the nav across every page
-3. Deploy: `python3 deploy.py "message"`
+2. Run `python3 stamp_nav.py --all` to re-stamp the nav across every page (it now runs `--check` automatically afterwards and exits 1 on any problem)
+3. Deploy: `python3 deploy.py "message"` (pre-flight runs `stamp_nav.py --check` and ABORTS the deploy on failure)
+
+**No inline nav JS — ever (Nov 20 2026):** pages must not contain inline hamburger/dropdown/accordion handlers; `/nav.js` is the only source. `python3 stamp_nav.py --check` scans every .html on disk and fails on: (a) inline scripts containing nav handler code (`getElementById('nav-hamburger')`, `.guide-cat-header` listeners, `function hookDropdown`), (b) any inline script failing `node --check`, (c) root/guides pages without exactly one `/nav.js` tag (privacy/terms/authors exempt — known no-nav pages). `implement_nav_js.py` (Jun 2 migration) is **disabled** — it would overwrite nav.js with a stale 8-calculator nav and inject inline handlers.
 ---
 ## Pages & Calculators
 ### index.html — DCA Calculator
@@ -1038,6 +1040,13 @@ CURRENT_CALCULATORS = [
 - [ ] Apply to Ezoic at 10k visits
 ---
 ## Session History
+
+### Nov 20 2026 — Broken-calculator audit + inline-nav root-cause fix
+- **Bug:** a one-off Jun 21 2026 patch (commit `441a64c`, "Fix hookDropdown on all calculator pages", script not in repo) replaced inline "Mobile menu" handlers on 5 calculators only up to the first `});`, leaving an orphaned tail → `SyntaxError: Unexpected token '}'` killed each page's whole script. **Tax-loss harvesting, crypto cost basis, fee impact, withdrawal rate and rebalancing calculators were all broken live (showed $0 / button did nothing) from Jun 21 to Nov 20 2026.** Fixed by removing the inline nav block (nav.js already covers it): TLH Nov 20 (`ce54556`), other 4 in this session
+- **rmd-calculator.html** had a well-formed duplicate inline nav handler (parsed fine) → hamburger and guide accordion double-toggled with nav.js (mobile menu wouldn't open). Removed
+- **Audit:** all 69 .html files, every inline script `node --check` → 0 failures after fixes. Defaults verified against independent math (fee $1.58M/$1.29M/$290.6K; withdrawal 100+/100+/62/45 yrs; crypto avg $88,681 +9.9%; rebalancing 5.0% drift/$5K; TLH $1,650 saved; RMD worked example all match)
+- **Prevention:** `stamp_nav.py --check` (+ auto-run after stamping), deploy.py pre-flight gate, implement_nav_js.py disabled
+- **Pages with no worked example (predate content standard):** crypto-cost-basis, fee, rebalancing, withdrawal-rate, tax-loss-harvesting calculators — candidates for a content upgrade
 
 ### Nov 19 2026 — Charitable Deduction Calculator Session
 - **Built `charitable-deduction-calculator.html`** (28th calculator) targeting "charitable deduction calculator" / "charitable deduction standard deduction 2026". Title: `Charitable Deduction Calculator 2026 (OBBBA) | MyDCACalc` (56 chars); meta 146 chars; og synced

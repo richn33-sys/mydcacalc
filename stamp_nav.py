@@ -5,6 +5,12 @@ Usage:
   python3 stamp_nav.py fee-calculator.html
   python3 stamp_nav.py guides/new-guide.html
   python3 stamp_nav.py --all
+  python3 stamp_nav.py --check      # validate every page; exit 1 on any problem (deploy.py runs this)
+
+All nav behaviour JS lives in /nav.js. Pages must NOT carry inline nav handlers
+(hamburger / dropdown / accordion listeners). A Jun 21 2026 one-off patch left a
+half-replaced inline nav block on 5 calculators, which was a JS syntax error that
+silently broke calc() on all of them until Nov 20 2026. --check guards against it.
 
 Run from: ~/Desktop/ClaudeWork/mydcacalc/
 """
@@ -255,11 +261,77 @@ def stamp(filepath):
     return True
 
 
+# ── VALIDATION (--check) ──────────────────────────────────────────────────────
+INLINE_NAV_MARKERS = (
+    "getElementById('nav-hamburger')", 'getElementById("nav-hamburger")',
+    "querySelectorAll('.guide-cat-header')", 'querySelectorAll(".guide-cat-header")',
+    'function hookDropdown',
+)
+SKIP_NAV_CHECK = {'privacy.html', 'terms.html'}   # known: no nav on these pages
+
+
+def all_pages():
+    pages = []
+    for d, _, fs in os.walk(BASE):
+        if '/.git' in d.replace(os.sep, '/'):
+            continue
+        pages += [os.path.join(d, f) for f in fs if f.endswith('.html')]
+    return sorted(pages)
+
+
+def check_page(path):
+    """Return a list of problems for one page (empty list = OK)."""
+    import subprocess, tempfile, shutil
+    problems = []
+    with open(path, errors='ignore') as f:
+        c = f.read()
+    rel = os.path.relpath(path, BASE)
+    in_nav_scope = os.path.dirname(rel) in ('', 'guides') and os.path.basename(rel) not in SKIP_NAV_CHECK
+    if in_nav_scope:
+        n = len(re.findall(r'<script[^>]+/nav\.js[^>]*></script>', c))
+        if n != 1:
+            problems.append('nav.js script tag count = %d (expected 1)' % n)
+    node = shutil.which('node')
+    for i, (attrs, body) in enumerate(re.findall(r'<script([^>]*)>(.*?)</script>', c, re.S | re.I)):
+        if 'src=' in attrs or 'json' in attrs.lower() or not body.strip():
+            continue
+        hits = [m for m in INLINE_NAV_MARKERS if m in body]
+        if hits:
+            problems.append('inline script #%d contains nav handler code (%s) — nav JS belongs in /nav.js' % (i, hits[0]))
+        if node:
+            with tempfile.NamedTemporaryFile('w', suffix='.js', delete=False) as tf:
+                tf.write(body)
+            r = subprocess.run([node, '--check', tf.name], capture_output=True, text=True)
+            os.unlink(tf.name)
+            if r.returncode:
+                err = [l for l in r.stderr.splitlines() if 'Error' in l]
+                problems.append('inline script #%d fails node --check: %s' % (i, err[0] if err else r.stderr.strip()[:200]))
+    return problems
+
+
+def check_all(paths=None):
+    import shutil
+    if not shutil.which('node'):
+        print('  WARNING: node not found — syntax check skipped (inline-nav check still runs)')
+    paths = paths or all_pages()
+    bad = 0
+    for p in paths:
+        for prob in check_page(p):
+            print('  ✗ %s: %s' % (os.path.relpath(p, BASE), prob))
+            bad += 1
+    print(('Check FAILED — %d problem(s) in %d pages' % (bad, len(paths))) if bad
+          else ('Check passed — %d pages, no inline nav handlers, all inline scripts parse' % len(paths)))
+    return bad == 0
+
+
 def main():
     args = sys.argv[1:]
     if not args or '--help' in args:
         print(__doc__)
         return
+
+    if '--check' in args:
+        sys.exit(0 if check_all() else 1)
 
     if '--all' in args:
         files = (
@@ -272,10 +344,14 @@ def main():
         for f in sorted(files):
             stamp(f)
         print('\nDone — ' + str(len(files)) + ' files updated.')
+        if not check_all():
+            sys.exit(1)
     else:
         for arg in args:
             stamp(arg)
         print('Done.')
+        if not check_all([os.path.join(BASE, a) if not os.path.isabs(a) else a for a in args]):
+            sys.exit(1)
 
 
 if __name__ == '__main__':

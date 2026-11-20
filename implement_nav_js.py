@@ -3,7 +3,13 @@ implement_nav_js.py
 Run from: ~/Desktop/ClaudeWork/mydcacalc/
 Usage: python3 ~/Downloads/implement_nav_js.py
 """
-import os, re, glob
+import os, re, glob, sys
+
+# OBSOLETE (disabled Nov 20 2026). This Jun 2 2026 migration script overwrites /nav.js with a
+# stale 8-calculator nav and injects inline nav handler <script> blocks into every page — the
+# pattern that broke 5 calculators. Nav is now stamped by stamp_nav.py and all nav behaviour
+# lives in /nav.js. Kept only for history; do not re-enable.
+sys.exit("implement_nav_js.py is obsolete and disabled — use: python3 stamp_nav.py --all")
 
 base = '/Users/richardnashawaty/Desktop/ClaudeWork/mydcacalc'
 
